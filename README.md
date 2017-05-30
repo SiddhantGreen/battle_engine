@@ -6,7 +6,7 @@ Please see the original repository for build instructions at https://github.com/
 
 
 Current Progress:
-![Alt text](https://streamable.com/lg6cn "What's done so far")
+https://streamable.com/lg6cn
 
 I will update this link when more progress is done. Help is appreciated and welcome.
 
