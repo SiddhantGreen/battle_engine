@@ -34,7 +34,6 @@ void init_battle_elements()
 /* Called right after sliding in effects have finished executing. */
 void init_battle()
 {
- //p_bank[2]->this_pkmn = &party_opponent[0];
     switch (super.multi_purpose_state_tracker) {
         case 0:
             gpu_pal_apply((void*)stdpal_get(0), 16*rboxes[0x18 & 0x3F].pal_id, 32);

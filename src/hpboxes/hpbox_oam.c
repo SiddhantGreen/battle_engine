@@ -166,9 +166,9 @@ void draw_name(struct Pokemon* pkmn, u8 tile_id, u8 tile_id2, u8 objid, enum HPF
 
     /* Copy name and prefix into buffer */
     pstrcpy(string_buffer, &name_prefix[0]);
-    memcpy(&string_buffer[sizeof(name_prefix) - 1], &pkmn->base.nick[0], 11);
+    memcpy(&string_buffer[sizeof(name_prefix) - 1], &pkmn->base.nick[0], 10);
     // set last char to 0xFF, 10 character names aren't 0xFF terminated
-    string_buffer[sizeof(name_prefix) + 10] = 0xFF;
+    string_buffer[sizeof(name_prefix) + 9] = 0xFF;
 
     /* Append gender symbol to string */
     switch (pokemon_get_gender(pkmn)) {
