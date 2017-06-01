@@ -12,8 +12,20 @@ struct battle_selection_cursor {
     
 };
 
+struct battle_field_state {
+    u8 is_raining : 1;
+    u8 is_sunny : 1;
+    u8 is_sandstorm : 1;
+    u8 is_hail : 1;
+    u8 is_desolate_land : 1;
+    u8 is_primordial_sea : 1;
+    u8 is_tailwind : 2; // side
+
+};
+
 struct battle_main {
     struct battle_selection_cursor battle_cursor;
+    struct battle_field_state field_state;
     u8 selected_option;
     u8 type_objid[4];
     u8 move_name_objid[4];
@@ -28,7 +40,6 @@ enum fight_menu {
 };
 
 extern struct battle_main* battle_master;
-//extern pchar (*multi_string_buff)[20];
 extern u8 bs_anim_status;
 
 #endif /* BATTLE_STATE_H_ */
