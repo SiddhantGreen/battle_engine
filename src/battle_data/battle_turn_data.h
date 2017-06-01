@@ -15,6 +15,7 @@ struct user_turn_action {
     u16 item_to_use;
     u8 switching_slot;
     u8 ability;
+    u16 speed_current;
 };
 
 #endif /* BATTLE_TURN_DATA_PKMN */

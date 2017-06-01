@@ -155,8 +155,13 @@ void option_selection()
             break;
             }
         case 8:
+        {
             set_callback1(battle_loop);
+            void* map_base = (void *)0x600F800;
+            memcpy(map_base, battle_textboxMap, sizeof(battle_textboxMap));
+            super.multi_purpose_state_tracker = 0;
             break;
+        }
     }; 
 }
 

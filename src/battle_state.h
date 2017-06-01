@@ -30,6 +30,8 @@ struct battle_main {
     u8 type_objid[4];
     u8 move_name_objid[4];
     u8 fight_menu_content_spawned;
+    u8 first_bank;
+    u8 second_bank;
 };
 
 enum fight_menu {
@@ -38,6 +40,7 @@ enum fight_menu {
     OPTION_BAG,
     OPTION_RUN
 };
+
 
 extern struct battle_main* battle_master;
 extern u8 bs_anim_status;

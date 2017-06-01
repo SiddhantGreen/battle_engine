@@ -2,10 +2,12 @@
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
+#include "battle_text/battle_pick_message.h"
 
 extern void priority_triage_mod(u8 ability, u16 moveid, u8 bank);
 extern void priority_gale_wings_mod(u8 ability, u16 moveid, u8 bank);
 extern void priority_prankster_mod(u8 ability, u16 moveid, u8 bank);
+extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id);
 
 void run_switch(u8 bank_id) 
 {
@@ -79,7 +81,6 @@ u16 field_speed_mod(u16 speed, u8 ability, u8 side, u8 bank, struct battle_field
     
     // speed modifier apply
     if (p_bank[bank]->user_action.speed < 0) {
-    var_8002 = 0x99;
         speed = speed / p_bank[bank]->user_action.speed;
     } else if (p_bank[bank]->user_action.speed) {
         speed = speed * p_bank[bank]->user_action.speed;
@@ -87,78 +88,150 @@ u16 field_speed_mod(u16 speed, u8 ability, u8 side, u8 bank, struct battle_field
     return speed;
 }
 
+u8 get_side(u8 bank)
+{
+    return (bank > 1) ? 1 : 0;
+}
+
+void run_move_text(u16 attack, u8 bank, u16 speed)
+{
+    // display move was used
+    pick_battle_message(attack, bank, battle_type_flags, STRING_ATTACK_USED);
+    battle_show_message((u8*)string_buffer, 0x18);
+    
+
+}
+
+
 void battle_loop()
 {
-    // get player and opponent's moves used
-    u16 p_move = get_player_attack();
-    u16 opp_move = get_opponent_attack();
     u8 p_ability = p_bank[PLAYER_SINGLES_BANK]->user_action.ability;
     u8 opp_ability = p_bank[OPPONENT_SINGLES_BANK]->user_action.ability;
-    
-    p_bank[PLAYER_SINGLES_BANK]->user_action.move_id = p_move;
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.move_id = opp_move;
-    
-    /* check if ability boosts priority of move */
-    // Triage
-    priority_triage_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
-    priority_triage_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
-    
-    // Gale wings
-    priority_gale_wings_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
-    priority_gale_wings_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
-    
-    // Prankster
-    priority_prankster_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
-    priority_prankster_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
-    
-    /* add to p_bank priority based on natural move priority */
-    p_bank[PLAYER_SINGLES_BANK]->user_action.priority += move_t[p_move].priority;
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.priority += move_t[opp_move].priority;
-   
-    
-    /* Running each move now, determine which slot goes first */
-    u8 first_bank;
-    u8 second_bank;
-    if (p_bank[PLAYER_SINGLES_BANK]->user_action.priority > p_bank[OPPONENT_SINGLES_BANK]->user_action.priority) {
-        first_bank = PLAYER_SINGLES_BANK;
-        second_bank = OPPONENT_SINGLES_BANK;
-    } else if (p_bank[PLAYER_SINGLES_BANK]->user_action.priority < p_bank[OPPONENT_SINGLES_BANK]->user_action.priority) {
-        first_bank = OPPONENT_SINGLES_BANK;
-        second_bank = PLAYER_SINGLES_BANK;
-    } else {
-        u16 player_speed = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, REQUEST_SPD, NULL);
-        u16 opponent_speed = pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_SPD, NULL);
-        
-        player_speed = field_speed_mod(player_speed, p_ability, 1, PLAYER_SINGLES_BANK, battle_master->field_state);
-        opponent_speed = field_speed_mod(opponent_speed, opp_ability, 2, OPPONENT_SINGLES_BANK, battle_master->field_state);
-        
-        if (player_speed > opponent_speed) {
-            first_bank = PLAYER_SINGLES_BANK;
-            second_bank = OPPONENT_SINGLES_BANK;
-        } else {
-            first_bank = OPPONENT_SINGLES_BANK;
-            second_bank = PLAYER_SINGLES_BANK;
+    switch(super.multi_purpose_state_tracker) {
+        case 0:
+        {
+            // set p_bank temp vars and fix priority tiers
+            u16 p_move = get_player_attack();
+            u16 opp_move = get_opponent_attack();
+            
+            
+            p_bank[PLAYER_SINGLES_BANK]->user_action.move_id = p_move;
+            p_bank[OPPONENT_SINGLES_BANK]->user_action.move_id = opp_move;
+            
+            /* check if ability boosts priority of move */
+            // Triage
+            priority_triage_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
+            priority_triage_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
+            
+            // Gale wings
+            priority_gale_wings_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
+            priority_gale_wings_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
+            
+            // Prankster
+            priority_prankster_mod(p_ability, p_move, PLAYER_SINGLES_BANK);
+            priority_prankster_mod(opp_ability, opp_move, OPPONENT_SINGLES_BANK);
+            
+            /* add to p_bank priority based on natural move priority */
+            p_bank[PLAYER_SINGLES_BANK]->user_action.priority += move_t[p_move].priority;
+            p_bank[OPPONENT_SINGLES_BANK]->user_action.priority += move_t[opp_move].priority;
+            super.multi_purpose_state_tracker++;
         }
-        
-        var_8000 = player_speed;
-        var_8001 = opponent_speed;
-        
-        while(1) {
-            var_8002 ++;
+        break;
+        case 1:
+        {
+            // figure out who goes first
+            if (p_bank[PLAYER_SINGLES_BANK]->user_action.priority > p_bank[OPPONENT_SINGLES_BANK]->user_action.priority) {
+                battle_master->first_bank = PLAYER_SINGLES_BANK;
+                battle_master->second_bank = OPPONENT_SINGLES_BANK;
+            } else if (p_bank[PLAYER_SINGLES_BANK]->user_action.priority < p_bank[OPPONENT_SINGLES_BANK]->user_action.priority) {
+                battle_master->first_bank = OPPONENT_SINGLES_BANK;
+                battle_master->second_bank = PLAYER_SINGLES_BANK;
+            } else {
+                u16 player_speed = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, REQUEST_SPD, NULL);
+                u16 opponent_speed = pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_SPD, NULL);
+                
+                player_speed = field_speed_mod(player_speed, p_ability, 1, PLAYER_SINGLES_BANK, battle_master->field_state);
+                opponent_speed = field_speed_mod(opponent_speed, opp_ability, 2, OPPONENT_SINGLES_BANK, battle_master->field_state);
+                
+                p_bank[PLAYER_SINGLES_BANK]->user_action.speed_current = player_speed;
+                p_bank[OPPONENT_SINGLES_BANK]->user_action.speed_current = opponent_speed;
+                
+                if (player_speed > opponent_speed) {
+                    battle_master->first_bank = PLAYER_SINGLES_BANK;
+                    battle_master->second_bank = OPPONENT_SINGLES_BANK;
+                } else {
+                    battle_master->first_bank = OPPONENT_SINGLES_BANK;
+                    battle_master->second_bank = PLAYER_SINGLES_BANK;
+                }
+                
+            }
+            super.multi_purpose_state_tracker++;
         }
+        break;
+        case 2:
+        {    
+            /* Run each move's before turn */
+            /* TODO: Fix the table */
+            if (move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb != NULL)
+                move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb(battle_master->first_bank);
+            if (move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb != NULL)
+                move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb(battle_master->second_bank);
+            super.multi_purpose_state_tracker++;
+        }
+        break;
+        case 3:
+        {
+            /* TODO: Run switch */
+            super.multi_purpose_state_tracker++;
+        }
+        break;
+        case 4:
+        {
+            /* TODO: Run after switch */
+            super.multi_purpose_state_tracker++;
+        }
+        break;
+        case 5:
+        {
+            /* Run move used text */
+            run_move_text(p_bank[battle_master->first_bank]->user_action.move_id, battle_master->first_bank, p_bank[battle_master->first_bank]->user_action.speed_current);
+            super.multi_purpose_state_tracker++;
+        }
+        break;
+        case 6:
+        {
+            if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
+                
+                super.multi_purpose_state_tracker++;
+            }
+        }
+        break;
+        case 7:
+        {
+            // use_move:
+           // if
+            break;
+        }
+    
+    /* Run After switch */
+    
+    /* Run move */
         
-    }
+        
+        //set_callback1(wait_text);
+        //battle_show_message((u8*)string_buffer, 0x18);
+       
     
+    /* Run faint */
     
-    /* 
-    for every move:
-        ModifyPriority]
-        move's [BeforeTurn]   
-    */
+    /* Run residual */
     
+    /* Run switch */
     
-    
+    /* Run After switch */
+    };
 }
+
 
 
 
