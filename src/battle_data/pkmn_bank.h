@@ -14,7 +14,7 @@ struct pkmn_bank {
     struct Pokemon* this_pkmn;
     u8 objid;
     u8 objid_hpbox[3]; // Main box, tag on part and
-    struct user_turn_action user_turn;
+    struct user_turn_action user_action;
 };
 
 extern struct pkmn_bank (*p_bank)[4];

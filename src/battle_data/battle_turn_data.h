@@ -5,16 +5,16 @@
 
 struct user_turn_action {
     u16 move_id;
-    u8 user_bank;
     u8 target_bank;
     s8 priority;
-    u16 speed;
+    s8 speed;
     
     u8 is_running : 1;
     u8 using_item : 1;
     u8 is_switching : 1;
     u16 item_to_use;
     u8 switching_slot;
+    u8 ability;
 };
 
 #endif /* BATTLE_TURN_DATA_PKMN */
