@@ -3,6 +3,7 @@
 #include "../battle_data/pkmn_bank.h"
 
 extern void wild_battle_slidein(void);
+extern u8 get_bank_ability(u8);
 
 SuperCallback object_slidein_table[11] =
 {
@@ -32,6 +33,15 @@ void pick_obj_creator()
     p_bank[0]->this_pkmn = &party_player[0];
     p_bank[2]->this_pkmn = &party_opponent[0];
     
+    // get player and opponent's ability
+    p_bank[PLAYER_SINGLES_BANK]->user_action.ability = get_bank_ability(PLAYER_SINGLES_BANK);
+    p_bank[OPPONENT_SINGLES_BANK]->user_action.ability = get_bank_ability(OPPONENT_SINGLES_BANK);
+    
+    p_bank[OPPONENT_SINGLES_BANK]->user_action.priority = 0;
+    p_bank[PLAYER_SINGLES_BANK]->user_action.priority = 0;
+    
+    p_bank[OPPONENT_SINGLES_BANK]->user_action.speed = 0;
+    p_bank[PLAYER_SINGLES_BANK]->user_action.speed = 0;
 
     switch (battle_type_flags) {
         case BATTLE_FLAG_WILD:
@@ -40,6 +50,8 @@ void pick_obj_creator()
             break;
     };
 }
+
+
 
 
 
