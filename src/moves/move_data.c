@@ -696,7 +696,15 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+    .flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*KARATE CHOP*/
@@ -717,7 +725,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DOUBLE SLAP*/
@@ -738,7 +751,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COMET PUNCH*/
@@ -759,7 +777,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEGA PUNCH*/
@@ -780,7 +803,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PAY DAY*/
@@ -801,7 +829,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE PUNCH*/
@@ -822,7 +855,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE PUNCH*/
@@ -843,7 +881,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDER PUNCH*/
@@ -864,7 +907,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SCRATCH*/
@@ -885,7 +933,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VICE GRIP*/
@@ -906,7 +959,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GUILLOTINE*/
@@ -927,7 +985,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAZOR WIND*/
@@ -948,7 +1011,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 0,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWORDS DANCE*/
@@ -969,7 +1037,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 1,
+    .flag_target = 0,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CUT*/
@@ -990,7 +1063,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GUST*/
@@ -1011,7 +1089,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WING ATTACK*/
@@ -1032,7 +1115,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WHIRLWIND*/
@@ -1053,7 +1141,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLY*/
@@ -1074,7 +1167,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BIND*/
@@ -1095,7 +1193,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLAM*/
@@ -1116,7 +1219,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VINE WHIP*/
@@ -1137,7 +1245,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STOMP*/
@@ -1158,7 +1271,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DOUBLE KICK*/
@@ -1179,7 +1297,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEGA KICK*/
@@ -1200,7 +1323,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*JUMP KICK*/
@@ -1221,7 +1349,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROLLING KICK*/
@@ -1242,7 +1375,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SAND ATTACK*/
@@ -1263,7 +1401,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEADBUTT*/
@@ -1284,7 +1427,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HORN ATTACK*/
@@ -1305,7 +1453,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FURY ATTACK*/
@@ -1326,7 +1479,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HORN DRILL*/
@@ -1347,7 +1505,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TACKLE*/
@@ -1368,7 +1531,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BODY SLAM*/
@@ -1389,7 +1557,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WRAP*/
@@ -1410,7 +1583,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAKE DOWN*/
@@ -1431,7 +1609,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THRASH*/
@@ -1452,7 +1635,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DOUBLE-EDGE*/
@@ -1473,7 +1661,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAIL WHIP*/
@@ -1494,7 +1687,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON STING*/
@@ -1515,7 +1713,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TWINEEDLE*/
@@ -1536,7 +1739,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PIN MISSILE*/
@@ -1557,7 +1765,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEER*/
@@ -1578,7 +1791,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BITE*/
@@ -1599,7 +1817,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GROWL*/
@@ -1620,7 +1843,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROAR*/
@@ -1641,7 +1869,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SING*/
@@ -1662,7 +1895,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUPERSONIC*/
@@ -1683,7 +1921,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SONIC BOOM*/
@@ -1704,7 +1947,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DISABLE*/
@@ -1725,7 +1973,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ACID*/
@@ -1746,7 +1999,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 1,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EMBER*/
@@ -1767,7 +2025,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLAMETHROWER*/
@@ -1788,7 +2051,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIST*/
@@ -1809,7 +2077,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATER GUN*/
@@ -1830,7 +2103,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYDRO PUMP*/
@@ -1851,7 +2129,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SURF*/
@@ -1872,7 +2155,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE BEAM*/
@@ -1893,7 +2181,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BLIZZARD*/
@@ -1914,7 +2207,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYBEAM*/
@@ -1935,7 +2233,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BUBBLE BEAM*/
@@ -1956,7 +2259,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AURORA BEAM*/
@@ -1977,7 +2285,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPER BEAM*/
@@ -1998,7 +2311,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PECK*/
@@ -2019,7 +2337,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRILL PECK*/
@@ -2040,7 +2363,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUBMISSION*/
@@ -2061,7 +2389,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LOW KICK*/
@@ -2082,7 +2415,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COUNTER*/
@@ -2103,7 +2441,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SEISMIC TOSS*/
@@ -2124,7 +2467,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STRENGTH*/
@@ -2145,7 +2493,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ABSORB*/
@@ -2166,7 +2519,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEGA DRAIN*/
@@ -2187,7 +2545,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEECH SEED*/
@@ -2208,7 +2571,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GROWTH*/
@@ -2229,7 +2597,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAZOR LEAF*/
@@ -2250,7 +2623,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SOLAR BEAM*/
@@ -2271,7 +2649,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON POWDER*/
@@ -2292,7 +2675,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STUN SPORE*/
@@ -2313,7 +2701,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLEEP POWDER*/
@@ -2334,7 +2727,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PETAL DANCE*/
@@ -2355,7 +2753,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STRING SHOT*/
@@ -2376,7 +2779,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON RAGE*/
@@ -2397,7 +2805,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE SPIN*/
@@ -2418,7 +2831,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDER SHOCK*/
@@ -2439,7 +2857,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDERBOLT*/
@@ -2460,7 +2883,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDER WAVE*/
@@ -2481,7 +2909,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDER*/
@@ -2502,7 +2935,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK THROW*/
@@ -2523,7 +2961,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EARTHQUAKE*/
@@ -2544,7 +2987,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FISSURE*/
@@ -2565,7 +3013,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DIG*/
@@ -2586,7 +3039,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TOXIC*/
@@ -2607,7 +3065,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONFUSION*/
@@ -2628,7 +3091,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCHIC*/
@@ -2649,7 +3117,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPNOSIS*/
@@ -2670,7 +3143,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEDITATE*/
@@ -2691,7 +3169,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AGILITY*/
@@ -2712,7 +3195,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*QUICK ATTACK*/
@@ -2733,7 +3221,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAGE*/
@@ -2754,7 +3247,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Teleport*/
@@ -2776,7 +3274,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NIGHT SHADE*/
@@ -2797,7 +3300,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIMIC*/
@@ -2818,7 +3326,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SCREECH*/
@@ -2839,7 +3352,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DOUBLE TEAM*/
@@ -2860,7 +3378,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RECOVER*/
@@ -2881,7 +3404,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HARDEN*/
@@ -2902,7 +3430,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MINIMIZE*/
@@ -2923,7 +3456,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SMOKESCREEN*/
@@ -2944,7 +3482,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONFUSE RAY*/
@@ -2965,7 +3508,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WITHDRAW*/
@@ -2986,7 +3534,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DEFENSE CURL*/
@@ -3007,7 +3560,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BARRIER*/
@@ -3028,7 +3586,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LIGHT SCREEN*/
@@ -3049,7 +3612,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HAZE*/
@@ -3070,7 +3638,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REFLECT*/
@@ -3091,7 +3664,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FOCUS ENERGY*/
@@ -3112,7 +3690,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BIDE*/
@@ -3133,7 +3716,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Metronome*/
@@ -3155,7 +3743,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Mirror Move*/
@@ -3177,7 +3770,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SELF-DESTRUCT*/
@@ -3198,7 +3796,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EGG BOMB*/
@@ -3219,7 +3822,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LICK*/
@@ -3240,7 +3848,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SMOG*/
@@ -3261,7 +3874,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLUDGE*/
@@ -3282,7 +3900,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BONE CLUB*/
@@ -3303,7 +3926,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE BLAST*/
@@ -3324,7 +3952,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATERFALL*/
@@ -3345,7 +3978,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CLAMP*/
@@ -3366,7 +4004,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWIFT*/
@@ -3387,7 +4030,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKULL BASH*/
@@ -3408,7 +4056,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPIKE CANNON*/
@@ -3429,7 +4082,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONSTRICT*/
@@ -3450,7 +4108,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AMNESIA*/
@@ -3471,7 +4134,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*KINESIS*/
@@ -3492,7 +4160,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SOFT-BOILED*/
@@ -3513,7 +4186,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HIGH JUMP KICK*/
@@ -3534,7 +4212,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GLARE*/
@@ -3555,7 +4238,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DREAM EATER*/
@@ -3576,7 +4264,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON GAS*/
@@ -3597,7 +4290,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BARRAGE*/
@@ -3618,7 +4316,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEECH LIFE*/
@@ -3639,7 +4342,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LOVELY KISS*/
@@ -3660,7 +4368,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKY ATTACK*/
@@ -3681,7 +4394,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRANSFORM*/
@@ -3702,7 +4420,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BUBBLE*/
@@ -3723,7 +4446,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DIZZY PUNCH*/
@@ -3744,7 +4472,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPORE*/
@@ -3765,7 +4498,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLASH*/
@@ -3786,7 +4524,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYWAVE*/
@@ -3807,7 +4550,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPLASH*/
@@ -3828,7 +4576,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ACID ARMOR*/
@@ -3849,7 +4602,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CRABHAMMER*/
@@ -3870,7 +4628,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EXPLOSION*/
@@ -3891,7 +4654,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FURY SWIPES*/
@@ -3912,7 +4680,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BONEMERANG*/
@@ -3933,7 +4706,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REST*/
@@ -3954,7 +4732,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK SLIDE*/
@@ -3975,7 +4758,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPER FANG*/
@@ -3996,7 +4784,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHARPEN*/
@@ -4017,7 +4810,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONVERSION*/
@@ -4038,7 +4836,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRI ATTACK*/
@@ -4059,7 +4862,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUPER FANG*/
@@ -4080,7 +4888,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLASH*/
@@ -4101,7 +4914,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUBSTITUTE*/
@@ -4122,7 +4940,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STRUGGLE*/
@@ -4143,7 +4966,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKETCH*/
@@ -4164,7 +4992,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRIPLE KICK*/
@@ -4185,7 +5018,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THIEF*/
@@ -4206,7 +5044,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPIDER WEB*/
@@ -4227,7 +5070,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIND READER*/
@@ -4248,7 +5096,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NIGHTMARE*/
@@ -4269,7 +5122,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLAME WHEEL*/
@@ -4290,7 +5148,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SNORE*/
@@ -4311,7 +5174,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CURSE*/
@@ -4332,7 +5200,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLAIL*/
@@ -4353,7 +5226,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONVERSION 2*/
@@ -4374,7 +5252,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AEROBLAST*/
@@ -4395,7 +5278,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COTTON SPORE*/
@@ -4416,7 +5304,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REVERSAL*/
@@ -4437,7 +5330,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPITE*/
@@ -4458,7 +5356,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWDER SNOW*/
@@ -4479,7 +5382,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Protect*/
@@ -4501,7 +5409,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MACH PUNCH*/
@@ -4522,7 +5435,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SCARY FACE*/
@@ -4543,7 +5461,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FEINT ATTACK*/
@@ -4564,7 +5487,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWEET KISS*/
@@ -4585,7 +5513,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BELLY DRUM*/
@@ -4606,7 +5539,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLUDGE BOMB*/
@@ -4627,7 +5565,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MUD-SLAP*/
@@ -4648,7 +5591,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*OCTAZOOKA*/
@@ -4669,7 +5617,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPIKES*/
@@ -4690,7 +5643,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ZAP CANNON*/
@@ -4711,7 +5669,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FORESIGHT*/
@@ -4732,7 +5695,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DESTINY BOND*/
@@ -4753,7 +5721,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PERISH SONG*/
@@ -4774,7 +5747,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 1,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICY WIND*/
@@ -4795,7 +5773,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Detect*/
@@ -4817,7 +5800,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BONE RUSH*/
@@ -4838,7 +5826,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LOCK-ON*/
@@ -4859,7 +5852,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*OUTRAGE*/
@@ -4880,7 +5878,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Sandstorm*/
@@ -4902,7 +5905,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GIGA DRAIN*/
@@ -4923,7 +5931,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 
 	/*Endure*/
@@ -4945,7 +5958,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CHARM*/
@@ -4966,7 +5984,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROLLOUT*/
@@ -4987,7 +6010,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FALSE SWIPE*/
@@ -5008,7 +6036,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWAGGER*/
@@ -5029,7 +6062,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MILK DRINK*/
@@ -5050,7 +6088,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPARK*/
@@ -5071,7 +6114,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FURY CUTTER*/
@@ -5092,7 +6140,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STEEL WING*/
@@ -5113,7 +6166,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEAN LOOK*/
@@ -5134,7 +6192,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ATTRACT*/
@@ -5155,7 +6218,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Sleep Talk*/
@@ -5177,7 +6245,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAL BELL*/
@@ -5198,7 +6271,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RETURN*/
@@ -5219,7 +6297,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PRESENT*/
@@ -5240,7 +6323,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FRUSTRATION*/
@@ -5261,7 +6349,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SAFEGUARD*/
@@ -5282,7 +6375,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PAIN SPLIT*/
@@ -5303,7 +6401,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SACRED FIRE*/
@@ -5324,7 +6427,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGNITUDE*/
@@ -5345,7 +6453,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DYNAMIC PUNCH*/
@@ -5366,7 +6479,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEGAHORN*/
@@ -5387,7 +6505,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON BREATH*/
@@ -5408,7 +6531,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Baton Pass*/
@@ -5430,7 +6558,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ENCORE*/
@@ -5451,7 +6584,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PURSUIT*/
@@ -5472,7 +6610,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAPID SPIN*/
@@ -5493,7 +6636,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWEET SCENT*/
@@ -5514,7 +6662,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*IRON TAIL*/
@@ -5535,7 +6688,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*METAL CLAW*/
@@ -5556,7 +6714,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VITAL THROW*/
@@ -5577,7 +6740,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MORNING SUN*/
@@ -5598,7 +6766,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SYNTHESIS*/
@@ -5619,7 +6792,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MOONLIGHT*/
@@ -5640,7 +6818,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HIDDEN POWER*/
@@ -5661,7 +6844,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CROSS CHOP*/
@@ -5682,7 +6870,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TWISTER*/
@@ -5703,7 +6896,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Rain Dance*/
@@ -5725,7 +6923,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Sunny Day*/
@@ -5747,7 +6950,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CRUNCH*/
@@ -5768,7 +6976,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIRROR COAT*/
@@ -5789,7 +7002,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCH UP*/
@@ -5810,7 +7028,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EXTREME SPEED*/
@@ -5831,7 +7054,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ANCIENT POWER*/
@@ -5852,7 +7080,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW BALL*/
@@ -5873,7 +7106,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Future Sight*/
@@ -5895,7 +7133,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK SMASH*/
@@ -5916,7 +7159,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WHIRLPOOL*/
@@ -5937,7 +7185,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BEAT UP*/
@@ -5958,7 +7211,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FAKE OUT*/
@@ -5979,7 +7237,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*UPROAR*/
@@ -6000,7 +7263,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STOCKPILE*/
@@ -6021,7 +7289,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPIT UP*/
@@ -6042,7 +7315,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWALLOW*/
@@ -6063,7 +7341,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAT WAVE*/
@@ -6084,7 +7367,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Hail*/
@@ -6106,7 +7394,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TORMENT*/
@@ -6127,7 +7420,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLATTER*/
@@ -6148,7 +7446,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WILL-O-WISP*/
@@ -6169,7 +7472,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MEMENTO*/
@@ -6190,7 +7498,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FACADE*/
@@ -6211,7 +7524,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FOCUS PUNCH*/
@@ -6232,7 +7550,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SMELLING SALTS*/
@@ -6253,7 +7576,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Follow Me*/
@@ -6275,7 +7603,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Nature Power*/
@@ -6297,7 +7630,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CHARGE*/
@@ -6318,7 +7656,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAUNT*/
@@ -6339,7 +7682,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HELPING HAND*/
@@ -6360,7 +7708,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRICK*/
@@ -6381,7 +7734,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROLE PLAY*/
@@ -6402,7 +7760,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WISH*/
@@ -6423,7 +7786,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 
 	/*Assist*/
@@ -6445,7 +7813,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*INGRAIN*/
@@ -6466,7 +7839,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUPERPOWER*/
@@ -6487,7 +7865,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Magic Coat*/
@@ -6509,7 +7892,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RECYCLE*/
@@ -6530,7 +7918,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REVENGE*/
@@ -6551,7 +7944,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BRICK BREAK*/
@@ -6572,7 +7970,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*YAWN*/
@@ -6593,7 +7996,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*KNOCK OFF*/
@@ -6614,7 +8022,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ENDEAVOR*/
@@ -6635,7 +8048,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ERUPTION*/
@@ -6656,7 +8074,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKILL SWAP*/
@@ -6677,7 +8100,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*IMPRISON*/
@@ -6698,7 +8126,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REFRESH*/
@@ -6719,7 +8152,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GRUDGE*/
@@ -6740,7 +8178,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SNATCH*/
@@ -6761,7 +8204,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SECRET POWER*/
@@ -6782,7 +8230,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DIVE*/
@@ -6803,7 +8256,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ARM THRUST*/
@@ -6824,7 +8282,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CAMOUFLAGE*/
@@ -6845,7 +8308,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAIL GLOW*/
@@ -6866,7 +8334,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LUSTER PURGE*/
@@ -6887,7 +8360,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIST BALL*/
@@ -6908,7 +8386,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FEATHER DANCE*/
@@ -6929,7 +8412,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TEETER DANCE*/
@@ -6950,7 +8438,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BLAZE KICK*/
@@ -6971,7 +8464,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Mud Sport*/
@@ -6993,7 +8491,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE BALL*/
@@ -7014,7 +8517,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NEEDLE ARM*/
@@ -7035,7 +8543,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLACK OFF*/
@@ -7056,7 +8569,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPER VOICE*/
@@ -7077,7 +8595,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON FANG*/
@@ -7098,7 +8621,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CRUSH CLAW*/
@@ -7119,7 +8647,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BLAST BURN*/
@@ -7140,7 +8673,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYDRO CANNON*/
@@ -7161,7 +8699,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*METEOR MASH*/
@@ -7182,7 +8725,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ASTONISH*/
@@ -7203,7 +8751,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WEATHER BALL*/
@@ -7224,7 +8777,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AROMATHERAPY*/
@@ -7245,7 +8803,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FAKE TEARS*/
@@ -7266,7 +8829,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AIR CUTTER*/
@@ -7287,7 +8855,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*OVERHEAT*/
@@ -7308,7 +8881,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ODOR SLEUTH*/
@@ -7329,7 +8907,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK TOMB*/
@@ -7350,7 +8933,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SILVER WIND*/
@@ -7371,7 +8959,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*METAL SOUND*/
@@ -7392,7 +8985,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GRASS WHISTLE*/
@@ -7413,7 +9011,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TICKLE*/
@@ -7434,7 +9037,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COSMIC POWER*/
@@ -7455,7 +9063,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATER SPOUT*/
@@ -7476,7 +9089,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SIGNAL BEAM*/
@@ -7497,7 +9115,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW PUNCH*/
@@ -7518,7 +9141,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EXTRASENSORY*/
@@ -7539,7 +9167,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKY UPPERCUT*/
@@ -7560,7 +9193,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SAND TOMB*/
@@ -7581,7 +9219,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHEER COLD*/
@@ -7602,7 +9245,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MUDDY WATER*/
@@ -7623,7 +9271,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BULLET SEED*/
@@ -7644,7 +9297,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AERIAL ACE*/
@@ -7665,7 +9323,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICICLE SPEAR*/
@@ -7686,7 +9349,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*IRON DEFENSE*/
@@ -7707,7 +9375,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BLOCK*/
@@ -7728,7 +9401,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HOWL*/
@@ -7749,7 +9427,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON CLAW*/
@@ -7770,7 +9453,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FRENZY PLANT*/
@@ -7791,7 +9479,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BULK UP*/
@@ -7812,7 +9505,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BOUNCE*/
@@ -7833,7 +9531,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MUD SHOT*/
@@ -7854,7 +9557,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON TAIL*/
@@ -7875,7 +9583,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COVET*/
@@ -7896,7 +9609,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VOLT TACKLE*/
@@ -7917,7 +9635,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGICAL LEAF*/
@@ -7938,7 +9661,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Water Sport*/
@@ -7960,7 +9688,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CALM MIND*/
@@ -7981,7 +9714,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEAF BLADE*/
@@ -8002,7 +9740,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON DANCE*/
@@ -8023,7 +9766,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK BLAST*/
@@ -8044,7 +9792,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHOCK WAVE*/
@@ -8065,7 +9818,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATER PULSE*/
@@ -8086,7 +9844,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Doom Desire*/
@@ -8108,7 +9871,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCHO BOOST*/
@@ -8129,7 +9897,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROOST*/
@@ -8150,7 +9923,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 
 	/*Gravity*/
@@ -8172,7 +9950,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIRACLE EYE*/
@@ -8193,7 +9976,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WAKE-UP SLAP*/
@@ -8214,7 +10002,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HAMMER ARM*/
@@ -8235,7 +10028,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GYRO BALL*/
@@ -8256,7 +10054,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEALING WISH*/
@@ -8277,7 +10080,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BRINE*/
@@ -8298,7 +10106,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NATURAL GIFT*/
@@ -8319,7 +10132,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FEINT*/
@@ -8340,7 +10158,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PLUCK*/
@@ -8361,7 +10184,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAILWIND*/
@@ -8382,7 +10210,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Acupressure*/
@@ -8404,7 +10237,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*METAL BURST*/
@@ -8425,7 +10263,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*U-TURN*/
@@ -8446,7 +10289,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CLOSE COMBAT*/
@@ -8467,7 +10315,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PAYBACK*/
@@ -8488,7 +10341,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ASSURANCE*/
@@ -8509,7 +10367,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EMBARGO*/
@@ -8530,7 +10393,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLING*/
@@ -8551,7 +10419,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCHO SHIFT*/
@@ -8572,7 +10445,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRUMP CARD*/
@@ -8593,7 +10471,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAL BLOCK*/
@@ -8614,7 +10497,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WRING OUT*/
@@ -8635,7 +10523,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER TRICK*/
@@ -8656,7 +10549,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GASTRO ACID*/
@@ -8677,7 +10575,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LUCKY CHANT*/
@@ -8698,7 +10601,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ME FIRST*/
@@ -8719,7 +10627,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Copycat*/
@@ -8741,7 +10654,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER SWAP*/
@@ -8762,7 +10680,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GUARD SWAP*/
@@ -8783,7 +10706,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PUNISHMENT*/
@@ -8804,7 +10732,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LAST RESORT*/
@@ -8825,7 +10758,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WORRY SEED*/
@@ -8846,7 +10784,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUCKER PUNCH*/
@@ -8867,7 +10810,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TOXIC SPIKES*/
@@ -8888,7 +10836,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEART SWAP*/
@@ -8909,7 +10862,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AQUA RING*/
@@ -8930,7 +10888,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGNET RISE*/
@@ -8951,7 +10914,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLARE BLITZ*/
@@ -8972,7 +10940,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FORCE PALM*/
@@ -8993,7 +10966,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AURA SPHERE*/
@@ -9014,7 +10992,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK POLISH*/
@@ -9035,7 +11018,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POISON JAB*/
@@ -9056,7 +11044,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DARK PULSE*/
@@ -9077,7 +11070,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NIGHT SLASH*/
@@ -9098,7 +11096,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AQUA TAIL*/
@@ -9119,7 +11122,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SEED BOMB*/
@@ -9140,7 +11148,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AIR SLASH*/
@@ -9161,7 +11174,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*X-SCISSOR*/
@@ -9182,7 +11200,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BUG BUZZ*/
@@ -9203,7 +11226,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON PULSE*/
@@ -9224,7 +11252,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON RUSH*/
@@ -9245,7 +11278,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER GEM*/
@@ -9266,7 +11304,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAIN PUNCH*/
@@ -9287,7 +11330,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VACUUM WAVE*/
@@ -9308,7 +11356,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FOCUS BLAST*/
@@ -9329,7 +11382,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ENERGY BALL*/
@@ -9350,7 +11408,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BRAVE BIRD*/
@@ -9371,7 +11434,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EARTH POWER*/
@@ -9392,7 +11460,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SWITCHEROO*/
@@ -9413,7 +11486,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GIGA IMPACT*/
@@ -9434,7 +11512,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NASTY PLOT*/
@@ -9455,7 +11538,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BULLET PUNCH*/
@@ -9476,7 +11564,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AVALANCHE*/
@@ -9497,7 +11590,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE SHARD*/
@@ -9518,7 +11616,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW CLAW*/
@@ -9539,7 +11642,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THUNDER FANG*/
@@ -9560,7 +11668,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE FANG*/
@@ -9581,7 +11694,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE FANG*/
@@ -9602,7 +11720,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW SNEAK*/
@@ -9623,7 +11746,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MUD BOMB*/
@@ -9644,7 +11772,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCHO CUT*/
@@ -9665,7 +11798,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ZEN HEADBUTT*/
@@ -9686,7 +11824,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MIRROR SHOT*/
@@ -9707,7 +11850,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLASH CANNON*/
@@ -9728,7 +11876,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK CLIMB*/
@@ -9749,7 +11902,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DEFOG*/
@@ -9770,7 +11928,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRICK ROOM*/
@@ -9791,7 +11954,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRACO METEOR*/
@@ -9812,7 +11980,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DISCHARGE*/
@@ -9833,7 +12006,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LAVA PLUME*/
@@ -9854,7 +12032,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEAF STORM*/
@@ -9875,7 +12058,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER WHIP*/
@@ -9896,7 +12084,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROCK WRECKER*/
@@ -9917,7 +12110,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CROSS POISON*/
@@ -9938,7 +12136,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GUNK SHOT*/
@@ -9959,7 +12162,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*IRON HEAD*/
@@ -9980,7 +12188,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGNET BOMB*/
@@ -10001,7 +12214,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STONE EDGE*/
@@ -10022,7 +12240,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CAPTIVATE*/
@@ -10043,7 +12266,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STEALTH ROCK*/
@@ -10064,7 +12292,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GRASS KNOT*/
@@ -10085,7 +12318,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CHATTER*/
@@ -10106,7 +12344,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*JUDGMENT*/
@@ -10127,7 +12370,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BUG BITE*/
@@ -10148,7 +12396,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CHARGE BEAM*/
@@ -10169,7 +12422,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WOOD HAMMER*/
@@ -10190,7 +12448,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AQUA JET*/
@@ -10211,7 +12474,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ATTACK ORDER*/
@@ -10232,7 +12500,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DEFEND ORDER*/
@@ -10253,7 +12526,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAL ORDER*/
@@ -10274,7 +12552,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAD SMASH*/
@@ -10295,7 +12578,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DOUBLE HIT*/
@@ -10316,7 +12604,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROAR OF TIME*/
@@ -10337,7 +12630,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPACIAL REND*/
@@ -10358,7 +12656,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LUNAR DANCE*/
@@ -10379,7 +12682,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CRUSH GRIP*/
@@ -10400,7 +12708,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGMA STORM*/
@@ -10421,7 +12734,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DARK VOID*/
@@ -10442,7 +12760,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SEED FLARE*/
@@ -10463,7 +12786,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*OMINOUS WIND*/
@@ -10484,7 +12812,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW FORCE*/
@@ -10505,7 +12838,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HONE CLAWS*/
@@ -10526,7 +12864,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WIDE GUARD*/
@@ -10547,7 +12890,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GUARD SPLIT*/
@@ -10568,7 +12916,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER SPLIT*/
@@ -10589,7 +12942,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WONDER ROOM*/
@@ -10610,7 +12968,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYSHOCK*/
@@ -10631,7 +12994,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VENOSHOCK*/
@@ -10652,7 +13020,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AUTOTOMIZE*/
@@ -10673,7 +13046,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAGE POWDER*/
@@ -10694,7 +13072,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TELEKINESIS*/
@@ -10715,7 +13098,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGIC ROOM*/
@@ -10736,7 +13124,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SMACK DOWN*/
@@ -10757,7 +13150,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STORM THROW*/
@@ -10778,7 +13176,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLAME BURST*/
@@ -10799,7 +13202,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SLUDGE WAVE*/
@@ -10820,7 +13228,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*QUIVER DANCE*/
@@ -10841,7 +13254,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAVY SLAM*/
@@ -10862,7 +13280,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SYNCHRONOISE*/
@@ -10883,7 +13306,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ELECTRO BALL*/
@@ -10904,7 +13332,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SOAK*/
@@ -10925,7 +13358,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLAME CHARGE*/
@@ -10946,7 +13384,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COIL*/
@@ -10967,7 +13410,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LOW SWEEP*/
@@ -10988,7 +13436,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ACID SPRAY*/
@@ -11009,7 +13462,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FOUL PLAY*/
@@ -11030,7 +13488,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SIMPLE BEAM*/
@@ -11051,7 +13514,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ENTRAINMENT*/
@@ -11072,7 +13540,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AFTER YOU*/
@@ -11093,7 +13566,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ROUND*/
@@ -11114,7 +13592,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ECHOED VOICE*/
@@ -11135,7 +13618,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CHIP AWAY*/
@@ -11156,7 +13644,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CLEAR SMOG*/
@@ -11177,7 +13670,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STORED POWER*/
@@ -11198,7 +13696,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*QUICK GUARD*/
@@ -11219,7 +13722,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Ally Switch*/
@@ -11241,7 +13749,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SCALD*/
@@ -11262,7 +13775,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHELL SMASH*/
@@ -11283,7 +13801,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAL PULSE*/
@@ -11304,7 +13827,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEX*/
@@ -11325,7 +13853,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SKY DROP*/
@@ -11346,7 +13879,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHIFT GEAR*/
@@ -11367,7 +13905,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CIRCLE THROW*/
@@ -11388,7 +13931,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*INCINERATE*/
@@ -11409,7 +13957,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*QUASH*/
@@ -11430,7 +13983,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ACROBATICS*/
@@ -11451,7 +14009,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REFLECT TYPE*/
@@ -11472,7 +14035,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RETALIATE*/
@@ -11493,7 +14061,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FINAL GAMBIT*/
@@ -11514,7 +14087,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BESTOW*/
@@ -11535,7 +14113,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*INFERNO*/
@@ -11556,7 +14139,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATER PLEDGE*/
@@ -11577,7 +14165,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE PLEDGE*/
@@ -11598,7 +14191,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GRASS PLEDGE*/
@@ -11619,7 +14217,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VOLT SWITCH*/
@@ -11640,7 +14243,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STRUGGLE BUG*/
@@ -11661,7 +14269,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BULLDOZE*/
@@ -11682,7 +14295,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FROST BREATH*/
@@ -11703,7 +14321,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON TAIL*/
@@ -11724,7 +14347,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WORK UP*/
@@ -11745,7 +14373,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ELECTROWEB*/
@@ -11766,7 +14399,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WILD CHARGE*/
@@ -11787,7 +14425,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRILL RUN*/
@@ -11808,7 +14451,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DUAL CHOP*/
@@ -11829,7 +14477,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEART STAMP*/
@@ -11850,7 +14503,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HORN LEECH*/
@@ -11871,7 +14529,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SACRED SWORD*/
@@ -11892,7 +14555,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RAZOR SHELL*/
@@ -11913,7 +14581,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAT CRASH*/
@@ -11934,7 +14607,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEAF TORNADO*/
@@ -11955,7 +14633,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STEAMROLLER*/
@@ -11976,7 +14659,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*COTTON GUARD*/
@@ -11997,7 +14685,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NIGHT DAZE*/
@@ -12018,7 +14711,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYSTRIKE*/
@@ -12039,7 +14737,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TAIL SLAP*/
@@ -12060,7 +14763,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HURRICANE*/
@@ -12081,7 +14789,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HEAD CHARGE*/
@@ -12102,7 +14815,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GEAR GRIND*/
@@ -12123,7 +14841,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SEARING SHOT*/
@@ -12144,7 +14867,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TECHNO BLAST*/
@@ -12165,7 +14893,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*RELIC SONG*/
@@ -12186,7 +14919,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SECRET SWORD*/
@@ -12207,7 +14945,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GLACIATE*/
@@ -12228,7 +14971,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BOLT STRIKE*/
@@ -12249,7 +14997,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BLUE FLARE*/
@@ -12270,7 +15023,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIERY DANCE*/
@@ -12291,7 +15049,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FREEZE SHOCK*/
@@ -12312,7 +15075,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE BURN*/
@@ -12333,7 +15101,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SNARL*/
@@ -12354,7 +15127,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICICLE CRASH*/
@@ -12375,7 +15153,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*V-CREATE*/
@@ -12396,7 +15179,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FUSION FLARE*/
@@ -12417,7 +15205,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FUSION BOLT*/
@@ -12438,7 +15231,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLYING PRESS*/
@@ -12459,7 +15257,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAT BLOCK*/
@@ -12480,7 +15283,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BELCH*/
@@ -12501,7 +15309,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Rototiller*/
@@ -12523,7 +15336,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STICKY WEB*/
@@ -12544,7 +15362,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FELL STINGER*/
@@ -12565,7 +15388,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PHANTOM FORCE*/
@@ -12586,7 +15414,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TRICK-OR-TREAT*/
@@ -12607,7 +15440,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NOBLE ROAR*/
@@ -12628,7 +15466,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Ion Deluge*/
@@ -12650,7 +15493,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PARABOLIC CHARGE*/
@@ -12671,7 +15519,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FOREST‘S CURSE*/
@@ -12692,7 +15545,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PETAL BLIZZARD*/
@@ -12713,7 +15571,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FREEZE-DRY*/
@@ -12734,7 +15597,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DISARMING VOICE*/
@@ -12755,7 +15623,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PARTING SHOT*/
@@ -12776,7 +15649,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TOPSY-TURVY*/
@@ -12797,7 +15675,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAINING KISS*/
@@ -12818,7 +15701,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 
 	/*Crafty Shield*/
@@ -12840,7 +15728,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Flower Shield*/
@@ -12862,7 +15755,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Grassy Terrain*/
@@ -12884,7 +15782,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Misty Terrain*/
@@ -12906,7 +15809,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ELECTRIFY*/
@@ -12927,7 +15835,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PLAY ROUGH*/
@@ -12948,7 +15861,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FAIRY WIND*/
@@ -12969,7 +15887,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MOONBLAST*/
@@ -12990,7 +15913,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BOOMBURST*/
@@ -13011,7 +15939,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FAIRY LOCK*/
@@ -13032,7 +15965,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*King‘s Shield*/
@@ -13054,7 +15992,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PLAY NICE*/
@@ -13075,7 +16018,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CONFIDE*/
@@ -13096,7 +16044,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DIAMOND STORM*/
@@ -13117,7 +16070,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STEAM ERUPTION*/
@@ -13138,7 +16096,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPERSPACE HOLE*/
@@ -13159,7 +16122,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*WATER SHURIKEN*/
@@ -13180,7 +16148,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MYSTICAL FIRE*/
@@ -13201,7 +16174,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Spiky Shield*/
@@ -13223,7 +16201,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AROMATIC MIST*/
@@ -13244,7 +16227,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*EERIE IMPULSE*/
@@ -13265,7 +16253,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*VENOM DRENCH*/
@@ -13286,7 +16279,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWDER*/
@@ -13307,7 +16305,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GEOMANCY*/
@@ -13328,7 +16331,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MAGNETIC FLUX*/
@@ -13349,7 +16357,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Happy Hour*/
@@ -13371,7 +16384,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Electric Terrain*/
@@ -13393,7 +16411,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DAZZLING GLEAM*/
@@ -13414,7 +16437,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Celebrate*/
@@ -13436,7 +16464,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BABY-DOLL EYES*/
@@ -13457,7 +16490,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NUZZLE*/
@@ -13478,7 +16516,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HOLD BACK*/
@@ -13499,7 +16542,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*INFESTATION*/
@@ -13520,7 +16568,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER-UP PUNCH*/
@@ -13541,7 +16594,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*OBLIVION WING*/
@@ -13562,7 +16620,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THOUSAND ARROWS*/
@@ -13583,7 +16646,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THOUSAND WAVES*/
@@ -13604,7 +16672,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HOLD HANDS*/
@@ -13625,7 +16698,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LAND‘S WRATH*/
@@ -13646,7 +16724,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LIGHT OF RUIN*/
@@ -13667,7 +16750,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ORIGIN PULSE*/
@@ -13688,7 +16776,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PRECIPICE BLADES*/
@@ -13709,7 +16802,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON ASCENT*/
@@ -13730,7 +16828,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HYPERSPACE FURY*/
@@ -13751,7 +16854,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHORE UP*/
@@ -13772,7 +16880,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRST IMPRESSION*/
@@ -13793,7 +16906,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Baneful Bunker*/
@@ -13815,7 +16933,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPIRIT SHACKLE*/
@@ -13836,7 +16959,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DARKEST LARIAT*/
@@ -13857,7 +16985,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPARKLING ARIA*/
@@ -13878,7 +17011,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ICE HAMMER*/
@@ -13899,7 +17037,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLORAL HEALING*/
@@ -13920,7 +17063,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*HIGH HORSEPOWER*/
@@ -13941,7 +17089,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STRENGTH SAP*/
@@ -13962,7 +17115,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SOLAR BLADE*/
@@ -13983,7 +17141,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LEAFAGE*/
@@ -14004,7 +17167,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPOTLIGHT*/
@@ -14025,7 +17193,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TOXIC THREAD*/
@@ -14046,7 +17219,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LASER FOCUS*/
@@ -14067,7 +17245,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*GEAR UP*/
@@ -14088,7 +17271,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*THROAT CHOP*/
@@ -14109,7 +17297,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POLLEN PUFF*/
@@ -14130,7 +17323,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ANCHOR SHOT*/
@@ -14151,7 +17349,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 
 	/*Psychic Terrain*/
@@ -14173,7 +17376,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LUNGE*/
@@ -14194,7 +17402,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FIRE LASH*/
@@ -14215,7 +17428,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*POWER TRIP*/
@@ -14236,7 +17454,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BURN UP*/
@@ -14257,7 +17480,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPEED SWAP*/
@@ -14278,7 +17506,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SMART STRIKE*/
@@ -14299,7 +17532,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PURIFY*/
@@ -14320,7 +17558,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 1,
 	.flags_unused = 0,
+
 	},
 	{
 	/*REVELATION DANCE*/
@@ -14341,7 +17584,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CORE ENFORCER*/
@@ -14362,7 +17610,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TROP KICK*/
@@ -14383,7 +17636,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*INSTRUCT*/
@@ -14404,7 +17662,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BEAK BLAST*/
@@ -14425,7 +17688,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 1,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*CLANGING SCALES*/
@@ -14446,7 +17714,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*DRAGON HAMMER*/
@@ -14467,7 +17740,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*BRUTAL SWING*/
@@ -14488,7 +17766,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*AURORA VEIL*/
@@ -14509,7 +17792,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHELL TRAP*/
@@ -14530,7 +17818,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*FLEUR CANNON*/
@@ -14551,7 +17844,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PSYCHIC FANGS*/
@@ -14572,7 +17870,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 1,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*STOMPING TANTRUM*/
@@ -14593,7 +17896,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SHADOW BONE*/
@@ -14614,7 +17922,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ACCELEROCK*/
@@ -14635,7 +17948,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*LIQUIDATION*/
@@ -14656,7 +17974,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*PRISMATIC LASER*/
@@ -14677,7 +18000,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SPECTRAL THIEF*/
@@ -14698,7 +18026,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*SUNSTEEL STRIKE*/
@@ -14719,7 +18052,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MOONGEIST BEAM*/
@@ -14740,7 +18078,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*TEARFUL LOOK*/
@@ -14761,7 +18104,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*ZING ZAP*/
@@ -14782,7 +18130,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*NATURE‘S MADNESS*/
@@ -14803,7 +18156,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 	{
 	/*MULTI-ATTACK*/
@@ -14824,7 +18182,12 @@ struct move_flags m_flags[] = {
 	.flag_sound_based = 0,
 	.flag_strong_jaw = 0,
 	.flag_bullet_proof = 0,
+	.flag_onself = 0,
+    .flag_target = 1,
+    .flag_hits_all = 0,
+	.flag_triage_affected = 0,
 	.flags_unused = 0,
+
 	},
 };
 

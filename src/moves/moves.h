@@ -99,8 +99,12 @@ struct move_flags {
     u32 flag_snatch : 1;
     u32 flag_sound_based : 1;
     u32 flag_strong_jaw : 1;
-    u32 flag_bullet_proof : 1;    
-    u32 flags_unused : 15; // repurposeable flags. Unused padding.  
+    u32 flag_bullet_proof : 1;
+    u32 flag_onself : 1;
+    u32 flag_target : 1;
+    u32 flag_hits_all : 1;
+    u32 flag_triage_affected : 1;
+    u32 flags_unused : 12; // repurposeable flags. Unused padding.  
 };
 
 struct move_boost {
