@@ -26,7 +26,7 @@ void init_battle_elements()
     setup();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
-    battle_master = (struct battle_main*)malloc(sizeof(struct battle_main));
+    battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
     battle_type_flags = BATTLE_FLAG_WILD;
 }
 
@@ -155,7 +155,7 @@ void option_selection()
             break;
             }
         case 8:
-            //set_callback1(battle_loop);
+            set_callback1(battle_loop);
             break;
     }; 
 }
