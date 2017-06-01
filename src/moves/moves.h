@@ -19,7 +19,7 @@ typedef u8 (*DurationCallback)(u8, u8, u8);
 typedef u16 (*DamageCallback)(u8, u8);
 
 // executed right before using a move. bm_cb(user_bank, target_bank)
-typedef void (*BeforeMoveCallback)(u8, u8, u16);
+typedef void (*BeforeMoveCallback)(u8);
 
 enum MoveTypes {
     MTYPE_NORMAL = 0,
@@ -47,6 +47,15 @@ enum MoveCategory {
     MOVE_PHYSICAL,
     MOVE_SPECIAL,
     MOVE_STATUS,
+};
+
+enum PokemonStat {
+    STAT_ATTACK,
+    STAT_DEFENSE,
+    STAT_SPEED,
+    STAT_SPECIAL_ATTACK,
+    STAT_SPECIAL_DEFENSE,
+    STAT_NONE,
 };
 
 /*
@@ -107,17 +116,15 @@ struct move_flags {
     u32 flags_unused : 12; // repurposeable flags. Unused padding.  
 };
 
-struct move_boost {
-    u32 self_atk : 3;
-    u32 atk_boost_dir : 1;
-    u32 self_def : 3;
-    u32 def_boost_dir : 1;
-    u32 self_spd : 3;
-    u32 spd_boost_dir : 1;
-    u32 self_spatk : 3;
-    u32 spa_boost_dir : 1;
-    u32 self_spdef : 3;
-    u32 sdef_boost_dir : 1;
+struct move_procs {
+    u8 chance_self;
+    u8 chance_target;
+    enum PokemonStat stat_self;
+    enum PokemonStat stat_target;
+    s8 amount_self;
+    s8 amount_target;
+    u8 multihit_lowest;
+    u8 multihit_highest;
 };
 
 
@@ -134,8 +141,7 @@ struct move_data {
     u8 self_boost_chance_secondary;
     u8 target_boost_chance_secondary;
     struct move_flags* flags;
-    struct move_boost* self_boost;
-    struct move_boost* target_boost;    
+    struct move_procs* procs; 
     struct move_callbacks* move_cb;
 };
 
