@@ -3,6 +3,17 @@
 
 #include <pokeagb/pokeagb.h>
 
+enum BuffTags {
+    ASSURANCE_TAG,
+    BEAKBLAST_TAG,
+    COUNTER_TAG,
+    FOCUS_PUNCH_TAG,
+    METAL_BURST_TAG,
+    MIRROR_COAT_TAG,
+    PURSUIT_TAG,
+    SHELLTRAP_TAG
+};
+
 struct user_turn_action {
     u16 move_id;
     u8 target_bank;
@@ -15,6 +26,8 @@ struct user_turn_action {
     u16 item_to_use;
     u8 switching_slot;
     u8 ability;
+    u8 type[2];
+    u8 buff_tag;
     u16 speed_current;
 };
 

@@ -23,6 +23,13 @@ struct battle_field_state {
 
 };
 
+struct moves_used {
+    u8 move_id;
+    u8 power_override;
+    u8 type_override;
+    u8 user_bank;
+};
+
 struct battle_main {
     struct battle_selection_cursor battle_cursor;
     struct battle_field_state field_state;
@@ -32,6 +39,8 @@ struct battle_main {
     u8 fight_menu_content_spawned;
     u8 first_bank;
     u8 second_bank;
+    u8 execution_index;
+    struct moves_used b_moves[2];
 };
 
 enum fight_menu {
@@ -40,6 +49,7 @@ enum fight_menu {
     OPTION_BAG,
     OPTION_RUN
 };
+
 
 
 extern struct battle_main* battle_master;
