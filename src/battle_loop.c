@@ -102,6 +102,20 @@ void run_move_text(u16 attack, u8 bank, u16 speed)
 
 }
 
+u8 get_target_bank(u8 user_bank, u16 move_id)
+{
+    // check who the move targets
+    if (*(move_t[move_id].m_flags) & FLAG_ONSELF) {
+        p_bank[user_bank]->user_action.target_bank = user_bank;
+        return user_bank;
+    } else { //if (*(move_t[move_id].m_flags) & FLAG_TARGET) {
+        u8 t_bank = (user_bank == PLAYER_SINGLES_BANK) ? OPPONENT_SINGLES_BANK : PLAYER_SINGLES_BANK;
+        p_bank[user_bank]->user_action.target_bank = t_bank;
+        return t_bank;
+    }
+
+}
+
 
 void battle_loop()
 {
@@ -113,7 +127,6 @@ void battle_loop()
             // set p_bank temp vars and fix priority tiers
             u16 p_move = get_player_attack();
             u16 opp_move = get_opponent_attack();
-            
             
             p_bank[PLAYER_SINGLES_BANK]->user_action.move_id = p_move;
             p_bank[OPPONENT_SINGLES_BANK]->user_action.move_id = opp_move;
@@ -135,6 +148,7 @@ void battle_loop()
             p_bank[PLAYER_SINGLES_BANK]->user_action.priority += move_t[p_move].priority;
             p_bank[OPPONENT_SINGLES_BANK]->user_action.priority += move_t[opp_move].priority;
             super.multi_purpose_state_tracker++;
+            return;
         }
         break;
         case 1:
@@ -165,51 +179,61 @@ void battle_loop()
                 }
                 
             }
-            super.multi_purpose_state_tracker++;
+            battle_master->b_moves[0].move_id = p_bank[battle_master->first_bank]->user_action.move_id;
+            battle_master->b_moves[0].user_bank = battle_master->first_bank;
+            battle_master->b_moves[1].move_id = p_bank[battle_master->second_bank]->user_action.move_id;
+            battle_master->b_moves[1].user_bank = battle_master->second_bank;
+            super.multi_purpose_state_tracker = 3;
+            return;
         }
         break;
-        case 2:
-        {    
-            /* Run each move's before turn */
-            /* TODO: Fix the table */
-            if (move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb)
-                move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb(battle_master->first_bank);
-            if (move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb)
-                move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb(battle_master->second_bank);
-            super.multi_purpose_state_tracker++;
-        }
-        break;
-        case 3:
+    };
+    extern void run_decision(void);
+    
+    /* Run each move's before turn */
+    if (move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb)
+        move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb(battle_master->first_bank);
+    if (move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb)
+        move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb(battle_master->second_bank);
+    
+    super.multi_purpose_state_tracker = 0;
+    battle_master->execution_index = 0;
+    set_callback1(run_decision);
+}
+
+void run_decision(void)
+{
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    switch (super.multi_purpose_state_tracker) {
+        case 0:
         {
             /* TODO: Run switch */
             super.multi_purpose_state_tracker++;
         }
         break;
-        case 4:
+        case 1:
         {
             /* TODO: Run after switch */
             super.multi_purpose_state_tracker++;
         }
         break;
-        case 5:
+        case 2:
         {
             /* Run move used text */
-            run_move_text(p_bank[battle_master->first_bank]->user_action.move_id, battle_master->first_bank, p_bank[battle_master->first_bank]->user_action.speed_current);
+            run_move_text(p_bank[bank_index]->user_action.move_id, bank_index, p_bank[bank_index]->user_action.speed_current);
             super.multi_purpose_state_tracker++;
         }
         break;
-        case 6:
+        case 3:
         {
             if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
-                
                 super.multi_purpose_state_tracker++;
             }
         }
         break;
-        case 7:
+        case 4:
         {
-            // use_move:
-           // if
+            /* Run before move callbacks */
             break;
         }
     
