@@ -172,9 +172,9 @@ void battle_loop()
         {    
             /* Run each move's before turn */
             /* TODO: Fix the table */
-            if (move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb != NULL)
+            if (move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb)
                 move_t[p_bank[battle_master->first_bank]->user_action.move_id].move_cb->bm_cb(battle_master->first_bank);
-            if (move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb != NULL)
+            if (move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb)
                 move_t[p_bank[battle_master->second_bank]->user_action.move_id].move_cb->bm_cb(battle_master->second_bank);
             super.multi_purpose_state_tracker++;
         }
