@@ -234,7 +234,11 @@ void run_decision(void)
         case 4:
         {
             /* Run before move callbacks */
-            break;
+            super.multi_purpose_state_tracker++;
+        }
+        case 5:
+        {
+            
         }
     
     /* Run After switch */

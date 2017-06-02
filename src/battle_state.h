@@ -27,6 +27,7 @@ struct moves_used {
     u8 move_id;
     u8 power_override;
     u8 type_override;
+    u8 accuracy_override;
     u8 user_bank;
 };
 
