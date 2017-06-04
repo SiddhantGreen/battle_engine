@@ -3,6 +3,8 @@
 
 #include <pokeagb/pokeagb.h>
 
+typedef void (*ResidualEffectCallback)(u8);
+
 struct battle_selection_cursor {
     u8 objid;
     u8 objid_mv_crsr[2];
@@ -25,11 +27,19 @@ struct battle_field_state {
 };
 
 struct moves_used {
-    u8 move_id;
+    u16 move_id;
     u8 power_override;
     u8 type_override;
-    u8 accuracy_override;
+    s8 accuracy_override;
     u8 user_bank;
+};
+
+struct residual_effect {
+    ResidualEffectCallback func;
+    u8 target_bank;
+    u8 src_bank;
+    u8 priority;
+    u8 priv;
 };
 
 struct battle_main {
@@ -43,6 +53,7 @@ struct battle_main {
     u8 second_bank;
     u8 execution_index;
     struct moves_used b_moves[2];
+    struct residual_effect residual[20];
 };
 
 enum fight_menu {
