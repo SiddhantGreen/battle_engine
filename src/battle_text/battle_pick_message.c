@@ -7,6 +7,7 @@ extern void buffer_write_pkmn_nick(pchar* buff, u8 bank);
 extern void buffer_write_move_name(pchar* buff, u16 move_id);
 extern u8 get_side(u8 bank);
 
+
 void pick_encounter_message(enum BattleFlag battle_type_flags)
 {
     switch (battle_type_flags) {
