@@ -72,12 +72,12 @@ enum MoveCategory {
 };
 
 enum PokemonStat {
+    STAT_NONE,
     STAT_ATTACK,
     STAT_DEFENSE,
     STAT_SPEED,
     STAT_SPECIAL_ATTACK,
-    STAT_SPECIAL_DEFENSE,
-    STAT_NONE,
+    STAT_SPECIAL_DEFENSE,   
 };
 
 /*
@@ -116,10 +116,10 @@ struct move_callbacks {
 struct move_procs {
     u8 chance_self;
     u8 chance_target;
-    enum PokemonStat stat_self;
-    enum PokemonStat stat_target;
-    s8 amount_self;
-    s8 amount_target;
+    enum PokemonStat stat_self[6];
+    enum PokemonStat stat_target[6];
+    s8 amount_self[6];
+    s8 amount_target[6];
     u8 multihit_lowest;
     u8 multihit_highest;
 };
