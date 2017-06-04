@@ -33,22 +33,38 @@ void pick_encounter_message(enum BattleFlag battle_type_flags)
     
 }
 
-static const pchar battle_strings[2][50] = {
+static const pchar battle_strings[4][80] = {
+    // Attack used string
     _"{STR_VAR_1} used\n{STR_VAR_2}!",
     _"Foe {STR_VAR_1} used\n{STR_VAR_2}!",
+    
+    // Infatuated by love string
+    _"{STR_VAR_1} is in love\nwith Foe {STR_VAR_2}\p{STR_VAR_1}\nis immobolized by love!",
+    _"The opposing {STR_VAR_1} is in love\nwith {STR_VAR_2}\pThe opposing {STR_VAR_1}\nis immobolized by love!",
+    
+    // Charging up bide string
+    
+    
 };
 
 void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id)
 {
-
     if (battle_type == BATTLE_FLAG_WILD) {
         switch (id) {
             case STRING_ATTACK_USED:
                 buffer_write_pkmn_nick(fcode_buffer2, user_bank);
                 buffer_write_move_name(fcode_buffer3, move_id);
-                fdecoder(string_buffer, battle_strings[id + get_side(user_bank)]);
+                fdecoder(string_buffer, battle_strings[STRING_ATTACK_USED + get_side(user_bank)]);
+                break;
+            case STRING_INFATUATED:
+                buffer_write_pkmn_nick(fcode_buffer2, user_bank);
+                buffer_write_pkmn_nick(fcode_buffer3, p_bank[user_bank]->user_action.target_bank);
+                fdecoder(string_buffer, battle_strings[STRING_INFATUATED + get_side(user_bank)]);
+                break;
+            case STRING_BIDE_CHARGE:
+                break;
+            default:
                 break;
         };
     }
-   
 }
