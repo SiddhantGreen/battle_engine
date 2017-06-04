@@ -10,6 +10,7 @@ extern u8 get_ability(struct Pokemon* p);
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
 extern bool ignoring_item(struct Pokemon* p);
 
+
 void task_add_bmessage(u8 task_id)
 {
     switch (tasks[task_id].priv[3]) {
@@ -41,13 +42,13 @@ void bide_before_move_cb(u8 user_bank)
     }
 }
 
+
 void attract_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & ATTRACT_TAG) {   
         if (!rand_range(0, 2)) {
             u8 t_id = task_add(task_add_bmessage, 0x1);
             tasks[t_id].priv[0] = user_bank;
-            tasks[t_id].priv[2] = MOVE_ATTRACT;
             tasks[t_id].priv[4] = STRING_INFATUATED;
             tasks[t_id].priv[3] = 0;
             return;
@@ -55,6 +56,7 @@ void attract_before_move_cb(u8 user_bank)
     }
         return;
 }
+
 
 void destiny_bond_before_move_cb(u8 user_bank)
 {
@@ -66,20 +68,22 @@ void destiny_bond_before_move_cb(u8 user_bank)
 
 void disable_before_move_cb(u8 user_bank)
 {
-    if (p_bank[user_bank]->user_action.buff_tag & DISABLE_TAG) {   
-        if (p_bank[user_bank]->user_action.turns_disabled < 4) {
+   // if (p_bank[user_bank]->user_action.buff_tag & DISABLE_TAG) {   
+       // if (p_bank[user_bank]->user_action.turns_disabled < 4) {
             u8 t_id = task_add(task_add_bmessage, 0x1);
             tasks[t_id].priv[0] = user_bank;
-            tasks[t_id].priv[2] = MOVE_DISABLE;
+            tasks[t_id].priv[1] = MOVE_DISABLE;
+            tasks[t_id].priv[2] = p_bank[user_bank]->user_action.move_id;
             tasks[t_id].priv[4] = STRING_DISABLED;
             return;
-        } else {
-            p_bank[user_bank]->user_action.buff_tag ^= DISABLE_TAG;
-            p_bank[user_bank]->user_action.turns_disabled = 0;
-            return;
-        }
-    }
+      //  } else {
+      //      p_bank[user_bank]->user_action.buff_tag ^= DISABLE_TAG;
+      //      p_bank[user_bank]->user_action.turns_disabled = 0;
+     //       return;
+     //   }
+   // }
 }
+
 
 void focus_punch_before_move_cb(u8 user_bank)
 {
@@ -97,6 +101,7 @@ void focus_punch_before_move_cb(u8 user_bank)
     return;
 }
 
+
 void gravity_check_before_move_cb(u8 user_bank)
 {
     u16 move_id = p_bank[user_bank]->user_action.move_id;
@@ -111,12 +116,14 @@ void gravity_check_before_move_cb(u8 user_bank)
     return;
 }
 
+
 void grudge_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & GRUDGE_TAG) {
         p_bank[user_bank]->user_action.buff_tag ^= GRUDGE_TAG; // Bitwise XoR removes the tag
     }
 }
+
 
 void heal_block_before_move_cb(u8 user_bank)
 {
@@ -137,6 +144,7 @@ void heal_block_before_move_cb(u8 user_bank)
     }
     return;
 }
+
 
 extern bool knows_move(u16 move_id, struct Pokemon* p);
 void imprison_before_move_cb(u8 user_bank)
@@ -159,11 +167,13 @@ void imprison_before_move_cb(u8 user_bank)
     }
 }
 
+
 void natural_gift(u8 user_bank)
 {
     /* TODO */
     // Have to make a table for this still.
 }
+
 
 void rage_before_move_cb(u8 user_bank)
 {
@@ -171,6 +181,7 @@ void rage_before_move_cb(u8 user_bank)
         p_bank[user_bank]->user_action.buff_tag ^= RAGE_TAG; // Bitwise XoR removes the tag
     }
 }
+
 
 void shelltrap_before_move_cb(u8 user_bank)
 {
@@ -188,6 +199,7 @@ void shelltrap_before_move_cb(u8 user_bank)
     return;
 }
 
+
 void sky_drop_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & SKY_DROP_TAG) {
@@ -199,6 +211,7 @@ void sky_drop_before_move_cb(u8 user_bank)
     }
     return;
 }
+
 
 void taunt_before_move_cb(u8 user_bank)
 {
@@ -213,6 +226,7 @@ void taunt_before_move_cb(u8 user_bank)
         }        
     }
 }
+
 
 void throat_chop_before_move_cb(u8 user_bank)
 {
@@ -230,6 +244,7 @@ void throat_chop_before_move_cb(u8 user_bank)
     }
     return;
 }
+
 
 void fling_before_move_cb(u8 user_bank)
 {
@@ -250,30 +265,54 @@ void fling_before_move_cb(u8 user_bank)
     }
 }
 
+
+void add_bmcallback(BeforeMoveCallback bmc_func, u8 bank)
+{
+    u8 i;
+    for (i = 0; i < 12; i++) {
+        BeforeMoveCallback func = p_bank[bank]->user_action.bmc[i];
+        if ((func == NULL) || (func == bmc_func)) {
+            p_bank[bank]->user_action.bmc[i] = bmc_func;
+            return;
+        }
+    }
+}
+
+
+void del_bmcallback(BeforeMoveCallback bmc_func, u8 bank)
+{
+    u8 i;
+    for (i = 0; i < 12; i++) {
+        BeforeMoveCallback func = p_bank[bank]->user_action.bmc[i];
+        if (func == bmc_func) {
+            p_bank[bank]->user_action.bmc[i] = NULL;
+            return;
+        }
+    }
+}
+
+
+void exec_bmcallbacks(u8 bank)
+{
+    u8 i;
+    for (i = 0; i < 12; i++) {
+        if (p_bank[bank]->user_action.bmc[i]) {
+            (p_bank[bank]->user_action.bmc[i])(bank);
+            return;
+        }
+    }
+}
+
+
 /* These are move tags that you need to filter through and check every turn */
 void anonymous_before_move_cbs(u8 user_bank)
 {
-    attract_before_move_cb(user_bank);
-    bide_before_move_cb(user_bank);
-    destiny_bond_before_move_cb(user_bank);
-    disable_before_move_cb(user_bank);
-    focus_punch_before_move_cb(user_bank);
-    gravity_check_before_move_cb(user_bank);
-    heal_block_before_move_cb(user_bank);
-    imprison_before_move_cb(user_bank);
-    rage_before_move_cb(user_bank);
-    fling_before_move_cb(user_bank);
-    throat_chop_before_move_cb(user_bank);
-    taunt_before_move_cb(user_bank);
-    sky_drop_before_move_cb(user_bank);
-    shelltrap_before_move_cb(user_bank);
-    
+    exec_bmcallbacks(user_bank);
     if (task_is_running(task_add_bmessage)) {
     super.multi_purpose_state_tracker = 99;
         return;
     }
     super.multi_purpose_state_tracker++;
 }
-
 
 
