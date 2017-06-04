@@ -22,6 +22,12 @@ u8 get_side(u8 bank)
     return (bank > 1) ? 1 : 0;
 }
 
+
+u8 get_opponent_side(u8 bank)
+{
+    return ((!(get_side(bank))) * 2);
+}
+
 u8 get_ability(struct Pokemon* p)
 {
     u8 ability_bit = pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL);
@@ -41,4 +47,13 @@ u8 move_target(u8 bank, u16 move_id)
     } else {
         return (bank) ? 0 : 2;
     }
+}
+
+
+bool pkmn_has_type(u16 species, enum PokemonType type)
+{
+    if ((pokemon_base_stats[species].type[0] == type) || (pokemon_base_stats[species].type[1] == type)) {
+        return true;
+    }
+    return false;
 }
