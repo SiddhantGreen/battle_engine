@@ -241,11 +241,11 @@ void run_decision(void)
         }
         case 5:
         {
-            /* Run before move callbacks */
+            /* Modify Move */
             super.multi_purpose_state_tracker++;
             break;
         }
-        case 99:
+        case 98:
         {
             battle_master->execution_index++;
             super.multi_purpose_state_tracker++;

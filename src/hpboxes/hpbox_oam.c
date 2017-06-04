@@ -292,4 +292,16 @@ void spawn_hpboxes_wild(void)
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x += 128;
 }
 
+void hpbar_apply_dmg(u8 task_id)
+{
+    u8 bank = tasks[task_id].priv[0];
+    if (p_bank[bank]->this_pkmn->current_hp < tasks[task_id].priv[1]) {
+        p_bank[bank]->this_pkmn->current_hp -= 1;
+        refresh_hp(p_bank[bank]->this_pkmn, p_bank[bank]->objid_hpbox[2]);
+        if (bank == PLAYER_SINGLES_BANK)
+            draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, p_bank[bank]->objid_hpbox[0]);
+    } else {
+        task_del(task_id);
+    }
+}
 
