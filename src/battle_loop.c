@@ -7,7 +7,7 @@
 extern void priority_triage_mod(u8 ability, u16 moveid, u8 bank);
 extern void priority_gale_wings_mod(u8 ability, u16 moveid, u8 bank);
 extern void priority_prankster_mod(u8 ability, u16 moveid, u8 bank);
-extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id);
+extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
 extern u8 get_side(u8 bank);
 extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
@@ -95,7 +95,7 @@ u16 field_speed_mod(u16 speed, u8 ability, u8 side, u8 bank, struct battle_field
 void run_move_text(u16 attack, u8 bank, u16 speed)
 {
     // display move was used
-    pick_battle_message(attack, bank, battle_type_flags, STRING_ATTACK_USED);
+    pick_battle_message(attack, bank, battle_type_flags, STRING_ATTACK_USED, 0);
     battle_show_message((u8*)string_buffer, 0x18);
     
 

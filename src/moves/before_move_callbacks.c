@@ -7,14 +7,14 @@
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
 extern u8 get_ability(struct Pokemon* p);
-extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id);
+extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
 extern bool ignoring_item(struct Pokemon* p);
 
 void task_add_bmessage(u8 task_id)
 {
     switch (tasks[task_id].priv[3]) {
         case 0:
-            pick_battle_message(tasks[task_id].priv[2], tasks[task_id].priv[0], battle_type_flags, tasks[task_id].priv[4]);
+            pick_battle_message(tasks[task_id].priv[2], tasks[task_id].priv[0], battle_type_flags, tasks[task_id].priv[4], tasks[task_id].priv[1]);
             battle_show_message((u8*)string_buffer, 0x18);
             tasks[task_id].priv[3]++;
             break;
@@ -34,7 +34,7 @@ void bide_before_move_cb(u8 user_bank)
         if (p_bank[user_bank]->user_action.charging_move_counter < 2) {
             p_bank[user_bank]->user_action.charging_move_counter++;
             u8 t_id = task_add(task_add_bmessage, 0x1);
-            tasks[t_id].priv[0] = user_bank;     
+            tasks[t_id].priv[0] = user_bank;
             tasks[t_id].priv[2] = MOVE_BIDE;
             tasks[t_id].priv[4] = STRING_BIDE_CHARGE;
         }
@@ -103,7 +103,8 @@ void gravity_check_before_move_cb(u8 user_bank)
     if (*(move_t[move_id].m_flags) & FLAG_GRAVITY_DISABLED) {
         u8 t_id = task_add(task_add_bmessage, 0x1);
         tasks[t_id].priv[0] = user_bank;        
-        tasks[t_id].priv[2] = MOVE_GRAVITY;
+        tasks[t_id].priv[1] = MOVE_GRAVITY;
+        tasks[t_id].priv[2] = move_id;
         tasks[t_id].priv[4] = STRING_CANT_USE;
         return;
     }
@@ -127,8 +128,9 @@ void heal_block_before_move_cb(u8 user_bank)
         }
         if (*(move_t[move_id].m_flags) & FLAG_HEAL_BLOCK_DISABLED) {
             u8 t_id = task_add(task_add_bmessage, 0x1);
-            tasks[t_id].priv[0] = user_bank;            
-            tasks[t_id].priv[2] = MOVE_HEAL_BLOCK;
+            tasks[t_id].priv[0] = user_bank;   
+            tasks[t_id].priv[2] = move_id;            
+            tasks[t_id].priv[1] = MOVE_HEAL_BLOCK;
             tasks[t_id].priv[4] = STRING_CANT_USE;
             return;
         }
@@ -204,8 +206,9 @@ void taunt_before_move_cb(u8 user_bank)
         u16 move_id = p_bank[user_bank]->user_action.move_id;
         if (move_t[move_id].category == MOVE_STATUS) {
             u8 t_id = task_add(task_add_bmessage, 0x1);
-            tasks[t_id].priv[0] = user_bank;            
-            tasks[t_id].priv[2] = MOVE_TAUNT;
+            tasks[t_id].priv[0] = user_bank;
+            tasks[t_id].priv[2] = move_id;            
+            tasks[t_id].priv[1] = MOVE_TAUNT;
             tasks[t_id].priv[4] = STRING_CANT_USE;
         }        
     }
@@ -219,8 +222,9 @@ void throat_chop_before_move_cb(u8 user_bank)
     u16 move_id = p_bank[user_bank]->user_action.move_id;
     if (*(move_t[move_id].m_flags) & FLAG_SOUND_BASED) {
         u8 t_id = task_add(task_add_bmessage, 0x1);
-        tasks[t_id].priv[0] = user_bank;       
-        tasks[t_id].priv[2] = MOVE_THROAT_CHOP;
+        tasks[t_id].priv[0] = user_bank;
+        tasks[t_id].priv[2] = move_id;        
+        tasks[t_id].priv[1] = MOVE_THROAT_CHOP;
         tasks[t_id].priv[4] = STRING_CANT_USE;
         return;
     }
