@@ -71,7 +71,7 @@ void draw_text_obj(u8 font, u8 x_shift, u8 y_shift, pchar* string_buff, void* vr
 void load_names_moves(u8 bank)
 {
     u8 i;
-    pchar prefix[] = _"{HIGHLIGHT 1}{COLOR 2}{SHADOW 3}";
+    pchar prefix[] = _("{HIGHLIGHT 1}{COLOR 2}{SHADOW 3}");
     u16 moves[4];
     for (i = 0; i < 4; i++) {
         /* figure out move string */

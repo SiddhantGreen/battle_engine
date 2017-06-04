@@ -105,8 +105,8 @@ u8 hpbar_build_full(struct Pokemon* pkmn, s16 x, s16 y, u16 tag)
 
 void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid)
 {
-    pchar hp_prefix[] = _"{HIGHLIGHT 0}{COLOR 3}{SHADOW 5}";
-    pchar hp_slash[] = _"/ ";
+    pchar hp_prefix[] = _("{HIGHLIGHT 0}{COLOR 3}{SHADOW 5}");
+    pchar hp_slash[] = _("/ ");
     pstrcpy(string_buffer, &hp_prefix[0]);
     pchar hp_buff[3];
 
@@ -142,7 +142,7 @@ void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid)
 
 void draw_level(struct Pokemon* pkmn, u8 tile_id, u8 objid)
 {
-    pchar level_prefix[] = _"{HIGHLIGHT TRANSPARENT}{COLOR 3}{SHADOW 5}{LV}";
+    pchar level_prefix[] = _("{HIGHLIGHT TRANSPARENT}{COLOR 3}{SHADOW 5}{LV}");
     pstrcpy(string_buffer, &level_prefix[0]);
     pchar level_buff[3];
 
@@ -160,9 +160,9 @@ void draw_name(struct Pokemon* pkmn, u8 tile_id, u8 tile_id2, u8 objid, enum HPF
  {
 
     /* Constant character additions to regular name string*/
-    pchar name_prefix[] = _"{HIGHLIGHT TRANSPARENT}{COLOR 3}{SHADOW 5}";
-    pchar gender_m[] = _"{COLOR 8}{SHADOW 5}♂";
-    pchar gender_f[] = _"{COLOR 7}{SHADOW 5}♀";
+    pchar name_prefix[] = _("{HIGHLIGHT TRANSPARENT}{COLOR 3}{SHADOW 5}");
+    pchar gender_m[] = _("{COLOR 8}{SHADOW 5}♂");
+    pchar gender_f[] = _("{COLOR 7}{SHADOW 5}♀");
 
     /* Copy name and prefix into buffer */
     pstrcpy(string_buffer, &name_prefix[0]);

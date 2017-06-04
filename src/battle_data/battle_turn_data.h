@@ -3,6 +3,9 @@
 
 #include <pokeagb/pokeagb.h>
 
+// executed right before using a move. bm_cb(user_bank)
+typedef void (*BeforeMoveCallback)(u8);
+
 enum BuffTags {
     ASSURANCE_TAG = (1 << 0), 
     BEAKBLAST_TAG = (1 << 1),
@@ -42,6 +45,7 @@ struct user_turn_action {
     u8 ability;
     u8 type[2];
     enum BuffTags buff_tag;
+    BeforeMoveCallback bmc[19];
     u16 speed_current;
     
     u8 attracted_by_bank;
