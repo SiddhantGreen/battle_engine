@@ -73,11 +73,11 @@ void disable_before_move_cb(u8 user_bank)
             tasks[t_id].priv[2] = MOVE_DISABLE;
             tasks[t_id].priv[4] = STRING_DISABLED;
             return;
+        } else {
+            p_bank[user_bank]->user_action.buff_tag ^= DISABLE_TAG;
+            p_bank[user_bank]->user_action.turns_disabled = 0;
+            return;
         }
-    } else {
-        p_bank[user_bank]->user_action.buff_tag ^= DISABLE_TAG;
-        p_bank[user_bank]->user_action.turns_disabled = 0;
-        return;
     }
 }
 
