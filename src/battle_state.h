@@ -13,13 +13,14 @@ struct battle_selection_cursor {
 };
 
 struct battle_field_state {
-    u8 is_raining : 1;
-    u8 is_sunny : 1;
-    u8 is_sandstorm : 1;
-    u8 is_hail : 1;
-    u8 is_desolate_land : 1;
-    u8 is_primordial_sea : 1;
-    u8 is_tailwind : 2; // side
+    u32 is_raining : 1;
+    u32 is_sunny : 1;
+    u32 is_sandstorm : 1;
+    u32 is_hail : 1;
+    u32 is_desolate_land : 1;
+    u32 is_primordial_sea : 1;
+    u32 is_tailwind : 2; // side
+    u32 is_gravity : 1;
 
 };
 

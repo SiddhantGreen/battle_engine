@@ -42,6 +42,9 @@ void pick_obj_creator()
     
     p_bank[OPPONENT_SINGLES_BANK]->user_action.speed = 0;
     p_bank[PLAYER_SINGLES_BANK]->user_action.speed = 0;
+    
+    p_bank[OPPONENT_SINGLES_BANK]->user_action.buff_tag = 0;
+    p_bank[PLAYER_SINGLES_BANK]->user_action.buff_tag = 0;
 
     switch (battle_type_flags) {
         case BATTLE_FLAG_WILD:

@@ -32,7 +32,7 @@
 typedef u8 (*BasePowerCallback)(u8, u8);
 
 // activate some p_bank flags for a Pokemon in a certain bank and/or target bank. bt_cb(user_bank, target_bank)
-typedef u8 (*BeforeTurnCallback)(u8, u8);
+typedef void (*BeforeTurnCallback)(u8);
 
 // Executed before duration for something is applied, to modify duration. dur_cb(user bank, target bank, effect)
 typedef u8 (*DurationCallback)(u8, u8, u8);
