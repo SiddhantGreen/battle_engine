@@ -22,7 +22,7 @@ void task_add_bmessage(u8 task_id)
         case 1:
            if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
                 task_del(task_id);
-                super.multi_purpose_state_tracker = 99;
+                super.multi_purpose_state_tracker = tasks[task_id].priv[3];
             }
             break;
     };     
@@ -38,6 +38,7 @@ void bide_before_move_cb(u8 user_bank)
             tasks[t_id].priv[0] = user_bank;
             tasks[t_id].priv[2] = MOVE_BIDE;
             tasks[t_id].priv[4] = STRING_BIDE_CHARGE;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         }
     }
 }
@@ -50,7 +51,7 @@ void attract_before_move_cb(u8 user_bank)
             u8 t_id = task_add(task_add_bmessage, 0x1);
             tasks[t_id].priv[0] = user_bank;
             tasks[t_id].priv[4] = STRING_INFATUATED;
-            tasks[t_id].priv[3] = 0;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
     }
@@ -75,6 +76,7 @@ void disable_before_move_cb(u8 user_bank)
             tasks[t_id].priv[1] = MOVE_DISABLE;
             tasks[t_id].priv[2] = p_bank[user_bank]->user_action.move_id;
             tasks[t_id].priv[4] = STRING_DISABLED;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         } else {
             p_bank[user_bank]->user_action.buff_tag ^= DISABLE_TAG;
@@ -95,6 +97,7 @@ void focus_punch_before_move_cb(u8 user_bank)
             tasks[t_id].priv[0] = user_bank;      
             tasks[t_id].priv[2] = MOVE_FOCUS_PUNCH;
             tasks[t_id].priv[4] = STRING_LOST_FOCUS;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
     }
@@ -111,6 +114,7 @@ void gravity_check_before_move_cb(u8 user_bank)
         tasks[t_id].priv[1] = MOVE_GRAVITY;
         tasks[t_id].priv[2] = move_id;
         tasks[t_id].priv[4] = STRING_CANT_USE;
+        tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         return;
     }
     return;
@@ -139,6 +143,7 @@ void heal_block_before_move_cb(u8 user_bank)
             tasks[t_id].priv[2] = move_id;            
             tasks[t_id].priv[1] = MOVE_HEAL_BLOCK;
             tasks[t_id].priv[4] = STRING_CANT_USE;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
     }
@@ -162,6 +167,7 @@ void imprison_before_move_cb(u8 user_bank)
             tasks[t_id].priv[0] = user_bank;            
             tasks[t_id].priv[2] = MOVE_IMPRISON;
             tasks[t_id].priv[4] = STRING_DISABLED;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
     }
@@ -193,6 +199,7 @@ void shelltrap_before_move_cb(u8 user_bank)
             tasks[t_id].priv[0] = user_bank;            
             tasks[t_id].priv[2] = MOVE_SHELL_TRAP;
             tasks[t_id].priv[4] = STRING_FAILED;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
     }
@@ -207,6 +214,7 @@ void sky_drop_before_move_cb(u8 user_bank)
         tasks[t_id].priv[0] = user_bank;       
         tasks[t_id].priv[2] = MOVE_SKY_DROP;
         tasks[t_id].priv[4] = STRING_FAILED;
+        tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         return;
     }
     return;
@@ -223,6 +231,7 @@ void taunt_before_move_cb(u8 user_bank)
             tasks[t_id].priv[2] = move_id;            
             tasks[t_id].priv[1] = MOVE_TAUNT;
             tasks[t_id].priv[4] = STRING_CANT_USE;
+            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         }        
     }
 }
@@ -240,6 +249,7 @@ void throat_chop_before_move_cb(u8 user_bank)
         tasks[t_id].priv[2] = move_id;        
         tasks[t_id].priv[1] = MOVE_THROAT_CHOP;
         tasks[t_id].priv[4] = STRING_CANT_USE;
+        tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         return;
     }
     return;
@@ -261,6 +271,7 @@ void fling_before_move_cb(u8 user_bank)
         tasks[t_id].priv[0] = user_bank;        
         tasks[t_id].priv[2] = MOVE_FLING;
         tasks[t_id].priv[4] = STRING_FAILED;
+        tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
         return;
     }
 }
@@ -309,7 +320,7 @@ void anonymous_before_move_cbs(u8 user_bank)
 {
     exec_bmcallbacks(user_bank);
     if (task_is_running(task_add_bmessage)) {
-    super.multi_purpose_state_tracker = 99;
+        super.multi_purpose_state_tracker = 99;
         return;
     }
     super.multi_purpose_state_tracker++;

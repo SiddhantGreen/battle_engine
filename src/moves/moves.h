@@ -43,6 +43,8 @@ typedef u16 (*DamageCallback)(u8, u8);
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
 
+typedef void (*ModifyMoveCallback)(u8);
+
 enum MoveTypes {
     MTYPE_NORMAL = 0,
     MTYPE_FIGHTING,
@@ -80,6 +82,15 @@ enum PokemonStat {
     STAT_SPECIAL_DEFENSE,   
 };
 
+enum StatusAilments {
+    AILMENT_NONE,
+    AILMENT_PARALYZE,
+    AILMENT_SLEEP,
+    AILMENT_BURN,
+    AILMENT_FREEZE,
+    AILMENT_BAD_POISON,
+};
+
 /*
 
 List of flags and their descriptions:
@@ -110,6 +121,7 @@ struct move_callbacks {
     DurationCallback dur_cb;
     DamageCallback dmg_cb;
     BeforeMoveCallback bm_cb;
+    ModifyMoveCallback mm_cb;
     
 };
 
@@ -122,13 +134,15 @@ struct move_procs {
     s8 amount_target[6];
     u8 multihit_lowest;
     u8 multihit_highest;
+    u8 secondary_status[2];
+    u8 secondary_status_chance[2];
 };
 
 
 struct move_data {
     pchar name[30];
     u8 accuracy;
-    u8 base_power;
+    s8 base_power;
     pchar* description;
     u8 pp;
     s8 priority;
