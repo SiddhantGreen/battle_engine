@@ -12,6 +12,9 @@ enum battle_string_ids {
     STRING_DISABLED = 10,
     STRING_FAILED = 12,
     STRING_CURSE_RESIDUAL = 14,
+    STRING_MAGNITUDE_AMOUNT = 16,
+    STRING_NO_TARGET = 18,
+    STRING_FAILED_ALONE = 19,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -30,8 +33,13 @@ static const pchar str_failed_p[] = _("{ATTACKING_MON} used {ATTACK_NAME}\nBut i
 static const pchar str_failed_o[] = _("Foe {ATTACKING_MON} used {ATTACK_NAME}\nBut it failed");
 static const pchar str_curse_dmg_p[] = _("Foe {ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
 static const pchar str_curse_dmg_o[] = _("{ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
+static const pchar str_magnitude_amount_p[] = _("MAGNITUDE {EFFECT_NAME}!");
+static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {EFFECT_NAME}!");
+static const pchar str_no_target_p[] = _("But there was no target!");
+static const pchar str_no_target_o[] = _("But there was no target!");
+static const pchar str_failed_alone[] = _("But it failed!");
 
-static const pchar* battle_strings[16] = {
+static const pchar* battle_strings[21] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -40,6 +48,9 @@ static const pchar* battle_strings[16] = {
    (pchar*)&str_disabled_p, (pchar*)&str_disabled_p,
    (pchar*)&str_failed_p, (pchar*)&str_failed_p,
    (pchar*)&str_curse_dmg_p, (pchar*)&str_curse_dmg_o,
+   (pchar*)&str_magnitude_amount_p, (pchar*)str_magnitude_amount_o,
+   (pchar*)&str_no_target_p, (pchar*)&str_no_target_o,
+   (pchar*)&str_failed_alone,
 };
 
 

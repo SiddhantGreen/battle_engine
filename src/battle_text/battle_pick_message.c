@@ -38,6 +38,7 @@ void pick_encounter_message(enum BattleFlag battle_type_flags)
 extern void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id);
 void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 move_effect_id)
 {
+    remo_reset_acknowledgement_flags();
     if (battle_type == BATTLE_FLAG_WILD) {
         switch (id) {
             case STRING_ATTACK_USED:
@@ -60,6 +61,18 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
                 break;
             case STRING_FAILED:
                 fdecoder_battle(battle_strings[STRING_FAILED + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_CURSE_RESIDUAL:
+                fdecoder_battle(battle_strings[STRING_CURSE_RESIDUAL + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_MAGNITUDE_AMOUNT:
+                fdecoder_battle(battle_strings[STRING_MAGNITUDE_AMOUNT + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_NO_TARGET:
+                fdecoder_battle(battle_strings[STRING_NO_TARGET + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_FAILED_ALONE:
+                fdecoder_battle(battle_strings[STRING_FAILED_ALONE], 0, 0, 0);
                 break;
             default:
                 break;
