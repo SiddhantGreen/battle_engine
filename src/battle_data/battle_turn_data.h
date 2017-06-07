@@ -26,6 +26,7 @@ enum BuffTags {
     SKY_DROP_TAG = (1 << 16),
     TAUNT_TAG = (1 << 17),
     THROAT_CHOP_TAG = (1 << 18),
+    ELECTRIFY_TAG = (1 << 19),
 };
 
 struct user_turn_action {
@@ -38,6 +39,10 @@ struct user_turn_action {
     u8 using_item : 1;
     u8 is_switching : 1;
     u8 skip_move_select : 1;
+    u8 used_protect : 1;
+    u8 used_endure : 1;
+    
+    u8 times_protected;
     
     u8 crit_mod;
     u16 item_to_use;

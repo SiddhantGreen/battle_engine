@@ -57,3 +57,8 @@ bool pkmn_has_type(u16 species, enum PokemonType type)
     }
     return false;
 }
+
+u8 get_base_power(u16 move_id)
+{
+    return move_t[move_id].base_power;
+}
