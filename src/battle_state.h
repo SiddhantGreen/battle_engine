@@ -2,6 +2,8 @@
 #define BATTLE_STATE_H_
 
 #include <pokeagb/pokeagb.h>
+#include "moves/moves.h"
+#include "battle_data/pkmn_bank.h"
 
 typedef void (*ResidualEffectCallback)(u8);
 
@@ -23,14 +25,35 @@ struct battle_field_state {
     u32 is_primordial_sea : 1;
     u32 is_tailwind : 2; // side
     u32 is_gravity : 1;
-
+    u32 is_ion_deluge : 1;
+    u32 electric_terrain : 1;
+    u32 grassy_terrain : 1;
+    u32 misty_terrain : 1;
+    u32 psychic_terrain : 1;
+    u32 aurora_veil : 2; // side
+    u32 lightscreen : 2;
+    u32 reflect : 2;
+    u8 aurora_veil_turns[2];
+    u8 tailwind_turns[2];
+    u8 reflect_turns[2];
+    u8 lightscreen_turns[2];
+    u8 weather_turns;
+    
 };
 
 struct moves_used {
     u16 move_id;
-    u8 power_override;
-    u8 type_override;
-    s8 accuracy_override;
+    s8 power;
+    u8 type[2];
+    u8 accuracy; // over 100 = never miss
+    u8 chance_self;
+    u8 chance_target;
+    u8 stat_self[6];
+    u8 stat_target[6];
+    s8 amount_self[6];
+    s8 amount_target[6];
+    u8 secondary_status[2];
+    u8 secondary_status_chance[2];
     u8 user_bank;
 };
 

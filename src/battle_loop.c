@@ -36,16 +36,56 @@ u16 get_player_attack()
 
 u16 get_opponent_attack()
 {
-    u8 moves_total = 0;
+    u8 move_total = 0;
     u8 i;
     for (i = 0; i < 4; i++) {
         if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
-            moves_total++;
+            move_total++;
         } else {
             break;
         }     
     }  
-    return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, moves_total)+ REQUEST_MOVE1, NULL);
+    return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total)+ REQUEST_MOVE1, NULL);
+}
+
+void set_attack(u8 bank, u16 move_id)
+{
+    battle_master->b_moves[bank].move_id = move_id;
+    battle_master->b_moves[bank].user_bank = bank;
+    battle_master->b_moves[bank].power = move_t[move_id].base_power;
+    battle_master->b_moves[bank].type[0] = move_t[move_id].type;
+    battle_master->b_moves[bank].accuracy = move_t[move_id].accuracy;
+    battle_master->b_moves[bank].chance_self = move_t[move_id].procs->chance_self;
+    battle_master->b_moves[bank].chance_target = move_t[move_id].procs->chance_target;
+    
+    battle_master->b_moves[bank].stat_self[0] = move_t[move_id].procs->stat_self[0];
+    battle_master->b_moves[bank].stat_self[1] = move_t[move_id].procs->stat_self[1];
+    battle_master->b_moves[bank].stat_self[2] = move_t[move_id].procs->stat_self[2];
+    battle_master->b_moves[bank].stat_self[3] = move_t[move_id].procs->stat_self[3];
+    battle_master->b_moves[bank].stat_self[4] = move_t[move_id].procs->stat_self[4];
+    battle_master->b_moves[bank].stat_self[5] = move_t[move_id].procs->stat_self[5];
+    
+    battle_master->b_moves[bank].stat_target[0] = move_t[move_id].procs->stat_target[0];
+    battle_master->b_moves[bank].stat_target[1] = move_t[move_id].procs->stat_target[1];
+    battle_master->b_moves[bank].stat_target[2] = move_t[move_id].procs->stat_target[2];
+    battle_master->b_moves[bank].stat_target[3] = move_t[move_id].procs->stat_target[3];
+    battle_master->b_moves[bank].stat_target[4] = move_t[move_id].procs->stat_target[4];
+    battle_master->b_moves[bank].stat_target[5] = move_t[move_id].procs->stat_target[5];
+    
+    battle_master->b_moves[bank].amount_self[0] = move_t[move_id].procs->amount_self[0];
+    battle_master->b_moves[bank].amount_self[1] = move_t[move_id].procs->amount_self[1];
+    battle_master->b_moves[bank].amount_self[2] = move_t[move_id].procs->amount_self[2];
+    battle_master->b_moves[bank].amount_self[3] = move_t[move_id].procs->amount_self[3];
+    battle_master->b_moves[bank].amount_self[4] = move_t[move_id].procs->amount_self[4];
+    battle_master->b_moves[bank].amount_self[5] = move_t[move_id].procs->amount_self[5];
+    
+    battle_master->b_moves[bank].amount_target[0] = move_t[move_id].procs->amount_target[0];
+    battle_master->b_moves[bank].amount_target[1] = move_t[move_id].procs->amount_target[1];
+    battle_master->b_moves[bank].amount_target[2] = move_t[move_id].procs->amount_target[2];
+    battle_master->b_moves[bank].amount_target[3] = move_t[move_id].procs->amount_target[3];
+    battle_master->b_moves[bank].amount_target[4] = move_t[move_id].procs->amount_target[4];
+    battle_master->b_moves[bank].amount_target[5] = move_t[move_id].procs->amount_target[5];
+
 }
 
 u8 get_bank_ability(u8 bank)
@@ -184,8 +224,8 @@ void battle_loop()
             battle_master->b_moves[1].user_bank = battle_master->second_bank;
             
             // figure out who the target of the move used is
-            p_bank[battle_master->first_bank]->user_action.target_bank = move_target(battle_master->first_bank, battle_master->b_moves[0].move_id);
-            p_bank[battle_master->second_bank]->user_action.target_bank = move_target(battle_master->second_bank, battle_master->b_moves[1].move_id);
+            set_attack(battle_master->first_bank, battle_master->b_moves[0].move_id);
+            set_attack(battle_master->second_bank, battle_master->b_moves[1].move_id);
             super.multi_purpose_state_tracker = 3;
             return;
         }
@@ -234,21 +274,58 @@ void run_decision(void)
         }
         case 4:
         {
-            if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
+            if (!dialogid_was_acknowledged(0x18)) {
                 super.multi_purpose_state_tracker++;
-                break;
             }
+            break;
         }
         case 5:
         {
             /* Modify Move */
+            if (move_t[p_bank[bank_index]->user_action.move_id].move_cb->mm_cb)
+                move_t[p_bank[bank_index]->user_action.move_id].move_cb->mm_cb(bank_index);
+            
+            extern void ion_deluge(u8);
+            extern void electrify_modify_move(u8);
+            ion_deluge(bank_index);
+            electrify_modify_move(bank_index);
+            /* Abilities which modify moves should be handled here as well TODO */
             super.multi_purpose_state_tracker++;
+            break;
+        }
+        case 6:
+        {
+            /* check target exists */
+            if (p_bank[p_bank[bank_index]->user_action.target_bank]->this_pkmn->current_hp) {
+                super.multi_purpose_state_tracker += 2;
+            } else {
+                u16 move_id = battle_master->b_moves[battle_master->execution_index].move_id;
+                pick_battle_message(move_id, bank_index, battle_type_flags, STRING_NO_TARGET, move_id);
+                battle_show_message((u8*)string_buffer, 0x18);
+                var_8000 = 0x92 + battle_master->execution_index;
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
+        case 7:
+        {
+            if (!dialogid_was_acknowledged(0x18)) {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
+        case 8:
+        {
+            /* Move hit */
+            
+            super.multi_purpose_state_tracker = 98;
             break;
         }
         case 98:
         {
-            battle_master->execution_index++;
-            super.multi_purpose_state_tracker++;
+            
+            battle_master->execution_index = (battle_master->execution_index) ? 0 : 1;
+            super.multi_purpose_state_tracker = 0;
             break;
         }
         default:
