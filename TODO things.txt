@@ -1,4 +1,0 @@
-Things that need to be revisted:
-
-- Shiny determiner
-- Hidden ability
