@@ -34,6 +34,11 @@ u8 get_ability(struct Pokemon* p)
     return pokemon_base_stats[pokemon_getattr(p, REQUEST_SPECIES, NULL)].ability[ability_bit];
 }
 
+u8 get_ability_bank(u8 bank)
+{
+    return p_bank[bank]->user_action.ability;
+}
+
 bool ignoring_item(struct Pokemon* p)
 {
     return (get_ability(p) == ABILITY_KLUTZ);

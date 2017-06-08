@@ -27,6 +27,27 @@ enum BuffTags {
     TAUNT_TAG = (1 << 17),
     THROAT_CHOP_TAG = (1 << 18),
     ELECTRIFY_TAG = (1 << 19),
+    CURSE_TAG = (1 << 20),
+};
+
+enum TypeBits {
+    TYPE_BITS_NORMAL = (1 << 0),
+    TYPE_BITS_FIGHTING = (1 << 1),
+    TYPE_BITS_FLYING = (1 << 2),
+    TYPE_BITS_POISON = (1 << 3),
+    TYPE_BITS_GROUND = (1 << 4),
+    TYPE_BITS_ROCK = (1 << 5),
+    TYPE_BITS_BUG = (1 << 6),
+    TYPE_BITS_GHOST = (1 << 7),
+    TYPE_BITS_STEEL = (1 << 8),
+    TYPE_BITS_FIRE = (1 << 9),
+    TYPE_BITS_WATER = (1 << 10),
+    TYPE_BITS_GRASS = (1 << 11),
+    TYPE_BITS_ELECTRIC = (1 << 12),
+    TYPE_BITS_PSYCHIC = (1 << 13),
+    TYPE_BITS_ICE = (1 << 14),
+    TYPE_BITS_DRAGON = (1 << 15),
+    TYPE_BITS_DARK = (1 << 16),
 };
 
 struct user_turn_action {
@@ -41,6 +62,11 @@ struct user_turn_action {
     u8 skip_move_select : 1;
     u8 used_protect : 1;
     u8 used_endure : 1;
+    u8 crafty_shield : 1;
+    u8 foresighted : 1;
+    u8 locked_on : 1;
+    u8 kings_sheild : 1;
+    u8 not_first_turn : 1;
     
     u8 times_protected;
     
@@ -49,6 +75,7 @@ struct user_turn_action {
     u8 switching_slot;
     u8 ability;
     u8 type[2];
+    u16 removed_immunities;
     enum BuffTags buff_tag;
     BeforeMoveCallback bmc[19];
     u16 speed_current;

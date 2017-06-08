@@ -6,7 +6,6 @@
 
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
-extern u8 get_ability(struct Pokemon* p);
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
 extern bool ignoring_item(struct Pokemon* p);
 

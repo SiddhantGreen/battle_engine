@@ -35,6 +35,9 @@ void curse_modfiy_move_cb(u8 user_bank)
 {
     u16 species = pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_SPECIES, NULL);
     if (pkmn_has_type(species, TYPE_GHOST)) {
+        u8 opponent_bank = p_bank[user_bank]->user_action.target_bank;
+        if (p_bank[opponent_bank]->user_action.buff_tag & CURSE_TAG)
+            return;
         add_residual_effect(curse_residual_effect, user_bank, get_opponent_side(user_bank), 10);
     } else {
         u8 bank = (battle_master->first_bank == user_bank) ? 0 : 1;
@@ -247,7 +250,15 @@ void secret_power_modify_move(u8 user_bank)
 
 }
 
-
+void pollen_puff_modify_move(u8 user_bank)
+{
+    u8 target = p_bank[user_bank]->user_action.target_bank;
+    extern u8 get_side(u8 bank);
+    if (get_side(user_bank) == get_side(target)) {
+        u8 order = (user_bank == battle_master->first_bank) ? 0 : 1;
+        battle_master->b_moves[order].power = -50;
+    }
+}
 
 
 
