@@ -67,11 +67,15 @@ struct user_turn_action {
     u8 locked_on : 1;
     u8 kings_sheild : 1;
     u8 not_first_turn : 1;
+    u8 invulnerable_turn : 1;
+    u8 has_substitute : 1;
     
     u8 times_protected;
+    u16 substitute_hp;
     
     u8 crit_mod;
     u16 item_to_use;
+    u16 item_id;
     u8 switching_slot;
     u8 ability;
     u8 type[2];
@@ -88,6 +92,7 @@ struct user_turn_action {
     u16 total_dmg_taken;
     u16 special_dmg_taken;
     u16 physical_dmg_taken;
+    u8 stockpile_stacks;
 };
 
 #endif /* BATTLE_TURN_DATA_PKMN */

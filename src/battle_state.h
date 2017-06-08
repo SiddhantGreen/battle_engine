@@ -33,6 +33,7 @@ struct battle_field_state {
     u32 aurora_veil : 2; // side
     u32 lightscreen : 2;
     u32 reflect : 2;
+    u32 quick_guard : 2; // side
     u8 aurora_veil_turns[2];
     u8 tailwind_turns[2];
     u8 reflect_turns[2];

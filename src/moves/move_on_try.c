@@ -11,25 +11,6 @@ extern void task_add_bmessage(u8 task_id);
 extern bool ignoring_item(struct Pokemon* p);
 extern u8 get_side(u8 bank);
 
-u8 ally_switch_tryhit(u8 user_bank)
-{
-    /* TODO: Double battles not implemented yet */
-    return true;
-}
-
-
-u8 aurora_veil_tryhit(u8 user_bank)
-{
-    // fails if not hailing
-    if (battle_master->field_state.is_hail) {
-        battle_master->field_state.aurora_veil = get_side(user_bank) + 1;
-        battle_master->field_state.aurora_veil_turns[get_side(user_bank)] = 5; // TODO: Fix for extended weather rock thing
-        return true;
-    } else {
-        return false;
-    }
-}
-
 u8 protection_tryhit(u8 user_bank)
 {
     // higher chance to fail on consecutive protects
@@ -267,18 +248,6 @@ u8 kings_shielf_tryhit(u8 user_bank)
     return true;
 }
 
-u8 last_resort_tryhit(u8 user_bank)
-{
-    // fails if user doesn't have atleast two moves
-    if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_MOVE1, NULL) != MOVE_NONE)
-        return false;
-    if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_MOVE2, NULL) != MOVE_NONE)
-        return false;
-        
-    // check if all moves were used. TODO
-    return true;
-}
-
 u8 leech_seed_tryhit(u8 user_bank)
 {
     u8 target_bank = p_bank[user_bank]->user_action.target_bank;
@@ -305,19 +274,6 @@ u8 lunar_dance_tryhit(u8 user_bank)
     return healing_wish_tryhit(user_bank);
 }
 
-u8 magic_coat_tryhit(u8 user_bank)
-{
-    /* TODO */
-    // fails if move already reflected, or non-reflectable, or second to move
-    return true;
-}
-
-u8 mat_block_tryhit(u8 user_bank)
-{
-    if (p_bank[user_bank]->user_action.not_first_turn)
-        return false;
-    return true;
-}
 
 u8 me_first_tryhit(u8 user_bank)
 {
@@ -431,14 +387,252 @@ u8 psychic_fangs_tryhit(u8 user_bank)
     return brick_break_tryhit(user_bank);
 }
 
+u8 psychic_terrain_tryhit(u8 user_bank)
+{
+    return (battle_master->field_state.psychic_terrain);
+}
+
+u8 quick_guard_tryhit(u8 user_bank)
+{
+    // higher chance to fail on consecutive protects
+    if (p_bank[user_bank]->user_action.times_protected) {
+        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
+            return false;
+        }
+    }
+    
+    // fails if moves last
+    if (user_bank == battle_master->second_bank)
+        return false;
+    
+    // fails if already up
+    return (!(battle_master->field_state.quick_guard & (get_side(user_bank) + 1)));
+}
 
 
+u8 rage_powder_tryhit(u8 user_bank)
+{
+    // clone of follow me
+    return follow_me_tryhit(user_bank);
+}
 
 
+u8 role_play_tryhit(u8 user_bank)
+{
+    // reverse clone of entrainment
+    return entrainment_tryhit(p_bank[user_bank]->user_action.target_bank);
+}
+
+u8 simple_beam_tryhit(u8 user_bank)
+{
+    u8 target = p_bank[user_bank]->user_action.target_bank;
+    switch (get_ability_bank(target)) {
+        case ABILITY_COMATOSE:
+        case ABILITY_MULTITYPE:
+        case ABILITY_SIMPLE:
+        case ABILITY_STANCE_CHANGE:
+        case ABILITY_TRUANT:
+            return false;
+        default:
+            return true;
+    };
+}
+
+u8 skillswap_tryhit(u8 user_bank)
+{
+    // clone of role play
+    return role_play_tryhit(user_bank);
+}
 
 
+u8 sky_drop_tryhit(u8 user_bank)
+{
+    if (pokemon_get_weight(p_bank[user_bank]->species_id, 1) >= 200)
+        return false;
+    return true;
+}
 
+u8 sleep_talk_tryhit(u8 user_bank)
+{
+    // fails if user is not asleep or ability comatose
+    if ((p_bank[user_bank]->user_action.ability == ABILITY_COMATOSE) ||
+        (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL) & STATUS_SLEEP_TURNS)) {
+            return true;
+        }
+    return false;
+}
 
+u8 snore_tryhit(u8 user_bank)
+{
+    // sleep talk tryhit clone
+    return sleep_talk_tryhit(user_bank);
+}
 
+u8 spiky_shield_tryhit(u8 user_bank)
+{
+    // higher chance to fail on consecutive protects
+    if (p_bank[user_bank]->user_action.times_protected) {
+        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
+            return false;
+        }
+    }
+    
+    // fails if moves last
+    if (user_bank == battle_master->second_bank)
+        return false;
+    return true;
+}
 
+u8 spot_light_tryhit(u8 user_bank)
+{
+    // reverse clone of follow me
+    return follow_me_tryhit(user_bank);
+}
 
+u8 stockpile_tryhit(u8 user_bank)
+{
+    if (p_bank[user_bank]->user_action.stockpile_stacks > 2) {
+        return false;
+    } else {
+        p_bank[user_bank]->user_action.stockpile_stacks++;
+        return true;
+    }
+}
+
+u8 swallow_tryhit(u8 user_bank)
+{
+    if (p_bank[user_bank]->user_action.stockpile_stacks < 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+u8 substitute_tryhit(u8 user_bank)
+{
+    // fails if sub is up
+    if (p_bank[user_bank]->user_action.has_substitute)
+        return false;
+    
+    // fails if not enough health to make sub, 25%
+    if (p_bank[user_bank]->this_pkmn->current_hp < 
+        (p_bank[user_bank]->this_pkmn->total_hp / 4))
+        return false;
+    
+    return true;
+}
+
+u8 wide_gaurd_tryhit(u8 user_bank)
+{
+    // higher chance to fail on consecutive protects
+    if (p_bank[user_bank]->user_action.times_protected) {
+        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
+            return false;
+        }
+    }
+    
+    // fails if moves last
+    if (user_bank == battle_master->second_bank)
+        return false;
+    return true;
+}
+
+u8 worry_seed_tryhit(u8 user_bank)
+{
+    u8 target_bank = p_bank[user_bank]->user_action.target_bank;
+    switch (p_bank[target_bank]->user_action.ability) {
+        case ABILITY_COMATOSE:
+        case ABILITY_INSOMNIA:
+        case ABILITY_MULTITYPE:
+        case ABILITY_SCHOOLING:
+        case ABILITY_STANCE_CHANGE:
+        case ABILITY_TRUANT:
+            return false;
+            break;
+        default:
+            return true;
+            break;
+    };
+}
+
+u8 yawn_tryhit(u8 user_bank)
+{
+    if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL) & STATUS_SLEEP_TURNS) {
+        return true;
+    }
+    return false;
+}
+
+/* PARTIALLY OR FULLY INCOMPLETE */
+u8 magic_coat_tryhit(u8 user_bank)
+{
+    /* TODO */
+    // fails if move already reflected, or non-reflectable, or second to move
+    return false;
+}
+
+u8 ally_switch_tryhit(u8 user_bank)
+{
+    /* TODO: Double battles not implemented yet */
+    return false;
+}
+
+u8 switcheroo_tryhit(u8 user_bank)
+{
+    /* TODO items aren't done yet.*/
+    return false;
+}
+
+u8 trick_tryhit(u8 user_bank)
+{
+    /* TODO items aren't done yet */
+    return false;
+}
+
+u8 mat_block_tryhit(u8 user_bank)
+{
+    if (p_bank[user_bank]->user_action.not_first_turn)
+        return false;
+    return true;
+}
+
+u8 synchronise_tryhit(u8 user_bank)
+{
+    /* TODO Redo this spaghetti */
+    u8 user_type1 = p_bank[user_bank]->user_action.type[0];
+    u8 user_type2 = p_bank[user_bank]->user_action.type[1];
+    
+    u8 opp = p_bank[user_bank]->user_action.target_bank;
+    u8 i;
+    for (i = 0; i < 2; i++) {
+        if ((user_type1 == p_bank[opp]->user_action.type[i]) ||
+            (user_type2 == p_bank[opp]->user_action.type[i]))
+                return true;
+    }
+
+    return false;
+}
+
+u8 aurora_veil_tryhit(u8 user_bank)
+{
+    // fails if not hailing
+    if (battle_master->field_state.is_hail) {
+        battle_master->field_state.aurora_veil = get_side(user_bank) + 1;
+        battle_master->field_state.aurora_veil_turns[get_side(user_bank)] = 5; // TODO: Fix for extended weather rock thing
+        return true;
+    } else {
+        return false;
+    }
+}
+
+u8 last_resort_tryhit(u8 user_bank)
+{
+    // fails if user doesn't have atleast two moves
+    if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_MOVE1, NULL) != MOVE_NONE)
+        return false;
+    if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_MOVE2, NULL) != MOVE_NONE)
+        return false;
+        
+    // check if all moves were used. TODO
+    return true;
+}
