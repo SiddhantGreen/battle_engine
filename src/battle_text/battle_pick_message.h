@@ -14,7 +14,8 @@ enum battle_string_ids {
     STRING_CURSE_RESIDUAL = 14,
     STRING_MAGNITUDE_AMOUNT = 16,
     STRING_NO_TARGET = 18,
-    STRING_FAILED_ALONE = 19,
+    STRING_FAILED_ALONE = 20,
+    STRING_IMMUNE_ABILITY = 21,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -38,8 +39,10 @@ static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {EFFECT_NAME}!");
 static const pchar str_no_target_p[] = _("But there was no target!");
 static const pchar str_no_target_o[] = _("But there was no target!");
 static const pchar str_failed_alone[] = _("But it failed!");
+static const pchar str_immunity_p[] = _("Foe {DEFENDING_MON}’s {ABILITY_NAME_OPPONENT}\nmade it immune!");
+static const pchar str_immunity_o[] = _("{DEFENDING_MON}’s {ABILITY_NAME_PLAYER}\nmade it immune!");
 
-static const pchar* battle_strings[21] = {
+static const pchar* battle_strings[23] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -50,7 +53,8 @@ static const pchar* battle_strings[21] = {
    (pchar*)&str_curse_dmg_p, (pchar*)&str_curse_dmg_o,
    (pchar*)&str_magnitude_amount_p, (pchar*)str_magnitude_amount_o,
    (pchar*)&str_no_target_p, (pchar*)&str_no_target_o,
-   (pchar*)&str_failed_alone,
+   (pchar*)&str_failed_alone, (pchar*)&str_immunity_p,
+   (pchar*)&str_immunity_o,
 };
 
 

@@ -19,6 +19,10 @@ void buffer_write_move_name(pchar* buffer, u16 move_id)
     pstrcpy(buffer, move_t[move_id].name);
 }
 
+void buffer_write_ability_name(pchar* buffer, u8 ability)
+{
+    pstrcpy(buffer, pokemon_ability_names[ability]);
+}
 
 void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
 {
@@ -49,6 +53,23 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     buffer_write_pkmn_nick(&(result[result_index]), p_bank[bank]->user_action.target_bank);
                     result_index = pstrlen(result);
                     break;
+                case 0x12:
+                    // ability Defending mon
+                    {
+                        extern u8 get_ability_bank(u8 bank);
+                        u8 target_bank = p_bank[bank]->user_action.target_bank;
+                        buffer_write_ability_name(&result[result_index], get_ability_bank(target_bank));
+                        result_index = pstrlen(result);
+                        break;
+                    }
+                case 0x13:
+                    // ability Attacking mon
+                    {
+                        extern u8 get_ability_bank(u8 bank);
+                        buffer_write_ability_name(&result[result_index], get_ability_bank(bank));
+                        result_index = pstrlen(result);
+                        break;
+                    }
                 default:
                     break;
             };

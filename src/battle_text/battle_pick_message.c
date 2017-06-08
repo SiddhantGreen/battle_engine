@@ -74,6 +74,9 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_FAILED_ALONE:
                 fdecoder_battle(battle_strings[STRING_FAILED_ALONE], 0, 0, 0);
                 break;
+            case STRING_IMMUNE_ABILITY:
+                fdecoder_battle(battle_strings[STRING_IMMUNE_ABILITY + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
             default:
                 break;
         };
