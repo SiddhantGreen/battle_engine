@@ -132,7 +132,7 @@ u16 field_speed_mod(u16 speed, u8 ability, u8 side, u8 bank, struct battle_field
 }
 
 
-void run_move_text(u16 attack, u8 bank, u16 speed)
+void run_move_text(u16 attack, u8 bank)
 {
     // display move was used
     pick_battle_message(attack, bank, battle_type_flags, STRING_ATTACK_USED, 0);
@@ -166,6 +166,7 @@ void battle_loop()
             // set p_bank temp vars and fix priority tiers
             u16 p_move = get_player_attack();
             u16 opp_move = get_opponent_attack();
+            battle_master->fight_menu_content_spawned = 0;
             
             p_bank[PLAYER_SINGLES_BANK]->user_action.move_id = p_move;
             p_bank[OPPONENT_SINGLES_BANK]->user_action.move_id = opp_move;
@@ -206,9 +207,6 @@ void battle_loop()
                 player_speed = field_speed_mod(player_speed, p_ability, 1, PLAYER_SINGLES_BANK, battle_master->field_state);
                 opponent_speed = field_speed_mod(opponent_speed, opp_ability, 2, OPPONENT_SINGLES_BANK, battle_master->field_state);
                 
-                p_bank[PLAYER_SINGLES_BANK]->user_action.speed_current = player_speed;
-                p_bank[OPPONENT_SINGLES_BANK]->user_action.speed_current = opponent_speed;
-                
                 if (player_speed > opponent_speed) {
                     battle_master->first_bank = PLAYER_SINGLES_BANK;
                     battle_master->second_bank = OPPONENT_SINGLES_BANK;
@@ -242,6 +240,10 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
+void unclean_move_select(void)
+{
+    return;
+}
 
 void run_decision(void)
 {
@@ -249,7 +251,7 @@ void run_decision(void)
     switch (super.multi_purpose_state_tracker) {
         case 0:
         {
-            /* TODO: Run switch */
+            /* TODO: Run switch and Player running away from battle checks */
             super.multi_purpose_state_tracker++;
             break;
         }
@@ -268,7 +270,7 @@ void run_decision(void)
         case 3:
         {
             /* Run move used text */
-            run_move_text(p_bank[bank_index]->user_action.move_id, bank_index, p_bank[bank_index]->user_action.speed_current);
+            run_move_text(p_bank[bank_index]->user_action.move_id, bank_index);
             super.multi_purpose_state_tracker++;
             break;
         }
@@ -324,7 +326,14 @@ void run_decision(void)
         case 98:
         {
             
-            battle_master->execution_index = (battle_master->execution_index) ? 0 : 1;
+            battle_master->execution_index++;
+            if (battle_master->execution_index > 1) {
+                extern void option_selection(void);
+                set_callback1(option_selection);
+                super.multi_purpose_state_tracker = 0;
+                battle_master->execution_index = 0;
+                return;
+            }
             super.multi_purpose_state_tracker = 0;
             break;
         }

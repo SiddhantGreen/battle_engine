@@ -59,6 +59,7 @@ void update_cursor_action_select(u8 t_id)
             break;
         default:
             // up and down do nothing
+            var_8000 = battle_master->battle_cursor.cursor_pos;
             break;
     };
     objects[battle_master->battle_cursor.objid].pos1.x = battle_master->battle_cursor.cursor_x[battle_master->battle_cursor.cursor_pos];
@@ -119,6 +120,7 @@ void update_cursor_move_select(u8 t_id)
                 obj_free(&objects[battle_master->move_name_objid[i]]);
             }
             bs_anim_status = 0;
+            task_del(t_id);
             super.multi_purpose_state_tracker = 8;
             break;
         case KEY_LEFT:
