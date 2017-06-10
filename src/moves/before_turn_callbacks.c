@@ -35,11 +35,6 @@ void selftag_before_turn_cb(u8 user_bank)
             p_bank[user_bank]->user_action.buff_tag |= BEAKBLAST_TAG;
             break;
         }
-        case MOVE_COUNTER:
-        {    
-            p_bank[user_bank]->user_action.buff_tag |= COUNTER_TAG;
-            break;
-        }
         case MOVE_FOCUS_PUNCH:
         {
             p_bank[user_bank]->user_action.buff_tag |= FOCUS_PUNCH_TAG;
@@ -59,7 +54,11 @@ void selftag_before_turn_cb(u8 user_bank)
         {
             p_bank[user_bank]->user_action.buff_tag |= SHELLTRAP_TAG;
             break;
-        }        
+        }
+        default:
+            if (MOVE_COUNTER == (p_bank[user_bank]->user_action.move_id))
+                p_bank[user_bank]->user_action.buff_tag |= COUNTER_TAG;
+                break;
     };
     p_bank[user_bank]->user_action.target_bank = user_bank;
     return;
