@@ -77,6 +77,21 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_IMMUNE_ABILITY:
                 fdecoder_battle(battle_strings[STRING_IMMUNE_ABILITY + get_side(user_bank)], user_bank, move_id, move_effect_id);
                 break;
+            case STRING_RAZORWIND:
+                fdecoder_battle(battle_strings[STRING_RAZORWIND + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_SOLARBEAM:
+                fdecoder_battle(battle_strings[STRING_SOLARBEAM + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_FREEZE_SHOCK:
+                fdecoder_battle(battle_strings[STRING_FREEZE_SHOCK + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_ICE_BURN:
+                fdecoder_battle(battle_strings[STRING_ICE_BURN + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_GOEMANCY:
+                fdecoder_battle(battle_strings[STRING_GOEMANCY + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                break;
             default:
                 break;
         };
