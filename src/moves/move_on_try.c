@@ -2,7 +2,7 @@
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
-#include "../battle_text/battle_pick_message.h"
+
 
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
@@ -10,19 +10,6 @@ extern u8 get_ability_bank(u8);
 extern void task_add_bmessage(u8 task_id);
 extern bool ignoring_item(struct Pokemon* p);
 extern u8 get_side(u8 bank);
-
-u8 protection_tryhit(u8 user_bank)
-{
-    // higher chance to fail on consecutive protects
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    p_bank[user_bank]->user_action.times_protected++;
-    p_bank[user_bank]->user_action.used_protect = true;
-    return true;
-}
 
 u8 brick_break_tryhit(u8 user_bank)
 {
@@ -73,29 +60,6 @@ u8 counter_tryhit(u8 user_bank)
 }
 
 
-u8 crafty_shield_tryhit(u8 user_bank)
-{
-    // fails if moved second
-    if ((p_bank[user_bank]->user_action.crafty_shield) || (battle_master->second_bank == user_bank)) {
-        return false;
-    } else {
-        p_bank[user_bank]->user_action.crafty_shield = 1;
-        return true;
-    }
-}
-
-u8 curse_tryhit(u8 user_bank)
-{
-    // fails if curse already applied
-    u8 target_bank = p_bank[user_bank]->user_action.target_bank;
-    if (p_bank[target_bank]->user_action.buff_tag & CURSE_TAG) {
-        return false;
-    } else {
-        p_bank[target_bank]->user_action.buff_tag |= CURSE_TAG;
-        return true;
-    }
-}
-
 u8 dream_eater_tryhit(u8 user_bank)
 {
     // fails if target isn't asleep
@@ -118,18 +82,6 @@ u8 electrify_tryhit(u8 user_bank)
     return true;
 }
 
-u8 endure_tryhit(u8 user_bank)
-{
-   // higher chance to fail on consecutive protects
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    p_bank[user_bank]->user_action.times_protected++;
-    p_bank[user_bank]->user_action.used_endure = true;
-    return true; 
-}
 
 u8 entrainment_tryhit(u8 user_bank)
 {
@@ -196,6 +148,20 @@ u8 foresight_tryhit(u8 user_bank)
     return true;
 }
 
+
+u8 curse_tryhit(u8 user_bank)
+{
+    // fails if curse already applied
+    u8 target_bank = p_bank[user_bank]->user_action.target_bank;
+    if (p_bank[target_bank]->user_action.buff_tag & CURSE_TAG) {
+        return false;
+    } else {
+        p_bank[target_bank]->user_action.buff_tag |= CURSE_TAG;
+        return true;
+    }
+}
+
+
 u8 gastro_acid_tryhit(u8 user_bank)
 {
     // fails if uncompressable ability
@@ -230,23 +196,6 @@ u8 healing_wish_tryhit(u8 user_bank)
     
 }
 
-
-u8 kings_shielf_tryhit(u8 user_bank)
-{
-    // fails if user moves last
-    if (user_bank == battle_master->second_bank)
-        return false;
-        
-    // fails inaccordance to protect mechanics
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    p_bank[user_bank]->user_action.kings_sheild = 1;
-    p_bank[user_bank]->user_action.times_protected++;
-    return true;
-}
 
 u8 leech_seed_tryhit(u8 user_bank)
 {
@@ -392,23 +341,6 @@ u8 psychic_terrain_tryhit(u8 user_bank)
     return (battle_master->field_state.psychic_terrain);
 }
 
-u8 quick_guard_tryhit(u8 user_bank)
-{
-    // higher chance to fail on consecutive protects
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    
-    // fails if moves last
-    if (user_bank == battle_master->second_bank)
-        return false;
-    
-    // fails if already up
-    return (!(battle_master->field_state.quick_guard & (get_side(user_bank) + 1)));
-}
-
 
 u8 rage_powder_tryhit(u8 user_bank)
 {
@@ -462,26 +394,6 @@ u8 sleep_talk_tryhit(u8 user_bank)
     return false;
 }
 
-u8 snore_tryhit(u8 user_bank)
-{
-    // sleep talk tryhit clone
-    return sleep_talk_tryhit(user_bank);
-}
-
-u8 spiky_shield_tryhit(u8 user_bank)
-{
-    // higher chance to fail on consecutive protects
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    
-    // fails if moves last
-    if (user_bank == battle_master->second_bank)
-        return false;
-    return true;
-}
 
 u8 spot_light_tryhit(u8 user_bank)
 {
@@ -522,19 +434,15 @@ u8 substitute_tryhit(u8 user_bank)
     return true;
 }
 
-u8 wide_gaurd_tryhit(u8 user_bank)
+u8 crafty_shield_tryhit(u8 user_bank)
 {
-    // higher chance to fail on consecutive protects
-    if (p_bank[user_bank]->user_action.times_protected) {
-        if (!(rand_range(0, 100) < (p_bank[user_bank]->user_action.times_protected * 2))) {
-            return false;
-        }
-    }
-    
-    // fails if moves last
-    if (user_bank == battle_master->second_bank)
+    // fails if moved second
+    if ((p_bank[user_bank]->user_action.crafty_shield) || (battle_master->second_bank == user_bank)) {
         return false;
-    return true;
+    } else {
+        p_bank[user_bank]->user_action.crafty_shield = 1;
+        return true;
+    }
 }
 
 u8 worry_seed_tryhit(u8 user_bank)
@@ -560,6 +468,73 @@ u8 yawn_tryhit(u8 user_bank)
     if (pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL) & STATUS_SLEEP_TURNS) {
         return true;
     }
+    return false;
+}
+
+u8 basic_tryhit(u8 user_bank)
+{
+    return true;
+}
+
+u8 try_hit(u8 user_bank)
+{
+    // if moves never misses, exit early
+    u8 move_bank = (user_bank == battle_master->first_bank) ? 0 : 1;
+    u8 move_accuracy = battle_master->b_moves[move_bank].accuracy;
+    if (move_accuracy > 100) {
+        return true;
+    }
+    
+    // if target is in semi invulnerability do checks
+    u8 target_bank = p_bank[user_bank]->user_action.target_bank;
+    u16 target_invulnerability = p_bank[target_bank]->user_action.semi_invulnerable_move_id;
+    u16 user_move = battle_master->b_moves[move_bank].move_id;
+    
+    // check target locked on or nogaurd is in affect
+    if ((!(p_bank[target_bank]->user_action.locked_on)) ||
+        (p_bank[user_bank]->user_action.ability != ABILITY_NO_GUARD) ||
+        (p_bank[target_bank]->user_action.ability != ABILITY_NO_GUARD)) {
+        
+        // see if user's move can hit invulnerable target
+        if ((target_invulnerability == MOVE_BOUNCE) ||
+            (target_invulnerability == MOVE_FLY)  ||
+            (target_invulnerability == MOVE_SKY_DROP)){
+            if ((user_move != MOVE_HURRICANE) ||
+                (user_move != MOVE_SMACK_DOWN) ||
+                (user_move != MOVE_GUST) ||
+                (user_move != MOVE_SKY_UPPERCUT) ||
+                (user_move != MOVE_THUNDER) ||
+                (user_move != MOVE_TWISTER) ||
+                (user_move != MOVE_THOUSAND_ARROWS)) {
+                return false;
+            }
+        } else if (target_invulnerability == MOVE_DIG) {
+            if ((user_move != MOVE_EARTHQUAKE) ||
+                (user_move != MOVE_FISSURE) ||
+                (user_move != MOVE_MAGNITUDE)) {
+                return false;
+            }
+        } else if (target_invulnerability == MOVE_DIVE) {
+            if ((user_move != MOVE_SURF) ||
+                (user_move != MOVE_WHIRLPOOL)) {
+                return false;
+            }
+        } else if ((target_invulnerability == MOVE_PHANTOM_FORCE) ||
+            (target_invulnerability == MOVE_SHADOW_FORCE)) {
+            return false;
+        }
+    }
+    
+    // standard accuracy formula check
+    u16 target_evasion = p_bank[target_bank]->user_action.delta_stats[5] + 3;
+    u16 user_accuracy = p_bank[user_bank]->user_action.delta_stats[6] + 3;
+    
+    target_evasion = 300/target_evasion;
+    user_accuracy = ((user_accuracy * 100) + 300)/3;
+    
+    u8 result = (user_accuracy / target_evasion) * move_accuracy;
+    if (rand_range(0, 100) <= result)
+        return true;
     return false;
 }
 

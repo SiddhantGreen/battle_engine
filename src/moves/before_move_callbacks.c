@@ -28,21 +28,6 @@ void task_add_bmessage(u8 task_id)
 }
 
 
-void bide_before_move_cb(u8 user_bank)
-{
-    if (p_bank[user_bank]->user_action.buff_tag & BIDE_TAG) {
-        if (p_bank[user_bank]->user_action.charging_move_counter < 2) {
-            p_bank[user_bank]->user_action.charging_move_counter++;
-            u8 t_id = task_add(task_add_bmessage, 0x1);
-            tasks[t_id].priv[0] = user_bank;
-            tasks[t_id].priv[2] = MOVE_BIDE;
-            tasks[t_id].priv[4] = STRING_BIDE_CHARGE;
-            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
-        }
-    }
-}
-
-
 void attract_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & ATTRACT_TAG) {   
@@ -86,22 +71,6 @@ void disable_before_move_cb(u8 user_bank)
 }
 
 
-void focus_punch_before_move_cb(u8 user_bank)
-{
-    if (p_bank[user_bank]->user_action.buff_tag & FOCUS_PUNCH_TAG) {
-        if (p_bank[user_bank]->user_action.total_dmg_taken) {
-            p_bank[user_bank]->user_action.buff_tag ^= FOCUS_PUNCH_TAG;
-            p_bank[user_bank]->user_action.total_dmg_taken = 0;
-            u8 t_id = task_add(task_add_bmessage, 0x1);
-            tasks[t_id].priv[0] = user_bank;      
-            tasks[t_id].priv[2] = MOVE_FOCUS_PUNCH;
-            tasks[t_id].priv[4] = STRING_LOST_FOCUS;
-            tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
-            return;
-        }
-    }
-    return;
-}
 
 
 void gravity_check_before_move_cb(u8 user_bank)
@@ -201,20 +170,6 @@ void shelltrap_before_move_cb(u8 user_bank)
             tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
             return;
         }
-    }
-    return;
-}
-
-
-void sky_drop_before_move_cb(u8 user_bank)
-{
-    if (p_bank[user_bank]->user_action.buff_tag & SKY_DROP_TAG) {
-        u8 t_id = task_add(task_add_bmessage, 0x1);
-        tasks[t_id].priv[0] = user_bank;       
-        tasks[t_id].priv[2] = MOVE_SKY_DROP;
-        tasks[t_id].priv[4] = STRING_FAILED;
-        tasks[t_id].priv[3] = super.multi_purpose_state_tracker + 1;
-        return;
     }
     return;
 }
