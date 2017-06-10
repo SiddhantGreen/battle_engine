@@ -81,7 +81,8 @@ enum PokemonStat {
     STAT_DEFENSE,
     STAT_SPEED,
     STAT_SPECIAL_ATTACK,
-    STAT_SPECIAL_DEFENSE,   
+    STAT_SPECIAL_DEFENSE,
+    STAT_ACCURACY,
 };
 
 enum StatusAilments {

@@ -73,7 +73,7 @@
     0, // flinch chance
 };
 
-/* Attack stat up by 1 stage
+/* Attack stat up by 2 stage
  *
  * Swords dance
  */
@@ -95,7 +95,7 @@
  *
  * Screech
  */
- struct move_procs swords_dance_procs = {
+ struct move_procs screech_procs = {
     100,              // Chance to boost self, 0-100
     0,              // Chance to boost opponent, 0-100
     {STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost self
@@ -113,7 +113,7 @@
  *
  * Barrier acid armor
  */
- struct move_procs swords_dance_procs = {
+ struct move_procs def_upup_procs = {
     100,              // Chance to boost self, 0-100
     0,              // Chance to boost opponent, 0-100
     {STAT_DEFENSE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost self
@@ -126,4 +126,24 @@
     {0, 0}, // Ailment chance
     0, // flinch chance
 };
+
+
+/* Accuracy lowered 1 stage
+ *
+ * Sand attack, Smokescreen, Kinesis, Flash, Mud slap, 
+ */
+ struct move_procs acc_down_procs = {
+    100,              // Chance to boost self, 0-100
+    0,              // Chance to boost opponent, 0-100
+    {STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost self
+    {STAT_ACCURACY, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost opponent
+    {0, 0, 0, 0, 0, 0},  // Amount to boost self on proc (signed)
+    {-1, 0, 0, 0, 0, 0},  // Amount to boost opponent on proc (signed)
+    0,              // Lower bound for multi hit
+    0,               // Upper bound for multi hit
+    {AILMENT_NONE, AILMENT_NONE}, // Ailment type
+    {0, 0}, // Ailment chance
+    0, // flinch chance
+};
+
 
