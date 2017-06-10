@@ -8,7 +8,7 @@ extern void task_add_bmessage(u8 t_id);
 
 /*
  * Bide, Focus Punch, Sky drop, Solar beam, Razorwind, Freeze shock, Ice Burn
- * Geomancy, Solar blade
+ * Geomancy, Solar blade, Skull Bash
  */
 
 void bide_before_move_cb(u8 user_bank)
@@ -42,7 +42,6 @@ void focus_punch_before_move_cb(u8 user_bank)
     return;
 }
 
-
 void chargeup_before_move_cb(u8 user_bank, u8 string_id)
 {
     if (p_bank[user_bank]->user_action.charge_turn) {
@@ -67,9 +66,27 @@ void chargeup_before_dmg_callback(u8 user_bank)
     }
 }
 
+void skull_bash_before_dmg_callback(u8 user_bank)
+{
+    u8 move_bank = (user_bank == battle_master->first_bank) ? 0 : 1;
+    if (p_bank[user_bank]->user_action.charge_turn) {
+        battle_master->b_moves[move_bank].power = 0;
+        battle_master->b_moves[move_bank].category = MOVE_STATUS;
+        return;
+    } else {
+        battle_master->b_moves[move_bank].power = 130;
+        battle_master->b_moves[move_bank].category = MOVE_PHYSICAL;
+    }
+}
+
 void razor_wind_before_move_cb(u8 user_bank)
 {
     chargeup_before_move_cb(user_bank, STRING_RAZORWIND);
+}
+
+void skull_bash_before_move_cb(u8 user_bank)
+{
+    chargeup_before_move_cb(user_bank, STRING_SKULL_BASH);
 }
 
 void solar_beam_before_move_cb(u8 user_bank)
@@ -150,6 +167,21 @@ struct move_procs geomancy_procs = {
     {STAT_SPECIAL_ATTACK, STAT_SPECIAL_DEFENSE, STAT_SPEED, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost self
     {STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost opponent
     {2, 2, 2, 0, 0, 0},  // Amount to boost self on proc (signed)
+    {0, 0, 0, 0, 0, 0},  // Amount to boost opponent on proc (signed)
+    1,              // Lower bound for multi hit
+    1,               // Upper bound for multi hit
+    {AILMENT_NONE, AILMENT_NONE},
+    {0, 0},
+    0
+};
+
+// Skull Bash
+struct move_procs skull_bash_procs = {
+    100,              // Chance to boost self, 0-100
+    0,              // Chance to boost opponent, 0-100
+    {STAT_DEFENSE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost self
+    {STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost opponent
+    {1, 0, 0, 0, 0, 0},  // Amount to boost self on proc (signed)
     {0, 0, 0, 0, 0, 0},  // Amount to boost opponent on proc (signed)
     1,              // Lower bound for multi hit
     1,               // Upper bound for multi hit

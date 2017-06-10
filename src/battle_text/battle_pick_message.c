@@ -41,56 +41,27 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
     remo_reset_acknowledgement_flags();
     if (battle_type == BATTLE_FLAG_WILD) {
         switch (id) {
-            case STRING_ATTACK_USED:
-                fdecoder_battle(battle_strings[STRING_ATTACK_USED + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_INFATUATED:
-                fdecoder_battle(battle_strings[STRING_INFATUATED + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_BIDE_CHARGE:
-                fdecoder_battle(battle_strings[STRING_BIDE_CHARGE + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_LOST_FOCUS:
-                fdecoder_battle(battle_strings[STRING_LOST_FOCUS + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_CANT_USE:
-                fdecoder_battle(battle_strings[STRING_CANT_USE + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_DISABLED:
-                fdecoder_battle(battle_strings[STRING_DISABLED + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_FAILED:
-                fdecoder_battle(battle_strings[STRING_FAILED + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_CURSE_RESIDUAL:
-                fdecoder_battle(battle_strings[STRING_CURSE_RESIDUAL + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_MAGNITUDE_AMOUNT:
-                fdecoder_battle(battle_strings[STRING_MAGNITUDE_AMOUNT + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_NO_TARGET:
-                fdecoder_battle(battle_strings[STRING_NO_TARGET + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
             case STRING_FAILED_ALONE:
                 fdecoder_battle(battle_strings[STRING_FAILED_ALONE], 0, 0, 0);
                 break;
-            case STRING_IMMUNE_ABILITY:
-                fdecoder_battle(battle_strings[STRING_IMMUNE_ABILITY + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
-            case STRING_RAZORWIND:
-                fdecoder_battle(battle_strings[STRING_RAZORWIND + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
+            case STRING_ATTACK_USED:
+            case STRING_INFATUATED:
+            case STRING_BIDE_CHARGE:
+            case STRING_LOST_FOCUS:
+            case STRING_CANT_USE: 
+            case STRING_DISABLED:  
+            case STRING_FAILED:   
+            case STRING_CURSE_RESIDUAL: 
+            case STRING_MAGNITUDE_AMOUNT: 
+            case STRING_NO_TARGET:
+            case STRING_IMMUNE_ABILITY:  
+            case STRING_RAZORWIND:  
             case STRING_SOLARBEAM:
-                fdecoder_battle(battle_strings[STRING_SOLARBEAM + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
             case STRING_FREEZE_SHOCK:
-                fdecoder_battle(battle_strings[STRING_FREEZE_SHOCK + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
             case STRING_ICE_BURN:
-                fdecoder_battle(battle_strings[STRING_ICE_BURN + get_side(user_bank)], user_bank, move_id, move_effect_id);
-                break;
             case STRING_GOEMANCY:
-                fdecoder_battle(battle_strings[STRING_GOEMANCY + get_side(user_bank)], user_bank, move_id, move_effect_id);
+            case STRING_SKULL_BASH:
+                fdecoder_battle(battle_strings[id + get_side(user_bank)], user_bank, move_id, move_effect_id);
                 break;
             default:
                 break;

@@ -21,6 +21,7 @@ enum battle_string_ids {
     STRING_FREEZE_SHOCK = 27,
     STRING_ICE_BURN = 29,
     STRING_GOEMANCY = 31,
+    STRING_SKULL_BASH = 33,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -56,8 +57,10 @@ static const pchar str_ice_burn_p[] = _("{ATTACKING_MON} is radiating\na blazing
 static const pchar str_ice_burn_o[] = _("Foe {DEFENDING_MON} is radiating\na blazing aura!");
 static const pchar str_geomancy_p[] = _("{ATTACKING_MON} is absorbing\npower!");
 static const pchar str_geomancy_o[] = _("Foe {DEFENDING_MON} is absorbing\npower!");
+static const pchar str_skull_bash_p[] = _("{ATTACKING_MON} lowered\nits head!");
+static const pchar str_skull_bash_o[] = _("Foe {DEFENDING_MON} lowered\nits head!");
 
-static const pchar* battle_strings[33] = {
+static const pchar* battle_strings[35] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -74,7 +77,8 @@ static const pchar* battle_strings[33] = {
    (pchar*)&str_solarbeam_o, (pchar*)&str_freeze_shock_p,
    (pchar*)&str_freeze_shock_o, (pchar*)&str_ice_burn_p, // 30
    (pchar*)&str_ice_burn_o, (pchar*)&str_geomancy_p,
-   (pchar*)&str_geomancy_o,
+   (pchar*)&str_geomancy_o, (pchar*)&str_skull_bash_p,
+   (pchar*)&str_skull_bash_o,
 };
 
 

@@ -45,6 +45,7 @@ struct battle_field_state {
 struct moves_used {
     u16 move_id;
     s8 power;
+    u8 category;
     u8 type[2];
     u8 accuracy; // over 100 = never miss
     u8 chance_self;
