@@ -5,6 +5,7 @@
 
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
+typedef void (*DamageCallback)(u8, u8);
 
 enum BuffTags {
     ASSURANCE_TAG = (1 << 0), 
@@ -67,8 +68,12 @@ struct user_turn_action {
     u8 locked_on : 1;
     u8 kings_sheild : 1;
     u8 not_first_turn : 1;
-    u8 invulnerable_turn : 1;
     u8 has_substitute : 1;
+    u8 double_dmg : 1;
+    u8 charge_turn : 1; // single turn chargeup i.e solarbeam
+    u8 frz_shock_mod_move_cb_used : 1;
+    
+    u16 semi_invulnerable_move_id;
     
     u8 times_protected;
     u16 substitute_hp;
@@ -82,7 +87,8 @@ struct user_turn_action {
     u16 removed_immunities;
     enum BuffTags buff_tag;
     BeforeMoveCallback bmc[19];
-    u16 speed_current;
+    DamageCallback bdc[5];
+    u8 delta_stats[7]; // atk, def, spd, spa, spdf, evasion, accuracy 
     
     u8 attracted_by_bank;
     u8 imprisoned_by_bank;
@@ -93,6 +99,7 @@ struct user_turn_action {
     u16 special_dmg_taken;
     u16 physical_dmg_taken;
     u8 stockpile_stacks;
+    u8 confusion_turns;
 };
 
 #endif /* BATTLE_TURN_DATA_PKMN */

@@ -78,6 +78,8 @@ struct battle_main {
     u8 execution_index;
     struct moves_used b_moves[2];
     struct residual_effect residual[20];
+    u16 damage_to_deal;
+    u16 amount_to_heal;
 };
 
 enum fight_menu {
