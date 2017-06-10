@@ -31,7 +31,7 @@ void thunder_modify_move_cb(u8 user_bank)
 }
 
 extern void curse_residual_effect(u8 task_id);
-void curse_modfiy_move_cb(u8 user_bank)
+void curse_modify_move_cb(u8 user_bank)
 {
     u16 species = pokemon_getattr(p_bank[user_bank]->this_pkmn, REQUEST_SPECIES, NULL);
     if (pkmn_has_type(species, TYPE_GHOST)) {
@@ -219,15 +219,6 @@ void struggle_modify_move(u8 user_bank)
     battle_master->b_moves[bank].type[1] = TYPE_NONE;
 }
 
-void sky_drop_modify_move(u8 user_bank)
-{
-    u8 bank = (battle_master->first_bank == user_bank) ? 0 : 1;
-    u8 opponent_bank = user_bank ? 0 : 2;
-    if (p_bank[opponent_bank]->user_action.buff_tag & SKY_DROP_TAG) {
-        battle_master->b_moves[bank].accuracy = 101;
-    }
-}
-
 
 void secret_power_modify_move(u8 user_bank)
 {
@@ -259,10 +250,6 @@ void pollen_puff_modify_move(u8 user_bank)
         battle_master->b_moves[order].power = -50;
     }
 }
-
-
-
-
 
 
 
