@@ -4,6 +4,8 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_state.h"
+#include "move_override.h"
+#include "ability_override.h"
 
 
 #define FLAG_CHARGEUP (1 << 1)
@@ -28,8 +30,8 @@
 #define FLAG_TRIAGE_AFFECTED (1 << 20)
 #define FLAGS_UNUSED (1 << 21)
 
-// return base power given bank id and default power. bp_cb(user_bank, bp)
-typedef u8 (*BasePowerCallback)(u8, u8);
+// Move failed check
+typedef u8 (*TryHitCallback)(u8);
 
 // activate some p_bank flags for a Pokemon in a certain bank and/or target bank. bt_cb(user_bank, target_bank)
 typedef void (*BeforeTurnCallback)(u8);
@@ -38,7 +40,7 @@ typedef void (*BeforeTurnCallback)(u8);
 typedef u8 (*DurationCallback)(u8, u8, u8);
 
 // executed before damage calculation, and skips dmg_calc. dmg_cb(user_bank, target_bank)
-typedef u16 (*DamageCallback)(u8, u8);
+typedef void (*DamageCallback)(u8, u8);
 
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
@@ -88,7 +90,9 @@ enum StatusAilments {
     AILMENT_SLEEP,
     AILMENT_BURN,
     AILMENT_FREEZE,
+    AILMENT_POISON,
     AILMENT_BAD_POISON,
+    AILMENT_CONFUSION,
 };
 
 /*
@@ -116,12 +120,12 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 */	
 
 struct move_callbacks {
-    BasePowerCallback bp_cb;
     BeforeTurnCallback bt_cb;
-    DurationCallback dur_cb;
-    DamageCallback dmg_cb;
     BeforeMoveCallback bm_cb;
     ModifyMoveCallback mm_cb;
+    TryHitCallback th_cb;
+    DamageCallback bd_cb;
+    
     
 };
 
@@ -136,6 +140,7 @@ struct move_procs {
     u8 multihit_highest;
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
+    u8 flinch_chance;
 };
 
 
