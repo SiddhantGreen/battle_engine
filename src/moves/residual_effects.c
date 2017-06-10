@@ -57,6 +57,7 @@ void exec_residual_effect(u8 bank, u8 priority_override, u8 index)
 }
 
 
+
 void curse_residual_effect(u8 task_id)
 {
     extern void hpbar_apply_dmg(u8 task_id);
@@ -99,8 +100,6 @@ void curse_residual_effect(u8 task_id)
             break;
     };     
 }
-
-
 
 
 
