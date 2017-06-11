@@ -3,7 +3,7 @@
 #include "battle_state.h"
 #include "moves/moves.h"
 
-
+/* 
 void add_before_damage_callback(DamageCallback bdmg_func, u8 bank)
 {
     u8 i;
@@ -41,9 +41,9 @@ void exec_before_damage_callbacks(u8 bank, u16 move_id)
     }
 }
 
-
+ */
 /* These are move tags that you need to filter through and check every turn */
-void anonymous_before_damage_callbacks(u8 user_bank, u16 move_id)
+/* void anonymous_before_damage_callbacks(u8 user_bank, u16 move_id)
 {
     exec_before_damage_callbacks(user_bank, move_id);
     extern void task_add_bmessage(u8 t_id);
@@ -53,5 +53,5 @@ void anonymous_before_damage_callbacks(u8 user_bank, u16 move_id)
     }
     super.multi_purpose_state_tracker++;
 }
-
+ */
 

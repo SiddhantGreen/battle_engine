@@ -10,7 +10,7 @@ extern void task_add_bmessage(u8 t_id);
  * Bide, Focus Punch, Sky drop, Solar beam, Razorwind, Freeze shock, Ice Burn
  * Geomancy, Solar blade, Skull Bash
  */
-
+/* 
 void bide_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & BIDE_TAG) {
@@ -129,7 +129,7 @@ void solar_blade_modify_move(u8 user_bank)
 {
     legendary_charging_modify_move(user_bank, STRING_SOLARBEAM);
 }
-
+ */
 /* Freeze shock procs */
 struct move_procs freeze_shock_procs = {
     0,              // Chance to boost self, 0-100

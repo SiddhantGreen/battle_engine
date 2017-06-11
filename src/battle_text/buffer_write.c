@@ -50,14 +50,14 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     break;
                 case 0x11:
                     // buffer Defending Pokemon name 
-                    buffer_write_pkmn_nick(&(result[result_index]), p_bank[bank]->user_action.target_bank);
+                    buffer_write_pkmn_nick(&(result[result_index]), p_bank[bank]->b_data.my_target);
                     result_index = pstrlen(result);
                     break;
                 case 0x12:
                     // ability Defending mon
                     {
                         extern u8 get_ability_bank(u8 bank);
-                        u8 target_bank = p_bank[bank]->user_action.target_bank;
+                        u8 target_bank = p_bank[bank]->b_data.my_target;
                         buffer_write_ability_name(&result[result_index], get_ability_bank(target_bank));
                         result_index = pstrlen(result);
                         break;

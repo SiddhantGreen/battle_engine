@@ -1,4 +1,4 @@
-#include <pokeagb/pokeagb.h>
+/* #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
@@ -73,3 +73,4 @@ struct move_callbacks reverse_revengemove_cb = {
 };
 
 
+ */

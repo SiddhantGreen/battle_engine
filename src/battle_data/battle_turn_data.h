@@ -1,4 +1,4 @@
-#ifndef BATTLE_TURN_DATA_PKMN
+/* #ifndef BATTLE_TURN_DATA_PKMN
 #define BATTLE_TURN_DATA_PKMN
 
 #include <pokeagb/pokeagb.h>
@@ -101,6 +101,7 @@ struct user_turn_action {
     u8 stockpile_stacks;
     u8 confusion_turns;
 };
+*/
+//#endif /* BATTLE_TURN_DATA_PKMN */
 
-#endif /* BATTLE_TURN_DATA_PKMN */
-
+ 

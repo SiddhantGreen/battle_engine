@@ -1358,8 +1358,6 @@ extern struct move_procs basic_doublehit_proc;
 extern struct move_procs basic_triplehit_proc;
 extern struct move_callbacks null_mcb;
 
-extern struct move_callbacks revengemove_cb;
-extern struct move_callbacks reverse_revengemove_cb;
 
 struct move_data move_t[] = {
     {_("-"), 0, 0, (pchar*)Pound_desc, 0, 0, 0, MOVE_PHYSICAL, MTYPE_EGG, &m_flags[0], &basic_proc, &null_mcb},
@@ -1430,7 +1428,7 @@ struct move_data move_t[] = {
 	{_("Drill Peck"), 100, 80, (pchar*)Drill_Peck_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_FLYING, &m_flags[65], &basic_proc, &null_mcb},
 	{_("Submission"), 80, 80, (pchar*)Submission_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[66], &basic_proc, &null_mcb},
 	{_("Low Kick"), 100, 0, (pchar*)Low_Kick_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[67], &basic_proc, &null_mcb},
-	{_("Counter"), 100, 0, (pchar*)Counter_desc, 20, -5, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[68], &basic_proc, &revengemove_cb},
+	{_("Counter"), 100, 0, (pchar*)Counter_desc, 20, -5, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[68], &basic_proc, &null_mcb},
 	{_("Seismic Toss"), 100, 0, (pchar*)Seismic_Toss_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[69], &basic_proc, &null_mcb},
 	{_("Strength"), 100, 80, (pchar*)Strength_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[70], &basic_proc, &null_mcb},
 	{_("Absorb"), 100, 20, (pchar*)Absorb_desc, 25, 0, 1, MOVE_SPECIAL, MTYPE_GRASS, &m_flags[71], &basic_proc, &null_mcb},
@@ -1590,7 +1588,7 @@ struct move_data move_t[] = {
 	{_("Dragon Breath"), 100, 60, (pchar*)Dragon_Breath_desc, 20, 0, 1, MOVE_SPECIAL, MTYPE_DRAGON, &m_flags[225], &basic_proc, &null_mcb},
 	{_("Baton Pass"), 101, 0, (pchar*)Baton_Pass_desc, 40, 0, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[226], &basic_proc, &null_mcb},
 	{_("Encore"), 100, 0, (pchar*)Encore_desc, 5, 0, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[227], &basic_proc, &null_mcb},
-	{_("Pursuit"), 100, 40, (pchar*)Pursuit_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[228], &basic_proc, &reverse_revengemove_cb},
+	{_("Pursuit"), 100, 40, (pchar*)Pursuit_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[228], &basic_proc, &null_mcb},
 	{_("Rapid Spin"), 100, 20, (pchar*)Rapid_Spin_desc, 40, 0, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[229], &basic_proc, &null_mcb},
 	{_("Sweet Scent"), 100, 0, (pchar*)Sweet_Scent_desc, 20, 0, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[230], &basic_proc, &null_mcb},
 	{_("Iron Tail"), 75, 100, (pchar*)Iron_Tail_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_STEEL, &m_flags[231], &basic_proc, &null_mcb},
@@ -1605,7 +1603,7 @@ struct move_data move_t[] = {
 	{_("Rain Dance"), 101, 0, (pchar*)Rain_Dance_desc, 5, 0, 1, MOVE_STATUS, MTYPE_WATER, &m_flags[240], &basic_proc, &null_mcb},
 	{_("Sunny Day"), 101, 0, (pchar*)Sunny_Day_desc, 5, 0, 1, MOVE_STATUS, MTYPE_FIRE, &m_flags[241], &basic_proc, &null_mcb},
 	{_("Crunch"), 100, 80, (pchar*)Crunch_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[242], &basic_proc, &null_mcb},
-	{_("Mirror Coat"), 100, 0, (pchar*)Mirror_Coat_desc, 20, -5, 1, MOVE_STATUS, MTYPE_PSYCHIC, &m_flags[243], &basic_proc, &revengemove_cb},
+	{_("Mirror Coat"), 100, 0, (pchar*)Mirror_Coat_desc, 20, -5, 1, MOVE_STATUS, MTYPE_PSYCHIC, &m_flags[243], &basic_proc, &null_mcb},
 	{_("Psych Up"), 101, 0, (pchar*)Psych_Up_desc, 10, 0, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[244], &basic_proc, &null_mcb},
 	{_("Extreme Speed"), 100, 80, (pchar*)Extreme_Speed_desc, 5, 2, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[245], &basic_proc, &null_mcb},
 	{_("Ancient Power"), 100, 60, (pchar*)Ancient_Power_desc, 5, 0, 1, MOVE_SPECIAL, MTYPE_ROCK, &m_flags[246], &basic_proc, &null_mcb},
@@ -1626,7 +1624,7 @@ struct move_data move_t[] = {
 	{_("Will-O-Wisp"), 85, 0, (pchar*)Will_O_Wisp_desc, 15, 0, 1, MOVE_STATUS, MTYPE_FIRE, &m_flags[261], &basic_proc, &null_mcb},
 	{_("Memento"), 100, 0, (pchar*)Memento_desc, 10, 0, 1, MOVE_STATUS, MTYPE_DARK, &m_flags[262], &basic_proc, &null_mcb},
 	{_("Facade"), 100, 70, (pchar*)Facade_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[263], &basic_proc, &null_mcb},
-	{_("Focus Punch"), 100, 150, (pchar*)Focus_Punch_desc, 20, -3, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[264], &basic_proc, &revengemove_cb},
+	{_("Focus Punch"), 100, 150, (pchar*)Focus_Punch_desc, 20, -3, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[264], &basic_proc, &null_mcb},
 	{_("Smelling Salts"), 100, 70, (pchar*)Smelling_Salts_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[265], &basic_proc, &null_mcb},
 	{_("Follow Me"), 101, 0, (pchar*)Follow_Me_desc, 20, 2, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[266], &basic_proc, &null_mcb},
 	{_("Nature Power"), 101, 0, (pchar*)Nature_Power_desc, 20, 0, 1, MOVE_STATUS, MTYPE_NORMAL, &m_flags[267], &basic_proc, &null_mcb},
@@ -1730,11 +1728,11 @@ struct move_data move_t[] = {
 	{_("Pluck"), 100, 60, (pchar*)Pluck_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_FLYING, &m_flags[365], &basic_proc, &null_mcb},
 	{_("Tailwind"), 101, 0, (pchar*)Tailwind_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_FLYING, &m_flags[366], &basic_proc, &null_mcb},
 	{_("Acupressure"), 101, 0, (pchar*)Acupressure_desc, 30, 0, 1, MOVE_PHYSICAL, MTYPE_NORMAL, &m_flags[367], &basic_proc, &null_mcb},
-	{_("Metal Burst"), 100, 0, (pchar*)Metal_Burst_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_STEEL, &m_flags[368], &basic_proc, &revengemove_cb},
+	{_("Metal Burst"), 100, 0, (pchar*)Metal_Burst_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_STEEL, &m_flags[368], &basic_proc, &null_mcb},
 	{_("U-turn"), 100, 70, (pchar*)U_turn_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_BUG, &m_flags[369], &basic_proc, &null_mcb},
 	{_("Close Combat"), 100, 120, (pchar*)Close_Combat_desc, 5, 0, 1, MOVE_PHYSICAL, MTYPE_FIGHTING, &m_flags[370], &basic_proc, &null_mcb},
 	{_("Payback"), 100, 50, (pchar*)Payback_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[371], &basic_proc, &null_mcb},
-	{_("Assurance"), 100, 60, (pchar*)Assurance_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[372], &basic_proc, &reverse_revengemove_cb},
+	{_("Assurance"), 100, 60, (pchar*)Assurance_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[372], &basic_proc, &null_mcb},
 	{_("Embargo"), 100, 0, (pchar*)Embargo_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[373], &basic_proc, &null_mcb},
 	{_("Fling"), 100, 0, (pchar*)Fling_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[374], &basic_proc, &null_mcb},
 	{_("Psycho Shift"), 100, 0, (pchar*)Psycho_Shift_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_PSYCHIC, &m_flags[375], &basic_proc, &null_mcb},
@@ -2015,12 +2013,12 @@ struct move_data move_t[] = {
 	{_("Core Enforcer"), 100, 100, (pchar*)Core_Enforcer_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_DRAGON, &m_flags[650], &basic_proc, &null_mcb},
 	{_("Trop Kick"), 100, 70, (pchar*)Trop_Kick_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_GRASS, &m_flags[651], &basic_proc, &null_mcb},
 	{_("Instruct"), 101, 0, (pchar*)Instruct_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_PSYCHIC, &m_flags[652], &basic_proc, &null_mcb},
-	{_("Beak Blast"), 100, 100, (pchar*)Beak_Blast_desc, 15, -3, 1, MOVE_PHYSICAL, MTYPE_FLYING, &m_flags[653], &basic_proc, &revengemove_cb},
+	{_("Beak Blast"), 100, 100, (pchar*)Beak_Blast_desc, 15, -3, 1, MOVE_PHYSICAL, MTYPE_FLYING, &m_flags[653], &basic_proc, &null_mcb},
 	{_("Clanging Scales"), 100, 110, (pchar*)Clanging_Scales_desc, 5, 0, 1, MOVE_PHYSICAL, MTYPE_DRAGON, &m_flags[654], &basic_proc, &null_mcb},
 	{_("Dragon Hammer"), 100, 90, (pchar*)Dragon_Hammer_desc, 15, 0, 1, MOVE_PHYSICAL, MTYPE_DRAGON, &m_flags[655], &basic_proc, &null_mcb},
 	{_("Brutal Swing"), 100, 60, (pchar*)Brutal_Swing_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_DARK, &m_flags[656], &basic_proc, &null_mcb},
 	{_("Aurora Veil"), 101, 0, (pchar*)Aurora_Veil_desc, 20, 0, 1, MOVE_PHYSICAL, MTYPE_ICE, &m_flags[657], &basic_proc, &null_mcb},
-	{_("Shell Trap"), 100, 150, (pchar*)Shell_Trap_desc, 5, -3, 1, MOVE_PHYSICAL, MTYPE_FIRE, &m_flags[658], &basic_proc, &revengemove_cb},
+	{_("Shell Trap"), 100, 150, (pchar*)Shell_Trap_desc, 5, -3, 1, MOVE_PHYSICAL, MTYPE_FIRE, &m_flags[658], &basic_proc, &null_mcb},
 	{_("Fleur Cannon"), 90, 130, (pchar*)Fleur_Cannon_desc, 5, 0, 1, MOVE_PHYSICAL, MTYPE_FAIRY, &m_flags[659], &basic_proc, &null_mcb},
 	{_("Psychic Fangs"), 100, 85, (pchar*)Psychic_Fangs_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_PSYCHIC, &m_flags[660], &basic_proc, &null_mcb},
 	{_("Stomping Tantrum"), 100, 75, (pchar*)Stomping_Tantrum_desc, 10, 0, 1, MOVE_PHYSICAL, MTYPE_GROUND, &m_flags[661], &basic_proc, &null_mcb},

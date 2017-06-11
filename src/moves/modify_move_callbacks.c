@@ -1,9 +1,9 @@
-#include <pokeagb/pokeagb.h>
+ #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
-
+/*
 extern bool pkmn_has_type(u16 species, enum PokemonType type);
 extern void add_residual_effect(ResidualEffectCallback effect, u8 bank, u8 t_bank, u8 priority);
 extern u8 get_opponent_side(u8 bank);
@@ -52,14 +52,14 @@ void curse_modify_move_cb(u8 user_bank)
     }
 }
 
-
+ */
 
 void fling_modify_move(u8 user_bank)
 {
     /* TODO: Need to make a table for fling still */
 }
 
-
+/* 
 void growth_modify_move(u8 user_bank)
 {
     u8 bank = (battle_master->first_bank == user_bank) ? 0 : 1;
@@ -94,13 +94,13 @@ void hurricane_modify_move(u8 user_bank)
     }
 }
 
-
+ */
 void judgement_modify_move(u8 user_bank)
 {
     /* TODO: Plate items table */
 }
 
-
+/* 
 void ion_deluge(u8 user_bank)
 {
     u8 bank = (battle_master->first_bank == user_bank) ? 0 : 1;
@@ -150,7 +150,7 @@ void magnitude_modify_move(u8 user_bank)
     tasks[t_id].priv[1] = magnitude_lvl;
     tasks[t_id].priv[2] = MOVE_MAGNITUDE;
     tasks[t_id].priv[4] = STRING_MAGNITUDE_AMOUNT;  
-}
+} */
 
 void multiattack_modify_move(u8 user_bank)
 {
@@ -166,7 +166,7 @@ void technoblast(u8 user_bank)
 {
     /* TODO: No table for technoblast available */
 }
-
+/* 
 void present_modify_move(u8 user_bank)
 {
     u8 bank = (battle_master->first_bank == user_bank) ? 0 : 1;
@@ -252,7 +252,7 @@ void pollen_puff_modify_move(u8 user_bank)
 }
 
 
-
+ */
 
 
 

@@ -34,22 +34,17 @@ void pick_obj_creator()
     p_bank[2]->this_pkmn = &party_opponent[0];
     
     // get player and opponent's ability
-    p_bank[PLAYER_SINGLES_BANK]->user_action.ability = get_bank_ability(PLAYER_SINGLES_BANK);
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.ability = get_bank_ability(OPPONENT_SINGLES_BANK);
+    extern u8 get_ability(struct Pokemon* p);
+    p_bank[PLAYER_SINGLES_BANK]->b_data.ability = get_ability(p_bank[PLAYER_SINGLES_BANK]->this_pkmn);
+    p_bank[OPPONENT_SINGLES_BANK]->b_data.ability = get_ability(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn);
     
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.priority = 0;
-    p_bank[PLAYER_SINGLES_BANK]->user_action.priority = 0;
     
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.speed = 0;
-    p_bank[PLAYER_SINGLES_BANK]->user_action.speed = 0;
+    p_bank[OPPONENT_SINGLES_BANK]->b_data.speed = 0;
+    p_bank[PLAYER_SINGLES_BANK]->b_data.speed = 0;
     
-    p_bank[OPPONENT_SINGLES_BANK]->user_action.buff_tag = 0;
-    p_bank[PLAYER_SINGLES_BANK]->user_action.buff_tag = 0;
+
     
-    u8 i;
-    for (i = 0; i < 19; i++) {
-        p_bank[OPPONENT_SINGLES_BANK]->user_action.bmc[i] = NULL;
-    }
+   
 
     switch (battle_type_flags) {
         case BATTLE_FLAG_WILD:

@@ -47,6 +47,8 @@ struct moves_used {
     s8 power;
     u8 category;
     u8 type[2];
+    u8 flinch;
+    u8 stab;
     u8 accuracy; // over 100 = never miss
     u8 chance_self;
     u8 chance_target;

@@ -5,7 +5,7 @@
 
 extern u16 rand_range(u16, u16);
 extern u8 get_side(u8);
-
+/* 
 u8 protection_tryhit(u8 user_bank)
 {
     // higher chance to fail on consecutive protects
@@ -132,7 +132,7 @@ struct move_callbacks endure_callbacks = {
     (TryHitCallback)endure_tryhit, // Try hit callback
     (DamageCallback)detect_endure_before_dmg_cb, // Damage callback
 };
-
+ */
 
 
 

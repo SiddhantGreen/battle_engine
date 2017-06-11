@@ -5,7 +5,7 @@
 #include "../battle_text/battle_pick_message.h"
 
 /* General exceptions of moves like earthquake hitting targets using dig is handled in move_on_try.c */
-extern void task_add_bmessage(u8 t_id);
+/* extern void task_add_bmessage(u8 t_id);
 void sky_drop_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & SKY_DROP_TAG) {
@@ -28,3 +28,4 @@ void sky_drop_modify_move(u8 user_bank)
     }
 }
 
+ */

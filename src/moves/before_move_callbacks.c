@@ -3,7 +3,7 @@
 #include "battle_state.h"
 #include "moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
-
+/* 
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
@@ -140,7 +140,7 @@ void imprison_before_move_cb(u8 user_bank)
         }
     }
 }
-
+ */
 
 void natural_gift(u8 user_bank)
 {
@@ -148,7 +148,7 @@ void natural_gift(u8 user_bank)
     // Have to make a table for this still.
 }
 
-
+/* 
 void rage_before_move_cb(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.buff_tag & RAGE_TAG) {
@@ -267,10 +267,10 @@ void exec_bmcallbacks(u8 bank)
         }
     }
 }
-
+ */
 
 /* These are move tags that you need to filter through and check every turn */
-void anonymous_before_move_cbs(u8 user_bank)
+/* void anonymous_before_move_cbs(u8 user_bank)
 {
     exec_bmcallbacks(user_bank);
     if (task_is_running(task_add_bmessage)) {
@@ -280,4 +280,4 @@ void anonymous_before_move_cbs(u8 user_bank)
     super.multi_purpose_state_tracker++;
 }
 
-
+ */

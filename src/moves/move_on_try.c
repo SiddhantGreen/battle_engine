@@ -2,7 +2,7 @@
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
-
+/* 
 
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
@@ -537,7 +537,7 @@ u8 try_hit(u8 user_bank)
         return true;
     return false;
 }
-
+ */
 /* PARTIALLY OR FULLY INCOMPLETE */
 u8 magic_coat_tryhit(u8 user_bank)
 {
@@ -564,16 +564,15 @@ u8 trick_tryhit(u8 user_bank)
     return false;
 }
 
-u8 mat_block_tryhit(u8 user_bank)
+/* u8 mat_block_tryhit(u8 user_bank)
 {
     if (p_bank[user_bank]->user_action.not_first_turn)
         return false;
     return true;
 }
-
-u8 synchronise_tryhit(u8 user_bank)
+ */
+/* u8 synchronise_tryhit(u8 user_bank)
 {
-    /* TODO Redo this spaghetti */
     u8 user_type1 = p_bank[user_bank]->user_action.type[0];
     u8 user_type2 = p_bank[user_bank]->user_action.type[1];
     
@@ -611,3 +610,4 @@ u8 last_resort_tryhit(u8 user_bank)
     // check if all moves were used. TODO
     return true;
 }
+ */

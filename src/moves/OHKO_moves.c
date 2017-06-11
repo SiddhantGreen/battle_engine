@@ -5,7 +5,7 @@
  * Guillotine, Horn Drill, Fissure, Sheer Cold,
  */
 
-void OHKO_modify_move(u8 user_bank)
+/* void OHKO_modify_move(u8 user_bank)
 {
     u8 target_bank = p_bank[user_bank]->user_action.target_bank;
     u8 target_lvl = p_bank[target_bank]->this_pkmn->level;
@@ -23,3 +23,4 @@ void OHKO_before_damage_callback(u8 bank, u16 move_id)
     battle_master->damage_to_deal = p_bank[bank]->this_pkmn->current_hp;
 }
 
+ */

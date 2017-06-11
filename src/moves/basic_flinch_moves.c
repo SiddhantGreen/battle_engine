@@ -6,8 +6,9 @@
 u8 snore_tryhit(u8 user_bank)
 {
     // sleep talk tryhit clone
-    extern u8 sleep_talk_tryhit(u8 bank);
-    return sleep_talk_tryhit(user_bank);
+   // extern u8 sleep_talk_tryhit(u8 bank);
+   // return sleep_talk_tryhit(user_bank);
+   return 0;
 }
 
 

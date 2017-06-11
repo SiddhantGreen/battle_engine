@@ -7,6 +7,13 @@
 #include "move_override.h"
 #include "ability_override.h"
 
+/* 
+ * Field data fetch macros
+ *
+ */
+#define MOVE_PRIORITY(move) move_t[move].priority
+#define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
+
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
