@@ -24,6 +24,11 @@ void buffer_write_ability_name(pchar* buffer, u8 ability)
     pstrcpy(buffer, pokemon_ability_names[ability]);
 }
 
+void buffer_write_move_type(pchar* buffer, u16 move)
+{
+    pstrcpy(buffer, pokemon_type_names[MOVE_TYPE(move)]);
+}
+
 void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
 {
     u16 len = pstrlen(buffer);
@@ -67,6 +72,13 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     {
                         extern u8 get_ability_bank(u8 bank);
                         buffer_write_ability_name(&result[result_index], get_ability_bank(bank));
+                        result_index = pstrlen(result);
+                        break;
+                    }
+                case 0x14:
+                    // type of move
+                    {
+                        buffer_write_move_type(&result[result_index], move_id);
                         result_index = pstrlen(result);
                         break;
                     }

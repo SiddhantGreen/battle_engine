@@ -29,6 +29,7 @@ enum battle_string_ids {
     STRING_STATUS_CURED = 42,
     STRING_EFFECT_ENDED = 44,
     STRING_WEATHER_GONE = 46,
+    STRING_GAINED_TYPE = 47,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -78,9 +79,10 @@ static const pchar str_cure_status_o[] = _("Foe {ATTACKING_MON}’s cured\nits s
 static const pchar str_effect_ended_p[] = _("{ATTACKING_MON}’s {ATTACK_NAME} ended.");
 static const pchar str_effect_ended_o[] = _("Foe {ATTACKING_MON}’s\n{ATTACK_NAME} ended.");
 static const pchar str_weather_gone[] = _("The effects of the weather\ndisappeared.");
+static const pchar str_gained_type_p[] = _("{ATTACKING_MON} gained {TYPE}\nfrom {ABILITY_NAME_PLAYER}!");
+static const pchar str_gained_type_o[] = _("Foe {ATTACKING_MON} gained {TYPE}\nfrom {ABILITY_NAME_OPPONENT}!");
 
-
-static const pchar* battle_strings[47] = {
+static const pchar* battle_strings[49] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -105,6 +107,7 @@ static const pchar* battle_strings[47] = {
    (pchar*)&str_cure_status_p, (pchar*)&str_cure_status_o,
    (pchar*)&str_effect_ended_p, (pchar*)&str_effect_ended_o,
    (pchar*)&str_weather_gone,
+   (pchar*)&str_gained_type_p, (pchar*)&str_gained_type_o,
 };
 
 

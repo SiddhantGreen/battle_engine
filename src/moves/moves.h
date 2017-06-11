@@ -15,7 +15,7 @@
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
 #define MAKES_CONTACT(move) ((*(move_t[move].m_flags)) & (1 << 3))
 #define MOVE_TYPE(move) move_t[move].type
-
+#define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)

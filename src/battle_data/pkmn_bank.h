@@ -41,6 +41,7 @@ struct local_battler_data {
     u16 item;
     u8 level;
     u8 poke_ball;
+    u8 type[3];
     
     // Delta applied to base stat. ex: -1 atk
     s8 attack;

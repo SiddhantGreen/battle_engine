@@ -13,6 +13,7 @@ typedef void (*AbilityResidualCallback)(u8);
 typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, target bank, move
 typedef u16 (*AbilityOnDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
 typedef void (*AbilityAfterDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
+typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u16, u8, u16); // bank, move, ability, item
 typedef void (*AbilityUpdateCallback)(u8);
 typedef void (*AbilitySetStatusCallback)(u8);
 
@@ -29,13 +30,15 @@ struct b_ability {
     StatCallback on_critchance;
     
     AbilitySwitchInCallback on_switch;
-    AbilityModMoveCallback on_modify_move;
-    AbilityResidualCallback on_residual;
+    AbilityModMoveCallback on_modify_move;  
     AbilityTryHitCallback on_tryhit;
     AbilityOnDamageCallback on_damage;
     AbilityAfterDamageCallback on_after_damage;
-    AbilityUpdateCallback on_update;
     AbilitySetStatusCallback on_set_status;
+    AbilityAfterMoveSecondaryCallback on_after_move_secondary;
+    AbilityResidualCallback on_residual;
+    AbilityUpdateCallback on_update;
+    
     
 };
 

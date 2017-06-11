@@ -25,6 +25,7 @@
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
 #define B_STATUS(bank) p_bank[bank]->b_data.status
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target
+#define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 
 
 /*
