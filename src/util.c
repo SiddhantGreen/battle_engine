@@ -36,7 +36,7 @@ u8 get_ability(struct Pokemon* p)
 
 u8 get_ability_bank(u8 bank)
 {
-    return p_bank[bank]->user_action.ability;
+    return p_bank[bank]->b_data.ability;
 }
 
 bool ignoring_item(struct Pokemon* p)
