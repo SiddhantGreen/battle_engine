@@ -14,6 +14,7 @@
  *
  */
 #define B_CURRENT_HP(bank) p_bank[bank]->this_pkmn->current_hp
+#define B_TOTAL_HP(bank) p_bank[bank]->this_pkmn->total_hp
 #define B_ATTACK_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->atk, p_bank[bank]->b_data.attack, 0, bank)
 #define B_DEFENSE_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->def, p_bank[bank]->b_data.defense, 1, bank)
 #define B_SPEED_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spd, p_bank[bank]->b_data.speed, 2, bank)
@@ -22,6 +23,9 @@
 #define B_ACCURACY_STAT(bank) stage_modify_stat(1, p_bank[bank]->b_data.accuracy, 5, bank)
 #define B_EVASION_STAT(bank) stage_modify_stat(1, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
+#define B_STATUS(bank) p_bank[bank]->b_data.status
+#define TARGET_OF(bank) p_bank[bank]->b_data.my_target
+
 
 /*
  * P_bank b_data set and fetch macros

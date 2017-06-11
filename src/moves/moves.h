@@ -13,6 +13,8 @@
  */
 #define MOVE_PRIORITY(move) move_t[move].priority
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
+#define MAKES_CONTACT(move) ((*(move_t[move].m_flags)) & (1 << 3))
+#define MOVE_TYPE(move) move_t[move].type
 
 
 #define FLAG_CHARGEUP (1 << 1)
