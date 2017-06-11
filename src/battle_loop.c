@@ -5,17 +5,12 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
-extern void priority_triage_mod(u8 ability, u16 moveid, u8 bank);
-extern void priority_gale_wings_mod(u8 ability, u16 moveid, u8 bank);
-extern void priority_prankster_mod(u8 ability, u16 moveid, u8 bank);
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
 extern u8 get_side(u8 bank);
 extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
-extern u8 get_ability(struct Pokemon* p);
-extern void anonymous_before_move_cbs(u8 user_bank);
-
+extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
 
 u16 pick_player_attack()
 {
@@ -110,8 +105,6 @@ u8 get_target_bank(u8 user_bank, u16 move_id)
 
 void battle_loop()
 {
-    u8 p_ability = p_bank[PLAYER_SINGLES_BANK]->b_data.ability;
-    u8 opp_ability = p_bank[OPPONENT_SINGLES_BANK]->b_data.ability;
     // set p_bank temp vars and fix priority tiers
     u16 p_move = pick_player_attack();
     u16 opp_move = pick_opponent_attack();
@@ -201,7 +194,6 @@ void run_decision(void)
         case 2:
         {
             /* Run before move callbacks */
-            //anonymous_before_move_cbs(bank_index);
             super.multi_purpose_state_tracker++;
 
             break;
@@ -209,28 +201,22 @@ void run_decision(void)
         case 3:
         {
             /* Run move used text */
-            run_move_text(p_bank[bank_index]->b_data.current_move, bank_index);
-            super.multi_purpose_state_tracker++;
+
+            
+            build_message(super.multi_purpose_state_tracker + 1, CURRENT_MOVE(bank_index), bank_index,
+                        STRING_ATTACK_USED, 0);
+            //super.multi_purpose_state_tracker++;
             break;
         }
         case 4:
         {
-            if (!dialogid_was_acknowledged(0x18)) {
+           // if (!dialogid_was_acknowledged(0x18)) {
                 super.multi_purpose_state_tracker++;
-            }
+           // }
             break;
         }
         case 5:
         {
-            /* Modify Move */
-            if (move_t[p_bank[bank_index]->b_data.current_move].move_cb->mm_cb)
-                move_t[p_bank[bank_index]->b_data.current_move].move_cb->mm_cb(bank_index);
-            
-          /*   extern void ion_deluge(u8);
-            extern void electrify_modify_move(u8);
-            ion_deluge(bank_index);
-            electrify_modify_move(bank_index); */
-            /* Abilities which modify moves should be handled here as well TODO */
             super.multi_purpose_state_tracker++;
             break;
         }
@@ -278,23 +264,6 @@ void run_decision(void)
         }
         default:
             break;
-    
-    /* Run After switch */
-    
-    /* Run move */
-        
-        
-        //set_callback1(wait_text);
-        //battle_show_message((u8*)string_buffer, 0x18);
-       
-    
-    /* Run faint */
-    
-    /* Run residual */
-    
-    /* Run switch */
-    
-    /* Run After switch */
     };
 }
 

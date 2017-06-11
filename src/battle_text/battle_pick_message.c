@@ -39,7 +39,7 @@ extern void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_
 void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 move_effect_id)
 {
     remo_reset_acknowledgement_flags();
-    if (battle_type == BATTLE_FLAG_WILD) {
+    if (battle_type_flags == BATTLE_FLAG_WILD) {
         switch (id) {
             case STRING_FAILED_ALONE:
                 fdecoder_battle(battle_strings[STRING_FAILED_ALONE], 0, 0, 0);
@@ -69,3 +69,45 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
     }
 }
 
+void play_bmessage()
+{
+    
+    switch(super.multi_purpose_state_tracker) {
+        case 0:
+        {
+            pick_battle_message(battle_master->b_message.move_id, battle_master->b_message.bank, battle_type_flags,
+            battle_master->b_message.string_id, battle_master->b_message.effecting_move_id);
+            battle_show_message((u8*)string_buffer, 0x18);
+            super.multi_purpose_state_tracker++;
+        }
+            break;
+        case 1:
+            if (!dialogid_was_acknowledged(0x18)) {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        case 2:
+        {
+            super.multi_purpose_state_tracker = battle_master->b_message.state;
+            set_callback1(battle_master->b_message.c1);
+            
+            break;
+        }
+        default:
+            break;
+    };
+}
+
+
+void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id)
+{
+    battle_master->b_message.state = state;
+    battle_master->b_message.move_id = move_id;
+    battle_master->b_message.bank = user_bank;
+    battle_master->b_message.string_id = id;
+    battle_master->b_message.effecting_move_id = move_effect_id;
+    battle_master->b_message.c1 = super.callback1;
+    super.multi_purpose_state_tracker = 0;
+    set_callback1(play_bmessage);
+    return;
+}

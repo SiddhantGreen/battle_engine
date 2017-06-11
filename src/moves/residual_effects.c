@@ -11,7 +11,7 @@ extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battl
  * must again call exec_residual_effect so all residual effects are resolved.
  *
  */
-void add_residual_effect(ResidualEffectCallback effect, u8 bank, u8 t_bank, u8 priority)
+/* void add_residual_effect(ResidualEffectCallback effect, u8 bank, u8 t_bank, u8 priority)
 {
     u8 i;
     for (i = 0; i < 20; i++) {
@@ -101,7 +101,7 @@ void curse_residual_effect(u8 task_id)
     };     
 }
 
-
+ */
 
 
 

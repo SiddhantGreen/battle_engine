@@ -16,6 +16,15 @@ struct battle_selection_cursor {
     
 };
 
+struct global_message {
+    u8 state;
+    u16 move_id;
+    u8 bank;
+    u8 string_id;
+    u16 effecting_move_id;
+    SuperCallback c1;
+};
+
 struct battle_field_state {
     u32 is_raining : 1;
     u32 is_sunny : 1;
@@ -42,13 +51,13 @@ struct battle_field_state {
     
 };
 
-struct moves_used {
+struct move_used {
     u16 move_id;
+    u8 stab;
     s8 power;
     u8 category;
     u8 type[2];
     u8 flinch;
-    u8 stab;
     u8 accuracy; // over 100 = never miss
     u8 chance_self;
     u8 chance_target;
@@ -61,13 +70,10 @@ struct moves_used {
     u8 user_bank;
 };
 
-struct residual_effect {
-    ResidualEffectCallback func;
-    u8 target_bank;
-    u8 src_bank;
-    u8 priority;
-    u8 priv;
-};
+
+
+
+typedef u16 (*StatModifierCallback)(u16 stat, u8 id, u8 bank);
 
 struct battle_main {
     struct battle_selection_cursor battle_cursor;
@@ -76,11 +82,17 @@ struct battle_main {
     u8 type_objid[4];
     u8 move_name_objid[4];
     u8 fight_menu_content_spawned;
+    struct global_message b_message;
+    
+    
+    
+    
+    
     u8 first_bank;
     u8 second_bank;
     u8 execution_index;
-    struct moves_used b_moves[2];
-    struct residual_effect residual[20];
+    struct move_used b_moves[2];
+
     u16 damage_to_deal;
     u16 amount_to_heal;
 };
@@ -96,5 +108,6 @@ enum fight_menu {
 
 extern struct battle_main* battle_master;
 extern u8 bs_anim_status;
+extern void play_bmessage(void);
 
 #endif /* BATTLE_STATE_H_ */

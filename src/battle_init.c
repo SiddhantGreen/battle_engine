@@ -23,10 +23,11 @@ void init_battle_elements()
     // allocate battle specific resources
     p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank[4]));
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
+    battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
     setup();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
-    battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
+    
     battle_type_flags = BATTLE_FLAG_WILD;
 }
 
