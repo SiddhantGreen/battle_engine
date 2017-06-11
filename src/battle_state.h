@@ -5,6 +5,7 @@
 #include "moves/moves.h"
 #include "battle_data/pkmn_bank.h"
 
+#define GAME_STATE super.multi_purpose_state_tracker
 typedef void (*ResidualEffectCallback)(u8);
 
 struct battle_selection_cursor {

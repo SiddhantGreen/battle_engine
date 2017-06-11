@@ -6,10 +6,16 @@
 #include "battle_state.h"
 #include "moves/moves.h"
 
-typedef u16 (*StatCallback)(u8, u16);
-typedef void (*AbilityModMoveCallback)(u8, u16);
+typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
+typedef void (*AbilityModMoveCallback)(u8, u16); // bank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
+typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, target bank, move
+typedef u16 (*AbilityOnDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
+typedef void (*AbilityAfterDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
+typedef void (*AbilityUpdateCallback)(u8);
+typedef void (*AbilitySetStatusCallback)(u8);
+
 
 struct b_ability {
     StatCallback on_priority;
@@ -25,11 +31,16 @@ struct b_ability {
     AbilitySwitchInCallback on_switch;
     AbilityModMoveCallback on_modify_move;
     AbilityResidualCallback on_residual;
+    AbilityTryHitCallback on_tryhit;
+    AbilityOnDamageCallback on_damage;
+    AbilityAfterDamageCallback on_after_damage;
+    AbilityUpdateCallback on_update;
+    AbilitySetStatusCallback on_set_status;
     
 };
 
 #define ABILITIES_MAX 5
-extern struct b_ability* abilities_table[5];
+extern struct b_ability* abilities_table[11];
 
 
 

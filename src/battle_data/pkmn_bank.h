@@ -74,6 +74,8 @@ struct local_battler_data {
     u8 fainted : 1;
     u8 ate_berry : 1;
     
+    u8 status;
+    
     
     
     
@@ -96,29 +98,6 @@ struct pkmn_bank {
 
 extern struct pkmn_bank (*p_bank)[4];
 
-/*enum BuffTags {
-    ASSURANCE_TAG = (1 << 0), 
-    BEAKBLAST_TAG = (1 << 1),
-    COUNTER_TAG = (1 << 2),
-    FOCUS_PUNCH_TAG = (1 << 3),
-    METAL_BURST_TAG = (1 << 4),
-    MIRROR_COAT_TAG = (1 << 5),
-    PURSUIT_TAG = (1 << 6),
-    SHELLTRAP_TAG = (1 << 7),
-    ATTRACT_TAG = (1 << 8),
-    BIDE_TAG = (1 << 9),
-    DESTINY_BOND_TAG = (1 << 10),
-    DISABLE_TAG = (1 << 11),
-    GRUDGE_TAG = (1 << 12),
-    HEAL_BLOCK_TAG = (1 << 13),
-    IMPRISON_TAG = (1 << 14),
-    RAGE_TAG = (1 << 15),
-    SKY_DROP_TAG = (1 << 16),
-    TAUNT_TAG = (1 << 17),
-    THROAT_CHOP_TAG = (1 << 18),
-    ELECTRIFY_TAG = (1 << 19),
-    CURSE_TAG = (1 << 20),
-};*/
 
 
 #endif /* BATTLE_PKMN_BANK_H_ */
