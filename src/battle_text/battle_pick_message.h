@@ -22,6 +22,11 @@ enum battle_string_ids {
     STRING_ICE_BURN = 29,
     STRING_GOEMANCY = 31,
     STRING_SKULL_BASH = 33,
+    STRING_RAINING = 35,
+    STRING_GAINED_SPEED = 36,
+    STRING_STURDY_IMMUNE = 38,
+    STRING_DAMP_BLOCKED = 40,
+    STRING_STATUS_CURED = 42,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -59,8 +64,18 @@ static const pchar str_geomancy_p[] = _("{ATTACKING_MON} is absorbing\npower!");
 static const pchar str_geomancy_o[] = _("Foe {DEFENDING_MON} is absorbing\npower!");
 static const pchar str_skull_bash_p[] = _("{ATTACKING_MON} lowered\nits head!");
 static const pchar str_skull_bash_o[] = _("Foe {DEFENDING_MON} lowered\nits head!");
+static const pchar str_started_rain[] = _("It started to rain!");
+static const pchar str_speed_up_p[] = _("{ATTACKING_MON}’s Speed rose!");
+static const pchar str_speed_up_o[] = _("Foe {ATTACKING_MON}’s Speed rose!");
+static const pchar str_sturdy_immune_p[] = _("{DEFENDING_MON}’s sturdy makes\nit immune to {ATTACK_NAME}!");
+static const pchar str_sturdy_immune_o[] = _("Foe {DEFENDING_MON}’s sturdy makes\nit immune to {ATTACK_NAME}!");
+static const pchar str_damp_p[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {DEFENDING_MON}’s DAMP!");
+static const pchar str_damp_o[] = _("Foe {ATTACKING_MON} couldn’t use\n{ATTACK_NAME} because of {DEFENDING_MON}’s DAMP!");
+static const pchar str_cure_status_p[] = _("{ATTACKING_MON}’s status\nwas cured!");
+static const pchar str_cure_status_o[] = _("Foe {ATTACKING_MON}’s cured\nits status!");
 
-static const pchar* battle_strings[35] = {
+
+static const pchar* battle_strings[44] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -78,7 +93,11 @@ static const pchar* battle_strings[35] = {
    (pchar*)&str_freeze_shock_o, (pchar*)&str_ice_burn_p, // 30
    (pchar*)&str_ice_burn_o, (pchar*)&str_geomancy_p,
    (pchar*)&str_geomancy_o, (pchar*)&str_skull_bash_p,
-   (pchar*)&str_skull_bash_o,
+   (pchar*)&str_skull_bash_o, (pchar*)str_started_rain,
+   (pchar*)&str_speed_up_p, (pchar*)&str_speed_up_o,
+   (pchar*)&str_sturdy_immune_p,(pchar*)&str_sturdy_immune_o,
+   (pchar*)&str_damp_p, (pchar*)&str_damp_o,
+   (pchar*)&str_cure_status_p, (pchar*)&str_cure_status_o,
 };
 
 
