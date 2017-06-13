@@ -66,6 +66,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_STATUS_CURED:
             case STRING_EFFECT_ENDED:
             case STRING_GAINED_TYPE:
+            case STRING_CONFUSION_ENDED:
+            case STRING_DRAGGED_OUT_FAILED:
                 fdecoder_battle(battle_strings[id + get_side(user_bank)], user_bank, move_id, move_effect_id);
                 break;
             default:

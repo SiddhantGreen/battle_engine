@@ -30,6 +30,8 @@ enum battle_string_ids {
     STRING_EFFECT_ENDED = 44,
     STRING_WEATHER_GONE = 46,
     STRING_GAINED_TYPE = 47,
+    STRING_CONFUSION_ENDED = 49,
+    STRING_DRAGGED_OUT_FAILED = 51,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -81,8 +83,12 @@ static const pchar str_effect_ended_o[] = _("Foe {ATTACKING_MON}’s\n{ATTACK_NA
 static const pchar str_weather_gone[] = _("The effects of the weather\ndisappeared.");
 static const pchar str_gained_type_p[] = _("{ATTACKING_MON} gained {TYPE}\nfrom {ABILITY_NAME_PLAYER}!");
 static const pchar str_gained_type_o[] = _("Foe {ATTACKING_MON} gained {TYPE}\nfrom {ABILITY_NAME_OPPONENT}!");
+static const pchar str_confusion_end_p[] = _("{ATTACKING_MON} is\nno longer confused!");
+static const pchar str_confusion_end_o[] = _("Foe {ATTACKING_MON} is\nno longer confused!");
+static const pchar str_dragout_failed_p[] = _("{ATTACKING_MON} couldn’t be\ndragged out of battle!");
+static const pchar str_dragout_failed_o[] = _("Foe {ATTACKING_MON} couldn’t be\ndragged out of battle!");
 
-static const pchar* battle_strings[49] = {
+static const pchar* battle_strings[53] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -108,6 +114,8 @@ static const pchar* battle_strings[49] = {
    (pchar*)&str_effect_ended_p, (pchar*)&str_effect_ended_o,
    (pchar*)&str_weather_gone,
    (pchar*)&str_gained_type_p, (pchar*)&str_gained_type_o,
+   (pchar*)&str_confusion_end_p, (pchar*)&str_confusion_end_o,
+   (pchar*)&str_dragout_failed_p, (pchar*)&str_dragout_failed_o,
 };
 
 

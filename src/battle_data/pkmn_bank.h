@@ -32,6 +32,11 @@ enum TypeBits {
     TYPE_BITS_DARK = (1 << 16),
 };
 
+enum VolatileStatus {
+    VOLATILE_FLASH_FIRE = (1 << 0),
+    VOLATILE_CONFUSION = (1 << 1),
+};
+
 struct local_battler_data {
     // Base stats in battle
     u8 gender;
@@ -78,7 +83,8 @@ struct local_battler_data {
     u8 is_charmed : 1;
     
     u8 status;
-    
+    u8 confusion_turns;
+    enum VolatileStatus v_status;
     
     
     

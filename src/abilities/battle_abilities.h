@@ -10,13 +10,15 @@ typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
 typedef void (*AbilityModMoveCallback)(u8, u16); // bank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
-typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, target bank, move
-typedef u16 (*AbilityOnDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
-typedef void (*AbilityAfterDamageCallback)(u8, u16, u16, u8, u16); // bank, move, damage taken, ability, item
-typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u16, u8, u16); // bank, move, ability, item
+typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, tbank, move
+typedef u16 (*AbilityOnDamageCallback)(u8, u8, u16, u16, u8, u16); // bank, tbank, move, damage taken, ability, item
+typedef void (*AbilityAfterDamageCallback)(u8, u8, u16, u16, u8, u16); // bank, tbank, move, damage taken, ability, item
+typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
+typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
 typedef void (*AbilityUpdateCallback)(u8);
 typedef void (*AbilitySetStatusCallback)(u8);
 
+typedef void (*AbilityOnDraggedOutCallback)(u8);
 
 struct b_ability {
     StatCallback on_priority;
@@ -35,11 +37,12 @@ struct b_ability {
     AbilityOnDamageCallback on_damage;
     AbilityAfterDamageCallback on_after_damage;
     AbilitySetStatusCallback on_set_status;
+    AbilityModifySecondaryCallback on_mod_secondary;
     AbilityAfterMoveSecondaryCallback on_after_move_secondary;
     AbilityResidualCallback on_residual;
     AbilityUpdateCallback on_update;
     
-    
+    AbilityOnDraggedOutCallback on_dragout;
 };
 
 #define ABILITIES_MAX 5

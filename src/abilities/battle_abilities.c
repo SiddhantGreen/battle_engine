@@ -88,9 +88,9 @@ u8 sturdy_tryhit(u8 bank, u8 target, u16 move)
     return true;
 }
 
-u16 sturdy_on_damage(u8 bank, u16 move, u16 damage, u8 ability, u16 item)
+u16 sturdy_on_damage(u8 bank, u8 tbank, u16 move, u16 damage, u8 ability, u16 item)
 {
-    if ((B_CURRENT_HP(bank) == B_TOTAL_HP(bank)) &&
+    if ((B_CURRENT_HP(bank) == TOTAL_HP(bank)) &&
         (damage >= B_CURRENT_HP(bank))) {
         return 1;
     }
@@ -113,7 +113,7 @@ u8 damp_tryhit(u8 bank, u8 target, u16 move)
     return true;
 }
 
-u16 damp_on_damage(u8 bank, u16 move, u16 damage, u8 ability, u16 item)
+u16 damp_on_damage(u8 bank, u8 tbank, u16 move, u16 damage, u8 ability, u16 item)
 {
     if (ability == ABILITY_AFTERMATH)
         return 0;
@@ -164,9 +164,9 @@ struct b_ability b_sand_veil = {
 
 
 // Static
-void static_on_after_damage(u8 bank, u16 move, u16 dmg, u8 ability, u16 item)
+void static_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
-    if (MAKES_CONTACT(move)) {
+    if (MAKES_CONTACT(move) && (target != bank)) {
         if (rand_range(0, 100) < 30) {
             p_bank[TARGET_OF(bank)]->b_data.status = AILMENT_PARALYZE;
         }
@@ -181,11 +181,11 @@ struct b_ability b_static = {
 // Volt Absorb
 u8 volt_absorb_tryhit(u8 bank, u8 target, u16 move)
 {
-    if ((target != TARGET_OF(bank)) &&  (MOVE_TYPE(move) == MTYPE_ELECTRIC)) {
+    if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_ELECTRIC)) {
         build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_VOLT_ABSORB);
-        p_bank[target]->b_data.current_hp += (B_TOTAL_HP(target) / 4);
-        if (B_CURRENT_HP(target) > B_TOTAL_HP(target))
-            p_bank[target]->b_data.current_hp = B_TOTAL_HP(target);
+        p_bank[target]->b_data.current_hp += (TOTAL_HP(target) / 4);
+        if (B_CURRENT_HP(target) > TOTAL_HP(target))
+            p_bank[target]->b_data.current_hp = TOTAL_HP(target);
         return false;
     }
     return true;
@@ -199,11 +199,11 @@ struct b_ability b_volt_absorb = {
 // Water Absorb
 u8 water_absorb_tryhit(u8 bank, u8 target, u16 move)
 {
-    if ((target != TARGET_OF(bank)) &&  (MOVE_TYPE(move) == MTYPE_WATER)) {
+    if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_WATER)) {
         build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_ABSORB);
-        p_bank[target]->b_data.current_hp += (B_TOTAL_HP(target) / 4);
-        if (B_CURRENT_HP(target) > B_TOTAL_HP(target))
-            p_bank[target]->b_data.current_hp = B_TOTAL_HP(target);
+        p_bank[target]->b_data.current_hp += (TOTAL_HP(target) / 4);
+        if (B_CURRENT_HP(target) > TOTAL_HP(target))
+            p_bank[target]->b_data.current_hp = TOTAL_HP(target);
         return false;
     }
     return true;
@@ -286,10 +286,10 @@ struct b_ability b_insomnia = {
 
 
 // Color Change
-void color_change_after_move_secondary(u8 bank, u16 move, u8 ability, u16 item)
+void color_change_after_move_secondary(u8 bank, u8 target, u16 move, u8 ability, u16 item)
 {
     // target exists
-    if (B_CURRENT_HP(TARGET_OF(bank))) {
+    if (B_CURRENT_HP(TARGET_OF(bank)) && (bank != target)) {
         if (IS_MOVE_STATUS(move)) {
             return;
             
@@ -322,7 +322,7 @@ void immunity_on_update(u8 bank)
 
 void immunity_on_set_status(u8 bank)
 {
-    if (B_STATUS(bank) == AILMENT_SLEEP) {
+    if (B_STATUS(bank) == AILMENT_POISON) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_IMMUNITY);
     }
@@ -334,14 +334,90 @@ struct b_ability b_immunity = {
 };
 
 // Flash Fire
+u8 flash_fire_tryhit(u8 bank, u8 target, u16 move)
+{
+    if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_FIRE)) {
+        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLASH_FIRE);
+        ADD_VOLATILE(bank, VOLATILE_FLASH_FIRE);
+        return false;
+    }
+    return true;
+}
+
+u16 flash_fire_on_attack(u8 bank, u16 stat)
+{
+    if (MOVE_TYPE(CURRENT_MOVE(bank)) == MTYPE_FIRE) {
+        return ((stat * 150) / 100);
+    }
+    return stat;
+}
+
+struct b_ability b_flash_fire = {
+    .on_tryhit = flash_fire_tryhit,
+    .on_attack = flash_fire_on_attack,
+    .on_sp_attack = flash_fire_on_attack, // spatk and atk are clones in functionality
+    
+};
+
 
 // Shield Dust
+void shield_dust_on_mod_secondary(u8 bank, u8 target, u16 move, u8 ability, u16 item)
+{
+    if ((move_t[move].procs) && (bank != target))  {
+        // remove secondary effect chance
+        battle_master->b_moves[B_MOVE_BANK(bank)].chance_self = 0;
+        battle_master->b_moves[B_MOVE_BANK(bank)].chance_target = 0;
+        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0] = 0;
+        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1] = 0;
+    }
+}
+
+struct b_ability b_shield_dust = {
+    .on_mod_secondary = shield_dust_on_mod_secondary,
+};
+
 
 // Own Tempo
+void own_tempo_on_update(u8 bank)
+{
+    if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
+       REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
+       SET_CONFUSION_TURNS(bank, 0);
+       build_message(GAME_STATE, 0, bank, STRING_CONFUSION_ENDED, ABILITY_OWN_TEMPO);
+    }
+}
 
-// Section Cups
+
+void own_tempo_on_set_status(u8 bank)
+{
+    if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
+       REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
+       SET_CONFUSION_TURNS(bank, 0);
+       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_OWN_TEMPO);
+    }
+}
+
+struct b_ability b_own_tempo = {
+    .on_update = own_tempo_on_update,
+    .on_set_status = own_tempo_on_set_status,
+};
+
+
+// Suction Cups
+u8 suction_cups_on_dragout(u8 bank)
+{
+    build_message(GAME_STATE, 0, bank, STRING_DRAGGED_OUT_FAILED, ABILITY_SUCTION_CUPS);
+    return false;
+}
+
+struct b_ability b_suction_cups = {
+    .on_dragout = suction_cups_on_dragout,
+};
+
 
 // Intimidate
+
+
 
 // SHADOW TAG
 
