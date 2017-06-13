@@ -32,6 +32,7 @@ enum battle_string_ids {
     STRING_GAINED_TYPE = 47,
     STRING_CONFUSION_ENDED = 49,
     STRING_DRAGGED_OUT_FAILED = 51,
+    STRING_INTIMIDATE = 53,
 };
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -87,8 +88,10 @@ static const pchar str_confusion_end_p[] = _("{ATTACKING_MON} is\nno longer conf
 static const pchar str_confusion_end_o[] = _("Foe {ATTACKING_MON} is\nno longer confused!");
 static const pchar str_dragout_failed_p[] = _("{ATTACKING_MON} couldn’t be\ndragged out of battle!");
 static const pchar str_dragout_failed_o[] = _("Foe {ATTACKING_MON} couldn’t be\ndragged out of battle!");
+static const pchar str_intimidate_p[] = _("{ATTACKING_MON} is immune\nto Intimidate.");
+static const pchar str_intimidate_o[] = _("Foe {ATTACKING_MON} is immune\nto Intimidate.");
 
-static const pchar* battle_strings[53] = {
+static const pchar* battle_strings[55] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -116,6 +119,7 @@ static const pchar* battle_strings[53] = {
    (pchar*)&str_gained_type_p, (pchar*)&str_gained_type_o,
    (pchar*)&str_confusion_end_p, (pchar*)&str_confusion_end_o,
    (pchar*)&str_dragout_failed_p, (pchar*)&str_dragout_failed_o,
+   (pchar*)&str_intimidate_p, (pchar*)&str_intimidate_o,
 };
 
 

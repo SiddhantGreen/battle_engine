@@ -43,6 +43,13 @@
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target
 #define SET_CONFUSION_TURNS(bank, v) p_bank[bank]->b_data.confusion_turns = v
 
+/*
+ * General Pbank macros
+ */
+#define FOE_BANK(bank) bank ? 0 : 2
+ 
+ 
+ 
 extern void update_moves(u8 bank, u16 move_id);
 extern s8 ability_priority_mod(u8 bank, u16 move_id);
 extern s8 ability_attack_mod(u8 bank);

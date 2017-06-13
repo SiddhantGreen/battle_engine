@@ -35,6 +35,9 @@ enum TypeBits {
 enum VolatileStatus {
     VOLATILE_FLASH_FIRE = (1 << 0),
     VOLATILE_CONFUSION = (1 << 1),
+    VOLATILE_SUBSTITUTE = (1 << 2),
+    VOLATILE_STAT_REDUC_IMMUNE = (1 << 3),
+    VOLATILE_TRAPPED = (1 << 4),
 };
 
 struct local_battler_data {
@@ -74,7 +77,6 @@ struct local_battler_data {
     
     
     // local user specific bitfield
-    u8 is_trapped : 1;
     u8 is_disabled : 1;
     u8 illusion : 1;
     u8 fainted : 1;
@@ -84,6 +86,7 @@ struct local_battler_data {
     
     u8 status;
     u8 confusion_turns;
+    u16 substitute_health;
     enum VolatileStatus v_status;
     
     

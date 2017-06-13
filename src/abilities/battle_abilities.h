@@ -18,7 +18,7 @@ typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, t
 typedef void (*AbilityUpdateCallback)(u8);
 typedef void (*AbilitySetStatusCallback)(u8);
 
-typedef void (*AbilityOnDraggedOutCallback)(u8);
+typedef u8 (*AbilityOnDraggedOutCallback)(u8);
 
 struct b_ability {
     StatCallback on_priority;

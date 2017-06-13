@@ -63,6 +63,17 @@ bool pkmn_has_type(u16 species, enum PokemonType type)
     return false;
 }
 
+bool b_pkmn_has_type(u8 bank, enum PokemonType type)
+{
+    u8 i;
+    for (i = 0; i < 2; i++) {
+        if (p_bank[bank]->b_data.type[i] == type) {
+            return true;
+        }
+    }
+    return false;
+}
+
 u8 get_base_power(u16 move_id)
 {
     return move_t[move_id].base_power;

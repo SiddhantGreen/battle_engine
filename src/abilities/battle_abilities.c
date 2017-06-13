@@ -7,6 +7,7 @@
 
 extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
 extern u16 rand_range(u16, u16);
+extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 
 struct b_ability empty = {
 };
@@ -416,14 +417,63 @@ struct b_ability b_suction_cups = {
 
 
 // Intimidate
+void intimidate_on_switch(u8 bank)
+{
+    u8 foe = FOE_BANK(bank);
+    if (B_CURRENT_HP(foe) && (!(HAS_VOLATILE(foe, VOLATILE_SUBSTITUTE) || 
+        HAS_VOLATILE(foe, VOLATILE_STAT_REDUC_IMMUNE))))  {
+        build_message(GAME_STATE, 0, bank, STRING_INTIMIDATE, 0);
+    }
+}
 
+struct b_ability b_intimidate = {
+    .on_switch = intimidate_on_switch,
+};
 
 
 // SHADOW TAG
+void shadow_tag_on_switch(u8 bank)
+{
+    u8 foe = FOE_BANK(bank);
+    if (!(BANK_ABILITY(foe) == ABILITY_SHADOW_TAG) && !(b_pkmn_has_type(foe, TYPE_GHOST))) {
+        ADD_VOLATILE(foe, VOLATILE_TRAPPED);
+    }
+    
+    if (!(BANK_ABILITY(bank) == ABILITY_SHADOW_TAG) && !(b_pkmn_has_type(bank, TYPE_GHOST))) {
+        ADD_VOLATILE(bank, VOLATILE_TRAPPED);
+    }
+}
+
+struct b_ability b_shadow_tag = {
+    .on_switch = shadow_tag_on_switch,
+};
+
 
 // ROUGH SKIN
+void rough_skin_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank != target) && (MAKES_CONTACT(move))) {
+        battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = TOTAL_HP(target) / 8;
+    }
+}
+
+struct b_ability b_rough_skin = {
+    .on_after_damage = rough_skin_after_damage,
+};
+
 
 // WONDER GUARD
+u8 wonder_guard_on_tryhit(u8 bank, u8 target, u16 move)
+{
+    if ((bank == target) || (move == MOVE_STRUGGLE) || IS_MOVE_STATUS(move))
+        return true;
+    build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WONDER_GUARD);
+    return false;
+}
+
+struct b_ability b_wonder_gaurd = {
+    .on_tryhit = wonder_guard_on_tryhit,
+};
 
 // LEVITATE
 
