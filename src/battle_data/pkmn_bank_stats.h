@@ -42,6 +42,7 @@
 #define B_STATUS(bank) p_bank[bank]->b_data.status
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target
 #define SET_CONFUSION_TURNS(bank, v) p_bank[bank]->b_data.confusion_turns = v
+#define B_IS_GROUNDED(bank) p_bank[bank]->b_data.is_grounded
 
 /*
  * General Pbank macros

@@ -475,9 +475,29 @@ struct b_ability b_wonder_gaurd = {
     .on_tryhit = wonder_guard_on_tryhit,
 };
 
+
 // LEVITATE
+u8 levitate_on_tryhit(u8 bank, u8 target, u16 move)
+{
+    if (bank != target) {
+        if ((MOVE_TYPE(move) == MTYPE_GROUND) && (!(battle_master->field_state.is_gravity) && !(B_IS_GROUNDED(target))))
+            return false;
+    }
+    return true;
+}
+
+struct b_ability b_levitate = {
+    .on_tryhit = levitate_on_tryhit,
+};
+
 
 // EFFECT SPORE
+void effect_spore_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg_taken, u8 ability, u16 item)
+{
+    
+
+}
+
 
 // SYNCHRONIZE
 

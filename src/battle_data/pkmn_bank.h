@@ -83,6 +83,7 @@ struct local_battler_data {
     u8 ate_berry : 1;
     u8 is_taunted : 1;
     u8 is_charmed : 1;
+    u8 is_grounded : 1;
     
     u8 status;
     u8 confusion_turns;
