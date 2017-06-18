@@ -1,1 +1,0 @@
-this is a testfile, the submodule should be configured properly
