@@ -137,7 +137,7 @@ void limber_on_update(u8 bank)
     }
 }
 
-void limber_on_set_status(u8 bank)
+void limber_on_set_status(u8 bank, s8 source, enum Effect effect)
 {
     if (B_STATUS(bank) == AILMENT_PARALYZE) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
@@ -272,7 +272,7 @@ void insomnia_on_update(u8 bank)
     }
 }
 
-void insomnia_on_set_status(u8 bank)
+void insomnia_on_set_status(u8 bank, s8 source, enum Effect effect)
 {
     if (B_STATUS(bank) == AILMENT_SLEEP) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
@@ -321,7 +321,7 @@ void immunity_on_update(u8 bank)
     }
 }
 
-void immunity_on_set_status(u8 bank)
+void immunity_on_set_status(u8 bank, s8 source, enum Effect effect)
 {
     if (B_STATUS(bank) == AILMENT_POISON) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
@@ -389,7 +389,7 @@ void own_tempo_on_update(u8 bank)
 }
 
 
-void own_tempo_on_set_status(u8 bank)
+void own_tempo_on_set_status(u8 bank, s8 source, enum Effect effect)
 {
     if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
        REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
@@ -498,8 +498,20 @@ void effect_spore_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg_taken, u
 
 }
 
-
 // SYNCHRONIZE
+void synchronize_on_status(u8 bank, s8 source, enum Effect effect)
+{
+    if(source < 0 || source == bank)
+        return;
+    if(effect == TOXIC_SPIKES)
+        return;
+    if(B_STATUS(bank) == AILMENT_SLEEP || B_STATUS(bank) == AILMENT_FREEZE)
+        return;
+    p_bank[source]->b_data.status = B_STATUS(bank);
+}
+struct b_ability b_synchronize = {
+    .on_set_status = synchronize_on_status,
+};
 
 // CLEAR BODY
 
