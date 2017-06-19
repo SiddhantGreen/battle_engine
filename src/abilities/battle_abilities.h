@@ -16,7 +16,7 @@ typedef void (*AbilityAfterDamageCallback)(u8, u8, u16, u16, u8, u16); // bank, 
 typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
 typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
 typedef void (*AbilityUpdateCallback)(u8);
-typedef void (*AbilitySetStatusCallback)(u8);
+typedef void (*AbilitySetStatusCallback)(u8, s8, enum Effect); //bank, atkbank, Effect
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
 

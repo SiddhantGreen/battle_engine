@@ -8,6 +8,12 @@
 #define GAME_STATE super.multi_purpose_state_tracker
 typedef void (*ResidualEffectCallback)(u8);
 
+enum Effect
+{
+    NONE,
+    TOXIC_SPIKES
+};
+
 struct battle_selection_cursor {
     u8 objid;
     u8 objid_mv_crsr[2];
@@ -98,6 +104,7 @@ struct battle_main {
 
     u16 damage_to_deal;
     u16 amount_to_heal;
+    enum Effect effect[2];
 };
 
 enum fight_menu {
