@@ -909,34 +909,74 @@ struct b_ability b_synchronize = {
 // RKS SYSTEM
 
 // ELECTRIC SURGE
+void electric_surge_on_switch(u8 bank)
+{
+    battle_master->field_state.electric_terrain = 1;
+    return;
+}
+
+struct b_ability b_electric_surge = {
+    .on_switch = electric_surge_on_switch,
+};
 
 // PSYCHIC SURGE
+void psychic_surge_on_switch(u8 bank)
+{
+    battle_master->field_state.psychic_terrain = 1;
+    return;
+}
+
+struct b_ability b_psychic_surge = {
+    .on_switch = psychic_surge_on_switch,
+};
+
 
 // MISTY SURGE
+void misty_surge_on_switch(u8 bank)
+{
+    battle_master->field_state.misty_terrain = 1;
+    return;
+}
+
+struct b_ability b_misty_surge = {
+    .on_switch = misty_surge_on_switch,
+};
+
 
 // GRASSY SURGE
+void grassy_surge_on_switch(u8 bank)
+{
+    battle_master->field_state.grassy_terrain = 1;
+    return;
+}
 
-// FULL METAL
+struct b_ability b_grassy_surge = {
+    .on_switch = grassy_surge_on_switch,
+};
+
+
+// FULL METAL BODY
 
 // SHADOW SHIELD
 u16 shadow_shield_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if(bank == tbank)
-        return;
-    if (CURRENT_HP(bank) == TOTAL_HP(bank))
+        return dmg;
+    if (B_CURRENT_HP(bank) == TOTAL_HP(bank))
         return dmg / 2;
     return dmg;
 }
 
 struct b_ability b_shadow_shield = {
-    .on_damage = prism_armor_on_damage,
+    .on_damage = shadow_shield_on_damage,
 };
+
 
 // PRISM ARMOR
 u16 prism_armor_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if (bank == tbank)
-        return;
+        return dmg;
     if (move_effectiveness(move_t[move].type, tbank) > 0)
         return ((dmg * 75) / 100);
 }
