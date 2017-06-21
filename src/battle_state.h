@@ -62,6 +62,7 @@ struct battle_field_state {
 struct move_used {
     u8 user_bank;
     u16 move_id;
+    s8 priority;
     u8 stab;
     s8 power;
     u8 category;

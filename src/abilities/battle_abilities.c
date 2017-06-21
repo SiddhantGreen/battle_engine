@@ -894,8 +894,39 @@ struct b_ability b_synchronize = {
 // BATTERY
 
 // FLUFFY
+u16 fluffy_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    /* 50% more damage from fire moves */
+    if ((battle_master->b_moves[B_MOVE_BANK(bank)].type[0] == MTYPE_FIRE) ||
+        (battle_master->b_moves[B_MOVE_BANK(bank)].type[1] == MTYPE_FIRE)) {
+        dmg = ((dmg * 150) / 100);
+    }
+    /* half damage from contact moves */
+    if (MAKES_CONTACT(move)) {
+        dmg = ((dmg * 50) / 100);
+    }
+    return dmg; 
+}
+
+struct b_ability b_fluffy = {
+    .on_damage = fluffy_on_damage,
+};
+
 
 // DAZZLING
+u8 dazzling_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if (SIDE_OF(bank) != SIDE_OF(t_bank)) {
+        if (battle_master->b_moves[B_MOVE_BANK(bank)].priority != 0)
+            return false;
+    }
+    return true;
+}
+
+struct b_ability b_dazzling = {
+    .on_tryhit = dazzling_on_tryhit,
+};
+
 
 // SOUL-HEART
 void soul_heart_on_faint(u8 bank, u8 fainted_bank)
