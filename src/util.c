@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "moves/moves.h"
+#include "battle_data/pkmn_bank_stats.h"
 
 u16 rand_range(u16 min, u16 max)
 {
@@ -78,3 +79,29 @@ u8 get_base_power(u16 move_id)
 {
     return move_t[move_id].base_power;
 }
+
+s8 move_effectiveness(u8 move_type, u8 target_bank)
+{
+    extern u8 effectiveness_chart[342];
+    // -3 : 1/8x dmg
+    // -2 : 1/4x dmg
+    // -1 : 1/2x dmg
+    //  0 : 1x damage
+    // +1 : 2x dmg
+    // +2 : 4x dmg
+    // +3 : 6x dmg
+    s8 effectiveness = 0;
+    u8 i;
+    for (i = 0; i < 3; i ++) {
+        // if one of the types are immune, return 3
+        u8 target_type = p_bank[target_bank]->b_data.type[i];
+        if (MOVE_EFFECTIVENESS(target_type, move_type) == 3)
+            return 0xFF;
+        if (MOVE_EFFECTIVENESS(target_type, move_type) == 2)
+            effectiveness--;
+        if (MOVE_EFFECTIVENESS(target_type, move_type) == 1)
+            effectiveness++;
+    }
+    return effectiveness;
+}
+
