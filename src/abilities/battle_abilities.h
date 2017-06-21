@@ -34,7 +34,7 @@ struct b_ability {
     AbilitySwitchInCallback on_switch;
     AbilityModMoveCallback on_modify_move;  
     AbilityTryHitCallback on_tryhit;
-    AbilityOnDamageCallback on_damage;
+    AbilityOnDamageCallback on_damage; // right before damage is applied. Can modify dmg
     AbilityAfterDamageCallback on_after_damage;
     AbilitySetStatusCallback on_set_status;
     AbilityModifySecondaryCallback on_mod_secondary;

@@ -48,6 +48,8 @@
  * General Pbank macros
  */
 #define FOE_BANK(bank) bank ? 0 : 2
+
+#define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[(target_type * 18) + dmg_type]
  
  
  

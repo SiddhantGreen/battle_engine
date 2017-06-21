@@ -8,6 +8,7 @@
 extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
+extern s8 move_effectiveness(u8 move_type, u8 target_bank);
 
 struct b_ability empty = {
 };
@@ -918,9 +919,31 @@ struct b_ability b_synchronize = {
 // FULL METAL
 
 // SHADOW SHIELD
+u16 shadow_shield_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if(bank == tbank)
+        return;
+    if (CURRENT_HP(bank) == TOTAL_HP(bank))
+        return dmg / 2;
+    return dmg;
+}
+
+struct b_ability b_shadow_shield = {
+    .on_damage = prism_armor_on_damage,
+};
 
 // PRISM ARMOR
+u16 prism_armor_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (bank == tbank)
+        return;
+    if (move_effectiveness(move_t[move].type, tbank) > 0)
+        return ((dmg * 75) / 100);
+}
 
+struct b_ability b_prism_armor = {
+    .on_damage = prism_armor_on_damage,
+};
 
 
 
