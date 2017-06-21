@@ -897,13 +897,38 @@ struct b_ability b_synchronize = {
 
 // DAZZLING
 
-// SOUL
+// SOUL-HEART
+void soul_heart_on_faint(u8 bank, u8 fainted_bank)
+{
+    if (bank != fainted_bank) {
+        stat_boost(bank, REQUEST_SPATK, 1);
+    }
+}
+
+struct b_ability b_soul_heart = {
+    .on_faint = soul_heart_on_faint,
+};
 
 // TANGLING HAIR
+void tangling_hair_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (MAKES_CONTACT(move) && (target != bank)) {
+        stat_boost(bank, REQUEST_SPD, -1);
+    }
+}
+
+struct b_ability b_tangling_hair = {
+    .on_after_damage = tangling_hair_on_after_damage,
+};
+
 
 // RECEIVER
+/* Doesn't do anything in singles, skipped for now */
+
 
 // POWER OF ALCHEMY
+/* Doesn't do anything in singles, skipped for now */
+
 
 // BEAST BOOST
 void beast_boost_on_faint(u8 bank, u8 fainted_bank)
@@ -923,6 +948,9 @@ void beast_boost_on_faint(u8 bank, u8 fainted_bank)
     stat_boost(bank, high_stat, 1);
 }
 
+struct b_ability b_beast_boost = {
+    .on_faint = beast_boost_on_faint,
+};
 
 // RKS SYSTEM
 struct b_ability b_RKS_system = {
