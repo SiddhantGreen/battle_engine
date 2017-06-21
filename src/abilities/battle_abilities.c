@@ -888,14 +888,42 @@ struct b_ability b_synchronize = {
 // QUEENLY MAJESTY
 
 // INNARDS OUT
+void innards_out_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank != target) && (!B_CURRENT_HP(target))) {
+        battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = dmg;
+    }
+}
+
+struct b_ability b_innards_out = {
+    .on_after_damage = innards_out_after_damage,
+};
+
 
 // DANCER
+/* TODO : This is actually a special case of running an arbitrary move outside of a given Pokemon's turn. It ought to be enqueued and run after the current move */
+
 
 // BATTERY
+u16 battery_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (bank == tbank)
+        return dmg;
+    if (IS_MOVE_SPECIAL(move))
+        return ((dmg * 130) / 100);
+    return dmg;
+}
+
+struct b_ability b_battery = {
+    .on_damage = battery_on_damage,
+};
+
 
 // FLUFFY
 u16 fluffy_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
 {
+    if (bank == tbank)
+        return dmg;
     /* 50% more damage from fire moves */
     if ((battle_master->b_moves[B_MOVE_BANK(bank)].type[0] == MTYPE_FIRE) ||
         (battle_master->b_moves[B_MOVE_BANK(bank)].type[1] == MTYPE_FIRE)) {

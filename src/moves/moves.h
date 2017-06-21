@@ -16,6 +16,9 @@
 #define MAKES_CONTACT(move) ((*(move_t[move].m_flags)) & (1 << 3))
 #define MOVE_TYPE(move) move_t[move].type
 #define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
+#define IS_MOVE_PHYSICAL(move) (move_t[move].category == MOVE_PHYSICAL)
+#define IS_MOVE_SPECIAL(move) (move_t[move].category == MOVE_SPECIAL)
+#define IS_DANCE(move) (((move_t[move].m_flags)) & (1 << 21))
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
@@ -37,7 +40,8 @@
 #define FLAG_TARGET (1 << 18)
 #define FLAG_HITS_ALL (1 << 19)
 #define FLAG_TRIAGE_AFFECTED (1 << 20)
-#define FLAGS_UNUSED (1 << 21)
+#define FLAG_DANCER (1 << 21)
+#define FLAGS_UNUSED (1 << 22)
 
 // Move failed check
 typedef u8 (*TryHitCallback)(u8);
