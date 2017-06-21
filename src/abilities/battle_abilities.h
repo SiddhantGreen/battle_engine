@@ -17,6 +17,8 @@ typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u8, u16, u8, u16); // bank
 typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
 typedef void (*AbilityUpdateCallback)(u8);
 typedef void (*AbilitySetStatusCallback)(u8, s8, enum Effect); //bank, atkbank, Effect
+typedef void (*AbilityOnFaint)(u8, u8); //bank, fainted
+
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
 
@@ -41,6 +43,7 @@ struct b_ability {
     AbilityAfterMoveSecondaryCallback on_after_move_secondary;
     AbilityResidualCallback on_residual;
     AbilityUpdateCallback on_update;
+    AbilityOnFaint on_faint;
     
     AbilityOnDraggedOutCallback on_dragout;
 };

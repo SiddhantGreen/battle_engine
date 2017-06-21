@@ -9,6 +9,7 @@ extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_strin
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern s8 move_effectiveness(u8 move_type, u8 target_bank);
+extern void stat_boost(u8 bank, u8 high_stat, u8 amount);
 
 struct b_ability empty = {
 };
@@ -905,8 +906,28 @@ struct b_ability b_synchronize = {
 // POWER OF ALCHEMY
 
 // BEAST BOOST
+void beast_boost_on_faint(u8 bank, u8 fainted_bank)
+{
+    if (bank ==  fainted_bank)
+        return;
+    u8 i;
+    u16 current_highest = 0;
+    u16 high_stat = REQUEST_ATK;
+    for (i = REQUEST_ATK; i < REQUEST_ATK + 4; i++) {
+        u8 this_stat = pokemon_getattr(p_bank[bank]->this_pkmn, i, NULL);
+        if (this_stat > current_highest) {
+            high_stat = i;
+            current_highest = this_stat;
+        }
+    }
+    stat_boost(bank, high_stat, 1);
+}
+
 
 // RKS SYSTEM
+struct b_ability b_RKS_system = {
+    // the type change should be handled in the overworld
+};
 
 // ELECTRIC SURGE
 void electric_surge_on_switch(u8 bank)
