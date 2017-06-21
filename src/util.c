@@ -105,3 +105,73 @@ s8 move_effectiveness(u8 move_type, u8 target_bank)
     return effectiveness;
 }
 
+void stat_boost(u8 bank, u8 stat_id, s8 amount)
+{
+    extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
+    switch (stat_id) {
+        case REQUEST_ATK:
+            {
+            p_bank[bank]->b_data.attack += amount;
+            break;
+            }
+        case REQUEST_DEF:
+            {
+            p_bank[bank]->b_data.defense += amount;
+            break;
+            }
+        case REQUEST_SPD:
+            {
+            p_bank[bank]->b_data.speed += amount;
+            break;
+            }
+        case REQUEST_SPATK:
+            {
+            p_bank[bank]->b_data.sp_atk += amount;
+            break;
+            }
+        case REQUEST_SPDEF:
+            {
+            p_bank[bank]->b_data.sp_def += amount;
+            break;
+            }
+        case 51: // evasion
+            {
+            p_bank[bank]->b_data.evasion += amount;
+            break;
+            }
+        case 52: // accuracy
+            {
+            p_bank[bank]->b_data.accuracy += amount;
+            break;
+            }
+        case 53: // crit
+            {
+            p_bank[bank]->b_data.crit_mod += amount;
+            break;
+            }
+    };
+
+    amount += 6;
+    switch (amount) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id);
+            break;
+        case 5:
+            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_DROP, stat_id);
+            break;
+        case 6:
+            break;
+        case 7:
+            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_RISE, stat_id);
+            break;
+        default:
+            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id);
+            break;
+    };
+    
+}
+

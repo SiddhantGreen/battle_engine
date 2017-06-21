@@ -33,7 +33,12 @@ enum battle_string_ids {
     STRING_CONFUSION_ENDED = 49,
     STRING_DRAGGED_OUT_FAILED = 51,
     STRING_INTIMIDATE = 53,
+    STRING_STAT_MOD_HARSH_DROP = 55,
+    STRING_STAT_MOD_DROP = 57,
+    STRING_STAT_MOD_HARSH_RISE = 59,
+    STRING_STAT_MOD_RISE = 61,
 };
+
 
 static const pchar str_atk_used_p[] = _("{ATTACKING_MON} used\n{ATTACK_NAME}!");
 static const pchar str_atk_used_o[] = _("Foe {ATTACKING_MON} used\n{ATTACK_NAME}!");
@@ -90,8 +95,27 @@ static const pchar str_dragout_failed_p[] = _("{ATTACKING_MON} couldn’t be\ndr
 static const pchar str_dragout_failed_o[] = _("Foe {ATTACKING_MON} couldn’t be\ndragged out of battle!");
 static const pchar str_intimidate_p[] = _("{ATTACKING_MON} is immune\nto Intimidate.");
 static const pchar str_intimidate_o[] = _("Foe {ATTACKING_MON} is immune\nto Intimidate.");
+static const pchar str_stat_mod_harsh_drop_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\ndropped harshly!");
+static const pchar str_stat_mod_harsh_drop_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\ndropped harshly!");
+static const pchar str_stat_mod_drop_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\ndropped!");
+static const pchar str_stat_mod_drop_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\ndropped!");
+static const pchar str_stat_mod_harsh_rise_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nharshly rose!");
+static const pchar str_stat_mod_harsh_rise_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\nharshly rose!");
+static const pchar str_stat_mod_rise_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nrose!");
+static const pchar str_stat_mod_rise_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\nrose!");
 
-static const pchar* battle_strings[55] = {
+
+// stat names
+static const pchar str_stat_atk[] = _("attack");
+static const pchar str_stat_def[] = _("defense");
+static const pchar str_stat_spd[] = _("speed");
+static const pchar str_stat_spatk[] = _("special attack");
+static const pchar str_stat_spdef[] = _("special defense");
+static const pchar str_stat_acc[] = _("accuracy");
+static const pchar str_stat_evn[] = _("evasion");
+static const pchar str_stat_crit[] = _("critical chance");
+
+static const pchar* battle_strings[63] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -120,6 +144,10 @@ static const pchar* battle_strings[55] = {
    (pchar*)&str_confusion_end_p, (pchar*)&str_confusion_end_o,
    (pchar*)&str_dragout_failed_p, (pchar*)&str_dragout_failed_o,
    (pchar*)&str_intimidate_p, (pchar*)&str_intimidate_o,
+   (pchar*)&str_stat_mod_harsh_drop_p, (pchar*)&str_stat_mod_harsh_drop_o,
+   (pchar*)&str_stat_mod_drop_p, (pchar*)&str_stat_mod_drop_o,
+   (pchar*)&str_stat_mod_harsh_rise_p, (pchar*)&str_stat_mod_harsh_rise_o,
+   (pchar*)&str_stat_mod_rise_p, (pchar*)&str_stat_mod_rise_o,
 };
 
 
