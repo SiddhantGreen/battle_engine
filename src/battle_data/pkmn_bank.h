@@ -38,6 +38,7 @@ enum VolatileStatus {
     VOLATILE_SUBSTITUTE = (1 << 2),
     VOLATILE_STAT_REDUC_IMMUNE = (1 << 3),
     VOLATILE_TRAPPED = (1 << 4),
+    VOLATILE_AROMA_VEIL = (1 << 5),
 };
 
 struct local_battler_data {

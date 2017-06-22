@@ -814,12 +814,54 @@ struct b_ability b_adaptability = {
 // TURBOBLAZE
 
 // TERAVOLT
+void refrigerate_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    
+}
 
 // AROMA VEIL
+void aroma_veil_on_switch(u8 bank)
+{
+    ADD_VOLATILE(bank, VOLATILE_AROMA_VEIL);
+    return;
+}
+
+struct b_ability b_aroma_veil = {
+    .on_switch = aroma_veil_on_switch,
+};
+
 
 // FLOWER VEIL
+bool flower_veil_on_boost(u8 bank, s8 amount)
+{
+    if ((amount < 0) && ((B_PKMN_TYPE(bank, 0) == TYPE_GRASS) || (B_PKMN_TYPE(bank, 1) == TYPE_GRASS))) {
+        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
+        return false;
+    }
+    return true;
+}
+
+bool flower_veil_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
+{
+    if (bank == source)
+        return false;
+    if (settable) {
+       p_bank[bank]->b_data.status = AILMENT_NONE;
+       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
+       return true;
+    }
+    return false;
+}
+
+struct b_ability b_flower_veil = {
+    .on_boost = flower_veil_on_boost,
+    .on_set_status = flower_veil_on_set_status,
+};
+
 
 // CHEEK POUCH
+/* TODO item mechanics aren't completed yet */
+
 
 // PROTEAN
 u8 protean_on_tryhit(u8 bank, u8 t_bank, u16 move)

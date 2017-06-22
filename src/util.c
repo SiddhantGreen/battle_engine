@@ -111,6 +111,10 @@ s8 move_effectiveness(u8 move_type, u8 target_bank)
 void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
     extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
+    if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
+        if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount))
+            return;
+    }        
     switch (stat_id) {
         case REQUEST_ATK:
             {
