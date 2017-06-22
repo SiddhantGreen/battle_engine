@@ -19,6 +19,7 @@ enum Effect
     EFFECT_BAD_POISON,
     EFFECT_CONFUSION,
     EFFECT_TOXIC_SPIKES,
+    EFFECT_SANDSTORM,
 };
 
 struct battle_selection_cursor {

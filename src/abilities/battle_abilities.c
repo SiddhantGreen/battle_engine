@@ -804,20 +804,88 @@ struct b_ability b_adaptability = {
 // PRANKSTER
 
 // SAND FORCE
+void sand_force_on_base_power(u8 bank, u16 move)
+{
+    if (B_MOVE_HAS_TYPE(bank, MTYPE_ROCK) || B_MOVE_HAS_TYPE(bank, MTYPE_STEEL) || 
+        B_MOVE_HAS_TYPE(bank, MTYPE_GROUND)) {
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 130);
+    }
+}
+
+bool sand_force_on_immunity(u8 bank, enum Effect effect)
+{
+    if (effect == EFFECT_SANDSTORM)
+        return true;
+    return false;
+}
+
+struct b_ability b_sand_force = {
+    .on_base_power = sand_force_on_base_power,
+    .on_immunity = sand_force_on_immunity,
+};
+
 
 // IRON BARBS
+void iron_barbs_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank != target) && (MAKES_CONTACT(move, target))) {
+        battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = TOTAL_HP(target) / 8;
+    }
+}
+
+struct b_ability b_iron_barbs = {
+    .on_after_damage = iron_barbs_after_damage,
+};
+
 
 // ZEN MODE
+/* TODO : Pseudo forms will be implemented later */
+
 
 // VICTORY STAR
+void victor_star_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    B_MOVE_ACCURACY(bank) = NUM_MOD(B_MOVE_ACCURACY(bank), 110);
+}
+
+struct b_ability b_victory_star = {
+    .on_modify_move = victor_star_on_modify_move,
+};
+
 
 // TURBOBLAZE
+void turboblaze_on_switch(u8 bank)
+{
+    ADD_VOLATILE(bank, VOLATILE_MOLDBREAKER);
+}
+
+void turboblaze_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    B_MOVE_IGNORING_ABILITIES(bank) = 1;
+}
+
+struct b_ability b_turboblaze = {
+    .on_switch = turboblaze_on_switch,
+    .on_modify_move = turboblaze_on_modify_move,
+};
+
 
 // TERAVOLT
-void refrigerate_on_modify_move(u8 bank, u8 tbank, u16 move)
+void teravolt_on_switch(u8 bank)
 {
-    
+    ADD_VOLATILE(bank, VOLATILE_MOLDBREAKER);
 }
+
+void teravolt_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    B_MOVE_IGNORING_ABILITIES(bank) = 1;
+}
+
+struct b_ability b_teravolt = {
+    .on_switch = teravolt_on_switch,
+    .on_modify_move = teravolt_on_modify_move,
+};
+
 
 // AROMA VEIL
 void aroma_veil_on_switch(u8 bank)

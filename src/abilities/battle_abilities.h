@@ -23,6 +23,7 @@ typedef void (*AbilityOnFaintCallback)(u8, u8); //bank, fainted
 typedef void (*AbilityOnTryHealCallback)(u8, u8); //bank, healing bank
 typedef void (*AbilityAfterBoostCallback)(u8, s8); //bank, amount boosted
 typedef bool (*AbilityOnBoostCallback)(u8, s8); //bank, amount boosted
+typedef bool (*AbilityOnImmunityCallback)(u8, enum Effect); //bank, effect
 
 
 
@@ -59,6 +60,7 @@ struct b_ability {
     AbilityOnDraggedOutCallback on_dragout;
     AbilityAfterBoostCallback on_after_boost;
     AbilityOnBoostCallback on_boost;
+    AbilityOnImmunityCallback on_immunity;
 };
 
 #define ABILITIES_MAX 5

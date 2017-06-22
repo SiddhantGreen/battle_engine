@@ -277,3 +277,8 @@ void set_status(u8 bank, u8 source, enum Effect status)
         build_message(GAME_STATE, 0, bank, STRING_AILMENT_IMMUNE, status);
     }
 }
+
+
+
+
+
