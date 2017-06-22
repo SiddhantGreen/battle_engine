@@ -160,16 +160,25 @@ struct b_ability b_limber = {
 
 
 // Sand Veil
-/* Sand Veil's immune clause to sandstorm to be handled in standstorm's residual damage*/
 u16 sand_veil_on_evasion(u8 bank, u16 stat) {
     if (battle_master->field_state.is_sandstorm)
         return ((stat * 25) / 100);
     return stat;
 }
 
+bool sand_veil_on_immunity(u8 bank, enum Effect effect)
+{
+    if (effect == EFFECT_SANDSTORM)
+        return true;
+    return false;
+}
+
 struct b_ability b_sand_veil = {
     .on_evasion = sand_veil_on_evasion,
+    .on_immunity = sand_veil_on_immunity,
 };
+
+
 
 
 // Static
@@ -775,17 +784,79 @@ struct b_ability b_adaptability = {
 
 // REGENERATOR
 
+
+
 // BIG PECKS
+bool big_pecks_on_boost(u8 bank, s8 boost_amount, u8 stat)
+{
+    if (boost_amount > 0)
+        return true;
+    if (stat == REQUEST_DEF)
+        return false;
+    return true;
+}
+
+struct b_ability b_big_pecks = {
+    .on_boost = big_pecks_on_boost,
+};
+
 
 // SAND RUSH
+u16 sand_rush_on_speed(u8 bank, u16 speed)
+{
+    if (battle_master->field_state.is_sandstorm) {
+        return speed * 2;
+    }
+    return speed;
+}
+
+bool sand_rush_on_immunity(u8 bank, enum Effect effect)
+{
+    if (effect == EFFECT_SANDSTORM)
+        return true;
+    return false;
+}
+
+struct b_ability b_sand_rush = {
+    .on_speed = sand_rush_on_speed,
+    .on_immunity = sand_rush_on_immunity,
+};
+
 
 // WONDER SKIN
+u16 wonder_skin_on_accuracy(u8 bank, u16 stat)
+{
+    if (BANK_ABILITY(FOE_BANK(bank)) == ABILITY_WONDER_SKIN) {
+        if (B_MOVE_IS_STATUS(FOE_BANK(bank)))
+            return NUM_MOD(B_MOVE_ACCURACY(FOE_BANK(bank)), 50);
+    }
+    return stat;
+}
+
+struct b_ability b_wonder_skin = {
+    .on_accuracy = wonder_skin_on_accuracy
+};
+
 
 // ANALYTIC
+void analytic_on_base_power(u8 bank, u16 move)
+{
+    if (bank == battle_master->second_bank)
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 130);
+}
+
+struct b_ability b_analytic = {
+    .on_base_power = analytic_on_base_power,
+};
+
 
 // ILLUSION
+/* TODO : think of how this one would work - probably copy transform */
+
 
 // IMPOSTER
+/* TODO : think of how this one would work - probably copy transform */
+
 
 // INFILTRATOR
 void infiltrator_on_modify_move(u8 bank, u8 tbank, u16 move)
@@ -988,7 +1059,7 @@ struct b_ability b_aroma_veil = {
 
 
 // FLOWER VEIL
-bool flower_veil_on_boost(u8 bank, s8 amount)
+bool flower_veil_on_boost(u8 bank, s8 amount, u8 stat)
 {
     if ((amount < 0) && ((B_PKMN_TYPE(bank, 0) == TYPE_GRASS) || (B_PKMN_TYPE(bank, 1) == TYPE_GRASS))) {
         build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
