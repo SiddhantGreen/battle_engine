@@ -9,7 +9,7 @@
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
 typedef void (*BasePowerCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
-typedef void (*AbilityModMoveCallback)(u8, u16); // bank, move
+typedef void (*AbilityModMoveCallback)(u8, u8, u16); // bank, tbank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
 typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, tbank, move
@@ -39,7 +39,7 @@ struct b_ability {
     StatCallback on_accuracy;
     StatCallback on_evasion;
     StatCallback on_critchance;
-    BasePowerCallback on_basepower;
+    BasePowerCallback on_base_power;
     
     AbilitySwitchInCallback on_switch;
     AbilityModMoveCallback on_modify_move;  

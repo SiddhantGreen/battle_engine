@@ -17,7 +17,7 @@ struct b_ability empty = {
 
 
 // Stench
-void stench_modify_move(u8 bank, u16 move)
+void stench_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     if (M_FLINCH(move)) {
         return;
@@ -27,7 +27,7 @@ void stench_modify_move(u8 bank, u16 move)
 }
 
 struct b_ability b_stench = {
-    .on_modify_move = stench_modify_move,
+    .on_modify_move = stench_on_modify_move,
 };
 
 
@@ -65,9 +65,10 @@ struct b_ability b_speed_boost = {
 
 
 // Battle Armor
-u16 battle_armor_on_critchance(u8 bank, u16 move)
+u16 battle_armor_on_critchance(u8 bank, u16 amount)
 {
-    return 0;
+    if (BANK_ABILITY(TARGET_OF(bank)) == ABILITY_BATTLE_ARMOR)
+        return 0;
 }
 
 struct b_ability b_battle_armor = {
@@ -131,7 +132,6 @@ struct b_ability b_damp = {
 
 
 // Limber
-
 void limber_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_PARALYZE) {
@@ -658,6 +658,15 @@ struct b_ability b_synchronize = {
 // POISON HEAL
 
 // ADAPTABILITY
+void adaptability_on_modify_move(u8 bank, u8 t_bank, u16 move)
+{
+   battle_master->b_moves[B_MOVE_BANK(bank)].stab = 200;
+}
+
+struct b_ability b_adaptability = {
+    .on_modify_move = adaptability_on_modify_move,
+};
+
 
 // SKILL LINK
 
@@ -868,12 +877,79 @@ struct b_ability b_synchronize = {
 // WATER COMPACTION
 
 // MERCILESS
+u16 merciless_on_critchance(u8 bank, u16 amount)
+{
+    if ((p_bank[TARGET_OF(bank)]->b_data.status == AILMENT_BAD_POISON) ||
+        (p_bank[TARGET_OF(bank)]->b_data.status == AILMENT_POISON)) {
+        return 10000;
+    }
+    return amount;
+}
+
+struct b_ability b_merciless = {
+    .on_critchance = merciless_on_critchance,
+};
+
 
 // SHIELDS DOWN
+/* TODO : In battle pseudo forms are something planned for later */
+
 
 // STAKEOUT
+u16 stakeout_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (bank == tbank)
+        return dmg;
+    if (p_bank[tbank]->b_data.first_turn)
+        return dmg * 2;
+    return dmg;
+}
+
+struct b_ability b_stakeout = {
+    .on_damage = stakeout_on_damage,
+};
+
 
 // WATER BUBBLE
+void water_bubble_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    if (tbank == bank)
+        return;
+    // if the foe is going to use a fire type move, reduce it's power
+    if ((B_MOVE_TYPE(FOE_BANK(bank), 0) == MTYPE_FIRE) || (B_MOVE_TYPE(FOE_BANK(bank), 1) == MTYPE_FIRE))
+        B_MOVE_POWER(FOE_BANK(bank)) = NUM_MOD(B_MOVE_POWER(FOE_BANK(bank)), 50);
+
+    // if user's using a water type move, increase power
+    if ((B_MOVE_TYPE(bank, 0) == MTYPE_WATER) || (B_MOVE_TYPE(bank, 1) == MTYPE_WATER))
+        B_MOVE_POWER(bank) *= 2;
+}
+
+bool water_bubble_on_set_status(u8 bank, u8 atkbank, enum Effect effect, bool settable)
+{
+    if (bank == atkbank)
+        return false;
+    if (effect == EFFECT_BURN) {
+        p_bank[bank]->b_data.status = AILMENT_NONE;
+        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_BUBBLE);
+        return true;
+    }
+    return false;
+}
+
+void water_bubble_on_update(u8 bank)
+{
+    if (B_STATUS(bank) == AILMENT_BURN) {
+       p_bank[bank]->b_data.status = AILMENT_NONE;
+       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+    }
+}
+
+struct b_ability b_water_bubble = {
+    .on_modify_move = water_bubble_on_modify_move,
+    .on_set_status = water_bubble_on_set_status,
+    .on_update = water_bubble_on_update,
+};
+
 
 // STEELWORKER
 void steelworker_on_base_power(u8 bank, u16 move)
@@ -903,7 +979,7 @@ struct b_ability b_berserk = {
 
 
 // SLUSH RUSH
-void slush_rush_on_speed(u8 bank, u16 amount)
+u16 slush_rush_on_speed(u8 bank, u16 amount)
 {
     if (battle_master->field_state.is_hail)
         return amount * 2;
@@ -916,7 +992,7 @@ struct b_ability b_slush_rush = {
 
 
 // LONG REACH
-void long_reach_on_modify_move(u8 bank, u16 move)
+void long_reach_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     B_MOVE_REMOVE_CONTACT(bank) = 1;
     return;
@@ -928,7 +1004,7 @@ struct b_ability b_long_reach = {
 
 
 // LIQUID VOICE
-void liquid_voice_on_modify_move(u8 bank, u16 move)
+void liquid_voice_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     if (IS_SOUND_BASE(move)) {
         B_MOVE_TYPE(bank, 0) = MTYPE_WATER;
@@ -955,7 +1031,7 @@ struct b_ability b_triage = {
 
 
 // GALVANIZE
-void galvanize_on_modify_move(u8 bank, u16 move)
+void galvanize_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     u8 i;
     for (i = 0; i < 2; i ++) {
@@ -1275,15 +1351,3 @@ struct b_ability* abilities_table[11] = {
     
 };
 
-
-
-
-// Adaptability
-void adaptability_modify_move(u8 bank, u16 move)
-{
-   battle_master->b_moves[B_MOVE_BANK(bank)].stab = 200;
-}
-
-struct b_ability b_adaptability = {
-    .on_modify_move = adaptability_modify_move,
-};
