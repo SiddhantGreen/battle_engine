@@ -858,10 +858,65 @@ struct b_ability b_adaptability = {
 // PARENTAL BOND
 
 // DARK AURA
+void dark_aura_on_switch(u8 bank)
+{
+    if (battle_master->field_state.aura_break)
+        return;
+    battle_master->field_state.dark_aura = 1;
+}
+
+void dark_aura_on_base_power(u8 bank, u16 move)
+{
+    if (!((B_MOVE_TYPE(bank, 0) == MTYPE_DARK) || (B_MOVE_TYPE(bank, 1) == MTYPE_DARK)))
+        return;
+    if (battle_master->field_state.aura_break) {
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 75);
+    } else if (battle_master->field_state.dark_aura) {
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133); 
+    }
+}
+
+struct b_ability b_dark_aura = {
+    .on_switch = dark_aura_on_switch,
+    .on_base_power = dark_aura_on_base_power,
+};
+
 
 // FAIRY AURA
+void fairy_aura_on_switch(u8 bank)
+{
+    if (battle_master->field_state.aura_break)
+        return;
+    battle_master->field_state.fairy_aura = 1;
+}
+
+void fairy_aura_on_base_power(u8 bank, u16 move)
+{
+    if (!((B_MOVE_TYPE(bank, 0) == MTYPE_FAIRY) || (B_MOVE_TYPE(bank, 1) == MTYPE_FAIRY)))
+        return;
+    if (battle_master->field_state.aura_break) {
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 75);
+    } else if (battle_master->field_state.fairy_aura) {
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133); 
+    }
+}
+
+struct b_ability b_fairy_aura = {
+    .on_switch = fairy_aura_on_switch,
+    .on_base_power = fairy_aura_on_base_power,
+};
+
 
 // AURA BREAK
+void aura_break_on_switch(u8 bank)
+{
+    battle_master->field_state.aura_break = 1;
+}
+
+struct b_ability b_aura_break = {
+    .on_switch = aura_break_on_switch,
+};
+
 
 // PRIMORDIAL SEA
 void primordial_sea_on_switch(u8 bank)

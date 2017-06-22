@@ -55,6 +55,9 @@ struct battle_field_state {
     u32 grassy_terrain : 1;
     u32 misty_terrain : 1;
     u32 psychic_terrain : 1;
+    u32 aura_break : 1;
+    u32 fairy_aura : 1;
+    u32 dark_aura : 1;
     u32 quick_guard : 2; // side
     u8 aurora_veil_turns[2];
     u8 tailwind_turns[2];
