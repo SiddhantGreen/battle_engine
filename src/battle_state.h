@@ -19,6 +19,7 @@ enum Effect
     EFFECT_BAD_POISON,
     EFFECT_CONFUSION,
     EFFECT_TOXIC_SPIKES,
+    EFFECT_SANDSTORM,
 };
 
 struct battle_selection_cursor {
@@ -82,6 +83,8 @@ struct move_used {
     u8 remove_contact : 1;
     u8 copied : 1;
     u8 ignore_abilities : 1;
+    u8 prankstered : 1;
+    u8 infiltrates : 1;
     
     u8 chance_self;
     u8 chance_target;

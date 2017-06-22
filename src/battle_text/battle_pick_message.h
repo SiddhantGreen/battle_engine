@@ -44,6 +44,7 @@ enum battle_string_ids {
     STRING_DESOLATE_LAND = 70,
     STRING_PRIMORDIAL_SEA = 71,
     STRING_PROTEAN = 72,
+    STRING_ABILITY_CHANGE = 74,
 };
 
 
@@ -121,6 +122,8 @@ static const pchar str_desolate_land[] = _("The sunlight turned\nextremely harsh
 static const pchar str_primordial_sea[] = _("A heavy rain began to fall!");
 static const pchar str_protean_p[] = _("{ATTACKING_MON}’s Protean changed\nit’s type!");
 static const pchar str_protean_o[] = _("Foe {ATTACKING_MON}’s Protean changed\nit’s type!");
+static const pchar str_ability_change_p[] = _("{DEFENDING_MON}’s Mummy changed\n{ATTACKING_MON}’s ability to Mummy!");
+static const pchar str_ability_change_o[] = _("Foe {DEFENDING_MON}’s Mummy changed\n{ATTACKING_MON}’s ability to Mummy!");
 
 
 // stat names
@@ -143,7 +146,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[74] = {
+static const pchar* battle_strings[76] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -182,6 +185,7 @@ static const pchar* battle_strings[74] = {
    (pchar*)&str_delta_stream, (pchar*)&str_desolate_land,
    (pchar*)&str_primordial_sea,
    (pchar*)&str_protean_p, (pchar*)&str_protean_o,
+   (pchar*)&str_ability_change_p, (pchar*)&str_ability_change_o,
 };
 
 

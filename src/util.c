@@ -112,7 +112,7 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
     extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
     if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
-        if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount))
+        if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
             return;
     }        
     switch (stat_id) {
@@ -278,8 +278,10 @@ void set_status(u8 bank, u8 source, enum Effect status)
     }
 }
 
+
 //TODO: IMPLEMENT
 void set_ability(u8 bank, u8 source, u8 new_ability)
 {
 
 }
+

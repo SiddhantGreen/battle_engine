@@ -8,7 +8,7 @@
 
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
 typedef void (*BasePowerCallback)(u8, u16); // bank, move
-typedef void (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
+typedef s8 (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u8, u16); // bank, tbank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
@@ -22,7 +22,8 @@ typedef bool (*AbilitySetStatusCallback)(u8, u8, enum Effect, bool); //bank, atk
 typedef void (*AbilityOnFaintCallback)(u8, u8); //bank, fainted
 typedef void (*AbilityOnTryHealCallback)(u8, u8); //bank, healing bank
 typedef void (*AbilityAfterBoostCallback)(u8, s8); //bank, amount boosted
-typedef bool (*AbilityOnBoostCallback)(u8, s8); //bank, amount boosted
+typedef bool (*AbilityOnBoostCallback)(u8, s8, u8); //bank, amount boosted, boosting stat
+typedef bool (*AbilityOnImmunityCallback)(u8, enum Effect); //bank, effect
 
 
 
@@ -59,6 +60,7 @@ struct b_ability {
     AbilityOnDraggedOutCallback on_dragout;
     AbilityAfterBoostCallback on_after_boost;
     AbilityOnBoostCallback on_boost;
+    AbilityOnImmunityCallback on_immunity;
 };
 
 #define ABILITIES_MAX 5
