@@ -9,7 +9,7 @@ extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_strin
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern s8 move_effectiveness(u8 move_type, u8 target_bank);
-extern void stat_boost(u8 bank, u8 high_stat, u8 amount);
+extern void stat_boost(u8 bank, u8 high_stat, s8 amount);
 extern void set_status(u8 bank, u8 source, enum Effect status);
 
 struct b_ability empty = {
@@ -850,12 +850,55 @@ struct b_ability b_adaptability = {
 // TOUGH CLAWS
 
 // PIXILATE
+void pixilate_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    u8 i;
+    for (i = 0; i < 2; i ++) {
+        if ((B_MOVE_TYPE(bank, i) == MTYPE_FAIRY)) {
+            B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 120);
+            return;
+        }
+    }
+}
+
+struct b_ability b_pixilate = {
+    .on_modify_move = pixilate_on_modify_move,
+};
+
 
 // GOOEY
+void gooey_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank == TARGET_OF(target)) && (BANK_ABILITY(bank) == ABILITY_GOOEY))
+        stat_boost(target, REQUEST_SPD, -1);
+}
+
+struct b_ability b_gooey = {
+    .on_after_damage = gooey_after_damage,
+};
+
 
 // AERILATE
+void aerilate_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    u8 i;
+    for (i = 0; i < 2; i ++) {
+        if ((B_MOVE_TYPE(bank, i) == MTYPE_NORMAL)) {
+            B_MOVE_TYPE(bank, i) = MTYPE_FLYING;
+            B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 120);
+            return;
+        }
+    }
+}
+
+struct b_ability b_aerilate = {
+    .on_modify_move = aerilate_on_modify_move,
+};
+
 
 // PARENTAL BOND
+/* TODO Almost same issue as dancer */
+
 
 // DARK AURA
 void dark_aura_on_switch(u8 bank)
