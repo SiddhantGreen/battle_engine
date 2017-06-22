@@ -10,8 +10,15 @@ typedef void (*ResidualEffectCallback)(u8);
 
 enum Effect
 {
-    NONE,
-    TOXIC_SPIKES
+    EFFECT_NONE,
+    EFFECT_PARALYZE,
+    EFFECT_SLEEP,
+    EFFECT_BURN,
+    EFFECT_FREEZE,
+    EFFECT_POISON,
+    EFFECT_BAD_POISON,
+    EFFECT_CONFUSION,
+    EFFECT_TOXIC_SPIKES,
 };
 
 struct battle_selection_cursor {
@@ -47,13 +54,11 @@ struct battle_field_state {
     u32 grassy_terrain : 1;
     u32 misty_terrain : 1;
     u32 psychic_terrain : 1;
-    u32 aurora_veil : 2; // side
-    u32 lightscreen : 2;
-    u32 reflect : 2;
     u32 quick_guard : 2; // side
     u8 aurora_veil_turns[2];
     u8 tailwind_turns[2];
     u8 reflect_turns[2];
+    u8 safe_guard_turns[2];
     u8 lightscreen_turns[2];
     u8 weather_turns;
     

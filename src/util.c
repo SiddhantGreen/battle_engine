@@ -1,7 +1,9 @@
 #include <pokeagb/pokeagb.h>
 #include "moves/moves.h"
 #include "battle_data/pkmn_bank_stats.h"
+#include "abilities/battle_abilities.h"
 
+extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
 u16 rand_range(u16 min, u16 max)
 {
     return (rand() / (0xFFFF / (max - min))) + min;
@@ -23,7 +25,6 @@ u8 get_side(u8 bank)
     return (bank > 1) ? 1 : 0;
 }
 
-
 u8 get_opponent_side(u8 bank)
 {
     return ((!(get_side(bank))) * 2);
@@ -33,11 +34,6 @@ u8 get_ability(struct Pokemon* p)
 {
     u8 ability_bit = pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL);
     return pokemon_base_stats[pokemon_getattr(p, REQUEST_SPECIES, NULL)].ability[ability_bit];
-}
-
-u8 get_ability_bank(u8 bank)
-{
-    return p_bank[bank]->b_data.ability;
 }
 
 bool ignoring_item(struct Pokemon* p)
@@ -75,9 +71,16 @@ bool b_pkmn_has_type(u8 bank, enum PokemonType type)
     return false;
 }
 
-u8 get_base_power(u16 move_id)
+
+bool on_ground(u8 bank)
 {
-    return move_t[move_id].base_power;
+    if (b_pkmn_has_type(bank, TYPE_FLYING) ||
+       (p_bank[bank]->b_data.ability == ABILITY_LEVITATE)) {
+        if(p_bank[bank]->b_data.is_grounded)
+            return true;
+        return false;
+    }
+    return true;
 }
 
 s8 move_effectiveness(u8 move_type, u8 target_bank)
@@ -175,3 +178,99 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
     
 }
 
+void set_status(u8 bank, u8 source, enum Effect status)
+{
+    bool status_applied = false;
+    // lowest priority for override are types and current status
+    switch (status) {
+        case EFFECT_NONE:
+            // clear all ailments. Cured
+            p_bank[bank]->b_data.status = EFFECT_NONE;
+            p_bank[bank]->b_data.status_turns = 0;
+            p_bank[bank]->b_data.confusion_turns = 0;
+            build_message(GAME_STATE, 0, bank, STRING_AILMENT_CURED, 0);
+            return;
+            break;
+        case EFFECT_PARALYZE:
+            // electric types are immune. Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_ELECTRIC)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_BURN:
+            // fire types are immune.  Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_FIRE)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_POISON:
+        case EFFECT_BAD_POISON:
+            // poison and steel types are immune. Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_POISON)) || (b_pkmn_has_type(bank, TYPE_STEEL)) ||
+                (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+			break;
+        case EFFECT_SLEEP:
+            // sleep isn't affected by type
+            if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_FREEZE:
+            // ice types cannot be frozen
+            if ((b_pkmn_has_type(bank, TYPE_FIRE)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+			break;
+        case EFFECT_CONFUSION:
+            // Confusion isn't affected by type
+            if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            p_bank[bank]->b_data.confusion_turns = rand_range(1, 4);
+			break;
+        default:
+            break;
+    };
+    
+    // execute per side on_set_status callbacks -  things like safeguard checks should be done here
+    /* TODO */
+    
+    // on set status callbacks Ability
+    // the ability of target being status'd exec
+    if (abilities_table[BANK_ABILITY(bank)]->on_set_status) {
+        // check if ability modified outcome of set status
+        if (abilities_table[BANK_ABILITY(bank)]->on_set_status(bank, source, status, status_applied)) {
+            // status would've been set in callback. Exit.
+            return;
+        }
+    }
+    // the ability of the attack user execution
+    if (abilities_table[BANK_ABILITY(source)]->on_set_status) {
+        // check if ability modified outcome of set status
+        if (abilities_table[BANK_ABILITY(source)]->on_set_status(source, source, status, status_applied)) {
+            // status would've been set in callback. Exit.
+            return;
+        }
+    }
+    
+    if (status_applied) {
+        p_bank[bank]->b_data.status = status;
+        build_message(GAME_STATE, 0, bank, STRING_AILMENT_APPLIED, status);
+    } else {
+        build_message(GAME_STATE, 0, bank, STRING_AILMENT_IMMUNE, status);
+    }
+}
