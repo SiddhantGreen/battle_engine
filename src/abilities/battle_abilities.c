@@ -833,14 +833,69 @@ struct b_ability b_adaptability = {
 
 // STRONG JAW
 
+
+
 // REFRIGERATE
+void refrigerate_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    u8 i;
+    for (i = 0; i < 2; i ++) {
+        if ((B_MOVE_TYPE(bank, i) == MTYPE_NORMAL)) {
+            B_MOVE_TYPE(bank, i) = MTYPE_ICE;
+            B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 120);
+            return;
+        }
+    }
+}
+
+struct b_ability b_refrigerate = {
+    .on_modify_move = refrigerate_on_modify_move,
+};
+
 
 // SWEET VEIL
+void sweet_veil_on_update(u8 bank)
+{
+    if (B_STATUS(bank) == AILMENT_SLEEP) {
+       p_bank[bank]->b_data.status = AILMENT_NONE;
+       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+    }
+}
+
+bool sweet_veil_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
+{
+    if (bank == source)
+        return false;
+    if ((effect == EFFECT_SLEEP) && (settable)) {
+       p_bank[bank]->b_data.status = AILMENT_NONE;
+       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_SWEET_VEIL);
+       return true;
+    }
+    return false;
+}
+
+struct b_ability b_sweet_veil = {
+    .on_update = sweet_veil_on_update,
+    .on_set_status = sweet_veil_on_set_status,
+};
+
 
 // STANCE CHANGE
+/* TODO : Pseudo form changes to be implemented later */
+
 
 // GALE WINGS
+void gale_wings_on_priority_mod(u8 bank, u16 move)
+{
+    if ((B_MOVE_TYPE(bank, 1) == MTYPE_FLYING) || (B_MOVE_TYPE(bank, 1) == MTYPE_FLYING)) {
+        if (B_CURRENT_HP(bank) == TOTAL_HP(bank))
+            B_MOVE_PRIORITY(bank)++;
+    }
+}
 
+struct b_ability b_gale_wings = {
+    .on_priority_mod = gale_wings_on_priority_mod,
+};
 
 
 // MEGA LAUNCHER
