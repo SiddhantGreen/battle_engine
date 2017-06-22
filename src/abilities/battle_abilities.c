@@ -539,8 +539,34 @@ struct b_ability b_synchronize = {
 // NATURAL CURE
 
 // LIGHTNING ROD
+u8 lightning_rod_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if(bank == t_bank)
+        return true;
+    if(B_MOVE_TYPE(t_bank, 0) != MTYPE_ELECTRIC)
+        return true;
+    stat_boost(bank, REQUEST_SPATK, 1);
+    return false;
+}
+
+struct b_ability b_lightning_rod = {
+    .on_tryhit = lightning_rod_on_tryhit,
+};
 
 // SERENE GRACE
+void serene_grace_on_mod_secondary(u8 bank, u8 target, u16 move, u8 ability, u16 item)
+{
+    if(move_t[move].procs != NULL)
+    {
+        battle_master->b_moves[B_MOVE_BANK(target)].secondary_status_chance[0] *= 2;
+        battle_master->b_moves[B_MOVE_BANK(target)].secondary_status_chance[1] *= 2;
+    }
+}
+
+struct b_ability b_serene_grace = {
+    .on_mod_secondary = serene_grace_on_mod_secondary,
+};
+
 
 // SWIFT SWIM
 
@@ -814,10 +840,12 @@ struct b_ability b_adaptability = {
 // TURBOBLAZE
 
 // TERAVOLT
+/*
+ * NOTE: REDEFINITION
 void refrigerate_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     
-}
+}*/
 
 // AROMA VEIL
 void aroma_veil_on_switch(u8 bank)
