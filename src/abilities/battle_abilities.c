@@ -11,6 +11,7 @@ extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern s8 move_effectiveness(u8 move_type, u8 target_bank);
 extern void stat_boost(u8 bank, u8 high_stat, s8 amount);
 extern void set_status(u8 bank, u8 source, enum Effect status);
+extern void set_ability(u8 bank, u8 source, u8 ability);
 
 struct b_ability empty = {
 };
@@ -548,16 +549,102 @@ struct b_ability b_synchronize = {
 // NATURAL CURE
 
 // LIGHTNING ROD
+/* NOTE: lightning rod might change the target as well which can't be handled here */
+u8 lightning_rod_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if(bank == t_bank)
+        return true;
+    if(move_t[move].type != MTYPE_ELECTRIC)
+        return true;
+    stat_boost(bank, REQUEST_SPATK, 1);
+    return false;
+}
+
+struct b_ability b_lightning_rod = {
+    .on_tryhit = lightning_rod_on_tryhit,
+};
 
 // SERENE GRACE
+void serene_grace_on_modify_move(u8 bank, u8 target, u16 move)
+{
+    if(move_t[move].procs != NULL)
+    {
+        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0] *= 2;
+        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1] *= 2;
+    }
+}
+
+struct b_ability b_serene_grace = {
+    .on_modify_move = serene_grace_on_modify_move,
+};
+
 
 // SWIFT SWIM
+u16 swift_swim_on_speed(u8 bank, u16 amount)
+{
+    if(battle_master->field_state.is_raining)
+    {
+        return amount * 2;
+    }
+    return amount;
+}
+
+struct b_ability b_swift_swim = {
+    .on_speed = swift_swim_on_speed,
+};
 
 // CHLOROPHYLL
+u16 chlorophyll_on_speed(u8 bank, u16 amount)
+{
+    if(battle_master->field_state.is_sunny)
+    {
+        return amount * 2;
+    }
+    return amount;
+}
+
+struct b_ability b_chlorophyll = {
+    .on_speed = chlorophyll_on_speed,
+};
 
 // ILLUMINATE
+/* NOTE: illuminate does not have an in-battle effect */
+struct b_ability b_illuminate = {
+
+};
+
 
 // TRACE
+
+static u8 trace_ignored[] = {
+    ABILITY_COMATOSE,
+    ABILITY_DISGUISE,
+    ABILITY_FLOWER_GIFT,
+    ABILITY_FORECAST,
+    ABILITY_ILLUSION,
+    ABILITY_IMPOSTER,
+    ABILITY_MULTITYPE,
+    ABILITY_SCHOOLING,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRACE,
+    ABILITY_ZEN_MODE
+};
+
+void trace_on_update(u8 bank)
+{
+    u8 enemy_ability = BANK_ABILITY(FOE_BANK(bank));
+    for(u8 i = 0; i < sizeof(trace_ignored); ++i)
+    {
+        if(trace_ignored[i] == enemy_ability)
+            return;
+    }
+    set_ability(bank, FOE_BANK(bank), enemy_ability);
+}
+
+struct b_ability b_trace =
+{
+    .on_update = trace_on_update,
+};
 
 // HUGE POWER
 

@@ -279,6 +279,9 @@ void set_status(u8 bank, u8 source, enum Effect status)
 }
 
 
+//TODO: IMPLEMENT
+void set_ability(u8 bank, u8 source, u8 new_ability)
+{
 
-
+}
 
