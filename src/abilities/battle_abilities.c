@@ -469,7 +469,7 @@ struct b_ability b_shadow_tag = {
 
 
 // ROUGH SKIN
-void rough_skin_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+void rough_skin_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank != target) && (MAKES_CONTACT(move, target))) {
         battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = TOTAL_HP(target) / 8;
@@ -477,7 +477,7 @@ void rough_skin_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, 
 }
 
 struct b_ability b_rough_skin = {
-    .on_after_damage = rough_skin_after_damage,
+    .on_after_damage = rough_skin_on_after_damage,
 };
 
 
@@ -788,20 +788,108 @@ struct b_ability b_adaptability = {
 // IMPOSTER
 
 // INFILTRATOR
+void infiltrator_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    B_INFILTRATES(bank) = 1;
+}
+
+struct b_ability b_infiltrator = {
+    .on_modify_move = infiltrator_on_modify_move,
+};
+
 
 // MUMMY
+void mummy_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (MAKES_CONTACT(move, bank)) {
+        BANK_ABILITY(target) = ABILITY_MUMMY;
+        build_message(GAME_STATE, 0, target, STRING_ABILITY_CHANGE, ABILITY_MUMMY);
+    }
+}
+
+struct b_ability b_mummy = {
+    .on_after_damage = mummy_on_after_damage,
+};
+
 
 // MOXIE
+void moxie_on_faint(u8 bank, u8 fainted_bank)
+{
+    if (bank != fainted_bank)
+        stat_boost(bank, REQUEST_ATK, 1);
+}
+
+struct b_ability b_moxie = {
+    .on_faint = moxie_on_faint,
+};
+
 
 // JUSTIFIED
+void justified_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (B_MOVE_HAS_TYPE(target, MTYPE_DARK)) {
+        stat_boost(bank, REQUEST_ATK, 1);
+    }
+}
+
+struct b_ability b_justified = {
+    .on_after_damage = justified_on_after_damage,
+};
+
 
 // RATTLED
+void rattled_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if (B_MOVE_HAS_TYPE(target, MTYPE_DARK) || B_MOVE_HAS_TYPE(target, MTYPE_BUG) ||
+        B_MOVE_HAS_TYPE(target, MTYPE_GHOST)) {
+        stat_boost(bank, REQUEST_SPD, 1);
+    }
+}
+
+struct b_ability b_rattled = {
+    .on_after_damage = rattled_on_after_damage,
+};
+
 
 // MAGIC BOUNCE
+/* TODO : variation of dancer */
+
 
 // SAP SIPPER
+u8 sap_sipper_tryhit(u8 bank, u8 target, u16 move)
+{
+    if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_GRASS)) {
+        stat_boost(bank, REQUEST_ATK, 1);
+        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_SAP_SIPPER);
+        return false;
+    }
+    return true;
+}
+
+struct b_ability b_sap_sipper = {
+    .on_tryhit = sap_sipper_tryhit,
+};
 
 // PRANKSTER
+s8 prankster_on_priority_mod(u8 bank, u16 move)
+{
+    if (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_STATUS) {
+        return MOVE_PRIORITY(move) + 1;
+    }
+    return MOVE_PRIORITY(move);
+}
+
+void prankster_on_modify_move(u8 bank, u8 tbank, u16 move)
+{
+    if (B_MOVE_IS_STATUS(bank))
+        B_IS_PRANKSTER(bank) = 1;
+}
+
+struct b_ability b_prankster = {
+    .on_priority_mod = prankster_on_priority_mod,
+    .on_modify_move = prankster_on_modify_move,
+};
+
 
 // SAND FORCE
 void sand_force_on_base_power(u8 bank, u16 move)
@@ -826,7 +914,7 @@ struct b_ability b_sand_force = {
 
 
 // IRON BARBS
-void iron_barbs_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+void iron_barbs_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank != target) && (MAKES_CONTACT(move, target))) {
         battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = TOTAL_HP(target) / 8;
@@ -834,7 +922,7 @@ void iron_barbs_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, 
 }
 
 struct b_ability b_iron_barbs = {
-    .on_after_damage = iron_barbs_after_damage,
+    .on_after_damage = iron_barbs_on_after_damage,
 };
 
 
@@ -1052,12 +1140,13 @@ struct b_ability b_sweet_veil = {
 
 
 // GALE WINGS
-void gale_wings_on_priority_mod(u8 bank, u16 move)
+s8 gale_wings_on_priority_mod(u8 bank, u16 move)
 {
-    if ((B_MOVE_TYPE(bank, 1) == MTYPE_FLYING) || (B_MOVE_TYPE(bank, 1) == MTYPE_FLYING)) {
+    if (MOVE_TYPE(move) == MTYPE_FLYING) {
         if (B_CURRENT_HP(bank) == TOTAL_HP(bank))
-            B_MOVE_PRIORITY(bank)++;
+            return MOVE_PRIORITY(move) + 1;
     }
+    return MOVE_PRIORITY(move);
 }
 
 struct b_ability b_gale_wings = {
@@ -1124,14 +1213,14 @@ struct b_ability b_pixilate = {
 
 
 // GOOEY
-void gooey_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+void gooey_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank == TARGET_OF(target)) && (BANK_ABILITY(bank) == ABILITY_GOOEY))
         stat_boost(target, REQUEST_SPD, -1);
 }
 
 struct b_ability b_gooey = {
-    .on_after_damage = gooey_after_damage,
+    .on_after_damage = gooey_on_after_damage,
 };
 
 
@@ -1255,14 +1344,14 @@ struct b_ability b_delta_stream = {
 
 
 // STAMINA
-void stamina_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+void stamina_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank == TARGET_OF(target)) && (BANK_ABILITY(bank) == ABILITY_STAMINA))
         stat_boost(bank, REQUEST_DEF, 1);
 }
 
 struct b_ability b_stamina = {
-    .on_after_damage = stamina_after_damage,
+    .on_after_damage = stamina_on_after_damage,
 };
 
 
@@ -1430,11 +1519,12 @@ struct b_ability b_liquid_voice = {
 
 
 // TRIAGE
-void triage_on_priority_mod(u8 bank, u16 move)
+s8 triage_on_priority_mod(u8 bank, u16 move)
 {
     if (IS_TRIAGE(move)) {
-        B_MOVE_PRIORITY(bank) += 3;
+        return MOVE_PRIORITY(bank) + 3;
     }
+    return MOVE_PRIORITY(bank);
 }
 
 struct b_ability b_triage = {
@@ -1539,7 +1629,7 @@ struct b_ability b_queenly_majesty = {
 
 
 // INNARDS OUT
-void innards_out_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+void innards_out_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank != target) && (!B_CURRENT_HP(target))) {
         battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = dmg;
@@ -1547,7 +1637,7 @@ void innards_out_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability,
 }
 
 struct b_ability b_innards_out = {
-    .on_after_damage = innards_out_after_damage,
+    .on_after_damage = innards_out_on_after_damage,
 };
 
 

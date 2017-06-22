@@ -38,13 +38,16 @@
 #define LAST_MOVE(bank) p_bank[bank]->b_data.last_move
 #define BANK_ABILITY(bank) p_bank[bank]->b_data.ability
 #define B_MOVE_BANK(bank) (bank == battle_master->first_bank) ? 0 : 1
-#define B_MOVE_TYPE(bank, i) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].type[i] 
-#define B_MOVE_POWER(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].power
-#define B_MOVE_ACCURACY(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].accuracy
-#define B_MOVE_PRIORITY(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].priority
-#define B_MOVE_REMOVE_CONTACT(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact
-#define B_MOVE_IGNORING_ABILITIES(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].ignore_abilities
+#define B_MOVE_TYPE(bank, i) battle_master->b_moves[B_MOVE_BANK(bank)].type[i] 
+#define B_MOVE_POWER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].power
+#define B_MOVE_ACCURACY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].accuracy
+#define B_MOVE_PRIORITY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].priority
+#define B_MOVE_REMOVE_CONTACT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].remove_contact
+#define B_MOVE_IGNORING_ABILITIES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].ignore_abilities
 #define B_MOVE_HAS_TYPE(bank, type) ((B_MOVE_TYPE(bank, 0) == type) || (B_MOVE_TYPE(bank, 1) == type))
+#define B_MOVE_IS_STATUS(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_STATUS)
+
+
 
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->this_pkmn->current_hp
@@ -53,6 +56,8 @@
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target
 #define SET_CONFUSION_TURNS(bank, v) p_bank[bank]->b_data.confusion_turns = v
 #define B_IS_GROUNDED(bank) p_bank[bank]->b_data.is_grounded
+#define B_IS_PRANKSTER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].prankstered
+#define B_INFILTRATES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].infiltrates
 
 /*
  * General Pbank macros

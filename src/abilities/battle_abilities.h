@@ -8,7 +8,7 @@
 
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
 typedef void (*BasePowerCallback)(u8, u16); // bank, move
-typedef void (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
+typedef s8 (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u8, u16); // bank, tbank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
