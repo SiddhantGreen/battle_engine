@@ -40,6 +40,9 @@ enum battle_string_ids {
     STRING_AILMENT_APPLIED = 63,
     STRING_AILMENT_IMMUNE = 65,
     STRING_AILMENT_CURED = 67,
+    STRING_DELTA_STREAM = 69,
+    STRING_DESOLATE_LAND = 70,
+    STRING_PRIMORDIAL_SEA = 71,
 };
 
 
@@ -106,13 +109,15 @@ static const pchar str_stat_mod_harsh_rise_p[] = _("{ATTACKING_MON}’s {STAT_NA
 static const pchar str_stat_mod_harsh_rise_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\nharshly rose!");
 static const pchar str_stat_mod_rise_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nrose!");
 static const pchar str_stat_mod_rise_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\nrose!");
-
 static const pchar str_ailment_applied_p[] = _("{ATTACKING_MON} was {STATUS_NAME}!");
 static const pchar str_ailment_applied_o[] = _("Foe {ATTACKING_MON} was {STATUS_NAME}!");
 static const pchar str_ailment_immune_p[] = _("{ATTACKING_MON} was immune\nto being {STATUS_NAME}!");
 static const pchar str_ailment_immune_o[] = _("Foe {ATTACKING_MON} was immune\n to being {STATUS_NAME}!");
 static const pchar str_ailment_cured_p[] = _("{ATTACKING_MON} was cured\nof all status ailments!");
 static const pchar str_ailment_cured_o[] = _("Foe {ATTACKING_MON} was cured\nof all status ailments!");
+static const pchar str_delta_stream[] = _("A mysterious air current\nis protecting Flying-type Pokémon!");
+static const pchar str_desolate_land[] = _("The sunlight turned\nextremely harsh!");
+static const pchar str_primordial_sea[] = _("A heavy rain began to fall!");
 
 
 // stat names
@@ -135,7 +140,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[69] = {
+static const pchar* battle_strings[72] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -171,6 +176,8 @@ static const pchar* battle_strings[69] = {
    (pchar*)&str_ailment_applied_p, (pchar*)&str_ailment_applied_o,
    (pchar*)&str_ailment_immune_p, (pchar*)&str_ailment_immune_o,
    (pchar*)&str_ailment_cured_p, (pchar*)&str_ailment_cured_o,
+   (pchar*)&str_delta_stream, (pchar*)&str_desolate_land,
+   (pchar*)&str_primordial_sea,
 };
 
 

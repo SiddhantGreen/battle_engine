@@ -46,6 +46,7 @@ struct battle_field_state {
     u32 is_hail : 1;
     u32 is_desolate_land : 1;
     u32 is_primordial_sea : 1;
+    u32 is_delta_stream : 1;
     u32 suppress_weather : 1;
     u32 is_tailwind : 2; // side
     u32 is_gravity : 1;
@@ -75,6 +76,7 @@ struct move_used {
     u8 flinch;
     u8 accuracy; // over 100 = never miss
     u8 remove_contact : 1;
+    u8 copied : 1;
     u8 chance_self;
     u8 chance_target;
     u8 stat_self[6];

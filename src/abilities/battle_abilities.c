@@ -69,6 +69,7 @@ u16 battle_armor_on_critchance(u8 bank, u16 amount)
 {
     if (BANK_ABILITY(TARGET_OF(bank)) == ABILITY_BATTLE_ARMOR)
         return 0;
+    return amount;
 }
 
 struct b_ability b_battle_armor = {
@@ -863,18 +864,74 @@ struct b_ability b_adaptability = {
 // AURA BREAK
 
 // PRIMORDIAL SEA
+void primordial_sea_on_switch(u8 bank)
+{
+    battle_master->field_state.is_primordial_sea = 1;
+    build_message(GAME_STATE, 0, 0, STRING_PRIMORDIAL_SEA, 0);
+}
+
+struct b_ability b_primordial_sea = {
+    .on_switch = primordial_sea_on_switch,
+};
+
 
 // DESOLATE LAND
+void desolate_land_on_switch(u8 bank)
+{
+    battle_master->field_state.is_desolate_land = 1;
+    build_message(GAME_STATE, 0, 0, STRING_DESOLATE_LAND, 0);
+}
+
+struct b_ability b_desolate_land = {
+    .on_switch = desolate_land_on_switch,
+};
+
 
 // DELTA STREAM
+void delta_stream_on_switch(u8 bank)
+{
+    battle_master->field_state.is_delta_stream = 1;
+    build_message(GAME_STATE, 0, 0, STRING_DELTA_STREAM, 0);
+}
+
+struct b_ability b_delta_stream = {
+    .on_switch = delta_stream_on_switch,
+};
+
 
 // STAMINA
+void stamina_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank == TARGET_OF(target)) && (BANK_ABILITY(bank) == ABILITY_STAMINA))
+        stat_boost(bank, REQUEST_DEF, 1);
+}
+
+struct b_ability b_stamina = {
+    .on_after_damage = stamina_after_damage,
+};
+
 
 // WIMP OUT
+/* TODO Look at this after implementation of switching */
+
 
 // EMERGENCY EXIT
+/* TODO Look at this after implementation of switching */
+
 
 // WATER COMPACTION
+void water_compaction_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
+{
+    if ((bank != target) && (BANK_ABILITY(target) == ABILITY_WATER_COMPACTION)) {
+        if ((B_MOVE_TYPE(bank, 0) == MTYPE_WATER) || (B_MOVE_TYPE(bank, 1) == MTYPE_WATER)) 
+             stat_boost(target, REQUEST_DEF, 2);
+    }
+}
+
+struct b_ability b_water_compaction = {
+    .on_after_damage = water_compaction_after_damage,
+};
+
 
 // MERCILESS
 u16 merciless_on_critchance(u8 bank, u16 amount)
