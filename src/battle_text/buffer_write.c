@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../moves/moves.h"
 #include "battle_pick_message.h"
 
@@ -60,6 +61,34 @@ void buffer_write_stat_mod(pchar* buffer, u8 stat_id)
     };
 }
 
+void buffer_write_status_name(pchar* buffer, u8 status_id)
+{
+    switch (status_id) {
+        case AILMENT_PARALYZE:
+            pstrcpy(buffer, (pchar*)&str_status_paralyze);
+            break;
+        case AILMENT_BURN:
+            pstrcpy(buffer, (pchar*)&str_status_burn);
+            break;
+        case AILMENT_POISON:
+            pstrcpy(buffer, (pchar*)&str_status_poison);
+            break;
+        case AILMENT_SLEEP:
+            pstrcpy(buffer, (pchar*)&str_status_sleep);
+            break;
+        case AILMENT_FREEZE:
+            pstrcpy(buffer, (pchar*)&str_status_frozen);
+            break;
+        case AILMENT_BAD_POISON:
+            pstrcpy(buffer, (pchar*)&str_status_bpoison);
+            break;
+        case AILMENT_CONFUSION:
+            pstrcpy(buffer, (pchar*)&str_status_confuse);
+            break;
+    };
+}
+
+
 void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
 {
     u16 len = pstrlen(buffer);
@@ -92,17 +121,15 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                 case 0x12:
                     // ability Defending mon
                     {
-                        extern u8 get_ability_bank(u8 bank);
                         u8 target_bank = p_bank[bank]->b_data.my_target;
-                        buffer_write_ability_name(&result[result_index], get_ability_bank(target_bank));
+                        buffer_write_ability_name(&result[result_index], BANK_ABILITY(target_bank));
                         result_index = pstrlen(result);
                         break;
                     }
                 case 0x13:
                     // ability Attacking mon
                     {
-                        extern u8 get_ability_bank(u8 bank);
-                        buffer_write_ability_name(&result[result_index], get_ability_bank(bank));
+                        buffer_write_ability_name(&result[result_index], BANK_ABILITY(bank));
                         result_index = pstrlen(result);
                         break;
                     }
@@ -114,9 +141,16 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                         break;
                     }
                 case 0x15:
-                    // stat rise
+                    // stat name
                     {
                         buffer_write_stat_mod(&result[result_index], move_effect_id);
+                        result_index = pstrlen(result);
+                        break;
+                    }
+                case 0x16:
+                    // status ailment name
+                    {
+                        buffer_write_status_name(&result[result_index], move_effect_id);
                         result_index = pstrlen(result);
                         break;
                     }

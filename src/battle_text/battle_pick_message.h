@@ -37,6 +37,9 @@ enum battle_string_ids {
     STRING_STAT_MOD_DROP = 57,
     STRING_STAT_MOD_HARSH_RISE = 59,
     STRING_STAT_MOD_RISE = 61,
+    STRING_AILMENT_APPLIED = 63,
+    STRING_AILMENT_IMMUNE = 65,
+    STRING_AILMENT_CURED = 67,
 };
 
 
@@ -104,6 +107,13 @@ static const pchar str_stat_mod_harsh_rise_o[] = _("Foe {ATTACKING_MON}’s {STA
 static const pchar str_stat_mod_rise_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nrose!");
 static const pchar str_stat_mod_rise_o[] = _("Foe {ATTACKING_MON}’s {STAT_NAME}\nrose!");
 
+static const pchar str_ailment_applied_p[] = _("{ATTACKING_MON} was {STATUS_NAME}!");
+static const pchar str_ailment_applied_o[] = _("Foe {ATTACKING_MON} was {STATUS_NAME}!");
+static const pchar str_ailment_immune_p[] = _("{ATTACKING_MON} was immune\nto being {STATUS_NAME}!");
+static const pchar str_ailment_immune_o[] = _("Foe {ATTACKING_MON} was immune\n to being {STATUS_NAME}!");
+static const pchar str_ailment_cured_p[] = _("{ATTACKING_MON} was cured\nof all status ailments!");
+static const pchar str_ailment_cured_o[] = _("Foe {ATTACKING_MON} was cured\nof all status ailments!");
+
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -115,7 +125,17 @@ static const pchar str_stat_acc[] = _("accuracy");
 static const pchar str_stat_evn[] = _("evasion");
 static const pchar str_stat_crit[] = _("critical chance");
 
-static const pchar* battle_strings[63] = {
+// status names
+static const pchar str_status_paralyze[] = _("paralyzed");
+static const pchar str_status_burn[] = _("burned");
+static const pchar str_status_poison[] = _("poisoned");
+static const pchar str_status_sleep[] = _("put asleep");
+static const pchar str_status_frozen[] = _("frozen");
+static const pchar str_status_bpoison[] = _("badly poisoned");
+static const pchar str_status_confuse[] = _("confused");
+
+
+static const pchar* battle_strings[69] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -148,6 +168,9 @@ static const pchar* battle_strings[63] = {
    (pchar*)&str_stat_mod_drop_p, (pchar*)&str_stat_mod_drop_o,
    (pchar*)&str_stat_mod_harsh_rise_p, (pchar*)&str_stat_mod_harsh_rise_o,
    (pchar*)&str_stat_mod_rise_p, (pchar*)&str_stat_mod_rise_o,
+   (pchar*)&str_ailment_applied_p, (pchar*)&str_ailment_applied_o,
+   (pchar*)&str_ailment_immune_p, (pchar*)&str_ailment_immune_o,
+   (pchar*)&str_ailment_cured_p, (pchar*)&str_ailment_cured_o,
 };
 
 

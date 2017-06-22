@@ -6,7 +6,6 @@
 
 extern u8 get_target_bank(u8 user_bank, u16 move_id);
 extern u16 rand_range(u16 min, u16 max);
-extern u8 get_ability_bank(u8);
 extern void task_add_bmessage(u8 task_id);
 extern bool ignoring_item(struct Pokemon* p);
 extern u8 get_side(u8 bank);
@@ -66,7 +65,7 @@ u8 dream_eater_tryhit(u8 user_bank)
     u8 target_bank = p_bank[user_bank]->user_action.target_bank;
     if (pokemon_getattr(p_bank[target_bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL) & STATUS_SLEEP_TURNS) {
         return true;
-    } else if (get_ability_bank(target_bank) == ABILITY_COMATOSE) {
+    } else if (BANK_ABILITY(target_bank) == ABILITY_COMATOSE) {
         return 2;
     } else {
         return false;
@@ -85,8 +84,8 @@ u8 electrify_tryhit(u8 user_bank)
 
 u8 entrainment_tryhit(u8 user_bank)
 {
-    u8 user_ability = get_ability_bank(user_bank);
-    u8 target_ability = get_ability_bank(p_bank[user_bank]->user_action.target_bank);
+    u8 user_ability = BANK_ABILITY(user_bank);
+    u8 target_ability = BANK_ABILITY(p_bank[user_bank]->user_action.target_bank);
     
     if(user_ability == target_ability) {
         return false;
@@ -165,7 +164,7 @@ u8 curse_tryhit(u8 user_bank)
 u8 gastro_acid_tryhit(u8 user_bank)
 {
     // fails if uncompressable ability
-    u8 target_ability = get_ability_bank(p_bank[user_bank]->user_action.target_bank);
+    u8 target_ability = BANK_ABILITY(p_bank[user_bank]->user_action.target_bank);
     switch (target_ability) {
         case ABILITY_COMATOSE:
         case ABILITY_MULTITYPE:
@@ -358,7 +357,7 @@ u8 role_play_tryhit(u8 user_bank)
 u8 simple_beam_tryhit(u8 user_bank)
 {
     u8 target = p_bank[user_bank]->user_action.target_bank;
-    switch (get_ability_bank(target)) {
+    switch (BANK_ABILITY(target)) {
         case ABILITY_COMATOSE:
         case ABILITY_MULTITYPE:
         case ABILITY_SIMPLE:
