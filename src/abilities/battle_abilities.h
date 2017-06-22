@@ -19,8 +19,9 @@ typedef void (*AbilityAfterMoveSecondaryCallback)(u8, u8, u16, u8, u16); // bank
 typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, tbank, move, ability, item
 typedef void (*AbilityUpdateCallback)(u8);
 typedef bool (*AbilitySetStatusCallback)(u8, u8, enum Effect, bool); //bank, atkbank, Effect, status_is_settable
-typedef void (*AbilityOnFaint)(u8, u8); //bank, fainted
-typedef void (*AbilityOnTryHeal)(u8, u8); //bank, healing bank
+typedef void (*AbilityOnFaintCallback)(u8, u8); //bank, fainted
+typedef void (*AbilityOnTryHealCallback)(u8, u8); //bank, healing bank
+typedef void (*AbilityAfterBoostCallback)(u8, s8); //bank, amount boosted
 
 
 
@@ -51,10 +52,11 @@ struct b_ability {
     AbilityAfterMoveSecondaryCallback on_after_move_secondary;
     AbilityResidualCallback on_residual;
     AbilityUpdateCallback on_update;
-    AbilityOnFaint on_faint;
+    AbilityOnFaintCallback on_faint;
     
-    AbilityOnTryHeal on_try_heal;
+    AbilityOnTryHealCallback on_try_heal;
     AbilityOnDraggedOutCallback on_dragout;
+    AbilityAfterBoostCallback on_after_boost;
 };
 
 #define ABILITIES_MAX 5

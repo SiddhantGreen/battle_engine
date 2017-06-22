@@ -822,17 +822,74 @@ struct b_ability b_adaptability = {
 // CHEEK POUCH
 
 // PROTEAN
+u8 protean_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if (BANK_ABILITY(bank) == ABILITY_PROTEAN) {
+        B_PKMN_TYPE(bank, 0) = B_MOVE_TYPE(bank, 0);
+        build_message(GAME_STATE, 0, bank, STRING_PROTEAN, 0);
+        return true;
+    }
+    return true;
+}
+
+struct b_ability b_protean = {
+    .on_tryhit = protean_on_tryhit,
+};
+
 
 // FUR COAT
+u16 fur_coat_on_defense(u8 bank, u16 amount)
+{
+    return (amount * 2);
+}
+
+struct b_ability b_fur_coat = {
+    .on_defense = fur_coat_on_defense,
+};
+
 
 // MAGICIAN
+/* TODO : Make stealable items table */
+
 
 // BULLETPROOF
+u8 bulletproof_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if (bank == t_bank)
+        return true;
+    if (IS_BULLET(move))
+        return false;
+    return true;
+}
+
+struct b_ability b_bulletproof = {
+    .on_tryhit = bulletproof_on_tryhit,
+};
+
 
 // COMPETITIVE
+void competitive_on_after_boost(u8 booster, s8 amount)
+{
+    if (amount > 0)
+        return;
+    stat_boost(booster, REQUEST_SPATK, 2);
+}
+
+struct b_ability b_competitive = {
+    .on_after_boost = competitive_on_after_boost,
+};
+
 
 // STRONG JAW
+void strong_jaw_on_base_power(u8 bank, u16 move)
+{
+    if (IS_STRONG_JAW(move))
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 150);
+}
 
+struct b_ability b_strong_jaw = {
+    .on_base_power = strong_jaw_on_base_power,
+};
 
 
 // REFRIGERATE

@@ -23,6 +23,10 @@
 #define IS_TRIAGE(move) ((*(move_t[move].m_flags)) & (1 << 20))
 #define IS_SOUND_BASE(move) ((*(move_t[move].m_flags)) & (1 << 14))
 #define IS_PULSE(move) ((*(move_t[move].m_flags)) & (1 << 22))
+#define IS_STRONG_JAW(move) ((*(move_t[move].m_flags)) & (1 << 15))
+#define IS_BULLET(move) ((*(move_t[move].m_flags)) & (1 << 16))
+
+
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)

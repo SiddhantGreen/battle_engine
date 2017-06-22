@@ -175,7 +175,6 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id);
             break;
     };
-    
 }
 
 void set_status(u8 bank, u8 source, enum Effect status)

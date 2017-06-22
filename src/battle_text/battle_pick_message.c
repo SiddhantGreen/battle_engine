@@ -42,7 +42,10 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
     if (battle_type_flags == BATTLE_FLAG_WILD) {
         switch (id) {
             case STRING_FAILED_ALONE:
-                fdecoder_battle(battle_strings[STRING_FAILED_ALONE], 0, 0, 0);
+            case STRING_DELTA_STREAM:
+            case STRING_DESOLATE_LAND:
+            case STRING_PRIMORDIAL_SEA:
+                fdecoder_battle(battle_strings[id], 0, 0, 0);
                 break;
             case STRING_ATTACK_USED:
             case STRING_INFATUATED:
@@ -76,9 +79,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_AILMENT_APPLIED:
             case STRING_AILMENT_IMMUNE:
             case STRING_AILMENT_CURED:
-            case STRING_DELTA_STREAM:
-            case STRING_DESOLATE_LAND:
-            case STRING_PRIMORDIAL_SEA:
+            case STRING_PROTEAN:
                 fdecoder_battle(battle_strings[id + get_side(user_bank)], user_bank, move_id, move_effect_id);
                 break;
             default:
