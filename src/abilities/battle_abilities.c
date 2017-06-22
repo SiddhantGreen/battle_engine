@@ -841,13 +841,48 @@ struct b_ability b_adaptability = {
 
 // GALE WINGS
 
+
+
 // MEGA LAUNCHER
+void mega_launcher_on_base_power(u8 bank, u16 move)
+{
+    if (IS_PULSE(move))
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 150);
+}
+
+struct b_ability b_mega_launcher = {
+    .on_base_power = mega_launcher_on_base_power,
+};
+
 
 // GRASS PELT
+u16 grass_pelt_on_defense(u8 bank, u16 stat)
+{
+    if (battle_master->field_state.grassy_terrain)
+        return NUM_MOD(stat, 150);
+    return stat;
+}
+
+struct b_ability b_grass_pelt = {
+    .on_defense = grass_pelt_on_defense,
+};
+
 
 // SYMBIOSIS
+/* TODO : No effect on singles, skipped for now */
+
 
 // TOUGH CLAWS
+void tough_claws_on_base_power(u8 bank, u16 move)
+{
+    if (MAKES_CONTACT(move, bank))
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 130);
+}
+
+struct b_ability b_tough_claws = {
+    .on_base_power = tough_claws_on_base_power,
+};
+
 
 // PIXILATE
 void pixilate_on_modify_move(u8 bank, u8 tbank, u16 move)

@@ -22,6 +22,7 @@
 #define IS_DANCE(move) ((*(move_t[move].m_flags)) & (1 << 21))
 #define IS_TRIAGE(move) ((*(move_t[move].m_flags)) & (1 << 20))
 #define IS_SOUND_BASE(move) ((*(move_t[move].m_flags)) & (1 << 14))
+#define IS_PULSE(move) ((*(move_t[move].m_flags)) & (1 << 22))
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
@@ -44,7 +45,8 @@
 #define FLAG_HITS_ALL (1 << 19)
 #define FLAG_TRIAGE_AFFECTED (1 << 20)
 #define FLAG_DANCER (1 << 21)
-#define FLAGS_UNUSED (1 << 22)
+#define FLAG_PULSE (1 << 22)
+#define FLAGS_UNUSED (1 << 23)
 
 // Move failed check
 typedef u8 (*TryHitCallback)(u8);
