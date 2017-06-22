@@ -174,7 +174,7 @@ struct b_ability b_sand_veil = {
 // Static
 void static_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
-    if (MAKES_CONTACT(move) && (target != bank)) {
+    if (MAKES_CONTACT(move, target) && (target != bank)) {
         if (rand_range(0, 100) < 30) {
             p_bank[TARGET_OF(bank)]->b_data.status = AILMENT_PARALYZE;
         }
@@ -470,7 +470,7 @@ struct b_ability b_shadow_tag = {
 // ROUGH SKIN
 void rough_skin_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
-    if ((bank != target) && (MAKES_CONTACT(move))) {
+    if ((bank != target) && (MAKES_CONTACT(move, target))) {
         battle_master->b_moves[B_MOVE_BANK(bank)].after_dmg = TOTAL_HP(target) / 8;
     }
 }
@@ -876,15 +876,69 @@ struct b_ability b_synchronize = {
 // WATER BUBBLE
 
 // STEELWORKER
+void steelworker_on_base_power(u8 bank, u16 move)
+{
+    if (MOVE_TYPE(move) == MTYPE_STEEL)
+        B_MOVE_POWER(bank) = NUM_MOD(MOVE_POWER(move), 150);
+} 
+
+struct b_ability b_steel_worker = {
+    .on_base_power = steelworker_on_base_power,
+};
+
 
 // BERSERK
+void berserk_on_after_move_secondary(u8 bank, u8 src, u16 move, u8 ability, u16 item)
+{
+    if (bank == src)
+        return;
+    if (B_CURRENT_HP(bank) < (TOTAL_HP(bank) >> 1)) {
+        stat_boost(bank, REQUEST_SPATK, 1);
+    }
+}
+
+struct b_ability b_berserk = {
+    .on_after_move_secondary = berserk_on_after_move_secondary,
+};
+
 
 // SLUSH RUSH
+void slush_rush_on_speed(u8 bank, u16 amount)
+{
+    if (battle_master->field_state.is_hail)
+        return amount * 2;
+    return amount;
+}
+
+struct b_ability b_slush_rush = {
+    .on_speed = slush_rush_on_speed,
+};
+
 
 // LONG REACH
+void long_reach_on_modify_move(u8 bank, u16 move)
+{
+    B_MOVE_REMOVE_CONTACT(bank) = 1;
+    return;
+}
+
+struct b_ability b_long_reach = {
+    .on_modify_move = long_reach_on_modify_move,
+};
+
 
 // LIQUID VOICE
+void liquid_voice_on_modify_move(u8 bank, u16 move)
+{
+    if (IS_SOUND_BASE(move)) {
+        B_MOVE_TYPE(bank, 0) = MTYPE_WATER;
+        B_MOVE_TYPE(bank, 1) = MTYPE_WATER;
+    }
+}
 
+struct b_ability b_liquid_voice = {
+    .on_modify_move = liquid_voice_on_modify_move,
+};
 
 
 // TRIAGE
@@ -1039,7 +1093,7 @@ u16 fluffy_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
         dmg = ((dmg * 150) / 100);
     }
     /* half damage from contact moves */
-    if (MAKES_CONTACT(move)) {
+    if (MAKES_CONTACT(move, tbank)) {
         dmg = ((dmg * 50) / 100);
     }
     return dmg; 
@@ -1080,7 +1134,7 @@ struct b_ability b_soul_heart = {
 // TANGLING HAIR
 void tangling_hair_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
-    if (MAKES_CONTACT(move) && (target != bank)) {
+    if (MAKES_CONTACT(move, target) && (target != bank)) {
         stat_boost(bank, REQUEST_SPD, -1);
     }
 }

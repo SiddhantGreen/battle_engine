@@ -74,6 +74,7 @@ struct move_used {
     u8 type[2];
     u8 flinch;
     u8 accuracy; // over 100 = never miss
+    u8 remove_contact : 1;
     u8 chance_self;
     u8 chance_target;
     u8 stat_self[6];

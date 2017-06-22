@@ -12,14 +12,16 @@
  *
  */
 #define MOVE_PRIORITY(move) move_t[move].priority
+#define MOVE_POWER(move) move_t[move].base_power
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
-#define MAKES_CONTACT(move) ((*(move_t[move].m_flags)) & (1 << 3))
+#define MAKES_CONTACT(move, bank) (((*(move_t[move].m_flags)) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define MOVE_TYPE(move) move_t[move].type
 #define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (move_t[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (move_t[move].category == MOVE_SPECIAL)
 #define IS_DANCE(move) ((*(move_t[move].m_flags)) & (1 << 21))
 #define IS_TRIAGE(move) ((*(move_t[move].m_flags)) & (1 << 20))
+#define IS_SOUND_BASE(move) ((*(move_t[move].m_flags)) & (1 << 14))
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)

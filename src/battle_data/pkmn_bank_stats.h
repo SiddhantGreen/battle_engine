@@ -41,6 +41,7 @@
 #define B_MOVE_TYPE(bank, i) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].type[i] 
 #define B_MOVE_POWER(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].power
 #define B_MOVE_PRIORITY(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].priority
+#define B_MOVE_REMOVE_CONTACT(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact
 
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->this_pkmn->current_hp

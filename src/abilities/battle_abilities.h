@@ -7,6 +7,7 @@
 #include "moves/moves.h"
 
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
+typedef void (*BasePowerCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u16); // bank, move
 typedef void (*AbilitySwitchInCallback)(u8);
@@ -19,6 +20,8 @@ typedef void (*AbilityModifySecondaryCallback)(u8, u8, u16, u8, u16); // bank, t
 typedef void (*AbilityUpdateCallback)(u8);
 typedef bool (*AbilitySetStatusCallback)(u8, u8, enum Effect, bool); //bank, atkbank, Effect, status_is_settable
 typedef void (*AbilityOnFaint)(u8, u8); //bank, fainted
+typedef void (*AbilityOnTryHeal)(u8, u8); //bank, healing bank
+
 
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
@@ -36,6 +39,7 @@ struct b_ability {
     StatCallback on_accuracy;
     StatCallback on_evasion;
     StatCallback on_critchance;
+    BasePowerCallback on_basepower;
     
     AbilitySwitchInCallback on_switch;
     AbilityModMoveCallback on_modify_move;  
@@ -49,6 +53,7 @@ struct b_ability {
     AbilityUpdateCallback on_update;
     AbilityOnFaint on_faint;
     
+    AbilityOnTryHeal on_try_heal;
     AbilityOnDraggedOutCallback on_dragout;
 };
 
