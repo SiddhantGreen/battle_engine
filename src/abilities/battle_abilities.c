@@ -10,6 +10,7 @@ extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern s8 move_effectiveness(u8 move_type, u8 target_bank);
 extern void stat_boost(u8 bank, u8 high_stat, u8 amount);
+extern void set_status(u8 bank, u8 source, enum Effect status);
 
 struct b_ability empty = {
 };
@@ -139,12 +140,16 @@ void limber_on_update(u8 bank)
     }
 }
 
-void limber_on_set_status(u8 bank, s8 source, enum Effect effect)
+bool limber_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
 {
-    if (B_STATUS(bank) == AILMENT_PARALYZE) {
+    if (bank == source)
+        return false;
+    if ((effect == EFFECT_PARALYZE) && (settable)) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_LIMBER);
+       return true;
     }
+    return false;
 }
 
 struct b_ability b_limber = {
@@ -274,12 +279,16 @@ void insomnia_on_update(u8 bank)
     }
 }
 
-void insomnia_on_set_status(u8 bank, s8 source, enum Effect effect)
+bool insomnia_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
 {
-    if (B_STATUS(bank) == AILMENT_SLEEP) {
+    if (bank == source)
+        return false;
+    if ((effect == EFFECT_SLEEP) && (settable)) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_INSOMNIA);
+       return true;
     }
+    return false;
 }
 
 struct b_ability b_insomnia = {
@@ -323,12 +332,16 @@ void immunity_on_update(u8 bank)
     }
 }
 
-void immunity_on_set_status(u8 bank, s8 source, enum Effect effect)
+bool immunity_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
 {
-    if (B_STATUS(bank) == AILMENT_POISON) {
+    if (bank == source)
+        return false;
+    if ((effect == EFFECT_POISON) && settable) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_IMMUNITY);
+       return true;
     }
+    return false;
 }
 
 struct b_ability b_immunity = {
@@ -391,13 +404,16 @@ void own_tempo_on_update(u8 bank)
 }
 
 
-void own_tempo_on_set_status(u8 bank, s8 source, enum Effect effect)
+bool own_tempo_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
 {
-    if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
-       REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
+    if (bank == source)
+        return false;
+    if ((effect == EFFECT_CONFUSION) && settable) {
        SET_CONFUSION_TURNS(bank, 0);
        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_OWN_TEMPO);
+        return true;
     }
+    return false;
 }
 
 struct b_ability b_own_tempo = {
@@ -501,18 +517,20 @@ void effect_spore_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg_taken, u
 }
 
 // SYNCHRONIZE
-void synchronize_on_status(u8 bank, s8 source, enum Effect effect)
+bool synchronize_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
 {
-    if(source < 0 || source == bank)
-        return;
-    if(effect == TOXIC_SPIKES)
-        return;
-    if(B_STATUS(bank) == AILMENT_SLEEP || B_STATUS(bank) == AILMENT_FREEZE)
-        return;
-    p_bank[source]->b_data.status = B_STATUS(bank);
+    if(source == bank)
+        return false;
+    if((effect == EFFECT_TOXIC_SPIKES) && settable)
+        return false;
+    if(B_STATUS(bank) == AILMENT_SLEEP || B_STATUS(bank) == AILMENT_FREEZE || B_STATUS(bank) == AILMENT_CONFUSION)
+        return false;
+    set_status(bank, source, B_STATUS(bank));
+    return false;
 }
+
 struct b_ability b_synchronize = {
-    .on_set_status = synchronize_on_status,
+    .on_set_status = synchronize_on_set_status,
 };
 
 // CLEAR BODY
@@ -882,10 +900,53 @@ struct b_ability b_synchronize = {
 // POWER CONSTRUCT
 
 // CORROSION
+bool corrosion_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
+{
+    // if attacker has corrosion, activate.
+    if ((bank == source) && ((effect == EFFECT_POISON) || (effect == EFFECT_BAD_POISON))) {
+        u8 ailment = (effect == EFFECT_POISON) ? AILMENT_POISON : AILMENT_BAD_POISON;
+        p_bank[TARGET_OF(bank)]->b_data.status = ailment;
+        build_message(GAME_STATE, 0, TARGET_OF(bank), STRING_AILMENT_APPLIED, ailment);
+        return true;
+    }
+    return false;
+}
+
+struct b_ability b_corrosion = {
+    .on_set_status = corrosion_on_set_status,
+};
+
 
 // COMATOSE
+bool comatose_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
+{
+    if (bank == source)
+        return false;
+    // if pokemon with the ability (bank) is being set a status, provide immunity
+    p_bank[bank]->b_data.status = AILMENT_NONE;
+    build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_COMATOSE);
+    return true;
+}
+
+struct b_ability b_comatose = {
+    .on_set_status = comatose_on_set_status,
+};
+
 
 // QUEENLY MAJESTY
+u8 queenly_majesty_on_tryhit(u8 bank, u8 t_bank, u16 move)
+{
+    if (SIDE_OF(bank) != SIDE_OF(t_bank)) {
+        if (battle_master->b_moves[B_MOVE_BANK(bank)].priority != 0)
+            return false;
+    }
+    return true;
+}
+
+struct b_ability b_queenly_majesty = {
+    .on_tryhit = queenly_majesty_on_tryhit,
+};
+
 
 // INNARDS OUT
 void innards_out_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
@@ -1087,6 +1148,7 @@ u16 prism_armor_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 
         return dmg;
     if (move_effectiveness(move_t[move].type, tbank) > 0)
         return ((dmg * 75) / 100);
+    return dmg;
 }
 
 struct b_ability b_prism_armor = {

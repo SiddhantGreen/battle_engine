@@ -87,6 +87,7 @@ struct local_battler_data {
     
     u8 status;
     u8 confusion_turns;
+    u8 status_turns;
     u16 substitute_health;
     enum VolatileStatus v_status;
     
