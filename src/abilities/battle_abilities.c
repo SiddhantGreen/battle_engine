@@ -885,19 +885,67 @@ struct b_ability b_synchronize = {
 
 // LIQUID VOICE
 
+
+
 // TRIAGE
+void triage_on_priority_mod(u8 bank, u16 move)
+{
+    if (IS_TRIAGE(move)) {
+        B_MOVE_PRIORITY(bank) += 3;
+    }
+}
+
+struct b_ability b_triage = {
+    .on_priority_mod = triage_on_priority_mod,
+};
+
 
 // GALVANIZE
+void galvanize_on_modify_move(u8 bank, u16 move)
+{
+    u8 i;
+    for (i = 0; i < 2; i ++) {
+        if ((B_MOVE_TYPE(bank, i) == MTYPE_NORMAL)) {
+            B_MOVE_TYPE(bank, i) = MTYPE_ELECTRIC;
+            B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 120);
+            return;
+        }
+    }
+}
+
+struct b_ability b_galvanize = {
+    .on_modify_move = galvanize_on_modify_move,
+};
+
 
 // SURGE SURFER
+u16 surge_surfer_on_speed(u8 bank, u16 amount)
+{
+    if (battle_master->field_state.electric_terrain)
+        return amount * 2;
+    return amount;
+}
+
+struct b_ability b_surge_surfer = {
+    .on_speed = surge_surfer_on_speed,
+};
+
 
 // SCHOOLING
+/* TODO : In battle pseudo forms are something planned for later */
+
 
 // DISGUISE
+/* TODO : In battle pseudo forms are something planned for later */
+
 
 // BATTLE BOND
+/* TODO : In battle pseudo forms are something planned for later */
+
 
 // POWER CONSTRUCT
+/* TODO : In battle pseudo forms are something planned for later */
+
 
 // CORROSION
 bool corrosion_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)

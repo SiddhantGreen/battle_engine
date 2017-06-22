@@ -7,6 +7,7 @@
 #include "moves/moves.h"
 
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount
+typedef void (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u16); // bank, move
 typedef void (*AbilitySwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
@@ -23,6 +24,9 @@ typedef void (*AbilityOnFaint)(u8, u8); //bank, fainted
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
 
 struct b_ability {
+    
+    AbilityModMovePriorityCallback on_priority_mod;
+    
     StatCallback on_priority;
     StatCallback on_attack;
     StatCallback on_defense;

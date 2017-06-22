@@ -18,7 +18,8 @@
 #define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (move_t[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (move_t[move].category == MOVE_SPECIAL)
-#define IS_DANCE(move) (((move_t[move].m_flags)) & (1 << 21))
+#define IS_DANCE(move) ((*(move_t[move].m_flags)) & (1 << 21))
+#define IS_TRIAGE(move) ((*(move_t[move].m_flags)) & (1 << 20))
 
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)

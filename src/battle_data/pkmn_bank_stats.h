@@ -21,6 +21,8 @@
 #define B_EVASION_STAT(bank) stage_modify_stat(1, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
 
+#define NUM_MOD(number, percent) ((number * percent) / 100)
+
 /*
  * P_bank b_data volatile macros
  */
@@ -36,6 +38,10 @@
 #define LAST_MOVE(bank) p_bank[bank]->b_data.last_move
 #define BANK_ABILITY(bank) p_bank[bank]->b_data.ability
 #define B_MOVE_BANK(bank) (bank == battle_master->first_bank) ? 0 : 1
+#define B_MOVE_TYPE(bank, i) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].type[i] 
+#define B_MOVE_POWER(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].power
+#define B_MOVE_PRIORITY(bank) battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].priority
+
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->this_pkmn->current_hp
 #define TOTAL_HP(x) p_bank[x]->this_pkmn->total_hp
