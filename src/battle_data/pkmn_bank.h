@@ -6,6 +6,7 @@
 
 #define OPPONENT_SINGLES_BANK 2
 #define PLAYER_SINGLES_BANK 0
+#define PARTICIPANTS_AMOUNT_WILD 2
 
 
 // executed right before using a move. bm_cb(user_bank)
@@ -40,6 +41,7 @@ enum VolatileStatus {
     VOLATILE_TRAPPED = (1 << 4),
     VOLATILE_AROMA_VEIL = (1 << 5),
     VOLATILE_MOLDBREAKER = (1 << 6),
+    VOLATILE_PRANKSTERED = (1 << 7),
 };
 
 struct local_battler_data {
@@ -74,6 +76,7 @@ struct local_battler_data {
     u8 my_target;
     u16 last_move;
     u16 current_move;
+    u16 moves_used[4];
     u16 last_damage;
     u8 last_attacked_by;
     u16 last_used_item;
