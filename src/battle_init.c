@@ -27,9 +27,9 @@ void init_battle_elements()
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
     battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
     setup();
+    help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
-    
     battle_type_flags = BATTLE_FLAG_WILD;
 }
 
@@ -224,6 +224,10 @@ void option_selection()
             break;
         case 5:
             // RUN selected from fight menu
+           // right now it just exits. Needs to be cleaned up - memory leaks exist.
+            exit_to_overworld_2_switch();
+            set_callback1(c1_overworld);
+            
             break;
         case 6:
             break;

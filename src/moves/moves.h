@@ -13,6 +13,8 @@
  */
 #define MOVE_PRIORITY(move) move_t[move].priority
 #define MOVE_POWER(move) move_t[move].base_power
+#define MOVE_CATEGORY(move) move_t[move].category
+#define MOVE_ACCURACY(move) move_t[move].accuracy
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
 #define MAKES_CONTACT(move, bank) (((*(move_t[move].m_flags)) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define MOVE_TYPE(move) move_t[move].type
