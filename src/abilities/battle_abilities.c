@@ -1032,8 +1032,10 @@ struct b_ability b_sap_sipper = {
 s8 prankster_on_priority_mod(u8 bank, u16 move)
 {
     if (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_STATUS) {
+        ADD_VOLATILE(bank, VOLATILE_PRANKSTERED);
         return 1;
     }
+    REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
     return 0;
 }
 

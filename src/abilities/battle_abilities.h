@@ -11,6 +11,7 @@ typedef void (*BasePowerCallback)(u8, u16); // bank, move
 typedef s8 (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u8, u16); // bank, tbank, move
 typedef void (*AbilitySwitchInCallback)(u8);
+typedef void (*AbilityBeforeSwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
 typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, tbank, move
 typedef u16 (*AbilityOnDamageCallback)(u8, u8, u16, u16, u8, u16); // bank, tbank, move, damage taken, ability, item
@@ -29,14 +30,42 @@ typedef bool (*AbilityOnImmunityCallback)(u8, enum Effect); //bank, effect
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
 
+// Chronological order
 struct b_ability {
-    
+    /*
+     * on_priority_mod is the first callback called out of all ability callbacks.
+     * It takes a parameter bank which is the bank id of the pokemon with the ability in question.
+     * The second parameter is a move_id of the move the ability user is picking. It is 
+     * expected to return a signed delta priority value which to modify the move priority by.
+     * I.e Prankster would return 1 on success case and 0 on fail case.
+     * This callback is expected to be silent, should not execute text display.
+     */
     AbilityModMovePriorityCallback on_priority_mod;
     
-    StatCallback on_priority;
+    /*
+     * The on_speed callback takes two parameters, the bank of the pokemon with the ability
+     * and the current speed stat of that pokemon (after boost modifiers). It's expected
+     * to return the base speed stat of the pokemon after the ability has affected the pokemon.
+     */
+    StatCallback on_speed;
+    
+    /*
+     * on_before_switch is the callback that's run before pkmn are switched into the field.
+     * It will only run on a switch taking place. Call format is:
+     * on_before_switch(pokemon with ability's bank)
+     */
+    AbilitySwitchInCallback on_before_switch;
+    
+    /*
+     * on_switch is the callback that's run after all pokemon have been switched into the field.
+     * It will run regardless of any switches taking place. Call format is:
+     * on_switch(pokemon with ability's bank)
+     */
+    AbilitySwitchInCallback on_switch;
+    
+    
     StatCallback on_attack;
     StatCallback on_defense;
-    StatCallback on_speed;
     StatCallback on_sp_attack;
     StatCallback on_sp_defense;
     StatCallback on_accuracy;
@@ -44,7 +73,7 @@ struct b_ability {
     StatCallback on_critchance;
     BasePowerCallback on_base_power;
     
-    AbilitySwitchInCallback on_switch;
+    
     AbilityModMoveCallback on_modify_move;  
     AbilityTryHitCallback on_tryhit;
     AbilityOnDamageCallback on_damage; // right before damage is applied. Can modify dmg
