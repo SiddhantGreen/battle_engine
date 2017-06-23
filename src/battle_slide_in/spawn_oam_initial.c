@@ -149,10 +149,14 @@ void wild_battle_slidein()
     u8 objid = spawn_pkmn_obj_slot(0, OPP1_BTAG);
     p_bank[2]->objid = objid;
 
-    // player next
-    objid = spawn_backsprite_npc(3, PLAYER_BTAG);
+    // gender based player character
+        if (walkrun_state.gender) {
+            objid = spawn_backsprite_npc(0, PLAYER_BTAG);
+        } else {
+            objid = spawn_backsprite_npc(1, PLAYER_BTAG);
+        }
+    
     bs_env_windows->player_trainer_objid = objid;
-    //objects[bs_env_windows->player_trainer_objid].final_oam.obj_mode = 1; // player avoids darkening effect during slide in.
 }
 
 

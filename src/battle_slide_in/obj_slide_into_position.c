@@ -78,8 +78,6 @@ void player_set_frame(void* dst, u8 sprite_id, u8 frame)
 
 void player_throwball_and_moveout_scene(struct Object* obj)
 {
-    s16* b = (s16*)0x20370B8;
-    *b = obj->pos1.x;
     if (obj->priv[0] > 1) {
         obj->pos1.x-= 2;
     }
@@ -88,7 +86,7 @@ void player_throwball_and_moveout_scene(struct Object* obj)
         {
             // display frame 1
             void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
-            player_set_frame(dst, 3, 1);
+            player_set_frame(dst, 0xFF, 1);
             obj->priv[0]++;
             break;
         }
@@ -105,7 +103,7 @@ void player_throwball_and_moveout_scene(struct Object* obj)
         {
             // display frame 2
             void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
-            player_set_frame(dst, 3, 2);
+            player_set_frame(dst, 0xFF, 2);
             obj->priv[0]++;
             break;
         }
@@ -124,7 +122,7 @@ void player_throwball_and_moveout_scene(struct Object* obj)
         
             // display frame 3
             void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
-            player_set_frame(dst, 3, 3);
+            player_set_frame(dst, 0xFF, 3);
             obj->priv[0]++;
             break;
         }

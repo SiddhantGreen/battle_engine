@@ -115,6 +115,4 @@ void setup()
 	// tasks
 	tasks_init();
 	// textboxes
-	reset_boxes();
-    help_system_disable__sp198();
 }
