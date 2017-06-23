@@ -17,6 +17,8 @@ extern void load_icons_moves(u8 bank);
 extern void set_active_movement(u8 task_id);
 extern void update_cursor_move_select(u8 task_id);
 extern void show_move_data(void);
+extern void option_selection(void);
+extern u8 get_ability(struct Pokemon* p);
 
 void init_battle_elements()
 {
@@ -29,6 +31,74 @@ void init_battle_elements()
     set_callback1((SuperCallback)battle_slidein);
     
     battle_type_flags = BATTLE_FLAG_WILD;
+}
+
+void update_pbank(u8 bank, struct update_flags* flags)
+{
+    // base stats
+    u16 species = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPECIES, NULL);
+    p_bank[bank]->b_data.species = species;
+    p_bank[bank]->b_data.gender = pokemon_get_gender(p_bank[bank]->this_pkmn);
+    p_bank[bank]->b_data.current_hp = p_bank[bank]->this_pkmn->current_hp;
+    p_bank[bank]->b_data.total_hp = p_bank[bank]->this_pkmn->total_hp;
+    p_bank[bank]->b_data.ability = get_ability(p_bank[bank]->this_pkmn);
+    p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
+    p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
+    p_bank[bank]->b_data.poke_ball = 0;
+    p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
+    p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
+    p_bank[bank]->b_data.type[2] = MTYPE_NONE;
+    
+    if (!flags->pass_stats) {
+        p_bank[bank]->b_data.attack = 0;
+        p_bank[bank]->b_data.defense = 0;
+        p_bank[bank]->b_data.speed = 0;
+        p_bank[bank]->b_data.sp_atk = 0;
+        p_bank[bank]->b_data.sp_def = 0;
+        p_bank[bank]->b_data.accuracy = 0;
+        p_bank[bank]->b_data.evasion = 0;
+        p_bank[bank]->b_data.crit_mod = 0;
+    }
+    
+    // user actions should always be cleared
+    p_bank[bank]->b_data.is_running = 0;
+    p_bank[bank]->b_data.using_item = 0;
+    p_bank[bank]->b_data.is_switching = 0;
+    p_bank[bank]->b_data.skip_move_select = 0;
+    p_bank[bank]->b_data.first_turn = 1;
+    
+    if (!flags->pass_atk_history) {
+        p_bank[bank]->b_data.my_target = 0xFF;
+        p_bank[bank]->b_data.last_move = 0;
+        p_bank[bank]->b_data.current_move = 0;
+        p_bank[bank]->b_data.last_damage = 0;
+        p_bank[bank]->b_data.last_attacked_by = 0xFF;
+        p_bank[bank]->b_data.last_used_item = 0;
+        p_bank[bank]->b_data.ate_berry = 0;
+    }
+
+    if (!flags->pass_stats) {
+        p_bank[bank]->b_data.status = 0;
+        p_bank[bank]->b_data.confusion_turns = 0;
+        p_bank[bank]->b_data.status_turns = 0;
+        p_bank[bank]->b_data.substitute_health = 0;
+        p_bank[bank]->b_data.v_status = 0;
+        p_bank[bank]->b_data.is_taunted = 0;
+        p_bank[bank]->b_data.is_charmed = 0;
+        p_bank[bank]->b_data.is_grounded = 0;
+    }
+    
+    if (!flags->pass_disables) {
+        p_bank[bank]->b_data.is_disabled = 0;
+        p_bank[bank]->b_data.disabled_moves[0] = 0;
+        p_bank[bank]->b_data.disabled_moves[1] = 0;
+        p_bank[bank]->b_data.disabled_moves[2] = 0;
+        p_bank[bank]->b_data.disabled_moves[3] = 0;
+    }
+    
+    p_bank[bank]->b_data.semi_invulnerable_move_id = 0;
+    p_bank[bank]->b_data.illusion = 0;
+    p_bank[bank]->b_data.fainted = 0;
 }
 
 
@@ -60,19 +130,33 @@ void init_battle()
             break;
         case 3:
         {
+            // wait for sliding animations to finish
             if (bs_anim_status)
-                return;
-            super.multi_purpose_state_tracker = 0;
-            extern void option_selection(void);
-            set_callback1(option_selection);
-            
+                return;  
+
             // up and down movement of the active moving Pokemon
             u8 t_id = task_add(set_active_movement, 1);
             tasks[t_id].priv[0] = PLAYER_SINGLES_BANK;
             
+            // build p_bank data once animation is finished
+            struct update_flags* flags = (struct update_flags*)malloc_and_clear(sizeof(struct update_flags));
+            flags->pass_status = false;
+            flags->pass_stats = false;
+            flags->pass_atk_history = false;
+            flags->pass_disables = false;
+            update_pbank(PLAYER_SINGLES_BANK, flags);
+            update_pbank(OPPONENT_SINGLES_BANK, flags);
+            free(flags);
+            super.multi_purpose_state_tracker++;
         }
         case 4:
-            // something wrong happened. Exit battle safetly
+        {
+            // initialization finished, set c1 option selection
+            super.multi_purpose_state_tracker = 0;
+            set_callback1(option_selection);
+            break;
+        }
+        default:
             break;
     };
 }
