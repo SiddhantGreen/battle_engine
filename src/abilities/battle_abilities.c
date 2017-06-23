@@ -1032,9 +1032,9 @@ struct b_ability b_sap_sipper = {
 s8 prankster_on_priority_mod(u8 bank, u16 move)
 {
     if (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_STATUS) {
-        return MOVE_PRIORITY(move) + 1;
+        return 1;
     }
-    return MOVE_PRIORITY(move);
+    return 0;
 }
 
 void prankster_on_modify_move(u8 bank, u8 tbank, u16 move)
@@ -1302,9 +1302,9 @@ s8 gale_wings_on_priority_mod(u8 bank, u16 move)
 {
     if (MOVE_TYPE(move) == MTYPE_FLYING) {
         if (B_CURRENT_HP(bank) == TOTAL_HP(bank))
-            return MOVE_PRIORITY(move) + 1;
+            return 1;
     }
-    return MOVE_PRIORITY(move);
+    return 0;
 }
 
 struct b_ability b_gale_wings = {
@@ -1679,10 +1679,9 @@ struct b_ability b_liquid_voice = {
 // TRIAGE
 s8 triage_on_priority_mod(u8 bank, u16 move)
 {
-    if (IS_TRIAGE(move)) {
-        return MOVE_PRIORITY(bank) + 3;
-    }
-    return MOVE_PRIORITY(bank);
+    if (IS_TRIAGE(move))
+        return 3;
+    return 0;
 }
 
 struct b_ability b_triage = {
