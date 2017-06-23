@@ -44,6 +44,7 @@ enum VolatileStatus {
 
 struct local_battler_data {
     // Base stats in battle
+    u16 species;
     u8 gender;
     u16 current_hp;
     u16 total_hp;
@@ -59,9 +60,9 @@ struct local_battler_data {
     s8 speed;
     s8 sp_atk;
     s8 sp_def;
-    u8 accuracy;
-    u8 evasion;
-    u8 crit_mod;
+    s8 accuracy;
+    s8 evasion;
+    s8 crit_mod;
     
     // This Pokemon's action this turn
     u8 is_running : 1;
@@ -70,14 +71,12 @@ struct local_battler_data {
     u8 skip_move_select : 1;
     u8 first_turn : 1;
     
-
     u8 my_target;
     u16 last_move;
     u16 current_move;
     u16 last_damage;
     u8 last_attacked_by;
     u16 last_used_item;
-    
     
     // local user specific bitfield
     u8 is_disabled : 1;
@@ -94,19 +93,19 @@ struct local_battler_data {
     u16 substitute_health;
     enum VolatileStatus v_status;
     
-    
-    
     u16 disabled_moves[4];
     u16 semi_invulnerable_move_id;
-    
-    
-    
-    };
+};
 
+struct update_flags {
+    u8 pass_status : 1;
+    u8 pass_stats : 1;
+    u8 pass_atk_history : 1;
+    u8 pass_disables : 1;
+
+};
 
 struct pkmn_bank {
-    u16 species_id;
-    u16 padding;
     struct Pokemon* this_pkmn;
     u8 objid;
     u8 objid_hpbox[3]; // Main box, tag on part and

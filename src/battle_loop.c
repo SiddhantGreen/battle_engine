@@ -116,6 +116,7 @@ void battle_loop()
     /* check if ability boosts priority of move */
     s8 player_priority = ability_priority_mod(PLAYER_SINGLES_BANK, p_move);
     s8 opp_priority = ability_priority_mod(PLAYER_SINGLES_BANK, p_move);
+
     /* check selected move's innate priority */
     player_priority += MOVE_PRIORITY(p_move);
     opp_priority += MOVE_PRIORITY(opp_move);

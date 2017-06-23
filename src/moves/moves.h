@@ -89,6 +89,7 @@ enum MoveTypes {
     MTYPE_DRAGON,
     MTYPE_DARK,
     MTYPE_FAIRY,
+    MTYPE_NONE,
 };
 
 enum MoveCategory {
