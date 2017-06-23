@@ -68,21 +68,16 @@
 #define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[(target_type * 18) + dmg_type]
  
  
-extern void update_moves(u8 bank, u16 move_id);
+extern void update_move_history(u8 bank, u16 move_id);
 extern s8 ability_priority_mod(u8 bank, u16 move_id);
-extern s8 ability_attack_mod(u8 bank);
-extern s8 ability_defense_mod(u8 bank);
-extern s8 ability_speed_mod(u8 bank);
-extern s8 ability_sp_defense_mod(u8 bank);
-extern s8 ability_sp_attack_mod(u8 bank);
-extern s8 ability_critchance_mod(u8 bank);
-extern s8 item_attack_mod(u8 bank);
-extern s8 item_defense_mod(u8 bank);
-extern s8 item_speed_mod(u8 bank);
-extern s8 item_sp_defense_mod(u8 bank);
-extern s8 item_sp_attack_mod(u8 bank);
-extern s8 item_critchance_mod(u8 bank);
-extern s8 item_accuracy_mod(u8 bank);
+extern s8 ability_attack_mod(u8 bank, u16 stat_total);
+extern s8 ability_defense_mod(u8 bank, u16 stat_total);
+extern s8 ability_speed_mod(u8 bank, u16 stat_total);
+extern s8 ability_sp_defense_mod(u8 bank, u16 stat_total);
+extern s8 ability_sp_attack_mod(u8 bank, u16 stat_total);
+extern s8 ability_critchance_mod(u8 bank, u16 stat_total);
+extern s8 ability_accuracy_mod(u8 bank, u16 stat);
+extern s8 ability_evasion_mod(u8 bank, u16 stat);
 extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 
 
