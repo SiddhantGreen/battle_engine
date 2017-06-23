@@ -100,12 +100,16 @@ void update_cursor_move_select(u8 t_id)
             objects[battle_master->battle_cursor.objid].final_oam.affine_mode = 2;
             u8 i;
             for (i = 0; i < 4; i++) {
-                if (battle_master->type_objid[i] != 0x3F)
+                if (battle_master->type_objid[i] != 0x3F) {
                     objects[battle_master->type_objid[i]].final_oam.affine_mode = 2;
+                    objects[battle_master->move_pss_objid[i]].final_oam.affine_mode = 2;
+                    objects[battle_master->move_pp_objid[i]].final_oam.affine_mode = 2;
+                }
                 objects[battle_master->move_name_objid[i]].final_oam.affine_mode = 2;
             }
             bs_anim_status = 0;
             super.multi_purpose_state_tracker = 0;
+            return;
             break;
         }
         case KEY_A:
@@ -115,8 +119,11 @@ void update_cursor_move_select(u8 t_id)
             obj_free(&objects[battle_master->battle_cursor.objid]);
             u8 i;
             for (i = 0; i < 4; i++) {
-                if (battle_master->type_objid[i] != 0x3F)
+                if (battle_master->type_objid[i] != 0x3F) {
                     obj_free(&objects[battle_master->type_objid[i]]);
+                    obj_free(&objects[battle_master->move_pss_objid[i]]);
+                    obj_free(&objects[battle_master->move_pp_objid[i]]);
+                }
                 obj_free(&objects[battle_master->move_name_objid[i]]);
             }
             bs_anim_status = 0;
@@ -171,6 +178,20 @@ void update_cursor_move_select(u8 t_id)
             break;                
     };
     
+    u8 i;
+    for (i = 0; i < 4; i++) {
+        u8 adjust = (battle_master->battle_cursor.cursor_pos == 1) ? 2 : battle_master->battle_cursor.cursor_pos;
+        adjust = (battle_master->battle_cursor.cursor_pos == 2) ? 1 : adjust;
+        if (i == adjust) {
+            objects[battle_master->type_objid[i]].final_oam.affine_mode = 2;
+            objects[battle_master->move_pss_objid[i]].final_oam.affine_mode = 0;
+            objects[battle_master->move_pp_objid[i]].final_oam.affine_mode = 0;
+        } else {
+            objects[battle_master->type_objid[i]].final_oam.affine_mode = 0;
+            objects[battle_master->move_pss_objid[i]].final_oam.affine_mode = 2;
+            objects[battle_master->move_pp_objid[i]].final_oam.affine_mode = 2;
+        }
+    }
     if (battle_master->battle_cursor.cursor_pos > 3) {
         objects[battle_master->battle_cursor.objid].final_oam.affine_mode = 0;
         objects[battle_master->battle_cursor.objid_mv_crsr[0]].final_oam.affine_mode = 2;

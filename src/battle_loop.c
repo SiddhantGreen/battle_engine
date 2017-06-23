@@ -153,7 +153,14 @@ void run_decision(void)
         case 0:
         {
             /* TODO: Run switch and Player running away from battle checks */
-
+            bool can_switch = true;
+            if (p_bank[battle_master->first_bank]->b_data.is_switching) {
+                
+            }
+            
+            if (p_bank[battle_master->second_bank]->b_data.is_switching) {
+            
+            }
             super.multi_purpose_state_tracker++;
             break;
         }

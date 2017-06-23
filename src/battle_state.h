@@ -108,6 +108,8 @@ struct battle_main {
     u8 selected_option;
     u8 type_objid[4];
     u8 move_name_objid[4];
+    u8 move_pss_objid[4];
+    u8 move_pp_objid[4];
     u8 fight_menu_content_spawned;
     struct global_message b_message;
     
