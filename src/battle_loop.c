@@ -37,55 +37,36 @@ u16 pick_opponent_attack()
     return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total)+ REQUEST_MOVE1, NULL);
 }
 
-void set_attack(u8 bank, u16 move_id)
+void set_attack_bm(u8 bank, u8 index, s8 priority)
 {
-    battle_master->b_moves[bank].move_id = move_id;
-    battle_master->b_moves[bank].user_bank = bank;
-    battle_master->b_moves[bank].power = move_t[move_id].base_power;
-    battle_master->b_moves[bank].type[0] = move_t[move_id].type;
-    battle_master->b_moves[bank].accuracy = move_t[move_id].accuracy;
+    u16 move_id = p_bank[bank]->b_data.current_move;
+
+    battle_master->b_moves[index].user_bank = bank;
+    battle_master->b_moves[index].move_id = move_id;
+    battle_master->b_moves[index].priority = priority;
+    battle_master->b_moves[index].stab = 150; // move stab bonus
+    battle_master->b_moves[index].power = MOVE_POWER(move_id);
+    battle_master->b_moves[index].category = MOVE_CATEGORY(move_id);
+    battle_master->b_moves[index].type[0] = MOVE_TYPE(move_id);
+    battle_master->b_moves[index].type[1] = MOVE_TYPE(move_id);
+    battle_master->b_moves[index].flinch = M_FLINCH(move_id);
+    battle_master->b_moves[index].accuracy = MOVE_ACCURACY(move_id);
+    battle_master->b_moves[index].remove_contact = false;
+    battle_master->b_moves[index].copied = false;
+    battle_master->b_moves[index].ignore_abilities = false;
+    battle_master->b_moves[index].prankstered = HAS_VOLATILE(bank, VOLATILE_PRANKSTERED);
+    REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
+    battle_master->b_moves[index].infiltrates = false;
     battle_master->b_moves[bank].chance_self = move_t[move_id].procs->chance_self;
     battle_master->b_moves[bank].chance_target = move_t[move_id].procs->chance_target;
     
-    battle_master->b_moves[bank].stat_self[0] = move_t[move_id].procs->stat_self[0];
-    battle_master->b_moves[bank].stat_self[1] = move_t[move_id].procs->stat_self[1];
-    battle_master->b_moves[bank].stat_self[2] = move_t[move_id].procs->stat_self[2];
-    battle_master->b_moves[bank].stat_self[3] = move_t[move_id].procs->stat_self[3];
-    battle_master->b_moves[bank].stat_self[4] = move_t[move_id].procs->stat_self[4];
-    battle_master->b_moves[bank].stat_self[5] = move_t[move_id].procs->stat_self[5];
-    
-    battle_master->b_moves[bank].stat_target[0] = move_t[move_id].procs->stat_target[0];
-    battle_master->b_moves[bank].stat_target[1] = move_t[move_id].procs->stat_target[1];
-    battle_master->b_moves[bank].stat_target[2] = move_t[move_id].procs->stat_target[2];
-    battle_master->b_moves[bank].stat_target[3] = move_t[move_id].procs->stat_target[3];
-    battle_master->b_moves[bank].stat_target[4] = move_t[move_id].procs->stat_target[4];
-    battle_master->b_moves[bank].stat_target[5] = move_t[move_id].procs->stat_target[5];
-    
-    battle_master->b_moves[bank].amount_self[0] = move_t[move_id].procs->amount_self[0];
-    battle_master->b_moves[bank].amount_self[1] = move_t[move_id].procs->amount_self[1];
-    battle_master->b_moves[bank].amount_self[2] = move_t[move_id].procs->amount_self[2];
-    battle_master->b_moves[bank].amount_self[3] = move_t[move_id].procs->amount_self[3];
-    battle_master->b_moves[bank].amount_self[4] = move_t[move_id].procs->amount_self[4];
-    battle_master->b_moves[bank].amount_self[5] = move_t[move_id].procs->amount_self[5];
-    
-    battle_master->b_moves[bank].amount_target[0] = move_t[move_id].procs->amount_target[0];
-    battle_master->b_moves[bank].amount_target[1] = move_t[move_id].procs->amount_target[1];
-    battle_master->b_moves[bank].amount_target[2] = move_t[move_id].procs->amount_target[2];
-    battle_master->b_moves[bank].amount_target[3] = move_t[move_id].procs->amount_target[3];
-    battle_master->b_moves[bank].amount_target[4] = move_t[move_id].procs->amount_target[4];
-    battle_master->b_moves[bank].amount_target[5] = move_t[move_id].procs->amount_target[5];
-
-}
-
-
-
-void run_move_text(u16 attack, u8 bank)
-{
-    // display move was used
-    pick_battle_message(attack, bank, battle_type_flags, STRING_ATTACK_USED, 0);
-    battle_show_message((u8*)string_buffer, 0x18);
-    
-
+    u8 i;
+    for (i = 0; i < 6; i++) {
+        battle_master->b_moves[bank].stat_self[i] = move_t[move_id].procs->stat_self[i];
+        battle_master->b_moves[bank].stat_target[i] = move_t[move_id].procs->stat_target[i];
+        battle_master->b_moves[bank].amount_self[i] = move_t[move_id].procs->amount_self[i];
+        battle_master->b_moves[bank].amount_target[i] = move_t[move_id].procs->amount_target[i];
+    }
 }
 
 u8 get_target_bank(u8 user_bank, u16 move_id)
@@ -102,26 +83,26 @@ u8 get_target_bank(u8 user_bank, u16 move_id)
 
 }
 
-
 void battle_loop()
 {
-    // set p_bank temp vars and fix priority tiers
+    // fetch moves used from input
     u16 p_move = pick_player_attack();
     u16 opp_move = pick_opponent_attack();
     battle_master->fight_menu_content_spawned = 0;
     
-    update_moves(PLAYER_SINGLES_BANK, p_move);
-    update_moves(OPPONENT_SINGLES_BANK, opp_move);
+    // update internal move history
+    update_move_history(PLAYER_SINGLES_BANK, p_move);
+    update_move_history(OPPONENT_SINGLES_BANK, opp_move);
     
-    /* check if ability boosts priority of move */
+    /* check if ability boosts priority of move, and update */
     s8 player_priority = ability_priority_mod(PLAYER_SINGLES_BANK, p_move);
     s8 opp_priority = ability_priority_mod(PLAYER_SINGLES_BANK, p_move);
 
-    /* check selected move's innate priority */
+    /* update selected move's innate priority */
     player_priority += MOVE_PRIORITY(p_move);
     opp_priority += MOVE_PRIORITY(opp_move);
     
-    // Higher priority will go first
+    /* Turn order, higher priority will go first */
     if (player_priority > opp_priority) {
         battle_master->first_bank = PLAYER_SINGLES_BANK;
         battle_master->second_bank = OPPONENT_SINGLES_BANK;
@@ -129,7 +110,7 @@ void battle_loop()
         battle_master->first_bank = OPPONENT_SINGLES_BANK;
         battle_master->second_bank = PLAYER_SINGLES_BANK;
     } else {
-        // matching priorities, get speed
+        // matching priorities, retrieve speed stat
         u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
         u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
         
@@ -148,33 +129,22 @@ void battle_loop()
         } else {
             battle_master->first_bank = OPPONENT_SINGLES_BANK;
             battle_master->second_bank = PLAYER_SINGLES_BANK;
-        }
-        
+        }   
     }
-    battle_master->b_moves[0].move_id = CURRENT_MOVE(battle_master->first_bank);
-    battle_master->b_moves[0].user_bank = battle_master->first_bank;
-    battle_master->b_moves[1].move_id = CURRENT_MOVE(battle_master->second_bank);
-    battle_master->b_moves[1].user_bank = battle_master->second_bank;
-    
-    // figure out who the target of the move used is
-    set_attack(battle_master->first_bank, battle_master->b_moves[0].move_id);
-    set_attack(battle_master->second_bank, battle_master->b_moves[1].move_id);
-    
+    set_attack_bm(battle_master->first_bank, 0, battle_master->first_bank == PLAYER_SINGLES_BANK ? player_priority : opp_priority);
+    set_attack_bm(battle_master->second_bank, 1, battle_master->second_bank == OPPONENT_SINGLES_BANK ? opp_priority : player_priority);
+   
     /* Run each move's before turn */
-    if (move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
+    /*if (move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
         move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb(battle_master->first_bank);
     if (move_t[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb)
-        move_t[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb(battle_master->second_bank);
+        move_t[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb(battle_master->second_bank);*/
     
     super.multi_purpose_state_tracker = 0;
     battle_master->execution_index = 0;
     set_callback1(run_decision);
 }
 
-void unclean_move_select(void)
-{
-    return;
-}
 
 void run_decision(void)
 {
@@ -183,6 +153,7 @@ void run_decision(void)
         case 0:
         {
             /* TODO: Run switch and Player running away from battle checks */
+
             super.multi_purpose_state_tracker++;
             break;
         }
