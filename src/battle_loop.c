@@ -162,12 +162,44 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
+bool can_flee(u8 bank)
+{
+    if(B_PKMN_TYPE(bank) == TYPE_GHOST)
+        return true;
+    if(HAS_VOLATILE(bank, VOLATILE_TRAPPED))
+        return false;
+}
+
+bool can_flee_by_random(u8 bank)
+{
+    u16 reference = ((128 * p_bank[bank]->b_data.speed) / p_bank[FOE_BANK(bank)]->b_data.speed);
+    reference += (30* (++p_bank[bank]->b_data.flee_count));
+    reference = reference % 256;
+    return rand_range(0,255) < reference;
+}
+
 void run_switch()
 {
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch(super.multi_purpose_state_tracker) {
         case 0:
         {
+            
+            // check if the first bank is fleeing
+            if (p_bank[battle_master->first_bank]->b_data.is_running) {
+                ability_on_before_switch(bank_index);
+                if(!can_flee(bank_index)){
+                    // TODO: Display message
+                    super.multi_purpose_state_tracker = 2;
+                } else if(!can_flee_by_random(bank_index)) {
+                    //TODO: Display message and end turn
+                } else {
+                    //TODO: Free resources, play sound and message
+                    exit_to_overworld_2_switch();
+                    set_callback1(c1_overworld);
+                }
+            }
+
             // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
             if (p_bank[battle_master->first_bank]->b_data.is_switching) {
                 ability_on_before_switch(bank_index);

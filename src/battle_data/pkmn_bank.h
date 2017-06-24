@@ -98,6 +98,9 @@ struct local_battler_data {
     enum VolatileStatus v_status;
     
     u16 disabled_moves[4];
+
+    // counters
+    u8 flee_count;
 };
 
 struct update_flags {
