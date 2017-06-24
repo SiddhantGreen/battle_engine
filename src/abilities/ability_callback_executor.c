@@ -98,3 +98,28 @@ u16 ability_evasion_mod(u8 bank, u16 stat) {
     }
     return 0;
 }
+
+void ability_on_before_switch(u8 bank) {
+    if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
+        return;
+    if (abilities_table[p_bank[bank]->b_data.ability]->on_before_switch) {
+        abilities_table[p_bank[bank]->b_data.ability]->on_before_switch(bank);
+    }
+}
+
+void ability_on_switch(u8 bank) {
+    if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
+        return;
+    if (abilities_table[p_bank[bank]->b_data.ability]->on_switch) {
+        abilities_table[p_bank[bank]->b_data.ability]->on_switch(bank);
+    }
+}
+
+void ability_on_modify_move(u8 bank, u8 target, u16 move) {
+    if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
+        return;
+    if (abilities_table[p_bank[bank]->b_data.ability]->on_switch) {
+        abilities_table[p_bank[bank]->b_data.ability]->on_switch(bank);
+    }
+}
+
