@@ -27,6 +27,7 @@
 #define IS_PULSE(move) ((*(move_t[move].m_flags)) & (1 << 22))
 #define IS_STRONG_JAW(move) ((*(move_t[move].m_flags)) & (1 << 15))
 #define IS_BULLET(move) ((*(move_t[move].m_flags)) & (1 << 16))
+#define IS_SEMI_INVUL(move) ((*(move_t[move].m_flags)) & (1 << 23))
 
 
 
@@ -52,24 +53,18 @@
 #define FLAG_TRIAGE_AFFECTED (1 << 20)
 #define FLAG_DANCER (1 << 21)
 #define FLAG_PULSE (1 << 22)
-#define FLAGS_UNUSED (1 << 23)
+#define FLAG_SEMI_INVUL (1 << 23)
+#define FLAGS_UNUSED (1 << 24)
 
-// Move failed check
+
 typedef u8 (*TryHitCallback)(u8);
-
-// activate some p_bank flags for a Pokemon in a certain bank and/or target bank. bt_cb(user_bank, target_bank)
 typedef void (*BeforeTurnCallback)(u8);
-
-// Executed before duration for something is applied, to modify duration. dur_cb(user bank, target bank, effect)
+typedef bool (*OnInvulnerableTryhit)(u16);
 typedef u8 (*DurationCallback)(u8, u8, u8);
-
-// executed before damage calculation, and skips dmg_calc. dmg_cb(user_bank, target_bank)
 typedef void (*DamageCallback)(u8, u8);
-
-// executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
-
 typedef void (*ModifyMoveCallback)(u8);
+
 
 enum MoveTypes {
     MTYPE_NORMAL = 0,
@@ -151,6 +146,7 @@ struct move_callbacks {
     ModifyMoveCallback mm_cb;
     TryHitCallback th_cb;
     DamageCallback bd_cb;
+    OnInvulnerableTryhit inv_tryhit_cb;
     
     
 };

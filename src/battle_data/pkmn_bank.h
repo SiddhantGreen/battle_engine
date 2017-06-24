@@ -42,6 +42,7 @@ enum VolatileStatus {
     VOLATILE_AROMA_VEIL = (1 << 5),
     VOLATILE_MOLDBREAKER = (1 << 6),
     VOLATILE_PRANKSTERED = (1 << 7),
+    VOLATILE_SEMI_INVULNERABLE = (1 << 8),
 };
 
 struct local_battler_data {
@@ -97,7 +98,6 @@ struct local_battler_data {
     enum VolatileStatus v_status;
     
     u16 disabled_moves[4];
-    u16 semi_invulnerable_move_id;
 };
 
 struct update_flags {

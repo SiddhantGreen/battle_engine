@@ -96,7 +96,6 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.disabled_moves[3] = 0;
     }
     
-    p_bank[bank]->b_data.semi_invulnerable_move_id = 0;
     p_bank[bank]->b_data.illusion = 0;
     p_bank[bank]->b_data.fainted = 0;
 }
