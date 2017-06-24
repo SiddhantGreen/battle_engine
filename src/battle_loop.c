@@ -12,6 +12,7 @@ extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool peek_message(void);
+extern void run_move(void);
 
 u16 pick_player_attack()
 {
@@ -200,6 +201,86 @@ void run_after_switch()
     return;
 }
 
+u8 try_hit(u8 attacker)
+{
+    // if moves never misses, exit early
+    u8 move_accuracy = B_MOVE_ACCURACY(attacker);
+    if (move_accuracy > 100) {
+        return true;
+    }
+    
+    // if target is in semi invulnerability do checks
+    u8 defender = TARGET_OF(attacker);
+    if (HAS_VOLATILE(defender, VOLATILE_SEMI_INVULNERABLE)) {
+        if (move_t[LAST_MOVE(defender)].move_cb->inv_tryhit_cb) {
+            if (!(move_t[LAST_MOVE(defender)].move_cb->inv_tryhit_cb(CURRENT_MOVE(attacker))))
+                return false;
+        }
+    }
+
+    // standard accuracy formula check
+    u16 target_evasion = B_EVASION_STAT(defender);
+    u16 user_accuracy = B_ACCURACY_STAT(attacker);
+    
+    u8 result = (user_accuracy / target_evasion) * move_accuracy;
+    if (rand_range(0, 100) <= result)
+        return true;
+    return false;
+}
+
+#define MOVE_TRYHIT 0
+#define MOVE_TRYHIT_SIDE 0
+void move_hit()
+{
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    u16 move = CURRENT_MOVE(bank_index);
+    switch(super.multi_purpose_state_tracker) {
+        case 0:
+        {
+            bool move_hits = true;
+            if (MOVE_TRYHIT) {
+                // move try hit callback exec
+            } else if (MOVE_TRYHIT_SIDE) {
+                // move tryhit side callback exec
+            }
+            if (move_hits) {
+                super.multi_purpose_state_tracker = 2;
+            } else {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
+        case 1:
+            if (!peek_message()) {
+                super.multi_purpose_state_tracker = 5;
+                set_callback1(run_move);
+            }
+            break;
+        case 2:
+            // run ability tryhits
+            if (!(HAS_VOLATILE(bank_index, VOLATILE_MOLDBREAKER))) {
+                if (ability_on_tryhit(bank_index, TARGET_OF(bank_index), move)) {
+                    super.multi_purpose_state_tracker++;
+                } else {
+                    super.multi_purpose_state_tracker = 1;
+                }
+            } else {
+                // moldbreaker means we skip ability tryhits
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        case 3:
+        {
+            if (!peek_message()) {
+                try_hit(bank_index);
+                super.multi_purpose_state_tracker = 5;
+                set_callback1(run_move);
+            }
+        }
+    };
+}
+
+
 #define BEFORE_MOVE_CALLBACK_0 0
 void run_move()
 {
@@ -240,8 +321,10 @@ void run_move()
             }
             break;
         case 4:
-            if (!peek_message())
-                super.multi_purpose_state_tracker++;
+            if (!peek_message()) {
+                set_callback1(move_hit); // move hit will advance the state when complete
+                super.multi_purpose_state_tracker = 0;
+            }
             break;
         case 5:
             if (!peek_message()) {
