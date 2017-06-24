@@ -59,7 +59,6 @@ void update_cursor_action_select(u8 t_id)
             break;
         default:
             // up and down do nothing
-            var_8000 = battle_master->battle_cursor.cursor_pos;
             break;
     };
     objects[battle_master->battle_cursor.objid].pos1.x = battle_master->battle_cursor.cursor_x[battle_master->battle_cursor.cursor_pos];
