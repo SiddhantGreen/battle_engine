@@ -6,26 +6,28 @@
 
 bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect)
 {
-    u8 front = battle_master->queue_front_index;
-    if (front > 9)
+    u8 back = battle_master->queue_size;
+    if (back > 9)
         return false;
-    battle_master->b_message[front].move_id = move;
-    battle_master->b_message[front].bank = bank;
-    battle_master->b_message[front].string_id = id;
-    battle_master->b_message[front].effect = effect;
-    battle_master->queue_front_index++;
+    battle_master->b_message[back].move_id = move;
+    battle_master->b_message[back].bank = bank;
+    battle_master->b_message[back].string_id = id;
+    battle_master->b_message[back].effect = effect;
+    battle_master->queue_size++;
     return true;
 }
 
 bool peek_message()
 {
     /* If no messages are queued, exit */
-    u8 front = battle_master->queue_front_index;
-    if (!front)
+    u8 back = battle_master->queue_size;
+    if (back == battle_master->queue_front_index) {
+        battle_master->queue_size = 0;
+        battle_master->queue_front_index = 0;
         return false;
+    }
     battle_master->state = super.multi_purpose_state_tracker;
     battle_master->c1 = super.callback1;
-    battle_master->queue_front_index--;
     extern void play_bmessage(void);
     super.callback1 = play_bmessage;
     super.multi_purpose_state_tracker = 0;
@@ -55,6 +57,7 @@ void play_bmessage()
         case 2:
         {
             super.multi_purpose_state_tracker = battle_master->state + 1;
+            battle_master->queue_front_index++;
             set_callback1(battle_master->c1);
             
             break;
