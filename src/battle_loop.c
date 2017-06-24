@@ -77,10 +77,18 @@ u8 set_target_bank(u8 user_bank, u16 move_id)
         p_bank[user_bank]->b_data.my_target = user_bank;
         return user_bank;
     } else { //if (*(move_t[move_id].m_flags) & FLAG_TARGET) {
-        u8 t_bank = (user_bank == PLAYER_SINGLES_BANK) ? OPPONENT_SINGLES_BANK : PLAYER_SINGLES_BANK;
-        p_bank[user_bank]->b_data.my_target = t_bank;
-        return t_bank;
+        p_bank[user_bank]->b_data.my_target = FOE_BANK(user_bank);
+        return FOE_BANK(user_bank);
     }
+}
+
+bool target_exists(u8 bank)
+{
+    /* TODO this should be more thorough */
+    // target has hp remaining
+    if (B_CURRENT_HP(TARGET_OF(bank)))
+        return true;
+    return false;
 }
 
 void switch_battler(u8 switching_bank)
@@ -200,20 +208,51 @@ void run_move()
         case 0:
             /* TODO :  Before move callbacks */
             if (BEFORE_MOVE_CALLBACK_0) {
+                // move failed
+                super.multi_purpose_state_tracker = 1;
+                return;
+            } else {
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+            }
+            super.multi_purpose_state_tracker = 2;
+            break;
+        case 1:
+            if (!peek_message()) {
                 super.multi_purpose_state_tracker = 4; // exit
                 set_callback1(run_decision);
                 return;
             }
-            super.multi_purpose_state_tracker++;
             break;
-        case 1:
-        {
+        case 2:
             // Modify move callbacks
-            ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            super.multi_purpose_state_tracker = 4; // exit
-            set_callback1(run_decision);
-            
-        }
+            if (!peek_message()) {
+                ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        case 3:
+            if (!peek_message()) {
+                // check target exists
+                if (!target_exists(bank_index)) {
+                    
+                    enqueue_message(0, bank_index, STRING_FAILED, 0);
+                    super.multi_purpose_state_tracker = 5; // PP reduction state
+                } else {
+                    super.multi_purpose_state_tracker++;
+                }
+            }
+            break;
+        case 4:
+            if (!peek_message())
+                super.multi_purpose_state_tracker++;
+            break;
+        case 5:
+            if (!peek_message()) {
+                super.multi_purpose_state_tracker = 4; // exit
+                set_callback1(run_decision);
+            }
+            break;
+        
     };
 }
 
@@ -235,10 +274,9 @@ void run_decision(void)
                 // if second bank run, switch back to first bank and go to next phase
                 battle_master->execution_index = 0;
                 super.multi_purpose_state_tracker++;
-                break;
             } else {
                 battle_master->execution_index = 1;
-                super.multi_purpose_state_tracker++;
+                super.multi_purpose_state_tracker = 0;
             }
             break;
         case 3:
@@ -246,11 +284,15 @@ void run_decision(void)
             super.multi_purpose_state_tracker = 0;
             break;
         case 4:
-        {
-            /* TODO: Run after switch */
-            super.multi_purpose_state_tracker++;
+            // run move for second bank after first bank is run. else run on faint stuff
+            if (bank_index == battle_master->second_bank) {
+                battle_master->execution_index = 0;
+                super.multi_purpose_state_tracker++;
+            } else {
+                battle_master->execution_index = 1;
+                super.multi_purpose_state_tracker = 3;
+            }
             break;
-        }
         case 5:
         {
             super.multi_purpose_state_tracker++;
@@ -265,7 +307,6 @@ void run_decision(void)
                 u16 move_id = battle_master->b_moves[battle_master->execution_index].move_id;
                 pick_battle_message(move_id, bank_index, battle_type_flags, STRING_NO_TARGET, move_id);
                 battle_show_message((u8*)string_buffer, 0x18);
-                var_8000 = 0x92 + battle_master->execution_index;
                 super.multi_purpose_state_tracker++;
             }
             break;
@@ -287,15 +328,11 @@ void run_decision(void)
         case 98:
         {
             
-            battle_master->execution_index++;
-            if (battle_master->execution_index > 1) {
-                extern void option_selection(void);
-                set_callback1(option_selection);
-                super.multi_purpose_state_tracker = 0;
-                battle_master->execution_index = 0;
-                return;
-            }
+
+            extern void option_selection(void);
+            set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
+            battle_master->execution_index = 0;
             break;
         }
         default:

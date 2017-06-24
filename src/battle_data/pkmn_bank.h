@@ -47,9 +47,9 @@ enum VolatileStatus {
 struct local_battler_data {
     // Base stats in battle
     u16 species;
-    u8 gender;
     u16 current_hp;
     u16 total_hp;
+    u8 gender;
     u8 ability;
     u16 item;
     u8 level;
