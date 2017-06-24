@@ -115,11 +115,19 @@ void ability_on_switch(u8 bank) {
     }
 }
 
-void ability_on_modify_move(u8 bank, u8 target, u16 move) {
-    if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
+void ability_on_modify_move(u8 attacker, u8 defender, u16 move) {
+    if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
         return;
-    if (abilities_table[p_bank[bank]->b_data.ability]->on_switch) {
-        abilities_table[p_bank[bank]->b_data.ability]->on_switch(bank);
+    if (abilities_table[p_bank[attacker]->b_data.ability]->on_modify_move) {
+        abilities_table[p_bank[attacker]->b_data.ability]->on_modify_move(attacker, defender, move);
+    }
+}
+
+u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move) {
+    if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
+        return;
+    if (abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit) {
+        abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit(attacker, defender, move);
     }
 }
 

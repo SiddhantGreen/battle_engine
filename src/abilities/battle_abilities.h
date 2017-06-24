@@ -69,6 +69,15 @@ struct b_ability {
      */    
     AbilityModMoveCallback on_modify_move; 
     
+    /*
+     * on_tryhit is called after the move tryhit callbacks are executed. Takes in a attacker and defender
+     * as the first two parameters and the last parameter is a move id. It will return false if the move fails
+     * to land. True if the move lands. Call format:
+     * on_tryhit(attacker, defender, move id)
+     */
+    AbilityTryHitCallback on_tryhit;
+    
+    
     StatCallback on_attack;
     StatCallback on_defense;
     StatCallback on_sp_attack;
@@ -81,7 +90,7 @@ struct b_ability {
     
     
      
-    AbilityTryHitCallback on_tryhit;
+    
     AbilityOnDamageCallback on_damage; // right before damage is applied. Can modify dmg
     AbilityAfterDamageCallback on_after_damage;
     AbilitySetStatusCallback on_set_status;

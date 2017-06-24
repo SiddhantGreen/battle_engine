@@ -17,8 +17,8 @@
 #define B_SPEED_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spd, p_bank[bank]->b_data.speed, 2, bank)
 #define B_SPATTACK_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spatk, p_bank[bank]->b_data.sp_atk, 3, bank)
 #define B_SPDEFENSE_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spdef, p_bank[bank]->b_data.sp_def, 4, bank)
-#define B_ACCURACY_STAT(bank) stage_modify_stat(1, p_bank[bank]->b_data.accuracy, 5, bank)
-#define B_EVASION_STAT(bank) stage_modify_stat(1, p_bank[bank]->b_data.evasion, 6, bank)
+#define B_ACCURACY_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.accuracy, 5, bank)
+#define B_EVASION_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
 
 #define NUM_MOD(number, percent) ((number * percent) / 100)
@@ -82,6 +82,7 @@ extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 extern void ability_on_before_switch(u8 bank);
 extern void ability_on_switch(u8 bank);
 extern void ability_on_modify_move(u8 bank, u8 target, u16 move);
+extern u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move);
 
 
 #endif /* PKMN_BANK_STAT_H_ */
