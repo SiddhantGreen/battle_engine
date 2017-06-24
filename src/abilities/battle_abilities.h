@@ -11,7 +11,6 @@ typedef void (*BasePowerCallback)(u8, u16); // bank, move
 typedef s8 (*AbilityModMovePriorityCallback)(u8, u16); // bank, move
 typedef void (*AbilityModMoveCallback)(u8, u8, u16); // bank, tbank, move
 typedef void (*AbilitySwitchInCallback)(u8);
-typedef void (*AbilityBeforeSwitchInCallback)(u8);
 typedef void (*AbilityResidualCallback)(u8);
 typedef u8 (*AbilityTryHitCallback)(u8, u8, u16); // bank, tbank, move
 typedef u16 (*AbilityOnDamageCallback)(u8, u8, u16, u16, u8, u16); // bank, tbank, move, damage taken, ability, item
@@ -25,7 +24,7 @@ typedef void (*AbilityOnTryHealCallback)(u8, u8); //bank, healing bank
 typedef void (*AbilityAfterBoostCallback)(u8, s8); //bank, amount boosted
 typedef bool (*AbilityOnBoostCallback)(u8, s8, u8); //bank, amount boosted, boosting stat
 typedef bool (*AbilityOnImmunityCallback)(u8, enum Effect); //bank, effect
-
+typedef void (*AbilityOnBasePowerSourceCallback)(u8,u8, u16); // attacker, defender, move
 
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);
@@ -63,6 +62,12 @@ struct b_ability {
      */
     AbilitySwitchInCallback on_switch;
     
+    /*
+     * on_modify_move is called before the move is executed. It's called after the on_switch callbacks
+     * it's expected to modify the move inside the move data structure in RAM. Call format:
+     * on_modify_move(pokemon with ability, target bank, move id)
+     */    
+    AbilityModMoveCallback on_modify_move; 
     
     StatCallback on_attack;
     StatCallback on_defense;
@@ -72,9 +77,10 @@ struct b_ability {
     StatCallback on_evasion;
     StatCallback on_critchance;
     BasePowerCallback on_base_power;
+    AbilityOnBasePowerSourceCallback on_source_base_power;
     
     
-    AbilityModMoveCallback on_modify_move;  
+     
     AbilityTryHitCallback on_tryhit;
     AbilityOnDamageCallback on_damage; // right before damage is applied. Can modify dmg
     AbilityAfterDamageCallback on_after_damage;

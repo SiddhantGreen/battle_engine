@@ -1572,17 +1572,18 @@ struct b_ability b_stakeout = {
 
 
 // WATER BUBBLE
-void water_bubble_on_modify_move(u8 bank, u8 tbank, u16 move)
+void water_bubble_on_base_power(u8 bank, u16 move)
 {
-    if (tbank == bank)
-        return;
-    // if the foe is going to use a fire type move, reduce it's power
-    if ((B_MOVE_TYPE(FOE_BANK(bank), 0) == MTYPE_FIRE) || (B_MOVE_TYPE(FOE_BANK(bank), 1) == MTYPE_FIRE))
-        B_MOVE_POWER(FOE_BANK(bank)) = NUM_MOD(B_MOVE_POWER(FOE_BANK(bank)), 50);
-
     // if user's using a water type move, increase power
-    if ((B_MOVE_TYPE(bank, 0) == MTYPE_WATER) || (B_MOVE_TYPE(bank, 1) == MTYPE_WATER))
+    if (B_MOVE_HAS_TYPE(bank, MTYPE_WATER))
         B_MOVE_POWER(bank) *= 2;
+}
+
+void water_bubble_on_source_base_power(u8 attacker, u8 defender, u16 move)
+{
+    // if the foe is going to use a fire type move, reduce it's power
+    if (B_MOVE_HAS_TYPE(attacker, MTYPE_FIRE))
+        B_MOVE_POWER(attacker) = NUM_MOD(B_MOVE_POWER(attacker), 50);
 }
 
 bool water_bubble_on_set_status(u8 bank, u8 atkbank, enum Effect effect, bool settable)
@@ -1606,8 +1607,8 @@ void water_bubble_on_update(u8 bank)
 }
 
 struct b_ability b_water_bubble = {
-    .on_modify_move = water_bubble_on_modify_move,
-    .on_set_status = water_bubble_on_set_status,
+    .on_base_power = water_bubble_on_base_power,
+    .on_source_base_power = water_bubble_on_source_base_power,
     .on_update = water_bubble_on_update,
 };
 
