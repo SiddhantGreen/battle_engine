@@ -39,8 +39,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
     u16 species = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPECIES, NULL);
     p_bank[bank]->b_data.species = species;
     p_bank[bank]->b_data.gender = pokemon_get_gender(p_bank[bank]->this_pkmn);
-    p_bank[bank]->b_data.current_hp = p_bank[bank]->this_pkmn->current_hp;
-    p_bank[bank]->b_data.total_hp = p_bank[bank]->this_pkmn->total_hp;
+    p_bank[bank]->b_data.current_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, NULL);;
+    p_bank[bank]->b_data.total_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_TOTAL_HP, NULL);;
     p_bank[bank]->b_data.ability = get_ability(p_bank[bank]->this_pkmn);
     p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
     p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
