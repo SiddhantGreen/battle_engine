@@ -210,17 +210,15 @@ void run_move()
             if (BEFORE_MOVE_CALLBACK_0) {
                 // move failed
                 super.multi_purpose_state_tracker = 1;
-                return;
             } else {
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+                super.multi_purpose_state_tracker = 2;
             }
-            super.multi_purpose_state_tracker = 2;
             break;
         case 1:
             if (!peek_message()) {
                 super.multi_purpose_state_tracker = 4; // exit
                 set_callback1(run_decision);
-                return;
             }
             break;
         case 2:
@@ -234,7 +232,6 @@ void run_move()
             if (!peek_message()) {
                 // check target exists
                 if (!target_exists(bank_index)) {
-                    
                     enqueue_message(0, bank_index, STRING_FAILED, 0);
                     super.multi_purpose_state_tracker = 5; // PP reduction state
                 } else {
@@ -295,40 +292,6 @@ void run_decision(void)
             break;
         case 5:
         {
-            super.multi_purpose_state_tracker++;
-            break;
-        }
-        case 6:
-        {
-            /* check target exists */
-            if (p_bank[p_bank[bank_index]->b_data.my_target]->this_pkmn->current_hp) {
-                super.multi_purpose_state_tracker += 2;
-            } else {
-                u16 move_id = battle_master->b_moves[battle_master->execution_index].move_id;
-                pick_battle_message(move_id, bank_index, battle_type_flags, STRING_NO_TARGET, move_id);
-                battle_show_message((u8*)string_buffer, 0x18);
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-        }
-        case 7:
-        {
-            if (!dialogid_was_acknowledged(0x18)) {
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-        }
-        case 8:
-        {
-            /* Move hit */
-            
-            super.multi_purpose_state_tracker = 98;
-            break;
-        }
-        case 98:
-        {
-            
-
             extern void option_selection(void);
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
