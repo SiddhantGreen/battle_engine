@@ -194,6 +194,8 @@ void load_icons_moves(u8 bank)
         u8 type = move_t[moves[i]].type;
         if (type == MTYPE_EGG) {
             battle_master->type_objid[i] = 0x3F;
+            battle_master->move_pp_objid[i] = 0x3F;
+            battle_master->move_pss_objid[i] = 0x3F;
         } else {
             u8 objid;
             battle_master->type_objid[i] = load_dmg_type_icon(type, x, y, i);

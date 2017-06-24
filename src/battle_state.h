@@ -32,12 +32,10 @@ struct battle_selection_cursor {
 };
 
 struct global_message {
-    u8 state;
     u16 move_id;
     u8 bank;
     u8 string_id;
-    u16 effecting_move_id;
-    SuperCallback c1;
+    u16 effect;   
 };
 
 struct battle_field_state {
@@ -103,25 +101,30 @@ struct move_used {
 typedef u16 (*StatModifierCallback)(u16 stat, u8 id, u8 bank);
 
 struct battle_main {
-    struct battle_selection_cursor battle_cursor;
     struct battle_field_state field_state;
+    
+    /* Object ids and positions */
+    struct battle_selection_cursor battle_cursor;
     u8 selected_option;
     u8 type_objid[4];
     u8 move_name_objid[4];
     u8 move_pss_objid[4];
     u8 move_pp_objid[4];
     u8 fight_menu_content_spawned;
-    struct global_message b_message;
     
+    /* Message system variables */
+    struct global_message b_message[5]; // message queue depth is 5
+    u8 queue_front_index;
+    u8 state;
+    SuperCallback c1;
     
-    
-    
-    
+    /* Battle turn order variables */
     u8 first_bank;
     u8 second_bank;
     u8 execution_index;
     struct move_used b_moves[2];
 
+    /* Battle details */
     u16 damage_to_deal;
     u16 amount_to_heal;
     enum Effect effect[2];

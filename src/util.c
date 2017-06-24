@@ -3,7 +3,7 @@
 #include "battle_data/pkmn_bank_stats.h"
 #include "abilities/battle_abilities.h"
 
-extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 u16 rand_range(u16 min, u16 max)
 {
     return (rand() / (0xFFFF / (max - min))) + min;
@@ -110,7 +110,6 @@ s8 move_effectiveness(u8 move_type, u8 target_bank)
 
 void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
-    extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
     if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
         if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
             return;
@@ -165,18 +164,18 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
         case 2:
         case 3:
         case 4:
-            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id);
+            enqueue_message(0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id);
             break;
         case 5:
-            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_DROP, stat_id);
+            enqueue_message(0, bank, STRING_STAT_MOD_DROP, stat_id);
             break;
         case 6:
             break;
         case 7:
-            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_RISE, stat_id);
+            enqueue_message(0, bank, STRING_STAT_MOD_RISE, stat_id);
             break;
         default:
-            build_message(GAME_STATE, 0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id);
+            enqueue_message(0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id);
             break;
     };
 }
@@ -191,7 +190,7 @@ void set_status(u8 bank, u8 source, enum Effect status)
             p_bank[bank]->b_data.status = EFFECT_NONE;
             p_bank[bank]->b_data.status_turns = 0;
             p_bank[bank]->b_data.confusion_turns = 0;
-            build_message(GAME_STATE, 0, bank, STRING_AILMENT_CURED, 0);
+            enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
             return;
             break;
         case EFFECT_PARALYZE:
@@ -272,9 +271,9 @@ void set_status(u8 bank, u8 source, enum Effect status)
     
     if (status_applied) {
         p_bank[bank]->b_data.status = status;
-        build_message(GAME_STATE, 0, bank, STRING_AILMENT_APPLIED, status);
+        enqueue_message(0, bank, STRING_AILMENT_APPLIED, status);
     } else {
-        build_message(GAME_STATE, 0, bank, STRING_AILMENT_IMMUNE, status);
+        enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
     }
 }
 

@@ -10,7 +10,7 @@ extern u8 get_side(u8 bank);
 extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
-extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
 u16 pick_player_attack()
 {
@@ -181,16 +181,15 @@ void run_decision(void)
         {
             /* Run move used text */
 
-            
-            build_message(super.multi_purpose_state_tracker + 1, CURRENT_MOVE(bank_index), bank_index,
-                        STRING_ATTACK_USED, 0);
-            //super.multi_purpose_state_tracker++;
+            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+            super.multi_purpose_state_tracker++;
             break;
         }
         case 4:
         {
            // if (!dialogid_was_acknowledged(0x18)) {
-                super.multi_purpose_state_tracker++;
+                if (!peek_message())
+                    super.multi_purpose_state_tracker++;
            // }
             break;
         }

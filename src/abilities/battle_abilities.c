@@ -5,7 +5,7 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "battle_abilities.h"
 
-extern void build_message(u8 state, u16 move_id, u8 user_bank, enum battle_string_ids id, u16 move_effect_id);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern s8 move_effectiveness(u8 move_type, u8 target_bank);
@@ -43,7 +43,7 @@ void drizzle_on_switch(u8 bank)
     }
     // set new weather
     battle_master->field_state.is_raining = 1;
-    build_message(GAME_STATE, 0, 0, STRING_RAINING, 0);
+    enqueue_message(0, 0, STRING_RAINING, 0);
 }
 
 struct b_ability b_drizzle = {
@@ -56,7 +56,7 @@ void speed_boost_on_residual(u8 bank)
 {
     if (p_bank[bank]->b_data.speed < 6) {
         p_bank[bank]->b_data.speed++;
-        build_message(GAME_STATE, 0, bank, STRING_GAINED_SPEED, 0);
+        enqueue_message(0, bank, STRING_RAINING, 0);
     }
 }
 
@@ -86,7 +86,7 @@ u8 sturdy_tryhit(u8 bank, u8 target, u16 move)
         case MOVE_HORN_DRILL:
         case MOVE_GUILLOTINE:
         case MOVE_SHEER_COLD:
-            build_message(GAME_STATE, move, bank, STRING_STURDY_IMMUNE, 0);
+            enqueue_message(move, bank, STRING_STURDY_IMMUNE, 0);
             return false;
             break;
         default:
@@ -114,7 +114,7 @@ struct b_ability b_sturdy = {
 u8 damp_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((move == MOVE_SELFDESTRUCT) || (move == MOVE_EXPLOSION)) {
-        build_message(GAME_STATE, move, bank, STRING_DAMP_BLOCKED, 0);
+        enqueue_message(move, bank, STRING_DAMP_BLOCKED, 0);
         return false;
     }
     return true;
@@ -138,7 +138,7 @@ void limber_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_PARALYZE) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+       enqueue_message(0, bank, STRING_STATUS_CURED, 0);
     }
 }
 
@@ -148,7 +148,7 @@ bool limber_on_set_status(u8 bank, u8 source, enum Effect effect, bool settable)
         return false;
     if ((effect == EFFECT_PARALYZE) && (settable)) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_LIMBER);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_LIMBER);
        return true;
     }
     return false;
@@ -201,7 +201,7 @@ struct b_ability b_static = {
 u8 volt_absorb_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_ELECTRIC)) {
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_VOLT_ABSORB);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_VOLT_ABSORB);
         p_bank[target]->b_data.current_hp += (TOTAL_HP(target) / 4);
         if (B_CURRENT_HP(target) > TOTAL_HP(target))
             p_bank[target]->b_data.current_hp = TOTAL_HP(target);
@@ -219,7 +219,7 @@ struct b_ability b_volt_absorb = {
 u8 water_absorb_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_WATER)) {
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_ABSORB);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_ABSORB);
         p_bank[target]->b_data.current_hp += (TOTAL_HP(target) / 4);
         if (B_CURRENT_HP(target) > TOTAL_HP(target))
             p_bank[target]->b_data.current_hp = TOTAL_HP(target);
@@ -239,11 +239,11 @@ void oblivious_on_update(u8 bank)
 {
     if (p_bank[bank]->b_data.is_taunted) {
         p_bank[bank]->b_data.is_taunted = false;
-         build_message(GAME_STATE, MOVE_TAUNT, bank, STRING_EFFECT_ENDED, 0);
+         enqueue_message(MOVE_TAUNT, bank, STRING_EFFECT_ENDED, 0);
     }
     if (p_bank[bank]->b_data.is_charmed) {
         p_bank[bank]->b_data.is_charmed = false;
-         build_message(GAME_STATE, MOVE_CHARM, bank, STRING_EFFECT_ENDED, 0);
+         enqueue_message(MOVE_CHARM, bank, STRING_EFFECT_ENDED, 0);
     }
 }
 
@@ -262,7 +262,7 @@ void cloud_nine_on_switch(u8 bank)
     battle_master->field_state.is_desolate_land = false;
     battle_master->field_state.is_primordial_sea = false;
     battle_master->field_state.suppress_weather = true;
-    build_message(GAME_STATE, 0, 0, STRING_WEATHER_GONE, 0);
+    enqueue_message(0, 0, STRING_WEATHER_GONE, 0);
 }
 
 struct b_ability b_cloud_nine = {
@@ -286,7 +286,7 @@ void insomnia_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_SLEEP) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+       enqueue_message(0, bank, STRING_STATUS_CURED, 0);
     }
 }
 
@@ -296,7 +296,7 @@ bool insomnia_on_set_status(u8 bank, u8 source, enum Effect effect, bool settabl
         return false;
     if ((effect == EFFECT_SLEEP) && (settable)) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_INSOMNIA);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_INSOMNIA);
        return true;
     }
     return false;
@@ -324,7 +324,7 @@ void color_change_after_move_secondary(u8 bank, u8 target, u16 move, u8 ability,
         }
         // set type if unique to target and non-status move
             B_PKMN_TYPE(bank, 0) = MOVE_TYPE(move);
-            build_message(GAME_STATE, move, bank, STRING_GAINED_TYPE, 0);
+            enqueue_message(move, bank, STRING_GAINED_TYPE, 0);
             return;
     }
 }
@@ -339,7 +339,7 @@ void immunity_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_SLEEP) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+       enqueue_message(0, bank, STRING_STATUS_CURED, 0);
     }
 }
 
@@ -349,7 +349,7 @@ bool immunity_on_set_status(u8 bank, u8 source, enum Effect effect, bool settabl
         return false;
     if ((effect == EFFECT_POISON) && settable) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_IMMUNITY);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_IMMUNITY);
        return true;
     }
     return false;
@@ -364,7 +364,7 @@ struct b_ability b_immunity = {
 u8 flash_fire_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_FIRE)) {
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLASH_FIRE);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLASH_FIRE);
         ADD_VOLATILE(bank, VOLATILE_FLASH_FIRE);
         return false;
     }
@@ -410,7 +410,7 @@ void own_tempo_on_update(u8 bank)
     if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
        REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
        SET_CONFUSION_TURNS(bank, 0);
-       build_message(GAME_STATE, 0, bank, STRING_CONFUSION_ENDED, ABILITY_OWN_TEMPO);
+       enqueue_message(0, bank, STRING_CONFUSION_ENDED, ABILITY_OWN_TEMPO);
     }
 }
 
@@ -421,7 +421,7 @@ bool own_tempo_on_set_status(u8 bank, u8 source, enum Effect effect, bool settab
         return false;
     if ((effect == EFFECT_CONFUSION) && settable) {
        SET_CONFUSION_TURNS(bank, 0);
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_OWN_TEMPO);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_OWN_TEMPO);
         return true;
     }
     return false;
@@ -436,7 +436,7 @@ struct b_ability b_own_tempo = {
 // Suction Cups
 u8 suction_cups_on_dragout(u8 bank)
 {
-    build_message(GAME_STATE, 0, bank, STRING_DRAGGED_OUT_FAILED, ABILITY_SUCTION_CUPS);
+    enqueue_message(0, bank, STRING_DRAGGED_OUT_FAILED, ABILITY_SUCTION_CUPS);
     return false;
 }
 
@@ -451,7 +451,7 @@ void intimidate_on_switch(u8 bank)
     u8 foe = FOE_BANK(bank);
     if (B_CURRENT_HP(foe) && (!(HAS_VOLATILE(foe, VOLATILE_SUBSTITUTE) || 
         HAS_VOLATILE(foe, VOLATILE_STAT_REDUC_IMMUNE))))  {
-        build_message(GAME_STATE, 0, bank, STRING_INTIMIDATE, 0);
+        enqueue_message(0, bank, STRING_INTIMIDATE, 0);
     }
 }
 
@@ -496,7 +496,7 @@ u8 wonder_guard_on_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((bank == target) || (move == MOVE_STRUGGLE) || IS_MOVE_STATUS(move))
         return true;
-    build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WONDER_GUARD);
+    enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_WONDER_GUARD);
     return false;
 }
 
@@ -961,7 +961,7 @@ void mummy_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u1
 {
     if (MAKES_CONTACT(move, bank)) {
         BANK_ABILITY(target) = ABILITY_MUMMY;
-        build_message(GAME_STATE, 0, target, STRING_ABILITY_CHANGE, ABILITY_MUMMY);
+        enqueue_message(0, target, STRING_ABILITY_CHANGE, ABILITY_MUMMY);
     }
 }
 
@@ -1018,7 +1018,7 @@ u8 sap_sipper_tryhit(u8 bank, u8 target, u16 move)
 {
     if ((target != bank) &&  (MOVE_TYPE(move) == MTYPE_GRASS)) {
         stat_boost(bank, REQUEST_ATK, 1);
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_SAP_SIPPER);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_SAP_SIPPER);
         return false;
     }
     return true;
@@ -1151,7 +1151,7 @@ struct b_ability b_aroma_veil = {
 bool flower_veil_on_boost(u8 bank, s8 amount, u8 stat)
 {
     if ((amount < 0) && ((B_PKMN_TYPE(bank, 0) == TYPE_GRASS) || (B_PKMN_TYPE(bank, 1) == TYPE_GRASS))) {
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
         return false;
     }
     return true;
@@ -1163,7 +1163,7 @@ bool flower_veil_on_set_status(u8 bank, u8 source, enum Effect effect, bool sett
         return false;
     if (settable) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_FLOWER_VEIL);
        return true;
     }
     return false;
@@ -1184,7 +1184,7 @@ u8 protean_on_tryhit(u8 bank, u8 t_bank, u16 move)
 {
     if (BANK_ABILITY(bank) == ABILITY_PROTEAN) {
         B_PKMN_TYPE(bank, 0) = B_MOVE_TYPE(bank, 0);
-        build_message(GAME_STATE, 0, bank, STRING_PROTEAN, 0);
+        enqueue_message(0, bank, STRING_PROTEAN, 0);
         return true;
     }
     return true;
@@ -1273,7 +1273,7 @@ void sweet_veil_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_SLEEP) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+       enqueue_message(0, bank, STRING_STATUS_CURED, 0);
     }
 }
 
@@ -1283,7 +1283,7 @@ bool sweet_veil_on_set_status(u8 bank, u8 source, enum Effect effect, bool setta
         return false;
     if ((effect == EFFECT_SLEEP) && (settable)) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_SWEET_VEIL);
+       enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_SWEET_VEIL);
        return true;
     }
     return false;
@@ -1471,7 +1471,7 @@ struct b_ability b_aura_break = {
 void primordial_sea_on_switch(u8 bank)
 {
     battle_master->field_state.is_primordial_sea = 1;
-    build_message(GAME_STATE, 0, 0, STRING_PRIMORDIAL_SEA, 0);
+    enqueue_message(0, 0, STRING_PRIMORDIAL_SEA, 0);
 }
 
 struct b_ability b_primordial_sea = {
@@ -1483,7 +1483,7 @@ struct b_ability b_primordial_sea = {
 void desolate_land_on_switch(u8 bank)
 {
     battle_master->field_state.is_desolate_land = 1;
-    build_message(GAME_STATE, 0, 0, STRING_DESOLATE_LAND, 0);
+    enqueue_message(0, 0, STRING_DESOLATE_LAND, 0);
 }
 
 struct b_ability b_desolate_land = {
@@ -1495,7 +1495,7 @@ struct b_ability b_desolate_land = {
 void delta_stream_on_switch(u8 bank)
 {
     battle_master->field_state.is_delta_stream = 1;
-    build_message(GAME_STATE, 0, 0, STRING_DELTA_STREAM, 0);
+    enqueue_message(0, 0, STRING_DELTA_STREAM, 0);
 }
 
 struct b_ability b_delta_stream = {
@@ -1591,7 +1591,7 @@ bool water_bubble_on_set_status(u8 bank, u8 atkbank, enum Effect effect, bool se
         return false;
     if (effect == EFFECT_BURN) {
         p_bank[bank]->b_data.status = AILMENT_NONE;
-        build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_BUBBLE);
+        enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_WATER_BUBBLE);
         return true;
     }
     return false;
@@ -1601,7 +1601,7 @@ void water_bubble_on_update(u8 bank)
 {
     if (B_STATUS(bank) == AILMENT_BURN) {
        p_bank[bank]->b_data.status = AILMENT_NONE;
-       build_message(GAME_STATE, 0, bank, STRING_STATUS_CURED, 0);
+       enqueue_message(0, bank, STRING_STATUS_CURED, 0);
     }
 }
 
@@ -1745,7 +1745,7 @@ bool corrosion_on_set_status(u8 bank, u8 source, enum Effect effect, bool settab
     if ((bank == source) && ((effect == EFFECT_POISON) || (effect == EFFECT_BAD_POISON))) {
         u8 ailment = (effect == EFFECT_POISON) ? AILMENT_POISON : AILMENT_BAD_POISON;
         p_bank[TARGET_OF(bank)]->b_data.status = ailment;
-        build_message(GAME_STATE, 0, TARGET_OF(bank), STRING_AILMENT_APPLIED, ailment);
+        enqueue_message(0, TARGET_OF(bank), STRING_AILMENT_APPLIED, ailment);
         return true;
     }
     return false;
@@ -1763,7 +1763,7 @@ bool comatose_on_set_status(u8 bank, u8 source, enum Effect effect, bool settabl
         return false;
     // if pokemon with the ability (bank) is being set a status, provide immunity
     p_bank[bank]->b_data.status = AILMENT_NONE;
-    build_message(GAME_STATE, 0, bank, STRING_IMMUNE_ABILITY, ABILITY_COMATOSE);
+    enqueue_message(0, bank, STRING_IMMUNE_ABILITY, ABILITY_COMATOSE);
     return true;
 }
 
