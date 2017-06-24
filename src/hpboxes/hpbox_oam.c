@@ -112,7 +112,7 @@ void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid)
 
     u16 current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL);
     u16 total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
-    u8 tile_length = 2;
+    u8 tile_length = total_hp > 99 ? 3 : 2;
 
     if (current_hp < 10) {
         // single digit, space pad 2 digits
