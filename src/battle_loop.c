@@ -11,6 +11,7 @@ extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern bool peek_message(void);
 
 u16 pick_player_attack()
 {
@@ -69,7 +70,7 @@ void set_attack_bm(u8 bank, u8 index, s8 priority)
     }
 }
 
-u8 get_target_bank(u8 user_bank, u16 move_id)
+u8 set_target_bank(u8 user_bank, u16 move_id)
 {
     // check who the move targets
     if (*(move_t[move_id].m_flags) & FLAG_ONSELF) {
@@ -80,7 +81,12 @@ u8 get_target_bank(u8 user_bank, u16 move_id)
         p_bank[user_bank]->b_data.my_target = t_bank;
         return t_bank;
     }
+}
 
+void switch_battler(u8 switching_bank)
+{
+    /* TODO actual switching */
+    return;
 }
 
 void battle_loop()
@@ -133,6 +139,8 @@ void battle_loop()
     }
     set_attack_bm(battle_master->first_bank, 0, battle_master->first_bank == PLAYER_SINGLES_BANK ? player_priority : opp_priority);
     set_attack_bm(battle_master->second_bank, 1, battle_master->second_bank == OPPONENT_SINGLES_BANK ? opp_priority : player_priority);
+    set_target_bank(battle_master->first_bank, p_bank[battle_master->first_bank]->b_data.current_move);
+    set_target_bank(battle_master->second_bank, p_bank[battle_master->second_bank]->b_data.current_move);
    
     /* Run each move's before turn */
     /*if (move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
@@ -145,52 +153,102 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
+void run_switch()
+{
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    switch(super.multi_purpose_state_tracker) {
+        case 0:
+        {
+            // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
+            if (p_bank[battle_master->first_bank]->b_data.is_switching) {
+                ability_on_before_switch(bank_index);
+                super.multi_purpose_state_tracker++;
+            } else {
+                super.multi_purpose_state_tracker = 2;
+            }
+            break;
+        }
+        case 1:
+        {
+            // play queued messages from before_switch bank 1. Once done go to second bank switch check
+            if (!peek_message())
+                switch_battler(bank_index);
+                super.multi_purpose_state_tracker++;
+                break;
+        }
+        default:
+            super.multi_purpose_state_tracker = 1;
+            set_callback1(run_decision);
+            break;
+    };
+}
+
+void run_after_switch()
+{
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    ability_on_switch(bank_index);
+    super.multi_purpose_state_tracker = 2;
+    set_callback1(run_decision);
+    return;
+}
+
+#define BEFORE_MOVE_CALLBACK_0 0
+void run_move()
+{
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    switch(super.multi_purpose_state_tracker) {
+        case 0:
+            /* TODO :  Before move callbacks */
+            if (BEFORE_MOVE_CALLBACK_0) {
+                super.multi_purpose_state_tracker = 4; // exit
+                set_callback1(run_decision);
+                return;
+            }
+            super.multi_purpose_state_tracker++;
+            break;
+        case 1:
+        {
+            // Modify move callbacks
+            ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            super.multi_purpose_state_tracker = 4; // exit
+            set_callback1(run_decision);
+            
+        }
+    };
+}
 
 void run_decision(void)
 {
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch (super.multi_purpose_state_tracker) {
-        case 0:
-        {
-            /* TODO: Run switch and Player running away from battle checks */
-            bool can_switch = true;
-            if (p_bank[battle_master->first_bank]->b_data.is_switching) {
-                
-            }
-            
-            if (p_bank[battle_master->second_bank]->b_data.is_switching) {
-            
-            }
-            super.multi_purpose_state_tracker++;
+       case 0:
+            set_callback1(run_switch);
+            super.multi_purpose_state_tracker = 0;
             break;
-        }
         case 1:
+            set_callback1(run_after_switch);
+            super.multi_purpose_state_tracker = 0;
+            break;
+        case 2:
+            // once first bank's run_switch and run_after_switch have exec'd, run second bank
+            if (bank_index == battle_master->second_bank) {
+                // if second bank run, switch back to first bank and go to next phase
+                battle_master->execution_index = 0;
+                super.multi_purpose_state_tracker++;
+                break;
+            } else {
+                battle_master->execution_index = 1;
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        case 3:
+            set_callback1(run_move);
+            super.multi_purpose_state_tracker = 0;
+            break;
+        case 4:
         {
             /* TODO: Run after switch */
             super.multi_purpose_state_tracker++;
-            break;
-        }
-        case 2:
-        {
-            /* Run before move callbacks */
-            super.multi_purpose_state_tracker++;
-
-            break;
-        }
-        case 3:
-        {
-            /* Run move used text */
-
-            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
-            super.multi_purpose_state_tracker++;
-            break;
-        }
-        case 4:
-        {
-           // if (!dialogid_was_acknowledged(0x18)) {
-                if (!peek_message())
-                    super.multi_purpose_state_tracker++;
-           // }
             break;
         }
         case 5:

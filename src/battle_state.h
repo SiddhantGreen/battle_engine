@@ -114,6 +114,7 @@ struct battle_main {
     
     /* Message system variables */
     struct global_message b_message[5]; // message queue depth is 5
+    u8 queue_size;
     u8 queue_front_index;
     u8 state;
     SuperCallback c1;

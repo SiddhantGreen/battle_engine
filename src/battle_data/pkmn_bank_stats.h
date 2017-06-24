@@ -79,7 +79,9 @@ extern s8 ability_critchance_mod(u8 bank, u16 stat_total);
 extern s8 ability_accuracy_mod(u8 bank, u16 stat);
 extern s8 ability_evasion_mod(u8 bank, u16 stat);
 extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
-
+extern void ability_on_before_switch(u8 bank);
+extern void ability_on_switch(u8 bank);
+extern void ability_on_modify_move(u8 bank, u8 target, u16 move);
 
 
 #endif /* PKMN_BANK_STAT_H_ */
