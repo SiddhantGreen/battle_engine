@@ -168,6 +168,7 @@ bool can_flee(u8 bank)
         return true;
     if(HAS_VOLATILE(bank, VOLATILE_TRAPPED))
         return false;
+    return true;
 }
 
 bool can_flee_by_random(u8 bank)
@@ -176,6 +177,37 @@ bool can_flee_by_random(u8 bank)
     reference += (30* (++p_bank[bank]->b_data.flee_count));
     reference = reference % 256;
     return rand_range(0,255) < reference;
+}
+
+void run_flee()
+{
+    switch(superstate.multi_purpose_state_tracker) {
+        case 0:
+        if(!peek_message())
+        {
+            super.multi_purpose_state_tracker = 1;
+            set_callback1(run_decision);
+        }
+        break;
+        case 1:
+        if(!peek_message())
+        {
+            super.multi_purpose_state_tracker = 1;
+            set_callback1(run_decision);
+        }
+        break;
+        case 2:
+        default:
+        if(!peek_message())
+        {
+            // TODO: free resources
+            exit_to_overworld_2_switch();
+            set_callback1(c1_overworld);
+        }
+
+        break;
+
+    }
 }
 
 void run_switch()
@@ -189,15 +221,17 @@ void run_switch()
             if (p_bank[battle_master->first_bank]->b_data.is_running) {
                 ability_on_before_switch(bank_index);
                 if(!can_flee(bank_index)){
-                    // TODO: Display message
-                    super.multi_purpose_state_tracker = 2;
+                    // TODO: add the right string
+                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
+                    superstate.multi_purpose_state_tracker = 0;
                 } else if(!can_flee_by_random(bank_index)) {
-                    //TODO: Display message and end turn
+                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
+                    superstate.multi_purpose_state_tracker = 1;
                 } else {
-                    //TODO: Free resources, play sound and message
-                    exit_to_overworld_2_switch();
-                    set_callback1(c1_overworld);
+                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
+                    superstate.multi_purpose_state_tracker = 2;
                 }
+                set_callback1(run_flee);
             }
 
             // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
