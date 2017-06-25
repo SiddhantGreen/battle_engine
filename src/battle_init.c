@@ -224,7 +224,7 @@ void option_selection()
         case 5:
         {
             // RUN selected from fight menu
-            // right now it just exits. Needs to be cleaned up - memory leaks exist.
+            p_bank[battle_master->first_bank]->b_data.is_running = true;
             extern void run_switch(void);
             set_callback1(run_switch);
             super.multi_purpose_state_tracker = 0; 

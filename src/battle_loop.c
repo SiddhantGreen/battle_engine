@@ -222,13 +222,13 @@ void run_switch()
                 ability_on_before_switch(bank_index);
                 if(!can_flee(bank_index)){
                     // TODO: add the right string
-                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                     super.multi_purpose_state_tracker = 0;
                 } else if(!can_flee_by_random(bank_index)) {
-                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                     super.multi_purpose_state_tracker = 1;
                 } else {
-                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
                     super.multi_purpose_state_tracker = 2;
                 }
                 set_callback1(run_flee);
