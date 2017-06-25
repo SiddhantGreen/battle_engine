@@ -12,11 +12,11 @@
  * Get Pokemon's current battle stats based on stage changes to stat 
  *
  */
-#define B_ATTACK_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->atk, p_bank[bank]->b_data.attack, 0, bank)
-#define B_DEFENSE_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->def, p_bank[bank]->b_data.defense, 1, bank)
-#define B_SPEED_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spd, p_bank[bank]->b_data.speed, 2, bank)
-#define B_SPATTACK_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spatk, p_bank[bank]->b_data.sp_atk, 3, bank)
-#define B_SPDEFENSE_STAT(bank) stage_modify_stat(p_bank[bank]->this_pkmn->spdef, p_bank[bank]->b_data.sp_def, 4, bank)
+#define B_ATTACK_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK, NULL), p_bank[bank]->b_data.attack, 0, bank)
+#define B_DEFENSE_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_DEF, NULL), p_bank[bank]->b_data.defense, 1, bank)
+#define B_SPEED_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD, NULL), p_bank[bank]->b_data.speed, 2, bank)
+#define B_SPATTACK_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK, NULL), p_bank[bank]->b_data.sp_atk, 3, bank)
+#define B_SPDEFENSE_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF, NULL), p_bank[bank]->b_data.sp_def, 4, bank)
 #define B_ACCURACY_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.accuracy, 5, bank)
 #define B_EVASION_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
