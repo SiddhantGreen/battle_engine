@@ -45,6 +45,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_DELTA_STREAM:
             case STRING_DESOLATE_LAND:
             case STRING_PRIMORDIAL_SEA:
+            case STRING_ATTACK_AVOIDED:
+            case STRING_ATTACK_MISSED:
                 fdecoder_battle(battle_strings[id], 0, 0, 0);
                 break;
             case STRING_ATTACK_USED:

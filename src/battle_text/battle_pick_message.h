@@ -45,6 +45,8 @@ enum battle_string_ids {
     STRING_PRIMORDIAL_SEA = 71,
     STRING_PROTEAN = 72,
     STRING_ABILITY_CHANGE = 74,
+    STRING_ATTACK_MISSED = 76,
+    STRING_ATTACK_AVOIDED = 77,
 };
 
 
@@ -124,6 +126,8 @@ static const pchar str_protean_p[] = _("{ATTACKING_MON}’s Protean changed\nit�
 static const pchar str_protean_o[] = _("Foe {ATTACKING_MON}’s Protean changed\nit’s type!");
 static const pchar str_ability_change_p[] = _("{DEFENDING_MON}’s Mummy changed\n{ATTACKING_MON}’s ability to Mummy!");
 static const pchar str_ability_change_o[] = _("Foe {DEFENDING_MON}’s Mummy changed\n{ATTACKING_MON}’s ability to Mummy!");
+static const pchar str_atk_missed[] = _("The attack missed!");
+static const pchar str_atk_avoided[] = _("{DEFENDING_MON} avoided the attack!");
 
 
 // stat names
@@ -146,7 +150,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[76] = {
+static const pchar* battle_strings[78] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -186,6 +190,7 @@ static const pchar* battle_strings[76] = {
    (pchar*)&str_primordial_sea,
    (pchar*)&str_protean_p, (pchar*)&str_protean_o,
    (pchar*)&str_ability_change_p, (pchar*)&str_ability_change_o,
+   (pchar*)&str_atk_missed, (pchar*)&str_atk_avoided,
 };
 
 
