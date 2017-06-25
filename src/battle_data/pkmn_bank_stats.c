@@ -35,63 +35,50 @@ void update_move_history(u8 bank, u16 move_id)
  * Returns the stat after stage modifications have been done. Id represents which stat has been modified
  * 0 - atk; 1 - def; 2 - speed; 3 - spatk; 4 - spdef; 5 - accuracy; 6 - evasion; 7 - Crit chance
  */
+const static u16 stat_mod[13] = {25, 29, 33, 40, 50, 67, 100, 150, 200, 250, 300, 350, 400};
+const static u16 acc_mod[13] = {33, 38, 43, 50, 60, 75, 100, 133, 167, 200, 233, 266, 300};
+const static u16 crit_mod[4] = {6, 13, 50, 100};
+
 u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
 {
     u16 stat_total;
     
     /* atk, def, spd, spa, spdef */
     if (id < 5) {
-        if (mod < 0) {
-            stat_total = ((stat * (200 / (ABS(mod) + 2))) / 100);
-        } else {
-            stat_total = NUM_MOD(stat, 100 + (50 * mod));
-        }
+        stat_total = NUM_MOD(stat, stat_mod[mod + 6]);
     } else if (id < 7) {
         /* Accuracy and Evasion */
-        if (mod < 0) {
-            stat_total = 300 / (ABS(mod) + 3);
-        } else {
-            stat_total = (300 + (100 * mod)) / 3;
-        }
+        stat_total = acc_mod[mod + 6];
     } else {
         /* crit chance */
-        switch (mod) {
-            case 0:
-                stat_total = 625;
-            case 1:
-                stat_total = 1250;
-            case 2:
-                stat_total = 5000;
-            default:
-                stat_total = 10000;
-            };
+        stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
     }
     
     // apply modifiers to stat via callback. Example: Ability Huge Power
     switch (id) {
         case 0:
-            stat_total = ability_attack_mod(bank, stat_total);
+            stat_total += ability_attack_mod(bank, stat_total);
             break;
         case 1:
-            stat_total = ability_defense_mod(bank, stat_total);
+            stat_total += ability_defense_mod(bank, stat_total);
             break;
         case 2:
-            stat_total = ability_speed_mod(bank, stat_total);
+            stat_total += ability_speed_mod(bank, stat_total);
             break;
         case 3:
-            stat_total = ability_sp_attack_mod(bank, stat_total);
+            stat_total += ability_sp_attack_mod(bank, stat_total);
             break;
         case 4:
-            stat_total = ability_sp_defense_mod(bank, stat_total);
+            stat_total += ability_sp_defense_mod(bank, stat_total);
             break;
         case 5:
-            stat_total = ability_accuracy_mod(bank, stat_total);
+            stat_total += ability_accuracy_mod(bank, stat_total);
             break;
         case 6:
-            stat_total = ability_evasion_mod(bank, stat_total);
+            stat_total += ability_evasion_mod(bank, stat_total);
             break;
         case 7:
-            stat_total = ability_critchance_mod(bank, stat_total);
+            stat_total += ability_critchance_mod(bank, stat_total);
             break;
     };
     

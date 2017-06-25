@@ -125,9 +125,9 @@ void ability_on_modify_move(u8 attacker, u8 defender, u16 move) {
 
 u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move) {
     if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
-        return;
+        return true;
     if (abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit) {
-        abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit(attacker, defender, move);
+        return abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit(attacker, defender, move);
     }
 }
 

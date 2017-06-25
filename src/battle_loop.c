@@ -267,7 +267,7 @@ void run_after_switch()
     return;
 }
 
-u8 try_hit(u8 attacker)
+bool try_hit(u8 attacker)
 {
     // if moves never misses, exit early
     u8 move_accuracy = B_MOVE_ACCURACY(attacker);
@@ -288,9 +288,20 @@ u8 try_hit(u8 attacker)
     u16 target_evasion = B_EVASION_STAT(defender);
     u16 user_accuracy = B_ACCURACY_STAT(attacker);
     
-    u8 result = (user_accuracy / target_evasion) * move_accuracy;
-    if (rand_range(0, 100) <= result)
+    u16 result = (user_accuracy / target_evasion) * move_accuracy;
+    if (rand_range(0, 100) <= result) {
         return true;
+    }
+    if (target_evasion > 100) {
+        enqueue_message(0, attacker, STRING_ATTACK_AVOIDED, 0);
+    } else {
+        enqueue_message(0, attacker, STRING_ATTACK_MISSED, 0);
+    }
+    return false;
+}
+
+bool is_immune(u8 attacker, u8 defender, u16 move)
+{
     return false;
 }
 
@@ -338,10 +349,22 @@ void move_hit()
         case 3:
         {
             if (!peek_message()) {
-                try_hit(bank_index);
-                super.multi_purpose_state_tracker = 5;
-                set_callback1(run_move);
+                if (try_hit(bank_index)) {
+                    // check immunity
+                    if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
+                        super.multi_purpose_state_tracker = 1;
+                    } else {
+                    // not immune, and attack has landed
+                        super.multi_purpose_state_tracker = 5;
+                        set_callback1(run_move);
+                    }
+                } else {
+                    // move has missed
+                    super.multi_purpose_state_tracker = 5;
+                    set_callback1(run_move);
+                }
             }
+            break;
         }
     };
 }

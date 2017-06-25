@@ -78,7 +78,6 @@ void player_set_frame(void* dst, u8 sprite_id, u8 frame)
 
 void player_throwball_and_moveout_scene(struct Object* obj)
 {
-    var_8000 = obj->pos1.x;
     void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
     switch (obj->priv[0]) {
         case 0:
