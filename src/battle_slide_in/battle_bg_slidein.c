@@ -164,7 +164,7 @@ void battle_slidein(void)
             bgid_mark_for_sync(3);
             bgid_mark_for_sync(1);
             bgid_mark_for_sync(0);
-            // enable wraparound for BG3 and BG2
+            // enable wraparound for BG3 and BG1
             REG_BG3CNT |= 0x2000;
             REG_BG1CNT |= 0x2000;
 
@@ -200,8 +200,8 @@ void battle_slidein(void)
             bs_env_windows->top_side += 3;
             bs_env_windows->wintop -= 1;
             bs_env_windows->winbot += 1;
-            bgid_mod_x_offset(1, 3 << 8, 1);
-            bgid_mod_y_offset(1, 1 << 8, 2);
+            bgid_mod_x_offset(1, 4 << 8, 1);
+            bgid_mod_y_offset(1, 1 << 7, 2);
 
             allys_move_into_scene();
             opponents_move_into_scene();
@@ -220,11 +220,13 @@ void battle_slidein(void)
         }
         case 8:
         {
-            // objects opponent side light up original palette
-            REG_BLDCNT = 0;
-
-            // player remove blending
-            obj_mode_normal_set(bs_env_windows->player_trainer_objid);
+            
+            //REG_BLDCNT = 0;
+            extern void task_lightup_obj(u8);
+            u8 t_id = task_add(task_lightup_obj, 0x1);
+            tasks[t_id].priv[0] = 0x7;
+            gpu_sync_bg_hide(1);
+            
 
             // spawn HP boxes
             spawn_hpboxes_wild();
@@ -234,4 +236,22 @@ void battle_slidein(void)
         case 10:
             break;
     };
+}
+
+
+void task_lightup_obj(u8 t_id)
+{
+    if (tasks[t_id].priv[0]) {
+        if (tasks[t_id].priv[1] % 2)
+            tasks[t_id].priv[0]--;
+        tasks[t_id].priv[1]++;
+        REG_BLDY = tasks[t_id].priv[0];
+    } else {
+        // objects opponent side light up original palette
+        REG_BLDCNT = 0;
+        
+        // player remove blending
+        obj_mode_normal_set(bs_env_windows->player_trainer_objid);
+        task_del(t_id);
+    }
 }
