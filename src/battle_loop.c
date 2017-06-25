@@ -164,7 +164,7 @@ void battle_loop()
 
 bool can_flee(u8 bank)
 {
-    if(B_PKMN_TYPE(bank) == TYPE_GHOST)
+    if(B_PKMN_TYPE(bank, 0) == TYPE_GHOST || B_PKMN_TYPE(bank,1) == TYPE_GHOST)
         return true;
     if(HAS_VOLATILE(bank, VOLATILE_TRAPPED))
         return false;
@@ -181,7 +181,7 @@ bool can_flee_by_random(u8 bank)
 
 void run_flee()
 {
-    switch(superstate.multi_purpose_state_tracker) {
+    switch(super.multi_purpose_state_tracker) {
         case 0:
         if(!peek_message())
         {
@@ -222,14 +222,14 @@ void run_switch()
                 ability_on_before_switch(bank_index);
                 if(!can_flee(bank_index)){
                     // TODO: add the right string
-                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
-                    superstate.multi_purpose_state_tracker = 0;
+                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    super.multi_purpose_state_tracker = 0;
                 } else if(!can_flee_by_random(bank_index)) {
-                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
-                    superstate.multi_purpose_state_tracker = 1;
+                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    super.multi_purpose_state_tracker = 1;
                 } else {
-                    enqueue_message(MOVE_NONE, bank_index, STRING_ABILITY_CHANGE, 0);
-                    superstate.multi_purpose_state_tracker = 2;
+                    enqueue_message(MOVE_NONE, bank_index, STRING_DRAGGED_OUT_FAILED, 0);
+                    super.multi_purpose_state_tracker = 2;
                 }
                 set_callback1(run_flee);
             }

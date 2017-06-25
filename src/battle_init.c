@@ -222,10 +222,14 @@ void option_selection()
             // BAG selected from fight menu
             break;
         case 5:
+        {
             // RUN selected from fight menu
-           // right now it just exits. Needs to be cleaned up - memory leaks exist.
-            exit_to_overworld_2_switch();
-            set_callback1(c1_overworld);
+            // right now it just exits. Needs to be cleaned up - memory leaks exist.
+            extern void run_switch(void);
+            set_callback1(run_switch);
+            super.multi_purpose_state_tracker = 0; 
+        }
+
             
             break;
         case 6:
