@@ -78,57 +78,45 @@ void player_set_frame(void* dst, u8 sprite_id, u8 frame)
 
 void player_throwball_and_moveout_scene(struct Object* obj)
 {
-    if (obj->priv[0] > 1) {
-        obj->pos1.x-= 2;
-    }
+    var_8000 = obj->pos1.x;
+    void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
     switch (obj->priv[0]) {
         case 0:
-        {
-            // display frame 1
-            void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
             player_set_frame(dst, 0xFF, 1);
             obj->priv[0]++;
             break;
-        }
         case 1:
-            // move until X position == 508
-            if (obj->pos1.x > -480) {
-                obj->pos1.x-= 2;
-            } else {
-                obj->pos1.x = 32;
+            if (obj->pos1.x < -459) {
+                player_set_frame(dst, 0xFF, 2);
                 obj->priv[0]++;
-           }
-        break;
-        case 2:
-        {
-            // display frame 2
-            void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
-            player_set_frame(dst, 0xFF, 2);
-            obj->priv[0]++;
-            break;
-        }
-        case 3:
-            // move until X position == 0
-            if (obj->priv[1] < 10) {
-                obj->priv[1]++;
             } else {
-                obj->priv[1] = 0;
+                obj->pos1.x--;
+            }
+            break;
+        case 2:
+            if (obj->pos1.x < -485) {
+                player_set_frame(dst, 0xFF, 3);
+                obj->priv[0]++;
+                
+            } else {
+                obj->pos1.x -= 2;
+            }
+            break;
+        case 3:
+            if (obj->pos1.x < -505) {
+                player_set_frame(dst, 0xFF, 4);
                 obj->priv[0]++;
                 make_spinning_pokeball(64, 64, obj->priv[2]);
+            } else {
+                obj->pos1.x -= 2;
             }
             break;
         case 4:
-        {
-        
-            // display frame 3
-            void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
-            player_set_frame(dst, 0xFF, 3);
-            obj->priv[0]++;
-            break;
-        }
-        case 5:
-            if (obj->pos1.x <= - 64)
+            if (obj->pos1.x < -530) {
                 obj_free(obj);
+            } else {
+                obj->pos1.x -= 2;
+            }
             break;
     };
 }
