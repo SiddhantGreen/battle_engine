@@ -171,10 +171,11 @@ void battle_loop()
 
 bool can_flee(u8 bank)
 {
-    if(B_PKMN_TYPE(bank, 0) == TYPE_GHOST || B_PKMN_TYPE(bank,1) == TYPE_GHOST)
+    if(b_pkmn_has_type(bank, TYPE_GHOST))
         return true;
-    if(HAS_VOLATILE(bank, VOLATILE_TRAPPED))
+    if(HAS_VOLATILE(bank, VOLATILE_TRAPPED)) {
         return false;
+    }
     return true;
 }
 
