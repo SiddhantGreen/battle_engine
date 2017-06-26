@@ -205,9 +205,8 @@ bool try_hit(u8 attacker)
 {
     // if moves never misses, exit early
     u8 move_accuracy = B_MOVE_ACCURACY(attacker);
-    if (move_accuracy > 100) {
+    if (move_accuracy > 100)
         return true;
-    }
     
     // if target is in semi invulnerability do checks
     u8 defender = TARGET_OF(attacker);
@@ -223,9 +222,8 @@ bool try_hit(u8 attacker)
     u16 user_accuracy = B_ACCURACY_STAT(attacker);
     
     u16 result = (user_accuracy / target_evasion) * move_accuracy;
-    if (rand_range(0, 100) <= result) {
+    if (rand_range(0, 100) <= result)
         return true;
-    }
     if (target_evasion > 100) {
         enqueue_message(0, attacker, STRING_ATTACK_AVOIDED, 0);
     } else {
@@ -289,6 +287,9 @@ void move_hit()
                         super.multi_purpose_state_tracker = 1;
                     } else {
                     // not immune, and attack has landed
+                        extern u16 get_damage(u8, u8, u16);
+                        u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                        var_8004 = dmg;
                         super.multi_purpose_state_tracker = 5;
                         set_callback1(run_move);
                     }
