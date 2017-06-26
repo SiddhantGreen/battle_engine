@@ -15,6 +15,7 @@
 #define MOVE_POWER(move) move_t[move].base_power
 #define MOVE_CATEGORY(move) move_t[move].category
 #define MOVE_ACCURACY(move) move_t[move].accuracy
+#define MOVE_CRIT(move) move_t[move].crit_ratio
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
 #define MAKES_CONTACT(move, bank) (((*(move_t[move].m_flags)) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define MOVE_TYPE(move) move_t[move].type
@@ -28,6 +29,13 @@
 #define IS_STRONG_JAW(move) ((*(move_t[move].m_flags)) & (1 << 15))
 #define IS_BULLET(move) ((*(move_t[move].m_flags)) & (1 << 16))
 #define IS_SEMI_INVUL(move) ((*(move_t[move].m_flags)) & (1 << 23))
+#define IS_OHKO(move) ((*(move_t[move].m_flags)) & (1 << 24))
+#define CAT_OVERRIDE(move) ((*(move_t[move].m_flags)) & (1 << 25))
+#define STEAL_OFFENSIVE(move) ((*(move_t[move].m_flags)) & (1 << 26))
+#define STEAL_BOOSTS(move) ((*(move_t[move].m_flags)) & (1 << 27))
+
+
+#define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
 
 
 
@@ -54,7 +62,11 @@
 #define FLAG_DANCER (1 << 21)
 #define FLAG_PULSE (1 << 22)
 #define FLAG_SEMI_INVUL (1 << 23)
-#define FLAGS_UNUSED (1 << 24)
+#define FLAG_OHKO (1 << 24)
+#define FLAG_CATEGORY_OVERRIDE (1 << 25) // Moves like psyshock enable this
+#define FLAG_STEAL_OFFENSIVE (1 << 26)
+#define FLAG_STEAL_BOOSTS (1 << 27)
+#define FLAGS_UNUSED (1 << 28)
 
 
 typedef u8 (*TryHitCallback)(u8);

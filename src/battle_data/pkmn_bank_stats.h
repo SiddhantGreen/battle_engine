@@ -21,6 +21,9 @@
 #define B_EVASION_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
 
+#define B_ATTACKING_STAT(attacker) (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) ? B_ATTACK_STAT(attacker) : B_SPATTACK_STAT(attacker)
+#define B_DEFENDING_STAT(defender, category) (category == MOVE_PHYSICAL) ? B_DEFENSE_STAT(defender) : B_SPDEFENSE_STAT(defender)
+
 #define NUM_MOD(number, percent) ((number * percent) / 100)
 
 /*
@@ -40,17 +43,28 @@
 #define B_MOVE_BANK(bank) (bank == battle_master->first_bank) ? 0 : 1
 #define B_MOVE_TYPE(bank, i) battle_master->b_moves[B_MOVE_BANK(bank)].type[i] 
 #define B_MOVE_POWER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].power
+#define B_MOVE_STAB(bank) battle_master->b_moves[B_MOVE_BANK(bank)].stab
 #define B_MOVE_ACCURACY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].accuracy
 #define B_MOVE_PRIORITY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].priority
 #define B_MOVE_REMOVE_CONTACT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].remove_contact
 #define B_MOVE_IGNORING_ABILITIES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].ignore_abilities
 #define B_MOVE_HAS_TYPE(bank, type) ((B_MOVE_TYPE(bank, 0) == type) || (B_MOVE_TYPE(bank, 1) == type))
 #define B_MOVE_IS_STATUS(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_STATUS)
+#define B_MOVE_IS_SPECIAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_SPECIAL)
+#define B_MOVE_IS_PHYSICAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_PHYSICAL)
+#define B_MOVE_CATEGORY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].category
+#define B_MOVE_WILL_CRIT_SET(bank, result) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit = result;
+#define B_MOVE_WILL_CRIT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit;
+#define B_MOVE_DMG(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].dmg)
+#define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_atk)
+#define B_MOVE_IGNORE_DEF(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_def)
+#define B_MOVE_IGNORE_EVASION(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_evasion)
 
 
 
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->b_data.current_hp
+#define B_LEVEL(bank) p_bank[bank]->b_data.level
 #define TOTAL_HP(x) p_bank[x]->b_data.total_hp
 #define B_STATUS(bank) p_bank[bank]->b_data.status
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target

@@ -78,11 +78,15 @@ struct move_used {
     u8 flinch;
     u8 accuracy; // over 100 = never miss
     
-    u8 remove_contact : 1;
-    u8 copied : 1;
-    u8 ignore_abilities : 1;
-    u8 prankstered : 1;
-    u8 infiltrates : 1;
+    u16 remove_contact : 1;
+    u16 copied : 1;
+    u16 ignore_abilities : 1;
+    u16 prankstered : 1;
+    u16 infiltrates : 1;
+    u16 will_crit : 1;
+    u16 ignore_target_atk : 1;
+    u16 ignore_target_def : 1;
+    u16 ignore_target_evasion : 1;
     
     u8 chance_self;
     u8 chance_target;
@@ -92,6 +96,7 @@ struct move_used {
     s8 amount_target[6];
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
+    s16 dmg;
     u16 after_dmg;
 };
 
@@ -126,8 +131,6 @@ struct battle_main {
     struct move_used b_moves[2];
 
     /* Battle details */
-    u16 damage_to_deal;
-    u16 amount_to_heal;
     enum Effect effect[2];
 };
 
