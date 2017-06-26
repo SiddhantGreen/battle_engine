@@ -224,14 +224,12 @@ void run_switch()
         case 2:
         {
             //flee
+            ability_on_before_switch(bank_index);
             if(!can_flee(bank_index)) {
                 enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                 super.multi_purpose_state_tracker++;
                 break;
-            }
-            else
-            {
-                ability_on_before_switch(bank_index);
+            } else {
                 if(!can_flee_by_random(bank_index)) {
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                     //we cannot flee because we failed the dice roll
@@ -258,6 +256,7 @@ void run_switch()
         }
         case 4:
         {
+            //flee failed, return to next execution index
             if(!peek_message())
             {
                 extern void run_decision(void);
@@ -268,8 +267,7 @@ void run_switch()
         }
         case 5:
         {
-            if(!peek_message())
-            {
+            if(!peek_message()) {
                 // TODO: free resources
                 exit_to_overworld_2_switch();
                 set_callback1(c1_overworld);
