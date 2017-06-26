@@ -230,11 +230,11 @@ void option_selection()
             // BAG selected from fight menu
             break;
         case 5:
+        {
             // RUN selected from fight menu
-           // right now it just exits. Needs to be cleaned up - memory leaks exist.
-            exit_to_overworld_2_switch();
-            set_callback1(c1_overworld);
-            
+            p_bank[battle_master->first_bank]->b_data.is_running = true;
+            super.multi_purpose_state_tracker = 8;
+        }
             break;
         case 6:
             break;

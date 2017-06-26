@@ -24,6 +24,15 @@
 #define B_ATTACKING_STAT(attacker) (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) ? B_ATTACK_STAT(attacker) : B_SPATTACK_STAT(attacker)
 #define B_DEFENDING_STAT(defender, category) (category == MOVE_PHYSICAL) ? B_DEFENSE_STAT(defender) : B_SPDEFENSE_STAT(defender)
 
+/*
+ * Umodified battle sats
+ */
+#define B_ATTACK_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK, NULL)
+#define B_DEFENSE_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_DEF, NULL)
+#define B_SPEED_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD, NULL)
+#define B_SPATTACK_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK, NULL)
+#define B_SPDEFENSE_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF, NULL)
+
 #define NUM_MOD(number, percent) ((number * percent) / 100)
 
 /*
