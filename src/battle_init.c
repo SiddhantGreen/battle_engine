@@ -225,12 +225,8 @@ void option_selection()
         {
             // RUN selected from fight menu
             p_bank[battle_master->first_bank]->b_data.is_running = true;
-            extern void run_switch(void);
-            set_callback1(run_switch);
-            super.multi_purpose_state_tracker = 0; 
+            super.multi_purpose_state_tracker = 8;
         }
-
-            
             break;
         case 6:
             break;

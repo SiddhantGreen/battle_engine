@@ -21,6 +21,15 @@
 #define B_EVASION_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.evasion, 6, bank)
 #define B_CRITCHANCE_STAT(bank) stage_modify_stat(0, p_bank[bank]->b_data.crit_mod, 7, bank)
 
+/*
+ * Umodified battle sats
+ */
+#define B_ATTACK_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK, NULL)
+#define B_DEFENSE_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_DEF, NULL)
+#define B_SPEED_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD, NULL)
+#define B_SPATTACK_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK, NULL)
+#define B_SPDEFENSE_STAT_UMOD(bank) pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF, NULL)
+
 #define NUM_MOD(number, percent) ((number * percent) / 100)
 
 /*
