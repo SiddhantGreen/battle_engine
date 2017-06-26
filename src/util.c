@@ -63,7 +63,7 @@ bool pkmn_has_type(u16 species, enum PokemonType type)
 bool b_pkmn_has_type(u8 bank, enum PokemonType type)
 {
     u8 i;
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
         if (p_bank[bank]->b_data.type[i] == type) {
             return true;
         }
