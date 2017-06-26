@@ -117,6 +117,13 @@ void battle_loop()
     player_priority += MOVE_PRIORITY(p_move);
     opp_priority += MOVE_PRIORITY(opp_move);
     
+
+    /* on flee the actor has a priority high enough to outspeed everything except pursuit */
+    if(p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
+        player_priority = 6;
+    if(p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
+        opp_priority = 6;
+
     /* Turn order, higher priority will go first */
     if (player_priority > opp_priority) {
         battle_master->first_bank = PLAYER_SINGLES_BANK;
@@ -162,18 +169,48 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
+bool can_flee(u8 bank)
+{
+    if(b_pkmn_has_type(bank, TYPE_GHOST))
+        return true;
+    if(HAS_VOLATILE(bank, VOLATILE_TRAPPED)) {
+        return false;
+    }
+    return true;
+}
+
+bool can_flee_by_random(u8 bank)
+{
+    p_bank[bank]->b_data.flee_count++;
+
+    u16 reference = B_SPEED_STAT_UMOD(bank) * 128;
+    reference /= B_SPEED_STAT_UMOD(FOE_BANK(bank));
+    reference += (30 * p_bank[bank]->b_data.flee_count);
+    reference = reference & 0xFF;
+
+    u16 random = rand_range(0,255);
+    return random < reference;
+}
+
 void run_switch()
 {
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch(super.multi_purpose_state_tracker) {
         case 0:
         {
+            
+            // check if the first bank is fleeing
+            if (p_bank[bank_index]->b_data.is_running) {
+                super.multi_purpose_state_tracker = 2;
+                break;
+            }
+
             // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
             if (p_bank[battle_master->first_bank]->b_data.is_switching) {
                 ability_on_before_switch(bank_index);
                 super.multi_purpose_state_tracker++;
             } else {
-                super.multi_purpose_state_tracker = 2;
+                super.multi_purpose_state_tracker = 6;
             }
             break;
         }
@@ -184,6 +221,59 @@ void run_switch()
                 switch_battler(bank_index);
                 super.multi_purpose_state_tracker++;
                 break;
+        }
+        case 2:
+        {
+            //flee
+            ability_on_before_switch(bank_index);
+            if(!can_flee(bank_index)) {
+                enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
+                super.multi_purpose_state_tracker++;
+                break;
+            } else {
+                if(!can_flee_by_random(bank_index)) {
+                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
+                    //we cannot flee because we failed the dice roll
+                    super.multi_purpose_state_tracker = 4;
+                    break;
+                } else {
+                    //we can finally flee
+                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
+                    super.multi_purpose_state_tracker = 5;
+                    break;
+                }
+            }
+        }
+        case 3:
+        {
+            //flee failed, return to user execution index
+            if(!peek_message())
+            {
+                extern void option_selection(void);
+                set_callback1(option_selection);
+                super.multi_purpose_state_tracker = 0;
+            }
+            break;
+        }
+        case 4:
+        {
+            //flee failed, return to next execution index
+            if(!peek_message())
+            {
+                extern void run_decision(void);
+                super.multi_purpose_state_tracker = 4;
+                set_callback1(run_decision);
+            }
+            break;
+        }
+        case 5:
+        {
+            if(!peek_message()) {
+                // TODO: free resources
+                exit_to_overworld_2_switch();
+                set_callback1(c1_overworld);
+            }
+            break;
         }
         default:
             super.multi_purpose_state_tracker = 1;
