@@ -129,5 +129,6 @@ u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move) {
     if (abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit) {
         return abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit(attacker, defender, move);
     }
+    return false;
 }
 

@@ -64,7 +64,8 @@
 #define B_MOVE_CATEGORY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].category
 #define B_MOVE_WILL_CRIT_SET(bank, result) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit = result
 #define B_MOVE_WILL_CRIT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit
-#define B_MOVE_DMG(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].dmg)
+#define B_MOVE_DMG(bank) battle_master->b_moves[B_MOVE_BANK(bank)].dmg
+#define B_MOVE_EFFECTIVENESS(bank) battle_master->b_moves[B_MOVE_BANK(bank)].effectiveness
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_atk)
 #define B_MOVE_IGNORE_DEF(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_def)
 #define B_MOVE_IGNORE_EVASION(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_evasion)
@@ -88,7 +89,7 @@
 #define FOE_BANK(bank) bank ? 0 : 2
 #define SIDE_OF(bank) (bank > 1) ? 1 : 0
 
-#define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[(target_type * 18) + dmg_type]
+#define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[((target_type * 19) + (dmg_type))]
  
  
 extern void update_move_history(u8 bank, u16 move_id);
