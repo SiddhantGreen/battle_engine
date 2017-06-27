@@ -17,6 +17,7 @@ extern bool b_pkmn_has_type(u8 bank, u8 type);
 extern u16 get_damage(u8, u8, u16);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
+extern void dprintf(const char * str, ...);
 
 u16 pick_player_attack()
 {
@@ -54,7 +55,7 @@ void set_attack_bm(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].power = MOVE_POWER(move_id);
     battle_master->b_moves[index].category = MOVE_CATEGORY(move_id);
     battle_master->b_moves[index].type[0] = MOVE_TYPE(move_id);
-    battle_master->b_moves[index].type[1] = MOVE_TYPE(move_id);
+    battle_master->b_moves[index].type[1] = MTYPE_EGG;
     battle_master->b_moves[index].flinch = M_FLINCH(move_id);
     battle_master->b_moves[index].accuracy = MOVE_ACCURACY(move_id);
     battle_master->b_moves[index].remove_contact = false;
@@ -73,6 +74,15 @@ void set_attack_bm(u8 bank, u8 index, s8 priority)
         battle_master->b_moves[bank].amount_self[i] = move_t[move_id].procs->amount_self[i];
         battle_master->b_moves[bank].amount_target[i] = move_t[move_id].procs->amount_target[i];
     }
+}
+
+void reset_turn_bits(u8 bank)
+{
+    p_bank[bank]->b_data.is_running = 0;
+    p_bank[bank]->b_data.is_switching = 0;
+    p_bank[bank]->b_data.first_turn = 1;
+    memset((void*)(&battle_master->b_moves[B_MOVE_BANK(bank)]), 0x0, sizeof(struct move_used));
+    
 }
 
 u8 set_target_bank(u8 user_bank, u16 move_id)
@@ -378,16 +388,41 @@ void move_hit()
                 if (try_hit(bank_index)) {
                     // check immunity
                     if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
+                        enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
                         super.multi_purpose_state_tracker = 1;
                     } else {
-                    // not immune, and attack has landed
-                        u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-                        if (dmg < 1) {
+                        // Skip damage checks if move doesn't do damage
+                        if (B_MOVE_POWER(bank_index) < 1) {
                             super.multi_purpose_state_tracker++;
                             return;
                         }
-                        if (B_MOVE_WILL_CRIT(bank_index))
+                        
+                        // get dmg
+                        u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                        
+                        // effectiveness msgs
+                        switch (B_MOVE_EFFECTIVENESS(bank_index)) {
+                            case TE_IMMUNE:
+                                enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+                                super.multi_purpose_state_tracker++;
+                                return;
+                                break;
+                            case TE_NOT_VERY_EFFECTIVE:
+                                enqueue_message(0, 0, STRING_MOVE_NVE, 0);
+                                break;
+                            case TE_SUPER_EFFECTIVE:
+                                enqueue_message(0, 0, STRING_MOVE_SE, 0);
+                                break;
+                            default:
+                                break;
+                                
+                        };
+                        
+                        // crit msg if crit
+                        if (B_MOVE_WILL_CRIT(bank_index)) {
                             enqueue_message(0, bank_index, STRING_MOVE_CRIT, 0);
+                        }
+                        
                         battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
                         s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
                         delta = MAX(delta, 0);
@@ -492,6 +527,7 @@ void run_decision(void)
             super.multi_purpose_state_tracker = 0;
             break;
         case 2:
+        {
             // once first bank's run_switch and run_after_switch have exec'd, run second bank
             if (bank_index == battle_master->second_bank) {
                 // if second bank run, switch back to first bank and go to next phase
@@ -502,6 +538,7 @@ void run_decision(void)
                 super.multi_purpose_state_tracker = 0;
             }
             break;
+        }
         case 3:
             set_callback1(run_move);
             super.multi_purpose_state_tracker = 0;
@@ -518,6 +555,9 @@ void run_decision(void)
             break;
         case 5:
         {
+            // reset turn based bits
+            reset_turn_bits(battle_master->first_bank);
+            reset_turn_bits(battle_master->second_bank);
             extern void option_selection(void);
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
@@ -528,7 +568,6 @@ void run_decision(void)
             break;
     };
 }
-
 
 
 
