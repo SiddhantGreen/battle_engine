@@ -44,14 +44,21 @@ void oac_nullsub(struct Object* obj)
     return;
 }
 
+bool is_shiny(struct Pokemon* p)
+{
+    u32 tid = pokemon_getattr(p, REQUEST_TID, NULL);
+    u32 pid = pokemon_getattr(p, REQUEST_PID, NULL);
+
+    /* the weird shiny formula */
+    return ((tid >> 16) ^ tid ^ (pid >> 16) ^ pid) <= 7; 
+}
+
 void* get_pal_pkmn(struct Pokemon* p, u16 species)
 {
-    // check shiny TODO
- //   if (pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL)) {
-   //     return (void*)pokemon_palette_shiny[species].data;
-    //} else {
+    if(!is_shiny(p))
         return (void*)pokemon_palette_normal[species].data;
-    //}
+    else
+        return (void*)pokemon_palette_shiny[species].data;
 }
 
 u8 spawn_pkmn_obj_slot(u8 slot, u16 tag)
