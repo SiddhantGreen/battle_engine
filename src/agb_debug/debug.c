@@ -26,7 +26,7 @@
  * Created on 11. April 2017, 04:55
  */
 
-#include <memory.h>
+#include <pokeagb/pokeagb.h>
 #include <stdarg.h>
 #include <math.h>
 
