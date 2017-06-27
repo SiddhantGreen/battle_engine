@@ -14,6 +14,9 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern bool peek_message(void);
 extern void run_move(void);
 extern bool b_pkmn_has_type(u8 bank, u8 type);
+extern u16 get_damage(u8, u8, u16);
+extern void hp_anim_change(u8 bank, s16 delta);
+extern void hpbar_apply_dmg(u8 task_id);
 
 u16 pick_player_attack()
 {
@@ -378,8 +381,6 @@ void move_hit()
                         super.multi_purpose_state_tracker = 1;
                     } else {
                     // not immune, and attack has landed
-                        extern u16 get_damage(u8, u8, u16);
-                        extern void hp_anim_change(u8 bank, s16 delta);
                         u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
                         if (dmg < 1) {
                             super.multi_purpose_state_tracker++;
@@ -403,8 +404,9 @@ void move_hit()
         }
         case 4:
         {
-            // calculate amount to heal, after playing messages
-            
+            // calculate amount to heal after dmg animation and playing messages
+            if (task_is_running(hpbar_apply_dmg))
+                break;
             if (!peek_message()) {
                 /* TODO calc healing */
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
