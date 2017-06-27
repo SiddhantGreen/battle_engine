@@ -1,6 +1,8 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_slide_in/battle_obj_sliding.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
+
 #include "../battle_state.h"
 
 // HP box and bar resources
@@ -49,11 +51,17 @@ static const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (*
 
 extern void oac_nullsub(struct Object*);
 
-void refresh_hp(struct Pokemon* pkmn, u8 objid)
+void refresh_hp(struct Pokemon* pkmn, u8 objid, u8 mode, u8 bank)
 {
     /* calculate first how many pixels are needed to model current HP and color */
-    u16 current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL) * 100;
-    u16 total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
+    u16 current_hp, total_hp;
+    if (mode) {
+        current_hp = B_CURRENT_HP(bank) * 100;
+        total_hp = TOTAL_HP(bank);
+    } else {
+        current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL) * 100;
+        total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
+    }
     // error term is 1 pixel per 50%
     u16 percentage = (current_hp / total_hp);
     u16 pixels_to_write = (((current_hp / total_hp) / 2) - (percentage / 50));
@@ -99,27 +107,33 @@ u8 hpbar_build_full(struct Pokemon* pkmn, s16 x, s16 y, u16 tag)
     u8 objid_main = template_instanciate_forward_search(&hpbar_temp, x, y, 0);
 
     // update hp
-    refresh_hp(pkmn, objid_main);
+    refresh_hp(pkmn, objid_main, 0, 0);
     return objid_main;
 }
 
-void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid)
+void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid, u8 mode, u8 bank)
 {
     pchar hp_prefix[] = _("{HIGHLIGHT 0}{COLOR 3}{SHADOW 5}");
     pchar hp_slash[] = _("/ ");
     pstrcpy(string_buffer, &hp_prefix[0]);
     pchar hp_buff[3];
 
-    u16 current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL);
-    u16 total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
+    u16 current_hp, total_hp;
+    if (mode) {
+        current_hp = B_CURRENT_HP(bank);
+        total_hp = TOTAL_HP(bank);
+    } else {
+        current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL);
+        total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
+    }
     u8 tile_length = total_hp > 99 ? 3 : 2;
 
     if (current_hp < 10) {
         // single digit, space pad 2 digits
-        tile_length += 1;
+        tile_length += 3;
     } else if (current_hp < 100) {
         // two digits, space pad 1 digit
-        tile_length += 2;
+        tile_length += 3;
     } else {
         // the digits, space pad 0 digits
         tile_length += 3;
@@ -137,6 +151,10 @@ void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid)
     void* vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + (tile_id * 32)+ 0x6010000);
     u32 pixels = write_to_rbox(&string_buffer[0], 1, 4, &rboxid_buffer);
     rbox_to_vram(vram_addr, (void*)(pixels), tile_length);
+    
+    // once written on Object, we can free this
+    rboxid_clean(rboxid_buffer, 0);
+    rboxid_free(rboxid_buffer);
     return;
 }
 
@@ -153,6 +171,10 @@ void draw_level(struct Pokemon* pkmn, u8 tile_id, u8 objid)
     void* vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + (tile_id * 32)+ 0x6010000);
     u32 pixels = write_to_rbox(&string_buffer[0], 1, 3, &rboxid_buffer);
     rbox_to_vram(vram_addr, (void*)(pixels), 3);
+    
+    // once written on Object, we can free this
+    rboxid_clean(rboxid_buffer, 0);
+    rboxid_free(rboxid_buffer);
     return;
 }
 
@@ -248,7 +270,7 @@ u8 spawn_hpbox_player(u16 tag, s16 x, s16 y)
     /* draw elements onto HP bar */
     draw_name(&party_player[0], NAME_PS_OFFSET1, NAME_PS_OFFSET2, objid_main, HPFONT_PLAYER_SINGLE);
     draw_level(&party_player[0], LVL_PS_OFFSET, objid_main);
-    draw_hp(&party_player[0], HPNUM_PS_OFFSET, objid_main);
+    draw_hp(&party_player[0], HPNUM_PS_OFFSET, objid_main, 0, 0);
     p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2] = hpbar_build_full(&party_player[0], HPBAR_PS_X, HPBAR_PS_Y, HPBAR_PS_TAG);
     return 0;
 }
@@ -294,14 +316,26 @@ void spawn_hpboxes_wild(void)
 
 void hpbar_apply_dmg(u8 task_id)
 {
-    u8 bank = tasks[task_id].priv[0];
-    if (p_bank[bank]->this_pkmn->current_hp < tasks[task_id].priv[1]) {
-        p_bank[bank]->this_pkmn->current_hp -= 1;
-        refresh_hp(p_bank[bank]->this_pkmn, p_bank[bank]->objid_hpbox[2]);
+    u16 bank = tasks[task_id].priv[0];
+    s16 delta = tasks[task_id].priv[1];
+    if (B_CURRENT_HP(bank) > delta) {
+        B_CURRENT_HP(bank) -= 1;
+        refresh_hp(p_bank[bank]->this_pkmn, p_bank[bank]->objid_hpbox[2], 1, bank);
         if (bank == PLAYER_SINGLES_BANK)
-            draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, p_bank[bank]->objid_hpbox[0]);
+            draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, p_bank[bank]->objid_hpbox[0], 1, bank);
     } else {
         task_del(task_id);
     }
 }
+
+
+void hp_anim_change(u8 bank, s16 delta)
+{
+    u8 t_id = task_add(hpbar_apply_dmg, 0x10);
+    tasks[t_id].priv[0] = bank;
+    tasks[t_id].priv[1] = delta;
+}
+
+
+
 

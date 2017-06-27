@@ -124,7 +124,10 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     }
     
     // Calc base damage
-    return ((((((B_LEVEL(attacker) * 2) / 5) + 2) * base_power * (atk_stat / def_stat)) + 2) / 50);
+    u16 dmg = ((((((B_LEVEL(attacker) * 2) / 5) + 2) * base_power * (atk_stat / def_stat)) + 2) / 50);
+    if (base_power && !dmg)
+        return 1;
+    return dmg;
 }
 
 u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
