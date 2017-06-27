@@ -26,7 +26,7 @@
  * Created on 11. April 2017, 04:55
  */
 
-#include <pokeagb/pokeagb.h>
+#include <memory.h>
 #include <stdarg.h>
 #include <math.h>
 
@@ -34,7 +34,16 @@ void dprint(const char * sz)
 {
     __asm__ __volatile__(
         "mov r2, %0\n"
-        "ldr r0, =0xc0ded00d\n"
+        "mov r0, #0xC0\n"
+        "lsl r0, #0x8\n"
+        "mov r1, #0xDE\n"
+        "orr r0, r1\n"
+        "lsl r0, #0x8\n"
+        "mov r1, #0xD0\n"
+        "orr r0, r1\n"
+        "lsl r0, #8\n"
+        "mov r1, #0x0D\n"
+        "orr r0, r1\n"
         "mov r1, #0\n"
         "and r0, r0, r0\n":
         :
@@ -61,8 +70,8 @@ u32 mini_itoa(int value, u32 radix, u32 uppercase, u32 unsig, char * buffer, u32
     }
     /* This builds the string back to front ... */
     do {
-        int (*__aeabi_uidivmod)(int, u32) = (int (*)(int, u32))0x081E4685;
-        u32 digit = __aeabi_uidivmod(value, radix); * (pbuffer++) = (digit < 10 ? '0' + digit : (uppercase ? 'A' : 'a') + digit - 10);
+        u32 digit = value % radix;
+        * (pbuffer++) = (digit < 10 ? '0' + digit : (uppercase ? 'A' : 'a') + digit - 10);
         value /= radix;
     } while (value > 0);
     for (i = (pbuffer - buffer); i < zero_pad; i++)
@@ -156,13 +165,12 @@ int mini_vsnprintf(char * buffer, u32 buffer_len,
 }
 
 void dprintf(const char * str, ...)
-    //---------------------------------------------------------------------------------
-    {
-        char* __outstr = malloc(256);
-        va_list args;
-        va_start(args, str);
-        mini_vsnprintf(__outstr, 256, str, args);
-        va_end(args);
-        dprint(__outstr);
-        free(__outstr);
-    }
+{
+    char* __outstr = malloc(256);
+    va_list args;
+    va_start(args, str);
+    mini_vsnprintf(__outstr, 256, str, args);
+    va_end(args);
+    dprint(__outstr);
+    free(__outstr);
+}
