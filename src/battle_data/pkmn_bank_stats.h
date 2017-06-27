@@ -62,8 +62,8 @@
 #define B_MOVE_IS_SPECIAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_SPECIAL)
 #define B_MOVE_IS_PHYSICAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].category == MOVE_PHYSICAL)
 #define B_MOVE_CATEGORY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].category
-#define B_MOVE_WILL_CRIT_SET(bank, result) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit = result;
-#define B_MOVE_WILL_CRIT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit;
+#define B_MOVE_WILL_CRIT_SET(bank, result) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit = result
+#define B_MOVE_WILL_CRIT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit
 #define B_MOVE_DMG(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].dmg)
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_atk)
 #define B_MOVE_IGNORE_DEF(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_def)

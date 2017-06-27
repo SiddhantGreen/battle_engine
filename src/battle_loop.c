@@ -381,14 +381,12 @@ void move_hit()
                         extern u16 get_damage(u8, u8, u16);
                         extern void hp_anim_change(u8 bank, s16 delta);
                         u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-                        if (bank_index == 2) {
-                            var_8001 = 0xDD;
-                            var_8000 = dmg;
-                        }
                         if (dmg < 1) {
                             super.multi_purpose_state_tracker++;
                             return;
                         }
+                        if (B_MOVE_WILL_CRIT(bank_index))
+                            enqueue_message(0, bank_index, STRING_MOVE_CRIT, 0);
                         battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
                         s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
                         delta = MAX(delta, 0);
@@ -406,6 +404,7 @@ void move_hit()
         case 4:
         {
             // calculate amount to heal, after playing messages
+            
             if (!peek_message()) {
                 /* TODO calc healing */
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
