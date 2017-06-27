@@ -18,7 +18,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
         for (j = 0; j < sizeof(p_bank[defender]->b_data.type); j++) {
             if (B_MOVE_TYPE(attacker, i) != MTYPE_NONE) {
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(B_PKMN_TYPE(defender, j), B_MOVE_TYPE(attacker, i));
-                if (move_effectiveness) {
+                if (move_effectiveness > 0) {
                     percent = NUM_MOD(percent, move_effectiveness);
                 } else {
                     // target has an immunity, return 0
@@ -27,8 +27,6 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
             }
         }
     }
-    var_8001 = 0xFF;
-    var_8000 = percent;
     return percent;
 }
 
@@ -152,7 +150,7 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     
     // Weather Mod
     modded_base = weather_dmg_mod(modded_base, attacker);
-    
+
     // critical Mod
     p_bank[attacker]->b_data.crit_mod += MOVE_CRIT(move);
     if ((rand_range(0, 100)) <= B_CRITCHANCE_STAT(attacker)) {
@@ -165,22 +163,22 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     
     // stab calc
     modded_base = NUM_MOD(modded_base, B_MOVE_STAB(attacker));
-    
+        
     // type modifications
     modded_base = NUM_MOD(modded_base, type_effectiveness_mod(attacker, defender, move));
-    return 0;
-    /*
-    // burn damage
-    if (B_STATUS(attacker) == AILMENT_BURN)
-    if (pokemon.status === 'brn' && move.category === 'Physical' && !pokemon.hasAbility('guts')) {
-        if (this.gen < 6 || move.id !== 'facade') {
-            baseDamage = this.modify(baseDamage, 0.5);
-        }
-    }*/
+
+    // burn ailment attack reduction
+    if ((B_STATUS(attacker) == AILMENT_BURN) &&
+        (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) &&
+        (BANK_ABILITY(attacker) != ABILITY_GUTS) &&
+        (move != MOVE_FACADE)) {
+        modded_base = NUM_MOD(modded_base, 50);
+    }
     
     
     battle_master->queue_size = q_size;
     battle_master->queue_front_index = q_front;
+    return modded_base;
 }
 
 s16 get_damage(u8 attacker, u8 defender, u16 move)
@@ -190,14 +188,15 @@ s16 get_damage(u8 attacker, u8 defender, u16 move)
         return 0; // go straight to healing
     // get base damage
     u16 base_dmg = get_base_damage(attacker, defender, move);
-    var_8000 = base_dmg;
-    var_8001 = 0xDD;
+
     // if base damage is 0, target is immune. Display text and exit TODO
     if (base_dmg == 0)
         return 0;
         
     // return damage
-    return modify_damage(base_dmg, attacker, defender, move);
+    u16 result = modify_damage(base_dmg, attacker, defender, move);
+    var_8000 = result;
+    return result;
 }
 
 

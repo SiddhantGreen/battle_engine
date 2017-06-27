@@ -13,6 +13,7 @@ extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool peek_message(void);
 extern void run_move(void);
+extern bool b_pkmn_has_type(u8 bank, u8 type);
 
 u16 pick_player_attack()
 {
@@ -59,8 +60,8 @@ void set_attack_bm(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].prankstered = HAS_VOLATILE(bank, VOLATILE_PRANKSTERED);
     REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
     battle_master->b_moves[index].infiltrates = false;
-    battle_master->b_moves[bank].chance_self = move_t[move_id].procs->chance_self;
-    battle_master->b_moves[bank].chance_target = move_t[move_id].procs->chance_target;
+    battle_master->b_moves[index].chance_self = move_t[move_id].procs->chance_self;
+    battle_master->b_moves[index].chance_target = move_t[move_id].procs->chance_target;
     
     u8 i;
     for (i = 0; i < 6; i++) {
@@ -379,7 +380,7 @@ void move_hit()
                     // not immune, and attack has landed
                         extern u16 get_damage(u8, u8, u16);
                         u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-                        var_8004 = dmg;
+                        battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
                         super.multi_purpose_state_tracker = 5;
                         set_callback1(run_move);
                     }
@@ -390,6 +391,9 @@ void move_hit()
                 }
             }
             break;
+        }
+        case 4:
+        {
         }
     };
 }

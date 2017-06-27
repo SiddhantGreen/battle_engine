@@ -31,7 +31,7 @@ void init_battle_elements()
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_GUILLOTINE;
+    u16 t = MOVE_DIG;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_ICE_BEAM;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
@@ -39,6 +39,8 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
     t = 10;
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
+    t = ITEM_POTION;
+    pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
 }
 
 void update_pbank(u8 bank, struct update_flags* flags)
@@ -55,7 +57,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.poke_ball = 0;
     p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
-    p_bank[bank]->b_data.type[2] = MTYPE_NONE;
+    p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
+    p_bank[bank]->b_data.type[2] = MTYPE_EGG;
     
     if (!flags->pass_stats) {
         p_bank[bank]->b_data.attack = 0;

@@ -96,7 +96,8 @@ struct move_used {
     s8 amount_target[6];
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
-    s16 dmg;
+    u16 dmg;
+    u16 heal;
     u16 after_dmg;
 };
 
