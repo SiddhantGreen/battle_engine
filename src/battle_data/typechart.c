@@ -6,7 +6,7 @@
 // 50 - Not very effective damage
 // 0 - Immune
 
-u8 effectiveness_chart[342] = {
+u8 effectiveness_chart[361] = {
 
 /* Normal */
 	100, // Normal
@@ -15,6 +15,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    100, // Bug
 	0, // Ghost
 	100, // Steel
 	100, // ???
@@ -35,6 +36,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	50, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -55,17 +57,18 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	0, // Ground
 	200, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
 	100, // Fire
 	100, // Water
 	50, // Grass
-	200, // Electric
-	100, // Psychic
+	210, // Electric
+	101, // Psychic
 	200, // Ice
-	100, // Dragon
-	100, // Dark
+	250, // Dragon
+	130, // Dark
 	100, // Fairy
 
 /* Poison */ 
@@ -75,6 +78,7 @@ u8 effectiveness_chart[342] = {
 	50, // Poison
 	200, // Ground
 	100, // Rock
+    50, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -95,6 +99,7 @@ u8 effectiveness_chart[342] = {
 	50, // Poison
 	100, // Ground
 	50, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -115,6 +120,7 @@ u8 effectiveness_chart[342] = {
 	50, // Poison
 	200, // Ground
 	100, // Rock
+    100, // Bug
 	100, // Ghost
 	200, // Steel
 	100, // ???
@@ -135,6 +141,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	50, // Ground
 	200, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -155,6 +162,7 @@ u8 effectiveness_chart[342] = {
 	50, // Poison
 	100, // Ground
 	100, // Rock
+    50, // Bug
 	200, // Ghost
 	100, // Steel
 	100, // ???
@@ -175,6 +183,7 @@ u8 effectiveness_chart[342] = {
 	0, // Poison
 	200, // Ground
 	50, // Rock
+    50, // Bug
 	100, // Ghost
 	50, // Steel
 	100, // ???
@@ -195,6 +204,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -215,6 +225,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	200, // Ground
 	200, // Rock
+    50, // Bug
 	100, // Ghost
 	50, // Steel
 	100, // ???
@@ -235,6 +246,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    100, // Bug
 	100, // Ghost
 	50, // Steel
 	100, // ???
@@ -255,6 +267,7 @@ u8 effectiveness_chart[342] = {
 	200, // Poison
 	50, // Ground
 	100, // Rock
+    200, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -275,6 +288,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	200, // Ground
 	100, // Rock
+    100, // Bug
 	100, // Ghost
 	50, // Steel
 	100, // ???
@@ -295,6 +309,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    200, // Bug
 	200, // Ghost
 	100, // Steel
 	100, // ???
@@ -315,6 +330,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	200, // Rock
+    100, // Bug
 	100, // Ghost
 	200, // Steel
 	100, // ???
@@ -335,6 +351,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    100, // Bug
 	100, // Ghost
 	100, // Steel
 	100, // ???
@@ -355,6 +372,7 @@ u8 effectiveness_chart[342] = {
 	100, // Poison
 	100, // Ground
 	100, // Rock
+    200, // Bug
 	50, // Ghost
 	100, // Steel
 	100, // ???
@@ -369,22 +387,24 @@ u8 effectiveness_chart[342] = {
 	200, // Fairy
 
 /* Fairy */ 
-	50, // Bug
-	50, // Dark
-	0, // Dragon
-	100, // Electric
-	100, // Fairy
-	50, // Fighting
-	100, // Fire
-	100, // Flying
-	100, // Ghost
-	100, // Grass
-	100, // Ground
-	100, // Ice
 	100, // Normal
-	200, // Poison
-	100, // Psychic
-	100, // Rock
-	200, // Steel
+    50, // Fighting
+ 	100, // Flying
+    200, // Poison
+	100, // Ground
+	100, // Rock    
+	50, // Bug
+	100, // Ghost
+	200, // Steel    
+	100, // ??? 
+	100, // Fire
 	100, // Water
+	100, // Grass
+	100, // Electric
+	100, // Psychic 
+	100, // Ice    
+    0, // Dragon
+	50, // Dark
+	100, // Fairy
+
 };
