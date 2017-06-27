@@ -8,8 +8,7 @@
 #define GAME_STATE super.multi_purpose_state_tracker
 typedef void (*ResidualEffectCallback)(u8);
 
-enum Effect
-{
+enum Effect {
     EFFECT_NONE,
     EFFECT_PARALYZE,
     EFFECT_SLEEP,
@@ -20,6 +19,13 @@ enum Effect
     EFFECT_CONFUSION,
     EFFECT_TOXIC_SPIKES,
     EFFECT_SANDSTORM,
+};
+
+enum TypeEffectiveness {
+    TE_IMMUNE,
+    TE_NOT_VERY_EFFECTIVE,
+    TE_EFFECTIVE,
+    TE_SUPER_EFFECTIVE,
 };
 
 struct battle_selection_cursor {
@@ -97,6 +103,7 @@ struct move_used {
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
     u16 dmg;
+    enum TypeEffectiveness effectiveness;
     u16 heal;
     u16 after_dmg;
 };

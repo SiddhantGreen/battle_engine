@@ -50,6 +50,9 @@ enum battle_string_ids {
     STRING_FLEE = 78,
     STRING_FLEE_FAILED = 80,
     STRING_MOVE_CRIT = 81,
+    STRING_MOVE_IMMUNE = 82,
+    STRING_MOVE_NVE = 84,
+    STRING_MOVE_SE = 85,
 };
 
 
@@ -135,7 +138,10 @@ static const pchar str_fled_p[] = _("Got away safely.\p");
 static const pchar str_fled_o[] = _("{ATTACKING_MON} fled\p");
 static const pchar str_flee_failed[] = _("Could not flee!\p"); /* NOTE: proper text and reasoning */
 static const pchar str_move_crit[] = _("A critical hit!");
-
+static const pchar str_move_immune_p[] = _("Foe {DEFENDING_MON} was immune!");
+static const pchar str_move_immune_o[] = _("{DEFENDING_MON} was immune!");
+static const pchar str_move_nve[] = _("It wasn’t very effective");
+static const pchar str_move_se[] = _("It was super effective!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -157,7 +163,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[82] = {
+static const pchar* battle_strings[86] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -200,6 +206,8 @@ static const pchar* battle_strings[82] = {
    (pchar*)&str_atk_missed, (pchar*)&str_atk_avoided,
    (pchar*)&str_fled_p, (pchar*)&str_fled_o,
    (pchar*)&str_flee_failed, (pchar*)&str_move_crit,
+   (pchar*)&str_move_immune_p, (pchar*)&str_move_immune_o,
+   (pchar*)&str_move_nve, (pchar*)&str_move_se,
 };
 
 

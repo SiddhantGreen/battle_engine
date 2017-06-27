@@ -49,6 +49,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_ATTACK_MISSED:
             case STRING_FLEE_FAILED:
             case STRING_MOVE_CRIT:
+            case STRING_MOVE_NVE:
+            case STRING_MOVE_SE:
                 fdecoder_battle(battle_strings[id], 0, 0, 0);
                 break;
             case STRING_ATTACK_USED:
@@ -86,6 +88,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_PROTEAN:
             case STRING_ABILITY_CHANGE:
             case STRING_FLEE:
+            case STRING_MOVE_IMMUNE:
                 fdecoder_battle(battle_strings[id + get_side(user_bank)], user_bank, move_id, move_effect_id);
                 break;
             default:

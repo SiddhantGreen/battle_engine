@@ -8,6 +8,7 @@
 extern u16 rand_range(u16, u16);
 extern u8 effectiveness_chart[342];
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
+extern void dprintf(const char * str, ...);
 
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
@@ -17,8 +18,10 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
     for (i = 0; i < sizeof(battle_master->b_moves[B_MOVE_BANK(attacker)].type); i++) {
         // get the type effectiveness for each type of the defender
         for (j = 0; j < sizeof(p_bank[defender]->b_data.type); j++) {
-            if (B_MOVE_TYPE(attacker, i) != MTYPE_NONE) {
-                u16 move_effectiveness = MOVE_EFFECTIVENESS(B_PKMN_TYPE(defender, j), B_MOVE_TYPE(attacker, i));
+            if ((B_MOVE_TYPE(attacker, i) != MTYPE_EGG) && (B_PKMN_TYPE(defender, j) != MTYPE_EGG)) {
+                u8 target_type = B_PKMN_TYPE(defender, j);
+                u8 move_type = B_MOVE_TYPE(attacker, i);
+                u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
                 if (move_effectiveness > 0) {
                     percent = NUM_MOD(percent, move_effectiveness);
                 } else {
@@ -70,13 +73,13 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     if (B_MOVE_DMG(attacker)) {
         return B_MOVE_DMG(attacker);
     }
-      
+
     s8 base_power = B_MOVE_POWER(attacker);
     if (MOVE_BASEPOWER_CALLBACK) {
         // TODO Base power callback execution
         base_power = MOVE_BASEPOWER_CALLBACK;
     }
-       
+ 
     // get defending and attacking stats
     enum MoveCategory atk_category = B_MOVE_CATEGORY(attacker);
     enum MoveCategory def_category;
@@ -89,7 +92,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     s8 atk_mod[2] = {0, 0};
     s8 def_mod[2] = {0, 0};
     u16 atk_stat, def_stat;
-    
+
     // temporarily remove effects of boosts
     if (B_MOVE_IGNORE_ATK(attacker)) {
         atk_mod[0] = p_bank[attacker]->b_data.attack;
@@ -97,14 +100,14 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
         p_bank[attacker]->b_data.attack = 0;
         p_bank[attacker]->b_data.sp_atk = 0;
     }    
-    
+
     if (B_MOVE_IGNORE_DEF(attacker)) {
         def_mod[0] = p_bank[defender]->b_data.attack;
         def_mod[1] = p_bank[defender]->b_data.sp_atk;
         p_bank[defender]->b_data.attack = 0;
         p_bank[defender]->b_data.sp_atk = 0;
     }
-    
+
     // foul play sets this flag
     if (STEAL_OFFENSIVE(move)) {
         atk_stat = (atk_category == MOVE_PHYSICAL) ? B_ATTACK_STAT(defender) : B_SPATTACK_STAT(defender);
@@ -118,7 +121,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
         p_bank[attacker]->b_data.attack = atk_mod[0];
         p_bank[attacker]->b_data.sp_atk = atk_mod[1];
     }    
-    
+
     if (B_MOVE_IGNORE_DEF(attacker)) {
         p_bank[defender]->b_data.attack = def_mod[0];
         p_bank[defender]->b_data.sp_atk = def_mod[1];
@@ -129,6 +132,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     dmg *= base_power;
     dmg = NUM_MOD(dmg, ((atk_stat * 100) / def_stat));
     dmg = (dmg/ 50) + 2;
+
     return dmg;
 }
 
@@ -176,7 +180,17 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     }
         
     // type modifications
-    modded_base = NUM_MOD(modded_base, type_effectiveness_mod(attacker, defender, move));
+    u16 type_effect_percent = type_effectiveness_mod(attacker, defender, move);
+    if (type_effect_percent > 100) {
+        B_MOVE_EFFECTIVENESS(attacker) = TE_SUPER_EFFECTIVE;
+    } else if (type_effect_percent == 100) {
+        B_MOVE_EFFECTIVENESS(attacker) = TE_EFFECTIVE;
+    } else if (type_effect_percent > 0) {
+        B_MOVE_EFFECTIVENESS(attacker) = TE_NOT_VERY_EFFECTIVE;
+    } else {
+        B_MOVE_EFFECTIVENESS(attacker) = TE_IMMUNE;
+    }
+    modded_base = NUM_MOD(modded_base, type_effect_percent);
 
     // burn ailment attack reduction
     if ((B_STATUS(attacker) == AILMENT_BURN) &&
@@ -192,10 +206,7 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 }
 
 s16 get_damage(u8 attacker, u8 defender, u16 move)
-{
-    // check if healing move
-    if (B_MOVE_POWER(attacker) < 0)
-        return 0; //not damaging move
+{       
     // get base damage
     u16 base_dmg = get_base_damage(attacker, defender, move);
 

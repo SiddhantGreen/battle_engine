@@ -19,6 +19,7 @@ extern void update_cursor_move_select(u8 task_id);
 extern void show_move_data(void);
 extern void option_selection(void);
 extern u8 get_ability(struct Pokemon* p);
+extern void dprintf(const char * str, ...);
 
 void init_battle_elements()
 {
