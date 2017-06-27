@@ -54,7 +54,7 @@ void play_bmessage()
                 super.multi_purpose_state_tracker++;
             }
             break;
-        case 35:
+        case 25:
         {
             super.multi_purpose_state_tracker = battle_master->state;
             battle_master->queue_front_index++;
