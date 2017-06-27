@@ -46,12 +46,12 @@ void oac_nullsub(struct Object* obj)
 
 void* get_pal_pkmn(struct Pokemon* p, u16 species)
 {
-    // check shiny
-    if (pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL)) {
-        return (void*)pokemon_palette_shiny[species].data;
-    } else {
+    // check shiny TODO
+ //   if (pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL)) {
+   //     return (void*)pokemon_palette_shiny[species].data;
+    //} else {
         return (void*)pokemon_palette_normal[species].data;
-    }
+    //}
 }
 
 u8 spawn_pkmn_obj_slot(u8 slot, u16 tag)
