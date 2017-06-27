@@ -123,10 +123,12 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
         p_bank[defender]->b_data.sp_atk = def_mod[1];
     }
     
-    // Calc base damage
-    u16 dmg = ((((((B_LEVEL(attacker) * 2) / 5) + 2) * base_power * (atk_stat / def_stat)) + 2) / 50);
-    if (base_power && !dmg)
-        return 1;
+    // Calc base damage - broken up for readability
+    u16 dmg = ((B_LEVEL(attacker) * 2) / 5) + 2;
+    dmg *= base_power;
+    // if a pkmn does really low dmg, it's damage should be set to 1
+    dmg *= (atk_stat / def_stat);
+    dmg = (dmg/ 50) + 2;
     return dmg;
 }
 
@@ -188,18 +190,18 @@ s16 get_damage(u8 attacker, u8 defender, u16 move)
 {
     // check if healing move
     if (B_MOVE_POWER(attacker) < 0)
-        return 0; // go straight to healing
+        return 0; //not damaging move
     // get base damage
     u16 base_dmg = get_base_damage(attacker, defender, move);
-
+    if (attacker == 2)
+        var_8000 = base_dmg;
     // if base damage is 0, target is immune. Display text and exit TODO
     if (base_dmg == 0)
         return 0;
-        
+
     // return damage
     u16 result = modify_damage(base_dmg, attacker, defender, move);
-    var_8000 = result;
-    return result;
+    return MAX(result, 1);
 }
 
 
