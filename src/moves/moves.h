@@ -76,6 +76,8 @@ typedef u8 (*DurationCallback)(u8, u8, u8);
 typedef void (*DamageCallback)(u8, u8);
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*ModifyMoveCallback)(u8);
+typedef u16 (*OnHealCallback)(u8);
+typedef void (*EffectCallback)(u8, u8, u16);
 
 
 enum MoveTypes {
@@ -158,7 +160,9 @@ struct move_callbacks {
     ModifyMoveCallback mm_cb;
     TryHitCallback th_cb;
     DamageCallback bd_cb;
+    OnHealCallback oheal_cb;
     OnInvulnerableTryhit inv_tryhit_cb;
+    EffectCallback on_effect_cb;
     
     
 };

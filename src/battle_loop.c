@@ -343,6 +343,7 @@ bool is_immune(u8 attacker, u8 defender, u16 move)
 
 #define MOVE_TRYHIT 0
 #define MOVE_TRYHIT_SIDE 0
+#define MOVE_ON_HEAL 0
 void move_hit()
 {
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
@@ -365,7 +366,7 @@ void move_hit()
         }
         case 1:
             if (!peek_message()) {
-                super.multi_purpose_state_tracker = 5;
+                super.multi_purpose_state_tracker = 14;
                 set_callback1(run_move);
             }
             break;
@@ -431,7 +432,7 @@ void move_hit()
                     }
                 } else {
                     // move has missed
-                    super.multi_purpose_state_tracker = 5;
+                    super.multi_purpose_state_tracker = 14;
                     set_callback1(run_move);
                 }
             }
@@ -444,16 +445,50 @@ void move_hit()
                 break;
             if (!peek_message()) {
                 /* TODO calc healing */
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
+                if (MOVE_ON_HEAL) {
+                    // execute callback
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
+                }
                 super.multi_purpose_state_tracker++;
             }
             break;
         }
         case 5:
         {
+            // something about statuses
+            if (!peek_message()) {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
+        case 6:
+        {
+            /* execute move effect */
+            if (move_t[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
+                move_t[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                super.multi_purpose_state_tracker++;
+            }
+        }
+        case 7:
+            // recoil, drain,
+        case 8:
+            // self hit
+        case 9:
+            // secondary hit
+        case 10:
+            // secondary roll success
+        case 11:
+            // after_move_secondary
+        case 12:
+            // after move secondary onself
+        case 13:
+            // after move
+        case 14:
+        {
         // move has missed
-                    super.multi_purpose_state_tracker = 5;
-                    set_callback1(run_move);
+            super.multi_purpose_state_tracker = 5;
+            set_callback1(run_move);
+            break;
         }
     };
 }
