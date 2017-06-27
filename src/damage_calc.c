@@ -7,6 +7,7 @@
 
 extern u16 rand_range(u16, u16);
 extern u8 effectiveness_chart[342];
+extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
@@ -126,8 +127,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     // Calc base damage - broken up for readability
     u16 dmg = ((B_LEVEL(attacker) * 2) / 5) + 2;
     dmg *= base_power;
-    // if a pkmn does really low dmg, it's damage should be set to 1
-    dmg *= (atk_stat / def_stat);
+    dmg = NUM_MOD(dmg, ((atk_stat * 100) / def_stat));
     dmg = (dmg/ 50) + 2;
     return dmg;
 }
@@ -167,7 +167,13 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     modded_base = NUM_MOD(modded_base, rand_range(85, 100));
     
     // stab calc
-    modded_base = NUM_MOD(modded_base, B_MOVE_STAB(attacker));
+    u8 i;
+    for (i = 0; i < 2; i++) {
+        if ((B_MOVE_TYPE(attacker, i) != MTYPE_EGG) && (b_pkmn_has_type(attacker, B_MOVE_TYPE(attacker, i)))) {
+            modded_base = NUM_MOD(modded_base, B_MOVE_STAB(attacker));
+            break;
+        }
+    }
         
     // type modifications
     modded_base = NUM_MOD(modded_base, type_effectiveness_mod(attacker, defender, move));
@@ -179,7 +185,6 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
         (move != MOVE_FACADE)) {
         modded_base = NUM_MOD(modded_base, 50);
     }
-    
     
     battle_master->queue_size = q_size;
     battle_master->queue_front_index = q_front;
@@ -193,8 +198,7 @@ s16 get_damage(u8 attacker, u8 defender, u16 move)
         return 0; //not damaging move
     // get base damage
     u16 base_dmg = get_base_damage(attacker, defender, move);
-    if (attacker == 2)
-        var_8000 = base_dmg;
+
     // if base damage is 0, target is immune. Display text and exit TODO
     if (base_dmg == 0)
         return 0;
