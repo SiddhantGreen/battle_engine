@@ -12,6 +12,7 @@
 
 extern void make_spinning_pokeball(s16 x, s16 y, u8 bank);
 
+extern void dprintf(char* str, ...);
 void allys_move_into_scene(void)
 {
     // player move into scene
@@ -89,7 +90,7 @@ void player_throwball_and_moveout_scene(struct Object* obj)
                 player_set_frame(dst, 0xFF, 2);
                 obj->priv[0]++;
             } else {
-                obj->pos1.x--;
+                obj->pos1.x -=2;
             }
             break;
         case 2:
