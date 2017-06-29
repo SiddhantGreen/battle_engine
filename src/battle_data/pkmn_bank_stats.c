@@ -10,9 +10,9 @@ typedef u16 (*StatCallback)(u8, u16);
 void update_move_history(u8 bank, u16 move_id)
 {
     // figure out target
-    if (move_t[move_id].m_flags == FLAG_ONSELF)
+    if (moves[move_id].m_flags == FLAG_ONSELF)
         p_bank[bank]->b_data.my_target = bank;
-    else if (move_t[move_id].m_flags == FLAG_TARGET)
+    else if (moves[move_id].m_flags == FLAG_TARGET)
         p_bank[bank]->b_data.my_target = FOE_BANK(bank);
     
     // update current move and last used moves

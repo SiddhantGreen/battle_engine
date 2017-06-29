@@ -680,7 +680,7 @@ extern struct move_procs basic_proc;
 extern struct move_callbacks null_mcb;
 
 
-struct move_data move_t[] = {
+struct move_data moves[] = {
     {
     /* Move NULL */
     .name = _("-"),
@@ -881,7 +881,7 @@ struct move_data move_t[] = {
 	.pp = 20,
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_DANCER,
+	.m_flags = FLAG_SNATCH | FLAG_DANCE,
     .procs = &basic_proc,
     .move_cb = &null_mcb,
 	},
@@ -8894,7 +8894,7 @@ struct move_data move_t[] = {
 	.pp = 20,
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_SNATCH, FLAG_AUTHENTIC,
+	.m_flags = FLAG_SNATCH | FLAG_AUTHENTIC,
     .procs = &basic_proc,
     .move_cb = &null_mcb,
 	},
@@ -9028,7 +9028,7 @@ struct move_data move_t[] = {
     .category = MOVE_SPECIAL,
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .drain 75,
+    .drain = 75,
     .procs = &basic_proc,
     .move_cb = &null_mcb,
 	},

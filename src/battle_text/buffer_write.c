@@ -18,7 +18,7 @@ void buffer_write_player_name(pchar* buffer)
 
 void buffer_write_move_name(pchar* buffer, u16 move_id)
 {
-    pstrcpy(buffer, move_t[move_id].name);
+    pstrcpy(buffer, moves[move_id].name);
 }
 
 void buffer_write_ability_name(pchar* buffer, u8 ability)
