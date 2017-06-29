@@ -318,8 +318,18 @@ void hpbar_apply_dmg(u8 task_id)
 {
     u16 bank = tasks[task_id].priv[0];
     s16 delta = tasks[task_id].priv[1];
-    if (B_CURRENT_HP(bank) > delta) {
-        B_CURRENT_HP(bank) -= 1;
+    if (B_CURRENT_HP(bank) != delta) {
+        if(tasks[task_id].priv[2]){
+            B_CURRENT_HP(bank)++;
+            if(B_CURRENT_HP(bank) > delta){
+                B_CURRENT_HP(bank) = delta;
+            }
+        } else {
+            B_CURRENT_HP(bank)--;
+            if(B_CURRENT_HP(bank) < delta){
+                B_CURRENT_HP(bank) = delta;
+            }
+        }
         refresh_hp(p_bank[bank]->this_pkmn, p_bank[bank]->objid_hpbox[2], 1, bank);
         if (bank == PLAYER_SINGLES_BANK)
             draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, p_bank[bank]->objid_hpbox[0], 1, bank);
@@ -331,7 +341,13 @@ void hpbar_apply_dmg(u8 task_id)
 
 void hp_anim_change(u8 bank, s16 delta)
 {
+    if(delta == B_CURRENT_HP(bank))
+        return;
     u8 t_id = task_add(hpbar_apply_dmg, 0x10);
+    if(delta > B_CURRENT_HP(bank))
+        tasks[t_id].priv[2] = 1; //heal
+    else
+        tasks[t_id].priv[2] = 0; //damage
     tasks[t_id].priv[0] = bank;
     tasks[t_id].priv[1] = delta;
 }

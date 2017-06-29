@@ -15,7 +15,7 @@
 #define PLAYER_BTAG 0x300
 
 // initial positions before starting to apply sliding
-#define PLAYER_X_POS_SLIDE -188
+#define PLAYER_X_POS_SLIDE -192
 #define OPP1_X_POS_SLIDE -80
 
 const struct OamData opp_oam = {

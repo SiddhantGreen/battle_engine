@@ -363,7 +363,7 @@ void move_hit()
         }
         case 1:
             if (!peek_message()) {
-                super.multi_purpose_state_tracker = 14;
+                super.multi_purpose_state_tracker = 16;
                 set_callback1(run_move);
             }
             break;
@@ -429,7 +429,7 @@ void move_hit()
                     }
                 } else {
                     // move has missed
-                    super.multi_purpose_state_tracker = 14;
+                    super.multi_purpose_state_tracker = 16;
                     set_callback1(run_move);
                 }
             }
@@ -463,25 +463,74 @@ void move_hit()
             /* execute move effect */
             if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
                 moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-                super.multi_purpose_state_tracker++;
             }
+            super.multi_purpose_state_tracker++;
+            break;
         }
         case 7:
-            // recoil, drain,            
+        {
+            // check for recoil
+
+            if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0 ){
+                u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].recoil);
+                s16 delta = B_CURRENT_HP(bank_index) - recoil;
+                delta = MAX(delta, 0);
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
+            }
+            super.multi_purpose_state_tracker++;
+            break;
+        }
+
         case 8:
-            // self hit
+        {
+            if (task_is_running(hpbar_apply_dmg))
+                break;
+            if (!peek_message()) {
+                if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].drain > 0 ){
+                    u16 drain = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].drain);
+                    s16 delta = B_CURRENT_HP(bank_index) + drain;
+                    delta = MIN(delta, TOTAL_HP(bank_index));
+                    hp_anim_change(bank_index, delta);
+                    enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_DRAIN, 0);
+                }
+                super.multi_purpose_state_tracker++;             
+            }
+            
+            break;
+        }
         case 9:
-            // secondary hit
+        {
+            if (task_is_running(hpbar_apply_dmg))
+                break;
+            if (!peek_message()) {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
         case 10:
-            // secondary roll success
+        // self hit
+        
+            
 
         case 11:
-            // after_move_secondary
+        // secondary hit
+        
+            
         case 12:
-            // after move secondary onself
+        // secondary roll success
+        
+            
         case 13:
-            // after move
+        // after_move_secondary
+        
+            
         case 14:
+        // after move secondary onself
+
+        case 15:
+        // after move
+        case 16:
         {
         // move has missed
             super.multi_purpose_state_tracker = 5;
