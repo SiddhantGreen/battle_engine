@@ -54,6 +54,7 @@ enum battle_string_ids {
     STRING_MOVE_NVE = 84,
     STRING_MOVE_SE = 85,
     STRING_RECOIL = 86,
+    STRING_DRAIN = 87,
 };
 
 
@@ -143,7 +144,8 @@ static const pchar str_move_immune_p[] = _("Foe {DEFENDING_MON} was immune!");
 static const pchar str_move_immune_o[] = _("{DEFENDING_MON} was immune!");
 static const pchar str_move_nve[] = _("It wasn’t very effective");
 static const pchar str_move_se[] = _("It was super effective!");
-static const pchar str_recoil[] =_("{ATTACKING_MON} was hurt by recoil.");
+static const pchar str_recoil[] =_("{ATTACKING_MON} was hurt by recoil!");
+static const pchar str_drain[] = _("{DEFENDING_MON} was drained energy!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -165,7 +167,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[87] = {
+static const pchar* battle_strings[88] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -211,6 +213,7 @@ static const pchar* battle_strings[87] = {
    (pchar*)&str_move_immune_p, (pchar*)&str_move_immune_o,
    (pchar*)&str_move_nve, (pchar*)&str_move_se,
    (pchar*)&str_recoil,
+   (pchar*)&str_drain,
 };
 
 
