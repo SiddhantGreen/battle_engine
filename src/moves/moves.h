@@ -1,5 +1,5 @@
-#ifndef MOVE_TABLE_DATA_H_
-#define MOVE_TABLE_DATA_H_
+#ifndef movesABLE_DATA_H_
+#define movesABLE_DATA_H_
 
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
@@ -11,28 +11,28 @@
  * Field data fetch macros
  *
  */
-#define MOVE_PRIORITY(move) move_t[move].priority
-#define MOVE_POWER(move) move_t[move].base_power
-#define MOVE_CATEGORY(move) move_t[move].category
-#define MOVE_ACCURACY(move) move_t[move].accuracy
-#define MOVE_CRIT(move) move_t[move].crit_ratio
-#define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
-#define MAKES_CONTACT(move, bank) (((move_t[move].m_flags) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
-#define MOVE_TYPE(move) move_t[move].type
-#define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
-#define IS_MOVE_PHYSICAL(move) (move_t[move].category == MOVE_PHYSICAL)
-#define IS_MOVE_SPECIAL(move) (move_t[move].category == MOVE_SPECIAL)
-#define IS_DANCE(move) ((move_t[move].m_flags) & (1 << 21))
-#define IS_TRIAGE(move) ((move_t[move].m_flags) & (1 << 20))
-#define IS_SOUND_BASE(move) ((move_t[move].m_flags) & (1 << 14))
-#define IS_PULSE(move) ((move_t[move].m_flags) & (1 << 22))
-#define IS_STRONG_JAW(move) ((move_t[move].m_flags) & (1 << 15))
-#define IS_BULLET(move) ((move_t[move].m_flags) & (1 << 16))
-#define IS_SEMI_INVUL(move) ((move_t[move].m_flags) & (1 << 23))
-#define IS_OHKO(move) ((move_t[move].m_flags) & (1 << 24))
-#define CAT_OVERRIDE(move) ((move_t[move].m_flags) & (1 << 25))
-#define STEAL_OFFENSIVE(move) ((move_t[move].m_flags) & (1 << 26))
-#define STEAL_BOOSTS(move) ((move_t[move].m_flags) & (1 << 27))
+#define MOVE_PRIORITY(move) moves[move].priority
+#define MOVE_POWER(move) moves[move].base_power
+#define MOVE_CATEGORY(move) moves[move].category
+#define MOVE_ACCURACY(move) moves[move].accuracy
+#define MOVE_CRIT(move) moves[move].crit_ratio
+#define M_FLINCH(move)(*(moves[move].procs)).flinch_chance
+#define MAKES_CONTACT(move, bank) (((moves[move].m_flags) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
+#define MOVE_TYPE(move) moves[move].type
+#define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
+#define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
+#define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
+#define IS_DANCE(move) ((moves[move].m_flags) & (1 << 21))
+#define IS_TRIAGE(move) ((moves[move].m_flags) & (1 << 20))
+#define IS_SOUND_BASE(move) ((moves[move].m_flags) & (1 << 14))
+#define IS_PULSE(move) ((moves[move].m_flags) & (1 << 22))
+#define IS_STRONG_JAW(move) ((moves[move].m_flags) & (1 << 15))
+#define IS_BULLET(move) ((moves[move].m_flags) & (1 << 16))
+#define IS_SEMI_INVUL(move) ((moves[move].m_flags) & (1 << 23))
+#define IS_OHKO(move) ((moves[move].m_flags) & (1 << 24))
+#define CAT_OVERRIDE(move) ((moves[move].m_flags) & (1 << 25))
+#define STEAL_OFFENSIVE(move) ((moves[move].m_flags) & (1 << 26))
+#define STEAL_BOOSTS(move) ((moves[move].m_flags) & (1 << 27))
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
@@ -199,9 +199,9 @@ struct move_data {
     struct move_callbacks* move_cb;
 };
 
-extern struct move_data move_t[];
+extern struct move_data moves[];
 extern u32 m_flags[672];
 
 
 
-#endif /* MOVE_TABLE_DATA_H_ */	
+#endif /* movesABLE_DATA_H_ */	

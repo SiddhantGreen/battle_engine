@@ -140,12 +140,12 @@ void load_names_moves(u8 bank)
 {
     u8 i;
     pchar prefix[] = _("{HIGHLIGHT 1}{COLOR 2}{SHADOW 3}");
-    u16 moves[4];
+    u16 p_moves[4];
     for (i = 0; i < 4; i++) {
         /* figure out move string */
-        moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
+        p_moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
         pstrcpy(string_buffer, prefix);
-        pstrcat(string_buffer, move_t[moves[i]].name);
+        pstrcat(string_buffer, moves[p_moves[i]].name);
         
         /* Make canvas object */
         struct SpritePalette text_pal = {(void*)stdpal_get(1), MOVE_NAMES_TAG};
@@ -185,13 +185,13 @@ void load_names_moves(u8 bank)
 
 void load_icons_moves(u8 bank)
 {
-    u16 moves[4];
+    u16 p_moves[4];
     u8 i;
     for (i = 0; i < 4; i++) {
-        moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
+        p_moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
         s16 x = (!i || (i == 2)) ? 92 : 194;
         s16 y = (i < 2) ? 126 : 145;
-        u8 type = move_t[moves[i]].type;
+        u8 type = moves[p_moves[i]].type;
         if (type == MTYPE_EGG) {
             battle_master->type_objid[i] = 0x3F;
             battle_master->move_pp_objid[i] = 0x3F;
@@ -202,7 +202,7 @@ void load_icons_moves(u8 bank)
             objid = draw_pp(bank, i);
             objects[objid].final_oam.affine_mode = 2;
             battle_master->move_pp_objid[i] = objid;
-            objid = load_dmg_category_icon(MOVE_CATEGORY(moves[i]), x + 8, y, i);
+            objid = load_dmg_category_icon(MOVE_CATEGORY(p_moves[i]), x + 8, y, i);
             battle_master->move_pss_objid[i] = objid;
             objects[objid].final_oam.affine_mode = 2;
         }

@@ -680,7 +680,7 @@ extern struct move_procs basic_proc;
 extern struct move_callbacks null_mcb;
 
 
-struct move_data move_t[] = {
+struct move_data moves[] = {
     {
     /* Move NULL */
     .name = _("-"),

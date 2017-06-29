@@ -63,15 +63,15 @@ void set_attack_bm(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].prankstered = HAS_VOLATILE(bank, VOLATILE_PRANKSTERED);
     REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
     battle_master->b_moves[index].infiltrates = false;
-    battle_master->b_moves[index].chance_self = move_t[move_id].procs->chance_self;
-    battle_master->b_moves[index].chance_target = move_t[move_id].procs->chance_target;
+    battle_master->b_moves[index].chance_self = moves[move_id].procs->chance_self;
+    battle_master->b_moves[index].chance_target = moves[move_id].procs->chance_target;
     
     u8 i;
     for (i = 0; i < 6; i++) {
-        battle_master->b_moves[bank].stat_self[i] = move_t[move_id].procs->stat_self[i];
-        battle_master->b_moves[bank].stat_target[i] = move_t[move_id].procs->stat_target[i];
-        battle_master->b_moves[bank].amount_self[i] = move_t[move_id].procs->amount_self[i];
-        battle_master->b_moves[bank].amount_target[i] = move_t[move_id].procs->amount_target[i];
+        battle_master->b_moves[bank].stat_self[i] = moves[move_id].procs->stat_self[i];
+        battle_master->b_moves[bank].stat_target[i] = moves[move_id].procs->stat_target[i];
+        battle_master->b_moves[bank].amount_self[i] = moves[move_id].procs->amount_self[i];
+        battle_master->b_moves[bank].amount_target[i] = moves[move_id].procs->amount_target[i];
     }
 }
 
@@ -87,7 +87,7 @@ void reset_turn_bits(u8 bank)
 u8 set_target_bank(u8 user_bank, u16 move_id)
 {
     // check who the move targets
-    if (move_t[move_id].m_flags & FLAG_ONSELF) {
+    if (moves[move_id].m_flags & FLAG_ONSELF) {
         p_bank[user_bank]->b_data.my_target = user_bank;
         return user_bank;
     } else {
@@ -172,10 +172,10 @@ void battle_loop()
     set_target_bank(battle_master->second_bank, p_bank[battle_master->second_bank]->b_data.current_move);
    
     /* Run each move's before turn */
-    /*if (move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
-        move_t[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb(battle_master->first_bank);
-    if (move_t[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb)
-        move_t[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb(battle_master->second_bank);*/
+    /*if (moves[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
+        moves[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb(battle_master->first_bank);
+    if (moves[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb)
+        moves[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb(battle_master->second_bank);*/
     
     super.multi_purpose_state_tracker = 0;
     battle_master->execution_index = 0;
@@ -314,8 +314,8 @@ bool try_hit(u8 attacker)
     // if target is in semi invulnerability do checks
     u8 defender = TARGET_OF(attacker);
     if (HAS_VOLATILE(defender, VOLATILE_SEMI_INVULNERABLE)) {
-        if (move_t[LAST_MOVE(defender)].move_cb->inv_tryhit_cb) {
-            if (!(move_t[LAST_MOVE(defender)].move_cb->inv_tryhit_cb(CURRENT_MOVE(attacker))))
+        if (moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb) {
+            if (!(moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb(CURRENT_MOVE(attacker))))
                 return false;
         }
     }
