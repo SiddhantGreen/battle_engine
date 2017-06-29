@@ -2,7 +2,7 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_state.h"
 #include "battle_pick_message.h"
-
+extern void dprintf(const char * str, ...);
 
 bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect)
 {
@@ -42,7 +42,6 @@ void play_bmessage()
         case 0:
         {
             extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 move_effect_id);
-
             pick_battle_message(battle_master->b_message[front].move_id, battle_master->b_message[front].bank, battle_type_flags,
             battle_master->b_message[front].string_id, battle_master->b_message[front].effect);
             battle_show_message((u8*)string_buffer, 0x18);
