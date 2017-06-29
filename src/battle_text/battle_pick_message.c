@@ -1,12 +1,11 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_state.h"
 #include "battle_pick_message.h"
 
 extern void buffer_write_pkmn_nick(pchar* buff, u8 bank);
 extern void buffer_write_move_name(pchar* buff, u16 move_id);
-extern u8 get_side(u8 bank);
-
 
 void pick_encounter_message(enum BattleFlag battle_type_flags)
 {
@@ -89,7 +88,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_ABILITY_CHANGE:
             case STRING_FLEE:
             case STRING_MOVE_IMMUNE:
-                fdecoder_battle(battle_strings[id + get_side(user_bank)], user_bank, move_id, move_effect_id);
+                fdecoder_battle(battle_strings[id + SIDE_OF(user_bank)], user_bank, move_id, move_effect_id);
                 break;
             default:
                 break;

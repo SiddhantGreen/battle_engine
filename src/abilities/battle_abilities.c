@@ -8,7 +8,6 @@
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
-extern s8 move_effectiveness(u8 move_type, u8 target_bank);
 extern void stat_boost(u8 bank, u8 high_stat, s8 amount);
 extern void set_status(u8 bank, u8 source, enum Effect status);
 extern void set_ability(u8 bank, u8 source, u8 ability);
@@ -1984,10 +1983,7 @@ struct b_ability b_shadow_shield = {
 // PRISM ARMOR
 u16 prism_armor_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
 {
-    if (bank == tbank)
-        return dmg;
-    if (move_effectiveness(move_t[move].type, tbank) > 0)
-        return ((dmg * 75) / 100);
+    /* TODO */
     return dmg;
 }
 

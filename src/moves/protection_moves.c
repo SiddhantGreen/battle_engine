@@ -4,7 +4,6 @@
 #include "moves/moves.h"
 
 extern u16 rand_range(u16, u16);
-extern u8 get_side(u8);
 /* 
 u8 protection_tryhit(u8 user_bank)
 {

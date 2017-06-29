@@ -20,16 +20,6 @@ bool knows_move(u16 move_id, struct Pokemon* p)
     return false;
 }
 
-u8 get_side(u8 bank)
-{
-    return (bank > 1) ? 1 : 0;
-}
-
-u8 get_opponent_side(u8 bank)
-{
-    return ((!(get_side(bank))) * 2);
-}
-
 u8 get_ability(struct Pokemon* p)
 {
     u8 ability_bit = pokemon_getattr(p, REQUEST_ABILITY_BIT, NULL);
@@ -39,25 +29,6 @@ u8 get_ability(struct Pokemon* p)
 bool ignoring_item(struct Pokemon* p)
 {
     return (get_ability(p) == ABILITY_KLUTZ);
-}
-
-/* TODO: Update this function. Hard coded and too short sighted */
-u8 move_target(u8 bank, u16 move_id)
-{
-    if (*(move_t[move_id].m_flags) & FLAG_ONSELF) {
-        return bank;
-    } else {
-        return (bank) ? 0 : 2;
-    }
-}
-
-
-bool pkmn_has_type(u16 species, enum PokemonType type)
-{
-    if ((pokemon_base_stats[species].type[0] == type) || (pokemon_base_stats[species].type[1] == type)) {
-        return true;
-    }
-    return false;
 }
 
 bool b_pkmn_has_type(u8 bank, enum PokemonType type)
@@ -71,7 +42,6 @@ bool b_pkmn_has_type(u8 bank, enum PokemonType type)
     return false;
 }
 
-
 bool on_ground(u8 bank)
 {
     if (b_pkmn_has_type(bank, TYPE_FLYING) ||
@@ -81,31 +51,6 @@ bool on_ground(u8 bank)
         return false;
     }
     return true;
-}
-
-s8 move_effectiveness(u8 move_type, u8 target_bank)
-{
-    extern u8 effectiveness_chart[342];
-    // -3 : 1/8x dmg
-    // -2 : 1/4x dmg
-    // -1 : 1/2x dmg
-    //  0 : 1x damage
-    // +1 : 2x dmg
-    // +2 : 4x dmg
-    // +3 : 6x dmg
-    s8 effectiveness = 0;
-    u8 i;
-    for (i = 0; i < 3; i ++) {
-        // if one of the types are immune, return 3
-        u8 target_type = p_bank[target_bank]->b_data.type[i];
-        if (MOVE_EFFECTIVENESS(target_type, move_type) == 3)
-            return 0xFF;
-        if (MOVE_EFFECTIVENESS(target_type, move_type) == 2)
-            effectiveness--;
-        if (MOVE_EFFECTIVENESS(target_type, move_type) == 1)
-            effectiveness++;
-    }
-    return effectiveness;
 }
 
 void stat_boost(u8 bank, u8 stat_id, s8 amount)

@@ -6,7 +6,6 @@
 #include "battle_text/battle_pick_message.h"
 
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
-extern u8 get_side(u8 bank);
 extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
@@ -88,10 +87,10 @@ void reset_turn_bits(u8 bank)
 u8 set_target_bank(u8 user_bank, u16 move_id)
 {
     // check who the move targets
-    if (*(move_t[move_id].m_flags) & FLAG_ONSELF) {
+    if (move_t[move_id].m_flags & FLAG_ONSELF) {
         p_bank[user_bank]->b_data.my_target = user_bank;
         return user_bank;
-    } else { //if (*(move_t[move_id].m_flags) & FLAG_TARGET) {
+    } else {
         p_bank[user_bank]->b_data.my_target = FOE_BANK(user_bank);
         return FOE_BANK(user_bank);
     }
@@ -471,12 +470,15 @@ void move_hit()
         }
         case 7:
             // recoil, drain,
+            dprintf("Accuracy = %d\nPower = %d\nPP = %d\nDrain = %d, %d\nPriority = %d\n", move_t[0].accuracy, move_t[0].base_power, move_t[0].pp, move_t[0].drain[0], move_t[0].drain[1], move_t[0].priority);
+            
         case 8:
             // self hit
         case 9:
             // secondary hit
         case 10:
             // secondary roll success
+
         case 11:
             // after_move_secondary
         case 12:
