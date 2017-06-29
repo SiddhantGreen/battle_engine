@@ -242,20 +242,18 @@ void run_switch()
             if(!can_flee(bank_index)) {
                 enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                 super.multi_purpose_state_tracker++;
-                break;
             } else {
                 if(!can_flee_by_random(bank_index)) {
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
                     //we cannot flee because we failed the dice roll
                     super.multi_purpose_state_tracker = 4;
-                    break;
                 } else {
                     //we can finally flee
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
                     super.multi_purpose_state_tracker = 5;
-                    break;
                 }
             }
+            break;
         }
         case 3:
         {

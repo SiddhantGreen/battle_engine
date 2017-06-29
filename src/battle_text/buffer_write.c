@@ -162,6 +162,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
             result_index++;
         }
     }
+    
     fdecoder(string_buffer, result);
     free(result);
 }

@@ -4,6 +4,7 @@
 #include "../battle_state.h"
 #include "battle_pick_message.h"
 
+extern void dprintf(const char * str, ...);
 extern void buffer_write_pkmn_nick(pchar* buff, u8 bank);
 extern void buffer_write_move_name(pchar* buff, u16 move_id);
 
@@ -37,6 +38,7 @@ void pick_encounter_message(enum BattleFlag battle_type_flags)
 extern void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id);
 void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 move_effect_id)
 {
+    u8 side = SIDE_OF(user_bank);
     remo_reset_acknowledgement_flags();
     if (battle_type_flags == BATTLE_FLAG_WILD) {
         switch (id) {
@@ -90,8 +92,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_ABILITY_CHANGE:
             case STRING_FLEE:
             case STRING_MOVE_IMMUNE:
-            
-                fdecoder_battle(battle_strings[id + SIDE_OF(user_bank)], user_bank, move_id, move_effect_id);
+                fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:
                 break;
