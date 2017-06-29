@@ -463,8 +463,8 @@ void move_hit()
         case 6:
         {
             /* execute move effect */
-            if (move_t[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
-                move_t[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
+                moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
             super.multi_purpose_state_tracker++;
             break;
@@ -473,8 +473,8 @@ void move_hit()
         {
             // check for recoil
 
-            if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && move_t[CURRENT_MOVE(bank_index)].recoil > 0 ){
-                u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, move_t[CURRENT_MOVE(bank_index)].recoil);
+            if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0 ){
+                u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].recoil);
                 s16 delta = B_CURRENT_HP(bank_index) - recoil;
                 delta = MAX(delta, 0);
                 hp_anim_change(bank_index, delta);
@@ -489,8 +489,8 @@ void move_hit()
             if (task_is_running(hpbar_apply_dmg))
                 break;
             if (!peek_message()) {
-                if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && move_t[CURRENT_MOVE(bank_index)].drain > 0 ){
-                    u16 drain = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, move_t[CURRENT_MOVE(bank_index)].drain);
+                if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].drain > 0 ){
+                    u16 drain = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].drain);
                     s16 delta = B_CURRENT_HP(bank_index) + drain;
                     delta = MIN(delta, TOTAL_HP(bank_index));
                     hp_anim_change(bank_index, delta);
