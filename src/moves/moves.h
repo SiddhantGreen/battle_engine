@@ -39,31 +39,31 @@
 
 
     
-#define FLAG_CHARGEUP (1 << 1)
+#define FLAG_CHARGE (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
 #define FLAG_CONTACT (1 << 3)
 #define FLAG_DEFROST (1 << 4)
-#define FLAG_GRAVITY_DISABLED (1 << 5)
-#define FLAG_HEAL_BLOCK_DISABLED (1 << 6)
-#define FLAG_MIRRORABLE (1 << 7)
+#define FLAG_GRAVITY (1 << 5)
+#define FLAG_HEAL (1 << 6)
+#define FLAG_MIRROR (1 << 7)
 #define FLAG_POWDER (1 << 8)
-#define FLAG_PROTECTABLE (1 << 9)
-#define FLAG_IGNORE_SUBSTITUTE (1 << 10)
-#define FLAG_IRON_FIST (1 << 11)
+#define FLAG_PROTECT (1 << 9)
+#define FLAG_AUTHENTIC (1 << 10)
+#define FLAG_PUNCH (1 << 11)
 #define FLAG_REFLECTABLE (1 << 12)
 #define FLAG_SNATCH (1 << 13)
-#define FLAG_SOUND_BASED (1 << 14)
-#define FLAG_STRONG_JAW (1 << 15)
-#define FLAG_BULLET_PROOF (1 << 16)
+#define FLAG_SOUND (1 << 14)
+#define FLAG_BITE (1 << 15) // strongjaw
+#define FLAG_BULLET (1 << 16)
 #define FLAG_ONSELF (1 << 17)
 #define FLAG_TARGET (1 << 18)
 #define FLAG_HITS_ALL (1 << 19)
-#define FLAG_TRIAGE_AFFECTED (1 << 20)
-#define FLAG_DANCER (1 << 21)
+#define FLAG_TRIAGE (1 << 20)
+#define FLAG_DANCE (1 << 21)
 #define FLAG_PULSE (1 << 22)
 #define FLAG_SEMI_INVUL (1 << 23)
 #define FLAG_OHKO (1 << 24)
-#define FLAG_CATEGORY_OVERRIDE (1 << 25) // Moves like psyshock enable this
+#define FLAG_CATEGORY_OVERRIDE (1 << 25)
 #define FLAG_STEAL_OFFENSIVE (1 << 26)
 #define FLAG_STEAL_BOOSTS (1 << 27)
 #define FLAGS_UNUSED (1 << 28)
@@ -193,8 +193,8 @@ struct move_data {
     enum MoveCategory category;
     enum MoveTypes type;
     u32 m_flags;
-    u8 drain[2];
-    u8 recoil[2];
+    u8 drain;
+    u8 recoil;
     struct move_procs* procs;
     struct move_callbacks* move_cb;
 };
