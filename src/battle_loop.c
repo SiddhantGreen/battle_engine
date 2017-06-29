@@ -469,9 +469,7 @@ void move_hit()
             }
         }
         case 7:
-            // recoil, drain,
-            dprintf("Accuracy = %d\nPower = %d\nPP = %d\nDrain = %d, %d\nPriority = %d\n", move_t[0].accuracy, move_t[0].base_power, move_t[0].pp, move_t[0].drain[0], move_t[0].drain[1], move_t[0].priority);
-            
+            // recoil, drain,            
         case 8:
             // self hit
         case 9:
