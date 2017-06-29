@@ -365,7 +365,7 @@ void move_hit()
         }
         case 1:
             if (!peek_message()) {
-                super.multi_purpose_state_tracker = 14;
+                super.multi_purpose_state_tracker = 15;
                 set_callback1(run_move);
             }
             break;
@@ -431,7 +431,7 @@ void move_hit()
                     }
                 } else {
                     // move has missed
-                    super.multi_purpose_state_tracker = 14;
+                    super.multi_purpose_state_tracker = 15;
                     set_callback1(run_move);
                 }
             }
@@ -469,21 +469,49 @@ void move_hit()
             }
         }
         case 7:
-            // recoil, drain,            
+        {
+            // recoil, drain,
+
+            if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && move_t[CURRENT_MOVE(bank_index)].recoil > 0 ){
+                u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, move_t[CURRENT_MOVE(bank_index)].recoil);
+                s16 delta = B_CURRENT_HP(bank_index) - recoil;
+                delta = MAX(delta, 0);
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
+                dprintf("Queue size: %d\n", battle_master->queue_size);
+            }
+            super.multi_purpose_state_tracker++;
+        }
+
         case 8:
-            // self hit
+        {
+            
+            if (task_is_running(hpbar_apply_dmg))
+                break;
+            if (!peek_message()) {
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
         case 9:
-            // secondary hit
+        // self hit
+            
         case 10:
-            // secondary roll success
+        // secondary hit
+            
 
         case 11:
-            // after_move_secondary
+        // secondary roll success
+            
         case 12:
-            // after move secondary onself
+        // after_move_secondary
+            
         case 13:
-            // after move
+        // after move secondary onself
+            
         case 14:
+        // after move
+        case 15:
         {
         // move has missed
             super.multi_purpose_state_tracker = 5;
