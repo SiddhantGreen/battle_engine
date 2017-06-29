@@ -17,28 +17,28 @@
 #define MOVE_ACCURACY(move) move_t[move].accuracy
 #define MOVE_CRIT(move) move_t[move].crit_ratio
 #define M_FLINCH(move)(*(move_t[move].procs)).flinch_chance
-#define MAKES_CONTACT(move, bank) (((*(move_t[move].m_flags)) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
+#define MAKES_CONTACT(move, bank) (((move_t[move].m_flags) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define MOVE_TYPE(move) move_t[move].type
 #define IS_MOVE_STATUS(move) (move_t[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (move_t[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (move_t[move].category == MOVE_SPECIAL)
-#define IS_DANCE(move) ((*(move_t[move].m_flags)) & (1 << 21))
-#define IS_TRIAGE(move) ((*(move_t[move].m_flags)) & (1 << 20))
-#define IS_SOUND_BASE(move) ((*(move_t[move].m_flags)) & (1 << 14))
-#define IS_PULSE(move) ((*(move_t[move].m_flags)) & (1 << 22))
-#define IS_STRONG_JAW(move) ((*(move_t[move].m_flags)) & (1 << 15))
-#define IS_BULLET(move) ((*(move_t[move].m_flags)) & (1 << 16))
-#define IS_SEMI_INVUL(move) ((*(move_t[move].m_flags)) & (1 << 23))
-#define IS_OHKO(move) ((*(move_t[move].m_flags)) & (1 << 24))
-#define CAT_OVERRIDE(move) ((*(move_t[move].m_flags)) & (1 << 25))
-#define STEAL_OFFENSIVE(move) ((*(move_t[move].m_flags)) & (1 << 26))
-#define STEAL_BOOSTS(move) ((*(move_t[move].m_flags)) & (1 << 27))
+#define IS_DANCE(move) ((move_t[move].m_flags) & (1 << 21))
+#define IS_TRIAGE(move) ((move_t[move].m_flags) & (1 << 20))
+#define IS_SOUND_BASE(move) ((move_t[move].m_flags) & (1 << 14))
+#define IS_PULSE(move) ((move_t[move].m_flags) & (1 << 22))
+#define IS_STRONG_JAW(move) ((move_t[move].m_flags) & (1 << 15))
+#define IS_BULLET(move) ((move_t[move].m_flags) & (1 << 16))
+#define IS_SEMI_INVUL(move) ((move_t[move].m_flags) & (1 << 23))
+#define IS_OHKO(move) ((move_t[move].m_flags) & (1 << 24))
+#define CAT_OVERRIDE(move) ((move_t[move].m_flags) & (1 << 25))
+#define STEAL_OFFENSIVE(move) ((move_t[move].m_flags) & (1 << 26))
+#define STEAL_BOOSTS(move) ((move_t[move].m_flags) & (1 << 27))
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
 
 
-
+    
 #define FLAG_CHARGEUP (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
 #define FLAG_CONTACT (1 << 3)
@@ -76,6 +76,8 @@ typedef u8 (*DurationCallback)(u8, u8, u8);
 typedef void (*DamageCallback)(u8, u8);
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*ModifyMoveCallback)(u8);
+typedef u16 (*OnHealCallback)(u8);
+typedef void (*EffectCallback)(u8, u8, u16);
 
 
 enum MoveTypes {
@@ -158,7 +160,9 @@ struct move_callbacks {
     ModifyMoveCallback mm_cb;
     TryHitCallback th_cb;
     DamageCallback bd_cb;
+    OnHealCallback oheal_cb;
     OnInvulnerableTryhit inv_tryhit_cb;
+    EffectCallback on_effect_cb;
     
     
 };
@@ -188,7 +192,9 @@ struct move_data {
     u8 crit_ratio;
     enum MoveCategory category;
     enum MoveTypes type;
-    u32* m_flags;
+    u32 m_flags;
+    u8 drain[2];
+    u8 recoil[2];
     struct move_procs* procs;
     struct move_callbacks* move_cb;
 };
