@@ -23,18 +23,14 @@ u32 calc_exp(u8 fainted, u8 reciever)
     u32 exp_part1 = fainted_lvl * base_yield;
     exp_part1 = NUM_MOD(exp_part1, trainer_mon);
     exp_part1 = exp_part1 / 5;
-    dprintf("Current part 1 = %d exp\n", exp_part1);
     
     u32 exp_part2 = ((2 *fainted_lvl) + 10);
     exp_part2 *= (exp_part2 * NUM_MOD(exp_part2, 50));
-    dprintf("Current part 2 = %d exp\n", exp_part2);
     u32 exp_part3 = (fainted_lvl + reciever_lvl + 10);
     exp_part3 *= (exp_part3 * NUM_MOD(exp_part3, 50));
-    dprintf("Current part 3 = %d exp\n", exp_part3);
     exp_part2 /= exp_part3;
     exp_part2 = MAX(exp_part2, 1);
     exp_part1 = (exp_part1 * exp_part2) + 1;
-    dprintf("Current %d exp\n", exp_part1);
     return NUM_MOD(exp_part1, traded);   
 }
 
@@ -44,12 +40,14 @@ u32 calc_exp(u8 fainted, u8 reciever)
 void give_exp(u8 fainted, u8 reciever)
 {
     u32 exp = calc_exp(fainted, reciever);
-    dprintf("Player gains %d exp\n", exp);
     enqueue_message(0, reciever, STRING_EXP_GAIN, exp);
     /* TODO add task that grants exp*/
     exp += pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_EXP_POINTS, NULL);
     pokemon_setattr(p_bank[reciever]->this_pkmn, REQUEST_EXP_POINTS, &exp);
     recalculate_stats(p_bank[reciever]->this_pkmn);
+    u8 new_lvl = pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_LEVEL, NULL);
+    if (new_lvl > p_bank[reciever]->b_data.level)
+        enqueue_message(0, reciever, STRING_LEVEL_UP, 0);
     return;
 }
 
