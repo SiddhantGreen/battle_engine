@@ -733,7 +733,7 @@ void run_decision(void)
             // TODO: free resources
             if (!peek_message()) {
                 extern void sync_battler_struct(u8 bank);
-                sync_battler_struct(bank);
+                sync_battler_struct(PLAYER_SINGLES_BANK);
                 exit_to_overworld_2_switch();
                 set_callback1(c1_overworld);
             }

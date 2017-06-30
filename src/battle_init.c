@@ -113,6 +113,14 @@ void update_pbank(u8 bank, struct update_flags* flags)
 }
 
 
+void sync_battler_struct(u8 bank)
+{
+    u16 c_hp = p_bank[bank]->b_data.current_hp;
+    u8 ailment = p_bank[bank]->b_data.status;
+    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
+    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+}
+
 /* Called right after sliding in effects have finished executing. */
 void init_battle()
 {
