@@ -5,8 +5,6 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
-extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 effect_id);
-extern u8 move_target(u8 bank, u16 move_id);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -17,6 +15,19 @@ extern u16 get_damage(u8, u8, u16);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
+
+void faint(u8 bank)
+{
+    p_bank[bank]->b_data.fainted = true;
+    if (!(SIDE_OF(bank))) {
+        extern void set_active_movement(u8 tid);
+        task_del(task_find_id_by_functpr(set_active_movement));
+    }
+        extern void obj_battler_fall_through(struct Object* obj);
+        objects[p_bank[bank]->objid].callback = obj_battler_fall_through;
+        objects[p_bank[bank]->objid].priv[0] = 0;
+        objects[p_bank[bank]->objid].priv[1] = 0;
+}
 
 u16 pick_player_attack()
 {
@@ -588,11 +599,40 @@ void run_move()
             break;
         case 5:
             if (!peek_message()) {
+                // reduce PP
+                u16 player_moveid = battle_master->battle_cursor.cursor_pos + REQUEST_PP1;
+                if (player_moveid == (REQUEST_PP1 + 1)) {
+                    player_moveid += 1;
+                } else if (player_moveid == (REQUEST_PP1 + 2)) {
+                    player_moveid -= 1;
+                }  
+                u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, player_moveid, NULL) - 1;
+                pokemon_setattr(p_bank[bank_index]->this_pkmn, player_moveid, &pp);
+            }
+        case 6:
+            if (!peek_message()) {
+                // check first bank
+                if (!B_CURRENT_HP(battle_master->first_bank)) {
+                    // bank index has fainted
+                    faint(battle_master->first_bank);
+                }
+                super.multi_purpose_state_tracker++;
+            }
+        case 7:
+            if (!peek_message()) {
+                // check if second bank fainted
+                if (!B_CURRENT_HP(battle_master->second_bank)) {
+                    faint(battle_master->second_bank);
+                }
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        case 8:
+            if (!peek_message()) {
                 super.multi_purpose_state_tracker = 4; // exit
                 set_callback1(run_decision);
             }
             break;
-        
     };
 }
 
