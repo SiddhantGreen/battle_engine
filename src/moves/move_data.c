@@ -1148,7 +1148,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .move_cb = &null_mcb,
-	.recoil = 50,
 	},
 	
 	{
@@ -1489,7 +1488,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .move_cb = &null_mcb,
-	.drain = 50,
 	},
 	
 	{
