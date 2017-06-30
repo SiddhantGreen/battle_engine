@@ -197,6 +197,7 @@ struct move_data {
     u8 recoil;
     struct move_procs* procs;
     struct move_callbacks* move_cb;
+    u8 recoil_struggle : 1;
 };
 
 extern struct move_data moves[];
