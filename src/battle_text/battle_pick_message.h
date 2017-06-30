@@ -145,7 +145,7 @@ static const pchar str_move_immune_o[] = _("{DEFENDING_MON} was immune!");
 static const pchar str_move_nve[] = _("It wasn’t very effective");
 static const pchar str_move_se[] = _("It was super effective!");
 static const pchar str_recoil[] =_("{ATTACKING_MON} was hurt by recoil!");
-static const pchar str_drain[] = _("{DEFENDING_MON} was drained energy!");
+static const pchar str_drain[] = _("{DEFENDING_MON}’s energy was drained!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");

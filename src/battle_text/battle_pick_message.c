@@ -52,9 +52,11 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_MOVE_CRIT:
             case STRING_MOVE_NVE:
             case STRING_MOVE_SE:
+                fdecoder_battle(battle_strings[id], 0, 0, 0);
+                break;
             case STRING_RECOIL:
             case STRING_DRAIN:
-                fdecoder_battle(battle_strings[id], 0, 0, 0);
+                fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;
             case STRING_ATTACK_USED:
             case STRING_INFATUATED:
