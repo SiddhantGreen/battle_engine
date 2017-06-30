@@ -282,7 +282,7 @@ void run_switch()
                 } else {
                     //we can finally flee
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
-                    super.multi_purpose_state_tracker = 6;
+                    super.multi_purpose_state_tracker = 8;
                     set_callback1(run_decision);
                 }
             }
@@ -711,13 +711,33 @@ void run_decision(void)
         }
         case 6:
         {
-            if(!peek_message()) {
-                // TODO: free resources
+            if (!peek_message()) {
+                // battle is won by player
+                // give exp
+                extern void give_exp(u8 fainted, u8 reciever);
+                give_exp(OPPONENT_SINGLES_BANK, PLAYER_SINGLES_BANK);
+                // check moves learnt if leveled TODO
+                super.multi_purpose_state_tracker = 8;
+            }
+            break;
+        }
+        case 7:
+        {
+            if (!peek_message()) {
+                // player has fainted
+                super.multi_purpose_state_tracker++;
+            }
+            break;
+        }
+        case 8:
+            // TODO: free resources
+            if (!peek_message()) {
+                extern void sync_battler_struct(u8 bank);
+                sync_battler_struct(bank);
                 exit_to_overworld_2_switch();
                 set_callback1(c1_overworld);
             }
             break;
-        }
         default:
             break;
     };
