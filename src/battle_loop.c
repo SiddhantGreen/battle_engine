@@ -24,9 +24,15 @@ void faint(u8 bank)
         task_del(task_find_id_by_functpr(set_active_movement));
     }
         extern void obj_battler_fall_through(struct Object* obj);
+        // fall through the platform animation
         objects[p_bank[bank]->objid].callback = obj_battler_fall_through;
         objects[p_bank[bank]->objid].priv[0] = 0;
         objects[p_bank[bank]->objid].priv[1] = 0;
+        objects[p_bank[bank]->objid].priv[2] = p_bank[bank]->objid_hpbox[0];
+        objects[p_bank[bank]->objid].priv[3] = p_bank[bank]->objid_hpbox[1];;
+        objects[p_bank[bank]->objid].priv[4] = p_bank[bank]->objid_hpbox[2];;
+        
+        enqueue_message(0, bank, STRING_FAINTED, 0);
 }
 
 u16 pick_player_attack()
@@ -276,7 +282,8 @@ void run_switch()
                 } else {
                     //we can finally flee
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
-                    super.multi_purpose_state_tracker = 5;
+                    super.multi_purpose_state_tracker = 6;
+                    set_callback1(run_decision);
                 }
             }
             break;
@@ -297,18 +304,8 @@ void run_switch()
             //flee failed, return to next execution index
             if(!peek_message())
             {
-                extern void run_decision(void);
                 super.multi_purpose_state_tracker = 4;
                 set_callback1(run_decision);
-            }
-            break;
-        }
-        case 5:
-        {
-            if(!peek_message()) {
-                // TODO: free resources
-                exit_to_overworld_2_switch();
-                set_callback1(c1_overworld);
             }
             break;
         }
@@ -650,8 +647,13 @@ void run_move()
             break;
         case 8:
             if (!peek_message()) {
-                super.multi_purpose_state_tracker = 4; // exit
-                set_callback1(run_decision);
+                if (p_bank[OPPONENT_SINGLES_BANK]->b_data.fainted) {
+                    super.multi_purpose_state_tracker = 6;
+                    set_callback1(run_decision);
+                } else {
+                    super.multi_purpose_state_tracker = 4; // exit
+                    set_callback1(run_decision);
+                }
             }
             break;
     };
@@ -705,6 +707,15 @@ void run_decision(void)
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
             battle_master->execution_index = 0;
+            break;
+        }
+        case 6:
+        {
+            if(!peek_message()) {
+                // TODO: free resources
+                exit_to_overworld_2_switch();
+                set_callback1(c1_overworld);
+            }
             break;
         }
         default:

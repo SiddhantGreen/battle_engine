@@ -39,6 +39,10 @@ void obj_battler_fall_through(struct Object* obj)
         dst += 32 * 8 * (8 - obj->priv[1]);
         memset(dst, 0, 32 * 8 * obj->priv[1]); 
     } else {
+        // free the hp bars too
+        obj_free(&objects[obj->priv[2]]);
+        obj_free(&objects[obj->priv[3]]);
+        obj_free(&objects[obj->priv[4]]);
         obj_free(obj);
     }
 }
