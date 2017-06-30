@@ -76,6 +76,7 @@ struct local_battler_data {
     
     u8 my_target;
     u16 last_move;
+    u8 pp_index;
     u16 current_move;
     u16 moves_used[4];
     u16 last_damage;

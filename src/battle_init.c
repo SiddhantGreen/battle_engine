@@ -42,6 +42,11 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     t = ITEM_POTION;
     pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
+    t = 0;
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE4, &t);
 }
 
 void update_pbank(u8 bank, struct update_flags* flags)

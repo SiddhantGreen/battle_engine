@@ -36,22 +36,37 @@ u16 pick_player_attack()
         player_moveid += 1;
     } else if (player_moveid == (REQUEST_MOVE1 + 2)) {
         player_moveid -= 1;
-    }  
+    }
+    p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = player_moveid - REQUEST_MOVE1;
     return pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, player_moveid, NULL);    
 }
 
 u16 pick_opponent_attack()
 {
     u8 move_total = 0;
+    u8 usable_moves = 0;
     u8 i;
     for (i = 0; i < 4; i++) {
         if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
             move_total++;
+            if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_PP1 + 1, NULL))
+                usable_moves++;
         } else {
             break;
         }     
-    }  
-    return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total)+ REQUEST_MOVE1, NULL);
+    }
+    if (usable_moves < 1) {
+        return MOVE_STRUGGLE;
+    }
+    while (true) {
+        u8 pp_index = rand_range(0, move_total);
+        if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total) + 
+            REQUEST_PP1, NULL) > 0) {
+            p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = pp_index;
+            return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, pp_index + REQUEST_MOVE1, NULL);
+        }
+    }
+    return 0;
 }
 
 void set_attack_bm(u8 bank, u8 index, s8 priority)
@@ -482,8 +497,15 @@ void move_hit()
         {
             // check for recoil
 
-            if(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0 ){
+            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0) {
                 u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].recoil);
+                s16 delta = B_CURRENT_HP(bank_index) - recoil;
+                delta = MAX(delta, 0);
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
+            } else if (moves[CURRENT_MOVE(bank_index)].recoil_struggle) {
+                // struggle recoil is based off max health
+                u16 recoil = NUM_MOD(TOTAL_HP(bank_index), 25);
                 s16 delta = B_CURRENT_HP(bank_index) - recoil;
                 delta = MAX(delta, 0);
                 hp_anim_change(bank_index, delta);
@@ -600,15 +622,12 @@ void run_move()
         case 5:
             if (!peek_message()) {
                 // reduce PP
-                u16 player_moveid = battle_master->battle_cursor.cursor_pos + REQUEST_PP1;
-                if (player_moveid == (REQUEST_PP1 + 1)) {
-                    player_moveid += 1;
-                } else if (player_moveid == (REQUEST_PP1 + 2)) {
-                    player_moveid -= 1;
-                }  
-                u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, player_moveid, NULL) - 1;
-                pokemon_setattr(p_bank[bank_index]->this_pkmn, player_moveid, &pp);
+                u8 pp_index = p_bank[bank_index]->b_data.pp_index;
+                u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
+                pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+                super.multi_purpose_state_tracker++;
             }
+            break;
         case 6:
             if (!peek_message()) {
                 // check first bank
@@ -618,6 +637,7 @@ void run_move()
                 }
                 super.multi_purpose_state_tracker++;
             }
+            break;
         case 7:
             if (!peek_message()) {
                 // check if second bank fainted
@@ -626,6 +646,7 @@ void run_move()
                 }
                 super.multi_purpose_state_tracker++;
             }
+            break;
             break;
         case 8:
             if (!peek_message()) {
