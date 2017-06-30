@@ -140,7 +140,7 @@ u8 spawn_backsprite_npc(u8 sprite_id, u16 tag)
         }
     }
     struct SpritePalette player_sprite_pal = {player_pal, tag};
-    struct SpriteTiles player_sprite_gfx = {player_gfx, 2048, tag};
+    struct SpriteTiles player_sprite_gfx = {player_gfx, 2048 * 5, tag};
     struct Template player_temp = {tag, tag, &opp_oam, nullframe, &player_sprite_gfx, nullrsf, (ObjectCallback)oac_nullsub};
 
     gpu_tile_obj_decompress_alloc_tag_and_upload(&player_sprite_gfx);
