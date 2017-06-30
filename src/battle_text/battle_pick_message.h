@@ -55,6 +55,7 @@ enum battle_string_ids {
     STRING_MOVE_SE = 85,
     STRING_RECOIL = 86,
     STRING_DRAIN = 87,
+    STRING_FAINTED = 88,
 };
 
 
@@ -146,6 +147,8 @@ static const pchar str_move_nve[] = _("It wasn’t very effective");
 static const pchar str_move_se[] = _("It was super effective!");
 static const pchar str_recoil[] =_("{ATTACKING_MON} was hurt by recoil!");
 static const pchar str_drain[] = _("{DEFENDING_MON}’s energy was drained!");
+static const pchar str_fainted_p[] = _("{ATTACKING_MON}\nfainted!\p");
+static const pchar str_fainted_o[] = _("Foe {ATTACKING_MON}\nfainted!\p");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -167,7 +170,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[88] = {
+static const pchar* battle_strings[90] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -214,6 +217,7 @@ static const pchar* battle_strings[88] = {
    (pchar*)&str_move_nve, (pchar*)&str_move_se,
    (pchar*)&str_recoil,
    (pchar*)&str_drain,
+   (pchar*)&str_fainted_p,(pchar*)&str_fainted_o,
 };
 
 
