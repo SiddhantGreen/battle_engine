@@ -161,11 +161,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                   
                     result[result_index] = buffer[i - 1];
                     result[result_index + 1] = buffer[i];
-                    dprintf("Buff i = %d\n", result[result_index + 1]);
-                    dprintf("Buff i - 1 = %d\n", result[result_index]);
                     result_index += 2;
-                    
-                    dprintf("Buff at this new val %d\n", buffer[i]);
                     }
                     break;
             };
