@@ -133,6 +133,7 @@ void init_battle()
             break;
         case 1:
             if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
+                objects[bs_env_windows->player_trainer_objid].anim_number++;
                 objects[bs_env_windows->player_trainer_objid].callback = player_throwball_and_moveout_scene;
                 objects[bs_env_windows->player_trainer_objid].priv[2] = PLAYER_SINGLES_BANK;
                 bs_anim_status = 1;

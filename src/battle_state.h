@@ -141,6 +141,9 @@ struct battle_main {
 
     /* Battle details */
     enum Effect effect[2];
+
+    /* Graphical Buffers */
+    void* battle_gfx_buffer;
 };
 
 enum fight_menu {

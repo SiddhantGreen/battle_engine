@@ -386,7 +386,7 @@ void move_hit()
         }
         case 1:
             if (!peek_message()) {
-                super.multi_purpose_state_tracker = 16;
+                super.multi_purpose_state_tracker = 1;
                 set_callback1(run_move);
             }
             break;
@@ -411,6 +411,7 @@ void move_hit()
                     if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
                         enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
                         super.multi_purpose_state_tracker = 1;
+                        return;
                     } else {
                         // Skip damage checks if move doesn't do damage
                         if (B_MOVE_POWER(bank_index) < 1) {
