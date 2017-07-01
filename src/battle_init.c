@@ -121,18 +121,6 @@ void sync_battler_struct(u8 bank)
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
 }
 
-static struct Frame trainer_throw_out_frames[] = {
-    {0, 7},
-    {64, 8},
-    {128, 13},
-    {192, 7},
-    {256, 3},
-    {0xFFFF, 0},
-};
-static struct Frame* trainer_frame_table [1] = {
-    trainer_throw_out_frames
-};
-
 /* Called right after sliding in effects have finished executing. */
 void init_battle()
 {
@@ -145,7 +133,7 @@ void init_battle()
             break;
         case 1:
             if (!dialogid_was_acknowledged(0x18 & 0x3F)) {
-                objects[bs_env_windows->player_trainer_objid].animation_table = trainer_frame_table;
+                objects[bs_env_windows->player_trainer_objid].anim_number++;
                 objects[bs_env_windows->player_trainer_objid].callback = player_throwball_and_moveout_scene;
                 objects[bs_env_windows->player_trainer_objid].priv[2] = PLAYER_SINGLES_BANK;
                 bs_anim_status = 1;

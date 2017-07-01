@@ -96,6 +96,25 @@ u8 spawn_pkmn_backsprite_obj_slot(u8 slot, u16 tag)
     return template_instanciate_forward_search(&pkmn_temp, 64, 80 + species_y, 0);
 }
 
+static struct Frame trainer_slide_in[] = {
+    {0,0},
+    {0xFFFF, 0},
+};
+
+static struct Frame trainer_throw_out_frames[] = {
+    {0, 0},
+    {64, 19},
+    {128, 6},
+    {192, 6},
+    {256, 6},
+    {0xFFFF, 0},
+};
+static struct Frame* trainer_frame_table [2] = {
+    trainer_slide_in,
+    trainer_throw_out_frames,
+};
+
+
 u8 spawn_backsprite_npc(u8 sprite_id, u16 tag)
 {
     void* player_pal;
@@ -139,9 +158,10 @@ u8 spawn_backsprite_npc(u8 sprite_id, u16 tag)
             player_gfx = (void*)male_playerTiles;
         }
     }
+
     struct SpritePalette player_sprite_pal = {player_pal, tag};
     struct SpriteTiles player_sprite_gfx = {player_gfx, 2048 * 5, tag};
-    struct Template player_temp = {tag, tag, &opp_oam, nullframe, &player_sprite_gfx, nullrsf, (ObjectCallback)oac_nullsub};
+    struct Template player_temp = {tag, tag, &opp_oam, trainer_frame_table, &player_sprite_gfx, nullrsf, (ObjectCallback)oac_nullsub};
 
     gpu_tile_obj_decompress_alloc_tag_and_upload(&player_sprite_gfx);
     gpu_pal_decompress_alloc_tag_and_upload(&player_sprite_pal);
