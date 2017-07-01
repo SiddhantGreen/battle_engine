@@ -174,7 +174,6 @@ struct move_data {
     struct move_callbacks* move_cb;
     u8 recoil_struggle : 1;
     u8 flinch_chance : 7;
-    OnPriority priority_cb;
     
 };
 
