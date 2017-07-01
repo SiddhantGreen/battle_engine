@@ -13,11 +13,5 @@ struct move_procs basic_proc = {
     1,               // Upper bound for multi hit
     {AILMENT_NONE, AILMENT_NONE},
     {0, 0},
-    0
-};
-
-
-
-struct move_callbacks null_mcb = {
 };
 
