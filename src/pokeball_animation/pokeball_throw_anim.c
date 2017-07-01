@@ -4,7 +4,8 @@
 
 
 static const struct RotscaleFrame shrink_grow[] = {
-    {-200, -200, -42, 1, 0},
+    {-200, -200, 0, 1, 0},
+    {0, 0, 48, 1, 0},
     {20, 20, 0, 10, 0}, // 30 right
     {0x7FFF, 0, 0, 0, 0}
 };
@@ -12,19 +13,21 @@ static const struct RotscaleFrame (*shrink_grow_ptr)[] = (const struct RotscaleF
 
 void pkmn_sendingout_objc(struct Object* obj)
 {
+    obj->pos1.y = obj->priv[4];
     obj->priv[2]++;
     if (obj->priv[2] % obj->priv[1])
         return;
     if (!obj->priv[0]) {
         REG_BLDCNT = 0;
         obj->callback = oac_nullsub;
+        obj->final_oam.affine_mode = 0;
         bs_anim_status = 0;
         return;
     }
     REG_BLDY = obj->priv[0];
     obj->priv[0]--;
 }
-
+extern void dprintf(const char * str, ...);
 u8 send_out_backsprite(u8 bank)
 {
     // send out pokemon's backsprite based on bank
@@ -35,7 +38,9 @@ u8 send_out_backsprite(u8 bank)
     objects[objid].final_oam.affine_mode = 1;
     objects[objid].callback = pkmn_sendingout_objc;
     objects[objid].priv[0] = 0x10;
-    objects[objid].priv[1] = 2; // delay
+    objects[objid].priv[1] = 3; // delay
+    objects[objid].priv[4] = objects[objid].pos1.y;
+    objects[objid].pos1.y -= 64;
     p_bank[0]->objid = objid;
     u8 pal_slot = objects[objid].final_oam.palette_num;
     u32 pal_fade = ((1 << (pal_slot + 16)));
@@ -46,20 +51,17 @@ u8 send_out_backsprite(u8 bank)
     return objid;
 }
 
+const s8 ball_throw_delta_y[] = {0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 7, 7, 8, 9, 9, 10, 12, 13, 16, 20, 24, 28, 28, 28, 28, 28, 28, 28, 28, 28};
 void pokeball_player_throw_arc(struct Object* obj)
 {
     obj->priv[6]++;
     if (obj->pos1.y < 120) {   
-        if (!(obj->priv[6] % obj->priv[5])) {
-            obj->pos1.y += obj->priv[3];
-            obj->priv[3] += obj->priv[4];
-        }
-        if (!(obj->priv[6] % obj->priv[2])) {
-            obj->pos1.x += obj->priv[1];
-        }
+        obj->pos1.x++;
+        obj->pos1.y += (ball_throw_delta_y[obj->priv[6]] >> 2);
     } else {
-        obj_free(obj);       
+        obj->final_oam.affine_mode = 0;
         send_out_backsprite(obj->priv[0]);
+        obj_free(obj);
     }
 
 }
@@ -94,4 +96,5 @@ void make_spinning_pokeball(s16 x, s16 y, u8 bank)
     objects[objid].final_oam.affine_mode = 1;
     
 }
+
 
