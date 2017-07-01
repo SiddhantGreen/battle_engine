@@ -161,12 +161,13 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     modded_base = weather_dmg_mod(modded_base, attacker);
 
     // critical Mod
-    p_bank[attacker]->b_data.crit_mod += MOVE_CRIT(move);
-    if ((rand_range(0, 100)) <= B_CRITCHANCE_STAT(attacker)) {
-        B_MOVE_WILL_CRIT_SET(attacker, true);
-        modded_base = NUM_MOD(modded_base, 150);
-    }      
-        
+    if (!B_MOVE_CAN_CRIT(bank)) {
+        p_bank[attacker]->b_data.crit_mod += MOVE_CRIT(move);
+        if ((rand_range(0, 100)) <= B_CRITCHANCE_STAT(attacker)) {
+            B_MOVE_WILL_CRIT_SET(attacker, true);
+            modded_base = NUM_MOD(modded_base, 150);
+        }      
+    }
     // random factor
     modded_base = NUM_MOD(modded_base, rand_range(85, 100));
     

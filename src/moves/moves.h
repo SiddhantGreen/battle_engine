@@ -5,7 +5,7 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_state.h"
 #include "move_override.h"
-#include "ability_override.h"
+#include "../abilities/ability_override.h"
 
 /* 
  * Field data fetch macros
@@ -16,7 +16,7 @@
 #define MOVE_CATEGORY(move) moves[move].category
 #define MOVE_ACCURACY(move) moves[move].accuracy
 #define MOVE_CRIT(move) moves[move].crit_ratio
-#define M_FLINCH(move)(*(moves[move].procs)).flinch_chance
+#define M_FLINCH(move) moves[move].flinch_chance
 #define MAKES_CONTACT(move, bank) (((moves[move].m_flags) & (1 << 3)) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define MOVE_TYPE(move) moves[move].type
 #define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
@@ -67,17 +67,6 @@
 #define FLAG_STEAL_OFFENSIVE (1 << 26)
 #define FLAG_STEAL_BOOSTS (1 << 27)
 #define FLAGS_UNUSED (1 << 28)
-
-
-typedef u8 (*TryHitCallback)(u8);
-typedef void (*BeforeTurnCallback)(u8);
-typedef bool (*OnInvulnerableTryhit)(u16);
-typedef u8 (*DurationCallback)(u8, u8, u8);
-typedef void (*DamageCallback)(u8, u8);
-typedef void (*BeforeMoveCallback)(u8);
-typedef void (*ModifyMoveCallback)(u8);
-typedef u16 (*OnHealCallback)(u8);
-typedef void (*EffectCallback)(u8, u8, u16);
 
 
 enum MoveTypes {
@@ -154,19 +143,6 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
     
 */	
 
-struct move_callbacks {
-    BeforeTurnCallback bt_cb;
-    BeforeMoveCallback bm_cb;
-    ModifyMoveCallback mm_cb;
-    TryHitCallback th_cb;
-    DamageCallback bd_cb;
-    OnHealCallback oheal_cb;
-    OnInvulnerableTryhit inv_tryhit_cb;
-    EffectCallback on_effect_cb;
-    
-    
-};
-
 struct move_procs {
     u8 chance_self;
     u8 chance_target;
@@ -178,12 +154,11 @@ struct move_procs {
     u8 multihit_highest;
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
-    u8 flinch_chance;
 };
 
 
 struct move_data {
-    pchar name[30];
+    pchar name[22];
     u8 accuracy;
     s8 base_power;
     pchar* description;
@@ -198,6 +173,9 @@ struct move_data {
     struct move_procs* procs;
     struct move_callbacks* move_cb;
     u8 recoil_struggle : 1;
+    u8 flinch_chance : 7;
+    OnPriority priority_cb;
+    
 };
 
 extern struct move_data moves[];

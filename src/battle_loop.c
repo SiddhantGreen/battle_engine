@@ -335,10 +335,10 @@ bool try_hit(u8 attacker)
     // if target is in semi invulnerability do checks
     u8 defender = TARGET_OF(attacker);
     if (HAS_VOLATILE(defender, VOLATILE_SEMI_INVULNERABLE)) {
-        if (moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb) {
-            if (!(moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb(CURRENT_MOVE(attacker))))
+        //if (moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb) {
+           // if (!(moves[LAST_MOVE(defender)].move_cb->inv_tryhit_cb(CURRENT_MOVE(attacker))))
                 return false;
-        }
+        //}
     }
 
     // standard accuracy formula check
@@ -484,9 +484,9 @@ void move_hit()
         case 6:
         {
             /* execute move effect */
-            if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
+            /*if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
                 moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            }
+            }*/
             super.multi_purpose_state_tracker++;
             break;
         }

@@ -90,6 +90,7 @@ struct move_used {
     u16 prankstered : 1;
     u16 infiltrates : 1;
     u16 will_crit : 1;
+    u16 can_crit : 1;
     u16 ignore_target_atk : 1;
     u16 ignore_target_def : 1;
     u16 ignore_target_evasion : 1;
