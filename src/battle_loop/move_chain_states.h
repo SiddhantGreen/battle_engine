@@ -33,6 +33,31 @@ enum RunSwitchStates {
     S_SWITCH_LOGIC,
 };
 
+enum RunMoveStates {
+    S_BEFORE_MOVE = 0,
+    S_BEFORE_MOVE_ABILITY,
+    S_CHECK_TARGET_EXISTS,
+    S_RUN_MOVE_HIT,
+    S_PP_REDUCTION,
+};
+
+enum MoveHitStates {
+    S_MOVE_TRYHIT = 0,
+    S_ABILITY_TRYHIT,
+    S_GENERAL_TRYHIT,
+    S_IMMUNITY_CHECK,
+    S_DAMAGE_CALC_AND_APPLY,
+    S_HEAL_CALC_AND_APPLY,
+    S_STATUS_CHANGE, // no idea what this state is supposed to be doing
+    S_MOVE_EFFECT,
+    S_RECOIL_APPLY,
+    S_DRAIN_APPLY,
+    S_SECONDARY_ROLL_CHANCE,
+    S_SECONDARY_ON_HIT,
+    S_AFTER_MOVE_SECONDARY,
+    S_AFTER_MOVE,    
+};
+
 
 #endif /* MOVE_CHAIN_STATES_H_ */
 

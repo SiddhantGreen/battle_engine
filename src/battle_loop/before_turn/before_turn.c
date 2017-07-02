@@ -89,3 +89,4 @@ void battle_set_order()
     super.multi_purpose_state_tracker = 0;
     battle_master->execution_index = 0;
 }
+
