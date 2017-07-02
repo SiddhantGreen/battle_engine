@@ -19,7 +19,7 @@
 
 #define HPBOX_STATUS_PLAYER_SINGLE_X 160
 #define HPBOX_STATUS_PLAYER_SINGLE_Y 98
-#define HPBOX_STATUS_OPP_SINGLE_X 14
+#define HPBOX_STATUS_OPP_SINGLE_X 16
 #define HPBOX_STATUS_OPP_SINGLE_Y 28
 
 // HP bar (green health bar) positions and tags
@@ -27,7 +27,7 @@
 #define HPBAR_PS_X 200
 #define HPBAR_PS_Y 103
 #define HPBAR_OS_TAG 0x700
-#define HPBAR_OS_X 51
+#define HPBAR_OS_X 56
 #define HPBAR_OS_Y 37
 
 // tile offsets for hpbox elements

@@ -17,6 +17,7 @@ extern bool is_immune(u8 attacker, u8 defender, u16 move);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
+extern void set_status(u8 bank, u8 source, enum Effect status);
 
 #define MOVE_TRYHIT 0
 #define MOVE_TRYHIT_SIDE 0
@@ -58,6 +59,8 @@ void move_hit()
     u16 move = CURRENT_MOVE(bank_index);
     switch (super.multi_purpose_state_tracker) {
         case S_MOVE_TRYHIT: 
+            
+            set_status(bank_index, bank_index, EFFECT_SLEEP);
             if (MOVE_TRYHIT) {
                 // move try hit callback exec
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
