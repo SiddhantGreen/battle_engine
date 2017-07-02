@@ -3,7 +3,7 @@
 
 #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
-#include "battle_state.h"
+#include "battle_data/battle_state.h"
 #include "moves/moves.h"
 
 typedef u16 (*StatCallback)(u8, u16); // bank, stat amount

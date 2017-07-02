@@ -1,6 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
-#include "../battle_state.h"
+#include "../battle_data/battle_state.h"
 #include "../../generated/images/selection_cursor.h"
 #include "../../generated/images/move_selection_cursor.h"
 

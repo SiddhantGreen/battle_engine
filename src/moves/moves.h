@@ -3,7 +3,7 @@
 
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
-#include "../battle_state.h"
+#include "../battle_data/battle_state.h"
 #include "move_override.h"
 #include "../abilities/ability_override.h"
 
