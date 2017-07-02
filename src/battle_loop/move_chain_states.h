@@ -23,8 +23,14 @@ enum RunFaintStates {
 enum RunFleeStates {
     S_CHECK_FLEEING = 0,
     S_NOT_FLEEING,
-    S_TRY_FLEE,
-    
+    S_TRY_FLEE,    
+};
+
+
+enum RunSwitchStates {
+    S_RUN_FLEE = 0,
+    S_RUN_SWITCH_CHECKS,
+    S_SWITCH_LOGIC,
 };
 
 

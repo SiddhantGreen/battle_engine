@@ -36,12 +36,11 @@ void run_switch()
         
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;   
     switch(super.multi_purpose_state_tracker) {
-        case 0:
-            dprintf("checking for flee\n");
+        case S_RUN_FLEE:
             set_callback1(run_flee);
             super.multi_purpose_state_tracker = S_CHECK_FLEEING;
             break;
-        case 1:
+        case S_RUN_SWITCH_CHECKS:
             // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
             if (p_bank[bank_index]->b_data.is_switching) {
                 ability_on_before_switch(bank_index);
@@ -51,7 +50,7 @@ void run_switch()
                 super.multi_purpose_state_tracker = S_RUN_SWITCH_ALTERNATE_BANK;
             }
             break;
-        case 2:
+        case S_SWITCH_LOGIC:
             // do actual switch
             switch_battler(bank_index);
             dprintf("trying to alternate bank inside run switch\n");

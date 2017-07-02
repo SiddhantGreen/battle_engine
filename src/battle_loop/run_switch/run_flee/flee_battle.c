@@ -34,21 +34,20 @@ void run_flee()
     
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch (super.multi_purpose_state_tracker) {
-        case 0:
+        case S_CHECK_FLEEING:
             // check if the bank is fleeing
             if (p_bank[bank_index]->b_data.is_running) {
-                super.multi_purpose_state_tracker = 2;
+                super.multi_purpose_state_tracker = S_TRY_FLEE;
                 break;
             }
             super.multi_purpose_state_tracker++;
             break;
-        case 1:
+        case S_NOT_FLEEING:
             // return to caller
-            dprintf("no one fleeing\n");
             set_callback1(run_switch);
-            super.multi_purpose_state_tracker = 1;
+            super.multi_purpose_state_tracker = S_RUN_SWITCH_CHECKS;
             break;
-        case 2:
+        case S_TRY_FLEE:
             ability_on_before_switch(bank_index);
             if (!bank_trapped(bank_index)) {
                 enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
