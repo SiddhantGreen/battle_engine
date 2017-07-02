@@ -136,6 +136,7 @@ void set_status(u8 bank, u8 source, enum Effect status)
             p_bank[bank]->b_data.status_turns = 0;
             p_bank[bank]->b_data.confusion_turns = 0;
             enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
+            status_graphical_update(bank, status);
             return;
             break;
         case EFFECT_PARALYZE:
@@ -198,7 +199,7 @@ void set_status(u8 bank, u8 source, enum Effect status)
     
     // on set status callbacks Ability
     // the ability of target being status'd exec
-    if (abilities_table[BANK_ABILITY(bank)]->on_set_status) {
+    if (BANK_ABILITY(bank) < ABILITIES_MAX && abilities_table[BANK_ABILITY(bank)]->on_set_status) {
         // check if ability modified outcome of set status
         if (abilities_table[BANK_ABILITY(bank)]->on_set_status(bank, source, status, status_applied)) {
             // status would've been set in callback. Exit.
@@ -206,7 +207,7 @@ void set_status(u8 bank, u8 source, enum Effect status)
         }
     }
     // the ability of the attack user execution
-    if (abilities_table[BANK_ABILITY(source)]->on_set_status) {
+    if (BANK_ABILITY(source) < ABILITIES_MAX && abilities_table[BANK_ABILITY(source)]->on_set_status) {
         // check if ability modified outcome of set status
         if (abilities_table[BANK_ABILITY(source)]->on_set_status(source, source, status, status_applied)) {
             // status would've been set in callback. Exit.
@@ -216,6 +217,8 @@ void set_status(u8 bank, u8 source, enum Effect status)
     
     if (status_applied) {
         p_bank[bank]->b_data.status = status;
+        extern void status_graphical_update(u8 bank, enum Effect status);
+        status_graphical_update(bank, status);
         enqueue_message(0, bank, STRING_AILMENT_APPLIED, status);
     } else {
         enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
