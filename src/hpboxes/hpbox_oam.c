@@ -1,9 +1,9 @@
 #include <pokeagb/pokeagb.h>
-#include "../battle_slide_in/battle_obj_sliding.h"
+#include "../battle_slide_in_data/battle_obj_sliding.h"
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/pkmn_bank_stats.h"
 
-#include "../battle_state.h"
+#include "../battle_data/battle_state.h"
 
 // HP box and bar resources
 #include "../../generated/images/hpbox/empty_bar.h"

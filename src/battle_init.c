@@ -1,7 +1,7 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
-#include "battle_slide_in/battle_obj_sliding.h"
-#include "battle_state.h"
+#include "battle_slide_in_data/battle_obj_sliding.h"
+#include "battle_data/battle_state.h"
 #include "battle_text/battle_textbox_gfx.h"
 
 extern void pick_encounter_message(enum BattleFlag);

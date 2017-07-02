@@ -1,10 +1,10 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/pkmn_bank_stats.h"
-#include "../battle_state.h"
-#include "move_override.h"
+#include "../battle_data/battle_state.h"
+#include "../moves/move_override.h"
 #include "../abilities/ability_override.h"
-#include "moves.h"
+#include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
 
 extern u16 rand_range(u16 min, u16 max);

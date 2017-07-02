@@ -1,5 +1,5 @@
 #include <pokeagb/pokeagb.h>
-#include "../battle_state.h"
+#include "../battle_data/battle_state.h"
 #include "moves/moves.h"
 #include "../../generated/images/type_icons.h"
 #include "../../generated/images/PSS_icons.h"

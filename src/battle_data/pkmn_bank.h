@@ -2,7 +2,6 @@
 #define BATTLE_PKMN_BANK_H_
 
 #include <pokeagb/pokeagb.h>
-#include "battle_turn_data.h"
 
 #define OPPONENT_SINGLES_BANK 2
 #define PLAYER_SINGLES_BANK 0
