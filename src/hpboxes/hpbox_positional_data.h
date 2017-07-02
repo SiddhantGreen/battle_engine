@@ -13,6 +13,15 @@
 #define HPBOX_PLAYER_SINGLE_X 144
 #define HPBOX_PLAYER_SINGLE_Y 88
 
+// single battle HPbox status tag and position for object
+#define HPBOX_STATUS_TAG_PLAYER_SINGLE 0x510
+#define HPBOX_STATUS_TAG_OPP_SINGLE 0x514
+
+#define HPBOX_STATUS_PLAYER_SINGLE_X 160
+#define HPBOX_STATUS_PLAYER_SINGLE_Y 98
+#define HPBOX_STATUS_OPP_SINGLE_X 14
+#define HPBOX_STATUS_OPP_SINGLE_Y 28
+
 // HP bar (green health bar) positions and tags
 #define HPBAR_PS_TAG 0x600
 #define HPBAR_PS_X 200

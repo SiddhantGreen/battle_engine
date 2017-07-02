@@ -371,6 +371,8 @@ void move_hit()
     switch(super.multi_purpose_state_tracker) {
         case 0:
         {
+            extern void set_status(u8 bank, u8 source, enum Effect status);
+            set_status(bank_index, bank_index, EFFECT_BURN);
             bool move_hits = true;
             if (MOVE_TRYHIT) {
                 // move try hit callback exec
