@@ -1,7 +1,7 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
 #include "battle_data/pkmn_bank_stats.h"
-#include "battle_state.h"
+#include "battle_data/battle_state.h"
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
@@ -16,24 +16,6 @@ extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
 
-void faint(u8 bank)
-{
-    p_bank[bank]->b_data.fainted = true;
-    if (!(SIDE_OF(bank))) {
-        extern void set_active_movement(u8 tid);
-        task_del(task_find_id_by_functpr(set_active_movement));
-    }
-        extern void obj_battler_fall_through(struct Object* obj);
-        // fall through the platform animation
-        objects[p_bank[bank]->objid].callback = obj_battler_fall_through;
-        objects[p_bank[bank]->objid].priv[0] = 0;
-        objects[p_bank[bank]->objid].priv[1] = 0;
-        objects[p_bank[bank]->objid].priv[2] = p_bank[bank]->objid_hpbox[0];
-        objects[p_bank[bank]->objid].priv[3] = p_bank[bank]->objid_hpbox[1];;
-        objects[p_bank[bank]->objid].priv[4] = p_bank[bank]->objid_hpbox[2];;
-        
-        enqueue_message(0, bank, STRING_FAINTED, 0);
-}
 
 u16 pick_player_attack()
 {
@@ -623,42 +605,17 @@ void run_move()
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
                 u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
                 pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-        case 6:
-            if (!peek_message()) {
-                // check first bank
-                if (!B_CURRENT_HP(battle_master->first_bank)) {
-                    // bank index has fainted
-                    faint(battle_master->first_bank);
-                }
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-        case 7:
-            if (!peek_message()) {
-                // check if second bank fainted
-                if (!B_CURRENT_HP(battle_master->second_bank)) {
-                    faint(battle_master->second_bank);
-                }
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-            break;
-        case 8:
-            if (!peek_message()) {
-                if (p_bank[OPPONENT_SINGLES_BANK]->b_data.fainted) {
-                    super.multi_purpose_state_tracker = 6;
-                    set_callback1(run_decision);
-                } else {
-                    super.multi_purpose_state_tracker = 4; // exit
-                    set_callback1(run_decision);
-                }
+                super.multi_purpose_state_tracker = 4;
+                set_callback1(run_decision);
             }
             break;
     };
 }
+
+extern void give_exp(u8 fainted, u8 reciever);
+extern void option_selection(void);
+extern void on_faint(void);
+extern void sync_battler_struct(u8 bank);
 
 void run_decision(void)
 {
@@ -690,7 +647,12 @@ void run_decision(void)
             super.multi_purpose_state_tracker = 0;
             break;
         case 4:
-            // run move for second bank after first bank is run. else run on faint stuff
+            // Run on faint stuff
+            set_callback1(on_faint);
+            super.multi_purpose_state_tracker = 0;
+            break;
+        case 5:
+            // run move for second bank after first bank is run.
             if (bank_index == battle_master->second_bank) {
                 battle_master->execution_index = 0;
                 super.multi_purpose_state_tracker++;
@@ -699,41 +661,19 @@ void run_decision(void)
                 super.multi_purpose_state_tracker = 3;
             }
             break;
-        case 5:
+        case 6:
         {
             // reset turn based bits
             reset_turn_bits(battle_master->first_bank);
             reset_turn_bits(battle_master->second_bank);
-            extern void option_selection(void);
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
             battle_master->execution_index = 0;
             break;
         }
-        case 6:
-        {
-            if (!peek_message()) {
-                // battle is won by player
-                // give exp
-                extern void give_exp(u8 fainted, u8 reciever);
-                give_exp(OPPONENT_SINGLES_BANK, PLAYER_SINGLES_BANK);
-                // check moves learnt if leveled TODO
-                super.multi_purpose_state_tracker = 8;
-            }
-            break;
-        }
         case 7:
-        {
-            if (!peek_message()) {
-                // player has fainted
-                super.multi_purpose_state_tracker++;
-            }
-            break;
-        }
-        case 8:
             // TODO: free resources
             if (!peek_message()) {
-                extern void sync_battler_struct(u8 bank);
                 sync_battler_struct(PLAYER_SINGLES_BANK);
                 exit_to_overworld_2_switch();
                 set_callback1(c1_overworld);
