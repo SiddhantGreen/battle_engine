@@ -18,7 +18,7 @@ extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
 extern bool target_exists(u8 bank);
 extern void reset_turn_bits(u8 bank);
-
+extern void run_after_switch(void);
 
 void battle_loop()
 {
@@ -27,15 +27,6 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
-
-void run_after_switch()
-{
-    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
-    ability_on_switch(bank_index);
-    super.multi_purpose_state_tracker = 2;
-    set_callback1(run_decision);
-    return;
-}
 
 bool try_hit(u8 attacker)
 {
