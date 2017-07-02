@@ -4,6 +4,7 @@
 #include "battle_data/battle_state.h"
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
+#include "move_chain_states.h"
 
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
@@ -19,6 +20,8 @@ extern void dprintf(const char * str, ...);
 
 u16 pick_player_attack()
 {
+    if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
+        return 0;
     u16 player_moveid = battle_master->battle_cursor.cursor_pos + REQUEST_MOVE1;
     if (player_moveid == (REQUEST_MOVE1 + 1)) {
         player_moveid += 1;
@@ -31,6 +34,8 @@ u16 pick_player_attack()
 
 u16 pick_opponent_attack()
 {
+    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
+        return 0;
     u8 move_total = 0;
     u8 usable_moves = 0;
     u8 i;
@@ -119,11 +124,6 @@ bool target_exists(u8 bank)
     return false;
 }
 
-void switch_battler(u8 switching_bank)
-{
-    /* TODO actual switching */
-    return;
-}
 
 void battle_loop()
 {
@@ -146,9 +146,10 @@ void battle_loop()
     
 
     /* on flee the actor has a priority high enough to outspeed everything except pursuit */
-    if(p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
+    if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
         player_priority = 6;
-    if(p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
+        
+    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
         opp_priority = 6;
 
     /* Turn order, higher priority will go first */
@@ -196,107 +197,6 @@ void battle_loop()
     set_callback1(run_decision);
 }
 
-bool can_flee(u8 bank)
-{
-    if(b_pkmn_has_type(bank, TYPE_GHOST))
-        return true;
-    if(HAS_VOLATILE(bank, VOLATILE_TRAPPED)) {
-        return false;
-    }
-    return true;
-}
-
-bool can_flee_by_random(u8 bank)
-{
-    p_bank[bank]->b_data.flee_count++;
-
-    u16 reference = B_SPEED_STAT_UMOD(bank) * 128;
-    reference /= B_SPEED_STAT_UMOD(FOE_BANK(bank));
-    reference += (30 * p_bank[bank]->b_data.flee_count);
-    reference = reference & 0xFF;
-
-    u16 random = rand_range(0,255);
-    return random < reference;
-}
-
-void run_switch()
-{
-    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
-    switch(super.multi_purpose_state_tracker) {
-        case 0:
-        {
-            
-            // check if the first bank is fleeing
-            if (p_bank[bank_index]->b_data.is_running) {
-                super.multi_purpose_state_tracker = 2;
-                break;
-            }
-
-            // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
-            if (p_bank[battle_master->first_bank]->b_data.is_switching) {
-                ability_on_before_switch(bank_index);
-                super.multi_purpose_state_tracker++;
-            } else {
-                super.multi_purpose_state_tracker = 6;
-            }
-            break;
-        }
-        case 1:
-        {
-            // play queued messages from before_switch bank 1. Once done go to second bank switch check
-            if (!peek_message())
-                switch_battler(bank_index);
-                super.multi_purpose_state_tracker++;
-                break;
-        }
-        case 2:
-        {
-            //flee
-            ability_on_before_switch(bank_index);
-            if(!can_flee(bank_index)) {
-                enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
-                super.multi_purpose_state_tracker++;
-            } else {
-                if(!can_flee_by_random(bank_index)) {
-                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
-                    //we cannot flee because we failed the dice roll
-                    super.multi_purpose_state_tracker = 4;
-                } else {
-                    //we can finally flee
-                    enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
-                    super.multi_purpose_state_tracker = 8;
-                    set_callback1(run_decision);
-                }
-            }
-            break;
-        }
-        case 3:
-        {
-            //flee failed, return to user execution index
-            if(!peek_message())
-            {
-                extern void option_selection(void);
-                set_callback1(option_selection);
-                super.multi_purpose_state_tracker = 0;
-            }
-            break;
-        }
-        case 4:
-        {
-            //flee failed, return to next execution index
-            if(!peek_message())
-            {
-                super.multi_purpose_state_tracker = 4;
-                set_callback1(run_decision);
-            }
-            break;
-        }
-        default:
-            super.multi_purpose_state_tracker = 1;
-            set_callback1(run_decision);
-            break;
-    };
-}
 
 void run_after_switch()
 {
@@ -560,6 +460,13 @@ void run_move()
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch(super.multi_purpose_state_tracker) {
         case 0:
+        {
+            u16 move = CURRENT_MOVE(bank_index);
+            if (!move) {
+                set_callback1(run_decision);
+                super.multi_purpose_state_tracker = 4;
+                break;
+            }
             /* TODO :  Before move callbacks */
             if (BEFORE_MOVE_CALLBACK_0) {
                 // move failed
@@ -569,6 +476,7 @@ void run_move()
                 super.multi_purpose_state_tracker = 2;
             }
             break;
+        }
         case 1:
             if (!peek_message()) {
                 super.multi_purpose_state_tracker = 4; // exit
@@ -615,10 +523,14 @@ void run_move()
 extern void give_exp(u8 fainted, u8 reciever);
 extern void option_selection(void);
 extern void on_faint(void);
+extern void run_switch(void);
 extern void sync_battler_struct(u8 bank);
 
 void run_decision(void)
 {
+    while (peek_message())
+        return;
+
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch (super.multi_purpose_state_tracker) {
        case 0:
@@ -649,7 +561,7 @@ void run_decision(void)
         case 4:
             // Run on faint stuff
             set_callback1(on_faint);
-            super.multi_purpose_state_tracker = 0;
+            super.multi_purpose_state_tracker = S_CHECK_BANK1_FAINT;
             break;
         case 5:
             // run move for second bank after first bank is run.
