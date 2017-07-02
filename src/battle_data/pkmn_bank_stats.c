@@ -9,6 +9,8 @@ typedef u16 (*StatCallback)(u8, u16);
 
 void update_move_history(u8 bank, u16 move_id)
 {
+    if (!move_id)
+        return;
     // figure out target
     if (moves[move_id].m_flags == FLAG_ONSELF)
         p_bank[bank]->b_data.my_target = bank;
