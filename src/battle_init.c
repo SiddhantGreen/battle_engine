@@ -28,8 +28,6 @@ void init_battle_elements()
         p_bank[i] = malloc_and_clear(sizeof(struct pkmn_bank));
     }
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
-
-    dprintf("init bank 2 size: %x\n", p_bank);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
     battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
     setup();

@@ -28,6 +28,7 @@ void obj_battler_fall_through(struct Object* obj)
         obj_free(&objects[obj->priv[2]]);
         obj_free(&objects[obj->priv[3]]);
         obj_free(&objects[obj->priv[4]]);
+        obj_free(&objects[obj->priv[5]]);
         obj_free(obj);
     }
 }
@@ -44,8 +45,9 @@ void faint(u8 bank)
     objects[p_bank[bank]->objid].priv[0] = 0;
     objects[p_bank[bank]->objid].priv[1] = 0;
     objects[p_bank[bank]->objid].priv[2] = p_bank[bank]->objid_hpbox[0];
-    objects[p_bank[bank]->objid].priv[3] = p_bank[bank]->objid_hpbox[1];;
-    objects[p_bank[bank]->objid].priv[4] = p_bank[bank]->objid_hpbox[2];;
+    objects[p_bank[bank]->objid].priv[3] = p_bank[bank]->objid_hpbox[1];
+    objects[p_bank[bank]->objid].priv[4] = p_bank[bank]->objid_hpbox[2];
+    objects[p_bank[bank]->objid].priv[5] = p_bank[bank]->objid_hpbox[3];
     
     enqueue_message(0, bank, STRING_FAINTED, 0);
 }

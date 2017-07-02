@@ -59,8 +59,6 @@ void move_hit()
     u16 move = CURRENT_MOVE(bank_index);
     switch (super.multi_purpose_state_tracker) {
         case S_MOVE_TRYHIT: 
-            
-            set_status(bank_index, bank_index, EFFECT_SLEEP);
             if (MOVE_TRYHIT) {
                 // move try hit callback exec
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;

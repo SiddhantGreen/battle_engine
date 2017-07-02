@@ -239,11 +239,10 @@ void status_graphical_update(u8 bank, enum Effect status)
     if(create) {
         if(!p_bank[bank]->objid_hpbox[3]) {
             /* the object does not exist, create it */
-            struct SpritePalette status_pal = {(void*)hpbar_piecesPal, tag};
+            struct SpritePalette status_pal = {(void*)hpbar_piecesPal, HPBAR_OS_TAG};
             struct SpriteTiles status_tiles = {(void*)empty_barTiles, 128, tag};
             gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);
-            gpu_pal_decompress_alloc_tag_and_upload(&status_pal);
-            struct Template status_temp = {tag, tag, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
+            struct Template status_temp = {tag, HPBAR_OS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
             dprintf("x: %d, y: %d",x,y);
             p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, x,y, 0);
         }
