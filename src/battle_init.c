@@ -59,6 +59,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
     p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
     p_bank[bank]->b_data.poke_ball = 0;
+    p_bank[bank]->b_data.status = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL);
     p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
     p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
@@ -92,7 +93,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.ate_berry = 0;
     }
 
-    if (!flags->pass_stats) {
+    if (!flags->pass_status) {
         p_bank[bank]->b_data.status = 0;
         p_bank[bank]->b_data.confusion_turns = 0;
         p_bank[bank]->b_data.status_turns = 0;
@@ -101,6 +102,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.is_taunted = 0;
         p_bank[bank]->b_data.is_charmed = 0;
         p_bank[bank]->b_data.is_grounded = 0;
+    } else {
+        status_graphical_update(bank, p_bank[bank]->b_data.status);
     }
     
     if (!flags->pass_disables) {
@@ -121,6 +124,8 @@ void sync_battler_struct(u8 bank)
     u16 c_hp = p_bank[bank]->b_data.current_hp;
     u8 ailment = p_bank[bank]->b_data.status;
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
+
+    /* TODO: make ailment array conform with external ailments */
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
 }
 
@@ -163,7 +168,7 @@ void init_battle()
             
             // build p_bank data once animation is finished
             struct update_flags* flags = (struct update_flags*)malloc_and_clear(sizeof(struct update_flags));
-            flags->pass_status = false;
+            flags->pass_status = true;
             flags->pass_stats = false;
             flags->pass_atk_history = false;
             flags->pass_disables = false;
