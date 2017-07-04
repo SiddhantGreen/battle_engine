@@ -43,6 +43,38 @@ s8 get_move_priority(u8 bank)
 void battle_set_order()
 {
     configure_selected_moves();
+    
+    u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
+    u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
+    if (player_speed == opponent_speed) {
+        // roll speed tie
+        if (rand_range(0, 1))
+            player_speed++;
+        else
+            opponent_speed++;
+    }
+    
+    // higher speed goes first. Exec before move callbacks in order.
+    if (player_speed > opponent_speed) {
+        battle_master->first_bank = PLAYER_SINGLES_BANK;
+        u8 move = p_bank[PLAYER_SINGLES_BANK]->b_data.current_move;
+        if (moves[move].before_turn)
+            moves[move].before_turn(PLAYER_SINGLES_BANK);
+        battle_master->second_bank = OPPONENT_SINGLES_BANK;
+        move = p_bank[OPPONENT_SINGLES_BANK]->b_data.current_move;
+        if (moves[move].before_turn)
+            moves[move].before_turn(OPPONENT_SINGLES_BANK);
+    } else {
+        battle_master->first_bank = OPPONENT_SINGLES_BANK;
+        u8 move = p_bank[OPPONENT_SINGLES_BANK]->b_data.current_move;
+        if (moves[move].before_turn)
+            moves[move].before_turn(OPPONENT_SINGLES_BANK);
+        battle_master->second_bank = PLAYER_SINGLES_BANK;
+        move = p_bank[PLAYER_SINGLES_BANK]->b_data.current_move;
+        if (moves[move].before_turn)
+            moves[move].before_turn(PLAYER_SINGLES_BANK);
+    }
+    
     s8 player_priority = get_move_priority(PLAYER_SINGLES_BANK);
     s8 opp_priority = get_move_priority(OPPONENT_SINGLES_BANK);
     
@@ -53,39 +85,12 @@ void battle_set_order()
     } else if (player_priority < opp_priority) {
         battle_master->first_bank = OPPONENT_SINGLES_BANK;
         battle_master->second_bank = PLAYER_SINGLES_BANK;
-    } else {
-        // matching priorities, retrieve speed stat
-        u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
-        u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
-        
-        // roll speed tie
-        if (player_speed == opponent_speed) {
-            if (rand_range(0, 1))
-                player_speed++;
-            else
-                opponent_speed++;
-        }
-        
-        // higher speed goes first
-        if (player_speed > opponent_speed) {
-            battle_master->first_bank = PLAYER_SINGLES_BANK;
-            battle_master->second_bank = OPPONENT_SINGLES_BANK;
-        } else {
-            battle_master->first_bank = OPPONENT_SINGLES_BANK;
-            battle_master->second_bank = PLAYER_SINGLES_BANK;
-        }   
     }
+    
     set_attack_battle_master(battle_master->first_bank, 0, battle_master->first_bank == PLAYER_SINGLES_BANK ? player_priority : opp_priority);
     set_attack_battle_master(battle_master->second_bank, 1, battle_master->second_bank == OPPONENT_SINGLES_BANK ? opp_priority : player_priority);
     set_target_bank(battle_master->first_bank, p_bank[battle_master->first_bank]->b_data.current_move);
-    set_target_bank(battle_master->second_bank, p_bank[battle_master->second_bank]->b_data.current_move);
-   
-    /* Run each move's before turn TODO */
-    /*if (moves[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb)
-        moves[CURRENT_MOVE(battle_master->first_bank)].move_cb->bt_cb(battle_master->first_bank);
-    if (moves[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb)
-        moves[CURRENT_MOVE(battle_master->second_bank)].move_cb->bt_cb(battle_master->second_bank);*/
-    
+    set_target_bank(battle_master->second_bank, p_bank[battle_master->second_bank]->b_data.current_move);    
     super.multi_purpose_state_tracker = 0;
     battle_master->execution_index = 0;
 }
