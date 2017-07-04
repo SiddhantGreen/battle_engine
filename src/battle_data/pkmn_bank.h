@@ -7,6 +7,8 @@
 #define PLAYER_SINGLES_BANK 0
 #define PARTICIPANTS_AMOUNT_WILD 2
 
+#define BANK_MAX 4
+
 
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
@@ -118,7 +120,7 @@ struct pkmn_bank {
     struct local_battler_data b_data;
 };
 
-extern struct pkmn_bank *p_bank[4];
+extern struct pkmn_bank *p_bank[BANK_MAX];
 
 
 

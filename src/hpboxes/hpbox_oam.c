@@ -207,9 +207,9 @@ void status_graphical_update(u8 bank, enum Effect status)
     switch(status)
     {
         case EFFECT_NONE:
-            if(p_bank[bank]->objid_hpbox[3]) {
+            if(p_bank[bank]->objid_hpbox[3] < 0x3F) {
                 obj_delete_and_free(&objects[p_bank[bank]->objid_hpbox[3]]);
-                p_bank[bank]->objid_hpbox[3] = 0;
+                p_bank[bank]->objid_hpbox[3] = 0x3F;
             }
             return;
         case EFFECT_PARALYZE:
@@ -241,7 +241,7 @@ void status_graphical_update(u8 bank, enum Effect status)
     }
     if(create) {
         dprintf("create\n");
-        if(!p_bank[bank]->objid_hpbox[3]) {
+        if(p_bank[bank]->objid_hpbox[3] >= 0x3F) {
             /* the object does not exist, create it */
             struct SpriteTiles status_tiles = {(void*)empty_barTiles, 128, tag};
             gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);

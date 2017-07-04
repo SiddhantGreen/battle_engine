@@ -26,6 +26,11 @@ void init_battle_elements()
     // allocate battle specific resources
     for(u8 i = 0; i < 4; i++) {
         p_bank[i] = malloc_and_clear(sizeof(struct pkmn_bank));
+        for(u8 j = 0; j < 4; j++) {
+            p_bank[i]->objid_hpbox[j] = 0x3F;
+            dprintf("bank: %d obj[%d] = %d\n", i, j, p_bank[i]->objid_hpbox[j]);
+        }
+            
     }
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
@@ -250,6 +255,10 @@ void option_selection()
             break;
         case 3:
             // POKEMON selection from fight menu
+            fade_screen(0xFFFFFFFF, 0,0,16, 0x7FFF);
+            extern void switch_scene_main(void);
+            super.multi_purpose_state_tracker = 0;
+            set_callback1(switch_scene_main);
             break;
         case 4:
             // BAG selected from fight menu
