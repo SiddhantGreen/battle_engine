@@ -73,7 +73,6 @@ void move_hit()
                 set_callback1(run_move);
                 return;
             }
-            set_status(bank_index, bank_index, EFFECT_PARALYZE);
             super.multi_purpose_state_tracker = S_ABILITY_TRYHIT;
             break;
         case S_ABILITY_TRYHIT:

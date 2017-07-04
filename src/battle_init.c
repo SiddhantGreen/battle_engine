@@ -47,6 +47,8 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
 }
 
+extern void ailment_decode(u8 bank, u8 ailment);
+
 void update_pbank(u8 bank, struct update_flags* flags)
 {
     // base stats
@@ -59,12 +61,13 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
     p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
     p_bank[bank]->b_data.poke_ball = 0;
-    p_bank[bank]->b_data.status = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL);
     p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
     p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
     p_bank[bank]->b_data.type[2] = MTYPE_EGG;
-    
+
+    ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
+
     if (!flags->pass_stats) {
         p_bank[bank]->b_data.attack = 0;
         p_bank[bank]->b_data.defense = 0;
@@ -118,11 +121,12 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.fainted = 0;
 }
 
+extern u8 ailment_encode(u8 bank);
 
 void sync_battler_struct(u8 bank)
 {
     u16 c_hp = p_bank[bank]->b_data.current_hp;
-    u8 ailment = p_bank[bank]->b_data.status;
+    u8 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
 
     /* TODO: make ailment array conform with external ailments */
