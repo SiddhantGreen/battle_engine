@@ -17,20 +17,20 @@ extern bool is_immune(u8 attacker, u8 defender, u16 move);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
+extern void dprintf(const char * str, ...);
 
 #define MOVE_TRYHIT 0
 #define MOVE_TRYHIT_SIDE 0
 #define MOVE_ON_HEAL 0
 
-void damage_result_msg(u8 bank_index)
+bool damage_result_msg(u8 bank_index)
 {
     // effectiveness msgs
+    bool effective = true;
     switch (B_MOVE_EFFECTIVENESS(bank_index)) {
         case TE_IMMUNE:
             enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
-            super.multi_purpose_state_tracker = S_PP_REDUCTION;
-            set_callback1(run_move);
-            return;
+            effective = false;
             break;
         case TE_NOT_VERY_EFFECTIVE:
             enqueue_message(0, 0, STRING_MOVE_NVE, 0);
@@ -41,10 +41,13 @@ void damage_result_msg(u8 bank_index)
         default:
             break;
     };
-    
-    // crit msg if crit
-    if (B_MOVE_WILL_CRIT(bank_index))
-        enqueue_message(0, bank_index, STRING_MOVE_CRIT, 0);
+
+    if (effective) {
+        // crit msg if crit
+        if (B_MOVE_WILL_CRIT(bank_index))
+            enqueue_message(0, bank_index, STRING_MOVE_CRIT, 0);
+    }
+    return effective;
 }
 
 void move_hit()
@@ -113,7 +116,12 @@ void move_hit()
             }
             // get dmg
             u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            damage_result_msg(bank_index);
+            
+            if (!damage_result_msg(bank_index)) {
+                set_callback1(run_move);
+                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                return;
+            }
             battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
             
             // HP bar damage animation
