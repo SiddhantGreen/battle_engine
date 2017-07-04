@@ -45,6 +45,22 @@ const struct OamData hpbar_oam = {
                                 .affine_param = 0
 };
 
+const struct OamData hpbar_status_oam = {
+                                .y = 0,
+                                .affine_mode = 0,
+                                .obj_mode = 0,
+                                .mosaic = 0,
+                                .bpp = 0,
+                                .shape = 1,
+                                .x = 0,
+                                .matrix_num = 0,
+                                .size = 1, //32x8
+                                .tile_num = 0,
+                                .priority = 3, // above BG background, below entry layer
+                                .palette_num = 0,
+                                .affine_param = 0
+};
+
 
 static const struct Frame (**nullframe)[] = (const struct Frame (**)[])0x8231CF0;
 static const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (**)[])0x8231CFC;
@@ -176,6 +192,63 @@ void draw_level(struct Pokemon* pkmn, u8 tile_id, u8 objid)
     rboxid_clean(rboxid_buffer, 0);
     rboxid_free(rboxid_buffer);
     return;
+}
+
+#define STATUS_LEFT_ALLY 4
+#define STATUS_TOP_ALLY 5
+
+void status_graphical_update(u8 bank, enum Effect status)
+{
+    bool create = false;
+    u16 tag = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_TAG_OPP_SINGLE : HPBOX_STATUS_TAG_PLAYER_SINGLE);
+    u16 x = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_OPP_SINGLE_X : HPBOX_STATUS_PLAYER_SINGLE_X);
+    u16 y = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_OPP_SINGLE_Y : HPBOX_STATUS_PLAYER_SINGLE_Y);
+    void* image = hpbar_piecesTiles;
+    switch(status)
+    {
+        case EFFECT_NONE:
+            if(p_bank[bank]->objid_hpbox[3])
+                obj_delete_and_free(&objects[p_bank[bank]->objid_hpbox[3]]);
+            return;
+        case EFFECT_PARALYZE:
+            create = true;
+            image += 1088+1*96;
+        break;
+        case EFFECT_BURN:
+            create = true;
+            image += 1088+4*96;
+        break;
+        case EFFECT_POISON:
+            create = true;
+            image += 1088+0*96;
+            break;
+        case EFFECT_BAD_POISON:
+            image += 1088+5*96;
+            break;
+        case EFFECT_SLEEP:
+            create = true;
+            image += 1088+2*96;
+        break;
+        case EFFECT_FREEZE:
+            image += 1088+3*96;
+            break;
+        default:
+            break;
+
+    }
+    if(create) {
+        if(!p_bank[bank]->objid_hpbox[3]) {
+            /* the object does not exist, create it */
+            struct SpritePalette status_pal = {(void*)hpbar_piecesPal, HPBAR_OS_TAG};
+            struct SpriteTiles status_tiles = {(void*)empty_barTiles, 128, tag};
+            gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);
+            struct Template status_temp = {tag, HPBAR_OS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
+            dprintf("x: %d, y: %d",x,y);
+            p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, x,y, 0);
+        }
+        void* vram_address = (void*)((objects[p_bank[bank]->objid_hpbox[3]].final_oam.tile_num * 32) + 0x06010000);
+        memcpy(vram_address, image, 32*3);
+    }
 }
 
 void draw_name(struct Pokemon* pkmn, u8 tile_id, u8 tile_id2, u8 objid, enum HPFontMode mode)

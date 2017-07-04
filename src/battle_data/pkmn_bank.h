@@ -114,11 +114,11 @@ struct update_flags {
 struct pkmn_bank {
     struct Pokemon* this_pkmn;
     u8 objid;
-    u8 objid_hpbox[3]; // Main box, tag on part and
+    u8 objid_hpbox[4]; // Main box, tag on part and
     struct local_battler_data b_data;
 };
 
-extern struct pkmn_bank (*p_bank)[4];
+extern struct pkmn_bank *p_bank[4];
 
 
 

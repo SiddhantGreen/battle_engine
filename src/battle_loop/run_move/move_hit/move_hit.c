@@ -18,6 +18,7 @@ extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
+extern void set_status(u8 bank, u8 source, enum Effect status);
 
 #define MOVE_TRYHIT 0
 #define MOVE_TRYHIT_SIDE 0
