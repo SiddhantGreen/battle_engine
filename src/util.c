@@ -125,6 +125,7 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
     };
 }
 
+extern void status_graphical_update(u8 bank, enum Effect status);
 void set_status(u8 bank, u8 source, enum Effect status)
 {
     bool status_applied = false;
@@ -217,7 +218,6 @@ void set_status(u8 bank, u8 source, enum Effect status)
     
     if (status_applied) {
         p_bank[bank]->b_data.status = status;
-        extern void status_graphical_update(u8 bank, enum Effect status);
         status_graphical_update(bank, status);
         enqueue_message(0, bank, STRING_AILMENT_APPLIED, status);
     } else {

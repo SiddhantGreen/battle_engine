@@ -12,6 +12,47 @@ extern bool peek_message(void);
 extern void move_hit(void);
 extern bool target_exists(u8 bank);
 
+enum BeforeMoveStatus {
+    CANT_USE_MOVE = 0,
+    USE_MOVE_NORMAL,
+    TARGET_MOVE_IMMUNITY,
+};
+
+enum BeforeMoveStatus move_before_move(u8 bank)
+{
+    u16 move = CURRENT_MOVE(bank);
+    if (moves[move].before_move)
+        return moves[move].before_move(bank);
+    return USE_MOVE_NORMAL;
+}
+
+enum BeforeMoveStatus foe_move_before_move(u8 bank)
+{
+    u16 move = CURRENT_MOVE(FOE_BANK(bank));
+    if (moves[move].foe_before_move)
+        return moves[move].foe_before_move(FOE_BANK(bank));
+    return USE_MOVE_NORMAL;
+}
+
+enum BeforeMoveStatus before_move_cb(u8 bank)
+{
+    u16 move_foe = CURRENT_MOVE(FOE_BANK(bank));
+    u16 move = CURRENT_MOVE(bank);
+    
+    u8 result = USE_MOVE_NORMAL;
+    if (moves[move].before_move_priority > moves[move_foe].foe_before_move_priority) {
+        result = foe_move_before_move(bank);
+        if (result == USE_MOVE_NORMAL) {
+            result = move_before_move(bank);
+        }
+    } else {
+        result = move_before_move(bank);
+        if (result == USE_MOVE_NORMAL) {
+            result = foe_move_before_move(bank);
+        }
+    }
+    return result;
+}
 
 #define BEFORE_MOVE_CALLBACK_0 0
 void run_move()
@@ -22,6 +63,13 @@ void run_move()
     switch(super.multi_purpose_state_tracker) {
         case S_BEFORE_MOVE:
         {
+            u8 result = before_move_cb(bank_index);
+            switch (result) {
+                case CANT_USE_MOVE:
+                case TARGET_MOVE_IMMUNITY:
+                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    return;
+            };
             u16 move = CURRENT_MOVE(bank_index);
             if (!move) {
                 set_callback1(run_decision);

@@ -159,6 +159,8 @@ struct move_procs {
 typedef void (*MoveBeforeTurnCallback)(u8 bank);
 typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
 typedef void (*MoveOnStartCallback)(u8 bank);
+typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
+typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
 struct move_data {
     pchar name[22];
     u8 accuracy;
@@ -179,6 +181,12 @@ struct move_data {
     MoveBeforeTurnCallback before_turn;
     MoveBeforeSwitchOutCallback before_switch;
     MoveOnStartCallback on_start;
+    MoveBeforeMoveCallback before_move;
+    MoveFoeBeforeMoveCallback foe_before_move;
+    
+    u8 before_move_priority;
+    u8 foe_before_move_priority;
+    
 };
 
 extern struct move_data moves[];
