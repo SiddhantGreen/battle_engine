@@ -13,6 +13,7 @@ extern void dprintf(const char * str, ...);
 extern void run_switch(void);
 extern bool bank_trapped(u8 bank);
 extern u16 rand_range(u16, u16);
+void move_on_switch_cb(void);
 
 bool can_flee_by_random(u8 bank)
 {
@@ -64,6 +65,8 @@ void run_flee()
                     //we can finally flee
                     enqueue_message(MOVE_NONE, bank_index, STRING_FLEE, 0);
                     super.multi_purpose_state_tracker = S_END_BATTLE;
+                    // before switch callback
+                    move_on_switch_cb();
                     set_callback1(run_decision);
                 }
             }

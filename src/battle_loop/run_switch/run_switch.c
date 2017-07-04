@@ -29,6 +29,17 @@ void switch_battler(u8 switching_bank)
     return;
 }
 
+void move_on_switch_cb()
+{
+    u16 move = CURRENT_MOVE(battle_master->first_bank);
+    if (moves[move].before_switch)
+        moves[move].before_switch(battle_master->first_bank);
+        
+    move = CURRENT_MOVE(battle_master->second_bank);
+    if (moves[move].before_switch)
+        moves[move].before_switch(battle_master->second_bank);
+}
+
 void run_switch()
 {
     while (peek_message())
@@ -51,6 +62,7 @@ void run_switch()
             }
             break;
         case S_SWITCH_LOGIC:
+            move_on_switch_cb();
             // do actual switch
             switch_battler(bank_index);
             dprintf("trying to alternate bank inside run switch\n");
