@@ -9,6 +9,13 @@
 extern void run_decision(void);
 extern bool peek_message(void);
 
+void move_on_start(u8 bank)
+{
+    u16 move = CURRENT_MOVE(bank);
+    if (moves[move].on_start)
+        moves[move].on_start(bank);
+}
+
 void run_after_switch()
 {
     while (peek_message())
@@ -16,6 +23,7 @@ void run_after_switch()
     
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     ability_on_switch(bank_index);
+    move_on_start(bank_index);
     super.multi_purpose_state_tracker = S_RUN_SWITCH_ALTERNATE_BANK;
     set_callback1(run_decision);
 }
