@@ -10,11 +10,11 @@ typedef void (*ResidualEffectCallback)(u8);
 
 enum Effect {
     EFFECT_NONE,
-    EFFECT_PARALYZE,
     EFFECT_SLEEP,
+    EFFECT_POISON,
     EFFECT_BURN,
     EFFECT_FREEZE,
-    EFFECT_POISON,
+    EFFECT_PARALYZE,
     EFFECT_BAD_POISON,
     EFFECT_CONFUSION,
     EFFECT_TOXIC_SPIKES,

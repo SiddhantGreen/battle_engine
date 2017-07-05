@@ -225,6 +225,44 @@ void set_status(u8 bank, u8 source, enum Effect status)
     }
 }
 
+u8 ailment_encode(u8 bank)
+{
+    switch(p_bank[bank]->b_data.status)
+    {
+        case AILMENT_SLEEP:
+            return p_bank[bank]->b_data.status_turns & 7;
+        case AILMENT_POISON:
+            return 1<<3;
+        case AILMENT_BURN:
+            return 1<<4;
+        case AILMENT_FREEZE:
+            return 1<<5;
+        case AILMENT_PARALYZE:
+            return 1<<6;
+        case AILMENT_BAD_POISON:
+            return 1<<7;
+        default:
+            return 0;
+    }
+}
+
+void ailment_decode(u8 bank, u8 ailment)
+{
+    if((ailment & 7) > 0) {
+        p_bank[bank]->b_data.status = AILMENT_SLEEP;
+        p_bank[bank]->b_data.status_turns = ailment & 7;
+    } else if(ailment & (1<<3))
+        p_bank[bank]->b_data.status = AILMENT_POISON;
+    else if(ailment & (1<<4))
+        p_bank[bank]->b_data.status = AILMENT_BURN;
+    else if(ailment & (1<<5))
+        p_bank[bank]->b_data.status = AILMENT_FREEZE;
+    else if(ailment & (1<<6))
+        p_bank[bank]->b_data.status = AILMENT_PARALYZE;
+    else if(ailment & (1<<7))
+        p_bank[bank]->b_data.status = AILMENT_BAD_POISON;
+}
+
 
 //TODO: IMPLEMENT
 void set_ability(u8 bank, u8 source, u8 new_ability)

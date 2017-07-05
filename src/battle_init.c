@@ -26,6 +26,11 @@ void init_battle_elements()
     // allocate battle specific resources
     for(u8 i = 0; i < 4; i++) {
         p_bank[i] = malloc_and_clear(sizeof(struct pkmn_bank));
+        for(u8 j = 0; j < 4; j++) {
+            p_bank[i]->objid_hpbox[j] = 0x3F;
+            dprintf("bank: %d obj[%d] = %d\n", i, j, p_bank[i]->objid_hpbox[j]);
+        }
+            
     }
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
@@ -47,6 +52,8 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
 }
 
+extern void ailment_decode(u8 bank, u8 ailment);
+
 void update_pbank(u8 bank, struct update_flags* flags)
 {
     // base stats
@@ -63,7 +70,9 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
     p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
     p_bank[bank]->b_data.type[2] = MTYPE_EGG;
-    
+
+    ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
+
     if (!flags->pass_stats) {
         p_bank[bank]->b_data.attack = 0;
         p_bank[bank]->b_data.defense = 0;
@@ -92,7 +101,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.ate_berry = 0;
     }
 
-    if (!flags->pass_stats) {
+    if (!flags->pass_status) {
         p_bank[bank]->b_data.status = 0;
         p_bank[bank]->b_data.confusion_turns = 0;
         p_bank[bank]->b_data.status_turns = 0;
@@ -101,6 +110,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.is_taunted = 0;
         p_bank[bank]->b_data.is_charmed = 0;
         p_bank[bank]->b_data.is_grounded = 0;
+    } else {
+        status_graphical_update(bank, p_bank[bank]->b_data.status);
     }
     
     if (!flags->pass_disables) {
@@ -115,12 +126,15 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.fainted = 0;
 }
 
+extern u8 ailment_encode(u8 bank);
 
 void sync_battler_struct(u8 bank)
 {
     u16 c_hp = p_bank[bank]->b_data.current_hp;
-    u8 ailment = p_bank[bank]->b_data.status;
+    u8 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
+
+    /* TODO: make ailment array conform with external ailments */
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
 }
 
@@ -163,7 +177,7 @@ void init_battle()
             
             // build p_bank data once animation is finished
             struct update_flags* flags = (struct update_flags*)malloc_and_clear(sizeof(struct update_flags));
-            flags->pass_status = false;
+            flags->pass_status = true;
             flags->pass_stats = false;
             flags->pass_atk_history = false;
             flags->pass_disables = false;
@@ -241,6 +255,10 @@ void option_selection()
             break;
         case 3:
             // POKEMON selection from fight menu
+            fade_screen(0xFFFFFFFF, 0,0,16, 0x7FFF);
+            extern void switch_scene_main(void);
+            super.multi_purpose_state_tracker = 0;
+            set_callback1(switch_scene_main);
             break;
         case 4:
             // BAG selected from fight menu
