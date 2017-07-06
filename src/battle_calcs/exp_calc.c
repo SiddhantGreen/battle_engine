@@ -44,10 +44,14 @@ void give_exp(u8 fainted, u8 reciever)
     /* TODO add task that grants exp*/
     exp += pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_EXP_POINTS, NULL);
     pokemon_setattr(p_bank[reciever]->this_pkmn, REQUEST_EXP_POINTS, &exp);
+    u16 total_hp = pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_TOTAL_HP, NULL);
     recalculate_stats(p_bank[reciever]->this_pkmn);
     u8 new_lvl = pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_LEVEL, NULL);
-    if (new_lvl > p_bank[reciever]->b_data.level)
+    if (new_lvl > p_bank[reciever]->b_data.level) {
         enqueue_message(0, reciever, STRING_LEVEL_UP, 0);
+        u16 total_hp_new = pokemon_getattr(p_bank[reciever]->this_pkmn, REQUEST_TOTAL_HP, NULL);
+        B_CURRENT_HP(reciever) += (total_hp_new - total_hp);
+    }
     return;
 }
 
