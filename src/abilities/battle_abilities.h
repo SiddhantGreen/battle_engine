@@ -24,7 +24,7 @@ typedef void (*AbilityOnTryHealCallback)(u8, u8); //bank, healing bank
 typedef void (*AbilityAfterBoostCallback)(u8, s8); //bank, amount boosted
 typedef bool (*AbilityOnBoostCallback)(u8, s8, u8); //bank, amount boosted, boosting stat
 typedef bool (*AbilityOnImmunityCallback)(u8, enum Effect); //bank, effect
-typedef void (*AbilityOnBasePowerSourceCallback)(u8,u8, u16); // attacker, defender, move
+typedef u16 (*AbilityOnBasePowerSourceCallback)(u8, u8,u8, u16); // base power, attacker, defender, move
 
 
 typedef u8 (*AbilityOnDraggedOutCallback)(u8);

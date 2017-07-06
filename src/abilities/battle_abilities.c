@@ -1578,11 +1578,12 @@ void water_bubble_on_base_power(u8 bank, u16 move)
         B_MOVE_POWER(bank) *= 2;
 }
 
-void water_bubble_on_source_base_power(u8 attacker, u8 defender, u16 move)
+u16 water_bubble_on_source_base_power(u8 base_power, u8 attacker, u8 defender, u16 move)
 {
     // if the foe is going to use a fire type move, reduce it's power
     if (B_MOVE_HAS_TYPE(attacker, MTYPE_FIRE))
-        B_MOVE_POWER(attacker) = NUM_MOD(B_MOVE_POWER(attacker), 50);
+        return NUM_MOD(B_MOVE_POWER(attacker), 50);
+    return base_power;
 }
 
 bool water_bubble_on_set_status(u8 bank, u8 atkbank, enum Effect effect, bool settable)

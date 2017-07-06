@@ -11,7 +11,8 @@ typedef u16 (*StatCallback)(u8, u16);
  * Ability stat modifier callback execution
  */
 
- s8 ability_priority_mod(u8 bank, u16 move_id) {
+ s8 ability_priority_mod(u8 bank, u16 move_id)
+{
     u8 ability = p_bank[bank]->b_data.ability;
     
     // ability doesn't exist in table
@@ -27,7 +28,8 @@ typedef u16 (*StatCallback)(u8, u16);
     return 0;
 }
 
-u16 ability_attack_mod(u8 bank, u16 stat) {
+u16 ability_attack_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_attack) {
@@ -36,7 +38,8 @@ u16 ability_attack_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_defense_mod(u8 bank, u16 stat) {
+u16 ability_defense_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_defense) {
@@ -45,7 +48,8 @@ u16 ability_defense_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_speed_mod(u8 bank, u16 stat) {
+u16 ability_speed_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_speed) {
@@ -54,7 +58,8 @@ u16 ability_speed_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_sp_defense_mod(u8 bank, u16 stat) {
+u16 ability_sp_defense_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_sp_defense) {
@@ -63,7 +68,8 @@ u16 ability_sp_defense_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_sp_attack_mod(u8 bank, u16 stat) {
+u16 ability_sp_attack_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_sp_attack) {
@@ -72,7 +78,8 @@ u16 ability_sp_attack_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_critchance_mod(u8 bank, u16 stat) {
+u16 ability_critchance_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_critchance) {
@@ -81,7 +88,8 @@ u16 ability_critchance_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_accuracy_mod(u8 bank, u16 stat) {
+u16 ability_accuracy_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_accuracy) {
@@ -90,7 +98,8 @@ u16 ability_accuracy_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-u16 ability_evasion_mod(u8 bank, u16 stat) {
+u16 ability_evasion_mod(u8 bank, u16 stat)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return 0;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_evasion) {
@@ -99,7 +108,8 @@ u16 ability_evasion_mod(u8 bank, u16 stat) {
     return 0;
 }
 
-void ability_on_before_switch(u8 bank) {
+void ability_on_before_switch(u8 bank)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_before_switch) {
@@ -107,7 +117,8 @@ void ability_on_before_switch(u8 bank) {
     }
 }
 
-void ability_on_switch(u8 bank) {
+void ability_on_switch(u8 bank)
+{
     if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
         return;
     if (abilities_table[p_bank[bank]->b_data.ability]->on_switch) {
@@ -115,7 +126,8 @@ void ability_on_switch(u8 bank) {
     }
 }
 
-void ability_on_modify_move(u8 attacker, u8 defender, u16 move) {
+void ability_on_modify_move(u8 attacker, u8 defender, u16 move)
+{
     if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
         return;
     if (abilities_table[p_bank[attacker]->b_data.ability]->on_modify_move) {
@@ -123,7 +135,8 @@ void ability_on_modify_move(u8 attacker, u8 defender, u16 move) {
     }
 }
 
-u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move) {
+u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move)
+{
     if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
         return true;
     if (abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit) {
@@ -131,4 +144,16 @@ u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move) {
     }
     return false;
 }
+
+u16 ability_on_base_power(u8 base_power, u8 attacker, u8 defender, u16 move) 
+{
+    if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
+        return base_power;
+    if (abilities_table[p_bank[attacker]->b_data.ability]->on_tryhit) {
+        return abilities_table[p_bank[attacker]->b_data.ability]->on_source_base_power(base_power, attacker, defender, move);
+    } else {
+        return base_power;
+    }
+}
+
 

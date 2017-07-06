@@ -55,6 +55,16 @@ u16 weather_dmg_mod(u16 damage, u8 attacker)
     return damage;
 }
 
+/* TODO utilize priority */
+u16 move_on_base_power_move(s8 base_power, u8 attacker, u8 defender, u16 move)
+{
+    if (moves[move].on_base_power_move) {
+        return moves[move].on_base_power_move(base_power, attacker, defender, move);
+    } else {
+        return base_power;
+    }
+}
+
 #define MOVE_ONDAMAGE_CALLBACK 0
 #define MOVE_BASEPOWER_CALLBACK 0
 u16 get_base_damage(u8 attacker, u8 defender, u16 move)
@@ -75,10 +85,8 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     }
 
     s8 base_power = B_MOVE_POWER(attacker);
-    if (MOVE_BASEPOWER_CALLBACK) {
-        // TODO Base power callback execution
-        base_power = MOVE_BASEPOWER_CALLBACK;
-    }
+    base_power = move_on_base_power_move(base_power, attacker, defender, move);
+    base_power = move_on_base_power_move(base_power, attacker, defender, move);
  
     // get defending and attacking stats
     enum MoveCategory atk_category = B_MOVE_CATEGORY(attacker);

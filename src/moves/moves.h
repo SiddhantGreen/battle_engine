@@ -161,6 +161,10 @@ typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
 typedef void (*MoveOnStartCallback)(u8 bank);
 typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
+typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
+
 struct move_data {
     pchar name[22];
     u8 accuracy;
@@ -183,7 +187,11 @@ struct move_data {
     MoveOnStartCallback on_start;
     MoveBeforeMoveCallback before_move;
     MoveFoeBeforeMoveCallback foe_before_move;
-    
+    MoveOnModifyMoveCallback on_modify_move;
+    MoveOnTryHitMoveCallback on_tryhit_move;
+    MoveOnTryHitMoveCallback on_tryhit_side_move;
+    MoveOnBasePowerCallback on_base_power_move;
+    u8 base_power_move_priority;
     u8 before_move_priority;
     u8 foe_before_move_priority;
     
