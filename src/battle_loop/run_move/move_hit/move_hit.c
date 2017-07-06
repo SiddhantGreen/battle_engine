@@ -174,12 +174,14 @@ void move_hit()
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
-            if (!battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
-                if (moves[move].heal) {
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
-                }
+            
+            if (moves[move].heal) {
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
+            }
+            
+            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
                 s16 delta = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
-                delta = MAX(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
+                delta = MIN(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
                 hp_anim_change(bank_index, delta);
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
             }
