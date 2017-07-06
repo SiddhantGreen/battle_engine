@@ -16,7 +16,9 @@
 #define SWB_SPE 6
 
 extern void option_selection(void);
+extern u8 get_ability(struct Pokemon *p);
 
+static const pchar str_no_item[] = _("None");
 static struct TextColor switch_color = {0, 15, 3};
 static struct TextboxTemplate switch_boxes[] = {
     {
@@ -111,7 +113,7 @@ void switch_setup(void) {
                                   .palette = 0,
                                   .size = 0,
                                   .map_base = 30,
-                                   .character_base = 2,
+                                  .character_base = 2,
                                   .bgid = 1};
     struct BgConfig bg2_config = {.padding = 0,
                                   .b_padding = 0,
@@ -170,10 +172,65 @@ void switch_load_background(void) {
     bgid_mark_for_sync(0);
 }
 
-static const pchar test[] = _("TESTtest");
+void switch_load_pokemon_data(struct Pokemon *pokemon) {
+    /*defensive programming*/
+    if (pokemon == NULL)
+        return;
+    u8 species = pokemon_getattr(pokemon, REQUEST_SPECIES, NULL);
+    if (species == 0)
+        return;
+    rboxid_clear_pixels(SWB_ABILITY, 0);
+    rboxid_clear_pixels(SWB_ITEM, 0);
+    rboxid_clear_pixels(SWB_ATK, 0);
+    rboxid_clear_pixels(SWB_DEF, 0);
+    rboxid_clear_pixels(SWB_SPA, 0);
+    rboxid_clear_pixels(SWB_SPD, 0);
+    rboxid_clear_pixels(SWB_SPE, 0);
+    (void)pokemon_getattr(pokemon, REQUEST_NICK, string_buffer);
+    /* TODO: print name */
+    rboxid_print(SWB_ABILITY, 0, 0, 0, &switch_color, 0,
+                 &pokemon_ability_names[get_ability(pokemon)][0]);
+
+    /* TODO: check on that item, there may be an internal routine for it */
+    u8 item = pokemon_getattr(pokemon, REQUEST_HELD_ITEM, NULL) - 13;
+    if (item == 0) {
+        rboxid_print(SWB_ITEM, 0, 0, 0, &switch_color, 0, &str_no_item[0]);
+    } else {
+        rboxid_print(SWB_ITEM, 0, 0, 0, &switch_color, 0, &items[item].name[0]);
+    }
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_ATK, NULL), 0, 4);
+    rboxid_print(SWB_ATK, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_DEF, NULL), 0, 4);
+    rboxid_print(SWB_DEF, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPATK, NULL), 0, 4);
+    rboxid_print(SWB_SPA, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPDEF, NULL), 0, 4);
+    rboxid_print(SWB_SPD, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPD, NULL), 0, 4);
+    rboxid_print(SWB_SPE, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+
+    rboxid_update(SWB_ABILITY, 3);
+    rboxid_update(SWB_ITEM, 3);
+    rboxid_update(SWB_ATK, 3);
+    rboxid_update(SWB_DEF, 3);
+    rboxid_update(SWB_SPA, 3);
+    rboxid_update(SWB_SPD, 3);
+    rboxid_update(SWB_SPE, 3);
+
+    rboxid_tilemap_update(SWB_ABILITY);
+    rboxid_tilemap_update(SWB_ITEM);
+    rboxid_tilemap_update(SWB_ATK);
+    rboxid_tilemap_update(SWB_DEF);
+    rboxid_tilemap_update(SWB_SPA);
+    rboxid_tilemap_update(SWB_SPD);
+    rboxid_tilemap_update(SWB_SPE);
+}
 
 void switch_scene_main(void) {
-    dprintf("current state: %d\n", super.multi_purpose_state_tracker);
     switch (super.multi_purpose_state_tracker) {
     case 0:
         if (!pal_fade_control.active) {
@@ -186,7 +243,7 @@ void switch_scene_main(void) {
         switch_load_background();
 
         rbox_init_from_templates(switch_boxes);
-        rboxid_clear_pixels(SWB_ABILITY, 0);
+        /*rboxid_clear_pixels(SWB_ABILITY, 0);
         rboxid_clear_pixels(SWB_ITEM, 0);
         rboxid_clear_pixels(SWB_ATK, 0);
         rboxid_clear_pixels(SWB_DEF, 0);
@@ -199,11 +256,11 @@ void switch_scene_main(void) {
         pchar buffer[3];
         fmt_int_10(&buffer[0], 10, 0, 3);
 
-        rboxid_print(SWB_ATK, 0, 0, 0, &switch_color, 0, &buffer[0]);
-        rboxid_print(SWB_DEF, 0, 0, 0, &switch_color, 0, &buffer[0]);
-        rboxid_print(SWB_SPA, 0, 0, 0, &switch_color, 0, &buffer[0]);
-        rboxid_print(SWB_SPD, 0, 0, 0, &switch_color, 0, &buffer[0]);
-        rboxid_print(SWB_SPE, 0, 0, 0, &switch_color, 0, &buffer[0]);
+        rboxid_print(SWB_ATK, 0, 0, 0, &switch_color, 0, &test[0]);
+        rboxid_print(SWB_DEF, 0, 0, 0, &switch_color, 0, &test[0]);
+        rboxid_print(SWB_SPA, 0, 0, 0, &switch_color, 0, &test[0]);
+        rboxid_print(SWB_SPD, 0, 0, 0, &switch_color, 0, &test[0]);
+        rboxid_print(SWB_SPE, 0, 0, 0, &switch_color, 0, &test[0]);
 
         rboxid_update(SWB_ABILITY, 3);
         rboxid_update(SWB_ITEM, 3);
@@ -219,7 +276,8 @@ void switch_scene_main(void) {
         rboxid_tilemap_update(SWB_DEF);
         rboxid_tilemap_update(SWB_SPA);
         rboxid_tilemap_update(SWB_SPD);
-        rboxid_tilemap_update(SWB_SPE);
+        rboxid_tilemap_update(SWB_SPE);*/
+        switch_load_pokemon_data(&party_player[0]);
         super.multi_purpose_state_tracker++;
         break;
     }
