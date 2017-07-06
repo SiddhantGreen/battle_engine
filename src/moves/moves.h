@@ -166,6 +166,7 @@ typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
 typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
 typedef void (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
+typedef void (*MoveOnAfterMoveCallback)(u8 attacker);
 
 struct move_data {
     pchar name[22];
@@ -196,6 +197,7 @@ struct move_data {
     MoveOnBasePowerCallback on_base_power_move;
     MoveOnDamageCallback on_damage_move;
     MoveOnEffectCallback on_effect_cb;
+    MoveOnAfterMoveCallback on_after_move;
     u8 base_power_move_priority;
     u8 before_move_priority;
     u8 foe_before_move_priority;

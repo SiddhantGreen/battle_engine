@@ -242,10 +242,12 @@ void move_hit()
 
         case S_AFTER_MOVE:
         // after move
-        
-        super.multi_purpose_state_tracker = S_PP_REDUCTION;
-        set_callback1(run_move);
-        break;
+            if (moves[move].on_after_move) {
+                moves[move].on_after_move(bank_index);
+            }
+            super.multi_purpose_state_tracker = S_PP_REDUCTION;
+            set_callback1(run_move);
+            break;
     };
 }
 
