@@ -179,6 +179,7 @@ struct move_data {
     u32 m_flags;
     u8 drain;
     u8 recoil;
+    u8 heal;
     struct move_procs* procs;
     struct move_callbacks* move_cb;
     u8 recoil_struggle : 1;

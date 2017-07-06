@@ -100,6 +100,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_FLEE:
             case STRING_MOVE_IMMUNE:
             case STRING_FAINTED:
+            case STRING_HEAL:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:

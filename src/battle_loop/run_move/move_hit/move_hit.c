@@ -174,9 +174,14 @@ void move_hit()
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
-            if (MOVE_ON_HEAL) {
-                // execute callback
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
+            if (!battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
+                if (moves[move].heal) {
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
+                }
+                s16 delta = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
+                delta = MAX(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
             }
             super.multi_purpose_state_tracker = S_STATUS_CHANGE;
             break;
