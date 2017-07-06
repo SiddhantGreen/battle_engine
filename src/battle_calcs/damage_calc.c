@@ -65,16 +65,24 @@ u16 move_on_base_power_move(s8 base_power, u8 attacker, u8 defender, u16 move)
     }
 }
 
+u16 move_on_damage_callback(u16 damage_taken, u8 attacker, u8 defender, u16 move)
+{
+    if (moves[move].on_damage_move) {
+        return moves[move].on_damage_move(damage_taken, attacker, defender, move);
+    }
+    return 0;
+}
+
 #define MOVE_ONDAMAGE_CALLBACK 0
-#define MOVE_BASEPOWER_CALLBACK 0
 u16 get_base_damage(u8 attacker, u8 defender, u16 move)
 {
     if (IS_OHKO(move))
         return (TOTAL_HP(defender));
     
     // moves like counter/bide/seismic toss calc damage outside of the formula & ignore type immunities
-    if (MOVE_ONDAMAGE_CALLBACK) {
-        // return on damage callback's return value; TODO
+    u16 predmg = move_on_damage_callback(p_bank[attacker]->b_data.last_damage, attacker, defender, move);
+    if (predmg) {
+        return predmg;
     }
     
     if (B_MOVE_IS_STATUS(attacker))
