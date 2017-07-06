@@ -116,7 +116,7 @@ void battle_slidein(void)
             bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
 
             // init textbox
-            rbox_init_battlebox((struct Textbox*)0x8248330);
+            rbox_init_from_templates((struct TextboxTemplate*)0x8248330);
             remo_reset_acknowledgement_flags();
             battlebox_mark_usable();
             super.multi_purpose_state_tracker++;

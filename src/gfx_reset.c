@@ -50,7 +50,7 @@ void c2_battle()
     objc_exec();
     process_palfade();
     task_exec();    
-
+	tilemaps_sync();
 	// merge textbox and text tile maps
     remoboxes_upload_tilesets();
 }

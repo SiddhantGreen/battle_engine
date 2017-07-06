@@ -4,6 +4,7 @@
 #include "abilities/battle_abilities.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+
 u16 rand_range(u16 min, u16 max)
 {
     return (rand() / (0xFFFF / (max - min))) + min;
