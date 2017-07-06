@@ -125,6 +125,7 @@ struct battle_main {
     u8 move_pss_objid[4];
     u8 move_pp_objid[4];
     u8 fight_menu_content_spawned;
+    u8 switch_objid[10];
     
     /* Message system variables */
     struct global_message b_message[5]; // message queue depth is 5

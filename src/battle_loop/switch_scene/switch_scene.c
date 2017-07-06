@@ -1,11 +1,13 @@
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../generated/images/switch/switch_bg.h"
+#include "../generated/images/type_icons.h"
 #include "battle_data/battle_state.h"
 #include "battle_data/pkmn_bank.h"
 #include "battle_text/battle_textbox_gfx.h"
 #include <pokeagb/pokeagb.h>
 
 #define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
+#define rgb5(r, g, b) (u16)((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10))
 
 #define SWB_ABILITY 0
 #define SWB_ITEM 1
@@ -14,12 +16,30 @@
 #define SWB_SPA 4
 #define SWB_SPD 5
 #define SWB_SPE 6
+#define SWB_MOVES 7
+#define SWB_POW 8
+#define SWB_ACC 9
+#define SWB_PP 10
+#define SWB_NAME 11
 
 extern void option_selection(void);
 extern u8 get_ability(struct Pokemon *p);
+extern u8 load_dmg_type_icon(u8 type, s16 x, s16 y, u8 tag);
 
 static const pchar str_no_item[] = _("None");
-static struct TextColor switch_color = {0, 15, 3};
+
+static u16 switch_text_pal[] = {
+    rgb5(255, 0, 255),  rgb5(248, 248, 248), rgb5(112, 112, 112),
+    rgb5(96, 96, 96),   rgb5(208, 208, 208), rgb5(76, 154, 38),
+    rgb5(102, 194, 66), rgb5(168, 75, 76),   rgb5(224, 114, 75),
+    rgb5(180, 124, 41), rgb5(241, 188, 60),  rgb5(255, 0, 255),
+    rgb5(255, 0, 255),  rgb5(255, 0, 255),   rgb5(255, 0, 255),
+    rgb5(255, 0, 255)};
+
+static struct TextColor switch_color = {0, 3, 4};
+static struct TextColor switch_color_bg = {0, 1, 2};
+static struct TextColor switch_color_red = {0, 7, 8};
+static struct TextColor switch_color_green = {0, 5, 6};
 static struct TextboxTemplate switch_boxes[] = {
     {
         /*ability*/
@@ -28,7 +48,7 @@ static struct TextboxTemplate switch_boxes[] = {
         .y = 4,
         .width = 9,
         .height = 2,
-        .pal_id = 7,
+        .pal_id = 15,
         .charbase = 1,
     },
     {
@@ -38,60 +58,109 @@ static struct TextboxTemplate switch_boxes[] = {
         .y = 4,
         .width = 9,
         .height = 2,
-        .pal_id = 7,
+        .pal_id = 15,
         .charbase = 31,
     },
     {
         /*atk*/
         .bg_id = 0,
         .x = 6,
-        .y = 6,
+        .y = 5,
         .width = 3,
-        .height = 2,
-        .pal_id = 7,
+        .height = 3,
+        .pal_id = 15,
         .charbase = 61,
     },
     {
         /*def*/
         .bg_id = 0,
         .x = 11,
-        .y = 6,
+        .y = 5,
         .width = 3,
-        .height = 2,
-        .pal_id = 7,
+        .height = 3,
+        .pal_id = 15,
         .charbase = 76,
     },
     {
         /*spa*/
         .bg_id = 0,
         .x = 16,
-        .y = 6,
+        .y = 5,
         .width = 3,
-        .height = 2,
-        .pal_id = 7,
+        .height = 3,
+        .pal_id = 15,
         .charbase = 96,
     },
     {
         /*spd*/
         .bg_id = 0,
         .x = 21,
-        .y = 6,
+        .y = 5,
         .width = 3,
-        .height = 2,
-        .pal_id = 7,
+        .height = 3,
+        .pal_id = 15,
         .charbase = 106,
     },
     {
         /*spe*/
         .bg_id = 0,
-        .x = 27,
-        .y = 6,
+        .x = 26,
+        .y = 5,
         .width = 3,
-        .height = 2,
-        .pal_id = 7,
+        .height = 3,
+        .pal_id = 15,
         .charbase = 121,
     },
-
+    {
+        /*moves*/
+        .bg_id = 0,
+        .x = 9,
+        .y = 9,
+        .width = 10,
+        .height = 8,
+        .pal_id = 15,
+        .charbase = 136,
+    },
+    {
+        /*power*/
+        .bg_id = 0,
+        .x = 20,
+        .y = 9,
+        .width = 2,
+        .height = 8,
+        .pal_id = 15,
+        .charbase = 220,
+    },
+    {
+        /*accuracy*/
+        .bg_id = 0,
+        .x = 22,
+        .y = 9,
+        .width = 3,
+        .height = 8,
+        .pal_id = 15,
+        .charbase = 265,
+    },
+    {
+        /*pp*/
+        .bg_id = 0,
+        .x = 25,
+        .y = 9,
+        .width = 2,
+        .height = 8,
+        .pal_id = 15,
+        .charbase = 310,
+    },
+    {
+        /*pkmn name*/
+        .bg_id = 0,
+        .x = 5,
+        .y = 0,
+        .width = 11,
+        .height = 2,
+        .pal_id = 15,
+        .charbase = 355,
+    },
     {
         .bg_id = 0xFF, /* marks the end of the tb array */
     },
@@ -163,13 +232,30 @@ void switch_setup(void) {
 void switch_load_background(void) {
     /* load menu */
     void *sw_bgbackbuffer = malloc(0x1000);
+    gpu_pal_apply_compressed((void *)switch_bgPal, 0, 32);
+    gpu_pal_apply((void *)(&switch_text_pal), 15 * 16, 32);
     LZ77UnCompWram((void *)switch_bgMap, (void *)sw_bgbackbuffer);
     lz77UnCompVram((void *)switch_bgTiles, (void *)0x06008000);
-    gpu_pal_apply_compressed((void *)switch_bgPal, 0, 32);
+
     bgid_set_tilemap(1, sw_bgbackbuffer);
 
     bgid_mark_for_sync(1);
     bgid_mark_for_sync(0);
+}
+
+void switch_type_update_icon(u8 objid, enum MoveTypes type) {
+    void *vram =
+        (void *)((0x06010000) + objects[objid].final_oam.tile_num * 32);
+    memcpy(vram, (type * 256) + type_iconsTiles, 256);
+}
+
+void switch_type_icon_load(u8 type, s16 x, s16 y, u8 id) {
+    if (battle_master->switch_objid[id] != 0x3F) {
+        switch_type_update_icon(battle_master->switch_objid[0], type);
+    } else {
+        battle_master->switch_objid[id] =
+            load_dmg_type_icon(type, x, y, id + 4);
+    }
 }
 
 void switch_load_pokemon_data(struct Pokemon *pokemon) {
@@ -179,63 +265,95 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     u8 species = pokemon_getattr(pokemon, REQUEST_SPECIES, NULL);
     if (species == 0)
         return;
-    rboxid_clear_pixels(SWB_ABILITY, 0);
-    rboxid_clear_pixels(SWB_ITEM, 0);
-    rboxid_clear_pixels(SWB_ATK, 0);
-    rboxid_clear_pixels(SWB_DEF, 0);
-    rboxid_clear_pixels(SWB_SPA, 0);
-    rboxid_clear_pixels(SWB_SPD, 0);
-    rboxid_clear_pixels(SWB_SPE, 0);
+
+    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+        rboxid_clear_pixels(i, 0);
+    }
+
     (void)pokemon_getattr(pokemon, REQUEST_NICK, string_buffer);
-    /* TODO: print name */
-    rboxid_print(SWB_ABILITY, 0, 0, 0, &switch_color, 0,
+    rboxid_print(SWB_NAME, 0, 0, 4, &switch_color_bg, 0, &string_buffer[0]);
+
+    /* print the stats */
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_ATK, NULL), 0,
+               4);
+    rboxid_print(SWB_ATK, 0, 1, 7, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_DEF, NULL), 0,
+               4);
+    rboxid_print(SWB_DEF, 0, 2, 7, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPATK, NULL), 0,
+               4);
+    rboxid_print(SWB_SPA, 0, 3, 7, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPDEF, NULL), 0,
+               4);
+    rboxid_print(SWB_SPD, 0, 4, 7, &switch_color, 0, &string_buffer[0]);
+
+    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPD, NULL), 0,
+               4);
+    rboxid_print(SWB_SPE, 0, 5, 7, &switch_color, 0, &string_buffer[0]);
+
+    /* print the ability */
+
+    rboxid_print(SWB_ABILITY, 0, 3, 1, &switch_color, 0,
                  &pokemon_ability_names[get_ability(pokemon)][0]);
 
+    /* print the item */
     /* TODO: check on that item, there may be an internal routine for it */
     u8 item = pokemon_getattr(pokemon, REQUEST_HELD_ITEM, NULL) - 13;
     if (item == 0) {
-        rboxid_print(SWB_ITEM, 0, 0, 0, &switch_color, 0, &str_no_item[0]);
+        rboxid_print(SWB_ITEM, 0, 1, 1, &switch_color, 0, &str_no_item[0]);
     } else {
-        rboxid_print(SWB_ITEM, 0, 0, 0, &switch_color, 0, &items[item].name[0]);
+        rboxid_print(SWB_ITEM, 0, 1, 1, &switch_color, 0, &items[item].name[0]);
     }
-    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_ATK, NULL), 0, 4);
-    rboxid_print(SWB_ATK, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_DEF, NULL), 0, 4);
-    rboxid_print(SWB_DEF, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+    for (u32 i = 0; i < 4; ++i) {
+        u8 move = pokemon_getattr(pokemon, REQUEST_MOVE1 + i, NULL);
+        if (move == 0)
+            continue;
+        rboxid_print(SWB_MOVES, 0, 0, (4 + 14 * i), &switch_color, 0,
+                     &moves[move].name[0]);
 
-    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPATK, NULL), 0, 4);
-    rboxid_print(SWB_SPA, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+        fmt_int_10(string_buffer, moves[move].base_power, 0, 4);
+        rboxid_print(SWB_POW, 0, 1, (4 + 14 * i), &switch_color, 0,
+                     &string_buffer[0]);
 
-    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPDEF, NULL), 0, 4);
-    rboxid_print(SWB_SPD, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+        fmt_int_10(string_buffer, moves[move].accuracy, 0, 4);
+        rboxid_print(SWB_ACC, 0, 5, (4 + 14 * i), &switch_color, 0,
+                     &string_buffer[0]);
 
-    fmt_int_10(string_buffer, pokemon_getattr(pokemon, REQUEST_SPD, NULL), 0, 4);
-    rboxid_print(SWB_SPE, 0, 0, 0, &switch_color, 0, &string_buffer[0]);
+        u8 pp = pokemon_getattr(pokemon, REQUEST_PP1 + i, NULL);
+        fmt_int_10(string_buffer, pp, 0, 4);
+        rboxid_print(SWB_PP, 0, 2, (4 + 14 * i), &switch_color, 0,
+                     &string_buffer[0]);
+    }
 
+    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+        rboxid_update(i, 3);
+        rboxid_tilemap_update(i);
+    }
+    /* write those again, to overwrite empty space from stats */
     rboxid_update(SWB_ABILITY, 3);
-    rboxid_update(SWB_ITEM, 3);
-    rboxid_update(SWB_ATK, 3);
-    rboxid_update(SWB_DEF, 3);
-    rboxid_update(SWB_SPA, 3);
-    rboxid_update(SWB_SPD, 3);
-    rboxid_update(SWB_SPE, 3);
-
     rboxid_tilemap_update(SWB_ABILITY);
+    rboxid_update(SWB_ITEM, 3);
     rboxid_tilemap_update(SWB_ITEM);
-    rboxid_tilemap_update(SWB_ATK);
-    rboxid_tilemap_update(SWB_DEF);
-    rboxid_tilemap_update(SWB_SPA);
-    rboxid_tilemap_update(SWB_SPD);
-    rboxid_tilemap_update(SWB_SPE);
+
+    /* load the type icons */
+    if ((enum MoveTypes)(pokemon_base_stats[species].type[0]) != MTYPE_EGG) {
+        switch_type_icon_load(pokemon_base_stats[species].type[0], 48, 25, 0);
+    }
+    if ((enum MoveTypes)(pokemon_base_stats[species].type[1]) != MTYPE_EGG) {
+        switch_type_icon_load(pokemon_base_stats[species].type[1], 84, 25, 1);
+    }
 }
 
 void switch_scene_main(void) {
     switch (super.multi_purpose_state_tracker) {
     case 0:
         if (!pal_fade_control.active) {
-            switch_setup();
             /* VRAM setup */
+            switch_setup();
             super.multi_purpose_state_tracker++;
         }
         break;
@@ -243,40 +361,6 @@ void switch_scene_main(void) {
         switch_load_background();
 
         rbox_init_from_templates(switch_boxes);
-        /*rboxid_clear_pixels(SWB_ABILITY, 0);
-        rboxid_clear_pixels(SWB_ITEM, 0);
-        rboxid_clear_pixels(SWB_ATK, 0);
-        rboxid_clear_pixels(SWB_DEF, 0);
-        rboxid_clear_pixels(SWB_SPA, 0);
-        rboxid_clear_pixels(SWB_SPD, 0);
-        rboxid_clear_pixels(SWB_SPE, 0);
-
-        rboxid_print(SWB_ABILITY, 0, 0, 0, &switch_color, 0, &test[0]);
-        rboxid_print(SWB_ITEM, 0, 0, 0, &switch_color, 0, &test[0]);
-        pchar buffer[3];
-        fmt_int_10(&buffer[0], 10, 0, 3);
-
-        rboxid_print(SWB_ATK, 0, 0, 0, &switch_color, 0, &test[0]);
-        rboxid_print(SWB_DEF, 0, 0, 0, &switch_color, 0, &test[0]);
-        rboxid_print(SWB_SPA, 0, 0, 0, &switch_color, 0, &test[0]);
-        rboxid_print(SWB_SPD, 0, 0, 0, &switch_color, 0, &test[0]);
-        rboxid_print(SWB_SPE, 0, 0, 0, &switch_color, 0, &test[0]);
-
-        rboxid_update(SWB_ABILITY, 3);
-        rboxid_update(SWB_ITEM, 3);
-        rboxid_update(SWB_ATK, 3);
-        rboxid_update(SWB_DEF, 3);
-        rboxid_update(SWB_SPA, 3);
-        rboxid_update(SWB_SPD, 3);
-        rboxid_update(SWB_SPE, 3);
-
-        rboxid_tilemap_update(SWB_ABILITY);
-        rboxid_tilemap_update(SWB_ITEM);
-        rboxid_tilemap_update(SWB_ATK);
-        rboxid_tilemap_update(SWB_DEF);
-        rboxid_tilemap_update(SWB_SPA);
-        rboxid_tilemap_update(SWB_SPD);
-        rboxid_tilemap_update(SWB_SPE);*/
         switch_load_pokemon_data(&party_player[0]);
         super.multi_purpose_state_tracker++;
         break;
