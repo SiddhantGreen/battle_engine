@@ -53,6 +53,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_MOVE_NVE:
             case STRING_MOVE_SE:
             case STRING_LEVEL_UP:
+            case STRING_WEATHER_GONE:
                 fdecoder_battle(battle_strings[id], 0, 0, 0);
                 break;
             case STRING_RECOIL:

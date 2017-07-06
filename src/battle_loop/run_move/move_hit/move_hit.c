@@ -188,15 +188,15 @@ void move_hit()
             super.multi_purpose_state_tracker = S_STATUS_CHANGE;
             break;
         case S_STATUS_CHANGE:
-            // something about statuses
+            // something about statuses (??)
             super.multi_purpose_state_tracker = S_MOVE_EFFECT;
             break;
         case S_MOVE_EFFECT:
         {
             /* execute move effect */
-            /*if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
-                moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            }*/
+            if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
+                moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            }
             super.multi_purpose_state_tracker = S_RECOIL_APPLY;
             break;
         }
