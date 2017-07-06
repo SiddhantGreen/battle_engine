@@ -161,6 +161,13 @@ typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
 typedef void (*MoveOnStartCallback)(u8 bank);
 typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
+typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
+typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
+typedef void (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
+typedef void (*MoveOnAfterMoveCallback)(u8 attacker);
+
 struct move_data {
     pchar name[22];
     u8 accuracy;
@@ -174,6 +181,7 @@ struct move_data {
     u32 m_flags;
     u8 drain;
     u8 recoil;
+    u8 heal;
     struct move_procs* procs;
     struct move_callbacks* move_cb;
     u8 recoil_struggle : 1;
@@ -183,7 +191,14 @@ struct move_data {
     MoveOnStartCallback on_start;
     MoveBeforeMoveCallback before_move;
     MoveFoeBeforeMoveCallback foe_before_move;
-    
+    MoveOnModifyMoveCallback on_modify_move;
+    MoveOnTryHitMoveCallback on_tryhit_move;
+    MoveOnTryHitMoveCallback on_tryhit_side_move;
+    MoveOnBasePowerCallback on_base_power_move;
+    MoveOnDamageCallback on_damage_move;
+    MoveOnEffectCallback on_effect_cb;
+    MoveOnAfterMoveCallback on_after_move;
+    u8 base_power_move_priority;
     u8 before_move_priority;
     u8 foe_before_move_priority;
     

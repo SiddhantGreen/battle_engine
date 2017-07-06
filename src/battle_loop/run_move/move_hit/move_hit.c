@@ -20,8 +20,6 @@ extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
 extern void set_status(u8 bank, u8 source, enum Effect status);
 
-#define MOVE_TRYHIT 0
-#define MOVE_TRYHIT_SIDE 0
 #define MOVE_ON_HEAL 0
 
 bool damage_result_msg(u8 bank_index)
@@ -51,6 +49,29 @@ bool damage_result_msg(u8 bank_index)
     return effective;
 }
 
+enum TryHitMoveStatus {
+    CANT_USE_MOVE = 0,
+    USE_MOVE_NORMAL,
+    TARGET_MOVE_IMMUNITY,
+};
+
+enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move) 
+{
+    if (moves[move].on_tryhit_move) {
+        return moves[move].on_tryhit_move(attacker, defender, move);
+    }
+    return USE_MOVE_NORMAL;
+}
+
+enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move) 
+{
+    if (moves[move].on_tryhit_move) {
+        return moves[move].on_tryhit_side_move(attacker, defender, move);
+    }
+    return USE_MOVE_NORMAL;
+}
+
+
 void move_hit()
 {
     if (task_is_running(hpbar_apply_dmg))
@@ -62,17 +83,37 @@ void move_hit()
     u16 move = CURRENT_MOVE(bank_index);
     switch (super.multi_purpose_state_tracker) {
         case S_MOVE_TRYHIT: 
-            if (MOVE_TRYHIT) {
-                // move try hit callback exec
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
-                set_callback1(run_move);
-                return;
-            } else if (MOVE_TRYHIT_SIDE) {
-                // move tryhit side callback exec
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
-                set_callback1(run_move);
-                return;
-            }
+            // move tryhit callback
+            switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
+                case CANT_USE_MOVE:
+                    enqueue_message(move, bank_index, STRING_FAILED, move);
+                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    set_callback1(run_move);
+                    return;
+                case TARGET_MOVE_IMMUNITY:
+                    enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    set_callback1(run_move);
+                    return;
+                default:
+                    break;
+            };
+            // move tryhit side callback
+            switch (move_tryhit_side(bank_index, TARGET_OF(bank_index), move)) {
+                case CANT_USE_MOVE:
+                    enqueue_message(move, bank_index, STRING_FAILED, move);
+                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    set_callback1(run_move);
+                    return;
+                case TARGET_MOVE_IMMUNITY:
+                    enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    set_callback1(run_move);
+                    return;
+                default:
+                    break;
+            };
+            // move landing is success
             super.multi_purpose_state_tracker = S_ABILITY_TRYHIT;
             break;
         case S_ABILITY_TRYHIT:
@@ -133,22 +174,29 @@ void move_hit()
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
-            if (MOVE_ON_HEAL) {
-                // execute callback
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = 0;
+            
+            if (moves[move].heal) {
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
+            }
+            
+            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
+                s16 delta = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
+                delta = MIN(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
             }
             super.multi_purpose_state_tracker = S_STATUS_CHANGE;
             break;
         case S_STATUS_CHANGE:
-            // something about statuses
+            // something about statuses (??)
             super.multi_purpose_state_tracker = S_MOVE_EFFECT;
             break;
         case S_MOVE_EFFECT:
         {
             /* execute move effect */
-            /*if (moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb) {
-                moves[CURRENT_MOVE(bank_index)].move_cb->on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            }*/
+            if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
+                moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            }
             super.multi_purpose_state_tracker = S_RECOIL_APPLY;
             break;
         }
@@ -194,10 +242,12 @@ void move_hit()
 
         case S_AFTER_MOVE:
         // after move
-        
-        super.multi_purpose_state_tracker = S_PP_REDUCTION;
-        set_callback1(run_move);
-        break;
+            if (moves[move].on_after_move) {
+                moves[move].on_after_move(bank_index);
+            }
+            super.multi_purpose_state_tracker = S_PP_REDUCTION;
+            set_callback1(run_move);
+            break;
     };
 }
 

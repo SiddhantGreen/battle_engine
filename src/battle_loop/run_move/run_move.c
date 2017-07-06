@@ -54,6 +54,12 @@ enum BeforeMoveStatus before_move_cb(u8 bank)
     return result;
 }
 
+void move_on_modify_move(u8 attacker, u8 defender, u16 move)
+{
+    if (moves[move].on_modify_move)
+        moves[move].on_modify_move(attacker, defender, move);
+}
+
 #define BEFORE_MOVE_CALLBACK_0 0
 void run_move()
 {
@@ -90,6 +96,7 @@ void run_move()
         }
         case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
             // Modify move callbacks
+            move_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             super.multi_purpose_state_tracker++;
             break;

@@ -712,7 +712,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -726,7 +725,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -740,7 +738,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -754,7 +751,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -768,7 +764,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -782,7 +777,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -796,7 +790,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -810,7 +803,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -824,7 +816,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -838,7 +829,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -851,7 +841,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -866,7 +855,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -879,7 +867,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_DANCE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -893,7 +880,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -907,7 +893,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -921,7 +906,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -935,7 +919,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET | FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -949,7 +932,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_GRAVITY,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -963,7 +945,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -977,7 +958,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -991,7 +971,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1005,7 +984,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1019,7 +997,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1033,7 +1010,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1047,7 +1023,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_GRAVITY | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1061,7 +1036,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1074,7 +1048,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1088,7 +1061,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1102,7 +1074,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1116,7 +1087,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1129,7 +1099,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1143,7 +1112,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1157,7 +1125,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1171,7 +1138,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1185,7 +1151,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1199,7 +1164,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Double-Edge"),
@@ -1211,7 +1175,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1224,7 +1187,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET |  FLAG_HITS_ALL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1238,7 +1200,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1252,7 +1213,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1266,7 +1226,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1279,7 +1238,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1293,7 +1251,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1306,7 +1263,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1320,7 +1276,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1333,7 +1288,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1346,7 +1300,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1359,7 +1312,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1372,7 +1324,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1386,7 +1337,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1400,7 +1350,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1414,7 +1363,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1427,7 +1375,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1441,7 +1388,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1455,7 +1401,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1469,7 +1414,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ALL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1483,7 +1427,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1497,7 +1440,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1511,7 +1453,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1525,7 +1466,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1539,7 +1479,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1553,7 +1492,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1567,7 +1505,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1581,7 +1518,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1595,7 +1531,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1608,7 +1543,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1622,7 +1556,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1635,7 +1568,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1649,7 +1581,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1664,7 +1595,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1679,7 +1609,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1692,7 +1621,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1705,7 +1633,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1720,7 +1647,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1734,7 +1660,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1747,7 +1672,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1760,7 +1684,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1773,7 +1696,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1787,7 +1709,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_DANCE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1800,7 +1721,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1813,7 +1733,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1827,7 +1746,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1841,7 +1759,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1855,7 +1772,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1868,7 +1784,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1882,7 +1797,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1896,7 +1810,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1910,7 +1823,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1923,7 +1835,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_OHKO | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1937,7 +1848,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1950,7 +1860,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1964,7 +1873,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1978,7 +1886,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -1991,7 +1898,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2004,7 +1910,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2017,7 +1922,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2032,7 +1936,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2046,7 +1949,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2059,7 +1961,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2072,7 +1973,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2085,7 +1985,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2098,7 +1997,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2111,7 +2009,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2124,7 +2021,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2137,7 +2033,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2150,7 +2045,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2163,7 +2057,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2176,7 +2069,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2189,7 +2081,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2202,7 +2093,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2215,7 +2105,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2228,7 +2117,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2241,7 +2129,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2254,7 +2141,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2267,7 +2153,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2281,7 +2166,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2294,7 +2178,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2307,7 +2190,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Self-Destruct"),
@@ -2319,7 +2201,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2333,7 +2214,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2347,7 +2227,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2361,7 +2240,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2375,7 +2253,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2389,7 +2266,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2403,7 +2279,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2417,7 +2292,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2431,7 +2305,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2445,7 +2318,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2459,7 +2331,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2473,7 +2344,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2487,7 +2357,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2500,7 +2369,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2513,7 +2381,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Soft-Boiled"),
@@ -2524,7 +2391,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2538,7 +2404,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2551,7 +2416,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2565,7 +2429,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2578,7 +2441,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2592,7 +2454,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2607,7 +2468,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2620,7 +2480,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2635,7 +2494,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2648,7 +2506,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2662,7 +2519,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2676,7 +2532,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2689,7 +2544,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2702,7 +2556,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2715,7 +2568,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2728,7 +2580,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2741,7 +2592,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2756,7 +2606,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2770,7 +2619,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2784,7 +2632,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2798,7 +2645,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2811,7 +2657,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2825,7 +2670,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2839,7 +2683,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2852,7 +2695,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2865,7 +2707,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2879,7 +2720,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2892,7 +2732,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2907,7 +2746,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2920,7 +2758,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2948,7 +2785,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2962,7 +2798,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2976,7 +2811,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -2989,7 +2823,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3002,7 +2835,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3015,7 +2847,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3029,7 +2860,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3043,7 +2873,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3056,7 +2885,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3069,7 +2897,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Conversion 2"),
@@ -3080,7 +2907,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3095,7 +2921,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3108,7 +2933,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3121,7 +2945,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3134,7 +2957,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3148,7 +2970,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3162,7 +2983,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3177,7 +2997,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3190,7 +3009,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3204,7 +3022,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3217,7 +3034,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3230,7 +3046,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3244,7 +3059,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Mud-Slap"),
@@ -3256,7 +3070,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3270,7 +3083,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3283,7 +3095,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3297,7 +3108,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3310,7 +3120,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3323,7 +3132,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3336,7 +3144,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_HITS_ALL | FLAG_ONSELF,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3350,7 +3157,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3364,7 +3170,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3378,7 +3183,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Lock-On"),
@@ -3389,7 +3193,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3403,7 +3206,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3416,7 +3218,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3430,7 +3231,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3444,7 +3244,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3457,7 +3256,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3471,7 +3269,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3485,7 +3282,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3498,7 +3294,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3511,7 +3306,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3525,7 +3319,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3539,7 +3332,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3553,7 +3345,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3566,7 +3357,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3579,7 +3369,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3592,7 +3381,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3605,7 +3393,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_SOUND,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3618,7 +3405,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3631,7 +3417,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3644,7 +3429,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3657,7 +3441,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3670,7 +3453,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3684,7 +3466,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3697,7 +3478,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3711,7 +3491,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3725,7 +3504,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3739,7 +3517,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3752,7 +3529,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3765,7 +3541,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3779,7 +3554,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3793,7 +3567,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3806,7 +3579,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3820,7 +3592,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3834,7 +3605,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3850,7 +3620,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3863,7 +3632,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3876,7 +3644,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3889,7 +3656,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3903,7 +3669,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3918,7 +3683,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3932,7 +3696,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3945,7 +3708,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3958,7 +3720,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3972,7 +3733,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3986,7 +3746,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -3999,7 +3758,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4014,7 +3772,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4028,7 +3785,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4042,7 +3798,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4056,7 +3811,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4070,7 +3824,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4084,7 +3837,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4097,7 +3849,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4112,7 +3863,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4126,7 +3876,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4139,7 +3888,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4152,7 +3900,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4165,7 +3912,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4179,7 +3925,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4192,7 +3937,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4205,7 +3949,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4218,7 +3961,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Will-O-Wisp"),
@@ -4229,7 +3971,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4242,7 +3983,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4256,7 +3996,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4271,7 +4010,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4285,7 +4023,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4299,7 +4036,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4312,7 +4048,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4325,7 +4060,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4338,7 +4072,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4352,7 +4085,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4365,7 +4097,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4378,7 +4109,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4391,7 +4121,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4404,7 +4133,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4417,7 +4145,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4431,7 +4158,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4445,7 +4171,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4458,7 +4183,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4474,7 +4198,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4488,7 +4211,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4501,7 +4223,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4515,7 +4236,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4528,7 +4248,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4542,7 +4261,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4555,7 +4273,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4568,7 +4285,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH |  FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4581,7 +4297,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4594,7 +4309,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4608,7 +4322,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4622,7 +4335,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4636,7 +4348,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4650,7 +4361,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4663,7 +4373,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4676,7 +4385,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4690,7 +4398,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4704,7 +4411,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4717,7 +4423,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_DANCE | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4730,7 +4435,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4745,7 +4449,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4758,7 +4461,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4772,7 +4474,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4786,7 +4487,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4799,7 +4499,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4813,7 +4512,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4827,7 +4525,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4841,7 +4538,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4855,7 +4551,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4869,7 +4564,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4883,7 +4577,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4897,7 +4590,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4911,7 +4603,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4924,7 +4615,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4937,7 +4627,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4952,7 +4641,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4966,7 +4654,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4979,7 +4666,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -4993,7 +4679,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5007,7 +4692,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5020,7 +4704,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5033,7 +4716,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5046,7 +4728,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5059,7 +4740,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5073,7 +4753,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5087,7 +4766,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5101,7 +4779,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5115,7 +4792,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5129,7 +4805,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5143,7 +4818,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5156,7 +4830,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5170,7 +4843,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5184,7 +4856,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5198,7 +4869,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5212,7 +4882,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5225,7 +4894,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5238,7 +4906,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5251,7 +4918,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5265,7 +4931,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5279,7 +4944,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5292,7 +4956,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5306,7 +4969,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CHARGE | FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5320,7 +4982,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5335,7 +4996,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5349,7 +5009,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5363,7 +5022,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5377,7 +5035,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5390,7 +5047,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5403,7 +5059,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5418,7 +5073,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5431,7 +5085,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5445,7 +5098,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5459,7 +5111,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5473,7 +5124,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5487,7 +5137,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5501,7 +5150,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5514,7 +5162,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5527,7 +5174,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5540,7 +5186,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Wake-Up Slap"),
@@ -5552,7 +5197,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5566,7 +5210,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5579,7 +5222,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5592,7 +5234,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5606,7 +5247,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5619,7 +5259,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5634,7 +5273,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5648,7 +5286,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5661,7 +5298,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5674,7 +5310,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5687,7 +5322,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("U-turn"),
@@ -5699,7 +5333,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5713,7 +5346,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5727,7 +5359,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5741,7 +5372,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5754,7 +5384,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5767,7 +5396,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5780,7 +5408,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5793,7 +5420,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5806,7 +5432,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5819,7 +5444,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5832,7 +5456,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5845,7 +5468,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5858,7 +5480,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5871,7 +5492,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5884,7 +5504,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5897,7 +5516,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5910,7 +5528,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5923,7 +5540,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5937,7 +5553,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5950,7 +5565,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5965,7 +5579,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5978,7 +5591,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -5991,7 +5603,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6004,7 +5615,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6017,7 +5627,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_SNATCH | FLAG_GRAVITY,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6031,7 +5640,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6045,7 +5653,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6059,7 +5666,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PULSE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6072,7 +5678,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6086,7 +5691,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6100,7 +5704,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6115,7 +5718,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6129,7 +5731,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6143,7 +5744,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6157,7 +5757,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("X-Scissor"),
@@ -6169,7 +5768,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6183,7 +5781,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6197,7 +5794,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6211,7 +5807,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6225,7 +5820,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6239,7 +5833,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6254,7 +5847,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6268,7 +5860,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6282,7 +5873,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6296,7 +5886,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6310,7 +5899,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6323,7 +5911,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6337,7 +5924,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_RECHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6350,7 +5936,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6365,7 +5950,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6381,7 +5965,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6396,7 +5979,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6411,7 +5993,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6425,7 +6006,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6439,7 +6019,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6453,7 +6032,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6468,7 +6046,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6482,7 +6059,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6497,7 +6073,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6511,7 +6086,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6525,7 +6099,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6539,7 +6112,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6553,7 +6125,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6566,7 +6137,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6581,7 +6151,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6595,7 +6164,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6609,7 +6177,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6623,7 +6190,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6637,7 +6203,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6651,7 +6216,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6665,7 +6229,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_RECHARGE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6680,7 +6243,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6694,7 +6256,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6708,7 +6269,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6722,7 +6282,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6737,7 +6296,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6750,7 +6308,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6763,7 +6320,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6776,7 +6332,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6790,7 +6345,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6804,7 +6358,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6818,7 +6371,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6832,7 +6384,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6846,7 +6397,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6861,7 +6411,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6876,7 +6425,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6889,7 +6437,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6902,7 +6449,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6916,7 +6462,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6930,7 +6475,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6944,7 +6488,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6959,7 +6502,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6972,7 +6514,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_DANCE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6985,7 +6526,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -6999,7 +6539,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7012,7 +6551,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7026,7 +6564,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7040,7 +6577,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7054,7 +6590,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7067,7 +6602,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7081,7 +6615,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7094,7 +6627,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7107,7 +6639,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7120,7 +6651,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7134,7 +6664,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7148,7 +6677,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7161,7 +6689,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7175,7 +6702,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_POWDER,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7188,7 +6714,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_GRAVITY | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7201,7 +6726,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7215,7 +6739,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7229,7 +6752,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7243,7 +6765,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7257,7 +6778,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7270,7 +6790,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_SNATCH | FLAG_DANCE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7283,7 +6802,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7297,7 +6815,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7310,7 +6827,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7323,7 +6839,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7337,7 +6852,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7350,7 +6864,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7364,7 +6877,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7378,7 +6890,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7392,7 +6903,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7405,7 +6915,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7418,7 +6927,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7431,7 +6939,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7445,7 +6952,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7459,7 +6965,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7473,7 +6978,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7487,7 +6991,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7501,7 +7004,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7515,7 +7017,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7529,7 +7030,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7543,7 +7043,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7556,7 +7055,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7569,7 +7067,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_PULSE | FLAG_HEAL | FLAG_PROTECT | FLAG_REFLECTABLE | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7583,7 +7080,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7597,7 +7093,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_GRAVITY | FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7610,7 +7105,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7626,7 +7120,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7640,7 +7133,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7653,7 +7145,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7667,7 +7158,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7680,7 +7170,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7694,7 +7183,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7707,7 +7195,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7720,7 +7207,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7734,7 +7220,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7748,7 +7233,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7762,7 +7246,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7776,7 +7259,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7790,7 +7272,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7804,7 +7285,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7818,7 +7298,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7832,7 +7311,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7848,7 +7326,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7861,7 +7338,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7875,7 +7351,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7889,7 +7364,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7904,7 +7378,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7918,7 +7391,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7932,7 +7404,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7946,7 +7417,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7960,7 +7430,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7974,7 +7443,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -7987,7 +7455,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8001,7 +7468,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8015,7 +7481,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8028,7 +7493,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8042,7 +7506,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8056,7 +7519,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8070,7 +7532,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8084,7 +7545,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8098,7 +7558,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8112,7 +7571,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8126,7 +7584,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8140,7 +7597,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8154,7 +7610,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8168,7 +7623,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8182,7 +7636,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8196,7 +7649,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8210,7 +7662,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8224,7 +7675,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8238,7 +7688,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8252,7 +7701,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8266,7 +7714,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8280,7 +7727,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("V-create"),
@@ -8292,7 +7738,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8306,7 +7751,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8320,7 +7764,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8334,7 +7777,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8347,7 +7789,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8361,7 +7802,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8374,7 +7814,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8387,7 +7826,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8401,7 +7839,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8415,7 +7852,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Trick-or-Treat"),
@@ -8426,7 +7862,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8439,7 +7874,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8453,7 +7887,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8467,7 +7900,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Forest‘s Curse"),
@@ -8478,7 +7910,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8492,7 +7923,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Freeze-Dry"),
@@ -8504,7 +7934,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8518,7 +7947,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8531,7 +7959,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE |FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Topsy-Turvy"),
@@ -8542,7 +7969,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8556,7 +7982,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8570,7 +7995,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8583,7 +8007,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8596,7 +8019,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8609,7 +8031,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8622,7 +8043,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8636,7 +8056,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8650,7 +8069,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8664,7 +8082,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8678,7 +8095,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8691,7 +8107,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{_("King‘s Shield"),
@@ -8703,7 +8118,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8716,7 +8130,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8729,7 +8142,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8743,7 +8155,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8757,7 +8168,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8771,7 +8181,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8786,7 +8195,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8800,7 +8208,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8814,7 +8221,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8827,7 +8233,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8840,7 +8245,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8853,7 +8257,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8867,7 +8270,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8880,7 +8282,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CHARGE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8893,7 +8294,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_SNATCH | FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8906,7 +8306,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8919,7 +8318,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8933,7 +8331,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8946,7 +8343,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Baby-Doll Eyes"),
@@ -8958,7 +8354,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8972,7 +8367,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -8986,7 +8380,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9000,7 +8393,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Power-Up Punch"),
@@ -9012,7 +8404,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9027,7 +8418,6 @@ struct move_data moves[] = {
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 75,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9041,7 +8431,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9055,7 +8444,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9068,7 +8456,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Land‘s Wrath"),
@@ -9080,7 +8467,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9094,7 +8480,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9108,7 +8493,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9122,7 +8506,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9136,7 +8519,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9150,7 +8532,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9163,7 +8544,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9178,7 +8558,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9192,7 +8571,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9206,7 +8584,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9220,7 +8597,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9234,7 +8610,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9248,7 +8623,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9261,7 +8635,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9275,7 +8648,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9288,7 +8660,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_REFLECTABLE,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9302,7 +8673,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9316,7 +8686,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9330,7 +8699,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9343,7 +8711,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9356,7 +8723,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9369,7 +8735,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9383,7 +8748,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9397,7 +8761,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9411,7 +8774,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9424,7 +8786,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9438,7 +8799,6 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9452,7 +8812,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9466,7 +8825,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9480,7 +8838,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9493,7 +8850,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9507,7 +8863,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9520,7 +8875,6 @@ struct move_data moves[] = {
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9534,7 +8888,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9548,7 +8901,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9562,7 +8914,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9575,7 +8926,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9591,7 +8941,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9605,7 +8954,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9619,7 +8967,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DRAGON,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9633,7 +8980,6 @@ struct move_data moves[] = {
 	.type = MTYPE_DARK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9646,7 +8992,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9662,7 +9007,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9676,7 +9020,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9690,7 +9033,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9704,7 +9046,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GROUND,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9718,7 +9059,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9733,7 +9073,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9747,7 +9086,6 @@ struct move_data moves[] = {
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9761,7 +9099,6 @@ struct move_data moves[] = {
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9775,7 +9112,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_AUTHENTIC | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9789,7 +9125,6 @@ struct move_data moves[] = {
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9803,7 +9138,6 @@ struct move_data moves[] = {
 	.type = MTYPE_GHOST,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9816,7 +9150,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{
@@ -9830,7 +9163,6 @@ struct move_data moves[] = {
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Nature‘s Madness"),
@@ -9841,7 +9173,6 @@ struct move_data moves[] = {
 	.type = MTYPE_FAIRY,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 	{_("Multi-Attack"),
@@ -9853,7 +9184,6 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
 	},
 	
 };
