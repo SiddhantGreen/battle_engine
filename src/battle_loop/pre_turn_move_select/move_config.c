@@ -64,7 +64,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].category = MOVE_CATEGORY(move_id);
     battle_master->b_moves[index].type[0] = MOVE_TYPE(move_id);
     battle_master->b_moves[index].type[1] = MTYPE_EGG;
-    battle_master->b_moves[index].flinch = M_FLINCH(move_id);
+    battle_master->b_moves[index].flinch = 0;
     battle_master->b_moves[index].accuracy = MOVE_ACCURACY(move_id);
     battle_master->b_moves[index].remove_contact = false;
     battle_master->b_moves[index].copied = false;

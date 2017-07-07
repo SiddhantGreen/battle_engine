@@ -59,6 +59,7 @@ enum battle_string_ids {
     STRING_EXP_GAIN = 90,
     STRING_LEVEL_UP = 91,
     STRING_HEAL = 92,
+    STRING_FLINCHED = 94,
 };
 
 
@@ -156,6 +157,8 @@ static const pchar str_give_exp[] = _("{ATTACKING_MON} gained {STR_VAR_1} exp!\p
 static const pchar str_level_up[] = _("{ATTACKING_MON} leveled up!\p");
 static const pchar str_healed_p[] = _("{ATTACKING_MON} restored some HP!");
 static const pchar str_healed_o[] = _("Foe {ATTACKING_MON} restored some HP!");
+static const pchar str_flinched_p[] = _("{ATTACKING_MON} flinched\nand couldn’t move!");
+static const pchar str_flinched_o[] = _("Foe {ATTACKING_MON} flinched\nand couldn’t move!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -177,7 +180,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[94] = {
+static const pchar* battle_strings[96] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -228,6 +231,7 @@ static const pchar* battle_strings[94] = {
    (pchar*)&str_give_exp,
    (pchar*)&str_level_up,
    (pchar*)&str_healed_p, (pchar*)&str_healed_o,
+   (pchar*)&str_flinched_p, (pchar*)&str_flinched_o,
 };
 
 

@@ -19,6 +19,7 @@ extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void dprintf(const char * str, ...);
 extern void set_status(u8 bank, u8 source, enum Effect status);
+extern u16 rand_range(u16, u16);
 
 #define MOVE_ON_HEAL 0
 
@@ -82,7 +83,14 @@ void move_hit()
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     u16 move = CURRENT_MOVE(bank_index);
     switch (super.multi_purpose_state_tracker) {
-        case S_MOVE_TRYHIT: 
+        case S_MOVE_TRYHIT:
+            // flinch means no moving
+            if (rand_range(0, 100) < battle_master->b_moves[B_MOVE_BANK(bank_index)].flinch) {
+                enqueue_message(0, bank_index, STRING_FLINCHED, 0);
+                super.multi_purpose_state_tracker = S_RUN_FAINT;
+                set_callback1(run_decision);
+                return;
+            }
             // move tryhit callback
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
@@ -233,6 +241,8 @@ void move_hit()
         case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
         // Roll secondary boosts self
         {
+            // set flinch chance of target
+            battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
             if (moves[move].procs) {
                 extern void boost_procs(u8 attacker, u8 defender, u16 move);
                 boost_procs(bank_index, TARGET_OF(bank_index), move);
