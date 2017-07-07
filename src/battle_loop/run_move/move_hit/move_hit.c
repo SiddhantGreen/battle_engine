@@ -248,7 +248,8 @@ void move_hit()
                 boost_procs(bank_index, TARGET_OF(bank_index), move);
                 
             }
-            super.multi_purpose_state_tracker = S_SECONDARY_ON_HIT;
+            super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+            break;
         }
         case S_AFTER_MOVE_SECONDARY:
         // after_move_secondary

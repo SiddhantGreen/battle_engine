@@ -58,10 +58,13 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
     if (!amount)
         return;
-    if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
-        if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
-            return;
-    }        
+    if (ABILITIES_MAX > BANK_ABILITY(bank)) {
+        if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
+            if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
+                return;
+        }
+    }
+    extern void dprintf(const char * str, ...);
     switch (stat_id) {
         case REQUEST_ATK:
             {
@@ -104,6 +107,7 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             break;
             }
         default:
+            dprintf("wtf, no boost men\n");
             return;
     };
 
