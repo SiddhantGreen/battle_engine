@@ -56,6 +56,8 @@ bool on_ground(u8 bank)
 
 void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
+    if (!amount)
+        return;
     if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
         if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
             return;
@@ -101,6 +103,8 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             p_bank[bank]->b_data.crit_mod += amount;
             break;
             }
+        default:
+            return;
     };
 
     amount += 6;

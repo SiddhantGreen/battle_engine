@@ -250,9 +250,6 @@ void move_hit()
             }
             super.multi_purpose_state_tracker = S_SECONDARY_ON_HIT;
         }
-        case S_SECONDARY_ON_HIT:
-        // secondary on hit callback (i.e contrary)
-        
         case S_AFTER_MOVE_SECONDARY:
         // after_move_secondary
 
