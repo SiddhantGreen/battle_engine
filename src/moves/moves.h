@@ -183,7 +183,6 @@ struct move_data {
     u8 recoil;
     u8 heal;
     struct move_procs* procs;
-    struct move_callbacks* move_cb;
     u8 recoil_struggle : 1;
     u8 flinch_chance : 7;
     MoveBeforeTurnCallback before_turn;

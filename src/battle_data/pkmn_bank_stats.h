@@ -84,6 +84,17 @@
 #define B_IS_PRANKSTER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].prankstered
 #define B_INFILTRATES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].infiltrates
 
+
+#define B_SECONDARY_SELF_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_self
+#define B_SECONDARY_TARGET_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_target
+
+#define B_SECONDARY_STATUS_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status[0]
+#define B_SECONDARY_STATUS_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status[1]
+
+#define B_SECONDARY_STATUS_CHANCE_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0]
+#define B_SECONDARY_STATUS_CHANCE_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1]
+
+
 /*
  * General Pbank macros
  */

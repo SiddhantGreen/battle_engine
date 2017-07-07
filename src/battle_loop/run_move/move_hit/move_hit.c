@@ -231,9 +231,15 @@ void move_hit()
             break;
         }
         case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
-        // Roll secondary boosts self  
+        // Roll secondary boosts self
+        {
+            if (moves[move].procs) {
+                extern void boost_procs(u8 attacker, u8 defender, u16 move);
+                boost_procs(bank_index, TARGET_OF(bank_index), move);
+                
+            }
             super.multi_purpose_state_tracker = S_SECONDARY_ON_HIT;
-            
+        }
         case S_SECONDARY_ON_HIT:
         // secondary on hit callback (i.e contrary)
         
