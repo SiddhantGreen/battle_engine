@@ -7,7 +7,7 @@
 #include <pokeagb/pokeagb.h>
 
 #define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
-#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 2
+#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 0
 #define rgb5(r, g, b) (u16)((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10))
 #define STAT_COLOR(stat, pkmn)                                                                                                                       \
     (nature_stat_boosted(stat, pkmn) ? &switch_color_green : (nature_stat_nerved(stat, pkmn) ? &switch_color_red : &switch_color))
@@ -324,7 +324,7 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     if ((enum MoveTypes)(pokemon_base_stats[species].type[0]) != MTYPE_EGG) {
         switch_type_icon_load(pokemon_base_stats[species].type[0], 47, 25, 0);
     }
-    if ((enum MoveTypes)(pokemon_base_stats[species].type[1]) != MTYPE_EGG) {
+    if (((enum MoveTypes)(pokemon_base_stats[species].type[1]) != MTYPE_EGG) && (pokemon_base_stats[species].type[0] != pokemon_base_stats[species].type[1])) {
         switch_type_icon_load(pokemon_base_stats[species].type[1], 83, 25, 1);
     }
 }
