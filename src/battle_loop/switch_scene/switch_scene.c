@@ -7,10 +7,10 @@
 #include <pokeagb/pokeagb.h>
 
 #define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
+#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 2
 #define rgb5(r, g, b) (u16)((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10))
-#define STAT_COLOR(stat, pkmn)                                                                                         \
-    (nature_stat_boosted(stat, pkmn) ? &switch_color_green                                                             \
-                                     : (nature_stat_nerved(stat, pkmn) ? &switch_color_red : &switch_color))
+#define STAT_COLOR(stat, pkmn)                                                                                                                       \
+    (nature_stat_boosted(stat, pkmn) ? &switch_color_green : (nature_stat_nerved(stat, pkmn) ? &switch_color_red : &switch_color))
 
 #define SWB_ABILITY 0
 #define SWB_ITEM 1
@@ -168,38 +168,14 @@ static struct TextboxTemplate switch_boxes[] = {
 };
 
 void switch_setup(void) {
-    struct BgConfig bg0_config = {.padding = 0,
-                                  .b_padding = 0,
-                                  .priority = 0,
-                                  .palette = 0,
-                                  .size = 0,
-                                  .map_base = 31,
-                                  .character_base = 0,
-                                  .bgid = 0};
-    struct BgConfig bg1_config = {.padding = 0,
-                                  .b_padding = 0,
-                                  .priority = 1,
-                                  .palette = 0,
-                                  .size = 0,
-                                  .map_base = 30,
-                                  .character_base = 2,
-                                  .bgid = 1};
-    struct BgConfig bg2_config = {.padding = 0,
-                                  .b_padding = 0,
-                                  .priority = 2,
-                                  .palette = 0,
-                                  .size = 0,
-                                  .map_base = 29,
-                                  .character_base = 1,
-                                  .bgid = 2};
-    struct BgConfig bg3_config = {.padding = 0,
-                                  .b_padding = 0,
-                                  .priority = 3,
-                                  .palette = 0,
-                                  .size = 1,
-                                  .map_base = 28,
-                                  .character_base = 3,
-                                  .bgid = 3};
+    struct BgConfig bg0_config = {
+        .padding = 0, .b_padding = 0, .priority = 0, .palette = 0, .size = 0, .map_base = 31, .character_base = 0, .bgid = 0};
+    struct BgConfig bg1_config = {
+        .padding = 0, .b_padding = 0, .priority = 1, .palette = 0, .size = 0, .map_base = 30, .character_base = 2, .bgid = 1};
+    struct BgConfig bg2_config = {
+        .padding = 0, .b_padding = 0, .priority = 2, .palette = 0, .size = 0, .map_base = 29, .character_base = 1, .bgid = 2};
+    struct BgConfig bg3_config = {
+        .padding = 0, .b_padding = 0, .priority = 3, .palette = 0, .size = 1, .map_base = 28, .character_base = 3, .bgid = 3};
     struct BgConfig bg_config_data[4] = {bg0_config, bg1_config, bg2_config, bg3_config};
     bgid_mod_x_offset(0, 0, 0);
     bgid_mod_y_offset(0, 0, 0);
@@ -224,8 +200,8 @@ void switch_setup(void) {
     if ((p_bank[OPPONENT_SINGLES_BANK]->objid) < 0x3F) {
         OBJID_HIDE(p_bank[OPPONENT_SINGLES_BANK]->objid);
     }
-    gpu_sync_bg_show(1);
-    gpu_sync_bg_show(0);
+    gpu_sync_bg_hide(1);
+    gpu_sync_bg_hide(0);
 }
 
 void switch_load_background(void) {
@@ -353,11 +329,28 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     }
 }
 
+void switch_obj_hide_all(void) {
+    for(u8 i = 0; i < 10; ++i)
+    {
+        if(battle_master->switch_objid[i] != 0x3F)
+        OBJID_HIDE(battle_master->switch_objid[i]);
+    }
+}
+
+void switch_obj_show_all(void) {
+    for(u8 i = 0; i < 10; ++i)
+    {
+        if(battle_master->switch_objid[i] != 0x3F)
+        OBJID_SHOW(battle_master->switch_objid[i]);
+    }
+}
+
 void switch_scene_main(void) {
     switch (super.multi_purpose_state_tracker) {
     case 0:
         if (!pal_fade_control.active) {
             /* VRAM setup */
+            rboxes_free();
             switch_setup();
             super.multi_purpose_state_tracker++;
         }
@@ -371,6 +364,9 @@ void switch_scene_main(void) {
         break;
     }
     case 2:
+        gpu_sync_bg_show(1);
+        gpu_sync_bg_show(0);
+        switch_obj_show_all();
         fade_screen(0xFFFFFFFF, 0, 16, 0, 0x0000);
         super.multi_purpose_state_tracker++;
         break;
