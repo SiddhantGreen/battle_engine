@@ -47,7 +47,7 @@ OBJECTS=$(addprefix $(BUILD)/,$(GEN_OBJ) $(C_OBJ) $(S_OBJ))
 
 all: main.s $(BINARY) $(call rwildcard,patches,*.s)
 	@echo -e "\e[1;32mCreating ROM\e[0m"
-	$(ARMIPS) main.s
+	$(ARMIPS) main.s -sym output.txt
 
 clean:
 	rm -rf build
