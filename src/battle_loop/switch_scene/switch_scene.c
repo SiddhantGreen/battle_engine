@@ -1,6 +1,7 @@
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../generated/images/switch/switch_bg.h"
 #include "../generated/images/type_icons.h"
+#include "../generated/images/PSS_icons.h"
 #include "battle_data/battle_state.h"
 #include "battle_data/pkmn_bank.h"
 #include "battle_text/battle_textbox_gfx.h"
@@ -28,6 +29,7 @@
 extern void option_selection(void);
 extern u8 get_ability(struct Pokemon *p);
 extern u8 load_dmg_type_icon(u8 type, s16 x, s16 y, u8 tag);
+extern u8 load_dmg_category_icon(u8 category, s16 x, s16 y, u8 tag);
 
 static const pchar str_no_item[] = _("None");
 
@@ -206,7 +208,7 @@ void switch_setup(void) {
 
 void switch_load_background(void) {
     /* load menu */
-    void *sw_bgbackbuffer = malloc(0x1000);
+    void *sw_bgbackbuffer = malloc(0x800);
     gpu_pal_apply_compressed((void *)switch_bgPal, 0, 32);
     gpu_pal_apply((void *)(&switch_text_pal), 15 * 16, 32);
     LZ77UnCompWram((void *)switch_bgMap, (void *)sw_bgbackbuffer);
@@ -223,11 +225,25 @@ void switch_type_update_icon(u8 objid, enum MoveTypes type) {
     memcpy(vram, (type * 256) + type_iconsTiles, 256);
 }
 
+void switch_category_update_icon(u8 objid, u8 category) {
+    void *vram = (void *)((0x06010000) + objects[objid].final_oam.tile_num * 32);
+    memcpy(vram, (category * 128) + PSS_iconsTiles, 128);
+}
+
 void switch_type_icon_load(u8 type, s16 x, s16 y, u8 id) {
     if (battle_master->switch_objid[id] != 0x3F) {
-        switch_type_update_icon(battle_master->switch_objid[0], type);
+        switch_type_update_icon(battle_master->switch_objid[id], type);
     } else {
         battle_master->switch_objid[id] = load_dmg_type_icon(type, x, y, id + 4);
+    }
+}
+
+void switch_cat_icon_load(u8 category, s16 x, s16 y, u8 id) {
+    u8 array_idx = id + 6;
+    if (battle_master->switch_objid[array_idx] != 0x3F) {
+        switch_category_update_icon(battle_master->switch_objid[array_idx], category);
+    } else {
+        battle_master->switch_objid[array_idx] = load_dmg_category_icon(category, x,y, id + 4);
     }
 }
 
@@ -307,7 +323,8 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
         rboxid_print(SWB_PP, 0, 2, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
 
         /*the move type icon*/
-        switch_type_icon_load(moves[move].type, 49, 84 + (14 * i), 2 + i);
+        switch_type_icon_load(moves[move].type, 49, 84 + (14 * i), i + 2);
+        switch_cat_icon_load(moves[move].category, 226, 84 + (14*i), i);
     }
 
     for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
@@ -324,24 +341,23 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     if ((enum MoveTypes)(pokemon_base_stats[species].type[0]) != MTYPE_EGG) {
         switch_type_icon_load(pokemon_base_stats[species].type[0], 47, 25, 0);
     }
-    if (((enum MoveTypes)(pokemon_base_stats[species].type[1]) != MTYPE_EGG) && (pokemon_base_stats[species].type[0] != pokemon_base_stats[species].type[1])) {
+    if (((enum MoveTypes)(pokemon_base_stats[species].type[1]) != MTYPE_EGG) &&
+        (pokemon_base_stats[species].type[0] != pokemon_base_stats[species].type[1])) {
         switch_type_icon_load(pokemon_base_stats[species].type[1], 83, 25, 1);
     }
 }
 
 void switch_obj_hide_all(void) {
-    for(u8 i = 0; i < 10; ++i)
-    {
-        if(battle_master->switch_objid[i] != 0x3F)
-        OBJID_HIDE(battle_master->switch_objid[i]);
+    for (u8 i = 0; i < 10; ++i) {
+        if (battle_master->switch_objid[i] != 0x3F)
+            OBJID_HIDE(battle_master->switch_objid[i]);
     }
 }
 
 void switch_obj_show_all(void) {
-    for(u8 i = 0; i < 10; ++i)
-    {
-        if(battle_master->switch_objid[i] != 0x3F)
-        OBJID_SHOW(battle_master->switch_objid[i]);
+    for (u8 i = 0; i < 10; ++i) {
+        if (battle_master->switch_objid[i] != 0x3F)
+            OBJID_SHOW(battle_master->switch_objid[i]);
     }
 }
 
@@ -357,9 +373,9 @@ void switch_scene_main(void) {
         break;
     case 1: {
         switch_load_background();
-
         rbox_init_from_templates(switch_boxes);
         switch_load_pokemon_data(&party_player[0]);
+        switch_obj_hide_all();
         super.multi_purpose_state_tracker++;
         break;
     }
