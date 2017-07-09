@@ -1,9 +1,9 @@
 #ifndef BATTLE_STATE_H_
 #define BATTLE_STATE_H_
 
-#include <pokeagb/pokeagb.h>
-#include "moves/moves.h"
 #include "battle_data/pkmn_bank.h"
+#include "moves/moves.h"
+#include <pokeagb/pokeagb.h>
 
 #define GAME_STATE super.multi_purpose_state_tracker
 typedef void (*ResidualEffectCallback)(u8);
@@ -34,14 +34,13 @@ struct battle_selection_cursor {
     u8 cursor_pos; // 0-3
     u8 cursor_x[6];
     u8 cursor_y[6];
-    
 };
 
 struct global_message {
     u16 move_id;
     u8 bank;
     u8 string_id;
-    u16 effect;   
+    u16 effect;
 };
 
 struct battle_field_state {
@@ -70,7 +69,6 @@ struct battle_field_state {
     u8 safe_guard_turns[2];
     u8 lightscreen_turns[2];
     u8 weather_turns;
-    
 };
 
 struct move_used {
@@ -83,7 +81,7 @@ struct move_used {
     u8 type[2];
     u8 flinch;
     u8 accuracy; // over 100 = never miss
-    
+
     u16 remove_contact : 1;
     u16 copied : 1;
     u16 ignore_abilities : 1;
@@ -94,7 +92,7 @@ struct move_used {
     u16 ignore_target_atk : 1;
     u16 ignore_target_def : 1;
     u16 ignore_target_evasion : 1;
-    
+
     u8 chance_self;
     u8 chance_target;
     u8 stat_self[6];
@@ -109,14 +107,18 @@ struct move_used {
     u16 after_dmg;
 };
 
-
-
-
 typedef u16 (*StatModifierCallback)(u16 stat, u8 id, u8 bank);
+
+struct switch_menu {
+    u8 type_objid[10];
+    u8 slider_objid[3];
+    u8 icon_objid[6];
+    u8 position;
+};
 
 struct battle_main {
     struct battle_field_state field_state;
-    
+
     /* Object ids and positions */
     struct battle_selection_cursor battle_cursor;
     u8 selected_option;
@@ -125,35 +127,29 @@ struct battle_main {
     u8 move_pss_objid[4];
     u8 move_pp_objid[4];
     u8 fight_menu_content_spawned;
-    u8 switch_objid[10];
-    
+
     /* Message system variables */
     struct global_message b_message[5]; // message queue depth is 5
     u8 queue_size;
     u8 queue_front_index;
     u8 state;
     SuperCallback c1;
-    
+
     /* Battle turn order variables */
     u8 first_bank;
     u8 second_bank;
     u8 execution_index;
     struct move_used b_moves[2];
 
+    struct switch_menu switch_main;
+
     /* Battle details */
     enum Effect effect[2];
 };
 
-enum fight_menu {
-    OPTION_FIGHT,
-    OPTION_POKEMON,
-    OPTION_BAG,
-    OPTION_RUN
-};
+enum fight_menu { OPTION_FIGHT, OPTION_POKEMON, OPTION_BAG, OPTION_RUN };
 
-
-
-extern struct battle_main* battle_master;
+extern struct battle_main *battle_master;
 extern u8 bs_anim_status;
 extern void play_bmessage(void);
 
