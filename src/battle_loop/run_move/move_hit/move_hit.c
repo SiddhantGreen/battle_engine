@@ -246,9 +246,20 @@ void move_hit()
             if (moves[move].procs) {
                 extern void boost_procs(u8 attacker, u8 defender, u16 move);
                 boost_procs(bank_index, TARGET_OF(bank_index), move);
+           
+                // roll secondary status chances player
+                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, bank_index)) {
+                    p_bank[bank_index]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
+                    set_status(bank_index, bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
+                }
                 
+                // roll secondary status chances target
+                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, bank_index)) {
+                    p_bank[TARGET_OF(bank_index)]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
+                    set_status(TARGET_OF(bank_index), bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
+                }
             }
-            super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+            super.multi_purpose_state_tracker = S_AFTER_MOVE;
             break;
         }
         case S_AFTER_MOVE_SECONDARY:

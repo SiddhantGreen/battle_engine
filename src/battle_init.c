@@ -20,6 +20,7 @@ extern void show_move_data(void);
 extern void option_selection(void);
 extern u8 get_ability(struct Pokemon* p);
 extern void dprintf(const char * str, ...);
+extern void status_graphical_update(u8 bank, enum Effect status);
 
 void init_battle_elements()
 {

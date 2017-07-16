@@ -36,7 +36,8 @@
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
-
+#define MOVE_SECONDARY_STATUS_CHANCE(move, bank) moves[move].procs->secondary_status_chance[bank]
+#define MOVE_SECONDARY_STATUS(move, bank) moves[move].procs->secondary_status[bank]
 
     
 #define FLAG_CHARGE (1 << 1)
@@ -119,6 +120,7 @@ enum StatusAilments {
     AILMENT_CONFUSION,
 };
 
+
 /*
 
 List of flags and their descriptions:
@@ -152,7 +154,7 @@ struct move_procs {
     s8 amount_target[6];
     u8 multihit_lowest;
     u8 multihit_highest;
-    u8 secondary_status[2];
+    enum StatusAilments secondary_status[2]; // index 0 = player, index 1 = target
     u8 secondary_status_chance[2];
 };
 

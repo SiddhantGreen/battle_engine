@@ -31,7 +31,7 @@ bool peek_message()
     extern void play_bmessage(void);
     super.callback1 = play_bmessage;
     super.multi_purpose_state_tracker = 0;
-    return true;;
+    return true;
 }
 
 
