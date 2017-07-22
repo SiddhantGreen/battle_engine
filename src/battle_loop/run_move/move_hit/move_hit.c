@@ -254,7 +254,7 @@ void move_hit()
                 }
                 
                 // roll secondary status chances target
-                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, bank_index)) {
+                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, TARGET_OF(bank_index))) {
                     p_bank[TARGET_OF(bank_index)]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
                     set_status(TARGET_OF(bank_index), bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
                 }

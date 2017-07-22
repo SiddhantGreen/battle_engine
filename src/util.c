@@ -4,6 +4,7 @@
 #include "abilities/battle_abilities.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern void dprintf(const char * str, ...);
 
 u16 rand_range(u16 min, u16 max)
 {
@@ -64,7 +65,6 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
                 return;
         }
     }
-    extern void dprintf(const char * str, ...);
     switch (stat_id) {
         case REQUEST_ATK:
             {
@@ -141,12 +141,7 @@ void set_status(u8 bank, u8 source, enum Effect status)
     // lowest priority for override are types and current status
     switch (status) {
         case EFFECT_NONE:
-            // clear all ailments. Cured
-            p_bank[bank]->b_data.status = EFFECT_NONE;
-            p_bank[bank]->b_data.status_turns = 0;
-            p_bank[bank]->b_data.confusion_turns = 0;
-            enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
-            status_graphical_update(bank, status);
+            // no status to set
             return;
             break;
         case EFFECT_PARALYZE:
@@ -200,6 +195,14 @@ void set_status(u8 bank, u8 source, enum Effect status)
             }
             p_bank[bank]->b_data.confusion_turns = rand_range(1, 4);
 			break;
+        case EFFECT_CURE:
+            // cure status
+            p_bank[bank]->b_data.status = EFFECT_NONE;
+            p_bank[bank]->b_data.status_turns = 0;
+            p_bank[bank]->b_data.confusion_turns = 0;
+            enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
+            status_graphical_update(bank, status);
+            return;
         default:
             break;
     };

@@ -118,6 +118,7 @@ enum StatusAilments {
     AILMENT_PARALYZE,
     AILMENT_BAD_POISON,
     AILMENT_CONFUSION,
+    AILMENT_CURE,
 };
 
 
