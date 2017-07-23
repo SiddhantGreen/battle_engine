@@ -27,6 +27,7 @@ enum TypeEffectiveness {
     TE_NOT_VERY_EFFECTIVE,
     TE_EFFECTIVE,
     TE_SUPER_EFFECTIVE,
+    TE_OHKO,
 };
 
 struct battle_selection_cursor {

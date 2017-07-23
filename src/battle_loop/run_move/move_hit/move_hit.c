@@ -43,6 +43,10 @@ bool damage_result_msg(u8 bank_index)
             if (!B_MOVE_MULTI(bank_index))    
                 enqueue_message(0, 0, STRING_MOVE_SE, 0);
             break;
+        case TE_OHKO:
+            if (!B_MOVE_MULTI(bank_index))    
+                enqueue_message(0, 0, STRING_OHKO, 0);
+            break;
         default:
             break;
     };
@@ -73,7 +77,7 @@ enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
 
 enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move) 
 {
-    if (moves[move].on_tryhit_move) {
+    if (moves[move].on_tryhit_side_move) {
         return moves[move].on_tryhit_side_move(attacker, defender, move);
     }
     return USE_MOVE_NORMAL;
@@ -167,7 +171,7 @@ void move_hit()
             break;
         case S_DAMAGE_CALC_AND_APPLY:
             // Skip damage checks if move doesn't do damage
-            if (B_MOVE_POWER(bank_index) < 1) {
+            if ((B_MOVE_POWER(bank_index) < 1) && (!IS_OHKO(move))) {
                 super.multi_purpose_state_tracker = S_HEAL_CALC_AND_APPLY;
                 return;
             }

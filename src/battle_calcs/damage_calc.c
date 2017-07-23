@@ -75,10 +75,7 @@ u16 move_on_damage_callback(u16 damage_taken, u8 attacker, u8 defender, u16 move
 
 #define MOVE_ONDAMAGE_CALLBACK 0
 u16 get_base_damage(u8 attacker, u8 defender, u16 move)
-{
-    if (IS_OHKO(move))
-        return (TOTAL_HP(defender));
-    
+{  
     // moves like counter/bide/seismic toss calc damage outside of the formula & ignore type immunities
     u16 predmg = move_on_damage_callback(p_bank[attacker]->b_data.last_damage, attacker, defender, move);
     if (predmg) {
@@ -223,7 +220,11 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 }
 
 s16 get_damage(u8 attacker, u8 defender, u16 move)
-{       
+{
+    if (IS_OHKO(move)) {
+        battle_master->b_moves[B_MOVE_BANK(attacker)].effectiveness = TE_OHKO;
+        return (TOTAL_HP(defender));
+    }
     // get base damage
     u16 base_dmg = get_base_damage(attacker, defender, move);
 
