@@ -76,7 +76,7 @@
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->b_data.current_hp
 #define B_LEVEL(bank) p_bank[bank]->b_data.level
-#define TOTAL_HP(x) p_bank[x]->b_data.total_hp
+#define TOTAL_HP(bank) p_bank[bank]->b_data.total_hp
 #define B_STATUS(bank) p_bank[bank]->b_data.status
 #define TARGET_OF(bank) p_bank[bank]->b_data.my_target
 #define SET_CONFUSION_TURNS(bank, v) p_bank[bank]->b_data.confusion_turns = v

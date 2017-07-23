@@ -766,6 +766,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_damage_move = payday_ondmg,
 	},
 	
 	{
@@ -778,7 +779,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &basic_10burn_proc,
 	},
 	
 	{
@@ -791,7 +792,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &basic_10freez_proc,
 	},
 	
 	{
@@ -804,7 +805,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &basic_10para_proc,
 	},
 	
 	{
@@ -843,6 +844,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
     .procs = &basic_proc,
+    .on_tryhit_move = ohko_tryhit_move,
 	},
 	
 	{

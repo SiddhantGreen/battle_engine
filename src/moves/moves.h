@@ -208,6 +208,14 @@ struct move_data {
 extern struct move_data moves[];
 extern u32 m_flags[672];
 
+/* Move callback funcs */
+extern u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move);
+extern u8 ohko_tryhit_move(u8 user, u8 target, u16 move);
+
+/* Move procs */
+extern struct move_procs basic_10burn_proc;
+extern struct move_procs basic_10freez_proc;
+extern struct move_procs basic_10para_proc;
 
 
 #endif /* movesABLE_DATA_H_ */	
