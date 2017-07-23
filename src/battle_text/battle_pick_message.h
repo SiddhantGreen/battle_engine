@@ -60,6 +60,7 @@ enum battle_string_ids {
     STRING_LEVEL_UP = 91,
     STRING_HEAL = 92,
     STRING_FLINCHED = 94,
+    STRING_MULTI_HIT = 96,
 };
 
 
@@ -159,6 +160,7 @@ static const pchar str_healed_p[] = _("{ATTACKING_MON} restored some HP!");
 static const pchar str_healed_o[] = _("Foe {ATTACKING_MON} restored some HP!");
 static const pchar str_flinched_p[] = _("{ATTACKING_MON} flinched\nand couldn’t move!");
 static const pchar str_flinched_o[] = _("Foe {ATTACKING_MON} flinched\nand couldn’t move!");
+static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -180,7 +182,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[96] = {
+static const pchar* battle_strings[97] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -232,6 +234,7 @@ static const pchar* battle_strings[96] = {
    (pchar*)&str_level_up,
    (pchar*)&str_healed_p, (pchar*)&str_healed_o,
    (pchar*)&str_flinched_p, (pchar*)&str_flinched_o,
+   (pchar*)&str_multi_hit,
 };
 
 

@@ -70,7 +70,7 @@
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_atk)
 #define B_MOVE_IGNORE_DEF(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_def)
 #define B_MOVE_IGNORE_EVASION(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_evasion)
-
+#define B_MOVE_MULTI(bank) ((battle_master->b_moves[B_MOVE_BANK(bank)].hit_times > 1) || (battle_master->b_moves[B_MOVE_BANK(bank)].hit_counter > 1))
 
 
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]

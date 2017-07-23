@@ -153,8 +153,6 @@ struct move_procs {
     enum PokemonStat stat_target[6];
     s8 amount_self[6];
     s8 amount_target[6];
-    u8 multihit_lowest;
-    u8 multihit_highest;
     enum StatusAilments secondary_status[2]; // index 0 = player, index 1 = target
     u8 secondary_status_chance[2];
 };
@@ -185,6 +183,7 @@ struct move_data {
     u8 drain;
     u8 recoil;
     u8 heal;
+    u8 multi_hit[2];
     struct move_procs* procs;
     u8 recoil_struggle : 1;
     u8 flinch_chance : 7;

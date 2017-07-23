@@ -61,6 +61,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
                 fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;
             case STRING_EXP_GAIN:
+            case STRING_MULTI_HIT:
                 fmt_int_10(fcode_buffer2, move_effect_id, 0, 8);
                 fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;

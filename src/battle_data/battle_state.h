@@ -102,6 +102,8 @@ struct move_used {
     s8 amount_target[6];
     u8 secondary_status[2];
     u8 secondary_status_chance[2];
+    u8 hit_times;
+    u8 hit_counter;
     u16 dmg;
     enum TypeEffectiveness effectiveness;
     u16 heal;

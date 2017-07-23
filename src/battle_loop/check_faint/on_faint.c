@@ -84,8 +84,15 @@ void on_faint()
         break;
     };
 }
- 
 
+bool is_fainted()
+{
+    if ((!B_CURRENT_HP(battle_master->first_bank)) || (!B_CURRENT_HP(battle_master->second_bank))) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 
 

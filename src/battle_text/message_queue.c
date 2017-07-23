@@ -34,6 +34,19 @@ bool peek_message()
     return true;
 }
 
+/* Peek message without displaying the message */
+bool peek_message_silent()
+{
+    u8 back = battle_master->queue_size;
+    if (back == battle_master->queue_front_index) {
+        battle_master->queue_size = 0;
+        battle_master->queue_front_index = 0;
+        return false;
+    }
+    battle_master->queue_size--;
+    return true;
+}
+
 
 void play_bmessage()
 {
