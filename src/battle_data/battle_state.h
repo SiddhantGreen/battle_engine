@@ -45,6 +45,7 @@ struct global_message {
 };
 
 struct battle_field_state {
+    u8 payday_coins;
     u32 is_raining : 1;
     u32 is_sunny : 1;
     u32 is_sandstorm : 1;
