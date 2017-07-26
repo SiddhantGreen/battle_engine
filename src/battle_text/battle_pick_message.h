@@ -62,7 +62,15 @@ enum battle_string_ids {
     STRING_FLINCHED = 94,
     STRING_MULTI_HIT = 96,
     STRING_OHKO = 97,
-    STRING_CHARGE_SOLARBEAM = 98,
+    STRING_CHARGE_BOUNCE = 98,
+    STRING_CHARGE_DIG = 100,
+    STRING_CHARGE_DIVE = 102,
+    STRING_CHARGE_FLY = 104,
+    STRING_CHARGE_PHANTOM_FORCE = 106,
+    STRING_CHARGE_SHADOW_FORCE = 108,
+    STRING_CHARGE_SKY_ATTACK = 110,
+    STRING_CHARGE_SKY_DROP = 112,
+    STRING_CHARGE_SOLAR_BLADE = 114,
 };
 
 
@@ -90,17 +98,17 @@ static const pchar str_failed_alone[] = _("But it failed!");
 static const pchar str_immunity_p[] = _("Foe {DEFENDING_MON}’s {ABILITY_NAME_OPPONENT}\nmade it immune!");
 static const pchar str_immunity_o[] = _("{DEFENDING_MON}’s {ABILITY_NAME_PLAYER}\nmade it immune!");
 static const pchar str_charging_up_razorwind_p[] = _("{ATTACKING_MON} whipped\nup a whirlwind!"); 
-static const pchar str_charging_up_razorwind_o[] = _("Foe {DEFENDING_MON} whipped\nup a whirlwind!"); 
+static const pchar str_charging_up_razorwind_o[] = _("Foe {ATTACKING_MON} whipped\nup a whirlwind!"); 
 static const pchar str_solarbeam_p[] = _("{ATTACKING_MON} absorbed\nlight!");
-static const pchar str_solarbeam_o[] = _("Foe {DEFENDING_MON} absorbed\nlight!");
+static const pchar str_solarbeam_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
 static const pchar str_freeze_shock_p[] = _("{ATTACKING_MON} became cloaked\nin a freezing light!");
-static const pchar str_freeze_shock_o[] = _("Foe {DEFENDING_MON} became cloaked\nin a freezing light!");
+static const pchar str_freeze_shock_o[] = _("Foe {ATTACKING_MON} became cloaked\nin a freezing light!");
 static const pchar str_ice_burn_p[] = _("{ATTACKING_MON} is radiating\na blazing aura!");
-static const pchar str_ice_burn_o[] = _("Foe {DEFENDING_MON} is radiating\na blazing aura!");
+static const pchar str_ice_burn_o[] = _("Foe {ATTACKING_MON} is radiating\na blazing aura!");
 static const pchar str_geomancy_p[] = _("{ATTACKING_MON} is absorbing\npower!");
-static const pchar str_geomancy_o[] = _("Foe {DEFENDING_MON} is absorbing\npower!");
+static const pchar str_geomancy_o[] = _("Foe {ATTACKING_MON} is absorbing\npower!");
 static const pchar str_skull_bash_p[] = _("{ATTACKING_MON} lowered\nits head!");
-static const pchar str_skull_bash_o[] = _("Foe {DEFENDING_MON} lowered\nits head!");
+static const pchar str_skull_bash_o[] = _("Foe {ATTACKING_MON} lowered\nits head!");
 static const pchar str_started_rain[] = _("It started to rain!");
 static const pchar str_speed_up_p[] = _("{ATTACKING_MON}’s Speed rose!");
 static const pchar str_speed_up_o[] = _("Foe {ATTACKING_MON}’s Speed rose!");

@@ -151,6 +151,7 @@ void move_hit()
             }
             break;
         case S_GENERAL_TRYHIT:
+        
             if (!try_hit(bank_index)) {
                 // move has missed
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
@@ -172,6 +173,7 @@ void move_hit()
         case S_DAMAGE_CALC_AND_APPLY:
             // Skip damage checks if move doesn't do damage
             if ((B_MOVE_POWER(bank_index) < 1) && (!IS_OHKO(move))) {
+                dprintf("made it here, power: %d\n", B_MOVE_POWER(bank_index));
                 super.multi_purpose_state_tracker = S_HEAL_CALC_AND_APPLY;
                 return;
             }

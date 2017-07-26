@@ -82,11 +82,9 @@ void run_move()
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
                 break;
             }
-            if (super.multi_purpose_state_tracker == S_BEFORE_MOVE) {
-                // display "Pokemon used move!"
-                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
-                super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
-            }
+            // display "Pokemon used move!"
+            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+            super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
             break;
         }
         case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
@@ -105,12 +103,8 @@ void run_move()
             }
             break;
         case S_RUN_MOVE_HIT:
-            if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
-            } else {
-                set_callback1(move_hit); // move hit will advance the state when complete
-                super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
-            }
+            set_callback1(move_hit); // move hit will advance the state when complete
+            super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
             break;
         case S_PP_REDUCTION:
         {
