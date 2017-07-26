@@ -1669,6 +1669,7 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = solarbeam_before_move,
 	},
 	
 	{
