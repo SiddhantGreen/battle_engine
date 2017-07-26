@@ -172,7 +172,7 @@ typedef void (*MoveOnAfterMoveCallback)(u8 attacker);
 struct move_data {
     pchar name[22];
     u8 accuracy;
-    s8 base_power;
+    u8 base_power;
     pchar* description;
     u8 pp;
     s8 priority;
@@ -212,6 +212,7 @@ extern u32 m_flags[672];
 extern u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move);
 extern u8 ohko_tryhit_move(u8 user, u8 target, u16 move);
 extern u8 solarbeam_before_move(u8 bank);
+extern u8 freeze_shock_before_move(u8 bank);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;

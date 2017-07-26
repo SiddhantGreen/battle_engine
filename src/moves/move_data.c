@@ -7715,6 +7715,7 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = freeze_shock_before_move,
 	},
 	
 	{
@@ -9028,9 +9029,8 @@ struct move_data moves[] = {
 	.accuracy = 100,
 	.base_power = 150,
     .description = (pchar*)Shell_Trap_desc,
-    5,
-    -3,
-    1,
+    .pp = 5,
+    .priority = -3,
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,

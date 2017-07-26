@@ -79,7 +79,7 @@ struct move_used {
     u16 move_id;
     s8 priority;
     u8 stab;
-    s8 power;
+    u8 power;
     u8 category;
     u8 type[2];
     u8 flinch;
