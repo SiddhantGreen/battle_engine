@@ -212,7 +212,10 @@ extern u32 m_flags[672];
 extern u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move);
 extern u8 ohko_tryhit_move(u8 user, u8 target, u16 move);
 extern u8 solarbeam_before_move(u8 bank);
+extern u8 solarblade_before_move(u8 bank);
 extern u8 freeze_shock_before_move(u8 bank);
+extern u8 ice_burn_before_move(u8 bank);
+extern u8 razor_wind_before_move(u8 bank);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;

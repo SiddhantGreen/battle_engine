@@ -859,6 +859,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
     .procs = &basic_proc,
+    .before_move = razor_wind_before_move,
 	},
 	
 	{
@@ -7729,6 +7730,7 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = ice_burn_before_move,
 	},
 	
 	{
@@ -8702,6 +8704,7 @@ struct move_data moves[] = {
 	.type = MTYPE_GRASS,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = solarblade_before_move,
 	},
 	
 	{
