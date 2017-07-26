@@ -44,6 +44,7 @@ enum VolatileStatus {
     VOLATILE_MOLDBREAKER = (1 << 6),
     VOLATILE_PRANKSTERED = (1 << 7),
     VOLATILE_SEMI_INVULNERABLE = (1 << 8),
+    VOLATILE_CHARGING = (1 << 9),
 };
 
 struct local_battler_data {

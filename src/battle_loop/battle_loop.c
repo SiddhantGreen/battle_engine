@@ -23,15 +23,15 @@ void run_decision(void)
 
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch (super.multi_purpose_state_tracker) {
-       case 0:
+       case S_RUN_SWITCH:
             set_callback1(run_switch);
             super.multi_purpose_state_tracker = 0;
             break;
-        case 1:
+        case S_RUN_AFTER_SWITCH:
             set_callback1(run_after_switch);
             super.multi_purpose_state_tracker = 0;
             break;
-        case 2:
+        case S_RUN_SWITCH_ALTERNATE_BANK:
         {
             // once first bank's run_switch and run_after_switch have exec'd, run second bank
             if (bank_index == battle_master->second_bank) {
@@ -44,16 +44,16 @@ void run_decision(void)
             }
             break;
         }
-        case 3:
+        case S_RUN_MOVE:
             set_callback1(run_move);
             super.multi_purpose_state_tracker = 0;
             break;
-        case 4:
+        case S_RUN_FAINT:
             // Run on faint stuff
             set_callback1(on_faint);
             super.multi_purpose_state_tracker = S_CHECK_BANK1_FAINT;
             break;
-        case 5:
+        case S_RUN_MOVE_ALTERNATE_BANK:
             // run move for second bank after first bank is run.
             if (bank_index == battle_master->second_bank) {
                 battle_master->execution_index = 0;
@@ -63,7 +63,7 @@ void run_decision(void)
                 super.multi_purpose_state_tracker = 3;
             }
             break;
-        case 6:
+        case S_SOFT_RESET_BANK:
         {
             // reset turn based bits
             reset_turn_bits(battle_master->first_bank);
@@ -73,7 +73,7 @@ void run_decision(void)
             battle_master->execution_index = 0;
             break;
         }
-        case 7:
+        case S_END_BATTLE:
             // TODO: free resources
             sync_battler_struct(PLAYER_SINGLES_BANK);
             exit_to_overworld_2_switch();

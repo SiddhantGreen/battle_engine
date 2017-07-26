@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_data/pkmn_bank.h"
+#include "battle_data/pkmn_bank_stats.h"
 #include "battle_slide_in_data/battle_obj_sliding.h"
 #include "battle_data/battle_state.h"
 #include "battle_text/battle_textbox_gfx.h"
@@ -42,12 +43,12 @@ void init_battle_elements()
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_GUILLOTINE;
-    pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
+    u16 t = MOVE_SOLAR_BEAM;
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
     t = MOVE_ICE_BEAM;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
     t = 5;
-    pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
+    pokemon_setattr(&party_opponent[0], REQUEST_PP3, &t);
     t = 10;
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     t = ITEM_POTION;
@@ -206,6 +207,11 @@ void option_selection()
     switch (super.multi_purpose_state_tracker) {
         case 0:
         {
+            // if move is charging up, then option selection is skipped
+            if (HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_CHARGING)) {
+                set_callback1(battle_loop);
+                return;
+            }
             // initialize fight menu selection
             vblank_handler_set(vblank_cb_no_merge);
             void* map_base = (void *)0x600F800;

@@ -16,12 +16,14 @@ void configure_selected_moves()
 {
     // fetch moves used from input
     u16 p_move = pick_player_attack();
-    u16 opp_move = pick_opponent_attack();
+    update_move_history(PLAYER_SINGLES_BANK, p_move);
     battle_master->fight_menu_content_spawned = 0;
     
-    // update internal move history
-    update_move_history(PLAYER_SINGLES_BANK, p_move);
-    update_move_history(OPPONENT_SINGLES_BANK, opp_move);
+    // if move is charging up, then opponent selection is skipped
+    if (!(HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_CHARGING))) {
+        u16 opp_move = pick_opponent_attack();
+        update_move_history(OPPONENT_SINGLES_BANK, opp_move);
+    }
 }
 
 s8 get_move_priority(u8 bank)

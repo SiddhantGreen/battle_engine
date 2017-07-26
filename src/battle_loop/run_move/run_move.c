@@ -60,7 +60,7 @@ void move_on_modify_move(u8 attacker, u8 defender, u16 move)
         moves[move].on_modify_move(attacker, defender, move);
 }
 
-#define BEFORE_MOVE_CALLBACK_0 0
+
 void run_move()
 {
     while (peek_message())
@@ -82,12 +82,7 @@ void run_move()
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
                 break;
             }
-            /* TODO :  Before move callbacks */
-            if (BEFORE_MOVE_CALLBACK_0) {
-                // move failed
-                super.multi_purpose_state_tracker = S_RUN_FAINT;
-                set_callback1(run_decision);
-            } else {
+            if (super.multi_purpose_state_tracker == S_BEFORE_MOVE) {
                 // display "Pokemon used move!"
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
                 super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
@@ -110,8 +105,12 @@ void run_move()
             }
             break;
         case S_RUN_MOVE_HIT:
-            set_callback1(move_hit); // move hit will advance the state when complete
-            super.multi_purpose_state_tracker = 0;
+            if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
+                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+            } else {
+                set_callback1(move_hit); // move hit will advance the state when complete
+                super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
+            }
             break;
         case S_PP_REDUCTION:
         {
