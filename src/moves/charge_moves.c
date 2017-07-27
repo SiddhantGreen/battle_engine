@@ -18,6 +18,7 @@ u8 before_move_charge_frame(u8 bank, u8 string_id)
     }
 }
 
+/* Basic one turn charge, then simple attack moves */
 u8 freeze_shock_before_move(u8 bank)
 {
     return before_move_charge_frame(bank, STRING_FREEZE_SHOCK);
@@ -42,3 +43,10 @@ u8 razor_wind_before_move(u8 bank)
 {
     return before_move_charge_frame(bank, STRING_RAZORWIND);
 }
+
+u8 sky_attack_before_move(u8 bank)
+{
+    return before_move_charge_frame(bank, STRING_CHARGE_SKY_ATTACK);
+}
+
+/* Moves with some effect during the charging turn */

@@ -871,7 +871,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH | FLAG_DANCE,
-    .procs = &basic_proc,
+    .procs = &two_stage_atk,
 	},
 	
 	{
@@ -2508,6 +2508,7 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = sky_attack_before_move,
 	},
 	
 	{

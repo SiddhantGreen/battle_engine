@@ -62,13 +62,13 @@ enum battle_string_ids {
     STRING_FLINCHED = 94,
     STRING_MULTI_HIT = 96,
     STRING_OHKO = 97,
-    STRING_CHARGE_BOUNCE = 98,
+    STRING_CHARGE_SKY_ATTACK = 98,
     STRING_CHARGE_DIG = 100,
     STRING_CHARGE_DIVE = 102,
     STRING_CHARGE_FLY = 104,
     STRING_CHARGE_PHANTOM_FORCE = 106,
     STRING_CHARGE_SHADOW_FORCE = 108,
-    STRING_CHARGE_SKY_ATTACK = 110,
+    STRING_CHARGE_BOUNCE = 110,
     STRING_CHARGE_SKY_DROP = 112,
     STRING_CHARGE_SOLAR_BLADE = 114,
 };
@@ -174,6 +174,8 @@ static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 static const pchar str_OHKO[] = _("It’s a one-hit KO!");
 static const pchar str_charge_solarbeam_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_solarbeam_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
+static const pchar str_charge_sky_attack_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
+static const pchar str_charge_sky_attack_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -249,7 +251,7 @@ static const pchar* battle_strings[100] = {
    (pchar*)&str_flinched_p, (pchar*)&str_flinched_o,
    (pchar*)&str_multi_hit,
    (pchar*)&str_OHKO,
-   (pchar*)&str_charge_solarbeam_p,(pchar*)&str_charge_solarbeam_o,
+   (pchar*)&str_charge_sky_attack_p,(pchar*)&str_charge_sky_attack_o,
 };
 
 
