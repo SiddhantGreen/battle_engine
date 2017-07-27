@@ -43,7 +43,7 @@ void init_battle_elements()
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_SOLAR_BLADE;
+    u16 t = MOVE_SWORDS_DANCE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_RAZOR_WIND;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);

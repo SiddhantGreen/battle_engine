@@ -107,7 +107,6 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             break;
             }
         default:
-            dprintf("wtf, no boost men\n");
             return;
     };
 

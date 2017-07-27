@@ -216,11 +216,13 @@ extern u8 solarblade_before_move(u8 bank);
 extern u8 freeze_shock_before_move(u8 bank);
 extern u8 ice_burn_before_move(u8 bank);
 extern u8 razor_wind_before_move(u8 bank);
+extern u8 sky_attack_before_move(u8 bank);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;
 extern struct move_procs basic_10freez_proc;
 extern struct move_procs basic_10para_proc;
+extern struct move_procs two_stage_atk;
 
 
 #endif /* movesABLE_DATA_H_ */	

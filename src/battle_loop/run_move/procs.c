@@ -52,13 +52,13 @@ void boost_procs(u8 attacker, u8 defender, u16 move) {
     struct move_used move_data = battle_master->b_moves[B_MOVE_BANK(attacker)];
      for (i = 0; i < 6; i ++) {
         if (rand_range(0, 100) < move_data.chance_self) {
-            stat_boost(attacker, index_to_request_id(i), move_data.stat_self[i]);
+            stat_boost(attacker, index_to_request_id(i), move_data.amount_self[i]);
         }
     }
 
     for (i = 0; i < 6; i ++) {
         if (rand_range(0, 100) < move_data.chance_target) {
-            stat_boost(defender, index_to_request_id(i), move_data.stat_target[i]);
+            stat_boost(defender, index_to_request_id(i), move_data.amount_target[i]);
         }
     }
     
