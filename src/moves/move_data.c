@@ -898,6 +898,7 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = gust_on_modify,
 	},
 	
 	{

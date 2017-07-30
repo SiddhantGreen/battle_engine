@@ -76,7 +76,6 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].chance_self = moves[move_id].procs->chance_self;
     battle_master->b_moves[index].chance_target = moves[move_id].procs->chance_target;
     if (moves[move_id].multi_hit[0]) {
-        dprintf("Multi hit of %d and %d\n", moves[move_id].multi_hit[0], moves[move_id].multi_hit[1]);
         u8 hit_times = ((rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1])) | 1);
         battle_master->b_moves[index].hit_times = hit_times;
         battle_master->b_moves[index].hit_counter = 0;

@@ -217,6 +217,7 @@ extern u8 freeze_shock_before_move(u8 bank);
 extern u8 ice_burn_before_move(u8 bank);
 extern u8 razor_wind_before_move(u8 bank);
 extern u8 sky_attack_before_move(u8 bank);
+extern u8 gust_on_modify(u8 user, u8 target, u16 move);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;
