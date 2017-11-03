@@ -194,7 +194,6 @@ void move_hit()
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
-            
             if (moves[move].heal) {
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
             }
@@ -215,7 +214,9 @@ void move_hit()
         {
             /* execute move effect */
             if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
-                moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                if (!(moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index)))) {
+                    break;;
+                }
             }
             super.multi_purpose_state_tracker = S_RECOIL_APPLY;
             break;

@@ -925,6 +925,8 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET | FLAG_AUTHENTIC,
     .procs = &basic_proc,
+    .on_tryhit_move = whirlwind_on_tryhit_move,
+    .on_effect_cb = whirlwind_on_effect_cb,
 	},
 	
 	{

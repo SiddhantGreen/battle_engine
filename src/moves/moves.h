@@ -166,7 +166,7 @@ typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
 typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
-typedef void (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
+typedef u8 (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
 typedef void (*MoveOnAfterMoveCallback)(u8 attacker);
 
 struct move_data {
@@ -218,6 +218,8 @@ extern u8 ice_burn_before_move(u8 bank);
 extern u8 razor_wind_before_move(u8 bank);
 extern u8 sky_attack_before_move(u8 bank);
 extern u8 gust_on_modify(u8 user, u8 target, u16 move);
+extern u8 whirlwind_on_tryhit_move(u8 user, u8 target, u16 move);
+extern u8 whirlwind_on_effect_cb(u8 attacker, u8 defender, u16 move);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;
@@ -227,3 +229,4 @@ extern struct move_procs two_stage_atk;
 
 
 #endif /* movesABLE_DATA_H_ */	
+
