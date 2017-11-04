@@ -46,6 +46,7 @@ enum VolatileStatus {
     VOLATILE_SEMI_INVULNERABLE = (1 << 8),
     VOLATILE_CHARGING = (1 << 9),
     VOLATILE_INGRAIN = (1 << 10),
+    VOLATILE_BIND = (1 << 11),
 };
 
 struct local_battler_data {
