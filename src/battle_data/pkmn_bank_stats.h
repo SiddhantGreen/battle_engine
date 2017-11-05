@@ -72,7 +72,6 @@
 #define B_MOVE_IGNORE_EVASION(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_evasion)
 #define B_MOVE_MULTI(bank) ((battle_master->b_moves[B_MOVE_BANK(bank)].hit_times > 1) || (battle_master->b_moves[B_MOVE_BANK(bank)].hit_counter > 1))
 
-
 #define B_PKMN_TYPE(bank, index) p_bank[bank]->b_data.type[index]
 #define B_CURRENT_HP(bank) p_bank[bank]->b_data.current_hp
 #define B_LEVEL(bank) p_bank[bank]->b_data.level
@@ -83,6 +82,7 @@
 #define B_IS_GROUNDED(bank) p_bank[bank]->b_data.is_grounded
 #define B_IS_PRANKSTER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].prankstered
 #define B_INFILTRATES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].infiltrates
+#define B_GET_ITEM(bank) p_bank[bank]->b_data.item
 
 
 #define B_SECONDARY_SELF_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_self

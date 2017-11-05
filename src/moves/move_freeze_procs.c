@@ -9,7 +9,7 @@ struct move_procs basic_10freez_proc = {
     {STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE, STAT_NONE},  // Stat to boost opponent
     {0, 0, 0, 0, 0, 0},  // Amount to boost self on proc (signed)
     {0, 0, 0, 0, 0, 0},  // Amount to boost opponent on proc (signed)
-    {AILMENT_NONE, AILMENT_FREEZE},
-    {0, 10},
+    {AILMENT_FREEZE, AILMENT_NONE},
+    {10, 0},
 };
 
