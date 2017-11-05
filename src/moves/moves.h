@@ -220,13 +220,87 @@ extern u8 sky_attack_before_move(u8 bank);
 extern u8 gust_on_modify(u8 user, u8 target, u16 move);
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 target, u16 move);
 extern u8 whirlwind_on_effect_cb(u8 attacker, u8 defender, u16 move);
+extern u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;
 extern struct move_procs basic_10freez_proc;
 extern struct move_procs basic_10para_proc;
-extern struct move_procs two_stage_atk;
+extern struct move_procs always_para_proc;
 
+/* User stats */
+extern struct move_procs user_lower_atk_1;
+extern struct move_procs user_lower_def_1;
+extern struct move_procs user_lower_spAtk_1;
+extern struct move_procs user_lower_spDef_1;
+extern struct move_procs user_lower_spd_1;
+extern struct move_procs user_lower_acc_1;
+
+extern struct move_procs user_lower_atk_2;
+extern struct move_procs user_lower_def_2;
+extern struct move_procs user_lower_spAtk_2;
+extern struct move_procs user_lower_spDef_2;
+extern struct move_procs user_lower_spd_2;
+extern struct move_procs user_lower_acc_2;
+
+extern struct move_procs user_raise_atk_1;
+extern struct move_procs user_raise_def_1;
+extern struct move_procs user_raise_spAtk_1;
+extern struct move_procs user_raise_spDef_1;
+extern struct move_procs user_raise_spd_1;
+extern struct move_procs user_raise_acc_1;
+
+extern struct move_procs user_raise_atk_2;
+extern struct move_procs user_raise_def_2;
+extern struct move_procs user_raise_spAtk_2;
+extern struct move_procs user_raise_spDef_2;
+extern struct move_procs user_raise_spd_2;
+extern struct move_procs user_raise_acc_2;
+
+/* Target stats */
+extern struct move_procs target_lower_atk_1;
+extern struct move_procs target_lower_def_1;
+extern struct move_procs target_lower_spAtk_1;
+extern struct move_procs target_lower_spDef_1;
+extern struct move_procs target_lower_spd_1;
+extern struct move_procs target_lower_acc_1;
+
+extern struct move_procs target_lower_atk_2;
+extern struct move_procs target_lower_def_2;
+extern struct move_procs target_lower_spAtk_2;
+extern struct move_procs target_lower_spDef_2;
+extern struct move_procs target_lower_spd_2;
+extern struct move_procs target_lower_acc_2;
+
+extern struct move_procs target_raise_atk_1;
+extern struct move_procs target_raise_def_1;
+extern struct move_procs target_raise_spAtk_1;
+extern struct move_procs target_raise_spDef_1;
+extern struct move_procs target_raise_spd_1;
+extern struct move_procs target_raise_acc_1;
+
+extern struct move_procs target_raise_atk_2;
+extern struct move_procs target_raise_def_2;
+extern struct move_procs target_raise_spAtk_2;
+extern struct move_procs target_raise_spDef_2;
+extern struct move_procs target_raise_spd_2;
+extern struct move_procs target_raise_acc_2;
+
+/* Specific moves */
+extern struct move_procs bulk_up_proc;
+extern struct move_procs calm_mind_proc;
+extern struct move_procs coil_proc;
+extern struct move_procs cosmic_power_proc;
+extern struct move_procs cotton_guard_proc;
+extern struct move_procs dragon_dance_proc;
+extern struct move_procs growth_proc;
+extern struct move_procs hone_claws_proc;
+extern struct move_procs noble_roar_proc;
+extern struct move_procs quiver_dance_proc;
+extern struct move_procs shell_smash_proc;
+extern struct move_procs shift_gear_proc;
+extern struct move_procs tickle_proc;
+extern struct move_procs toxic_thread_proc;
 
 #endif /* movesABLE_DATA_H_ */	
 
