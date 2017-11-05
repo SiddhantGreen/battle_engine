@@ -56,7 +56,7 @@ u16 weather_dmg_mod(u16 damage, u8 attacker)
 }
 
 /* TODO utilize priority */
-u16 move_on_base_power_move(s8 base_power, u8 attacker, u8 defender, u16 move)
+u16 move_on_base_power_move(u8 base_power, u8 attacker, u8 defender, u16 move)
 {
     if (moves[move].on_base_power_move) {
         return moves[move].on_base_power_move(base_power, attacker, defender, move);
@@ -73,7 +73,7 @@ u16 move_on_damage_callback(u16 damage_taken, u8 attacker, u8 defender, u16 move
     return 0;
 }
 
-#define MOVE_ONDAMAGE_CALLBACK 0
+
 u16 get_base_damage(u8 attacker, u8 defender, u16 move)
 {  
     // moves like counter/bide/seismic toss calc damage outside of the formula & ignore type immunities
@@ -89,8 +89,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
         return B_MOVE_DMG(attacker);
     }
 
-    s8 base_power = B_MOVE_POWER(attacker);
-    base_power = move_on_base_power_move(base_power, attacker, defender, move);
+    u8 base_power = B_MOVE_POWER(attacker);
     base_power = move_on_base_power_move(base_power, attacker, defender, move);
  
     // get defending and attacking stats

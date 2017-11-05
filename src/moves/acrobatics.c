@@ -14,3 +14,5 @@ u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move)
         return 110;
     }
 }
+
+

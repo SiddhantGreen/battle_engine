@@ -164,7 +164,7 @@ typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnBasePowerCallback)(s8 base_power, u8 user, u8 target, u16 move);
 typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
 typedef void (*MoveOnAfterMoveCallback)(u8 attacker);

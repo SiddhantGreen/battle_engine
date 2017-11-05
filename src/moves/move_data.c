@@ -7208,7 +7208,7 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .before_move = acrobatics_on_base_power_move,
+    .on_base_power_move = acrobatics_on_base_power_move,
 	},
 	
 	{
