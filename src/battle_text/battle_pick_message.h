@@ -174,8 +174,18 @@ static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 static const pchar str_OHKO[] = _("It’s a one-hit KO!");
 static const pchar str_charge_solarbeam_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_solarbeam_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
+
 static const pchar str_charge_sky_attack_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
 static const pchar str_charge_sky_attack_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
+
+static const pchar str_charge_dig_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
+static const pchar str_charge_dig_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
+
+static const pchar str_charge_dive_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
+static const pchar str_charge_dive_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
+
+static const pchar str_fly_p[] = _("{ATTACKING_MON} flew up high!");
+static const pchar str_fly_o[] = _("Foe {ATTACKING_MON} flew up high!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -197,7 +207,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[100] = {
+static const pchar* battle_strings[106] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -251,7 +261,11 @@ static const pchar* battle_strings[100] = {
    (pchar*)&str_flinched_p, (pchar*)&str_flinched_o,
    (pchar*)&str_multi_hit,
    (pchar*)&str_OHKO,
-   (pchar*)&str_charge_sky_attack_p,(pchar*)&str_charge_sky_attack_o,
+   (pchar*)&str_charge_sky_attack_p, (pchar*)&str_charge_sky_attack_o,
+   (pchar*)&str_charge_dig_p, (pchar*)&str_charge_dig_o,
+   (pchar*)&str_charge_dive_p, (pchar*)&str_charge_dive_o,
+   
+   (pchar*)&str_fly_p, (pchar*)&str_fly_o,
 };
 
 

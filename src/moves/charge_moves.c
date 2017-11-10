@@ -50,3 +50,26 @@ u8 sky_attack_before_move(u8 bank)
 }
 
 /* Moves with some effect during the charging turn */
+
+u8 fly_before_move(u8 bank)
+{
+    if (before_move_charge_frame(bank, STRING_CHARGE_FLY)) {
+        REMOVE_VOLATILE(bank, VOLATILE_FLYING);
+        REMOVE_VOLATILE(bank, VOLATILE_SEMI_INVULNERABLE);
+        return true;
+    } else {
+        ADD_VOLATILE(bank, VOLATILE_FLYING);
+        ADD_VOLATILE(bank, VOLATILE_SEMI_INVULNERABLE);
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+

@@ -106,6 +106,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_HEAL:
             case STRING_FLINCHED:
             case STRING_CHARGE_SKY_ATTACK:
+            case STRING_CHARGE_FLY:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:
