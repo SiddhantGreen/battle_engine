@@ -164,6 +164,7 @@ typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
+typedef u8 (*MoveOnInvulnerableTryHitMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
 typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
@@ -194,6 +195,7 @@ struct move_data {
     MoveFoeBeforeMoveCallback foe_before_move;
     MoveOnModifyMoveCallback on_modify_move;
     MoveOnTryHitMoveCallback on_tryhit_move;
+    MoveOnInvulnerableTryHitMoveCallback on_inv_tryhit_move;
     MoveOnTryHitMoveCallback on_tryhit_side_move;
     MoveOnBasePowerCallback on_base_power_move;
     MoveOnDamageCallback on_damage_move;

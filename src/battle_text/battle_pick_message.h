@@ -71,6 +71,7 @@ enum battle_string_ids {
     STRING_CHARGE_BOUNCE = 110,
     STRING_CHARGE_SKY_DROP = 112,
     STRING_CHARGE_SOLAR_BLADE = 114,
+    STRING_INVULNERABLE = 116,
 };
 
 
@@ -174,18 +175,31 @@ static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 static const pchar str_OHKO[] = _("It’s a one-hit KO!");
 static const pchar str_charge_solarbeam_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_solarbeam_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
-
 static const pchar str_charge_sky_attack_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
 static const pchar str_charge_sky_attack_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
-
 static const pchar str_charge_dig_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
 static const pchar str_charge_dig_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
-
 static const pchar str_charge_dive_p[] = _("{ATTACKING_MON} became\ncloaked in a harsh light!");
 static const pchar str_charge_dive_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
-
 static const pchar str_fly_p[] = _("{ATTACKING_MON} flew up high!");
 static const pchar str_fly_o[] = _("Foe {ATTACKING_MON} flew up high!");
+
+static const pchar str_phantom_force_p[] = _("{ATTACKING_MON} vanished instantly!");
+static const pchar str_phantom_force_o[] = _("Foe {ATTACKING_MON} vanished instantly!");
+
+static const pchar str_shadow_force_p[] = _("{ATTACKING_MON} vanished instantly!");
+static const pchar str_shadow_force_o[] = _("Foe {ATTACKING_MON} vanished instantly!");
+
+static const pchar str_bounce_p[] = _("{ATTACKING_MON} sprang up!");
+static const pchar str_bounce_o[] = _("Foe {ATTACKING_MON} sprang up!");
+static const pchar str_sky_drop_p[] = _("{ATTACKING_MON} took\n{DEFENDING_MON} into the sky!");
+static const pchar str_sky_drop_o[] = _("Foe {ATTACKING_MON} took\n{DEFENDING_MON} into the sky!");
+static const pchar str_charge_solarblade_p[] = _("{ATTACKING_MON} absorbed\nlight!");
+static const pchar str_charge_solarblade_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
+
+static const pchar str_invulnerable_p[] = _("{DEFENDING_MON} was invulnerable\nto the attack!");
+static const pchar str_invulnerable_o[] = _("Foe {DEFENDING_MON} was invulnerable\nto the attack!");
+
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -207,7 +221,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[106] = {
+static const pchar* battle_strings[118] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -264,8 +278,16 @@ static const pchar* battle_strings[106] = {
    (pchar*)&str_charge_sky_attack_p, (pchar*)&str_charge_sky_attack_o,
    (pchar*)&str_charge_dig_p, (pchar*)&str_charge_dig_o,
    (pchar*)&str_charge_dive_p, (pchar*)&str_charge_dive_o,
+   (pchar*)&str_fly_p, (pchar*)&str_fly_o,   
+   (pchar*)&str_phantom_force_p, (pchar*)&str_phantom_force_o,
+   (pchar*)&str_shadow_force_p, (pchar*)&str_shadow_force_o,
+   (pchar*)&str_bounce_p, (pchar*)&str_bounce_o,
+   (pchar*)&str_sky_drop_p, (pchar*)&str_sky_drop_o,
+   (pchar*)&str_charge_solarblade_p, (pchar*)&str_charge_solarblade_o,
+   (pchar*)&str_invulnerable_p, (pchar*)&str_invulnerable_o,
    
-   (pchar*)&str_fly_p, (pchar*)&str_fly_o,
+   
+   
 };
 
 

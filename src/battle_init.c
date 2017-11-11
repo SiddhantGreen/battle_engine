@@ -278,7 +278,7 @@ void option_selection()
         case 5:
         {
             // RUN selected from fight menu
-            p_bank[battle_master->first_bank]->b_data.is_running = true;
+            p_bank[PLAYER_SINGLES_BANK]->b_data.is_running = true;
             super.multi_purpose_state_tracker = 8;
         }
             break;
