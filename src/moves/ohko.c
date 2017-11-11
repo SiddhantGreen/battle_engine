@@ -14,3 +14,4 @@ u8 ohko_tryhit_move(u8 user, u8 target, u16 move)
         return 1; // USE_MOVE_NORMAL
     }
 }
+
