@@ -77,7 +77,22 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].chance_self = moves[move_id].procs->chance_self;
     battle_master->b_moves[index].chance_target = moves[move_id].procs->chance_target;
     if (moves[move_id].multi_hit[0]) {
-        u8 hit_times = ((rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1])) | 1);
+        u8 hit_times = 0;
+        if ((moves[move_id].multi_hit[0] == 2) && (moves[move_id].multi_hit[1] == 5)) {
+            switch(rand_range(0, 3)) {
+                case 0:
+                    hit_times = 2;
+                    break;
+                case 1:
+                    hit_times = 3;
+                    break;
+                case 2:
+                    hit_times = rand_range(4, 6);
+                    break;
+            };
+        } else {
+            hit_times = ((rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1])) | 1);
+        }
         battle_master->b_moves[index].hit_times = hit_times;
         battle_master->b_moves[index].hit_counter = 0;
     }

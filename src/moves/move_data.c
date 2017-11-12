@@ -1142,7 +1142,8 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &basic_10para_proc,
+    .on_modify_move = bodyslam_on_modify_move,
 	},
 	
 	{
@@ -1156,6 +1157,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = bind_on_effect_cb,
 	},
 	
 	{
@@ -1169,6 +1171,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .recoil = 25,
 	},
 	
 	{

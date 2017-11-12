@@ -47,9 +47,9 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_JUMP_KICK;
+    u16 t = MOVE_TAKE_DOWN;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
-    t = MOVE_MINIMIZE;
+    t = MOVE_WRAP;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
     t = 5;
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);

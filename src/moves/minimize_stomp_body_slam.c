@@ -23,3 +23,12 @@ u8 stomp_on_modify_move(u8 user, u8 target, u16 move)
     return 1;
 }
 
+u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move)
+{
+    if (HAS_VOLATILE(target, VOLATILE_MINIMIZE)) {
+        B_MOVE_ACCURACY(user) = 101;
+        B_MOVE_POWER(user) *= 2;
+    }
+    return 1;
+}
+

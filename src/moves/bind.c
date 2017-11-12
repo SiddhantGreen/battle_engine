@@ -22,7 +22,7 @@ u8 bind_on_effect_cb(u8 attacker, u8 defender, u16 move)
     u8 id = add_residual_cb(apply_residual_dmg);
     residual_callbacks[id].effective_bank = defender;
     residual_callbacks[id].active_counter = rand_range(4, 6);
-    residual_callbacks[id].move_id = MOVE_BIND;
+    residual_callbacks[id].move_id = move;
     residual_callbacks[id].status = VOLATILE_BIND;
     residual_callbacks[id].hp_delta = MAX(1, TOTAL_HP(defender) / 8);
     return 1;
