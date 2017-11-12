@@ -231,6 +231,9 @@ extern u8 minimize_on_effect_cb(u8 attacker, u8 defender, u16 move);
 extern u8 stomp_on_modify_move(u8 user, u8 target, u16 move);
 extern u8 jump_kick_on_move_fail(u8 user, u8 target, u16 move);
 extern u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move);
+extern u8 thrash_on_before_move(u8 attacker);
+extern u8 thrash_on_move_fail(u8 attacker, u8 defender, u16 move);
+extern void thrash_on_after_move(u8 attacker);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;

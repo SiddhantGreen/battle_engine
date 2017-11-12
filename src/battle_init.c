@@ -47,7 +47,7 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_TAKE_DOWN;
+    u16 t = MOVE_FLY;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_WRAP;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
@@ -57,10 +57,10 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     //t = ITEM_POTION;
     //pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
-    t = MOVE_TAIL_WHIP;
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
+    //t = MOVE_TAIL_WHIP;
+   // pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
+   // pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
+   // pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
 }
 
 extern void ailment_decode(u8 bank, u8 ailment);
@@ -217,6 +217,9 @@ void option_selection()
         {
             // if move is charging up, then option selection is skipped
             if (HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_CHARGING)) {
+                set_callback1(battle_loop);
+                return;
+            } else if (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select) {
                 set_callback1(battle_loop);
                 return;
             }

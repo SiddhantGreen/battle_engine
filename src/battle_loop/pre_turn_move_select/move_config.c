@@ -87,7 +87,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
                     hit_times = 3;
                     break;
                 case 2:
-                    hit_times = rand_range(4, 6);
+                    hit_times = rand_range(4, 5);
                     break;
             };
         } else {

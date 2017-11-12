@@ -113,9 +113,11 @@ void run_move()
         case S_PP_REDUCTION:
         {
             // reduce PP
-            u8 pp_index = p_bank[bank_index]->b_data.pp_index;
-            u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
-            pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+            if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
+                u8 pp_index = p_bank[bank_index]->b_data.pp_index;
+                u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
+                pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+            }
             if (B_MOVE_FAILED(bank_index)) {
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }

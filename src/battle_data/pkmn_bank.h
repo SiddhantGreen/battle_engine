@@ -49,6 +49,7 @@ enum VolatileStatus {
     VOLATILE_BIND = (1 << 11),
     VOLATILE_FLYING = (1 << 12),
     VOLATILE_MINIMIZE = (1 << 13),
+    VOLATILE_MULTI_TURN = (1 << 14), // disables PP reduction
 };
 
 struct local_battler_data {
@@ -82,13 +83,14 @@ struct local_battler_data {
     u8 move_failed : 1;
     
     u8 my_target;
-    u16 last_move;
     u8 pp_index;
+    u16 last_move;
     u16 current_move;
-    u16 moves_used[4];
     u16 last_damage;
-    u8 last_attacked_by;
+    u16 moves_used[4];
     u16 last_used_item;
+    u8 last_attacked_by;
+    u8 move_lock_counter;
     
     // local user specific bitfield
     u8 is_disabled : 1;
