@@ -83,7 +83,7 @@
 #define B_IS_PRANKSTER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].prankstered
 #define B_INFILTRATES(bank) battle_master->b_moves[B_MOVE_BANK(bank)].infiltrates
 #define B_GET_ITEM(bank) p_bank[bank]->b_data.item
-
+#define B_MOVE_FAILED(bank) p_bank[bank]->b_data.move_failed
 
 #define B_SECONDARY_SELF_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_self
 #define B_SECONDARY_TARGET_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_target

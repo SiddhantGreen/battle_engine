@@ -1028,7 +1028,7 @@ struct move_data moves[] = {
 	{
 	/*Jump Kick*/
 	.name = _("Jump Kick"),
-	.accuracy = 95,
+	.accuracy = 55,
 	.base_power = 100,
     .description = (pchar*)Jump_Kick_desc,
 	.pp = 10,
@@ -1036,6 +1036,7 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_GRAVITY | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_move_fail = jump_kick_on_move_fail,
 	},
 	
 	{
@@ -2430,6 +2431,7 @@ struct move_data moves[] = {
 	.type = MTYPE_FIGHTING,
 	.m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_move_fail = jump_kick_on_move_fail,
 	},
 	
 	{

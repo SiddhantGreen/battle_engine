@@ -47,9 +47,9 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_BIND;
+    u16 t = MOVE_JUMP_KICK;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
-    t = MOVE_STOMP;
+    t = MOVE_MINIMIZE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
     t = 5;
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
@@ -57,8 +57,8 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     //t = ITEM_POTION;
     //pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
-    t = MOVE_MINIMIZE;
-    //pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
+    t = MOVE_TAIL_WHIP;
+    pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
 }

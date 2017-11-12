@@ -110,6 +110,7 @@ void move_hit()
                     set_callback1(run_move);
                     return;
                 case TARGET_MOVE_IMMUNITY:
+                    B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
                     super.multi_purpose_state_tracker = S_PP_REDUCTION;
                     set_callback1(run_move);
@@ -125,6 +126,7 @@ void move_hit()
                     set_callback1(run_move);
                     return;
                 case TARGET_MOVE_IMMUNITY:
+                    B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
                     super.multi_purpose_state_tracker = S_PP_REDUCTION;
                     set_callback1(run_move);
@@ -145,6 +147,7 @@ void move_hit()
             if (ability_on_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
             } else {
+                B_MOVE_FAILED(bank_index) = 1;
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
                 set_callback1(run_move);
                 return;
@@ -154,6 +157,7 @@ void move_hit()
         
             if (!try_hit(bank_index)) {
                 // move has missed
+                B_MOVE_FAILED(bank_index) = 1;
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
                 set_callback1(run_move);
                 return;
@@ -164,6 +168,7 @@ void move_hit()
             // check immunity
             if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
                 enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+                B_MOVE_FAILED(bank_index) = 1;
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
                 set_callback1(run_move);
                 return;

@@ -79,6 +79,7 @@ struct local_battler_data {
     u8 is_switching : 1;
     u8 skip_move_select : 1;
     u8 first_turn : 1;
+    u8 move_failed : 1;
     
     u8 my_target;
     u16 last_move;

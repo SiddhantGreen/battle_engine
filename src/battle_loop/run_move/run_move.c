@@ -11,6 +11,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern bool peek_message(void);
 extern void move_hit(void);
 extern bool target_exists(u8 bank);
+extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -61,8 +62,11 @@ void move_on_modify_move(u8 attacker, u8 defender, u16 move)
 }
 
 extern void run_residual_cbs(u8 bank);
+extern void hpbar_apply_dmg(u8 task_id);
 void run_move()
 {
+    if (task_is_running(hpbar_apply_dmg))
+        return;
     while (peek_message())
         return;
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
@@ -112,6 +116,10 @@ void run_move()
             u8 pp_index = p_bank[bank_index]->b_data.pp_index;
             u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
             pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+            if (B_MOVE_FAILED(bank_index)) {
+                run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            }
+            
             if (bank_index != battle_master->first_bank) {
                 u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
                 u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);

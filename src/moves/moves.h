@@ -162,6 +162,7 @@ typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
 typedef void (*MoveOnStartCallback)(u8 bank);
 typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
+typedef u8 (*MoveOnFailCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnInvulnerableTryHitMoveCallback)(u8 user, u8 target, u16 move);
@@ -193,6 +194,7 @@ struct move_data {
     MoveOnStartCallback on_start;
     MoveBeforeMoveCallback before_move;
     MoveFoeBeforeMoveCallback foe_before_move;
+    MoveOnFailCallback on_move_fail;
     MoveOnModifyMoveCallback on_modify_move;
     MoveOnTryHitMoveCallback on_tryhit_move;
     MoveOnInvulnerableTryHitMoveCallback on_inv_tryhit_move;
@@ -227,6 +229,7 @@ extern u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 m
 extern u8 bind_on_effect_cb(u8 attacker, u8 defender, u16 move);
 extern u8 minimize_on_effect_cb(u8 attacker, u8 defender, u16 move);
 extern u8 stomp_on_modify_move(u8 user, u8 target, u16 move);
+extern u8 jump_kick_on_move_fail(u8 user, u8 target, u16 move);
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;

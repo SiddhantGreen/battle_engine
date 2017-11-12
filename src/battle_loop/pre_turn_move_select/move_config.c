@@ -56,7 +56,8 @@ u16 pick_opponent_attack()
 void set_attack_battle_master(u8 bank, u8 index, s8 priority)
 {
     u16 move_id = p_bank[bank]->b_data.current_move;
-
+    B_MOVE_FAILED(bank) = false;
+    
     battle_master->b_moves[index].user_bank = bank;
     battle_master->b_moves[index].move_id = move_id;
     battle_master->b_moves[index].priority = priority;
