@@ -48,6 +48,7 @@ enum VolatileStatus {
     VOLATILE_INGRAIN = (1 << 10),
     VOLATILE_BIND = (1 << 11),
     VOLATILE_FLYING = (1 << 12),
+    VOLATILE_MINIMIZE = (1 << 13),
 };
 
 struct local_battler_data {

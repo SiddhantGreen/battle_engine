@@ -14,6 +14,10 @@ extern void apply_residual_dmg(u8 id);
 
 u8 bind_on_effect_cb(u8 attacker, u8 defender, u16 move)
 {
+    // the bind effect timer does not reset upon using bind again
+    if (HAS_VOLATILE(defender, VOLATILE_BIND)) {
+        return 1;
+    }
     ADD_VOLATILE(defender, VOLATILE_BIND);
     u8 id = add_residual_cb(apply_residual_dmg);
     residual_callbacks[id].effective_bank = defender;

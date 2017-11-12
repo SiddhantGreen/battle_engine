@@ -995,6 +995,7 @@ struct move_data moves[] = {
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
 	.flinch_chance = 30,
+    .on_modify_move = stomp_on_modify_move,
 	},
 	
 	{
@@ -2066,6 +2067,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
+    .on_effect_cb = minimize_on_effect_cb,
 	},
 	
 	{
