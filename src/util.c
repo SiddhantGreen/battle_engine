@@ -2,6 +2,8 @@
 #include "moves/moves.h"
 #include "battle_data/pkmn_bank_stats.h"
 #include "abilities/battle_abilities.h"
+#include "battle_data/pkmn_bank.h"
+#include "battle_data/battle_state.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
@@ -274,6 +276,23 @@ void ailment_decode(u8 bank, u8 ailment)
         p_bank[bank]->b_data.status = AILMENT_BAD_POISON;
 }
 
+void do_damage(u8 bank_index, u16 dmg)
+{
+    // HP bar damage animation
+    extern void hp_anim_change(u8 bank, s16 delta);
+    s16 delta = B_CURRENT_HP(bank_index) - dmg;
+    delta = MAX(delta, 0);
+    hp_anim_change(bank_index, delta);
+}
+
+void do_heal(u8 bank_index, u16 heal)
+{
+    // HP bar damage animation
+    extern void hp_anim_change(u8 bank, s16 delta);
+    s16 delta = B_CURRENT_HP(bank_index) + heal;
+    delta = MIN(delta, TOTAL_HP(bank_index));
+    hp_anim_change(bank_index, delta);
+}
 
 //TODO: IMPLEMENT
 void set_ability(u8 bank, u8 source, u8 new_ability)
