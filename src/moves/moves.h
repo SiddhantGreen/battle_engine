@@ -224,6 +224,8 @@ extern u8 gust_on_modify(u8 user, u8 target, u16 move);
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 target, u16 move);
 extern u8 whirlwind_on_effect_cb(u8 attacker, u8 defender, u16 move);
 extern u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
+extern u8 bind_on_effect_cb(u8 attacker, u8 defender, u16 move);
+
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;

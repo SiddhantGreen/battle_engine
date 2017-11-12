@@ -113,6 +113,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_CHARGE_SKY_DROP:
             case STRING_CHARGE_SOLAR_BLADE:
             case STRING_INVULNERABLE:
+            case STRING_RESIDUAL_DMG:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:

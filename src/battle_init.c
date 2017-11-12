@@ -22,7 +22,7 @@ extern void option_selection(void);
 extern u8 get_ability(struct Pokemon* p);
 extern void dprintf(const char * str, ...);
 extern void status_graphical_update(u8 bank, enum Effect status);
-
+extern void residual_cbs_init(void);
 void init_battle_elements()
 {
     // allocate battle specific resources
@@ -36,14 +36,18 @@ void init_battle_elements()
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
     battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
-    for(u8 i = 0; i < 10; ++i)
+    for(u8 i = 0; i < 10; ++i) {
         battle_master->switch_main.type_objid[i] = 0x3F;
+    }
+    residual_cbs_init();    
     setup();
     help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
+    
+    
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_GLARE;
+    u16 t = MOVE_BIND;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_FLY;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);

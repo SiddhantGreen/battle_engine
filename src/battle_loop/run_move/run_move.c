@@ -60,7 +60,7 @@ void move_on_modify_move(u8 attacker, u8 defender, u16 move)
         moves[move].on_modify_move(attacker, defender, move);
 }
 
-
+extern void run_residual_cbs(u8 bank);
 void run_move()
 {
     while (peek_message())
@@ -112,6 +112,17 @@ void run_move()
             u8 pp_index = p_bank[bank_index]->b_data.pp_index;
             u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
             pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+            if (bank_index != battle_master->first_bank) {
+                u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
+                u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
+                if (player_speed > opponent_speed) {
+                    run_residual_cbs(PLAYER_SINGLES_BANK);
+                    run_residual_cbs(OPPONENT_SINGLES_BANK);
+                } else {
+                    run_residual_cbs(OPPONENT_SINGLES_BANK);
+                    run_residual_cbs(PLAYER_SINGLES_BANK);
+                }
+            }
             super.multi_purpose_state_tracker = S_RUN_FAINT;
             set_callback1(run_decision);
             break;

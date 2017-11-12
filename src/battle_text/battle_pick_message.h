@@ -72,6 +72,7 @@ enum battle_string_ids {
     STRING_CHARGE_SKY_DROP = 112,
     STRING_CHARGE_SOLAR_BLADE = 114,
     STRING_INVULNERABLE = 116,
+    STRING_RESIDUAL_DMG = 117,
 };
 
 
@@ -197,8 +198,10 @@ static const pchar str_sky_drop_o[] = _("Foe {ATTACKING_MON} took\n{DEFENDING_MO
 static const pchar str_charge_solarblade_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_solarblade_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
 
-static const pchar str_invulnerable_p[] = _("{DEFENDING_MON} was invulnerable\nto the attack!");
-static const pchar str_invulnerable_o[] = _("Foe {DEFENDING_MON} was invulnerable\nto the attack!");
+static const pchar str_invulnerable_p[] = _("Foe {DEFENDING_MON} was invulnerable\nto the attack!");
+static const pchar str_invulnerable_o[] = _("{DEFENDING_MON} was invulnerable\nto the attack!");
+
+static const pchar str_residual_dmg[] = _("{ATTACKING_MON} took some damage from\n{ATTACK_NAME}!");
 
 
 // stat names
@@ -221,7 +224,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[118] = {
+static const pchar* battle_strings[119] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -285,8 +288,7 @@ static const pchar* battle_strings[118] = {
    (pchar*)&str_sky_drop_p, (pchar*)&str_sky_drop_o,
    (pchar*)&str_charge_solarblade_p, (pchar*)&str_charge_solarblade_o,
    (pchar*)&str_invulnerable_p, (pchar*)&str_invulnerable_o,
-   
-   
+   (pchar*)&str_residual_dmg,
    
 };
 

@@ -22,12 +22,12 @@ bool try_hit(u8 attacker)
         if (moves[CURRENT_MOVE(attacker)].on_inv_tryhit_move) {
             if (!(moves[CURRENT_MOVE(attacker)].on_inv_tryhit_move(attacker, defender, CURRENT_MOVE(attacker)))) {
                 // if user's move doesn't hit invulnerable target
-                enqueue_message(0, attacker, STRING_CHARGE_SOLAR_BLADE, 0);
+                enqueue_message(0, attacker, STRING_INVULNERABLE, 0);
                 return false;
             }
         } else {
             // if user's move doesn't hit invulnerable target
-            enqueue_message(0, attacker, STRING_CHARGE_SOLAR_BLADE, 0);
+            enqueue_message(0, attacker, STRING_INVULNERABLE, 0);
             return false;
         }
     }
