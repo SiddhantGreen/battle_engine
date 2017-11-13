@@ -11,7 +11,6 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern bool peek_message(void);
 extern void move_hit(void);
 extern bool target_exists(u8 bank);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
 extern u16 rand_range(u16 min, u16 max);
 extern void dprintf(const char * str, ...);
 

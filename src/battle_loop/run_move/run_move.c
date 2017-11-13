@@ -26,17 +26,19 @@ enum BeforeMoveStatus move_before_move(u8 bank)
         return moves[move].before_move(bank);
     return USE_MOVE_NORMAL;
 }
-
+/*
 enum BeforeMoveStatus foe_move_before_move(u8 bank)
 {
     u16 move = CURRENT_MOVE(FOE_BANK(bank));
     if (moves[move].foe_before_move)
         return moves[move].foe_before_move(FOE_BANK(bank));
     return USE_MOVE_NORMAL;
-}
+}*/
 
 enum BeforeMoveStatus before_move_cb(u8 bank)
 {
+    return move_before_move(bank);
+    /*
     u16 move_foe = CURRENT_MOVE(FOE_BANK(bank));
     u16 move = CURRENT_MOVE(bank);
     
@@ -52,7 +54,7 @@ enum BeforeMoveStatus before_move_cb(u8 bank)
             result = foe_move_before_move(bank);
         }
     }
-    return result;
+    return result;*/
 }
 
 void move_on_modify_move(u8 attacker, u8 defender, u16 move)

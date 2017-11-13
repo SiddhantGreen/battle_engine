@@ -161,7 +161,6 @@ typedef void (*MoveBeforeTurnCallback)(u8 bank);
 typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
 typedef void (*MoveOnStartCallback)(u8 bank);
 typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
-typedef u8 (*MoveFoeBeforeMoveCallback)(u8 bank);
 typedef u8 (*MoveOnFailCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
 typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
@@ -186,14 +185,15 @@ struct move_data {
     u8 recoil;
     u8 heal;
     u8 multi_hit[2];
-    struct move_procs* procs;
     u8 recoil_struggle : 1;
     u8 flinch_chance : 7;
+    
+    struct move_procs* procs;
+    
     MoveBeforeTurnCallback before_turn;
     MoveBeforeSwitchOutCallback before_switch;
     MoveOnStartCallback on_start;
     MoveBeforeMoveCallback before_move;
-    MoveFoeBeforeMoveCallback foe_before_move;
     MoveOnFailCallback on_move_fail;
     MoveOnModifyMoveCallback on_modify_move;
     MoveOnTryHitMoveCallback on_tryhit_move;
@@ -204,9 +204,7 @@ struct move_data {
     MoveOnEffectCallback on_effect_cb;
     MoveOnAfterMoveCallback on_after_move;
     u8 base_power_move_priority;
-    u8 before_move_priority;
-    u8 foe_before_move_priority;
-    
+    u8 before_move_priority;    
 };
 
 extern struct move_data moves[];
