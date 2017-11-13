@@ -36,8 +36,8 @@
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
-#define MOVE_SECONDARY_STATUS_CHANCE(move, bank) moves[move].procs->secondary_status_chance[bank]
-#define MOVE_SECONDARY_STATUS(move, bank) moves[move].procs->secondary_status[bank]
+#define MOVE_SECONDARY_STATUS_CHANCE(move, side) moves[move].procs->secondary_status_chance[SIDE_OF(bank)]
+#define MOVE_SECONDARY_STATUS(move, bank) moves[move].procs->secondary_status[SIDE_OF(bank)]
 
     
 #define FLAG_CHARGE (1 << 1)
