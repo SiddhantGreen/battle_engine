@@ -96,14 +96,8 @@ struct move_used {
     u16 ignore_target_def : 1;
     u16 ignore_target_evasion : 1;
 
-    u8 chance_self;
-    u8 chance_target;
-    u8 stat_self[6];
-    u8 stat_target[6];
-    s8 amount_self[6];
-    s8 amount_target[6];
-    u8 secondary_status[2];
-    u8 secondary_status_chance[2];
+	struct move_procs b_procs;
+
     u8 hit_times;
     u8 hit_counter;
     u16 dmg;

@@ -3,10 +3,43 @@
 
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
-#include "../battle_data/battle_state.h"
 #include "move_override.h"
 #include "../abilities/ability_override.h"
 
+
+#include "../battle_data/battle_state.h"
+struct battle_stat_chances {
+	u8 c_atk;
+	u8 c_def;
+	u8 c_spd;
+	u8 c_spa;
+	u8 c_sdef;
+	u8 c_accuracy;
+	u8 c_evasion;
+};
+
+struct battle_stat_amounts {
+	s8 amount_atk;
+	s8 amount_def;
+	s8 amount_spd;
+	s8 amount_spa;
+	s8 amount_sdef;
+	s8 amount_accuracy;
+	s8 amount_evasion;
+};
+
+struct move_procs {
+	struct battle_stat_chances chance_user;
+	struct battle_stat_amounts user_amounts;
+
+	struct battle_stat_chances chance_target;
+	struct battle_stat_amounts target_amounts;
+	
+    enum StatusAilments ailment_user;
+    enum StatusAilments ailment_target;
+	u8 ailment_user_chance;
+	u8 ailment_target_chance;
+};
 /* 
  * Field data fetch macros
  *
@@ -36,7 +69,7 @@
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
-#define MOVE_SECONDARY_STATUS_CHANCE(move, side) moves[move].procs->secondary_status_chance[SIDE_OF(bank)]
+#define MOVE_SECONDARY_STATUS_CHANCE(move, bank) moves[move].procs->secondary_status_chance[SIDE_OF(bank)]
 #define MOVE_SECONDARY_STATUS(move, bank) moves[move].procs->secondary_status[SIDE_OF(bank)]
 
     
@@ -146,16 +179,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
     
 */	
 
-struct move_procs {
-    u8 chance_self;
-    u8 chance_target;
-    enum PokemonStat stat_self[6];
-    enum PokemonStat stat_target[6];
-    s8 amount_self[6];
-    s8 amount_target[6];
-    enum StatusAilments secondary_status[2]; // index 0 = player, index 1 = target
-    u8 secondary_status_chance[2];
-};
+
 
 typedef void (*MoveBeforeTurnCallback)(u8 bank);
 typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);

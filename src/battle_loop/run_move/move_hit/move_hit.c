@@ -261,7 +261,7 @@ void move_hit()
         {
             // set flinch chance of target
             battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
-            if (moves[move].procs) {
+            /*if (moves[move].procs) {
                 extern void boost_procs(u8 attacker, u8 defender, u16 move);
                 boost_procs(bank_index, TARGET_OF(bank_index), move);
            
@@ -276,7 +276,7 @@ void move_hit()
                     p_bank[TARGET_OF(bank_index)]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
                     set_status(TARGET_OF(bank_index), bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
                 }
-            }
+            }*/
             super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
             break;
         }
