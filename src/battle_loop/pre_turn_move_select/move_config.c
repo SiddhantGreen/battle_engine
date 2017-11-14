@@ -95,15 +95,6 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
         battle_master->b_moves[index].hit_counter = 0;
     }
 	battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
-	dprintf("pointer to data procs in battle state: %d\n", (int)&(battle_master->b_moves[index].b_procs));
-    /*
-    u8 i;
-    for (i = 0; i < 6; i++) {
-        battle_master->b_moves[bank].stat_self[i] = moves[move_id].procs->stat_self[i];
-        battle_master->b_moves[bank].stat_target[i] = moves[move_id].procs->stat_target[i];
-        battle_master->b_moves[bank].amount_self[i] = moves[move_id].procs->amount_self[i];
-        battle_master->b_moves[bank].amount_target[i] = moves[move_id].procs->amount_target[i];
-    }*/
 }
 
 void reset_turn_bits(u8 bank)

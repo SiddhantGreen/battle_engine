@@ -389,13 +389,7 @@ struct b_ability b_flash_fire = {
 // Shield Dust
 void shield_dust_on_mod_secondary(u8 bank, u8 target, u16 move, u8 ability, u16 item)
 {
-    if ((moves[move].procs) && (bank != target))  {
-        // remove secondary effect chance
-        battle_master->b_moves[B_MOVE_BANK(bank)].chance_self = 0;
-        battle_master->b_moves[B_MOVE_BANK(bank)].chance_target = 0;
-        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0] = 0;
-        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1] = 0;
-    }
+    
 }
 
 struct b_ability b_shield_dust = {
@@ -568,8 +562,7 @@ void serene_grace_on_modify_move(u8 bank, u8 target, u16 move)
 {
     if(moves[move].procs != NULL)
     {
-        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0] *= 2;
-        battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1] *= 2;
+
     }
 }
 
