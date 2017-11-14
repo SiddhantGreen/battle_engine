@@ -21,8 +21,8 @@ extern void dprintf(const char * str, ...);
 extern void set_status(u8 bank, u8 source, enum Effect status);
 extern u16 rand_range(u16, u16);
 extern bool is_fainted(void);
+extern void move_procs_perform(bank_index);
 
-#define MOVE_ON_HEAL 0
 
 bool damage_result_msg(u8 bank_index)
 {
@@ -259,29 +259,13 @@ void move_hit()
         case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
         // Roll secondary boosts self
         {
-            // set flinch chance of target
-            battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
-            /*if (moves[move].procs) {
-                extern void boost_procs(u8 attacker, u8 defender, u16 move);
-                boost_procs(bank_index, TARGET_OF(bank_index), move);
-           
-                // roll secondary status chances user
-                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, bank_index)) {
-                    p_bank[bank_index]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
-                    set_status(bank_index, bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
-                }
-                
-                // roll secondary status chances target
-                if (rand_range(0, 100) <= MOVE_SECONDARY_STATUS_CHANCE(move, TARGET_OF(bank_index))) {
-                    p_bank[TARGET_OF(bank_index)]->b_data.status = MOVE_SECONDARY_STATUS(move, bank_index);
-                    set_status(TARGET_OF(bank_index), bank_index, MOVE_SECONDARY_STATUS(move, bank_index));
-                }
-            }*/
-            super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+			move_procs_perform(bank_index);
             break;
         }
         case S_AFTER_MOVE_SECONDARY:
         // after_move_secondary
+		// set flinch chance of target
+            battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
         // if multi-hit not satisfied call again
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;

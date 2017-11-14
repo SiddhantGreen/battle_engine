@@ -85,16 +85,16 @@
 #define B_GET_ITEM(bank) p_bank[bank]->b_data.item
 #define B_MOVE_FAILED(bank) p_bank[bank]->b_data.move_failed
 
-#define B_SECONDARY_SELF_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_self
-#define B_SECONDARY_TARGET_CHANCE(bank) battle_master->b_moves[B_MOVE_BANK(bank)].chance_target
+/*
+ *
+ * Secondary status macros from battle state
+ */
+#define B_USER_STAT_MOD_CHANCE(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.chance_user[stat]
+#define B_USER_STAT_MOD_AMOUNT(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.user_amounts[stat]
 
-#define B_SECONDARY_STATUS_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status[0]
-#define B_SECONDARY_STATUS_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status[1]
-
-#define B_SECONDARY_STATUS_CHANCE_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[0]
-#define B_SECONDARY_STATUS_CHANCE_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].secondary_status_chance[1]
-
-
+#define B_TARGET_STAT_MOD_CHANCE(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.chance_target[stat]
+#define B_TARGET_STAT_MOD_AMOUNT(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.target_amounts[stat]
+ 
 /*
  * General Pbank macros
  */
