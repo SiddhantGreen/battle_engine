@@ -6,8 +6,18 @@
 #include "move_override.h"
 #include "../abilities/ability_override.h"
 
+enum StatusAilments {
+    AILMENT_NONE,
+    AILMENT_SLEEP,
+    AILMENT_POISON,
+    AILMENT_BURN,
+    AILMENT_FREEZE,
+    AILMENT_PARALYZE,
+    AILMENT_BAD_POISON,
+    AILMENT_CONFUSION,
+    AILMENT_CURE,
+};
 
-#include "../battle_data/battle_state.h"
 struct battle_stat_chances {
 	u8 c_atk;
 	u8 c_def;
@@ -16,6 +26,7 @@ struct battle_stat_chances {
 	u8 c_sdef;
 	u8 c_accuracy;
 	u8 c_evasion;
+	u8 c_crit;
 };
 
 struct battle_stat_amounts {
@@ -26,20 +37,23 @@ struct battle_stat_amounts {
 	s8 amount_sdef;
 	s8 amount_accuracy;
 	s8 amount_evasion;
+	s8 amount_crit;
 };
 
 struct move_procs {
-	struct battle_stat_chances chance_user;
-	struct battle_stat_amounts user_amounts;
+	u8 chance_user[8];
+	s8 user_amounts[8];
 
-	struct battle_stat_chances chance_target;
-	struct battle_stat_amounts target_amounts;
+	u8 chance_target[8];
+	s8 target_amounts[8];
 	
     enum StatusAilments ailment_user;
     enum StatusAilments ailment_target;
 	u8 ailment_user_chance;
 	u8 ailment_target_chance;
 };
+#include "../battle_data/battle_state.h"
+
 /* 
  * Field data fetch macros
  *
@@ -140,19 +154,11 @@ enum PokemonStat {
     STAT_SPECIAL_ATTACK,
     STAT_SPECIAL_DEFENSE,
     STAT_ACCURACY,
+	STAT_EVASION,
+	STAT_CRIT,
 };
 
-enum StatusAilments {
-    AILMENT_NONE,
-    AILMENT_SLEEP,
-    AILMENT_POISON,
-    AILMENT_BURN,
-    AILMENT_FREEZE,
-    AILMENT_PARALYZE,
-    AILMENT_BAD_POISON,
-    AILMENT_CONFUSION,
-    AILMENT_CURE,
-};
+
 
 
 /*
