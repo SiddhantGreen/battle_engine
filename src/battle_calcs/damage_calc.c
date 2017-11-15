@@ -10,6 +10,7 @@ extern u8 effectiveness_chart[342];
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern void dprintf(const char * str, ...);
 
+
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
     u8 i, j;

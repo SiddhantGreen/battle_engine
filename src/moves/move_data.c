@@ -1317,7 +1317,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &sing_procs,
 	},
 	
 	{
@@ -1329,7 +1329,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &supersonic_procs,
 	},
 	
 	{
@@ -1342,6 +1342,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+	.on_modify_move = sonic_boom_on_modify_move,
 	},
 	
 	{

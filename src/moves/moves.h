@@ -269,6 +269,9 @@ extern u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move);
 extern u8 thrash_on_before_move(u8 attacker);
 extern u8 thrash_on_move_fail(u8 attacker, u8 defender, u16 move);
 extern void thrash_on_after_move(u8 attacker);
+extern u8 sonic_boom_on_modify_move(u8 user, u8 target, u16 move);
+extern u16 sonic_boom_on_damage_move(u16 dmg_taken, u8 user, u8 target, u16 move);
+
 
 /* Move procs */
 extern struct move_procs basic_10burn_proc;
@@ -277,6 +280,8 @@ extern struct move_procs basic_10para_proc;
 extern struct move_procs always_para_proc;
 extern struct move_procs poison_sting_procs;
 extern struct move_procs twineedle_procs;
+extern struct move_procs supersonic_procs;
+extern struct move_procs sing_procs;
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

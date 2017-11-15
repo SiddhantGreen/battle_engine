@@ -615,7 +615,7 @@ struct move_procs twineedle_procs = {
 };
 
 // Sing
-struct move_procs twineedle_procs = {
+struct move_procs sing_procs = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 0, 0, 0, 0, 0, 0, 0},
@@ -625,3 +625,16 @@ struct move_procs twineedle_procs = {
 	0,
 	100,
 };
+
+// Sing
+struct move_procs supersonic_procs = {
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	AILMENT_NONE,
+	AILMENT_CONFUSION,
+	0,
+	100,
+};
+
