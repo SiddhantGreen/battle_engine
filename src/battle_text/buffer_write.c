@@ -51,13 +51,13 @@ void buffer_write_stat_mod(pchar* buffer, u8 stat_id)
         case REQUEST_SPDEF:
             pstrcpy(buffer, (pchar*)&str_stat_spdef);
             break;
-        case 51: // evasion
+        case (REQUEST_SPDEF + 1): // evasion
             pstrcpy(buffer, (pchar*)&str_stat_evn);
             break;
-        case 52: // accuracy
+        case (REQUEST_SPDEF + 2): // accuracy
             pstrcpy(buffer, (pchar*)&str_stat_acc);
             break;
-        case 53: // crit
+        case (REQUEST_SPDEF + 3): // crit
             pstrcpy(buffer, (pchar*)&str_stat_crit);
             break;
     };

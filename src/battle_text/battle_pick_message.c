@@ -114,6 +114,10 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_CHARGE_SOLAR_BLADE:
             case STRING_INVULNERABLE:
             case STRING_RESIDUAL_DMG:
+            case STRING_STAT_MOD_CANT_GO_LOWER:
+            case STRING_STAT_MOD_CANT_GO_HIGHER:
+            case STRING_STAT_MOD_SEVERELY_FELL:
+            case STRING_STAT_MOD_ROSE_DRASTICALLY:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:

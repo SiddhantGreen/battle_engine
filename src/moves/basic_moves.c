@@ -41,8 +41,8 @@ struct move_procs target_lower_atk_2 = {
 struct move_procs target_lower_def_1 = {
 	{0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
-	{0, 100, 0, 0, 0, 0, 0, 0},
-    {0, -1, 0, 0, 0, 0, 0, 0},
+	{0, 100, 0, 0, 0, 100, 100, 100},
+    {0, -1, 0, 0, 0, 1, 1, 1},
 	AILMENT_NONE,
 	AILMENT_NONE,
 	0,

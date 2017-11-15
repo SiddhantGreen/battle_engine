@@ -21,70 +21,90 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
         }
     }
 	
+    s8* stat_stored;
     switch (stat_id + 1) {
         case STAT_ATTACK:
             {
-            p_bank[bank]->b_data.attack += amount;
+            stat_stored = &(p_bank[bank]->b_data.attack);
             break;
             }
         case STAT_DEFENSE:
             {
-            p_bank[bank]->b_data.defense += amount;
+            stat_stored = &(p_bank[bank]->b_data.defense);
             break;
             }
         case STAT_SPEED:
             {
-            p_bank[bank]->b_data.speed += amount;
+            stat_stored = &(p_bank[bank]->b_data.speed);
             break;
             }
         case STAT_SPECIAL_ATTACK:
             {
-            p_bank[bank]->b_data.sp_atk += amount;
+            stat_stored = &(p_bank[bank]->b_data.sp_atk);
             break;
             }
         case STAT_SPECIAL_DEFENSE:
             {
-            p_bank[bank]->b_data.sp_def += amount;
+            stat_stored = &(p_bank[bank]->b_data.sp_def);
             break;
             }
         case STAT_EVASION: // evasion
             {
-            p_bank[bank]->b_data.evasion += amount;
+            stat_stored = &(p_bank[bank]->b_data.evasion);
             break;
             }
         case STAT_ACCURACY: // accuracy
             {
-            p_bank[bank]->b_data.accuracy += amount;
+            stat_stored = &(p_bank[bank]->b_data.accuracy);
             break;
             }
         case STAT_CRIT: // crit
             {
-            p_bank[bank]->b_data.crit_mod += amount;
+            stat_stored = &(p_bank[bank]->b_data.crit_mod);
             break;
             }
         default:
             return;
     };
 
-    amount += 6;
-    switch (amount) {
+    s8 stat_total = *stat_stored + amount;
+    stat_total = MIN(6, stat_total);
+    stat_total = MAX(-6, stat_total);
+    switch ((ABS(stat_total - (*stat_stored)))) {
         case 0:
+           // stat didn't change - string can't go up/down anymore
+            if (amount > 0) {
+                enqueue_message(0, bank, STRING_STAT_MOD_CANT_GO_HIGHER, stat_id + REQUEST_ATK);
+            } else {
+                enqueue_message(0, bank, STRING_STAT_MOD_CANT_GO_LOWER, stat_id + REQUEST_ATK);
+            }
+            break;
         case 1:
+            // stat changed by 1 stage
+            *stat_stored += (amount > 0) ? 1 : -1;
+            if (amount > 0) {
+                enqueue_message(0, bank, STRING_STAT_MOD_RISE, stat_id + REQUEST_ATK);
+            } else {
+                enqueue_message(0, bank, STRING_STAT_MOD_DROP, stat_id + REQUEST_ATK);
+            }
+            break;
         case 2:
+            // stat changed by 2 stages
+            *stat_stored += (amount > 0) ? 2 : -2;
+            if (amount > 0) {
+                enqueue_message(0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id + REQUEST_ATK);
+            } else {
+                enqueue_message(0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id + REQUEST_ATK);
+            }
+            break;
         case 3:
-        case 4:
-            enqueue_message(0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id + REQUEST_ATK);
-            break;
-        case 5:
-            enqueue_message(0, bank, STRING_STAT_MOD_DROP, stat_id + REQUEST_ATK);
-            break;
-        case 6:
-            break;
-        case 7:
-            enqueue_message(0, bank, STRING_STAT_MOD_RISE, stat_id + REQUEST_ATK);
-            break;
-        default:
-            enqueue_message(0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id + REQUEST_ATK);
+            // stat changed by 3 stages
+            *stat_stored += (amount > 0) ? 3 : -3;
+            if (amount > 0) {
+                enqueue_message(0, bank, STRING_STAT_MOD_ROSE_DRASTICALLY, stat_id + REQUEST_ATK);
+            } else {
+                enqueue_message(0, bank, STRING_STAT_MOD_SEVERELY_FELL, stat_id + REQUEST_ATK);
+            }
             break;
     };
 }
@@ -92,13 +112,16 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
 void move_procs_perform(u8 bank_index, u16 move)
 {
 	if (moves[move].procs) {
+        
 		/* first step is to apply user boosts */
 		for (u8 i = 0; i < 8; i++) {
 			if (B_USER_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
 				stat_boost(bank_index, i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
 				B_USER_STAT_MOD_CHANCE(bank_index, i) = 0;
 				dprintf("mod user stat %d by %d stages\n", i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
-			}	
+				dprintf("mod user stat %d chance: %d\n", i, B_USER_STAT_MOD_CHANCE(bank_index, i));
+                return;
+			}
 		}
 		
 		/* second step is to apply target boosts */
@@ -107,8 +130,11 @@ void move_procs_perform(u8 bank_index, u16 move)
 				stat_boost(TARGET_OF(bank_index), i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
 				B_TARGET_STAT_MOD_CHANCE(bank_index, i) = 0;
 				dprintf("mod target stat %d by %d stages\n", i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
-			}	
+                dprintf("mod target stat %d chance: %d\n", i, B_TARGET_STAT_MOD_CHANCE(bank_index, i));
+                return;
+			}
 		}
+        super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
 	}
 	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
 }
