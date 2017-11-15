@@ -21,7 +21,7 @@ extern void dprintf(const char * str, ...);
 extern void set_status(u8 bank, u8 source, enum Effect status);
 extern u16 rand_range(u16, u16);
 extern bool is_fainted(void);
-extern void move_procs_perform(bank_index);
+extern void move_procs_perform(u8 bank_index, u16 move);
 
 
 bool damage_result_msg(u8 bank_index)
@@ -259,7 +259,7 @@ void move_hit()
         case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
         // Roll secondary boosts self
         {
-			move_procs_perform(bank_index);
+			move_procs_perform(bank_index, move);
             break;
         }
         case S_AFTER_MOVE_SECONDARY:

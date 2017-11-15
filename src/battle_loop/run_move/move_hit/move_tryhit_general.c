@@ -40,7 +40,7 @@ bool try_hit(u8 attacker)
     if (rand_range(0, 100) <= result)
         return true;
     if (target_evasion > 100) {
-        enqueue_message(0, TARGET_OF(attacker), STRING_ATTACK_AVOIDED, 0);
+        enqueue_message(0, defender, STRING_ATTACK_AVOIDED, 0);
     } else {
         enqueue_message(0, attacker, STRING_ATTACK_MISSED, 0);
     }
