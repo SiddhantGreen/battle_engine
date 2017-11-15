@@ -1189,7 +1189,7 @@ struct move_data moves[] = {
     .on_move_fail = thrash_on_move_fail,
     .on_after_move = thrash_on_after_move,
 	},
-	
+	/* Double edge*/
 	{_("Double-Edge"),
 	.accuracy = 100,
 	.base_power = 120,
@@ -1224,7 +1224,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_sting_procs,
 	},
 	
 	{
@@ -1238,7 +1238,7 @@ struct move_data moves[] = {
 	.type = MTYPE_BUG,
     .multi_hit = {2, 2},
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &twineedle_procs,
 	},
 	
 	{
@@ -1264,7 +1264,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &target_lower_def_1,
 	},
 	
 	{
@@ -1304,6 +1304,8 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
+	.on_tryhit_move = whirlwind_on_tryhit_move,
+    .on_effect_cb = whirlwind_on_effect_cb,
 	},
 	
 	{

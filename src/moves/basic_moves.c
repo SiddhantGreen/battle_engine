@@ -43,10 +43,10 @@ struct move_procs target_lower_def_1 = {
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 100, 0, 0, 0, 0, 0, 0},
     {0, -1, 0, 0, 0, 0, 0, 0},
-	AILMENT_BURN,
-	AILMENT_PARALYZE,
-	100,
-	100,
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
 };
 
 //Lowers target's defense 2 stages
@@ -587,4 +587,41 @@ struct move_procs user_raise_acc_2 = {
 	AILMENT_NONE,
 	0,
 	0,
+};
+
+
+//poison sting
+struct move_procs poison_sting_procs = {
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	AILMENT_NONE,
+	AILMENT_POISON,
+	0,
+	30,
+};
+
+// Twineedle
+struct move_procs twineedle_procs = {
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	AILMENT_NONE,
+	AILMENT_POISON,
+	0,
+	20,
+};
+
+// Sing
+struct move_procs twineedle_procs = {
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	AILMENT_NONE,
+	AILMENT_SLEEP,
+	0,
+	100,
 };

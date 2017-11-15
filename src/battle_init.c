@@ -47,7 +47,7 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_HOWL;
+    u16 t = MOVE_POISON_STING;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_SWORDS_DANCE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);

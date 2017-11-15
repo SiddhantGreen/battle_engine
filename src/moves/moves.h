@@ -275,6 +275,8 @@ extern struct move_procs basic_10burn_proc;
 extern struct move_procs basic_10freez_proc;
 extern struct move_procs basic_10para_proc;
 extern struct move_procs always_para_proc;
+extern struct move_procs poison_sting_procs;
+extern struct move_procs twineedle_procs;
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
