@@ -134,17 +134,14 @@ void move_procs_perform(u8 bank_index, u16 move)
                 return;
 			}
 		}
-        super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+        super.multi_purpose_state_tracker = S_SECONDARY_ROLL_AILMENTS;
 	}
-	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+	super.multi_purpose_state_tracker = S_SECONDARY_ROLL_AILMENTS;
 }
 
-void do_status_something()
-{
-	return;
-}
 
 extern void status_graphical_update(u8 bank, enum Effect status);
+extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 void set_status(u8 bank, enum Effect status)
 {
     bool status_applied = false;
@@ -265,17 +262,23 @@ void ailment_decode(u8 bank, u8 ailment)
 }
 
 
-void status_procs_perform(u8 bank_index, u16 move)
+void status_procs_perform(u8 bank_index)
 {
-	if (B_AILMENT_PROCS_CHANCE_USER(bank) >= rand_range(0, 100)) {
-		// apply status user 
-		set_status(bank, B_AILMENT_PROCS_USER(bank));
+	if (B_AILMENT_PROCS_CHANCE_USER(bank_index) >= rand_range(1, 100)) {
+		// apply status user
+		B_AILMENT_PROCS_CHANCE_USER(bank_index) = 0;
+		dprintf("We are setting a status\n");
+		set_status(bank_index, B_AILMENT_PROCS_USER(bank_index));
+		return;
 	}
 	
-	if (B_AILMENT_PROCS_CHANCE_TARGET(bank) >= rand_range(0, 100)) {
+	if (B_AILMENT_PROCS_CHANCE_TARGET(bank_index) >= rand_range(1, 100)) {
 		// apply status target
-		set_status(bank, B_AILMENT_PROCS_TARGET(bank));
+		B_AILMENT_PROCS_CHANCE_TARGET(bank_index) = 0;
+		set_status(bank_index, B_AILMENT_PROCS_TARGET(bank_index));
+		return;
 	}
+	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY; 
 }
 
 
