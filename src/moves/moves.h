@@ -52,6 +52,13 @@ struct move_procs {
 	u8 ailment_user_chance;
 	u8 ailment_target_chance;
 };
+
+#define MOVE_AILMENT_PROCS_CHANCE_USER(move) moves[move].ailment_user_chance
+#define MOVE_AILMENT_PROCS_CHANCE_TARGET(move) moves[move].ailment_target_chance
+#define MOVE_AILMENT_PROCS_STATUS_USER(move) moves[move].ailment_user
+#define MOVE_AILMENT_PROCS_STATUS_TARGET(move) moves[move].ailment_target
+
+
 #include "../battle_data/battle_state.h"
 
 /* 

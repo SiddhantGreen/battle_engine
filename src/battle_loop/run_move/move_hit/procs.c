@@ -139,4 +139,149 @@ void move_procs_perform(u8 bank_index, u16 move)
 	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
 }
 
+void do_status_something()
+{
+	return;
+}
+
+extern void status_graphical_update(u8 bank, enum Effect status);
+void set_status(u8 bank, enum Effect status)
+{
+    bool status_applied = false;
+    // lowest priority for override are types and current status
+    switch (status) {
+        case EFFECT_NONE:
+            // no status to set
+            return;
+            break;
+        case EFFECT_PARALYZE:
+            // electric types are immune. Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_ELECTRIC)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_BURN:
+            // fire types are immune.  Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_FIRE)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_POISON:
+        case EFFECT_BAD_POISON:
+            // poison and steel types are immune. Already status'd is immune
+            if ((b_pkmn_has_type(bank, TYPE_POISON)) || (b_pkmn_has_type(bank, TYPE_STEEL)) ||
+                (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+			break;
+        case EFFECT_SLEEP:
+            // sleep isn't affected by type
+            if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            break;
+        case EFFECT_FREEZE:
+            // ice types cannot be frozen
+            if ((b_pkmn_has_type(bank, TYPE_FIRE)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+			break;
+        case EFFECT_CONFUSION:
+            // Confusion isn't affected by type
+            if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
+                status_applied = false;
+            } else {
+                status_applied = true;
+            }
+            p_bank[bank]->b_data.confusion_turns = rand_range(1, 4);
+			break;
+        case EFFECT_CURE:
+            // cure status
+            p_bank[bank]->b_data.status = EFFECT_NONE;
+            p_bank[bank]->b_data.status_turns = 0;
+            p_bank[bank]->b_data.confusion_turns = 0;
+            enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
+            status_graphical_update(bank, status);
+            return;
+        default:
+            break;
+    };
+  
+    if (status_applied) {
+        p_bank[bank]->b_data.status = status;
+        status_graphical_update(bank, status);
+        enqueue_message(0, bank, STRING_AILMENT_APPLIED, status);
+    } else {
+        enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
+    }
+}
+
+u8 ailment_encode(u8 bank)
+{
+    switch(p_bank[bank]->b_data.status)
+    {
+        case AILMENT_SLEEP:
+            return p_bank[bank]->b_data.status_turns & 7;
+        case AILMENT_POISON:
+            return 1<<3;
+        case AILMENT_BURN:
+            return 1<<4;
+        case AILMENT_FREEZE:
+            return 1<<5;
+        case AILMENT_PARALYZE:
+            return 1<<6;
+        case AILMENT_BAD_POISON:
+            return 1<<7;
+        default:
+            return 0;
+    }
+}
+
+void ailment_decode(u8 bank, u8 ailment)
+{
+    if((ailment & 7) > 0) {
+        p_bank[bank]->b_data.status = AILMENT_SLEEP;
+        p_bank[bank]->b_data.status_turns = ailment & 7;
+    } else if(ailment & (1<<3))
+        p_bank[bank]->b_data.status = AILMENT_POISON;
+    else if(ailment & (1<<4))
+        p_bank[bank]->b_data.status = AILMENT_BURN;
+    else if(ailment & (1<<5))
+        p_bank[bank]->b_data.status = AILMENT_FREEZE;
+    else if(ailment & (1<<6))
+        p_bank[bank]->b_data.status = AILMENT_PARALYZE;
+    else if(ailment & (1<<7))
+        p_bank[bank]->b_data.status = AILMENT_BAD_POISON;
+}
+
+
+void status_procs_perform(u8 bank_index, u16 move)
+{
+	if (B_AILMENT_PROCS_CHANCE_USER(bank) >= rand_range(0, 100)) {
+		// apply status user 
+		set_status(bank, B_AILMENT_PROCS_USER(bank));
+	}
+	
+	if (B_AILMENT_PROCS_CHANCE_TARGET(bank) >= rand_range(0, 100)) {
+		// apply status target
+		set_status(bank, B_AILMENT_PROCS_TARGET(bank));
+	}
+}
+
+
+
+
+
+
+
 

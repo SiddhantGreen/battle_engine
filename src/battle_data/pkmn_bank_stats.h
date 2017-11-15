@@ -94,7 +94,15 @@
 
 #define B_TARGET_STAT_MOD_CHANCE(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.chance_target[stat]
 #define B_TARGET_STAT_MOD_AMOUNT(bank, stat) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.target_amounts[stat]
- 
+
+#define B_AILMENT_PROCS_CHANCE_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.ailment_user_chance
+#define B_AILMENT_PROCS_CHANCE_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.ailment_target_chance
+#define B_AILMENT_PROCS_USER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.ailment_user
+#define B_AILMENT_PROCS_TARGET(bank) battle_master->b_moves[B_MOVE_BANK(bank)].b_procs.ailment_target
+
+
+
+
 /*
  * General Pbank macros
  */
