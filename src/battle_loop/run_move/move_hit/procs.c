@@ -267,7 +267,6 @@ void status_procs_perform(u8 bank_index)
 	if (B_AILMENT_PROCS_CHANCE_USER(bank_index) >= rand_range(1, 100)) {
 		// apply status user
 		B_AILMENT_PROCS_CHANCE_USER(bank_index) = 0;
-		dprintf("We are setting a status\n");
 		set_status(bank_index, B_AILMENT_PROCS_USER(bank_index));
 		return;
 	}
@@ -275,7 +274,7 @@ void status_procs_perform(u8 bank_index)
 	if (B_AILMENT_PROCS_CHANCE_TARGET(bank_index) >= rand_range(1, 100)) {
 		// apply status target
 		B_AILMENT_PROCS_CHANCE_TARGET(bank_index) = 0;
-		set_status(bank_index, B_AILMENT_PROCS_TARGET(bank_index));
+		set_status(TARGET_OF(bank_index), B_AILMENT_PROCS_TARGET(bank_index));
 		return;
 	}
 	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY; 
