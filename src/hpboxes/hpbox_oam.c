@@ -233,6 +233,7 @@ void status_graphical_update(u8 bank, enum Effect status)
             image += 1088 + 2 * 96;
         break;
         case EFFECT_FREEZE:
+			create = true;
             image += 1088 + 3 * 96;
             break;
         default:
