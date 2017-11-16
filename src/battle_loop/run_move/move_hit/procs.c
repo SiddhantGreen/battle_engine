@@ -175,6 +175,13 @@ void set_status(u8 bank, enum Effect status)
                 status_applied = false;
             } else {
                 status_applied = true;
+				extern void poison_on_inflict(u8 bank);
+				if (status == EFFECT_POISON) {
+					poison_on_inflict(bank);
+				} else {
+					extern void toxic_on_inflict(u8 bank);
+					toxic_on_inflict(bank);
+				}
             }
 			break;
         case EFFECT_SLEEP:
@@ -183,14 +190,18 @@ void set_status(u8 bank, enum Effect status)
                 status_applied = false;
             } else {
                 status_applied = true;
+				extern void sleep_on_inflict(u8 bank);
+				sleep_on_inflict(bank);
             }
             break;
         case EFFECT_FREEZE:
-            // ice types cannot be frozen
+            // fire types cannot be frozen
             if ((b_pkmn_has_type(bank, TYPE_FIRE)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
                 status_applied = false;
             } else {
                 status_applied = true;
+				extern void freeze_on_inflict(u8 bank);
+				freeze_on_inflict(bank);
             }
 			break;
         case EFFECT_CONFUSION:
@@ -198,17 +209,17 @@ void set_status(u8 bank, enum Effect status)
             if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
                 status_applied = false;
             } else {
+				extern void confusion_on_inflict(u8 bank);
+				confusion_on_inflict(bank);
                 status_applied = true;
             }
-            p_bank[bank]->b_data.confusion_turns = rand_range(1, 4);
 			break;
         case EFFECT_CURE:
             // cure status
-            p_bank[bank]->b_data.status = EFFECT_NONE;
-            p_bank[bank]->b_data.status_turns = 0;
-            p_bank[bank]->b_data.confusion_turns = 0;
-            enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
-            status_graphical_update(bank, status);
+			{
+            extern void effect_cure_on_inflict(u8 bank);
+			effect_cure_on_inflict(bank);
+			}
             return;
         default:
             break;
