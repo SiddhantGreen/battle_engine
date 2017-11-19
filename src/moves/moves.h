@@ -6,6 +6,7 @@
 #include "move_override.h"
 #include "../abilities/ability_override.h"
 
+/*
 enum StatusAilments {
     AILMENT_NONE,
     AILMENT_SLEEP,
@@ -16,7 +17,7 @@ enum StatusAilments {
     AILMENT_BAD_POISON,
     AILMENT_CONFUSION,
     AILMENT_CURE,
-};
+};*/
 
 struct battle_stat_chances {
 	u8 c_atk;
@@ -245,7 +246,7 @@ struct move_data {
 };
 
 extern struct move_data moves[];
-extern u32 m_flags[672];
+
 
 /* Move callback funcs */
 extern u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move);
