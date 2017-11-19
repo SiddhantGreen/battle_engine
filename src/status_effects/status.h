@@ -3,8 +3,7 @@
 
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
-#include "move_override.h"
-#include "../abilities/ability_override.h"
+
 
 typedef void (*StatusOnStart)(u8 bank);
 typedef void (*StatusOnBeforeMove)(u8 bank);
