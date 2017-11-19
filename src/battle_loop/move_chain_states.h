@@ -39,6 +39,9 @@ enum RunMoveStates {
     S_CHECK_TARGET_EXISTS,
     S_RUN_MOVE_HIT,
     S_PP_REDUCTION,
+    S_RESIDUAL_MOVES,
+    S_RESIDUAL_STATUS,
+    S_WAIT_HPUPDATE_RUN_MOVE,
 };
 
 enum MoveHitStates {

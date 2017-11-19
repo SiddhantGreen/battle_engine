@@ -5,6 +5,7 @@
 #include "../../moves/moves.h"
 #include "../../battle_text/battle_pick_message.h"
 #include "../move_chain_states.h"
+#include "../../status_effects/status.h"
 
 extern void run_decision(void);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -12,6 +13,7 @@ extern bool peek_message(void);
 extern void move_hit(void);
 extern bool target_exists(u8 bank);
 extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
+extern void do_residual_status_effects(u8 order);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -123,18 +125,40 @@ void run_move()
             if (B_MOVE_FAILED(bank_index)) {
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
-            
+            super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
+            break;
+        }
+        case S_RESIDUAL_MOVES:
+        {        
             if (bank_index != battle_master->first_bank) {
+                // residual callbacks for moves
                 u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
                 u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
                 if (player_speed > opponent_speed) {
                     run_residual_cbs(PLAYER_SINGLES_BANK);
-                    run_residual_cbs(OPPONENT_SINGLES_BANK);
+                    run_residual_cbs(OPPONENT_SINGLES_BANK); 
                 } else {
                     run_residual_cbs(OPPONENT_SINGLES_BANK);
                     run_residual_cbs(PLAYER_SINGLES_BANK);
                 }
             }
+            super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+            break;
+        }
+        case S_RESIDUAL_STATUS:
+        {
+            if (bank_index != battle_master->first_bank) {
+                // residual callbacks for statuses
+                u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
+                u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
+                u8 order = (player_speed > opponent_speed) ? 1 : 0;
+                do_residual_status_effects(order);
+            }
+            super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+            break;
+        }
+        case S_WAIT_HPUPDATE_RUN_MOVE:
+        {
             super.multi_purpose_state_tracker = S_RUN_FAINT;
             set_callback1(run_decision);
             break;
