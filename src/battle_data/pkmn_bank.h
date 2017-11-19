@@ -14,6 +14,19 @@
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*DamageCallback)(u8, u8);
 
+
+enum StatusAilments {
+    AILMENT_NONE,
+    AILMENT_SLEEP,
+    AILMENT_POISON,
+    AILMENT_BURN,
+    AILMENT_FREEZE,
+    AILMENT_PARALYZE,
+    AILMENT_BAD_POISON,
+    AILMENT_CONFUSION,
+    AILMENT_CURE,
+};
+
 enum TypeBits {
     TYPE_BITS_NORMAL = (1 << 0),
     TYPE_BITS_FIGHTING = (1 << 1),
@@ -101,7 +114,7 @@ struct local_battler_data {
     u8 is_charmed : 1;
     u8 is_grounded : 1;
     
-    u8 status;
+    enum StatusAilments status;
     u8 confusion_turns;
     u8 status_turns;
     u16 substitute_health;
