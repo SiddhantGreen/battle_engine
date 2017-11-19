@@ -5,6 +5,7 @@
 #include "../../../moves/moves.h"
 #include "../../move_chain_states.h"
 #include "../../../abilities/battle_abilities.h"
+#include "../../../status_effects/status.h"
 
 extern u16 rand_range(u16, u16);
 extern void dprintf(const char * str, ...);
@@ -175,13 +176,6 @@ void set_status(u8 bank, enum Effect status)
                 status_applied = false;
             } else {
                 status_applied = true;
-				extern void poison_on_inflict(u8 bank);
-				if (status == EFFECT_POISON) {
-					poison_on_inflict(bank);
-				} else {
-					extern void toxic_on_inflict(u8 bank);
-					toxic_on_inflict(bank);
-				}
             }
 			break;
         case EFFECT_SLEEP:
@@ -190,8 +184,6 @@ void set_status(u8 bank, enum Effect status)
                 status_applied = false;
             } else {
                 status_applied = true;
-				extern void sleep_on_inflict(u8 bank);
-				sleep_on_inflict(bank);
             }
             break;
         case EFFECT_FREEZE:
@@ -200,27 +192,20 @@ void set_status(u8 bank, enum Effect status)
                 status_applied = false;
             } else {
                 status_applied = true;
-				extern void freeze_on_inflict(u8 bank);
-				freeze_on_inflict(bank);
             }
 			break;
         case EFFECT_CONFUSION:
             // Confusion isn't affected by type
-            if ((p_bank[bank]->b_data.status != AILMENT_NONE)) {
+            if ((p_bank[bank]->b_data.status == AILMENT_CONFUSION)) {
                 status_applied = false;
             } else {
-				extern void confusion_on_inflict(u8 bank);
-				confusion_on_inflict(bank);
                 status_applied = true;
             }
 			break;
         case EFFECT_CURE:
             // cure status
-			{
-            extern void effect_cure_on_inflict(u8 bank);
-			effect_cure_on_inflict(bank);
-			}
-            return;
+			status_applied = true;
+            break;
         default:
             break;
     };
@@ -228,7 +213,9 @@ void set_status(u8 bank, enum Effect status)
     if (status_applied) {
         p_bank[bank]->b_data.status = status;
         status_graphical_update(bank, status);
-        enqueue_message(0, bank, STRING_AILMENT_APPLIED, status);
+        if (statuses[status].on_inflict) {
+            statuses[status].on_inflict(bank);
+        }
     } else {
         enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
     }
@@ -257,18 +244,18 @@ u8 ailment_encode(u8 bank)
 
 void ailment_decode(u8 bank, u8 ailment)
 {
-    if((ailment & 7) > 0) {
+    if ((ailment & 7) > 0) {
         p_bank[bank]->b_data.status = AILMENT_SLEEP;
         p_bank[bank]->b_data.status_turns = ailment & 7;
-    } else if(ailment & (1<<3))
+    } else if (ailment & (1<<3))
         p_bank[bank]->b_data.status = AILMENT_POISON;
-    else if(ailment & (1<<4))
+    else if (ailment & (1<<4))
         p_bank[bank]->b_data.status = AILMENT_BURN;
-    else if(ailment & (1<<5))
+    else if (ailment & (1<<5))
         p_bank[bank]->b_data.status = AILMENT_FREEZE;
-    else if(ailment & (1<<6))
+    else if (ailment & (1<<6))
         p_bank[bank]->b_data.status = AILMENT_PARALYZE;
-    else if(ailment & (1<<7))
+    else if (ailment & (1<<7))
         p_bank[bank]->b_data.status = AILMENT_BAD_POISON;
 }
 
