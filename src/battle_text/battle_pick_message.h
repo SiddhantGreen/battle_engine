@@ -77,6 +77,7 @@ enum battle_string_ids {
     STRING_STAT_MOD_CANT_GO_HIGHER = 121,
     STRING_STAT_MOD_SEVERELY_FELL = 123,
     STRING_STAT_MOD_ROSE_DRASTICALLY = 125,
+    STRING_RESIDUAL_STATUS_DMG = 127,
     
 };
 
@@ -216,6 +217,7 @@ static const pchar str_invulnerable_p[] = _("Foe {DEFENDING_MON} was invulnerabl
 static const pchar str_invulnerable_o[] = _("{DEFENDING_MON} was invulnerable\nto the attack!");
 
 static const pchar str_residual_dmg[] = _("{ATTACKING_MON} took some damage from\n{ATTACK_NAME}!");
+static const pchar str_residual_status_dmg[] = _("{ATTACKING_MON} took some damage from\nbeing {STATUS_NAME}!");
 
 
 // stat names
@@ -238,7 +240,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[127] = {
+static const pchar* battle_strings[128] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -307,6 +309,7 @@ static const pchar* battle_strings[127] = {
    (pchar*)&str_stat_mod_cant_go_higher_p, (pchar*)&str_stat_mod_cant_go_higher_o,
    (pchar*)&str_stat_mod_severely_fell_o, (pchar*)&str_stat_mod_severely_fell_p,
    (pchar*)&str_stat_mod_rose_drastically_o, (pchar*)&str_stat_mod_rose_drastically_p,
+   (pchar*)&str_residual_status_dmg,
    
    
 };
