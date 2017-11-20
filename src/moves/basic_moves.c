@@ -43,9 +43,9 @@ struct move_procs target_lower_def_1 = {
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 100, 0, 0, 0, 0, 0, 0},
     {0, -1, 0, 0, 0, 0, 0, 0},
-	AILMENT_SLEEP,
 	AILMENT_NONE,
-	100,
+	AILMENT_NONE,
+	0,
 	0,
 };
 
@@ -626,7 +626,7 @@ struct move_procs sing_procs = {
 	100,
 };
 
-// Sing
+// Supersonic
 struct move_procs supersonic_procs = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},

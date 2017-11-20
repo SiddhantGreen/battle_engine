@@ -1189,6 +1189,7 @@ struct move_data moves[] = {
     .on_move_fail = thrash_on_move_fail,
     .on_after_move = thrash_on_after_move,
 	},
+	
 	/* Double edge*/
 	{_("Double-Edge"),
 	.accuracy = 100,
