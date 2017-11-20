@@ -226,7 +226,7 @@ u8 ailment_encode(u8 bank)
     switch(p_bank[bank]->b_data.status)
     {
         case AILMENT_SLEEP:
-            return p_bank[bank]->b_data.status_turns & 7;
+            return p_bank[bank]->b_data.status_turns;
         case AILMENT_POISON:
             return 1<<3;
         case AILMENT_BURN:
