@@ -77,6 +77,11 @@ void run_move()
     switch(super.multi_purpose_state_tracker) {
         case S_BEFORE_MOVE:
         {
+			if (B_STATUS(bank_index) != AILMENT_NONE) {
+				if (statuses[B_STATUS(bank_index)].on_before_move) {
+					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
+				}
+			}
             u8 result = before_move_cb(bank_index);
             switch (result) {
                 case CANT_USE_MOVE:
@@ -90,6 +95,11 @@ void run_move()
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
                 break;
             }
+			if (HAS_VOLATILE(bank_index, VOLATILE_SLEEP_TURN)) {
+				enqueue_message(0, bank_index, STRING_FAST_ASLEEP, 0);
+				super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+				return;
+			}
             // display "Pokemon used move!"
             enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
             super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
