@@ -11,12 +11,14 @@ extern void do_damage(u8 bank_index, u16 dmg);
 
 void sleep_on_before_move(u8 bank)
 {
-
+	if (p_bank[bank]->b_data.status == AILMENT_SLEEP) {
+		ADD_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+	}
 }
 
 void sleep_on_inflict(u8 bank)
 {
-	u8 ailment = 3;//rand_range(1, 3);
+	u8 ailment = rand_range(1, 3);
 	p_bank[bank]->b_data.status_turns = ailment;
 	p_bank[bank]->b_data.status = AILMENT_SLEEP;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
@@ -97,6 +99,8 @@ void sleep_on_residual(u8 bank)
 {
 	if (p_bank[bank]->b_data.status_turns) {
 		p_bank[bank]->b_data.status_turns--;
+	} else {
+		effect_cure_on_inflict(bank);
 	}
 }
 
@@ -157,6 +161,7 @@ struct status_ailments statuses[] =
     },
     // Ailment sleep
     {
+		.on_before_move = sleep_on_before_move,
         .on_inflict = sleep_on_inflict,
         .on_residual = sleep_on_residual,
     },

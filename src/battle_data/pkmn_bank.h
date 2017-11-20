@@ -63,6 +63,7 @@ enum VolatileStatus {
     VOLATILE_FLYING = (1 << 12),
     VOLATILE_MINIMIZE = (1 << 13),
     VOLATILE_MULTI_TURN = (1 << 14), // disables PP reduction
+    VOLATILE_SLEEP_TURN = (1 << 15),
 };
 
 struct local_battler_data {
