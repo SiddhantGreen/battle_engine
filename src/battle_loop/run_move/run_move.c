@@ -95,14 +95,18 @@ void run_move()
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
                 break;
             }
+			/* Residual effects which cause turn ending */
+			super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
 			if (HAS_VOLATILE(bank_index, VOLATILE_SLEEP_TURN)) {
 				enqueue_message(0, bank_index, STRING_FAST_ASLEEP, 0);
-				super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
 				return;
+			} else if (HAS_VOLATILE(bank_index, VOLATILE_CONFUSE_TURN)) {
+				return;
+			} else {
+				// display "Pokemon used move!"
+				enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+				super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
 			}
-            // display "Pokemon used move!"
-            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
-            super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
             break;
         }
         case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
