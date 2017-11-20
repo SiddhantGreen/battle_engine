@@ -43,9 +43,9 @@ struct move_procs target_lower_def_1 = {
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 100, 0, 0, 0, 0, 0, 0},
     {0, -1, 0, 0, 0, 0, 0, 0},
+	AILMENT_SLEEP,
 	AILMENT_NONE,
-	AILMENT_NONE,
-	0,
+	100,
 	0,
 };
 

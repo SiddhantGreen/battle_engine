@@ -9,9 +9,14 @@ extern void status_graphical_update(u8 bank, enum Effect status);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
 
+void sleep_on_before_move(u8 bank)
+{
+
+}
+
 void sleep_on_inflict(u8 bank)
 {
-	u8 ailment = rand_range(1, 3);
+	u8 ailment = 3;//rand_range(1, 3);
 	p_bank[bank]->b_data.status_turns = ailment;
 	p_bank[bank]->b_data.status = AILMENT_SLEEP;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
