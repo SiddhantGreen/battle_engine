@@ -14,9 +14,10 @@ extern void dprintf(const char * str, ...);
 void confusion_on_before_move(u8 bank)
 {
 	if (p_bank[bank]->b_data.confusion_turns) {
-			enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
+		enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
 		if (rand_range(0, 100) <= 33) {
 			// hurt itself in confusion
+			ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 			enqueue_message(0, bank, STRING_CONFUSION_HURT, 0);
 			B_MOVE_TYPE(bank, 0) = MTYPE_NONE;
 			B_MOVE_POWER(bank) = 40;
@@ -29,7 +30,7 @@ void confusion_on_before_move(u8 bank)
 			u16 dmg = get_damage(bank, bank, CURRENT_MOVE(bank));
 			dprintf("doing %d dmg", dmg);
 			do_damage(bank, MAX(1, dmg));
-			ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+			
 		}
 	} else {
 		p_bank[bank]->b_data.status = AILMENT_NONE;
