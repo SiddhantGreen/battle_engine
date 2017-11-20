@@ -12,7 +12,14 @@ extern void do_damage(u8 bank_index, u16 dmg);
 void sleep_on_before_move(u8 bank)
 {
 	if (p_bank[bank]->b_data.status == AILMENT_SLEEP) {
-		ADD_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+		if (p_bank[bank]->b_data.status_turns) {
+			ADD_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+		} else {
+			p_bank[bank]->b_data.status = AILMENT_NONE;
+			enqueue_message(0, bank, STRING_WOKE_UP, 0);
+			status_graphical_update(bank, AILMENT_NONE);
+			REMOVE_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+		}
 	}
 }
 
@@ -100,7 +107,7 @@ void sleep_on_residual(u8 bank)
 	if (p_bank[bank]->b_data.status_turns) {
 		p_bank[bank]->b_data.status_turns--;
 	} else {
-		effect_cure_on_inflict(bank);
+		p_bank[bank]->b_data.status_turns = 0;
 	}
 }
 

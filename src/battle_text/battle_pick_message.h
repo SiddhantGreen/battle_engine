@@ -79,6 +79,7 @@ enum battle_string_ids {
     STRING_STAT_MOD_ROSE_DRASTICALLY = 125,
     STRING_RESIDUAL_STATUS_DMG = 127,
 	STRING_FAST_ASLEEP = 128,
+	STRING_WOKE_UP = 130,
     
 };
 
@@ -219,7 +220,10 @@ static const pchar str_invulnerable_o[] = _("{DEFENDING_MON} was invulnerable\nt
 
 static const pchar str_residual_dmg[] = _("{ATTACKING_MON} took some damage from\n{ATTACK_NAME}!");
 static const pchar str_residual_status_dmg[] = _("{ATTACKING_MON} took some damage from\nbeing {STATUS_NAME}!");
-static const pchar str_fast_asleep[] = _("{ATTACKING_MON} is fast asleep.");
+static const pchar str_fast_asleep_p[] = _("{ATTACKING_MON}\nis fast asleep.");
+static const pchar str_fast_asleep_o[] = _("Foe {ATTACKING_MON}\nis fast asleep.");
+static const pchar str_awoke_p[] = _("{ATTACKING_MON} woke up!");
+static const pchar str_awoke_o[] = _("Foe {ATTACKING_MON}\nwoke up!");
 
 
 // stat names
@@ -242,7 +246,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[129] = {
+static const pchar* battle_strings[132] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -312,7 +316,8 @@ static const pchar* battle_strings[129] = {
    (pchar*)&str_stat_mod_severely_fell_o, (pchar*)&str_stat_mod_severely_fell_p,
    (pchar*)&str_stat_mod_rose_drastically_o, (pchar*)&str_stat_mod_rose_drastically_p,
    (pchar*)&str_residual_status_dmg,
-   (pchar*)&str_fast_asleep,
+   (pchar*)&str_fast_asleep_p, (pchar*)&str_fast_asleep_o,
+   (pchar*)&str_awoke_p, (pchar*)&str_awoke_o,
    
    
 };
