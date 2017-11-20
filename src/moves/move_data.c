@@ -9243,6 +9243,7 @@ struct move_data moves[] = {
 	.flinch_chance = 30,
 	},
 	
+	/* Nature's Madness */
 	{_("Nature‘s Madness"),
 	.accuracy = 90,
     .description = (pchar*)Natures_Madness_desc,
@@ -9253,6 +9254,7 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
+	/* Multi-Attack */
 	{_("Multi-Attack"),
 	.accuracy = 100,
 	.base_power = 90,
