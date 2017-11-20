@@ -8,6 +8,37 @@ extern u16 rand_range(u16, u16);
 extern void status_graphical_update(u8 bank, enum Effect status);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
+extern u16 get_damage(u8 attacker, u8 defender, u16 move);
+extern void dprintf(const char * str, ...);
+
+void confusion_on_before_move(u8 bank)
+{
+	if (p_bank[bank]->b_data.confusion_turns) {
+			enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
+		if (rand_range(0, 100) <= 33) {
+			// hurt itself in confusion
+			enqueue_message(0, bank, STRING_CONFUSION_HURT, 0);
+			B_MOVE_TYPE(bank, 0) = MTYPE_NONE;
+			B_MOVE_POWER(bank) = 40;
+			B_MOVE_ACCURACY(bank) = 101;
+			B_MOVE_IGNORING_ABILITIES(bank) = true;
+			B_MOVE_CATEGORY(bank) = MOVE_PHYSICAL;
+			B_MOVE_CAN_CRIT(bank) = false;
+			B_MOVE_WILL_CRIT_SET(bank, 0);
+			battle_master->b_moves[B_MOVE_BANK(bank)].hit_times = 0;
+			u16 dmg = get_damage(bank, bank, CURRENT_MOVE(bank));
+			dprintf("doing %d dmg", dmg);
+			do_damage(bank, MAX(1, dmg));
+			ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+		}
+	} else {
+		p_bank[bank]->b_data.status = AILMENT_NONE;
+		enqueue_message(0, bank, STRING_SNAPPED_OUT, 0);
+		status_graphical_update(bank, AILMENT_NONE);
+		REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+	}
+}
+
 
 void sleep_on_before_move(u8 bank)
 {
@@ -99,7 +130,10 @@ void confusion_on_residual(u8 bank)
 {
 	if (p_bank[bank]->b_data.confusion_turns) {
 		p_bank[bank]->b_data.confusion_turns--;
+	} else {
+		p_bank[bank]->b_data.status_turns = 0;
 	}
+	REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 }
 
 void sleep_on_residual(u8 bank)
@@ -203,6 +237,7 @@ struct status_ailments statuses[] =
     
     // Ailment confusion
     {
+		.on_before_move = confusion_on_before_move,
         .on_inflict = confusion_on_inflict,
         .on_residual = confusion_on_residual,
     },
