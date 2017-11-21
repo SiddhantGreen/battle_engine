@@ -119,8 +119,6 @@ void move_procs_perform(u8 bank_index, u16 move)
 			if (B_USER_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
 				stat_boost(bank_index, i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
 				B_USER_STAT_MOD_CHANCE(bank_index, i) = 0;
-				dprintf("mod user stat %d by %d stages\n", i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
-				dprintf("mod user stat %d chance: %d\n", i, B_USER_STAT_MOD_CHANCE(bank_index, i));
                 return;
 			}
 		}
@@ -130,8 +128,6 @@ void move_procs_perform(u8 bank_index, u16 move)
 			if (B_TARGET_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
 				stat_boost(TARGET_OF(bank_index), i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
 				B_TARGET_STAT_MOD_CHANCE(bank_index, i) = 0;
-				dprintf("mod target stat %d by %d stages\n", i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
-                dprintf("mod target stat %d chance: %d\n", i, B_TARGET_STAT_MOD_CHANCE(bank_index, i));
                 return;
 			}
 		}
