@@ -7,32 +7,18 @@
 
 typedef u16 (*StatCallback)(u8, u16);
 
-void update_move_history(u8 bank, u16 move_id)
+void update_move_pbank_flags(u8 bank, u16 move_id)
 {
-    if (!move_id) {
+    if (move_id) {
         p_bank[bank]->b_data.current_move = move_id;
-        return;
-    }
+    } else {
+		return;
+	}
     // figure out target
     if (moves[move_id].m_flags == FLAG_ONSELF)
         p_bank[bank]->b_data.my_target = bank;
     else if (moves[move_id].m_flags == FLAG_TARGET)
         p_bank[bank]->b_data.my_target = FOE_BANK(bank);
-    
-    // update current move and last used moves
-    if (p_bank[bank]->b_data.current_move)
-        p_bank[bank]->b_data.last_move = p_bank[bank]->b_data.current_move;
-    p_bank[bank]->b_data.current_move = move_id;
-    
-    // update moves used history
-    u8 i;
-    for (i = 0; i < 4; i++) {
-        if (p_bank[bank]->b_data.moves_used[i] == move_id)
-            return;
-        if (p_bank[bank]->b_data.moves_used[i] == MOVE_NONE)
-            p_bank[bank]->b_data.moves_used[i] = move_id;
-            return;
-    }
 }
 
 /*
