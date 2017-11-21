@@ -83,6 +83,8 @@ enum battle_string_ids {
 	STRING_SNAPPED_OUT = 132,
 	STRING_CONFUSION_HURT = 134,
 	STRING_IS_CONFUSED = 136,
+	STRING_NO_PP = 138,
+	STRING_DISABLED_PICKED = 139,
     
 };
 
@@ -105,9 +107,9 @@ static const pchar str_bide_o[] = _("Foe {ATTACKING_MON} is charging up\n{ATTACK
 static const pchar str_focus_lost_p[] = _("{ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_focus_lost_o[] = _("Foe {ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_cant_use_p[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
-static const pchar str_cant_use_o[] = _("Foe {ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
-static const pchar str_disabled_p[] = _("{ATTACKING_MON}’s {ATTACK_NAME}\nwas disabled!");
-static const pchar str_disabled_o[] = _("Foe {ATTACKING_MON}’s {ATTACK_NAME}\nwas disabled!");
+static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
+static const pchar str_disabled_p[] = _("{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
+static const pchar str_disabled_o[] = _("Foe {DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
 static const pchar str_failed_p[] = _("But it failed!");
 static const pchar str_failed_o[] = _("But it failed");
 static const pchar str_curse_dmg_p[] = _("Foe {ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
@@ -233,6 +235,8 @@ static const pchar str_hurt_itself_p[] = _("{ATTACKING_MON}\nhurt itself in conf
 static const pchar str_hurt_itself_o[] = _("Foe {ATTACKING_MON}\nhurt itself in confusion");
 static const pchar str_is_confused_p[] = _("{ATTACKING_MON} is confused");
 static const pchar str_is_confused_o[] = _("Foe {ATTACKING_MON} is confused");
+static const pchar str_no_pp[] = _("There is no PP left for\nthis move!");
+static const pchar str_disabled_pick[] = _("This move is disabled!");
 
 
 // stat names
@@ -255,7 +259,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[138] = {
+static const pchar* battle_strings[140] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -330,6 +334,8 @@ static const pchar* battle_strings[138] = {
    (pchar*)&str_snapped_out_p, (pchar*)&str_snapped_out_o,
    (pchar*)&str_hurt_itself_p, (pchar*)&str_hurt_itself_o,
    (pchar*)&str_is_confused_p, (pchar*)&str_is_confused_o,
+   (pchar*)&str_no_pp,
+   (pchar*)&str_disabled_pick,
    
    
 };
