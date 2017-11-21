@@ -51,13 +51,13 @@ void init_battle_elements()
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = MOVE_SWORDS_DANCE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
-    t = 5;
+    t = 1;
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
     t = 10;
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     //t = ITEM_POTION;
     //pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
-    t = MOVE_SONIC_BOOM;
+    t = MOVE_DISABLE;
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
@@ -126,11 +126,11 @@ void update_pbank(u8 bank, struct update_flags* flags)
     }
     
     if (!flags->pass_disables) {
-        p_bank[bank]->b_data.is_disabled = 0;
         p_bank[bank]->b_data.disabled_moves[0] = 0;
         p_bank[bank]->b_data.disabled_moves[1] = 0;
         p_bank[bank]->b_data.disabled_moves[2] = 0;
         p_bank[bank]->b_data.disabled_moves[3] = 0;
+		p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
     }
     
     p_bank[bank]->b_data.illusion = 0;
@@ -296,7 +296,6 @@ void option_selection()
             vblank_handler_set(vblank_cb_merge_move_select);
             void* map_base = (void *)0x600F800;
             memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
-            //init_selection_cursor(1, 0);
             show_move_data();
             tasks[task_add(update_cursor_move_select, 1)].priv[0] = 0;
             bs_anim_status = 1;
