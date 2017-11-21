@@ -15,13 +15,34 @@ u16 rand_range(u16 min, u16 max)
 
 bool knows_move(u16 move_id, struct Pokemon* p)
 {
-    u8 i;
-    for (i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
+    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
         u16 move = pokemon_getattr(p, i, NULL);
         if (move == move_id)
             return true;
     }
     return false;
+}
+
+
+u8 get_move_index(u16 move_id, struct Pokemon* p)
+{
+    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
+        u16 move = pokemon_getattr(p, i, NULL);
+        if (move == move_id)
+            return i - REQUEST_MOVE1;
+    }
+    return 255;
+}
+
+u8 move_pp_count(u16 move_id, struct Pokemon* p)
+{
+    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
+        u16 move = pokemon_getattr(p, i, NULL);
+        if (move == move_id)
+            return pokemon_getattr(p, ((i - REQUEST_MOVE1) + REQUEST_PP1), NULL);
+    }
+	// move not found
+    return 0;
 }
 
 u8 get_ability(struct Pokemon* p)
@@ -56,7 +77,6 @@ bool on_ground(u8 bank)
     }
     return true;
 }
-
 
 
 void do_damage(u8 bank_index, u16 dmg)

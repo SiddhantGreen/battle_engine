@@ -1324,7 +1324,7 @@ struct move_data moves[] = {
 	{
 	/*Supersonic*/
 	.name = _("Supersonic"),
-	.accuracy = 100,
+	.accuracy = 55,
     .description = (pchar*)Supersonic_desc,
 	.pp = 20,
     .category = MOVE_STATUS,
@@ -1356,6 +1356,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+	.on_effect_cb = disable_on_effect_cb,
 	},
 	
 	{

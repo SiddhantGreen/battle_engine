@@ -115,8 +115,6 @@
 
 #define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[((target_type * 19) + (dmg_type))]
  
- 
-extern void update_move_history(u8 bank, u16 move_id);
 extern s8 ability_priority_mod(u8 bank, u16 move_id);
 extern s8 ability_attack_mod(u8 bank, u16 stat_total);
 extern s8 ability_defense_mod(u8 bank, u16 stat_total);

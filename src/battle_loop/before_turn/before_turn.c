@@ -11,18 +11,19 @@ extern u16 pick_opponent_attack(void);
 extern u16 rand_range(u16 min, u16 max);
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
 extern u8 set_target_bank(u8 user_bank, u16 move_id);
+extern void update_move_pbank_flags(u8 bank, u16 move_id);
 
 void configure_selected_moves()
 {
     // fetch moves used from input
     u16 p_move = pick_player_attack();
-    update_move_history(PLAYER_SINGLES_BANK, p_move);
+    update_move_pbank_flags(PLAYER_SINGLES_BANK, p_move);
     battle_master->fight_menu_content_spawned = 0;
     
     // if move is charging up, then opponent selection is skipped
     if (!(HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_CHARGING))) {
         u16 opp_move = pick_opponent_attack();
-        update_move_history(OPPONENT_SINGLES_BANK, opp_move);
+        update_move_pbank_flags(OPPONENT_SINGLES_BANK, opp_move);
     }
 }
 

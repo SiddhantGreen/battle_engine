@@ -175,6 +175,29 @@ void run_move()
         }
         case S_WAIT_HPUPDATE_RUN_MOVE:
         {
+			/* Passive residual effects from engine structs */
+			for (u8 i = 0; i < 4; i++) {
+				if (p_bank[bank_index]->b_data.disabled_moves[i] > 0) {
+					p_bank[bank_index]->b_data.disabled_moves[i]--;
+				}
+			}
+			u8 index = p_bank[bank_index]->b_data.disable_used_on_slot;
+			if (index < 4) {
+				if (!(p_bank[bank_index]->b_data.disabled_moves[index])) {
+					p_bank[bank_index]->b_data.disable_used_on_slot = 0xFF;
+				}
+			}
+			LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
+			// update moves used history
+			for (u8 i = 0; i < 4; i++) {
+				if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
+					break;;
+				if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
+					p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
+					break;
+				}
+			}
+			
             super.multi_purpose_state_tracker = S_RUN_FAINT;
             set_callback1(run_decision);
             break;

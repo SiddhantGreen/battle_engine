@@ -15,6 +15,7 @@ extern void option_selection(void);
 extern void on_faint(void);
 extern void run_switch(void);
 extern void sync_battler_struct(u8 bank);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
 void run_decision(void)
 {
@@ -71,6 +72,7 @@ void run_decision(void)
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
             battle_master->execution_index = 0;
+			battle_master->fight_menu_content_spawned  = 0;
             break;
         }
         case S_END_BATTLE:
@@ -84,12 +86,35 @@ void run_decision(void)
     };
 }
 
+extern u16 pick_player_attack(void);
+extern u8 move_pp_count(u16 move_id, struct Pokemon* p);
+extern u8 get_move_index(u16 move_id, struct Pokemon* p);
 
 void battle_loop()
 {
     extern void battle_set_order(void);
-    battle_set_order();
-    set_callback1(run_decision);
+	// check if Player picked a move with PP
+	if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running == false) {
+		u16 move_player = pick_player_attack();
+		if (move_pp_count(move_player, p_bank[PLAYER_SINGLES_BANK]->this_pkmn) < 1) {
+			enqueue_message(0, 0, STRING_NO_PP, 0);
+			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
+			set_callback1(run_decision);
+			return;
+		}
+		
+		// check if Player is trying to use a disabled move
+		u8 index = get_move_index(move_player, p_bank[PLAYER_SINGLES_BANK]->this_pkmn);
+		if (p_bank[PLAYER_SINGLES_BANK]->b_data.disabled_moves[index] > 0) {
+			enqueue_message(0, 0, STRING_DISABLED_PICKED, 0);
+			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
+			set_callback1(run_decision);
+			return;
+		}
+	}
+	// A usable move was picked
+	battle_set_order();
+	set_callback1(run_decision);
 }
 
 
