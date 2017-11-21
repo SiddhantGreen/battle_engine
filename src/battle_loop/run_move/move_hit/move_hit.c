@@ -217,13 +217,16 @@ void move_hit()
         case S_MOVE_EFFECT:
         {
             /* execute move effect */
-            if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
-                if (!(moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index)))) {
-                    break;;
-                }
+			if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
+				if (!(moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index)))) {
+					enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_FAILED, 0);
+					super.multi_purpose_state_tracker = S_PP_REDUCTION;
+					set_callback1(run_move);
+					return;
+				}
             }
-            super.multi_purpose_state_tracker = S_RECOIL_APPLY;
-            break;
+			super.multi_purpose_state_tracker = S_RECOIL_APPLY;
+			break;
         }
         case S_RECOIL_APPLY:
             // check for recoil
