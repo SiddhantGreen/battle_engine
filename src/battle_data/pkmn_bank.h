@@ -110,7 +110,6 @@ struct local_battler_data {
     u8 move_lock_counter;
     
     // local user specific bitfield
-    u8 is_disabled : 1;
     u8 illusion : 1;
     u8 fainted : 1;
     u8 ate_berry : 1;
@@ -124,8 +123,9 @@ struct local_battler_data {
     u16 substitute_health;
 	u32 v_status; // enum volatile status
     
+	u8 disable_used_on_slot;
     u16 disabled_moves[4];
-
+	
     // counters
     u8 flee_count;
 };
