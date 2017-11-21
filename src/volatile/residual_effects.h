@@ -11,7 +11,7 @@ struct residual_callback {
     u8 effective_bank;
     u8 active_counter;
     u16 move_id; // or effect id
-    enum VolatileStatus status;
+    u32 status; // volatile status
     u16 hp_delta;
 };
 

@@ -1324,7 +1324,7 @@ struct move_data moves[] = {
 	{
 	/*Supersonic*/
 	.name = _("Supersonic"),
-	.accuracy = 55,
+	.accuracy = 100,
     .description = (pchar*)Supersonic_desc,
 	.pp = 20,
     .category = MOVE_STATUS,

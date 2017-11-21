@@ -14,6 +14,7 @@ extern void move_hit(void);
 extern bool target_exists(u8 bank);
 extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
 extern void do_residual_status_effects(u8 order);
+extern void dprintf(const char * str, ...);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -77,6 +78,7 @@ void run_move()
     switch(super.multi_purpose_state_tracker) {
         case S_BEFORE_MOVE:
         {
+			/* status ailments before move callbacks */
 			if (B_STATUS(bank_index) != AILMENT_NONE) {
 				if (statuses[B_STATUS(bank_index)].on_before_move) {
 					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
