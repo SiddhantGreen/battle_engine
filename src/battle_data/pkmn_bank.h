@@ -47,25 +47,27 @@ enum TypeBits {
     TYPE_BITS_DARK = (1 << 16),
 };
 
-enum VolatileStatus {
-    VOLATILE_FLASH_FIRE = (1 << 0),
-    VOLATILE_CONFUSION = (1 << 1),
-    VOLATILE_SUBSTITUTE = (1 << 2),
-    VOLATILE_STAT_REDUC_IMMUNE = (1 << 3),
-    VOLATILE_TRAPPED = (1 << 4),
-    VOLATILE_AROMA_VEIL = (1 << 5),
-    VOLATILE_MOLDBREAKER = (1 << 6),
-    VOLATILE_PRANKSTERED = (1 << 7),
-    VOLATILE_SEMI_INVULNERABLE = (1 << 8),
-    VOLATILE_CHARGING = (1 << 9),
-    VOLATILE_INGRAIN = (1 << 10),
-    VOLATILE_BIND = (1 << 11),
-    VOLATILE_FLYING = (1 << 12),
-    VOLATILE_MINIMIZE = (1 << 13),
-    VOLATILE_MULTI_TURN = (1 << 14), // disables PP reduction
-    VOLATILE_SLEEP_TURN = (1 << 15),
-    VOLATILE_CONFUSE_TURN = (1 << 16),
-};
+/* Volatile definitions for Bitmasks -- enum is unsuitable */
+#define VOLATILE_FLASH_FIRE (1 << 0)
+#define VOLATILE_CONFUSION (1 << 1)
+#define VOLATILE_SUBSTITUTE (1 << 2)
+#define VOLATILE_STAT_REDUC_IMMUNE (1 << 3)
+#define VOLATILE_TRAPPED (1 << 4)
+#define VOLATILE_AROMA_VEIL (1 << 5)
+#define VOLATILE_MOLDBREAKER (1 << 6)
+#define VOLATILE_PRANKSTERED (1 << 7)
+#define VOLATILE_SEMI_INVULNERABLE (1 << 8)
+#define VOLATILE_CHARGING (1 << 9)
+#define VOLATILE_INGRAIN (1 << 10)
+#define VOLATILE_BIND (1 << 11)
+#define VOLATILE_FLYING (1 << 12)
+#define VOLATILE_MINIMIZE (1 << 13)
+#define VOLATILE_MULTI_TURN (1 << 14)// disables PP reduction
+#define VOLATILE_SLEEP_TURN (1 << 15)
+#define VOLATILE_CONFUSE_TURN (1 << 16)
+
+	
+
 
 struct local_battler_data {
     // Base stats in battle
@@ -120,7 +122,7 @@ struct local_battler_data {
     u8 confusion_turns;
     u8 status_turns;
     u16 substitute_health;
-    enum VolatileStatus v_status;
+	u32 v_status; // enum volatile status
     
     u16 disabled_moves[4];
 
