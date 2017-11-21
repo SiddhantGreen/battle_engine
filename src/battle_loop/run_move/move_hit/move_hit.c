@@ -184,14 +184,12 @@ void move_hit()
             }
             // get dmg
             u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            
             if (!damage_result_msg(bank_index)) {
                 set_callback1(run_move);
                 super.multi_purpose_state_tracker = S_PP_REDUCTION;
                 return;
             }
             battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
-            
             // HP bar damage animation
             s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
             delta = MAX(delta, 0);

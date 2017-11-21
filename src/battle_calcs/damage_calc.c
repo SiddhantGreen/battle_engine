@@ -87,10 +87,6 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     
     if (B_MOVE_IS_STATUS(attacker))
         return 0;
-    
-    if (B_MOVE_DMG(attacker)) {
-        return B_MOVE_DMG(attacker);
-    }
 
     u8 base_power = B_MOVE_POWER(attacker);
     base_power = move_on_base_power_move(base_power, attacker, defender, move);
@@ -223,6 +219,11 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 
 s16 get_damage(u8 attacker, u8 defender, u16 move)
 {
+	if (B_MOVE_DMG(attacker)) {
+		B_MOVE_EFFECTIVENESS(attacker) = TE_EFFECTIVE;
+        return B_MOVE_DMG(attacker);
+    }
+	
     if (IS_OHKO(move)) {
         battle_master->b_moves[B_MOVE_BANK(attacker)].effectiveness = TE_OHKO;
         return (TOTAL_HP(defender));
