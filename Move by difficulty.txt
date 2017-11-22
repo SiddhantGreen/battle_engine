@@ -1,0 +1,272 @@
+Done:
+- 1 to 50 (pound to disable)
+- Solar Beam
+- Fissure
+- Minimize
+- High Jump Kick
+- Leech Life
+- Sky Attack
+- Struggle ( but I think it's not complete need to revisit)
+
+Hard:
+Hyper Beam
+Mist
+Thunder (Rain and weather hasn't been done yet)
+Rage (I don't even know what this move does)
+Mimic
+Haze (Might be medium)
+Reflect
+Bide
+Metronome
+Mirror Move
+Transform
+Conversion
+Substitute
+Sketch
+Theif
+Spider Web
+Mind Reader (Might be medium)
+Conversion 2
+Protect
+Spikes
+Destiny Bond
+Perish Song
+Detect
+Sandstorm
+Endure
+Rollout (close to medium)
+Attract
+Sleep Talk (moves down to medium after metronome)
+Safe Guard
+Baton Pass
+Encore
+Rapid Spin (needs to be finished later)
+Rain Dance
+Sunny Day
+Mirror Coat
+Future Sight
+Beat Up
+Stockpile
+Spit Up
+Swallow
+Hail
+Memento
+Torment
+Nature Power
+Charge
+Taunt
+Helping Hand
+Trick
+Role Play
+Wish
+Assist
+Ingrain
+Magic Coat
+Recycle
+Brick Break (until barriers are implemented)
+Yawn
+Knock Off
+Skill Swap
+Grudge
+Snatch
+Secret Power (not hard but can't be done until terrain)
+Camouflage
+Mud Sport
+Ice Ball
+Blast Burn (Once recharging is done these go down to easy)
+Hydro Cannon
+Weather Ball
+
+
+Medium Difficulty:
+Clamp
+Mean Look
+Low Kick
+Leech Seed
+Growth
+Counter (harder one)
+Petal Dance (Copy Thrash)
+Dig (copy Fly's callback algorithm)
+Teleport (Copy Whirlwind)
+Focus Energy
+Self-Destruct
+Nightshade
+Skull Bash
+Constrict (Copy wrap)
+Tri Attack
+Super Fang
+Nightmare
+Snore
+Curse
+Explosion
+Flail
+Reversal
+Spite
+Belly Drum
+Foresight
+Lock-On
+Outrage (Copy Thrash)
+False Swipe
+Fury Cutter (Requires you to add 1 field to p_bank)
+Heal Bell
+Return
+Present
+Frustration
+Pain Split
+Magnitude
+Pursuit
+Hidden Power
+Psych Up
+Whirlpool (copy wrap)
+Upraor (Copy thrash)
+Facade
+Focus Punch (might be done already)
+Smelling Salts
+Follow Me
+Revenge
+Endeavor
+Eruption
+Imprison
+Refresh
+Dive (Copy Fly)
+Arm Thrust
+Aromatherapy
+Fak
+
+Easy:
+Acid
+Ember
+Flamethrower
+Water Gun
+Hydro Pump
+Surf
+Ice Beam
+Blizzard
+Psybeam
+Bubble Beam
+Aurora Beam
+Peck
+Drill Peck
+Submission
+Seismic Toss
+Strength
+Absorb
+Mega Drain
+Razor Leaf
+Poison Powder
+Stun Spore
+Sleep Powder
+String Shot
+Dragon Rage
+Fire Spin
+Thunder Shock
+Thunderbolt
+Rock Throw
+Earthquake
+Toxic
+Confusion
+Psychic
+Hypnosis
+Meditate
+Agility
+Quick Attack
+Screech
+Double Team
+Recover
+Harden
+Smokescreen
+Confuse Ray
+Withdraw
+Defense Curl
+Barrier
+Light Screen
+Egg Bomb
+Lick
+Smog
+Sludge
+Bone Club
+Fire Blast
+Waterfall
+Swift
+Spike Cannon
+Amnesia
+Kinesis
+Soft-Boiled
+Glare
+Dream Eater
+Poison Gas
+Barrage
+Leech life
+Lovely Kiss
+Bubble
+Dizzy Punch
+Spore
+Flash
+Psywave
+Splash
+Acid Armor
+Crabhammer
+Fury Swipes
+Bonemerang
+Rest
+Rock Slide
+Hyper Fang
+Sharpen
+Slash
+Triple Kick
+Flame Wheel
+Aeroblast
+Cotton Spore
+Powder Snow
+Mach Punch
+Scary Face
+Feint Attack
+Sweet Kiss
+Sludge Bomb
+Mud-slap
+Octazooka
+Zap Cannon
+Icy Wind
+Bone Rush
+Giga Drain
+Charm
+Swagger
+Milk Drink
+Spark
+Steel Wing
+Sacred Fire
+Dynamic Punch
+Mega Horn
+Dragon Breath
+Sweet Scent
+Iron Tail
+Metal Claw
+Vital Throw
+Morning Sun
+Synthesis
+Moonlight
+Cross Chop
+Twister
+Crunch
+Extreme Speed
+Ancient Power
+Shadow Ball
+Rock Smash
+Fake Out
+Heat Wave
+Flatter
+Will-O-Wisp
+Superpower
+Tail Glow
+Luster Purge
+Mist Ball
+Feather Dance
+Teeter Dance
+Blaze Kick
+Needle Arm
+Slack Off
+Hyper Voice
+Poison Fang
+Crush Claw
+Meteor Mash
+Astonish
