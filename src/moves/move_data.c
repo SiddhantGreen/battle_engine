@@ -2228,6 +2228,7 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
+	/*Self-Destruct*/
 	{_("Self-Destruct"),
 	.accuracy = 100,
 	.base_power = 200,
@@ -2422,6 +2423,7 @@ struct move_data moves[] = {
     .procs = &target_lower_acc_1,
 	},
 	
+	/*Soft-Boiled*/
 	{_("Soft-Boiled"),
 	.accuracy = 101,
     .description = (pchar*)Soft_Boiled_desc,
@@ -2636,7 +2638,7 @@ struct move_data moves[] = {
 	.m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_2,
 	},
-	
+		
 	{
 	/*Crabhammer*/
 	.name = _("Crabhammer"),
