@@ -104,7 +104,10 @@ void run_move()
 				return;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_CONFUSE_TURN)) {
 				return;
-			} else {
+			} else if (HAS_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN)) {
+                REMOVE_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
+                return;
+            } else {
 				// display "Pokemon used move!"
 				enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
 				super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
@@ -157,6 +160,7 @@ void run_move()
                     run_residual_cbs(OPPONENT_SINGLES_BANK);
                     run_residual_cbs(PLAYER_SINGLES_BANK);
                 }
+                battle_master->status_state = 1;
             }
             super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
             break;
@@ -167,10 +171,15 @@ void run_move()
                 // residual callbacks for statuses
                 u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
                 u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
-                u8 order = (player_speed > opponent_speed) ? 1 : 0;
+                u8 order = ((player_speed > opponent_speed) && (battle_master->status_state)) ? 1 : 0;
                 do_residual_status_effects(order);
+            } else {
+                super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+                return;
             }
-            super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+            
+            if (battle_master->status_state == 2)
+                super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
             break;
         }
         case S_WAIT_HPUPDATE_RUN_MOVE:

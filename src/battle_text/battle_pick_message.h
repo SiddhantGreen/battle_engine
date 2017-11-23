@@ -85,6 +85,9 @@ enum battle_string_ids {
 	STRING_IS_CONFUSED = 136,
 	STRING_NO_PP = 138,
 	STRING_DISABLED_PICKED = 139,
+	STRING_FROZEN_SOLID = 140,
+	STRING_FREEZE_THAWED = 142,
+	STRING_FULL_PARA = 144,
     
 };
 
@@ -237,6 +240,12 @@ static const pchar str_is_confused_p[] = _("{ATTACKING_MON} is confused");
 static const pchar str_is_confused_o[] = _("Foe {ATTACKING_MON} is confused");
 static const pchar str_no_pp[] = _("There is no PP left for\nthis move!");
 static const pchar str_disabled_pick[] = _("This move is disabled!");
+static const pchar str_frozen_solid_p[] = _("{ATTACKING_MON} is\nfrozen solid!");
+static const pchar str_frozen_solid_o[] = _("Foe {ATTACKING_MON} is\nfrozen solid!");
+static const pchar str_thawed_out_p[] = _("{ATTACKING_MON}\nthawed out!");
+static const pchar str_thawed_out_o[] = _("Foe {ATTACKING_MON}\nthawed out!");
+static const pchar str_fully_paralyzed_p[] = _("{ATTACKING_MON} is paralyzed!\nIt can’t move!");
+static const pchar str_fully_paralyzed_o[] = _("Foe {ATTACKING_MON} is paralyzed!\nIt can’t move!");
 
 
 // stat names
@@ -259,7 +268,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[140] = {
+static const pchar* battle_strings[146] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -336,6 +345,10 @@ static const pchar* battle_strings[140] = {
    (pchar*)&str_is_confused_p, (pchar*)&str_is_confused_o,
    (pchar*)&str_no_pp,
    (pchar*)&str_disabled_pick,
+   (pchar*)&str_frozen_solid_p, (pchar*)&str_frozen_solid_o,
+   (pchar*)&str_thawed_out_p, (pchar*)&str_thawed_out_o,
+   (pchar*)&str_fully_paralyzed_p, (pchar*)&str_fully_paralyzed_o,
+   
    
    
 };

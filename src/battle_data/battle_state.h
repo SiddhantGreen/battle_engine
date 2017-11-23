@@ -144,6 +144,7 @@ struct battle_main {
 
     /* Battle details */
     enum Effect effect[2];
+    u8 status_state;
 };
 
 enum fight_menu { OPTION_FIGHT, OPTION_POKEMON, OPTION_BAG, OPTION_RUN };

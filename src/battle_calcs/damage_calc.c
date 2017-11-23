@@ -143,7 +143,6 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     dmg *= base_power;
     dmg = NUM_MOD(dmg, ((atk_stat * 100) / def_stat));
     dmg = (dmg/ 50) + 2;
-
     return dmg;
 }
 
@@ -208,7 +207,7 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     if ((B_STATUS(attacker) == AILMENT_BURN) &&
         (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) &&
         (BANK_ABILITY(attacker) != ABILITY_GUTS) &&
-        (move != MOVE_FACADE)) {
+        (move != MOVE_FACADE) && (!B_MOVE_WILL_CRIT(attacker))) {
         modded_base = NUM_MOD(modded_base, 50);
     }
     

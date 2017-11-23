@@ -7,7 +7,7 @@
 
 typedef void (*StatusOnStart)(u8 bank);
 typedef void (*StatusOnBeforeMove)(u8 bank);
-typedef void (*StatusOnModSpeed)(u8 bank);
+typedef u16 (*StatusOnModSpeed)(u8 bank, u16 speed_stat);
 typedef void (*StatusOnHit)(u8 bank);
 typedef void (*StatusOnInflict)(u8 bank);
 typedef void (*StatusOnResidual)(u8 bank);

@@ -4,6 +4,7 @@
 #include "moves/moves.h"
 #include "../abilities/battle_abilities.h"
 #include "pkmn_bank_stats.h"
+#include "../status_effects/status.h"
 
 typedef u16 (*StatCallback)(u8, u16);
 
@@ -54,6 +55,11 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
             break;
         case 2:
             stat_total += ability_speed_mod(bank, stat_total);
+            if (B_STATUS(bank) != AILMENT_NONE) {
+				if (statuses[B_STATUS(bank)].on_mod_speed) {
+					stat_total = statuses[B_STATUS(bank)].on_mod_speed(bank, stat_total);
+				}
+			}
             break;
         case 3:
             stat_total += ability_sp_attack_mod(bank, stat_total);

@@ -77,6 +77,7 @@ struct move_procs {
 #define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
+#define IS_DEFROST(move) ((moves[move].m_flags) & (1 << 4))
 #define IS_DANCE(move) ((moves[move].m_flags) & (1 << 21))
 #define IS_TRIAGE(move) ((moves[move].m_flags) & (1 << 20))
 #define IS_SOUND_BASE(move) ((moves[move].m_flags) & (1 << 14))

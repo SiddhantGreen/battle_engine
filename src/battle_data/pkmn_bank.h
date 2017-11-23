@@ -65,6 +65,7 @@ enum TypeBits {
 #define VOLATILE_MULTI_TURN (1 << 14)// disables PP reduction
 #define VOLATILE_SLEEP_TURN (1 << 15)
 #define VOLATILE_CONFUSE_TURN (1 << 16)
+#define VOLATILE_ATK_SKIP_TURN (1 << 17)
 
 	
 

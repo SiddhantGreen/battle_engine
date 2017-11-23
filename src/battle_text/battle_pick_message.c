@@ -123,6 +123,9 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
 			case STRING_SNAPPED_OUT:
 			case STRING_CONFUSION_HURT:
 			case STRING_IS_CONFUSED:
+			case STRING_FROZEN_SOLID:
+			case STRING_FREEZE_THAWED:
+			case STRING_FULL_PARA:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:
