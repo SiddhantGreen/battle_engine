@@ -1,0 +1,61 @@
+Hard:
+Rage (I don't even know what this move does)
+Mimic
+Bide
+Metronome
+Mirror Move
+Transform
+Substitute
+Sketch
+Mind Reader (Might be medium)
+Destiny Bond
+Rollout (close to medium)
+Attract
+Sleep Talk (moves down to medium after metronome)
+Encore
+Mirror Coat
+Future Sight
+Beat Up
+Stockpile
+Spit Up
+Swallow
+Torment
+Charge
+Taunt
+Wish
+Assist
+Ingrain
+Magic Coat
+Yawn
+Grudge
+Secret Power (not hard but can't be done until terrain)
+Ice Ball
+Odor Sleuth
+Doom Desire
+Metal Burst
+Heal Block
+Lucky Chant
+Me First
+Copycat
+Magnet Rise
+Mirror Shot
+Lunar Dance
+Guard Split
+Power Split
+Telekinesis
+Chipaway
+Ally Switch
+Sky Drop
+Retaliate
+Sacred Sword (stat change ignore)
+Relic Song
+Rototiller (grounded effect required)
+Parting Shot
+Thousand arrows (Grounded effect)
+Darkest Lariat (stat change ignore)
+Laser focus (next turn crits)
+Speed Swap (stat swap)
+Instruct (move force and turn change)
+Shell trap (phys dmg check)
+Stomping Tantrum (check last move failed)
+Photon Geyser (Stat higher based dmg)

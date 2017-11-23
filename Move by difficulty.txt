@@ -1,82 +1,13 @@
 Done:
 - 1 to 50 (pound to disable)
-- Solar Beam
-- Fissure
+- 1 hit KO moves (i.e Fissure)
+- 2 turn moves with first turn as a charge turn (i.e Solar Beam)
+- Flinch as only effect moves
 - Minimize
 - High Jump Kick
 - Leech Life
-- Sky Attack
 - Struggle ( but I think it's not complete need to revisit)
-
-Hard:
-Hyper Beam
-Mist
-Thunder (Rain and weather hasn't been done yet)
-Rage (I don't even know what this move does)
-Mimic
-Haze (Might be medium)
-Reflect
-Bide
-Metronome
-Mirror Move
-Transform
-Conversion
-Substitute
-Sketch
-Theif
-Spider Web
-Mind Reader (Might be medium)
-Conversion 2
-Protect
-Spikes
-Destiny Bond
-Perish Song
-Detect
-Sandstorm
-Endure
-Rollout (close to medium)
-Attract
-Sleep Talk (moves down to medium after metronome)
-Safe Guard
-Baton Pass
-Encore
-Rapid Spin (needs to be finished later)
-Rain Dance
-Sunny Day
-Mirror Coat
-Future Sight
-Beat Up
-Stockpile
-Spit Up
-Swallow
-Hail
-Memento
-Torment
-Nature Power
-Charge
-Taunt
-Helping Hand
-Trick
-Role Play
-Wish
-Assist
-Ingrain
-Magic Coat
-Recycle
-Brick Break (until barriers are implemented)
-Yawn
-Knock Off
-Skill Swap
-Grudge
-Snatch
-Secret Power (not hard but can't be done until terrain)
-Camouflage
-Mud Sport
-Ice Ball
-Blast Burn (Once recharging is done these go down to easy)
-Hydro Cannon
-Weather Ball
-
+- Acrobatics
 
 Medium Difficulty:
 Clamp
@@ -89,6 +20,7 @@ Petal Dance (Copy Thrash)
 Dig (copy Fly's callback algorithm)
 Teleport (Copy Whirlwind)
 Focus Energy
+Haze
 Self-Destruct
 Nightshade
 Skull Bash
@@ -131,7 +63,79 @@ Refresh
 Dive (Copy Fly)
 Arm Thrust
 Aromatherapy
-Fak
+Water Spout
+Sky Uppercut
+Roost
+Wake-up Slap
+Gyro Ball
+Brine
+Acupressure
+Payback
+Assurance
+Psycho Shift
+Trump Card
+Wring Out
+Power Trick
+Power Swap
+Guard Split
+Punishment
+Last Resort
+Aqua Ring
+Dragon Rush
+Avalanche
+Captivate
+Grass Knot
+Crush Grip
+Magma Storm (copy wrap)
+Venoshock
+Rage Powder
+Smack Down (add a volatile)
+Storm Throw
+Heavy Slam
+Syncronoise
+Electro Ball
+Foul Play
+After You (Always fails in singles)
+Round (add a volatile "used Round" and clear it in a residual effect like wrap)
+Echoed Voice
+Clear Smog
+Stored Power
+Quick Guard
+Hex
+Quash
+Final Gambit (try recoil 100% and give move.dmg like NightShade)
+Heat Crash
+Steamroller
+Freeze Shock (I may have already did this one)
+Ice burn (Ditto top)
+Fusion Flare (singles just check opp move)
+Fusion Bolt (Ditto top)
+Fell Stinger
+Topsy-Turvy
+Flower Shield
+Steam eruption (Thaw on water move)
+Water Shuriken (Ash Greninja! LOL! )
+Aromatic Mist (Always fail singles)
+Venom Drench
+Powder (kind of hard)
+Geomancy
+Magnetic Flux
+Hold Back
+Infestation
+Shore Up
+First Impression
+Fake Out
+Sparkling Aria
+Strength Sap (Mod move after it lands)
+Spotlight
+Gear Up
+Throat Chop (set target's disabled moves with duration 2)
+Power Trip
+Purify
+Revelation Dance
+Beak Blast
+Nature's Madness
+Helping Hand (fails in singles)
 
 Easy:
 Acid
@@ -252,7 +256,6 @@ Extreme Speed
 Ancient Power
 Shadow Ball
 Rock Smash
-Fake Out
 Heat Wave
 Flatter
 Will-O-Wisp
@@ -270,3 +273,190 @@ Poison Fang
 Crush Claw
 Meteor Mash
 Astonish
+Fake Tears
+Air Cutter
+Overheat
+Rock Tomb
+Silver Wind
+Metal Sound
+Grass Whistle
+Tickle
+Cosmic Power
+Signal Beam
+Shadow Punch
+Extrasensory
+Muddy Water
+Bullet Seed
+Aerial Ace
+Icicle Spear
+Iron Defense
+Howl
+Dragon Claw
+Bulk Up
+Mud Shot
+Poison Tail
+Volt Tackle
+Magical Leaf
+Calm Mind
+Leaf Blade
+Dragon Dance
+Rock Blast
+Shock Wave
+Water Pulse
+Psycho Boost
+Hammer Arm
+Close Combat
+Sucker Punch
+Heart Swap
+Flare Blitz
+Fore Palm
+Aura Sphere
+Rock Polish
+Dark Pulse
+Night Slash
+Aqua Tail
+Seed Bomb
+Air Slash
+X-Scissor
+Dragon Pulse
+Power Gem
+Drain Punch
+Vacuum Wave
+Focus Blast
+Energy Ball
+Brave Bird
+Earth Power
+Nasty Plot
+Bullet Punch
+Ice Shard
+Shadow Claw
+Thunder Fang
+Ice Fang
+Fire Fang
+Shadow Sneak
+Mud Bomb
+Psycho Cut
+Zen Headbutt
+Flash Cannon
+Rock Climb
+Defog
+Draco Meteor
+Discharge
+Lava Plume
+Leaf Storm
+Power Whip
+Cross Poison
+Gunk Shot
+Iron Head
+Magnet Bomb
+Stone Edge
+Chatter
+Chargebeam
+Wood Hammer
+Aqua Jet
+Attack Order
+Defend Order
+Heal Order
+Head Smash
+Double Hit
+Spacial Rend
+Dark Void
+Seed Flare
+Ominous Wind
+Hone Claws
+Psyshock
+Autotomize
+Flame Burst
+Sludge Wave
+Quiver Dance
+Flame Charge
+Coil
+Low Sweep
+Acid Spray
+Scald
+Shell Smash
+Heal Pulse
+Shift Gear
+Circle Throw
+Incinerate
+Inferno
+Water Pledge (no effect singles)
+Fire Pledge (no effect singles)
+Grass Pledge (no effect singles)
+Struggle Bug
+Bulldoze
+Frost Breath
+Dragon Tail
+Work Up
+Electro Web
+Wild Charge
+Drill Run
+Dual Chop
+Heart Stamp
+Horn Leech
+Razor Shell
+Leaf Tornado
+Cotton Guard
+Nightdaze
+Psystrike
+Tail Slap
+Head Charge
+Gear Grind
+Searing Shot
+Secret Sword
+Glaciate
+Bolt Strike
+Blue Flare
+Fiery Dance
+Snarl
+Icicle Crash
+V-create
+Noble Roar
+Parabolic Charge
+Disarming Voice
+Draining Kiss
+Play Rough
+Fairy Wind
+Moonblast
+Boomburst
+Play Nice
+Confide
+Mystical Fire
+Eerie Impulse
+Happy Hour
+Dazzling Gleam
+Celebrate
+Hold Hands
+Baby-Doll-Eyes
+Nuzzle
+Power-up Punch
+Oblivion Wing
+Land's Wrath
+Light of Ruin
+Origin Pulse
+Precipice Blades
+Dragon Ascent (don't worry about Mega ray interaction)
+Hyperspace Fury
+Ice Hammer
+High Horsepower
+Leafage
+Toxic Thread
+Pollen Puff
+Lunge
+Fire Lash
+Smart Strike
+Trop Kick
+Clanging Scales
+Psychic Fangs
+Dragon Hammer
+Brutal Swing
+Fleur Cannon
+Shadow Bone
+Accelerock
+Liquidation
+Tearful Look
+Mind Blown
+Plasma Fists
+Zing Zap
+Bug Buzz
+

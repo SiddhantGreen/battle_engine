@@ -6,40 +6,30 @@
 #include "move_override.h"
 #include "../abilities/ability_override.h"
 
-/*
-enum StatusAilments {
-    AILMENT_NONE,
-    AILMENT_SLEEP,
-    AILMENT_POISON,
-    AILMENT_BURN,
-    AILMENT_FREEZE,
-    AILMENT_PARALYZE,
-    AILMENT_BAD_POISON,
-    AILMENT_CONFUSION,
-    AILMENT_CURE,
-};*/
+/* Ailment names and order:
+    
+    AILMENT_NONE
+    AILMENT_SLEEP
+    AILMENT_POISON
+    AILMENT_BURN
+    AILMENT_FREEZE
+    AILMENT_PARALYZE
+    AILMENT_BAD_POISON
+    AILMENT_CONFUSION
+    AILMENT_CURE
+*/
 
-struct battle_stat_chances {
-	u8 c_atk;
-	u8 c_def;
-	u8 c_spd;
-	u8 c_spa;
-	u8 c_sdef;
-	u8 c_accuracy;
-	u8 c_evasion;
-	u8 c_crit;
-};
-
-struct battle_stat_amounts {
-	s8 amount_atk;
-	s8 amount_def;
-	s8 amount_spd;
-	s8 amount_spa;
-	s8 amount_sdef;
-	s8 amount_accuracy;
-	s8 amount_evasion;
-	s8 amount_crit;
-};
+/*  Order of stat boosts:
+    
+    Attack
+    Defense
+    Speed
+    Special Attack
+    Special Defense
+    Accuracy
+    Evasion
+    Critical chance
+*/
 
 struct move_procs {
 	u8 chance_user[8];
@@ -167,9 +157,6 @@ enum PokemonStat {
 	STAT_CRIT,
 };
 
-
-
-
 /*
 
 List of flags and their descriptions:
@@ -276,16 +263,6 @@ extern u16 sonic_boom_on_damage_move(u16 dmg_taken, u8 user, u8 target, u16 move
 extern u8 disable_on_effect_cb(u8 user, u8 target, u16 move);
 
 
-/* Move procs */
-extern struct move_procs basic_10burn_proc;
-extern struct move_procs basic_10freez_proc;
-extern struct move_procs basic_10para_proc;
-extern struct move_procs always_para_proc;
-extern struct move_procs poison_sting_procs;
-extern struct move_procs twineedle_procs;
-extern struct move_procs supersonic_procs;
-extern struct move_procs sing_procs;
-
 /* User stats */
 extern struct move_procs user_lower_atk_1;
 extern struct move_procs user_lower_def_1;
@@ -344,21 +321,12 @@ extern struct move_procs target_raise_spDef_2;
 extern struct move_procs target_raise_spd_2;
 extern struct move_procs target_raise_acc_2;
 
-/* Specific moves */
-extern struct move_procs bulk_up_proc;
-extern struct move_procs calm_mind_proc;
-extern struct move_procs coil_proc;
-extern struct move_procs cosmic_power_proc;
-extern struct move_procs cotton_guard_proc;
-extern struct move_procs dragon_dance_proc;
-extern struct move_procs growth_proc;
-extern struct move_procs hone_claws_proc;
-extern struct move_procs noble_roar_proc;
-extern struct move_procs quiver_dance_proc;
-extern struct move_procs shell_smash_proc;
-extern struct move_procs shift_gear_proc;
-extern struct move_procs tickle_proc;
-extern struct move_procs toxic_thread_proc;
+/* Move Specific procs */
+extern struct move_procs poison_sting_procs;
+extern struct move_procs twineedle_procs;
+extern struct move_procs supersonic_procs;
+extern struct move_procs sing_procs;
+
 
 #endif /* movesABLE_DATA_H_ */	
 

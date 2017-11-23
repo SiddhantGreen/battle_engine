@@ -41,12 +41,12 @@ struct move_procs target_lower_atk_2 = {
 struct move_procs target_lower_def_1 = {
 	{0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
-	{0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 100, 0, 0, 0, 0, 0, 0},
     {0, -1, 0, 0, 0, 0, 0, 0},
-	AILMENT_POISON,
-	AILMENT_BURN,
-	100,
-	100,
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
 };
 
 //Lowers target's defense 2 stages
