@@ -7,12 +7,9 @@ extern void dprintf(const char * str, ...);
 u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move)
 {
     if (B_GET_ITEM(user) != 0) {
-        dprintf("User was holding item %d. 55 BP\n", B_GET_ITEM(user));
-        return 55;
-    } else {
-		dprintf("User was not holding an item, 110 BP!");
-        return 110;
+        return base_power;
     }
+    return (base_power << 1);
 }
 
 
