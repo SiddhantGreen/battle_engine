@@ -730,7 +730,6 @@ struct move_procs confuse_10_procs = {
 	10,
 };
 
-
 // Shell Smash
 struct move_procs shell_smash_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
@@ -742,6 +741,45 @@ struct move_procs shell_smash_procs = {
 	AILMENT_NONE,
 	0,
 	0,
+};
+
+// Dragon Ascent
+struct move_procs dragon_ascent_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 100, 0, 0, 100, 0, 0, 0},
+    {0, -1, 0, 0, -1, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},   
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
+};
+
+// Shift Gear
+struct move_procs shift_gear_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {100, 0, 100, 0, 0, 0, 0, 0},
+    {1, 0, 2, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},   
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
+};
+
+// Nuzzle
+struct move_procs nuzzle_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	AILMENT_NONE,
+	AILMENT_PARALYZE,
+	0,
+	100,
 };
 
 

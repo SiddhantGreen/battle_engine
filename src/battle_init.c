@@ -47,9 +47,9 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_SHELL_SMASH;
+    u16 t = MOVE_NUZZLE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
-    t = MOVE_EMBER;
+    t = MOVE_PLASMA_FISTS;
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
     t = 4;
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);

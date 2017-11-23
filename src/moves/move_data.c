@@ -675,6 +675,7 @@ pchar Tearful_Look_desc[] = _("Lowers the target‘s Attack and Sp. Atk by 1.");
 pchar Zing_Zap_desc[] = _("30% chance to flinch the target.");
 pchar Natures_Madness_desc[] = _("Does damage equal to 1/2 target‘s current HP.");
 pchar Multi_Attack_desc[] = _("Type varies based on the held Memory.");
+pchar Plasma_Fists_desc[] = _("Does damage.");
 
 extern struct move_procs basic_proc;
 
@@ -7174,7 +7175,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_STEEL,
 	.m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .procs = &shift_gear_procs,
 	},
 	
 	{
@@ -8445,7 +8446,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &nuzzle_procs,
 	},
 	
 	{
@@ -8597,7 +8598,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &dragon_ascent_procs,
 	},
 	
 	{
@@ -9246,7 +9247,8 @@ struct move_data moves[] = {
 	},
 	
 	/* Nature's Madness */
-	{_("Nature‘s Madness"),
+	{
+    .name = _("Nature‘s Madness"),
 	.accuracy = 90,
     .description = (pchar*)Natures_Madness_desc,
 	.pp = 10,
@@ -9257,13 +9259,27 @@ struct move_data moves[] = {
 	},
 	
 	/* Multi-Attack */
-	{_("Multi-Attack"),
+	{
+    .name = _("Multi-Attack"),
 	.accuracy = 100,
 	.base_power = 90,
     .description = (pchar*)Multi_Attack_desc,
 	.pp = 10,
     .category = MOVE_PHYSICAL,
 	.type = MTYPE_NORMAL,
+	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &basic_proc,
+	},
+    
+	/* Plasma Fists */
+	{
+    .name = _("Plasma Fists"),
+	.accuracy = 100,
+	.base_power = 100,
+    .description = (pchar*)Plasma_Fists_desc,
+	.pp = 10,
+    .category = MOVE_PHYSICAL,
+	.type = MTYPE_ELECTRIC,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
 	},
