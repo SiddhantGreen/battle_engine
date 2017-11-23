@@ -45,7 +45,7 @@ void thrash_on_after_move(u8 attacker)
     return;
 }
 
-
+/* shared callbacks with Ice ball */
 u8 rollout_on_before_move(u8 attacker)
 {
 	if ((p_bank[attacker]->b_data.skip_move_select) && (p_bank[attacker]->b_data.move_lock_counter < 1)) {
@@ -61,7 +61,6 @@ u8 rollout_on_before_move(u8 attacker)
 	}
 	return 1;
 }
-
 
 u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move)
 {

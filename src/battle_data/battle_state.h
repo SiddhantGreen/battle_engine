@@ -1,8 +1,9 @@
 #ifndef BATTLE_STATE_H_
 #define BATTLE_STATE_H_
 
-#include "battle_data/pkmn_bank.h"
-#include "moves/moves.h"
+#include "pkmn_bank.h"
+#include "../moves/moves.h"
+#include "../anonymous_callbacks/anonymous_callbacks.h"
 #include <pokeagb/pokeagb.h>
 
 #define GAME_STATE super.multi_purpose_state_tracker
@@ -117,7 +118,7 @@ struct switch_menu {
 
 struct battle_main {
     struct battle_field_state field_state;
-
+	struct anonymous_callbacks_master anon_cbs;
     /* Object ids and positions */
     struct battle_selection_cursor battle_cursor;
     u8 selected_option;

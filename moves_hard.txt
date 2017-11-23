@@ -9,7 +9,6 @@ Substitute
 Sketch
 Mind Reader (Might be medium)
 Destiny Bond
-Rollout (close to medium)
 Attract
 Sleep Talk (moves down to medium after metronome)
 Encore
@@ -29,7 +28,6 @@ Magic Coat
 Yawn
 Grudge
 Secret Power (not hard but can't be done until terrain)
-Ice Ball
 Odor Sleuth
 Doom Desire
 Metal Burst

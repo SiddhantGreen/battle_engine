@@ -4533,6 +4533,9 @@ struct move_data moves[] = {
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+	.before_move = rollout_on_before_move,
+	.on_move_fail = rollout_on_move_fail,
+	.on_base_power_move = rollout_on_base_power_move,
 	},
 	
 	{
