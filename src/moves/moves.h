@@ -326,6 +326,10 @@ extern struct move_procs poison_sting_procs;
 extern struct move_procs twineedle_procs;
 extern struct move_procs supersonic_procs;
 extern struct move_procs sing_procs;
+extern struct move_procs burn_10_procs;
+extern struct move_procs freeze_10_procs;
+extern struct move_procs confuse_10_procs;
+extern struct move_procs shell_smash_procs;
 
 
 #endif /* movesABLE_DATA_H_ */	

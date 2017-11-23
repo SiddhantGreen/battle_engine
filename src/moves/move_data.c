@@ -1369,7 +1369,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
 	.type = MTYPE_POISON,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &target_lower_spDef_1,
 	},
 	
 	{
@@ -1382,7 +1382,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &burn_10_procs,
 	},
 	
 	{
@@ -1459,7 +1459,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &freeze_10_procs,
 	},
 	
 	{
@@ -1485,7 +1485,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
 	.type = MTYPE_PSYCHIC,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &confuse_10_procs,
 	},
 	
 	{
@@ -7124,7 +7124,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .procs = &shell_smash_procs,
 	},
 	
 	{
