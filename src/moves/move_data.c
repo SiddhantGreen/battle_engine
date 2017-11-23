@@ -1192,7 +1192,8 @@ struct move_data moves[] = {
 	},
 	
 	/* Double edge*/
-	{_("Double-Edge"),
+	{
+	.name = _("Double-Edge"),
 	.accuracy = 100,
 	.base_power = 120,
     .description = (pchar*)Double_Edge_desc,
@@ -3322,6 +3323,9 @@ struct move_data moves[] = {
 	.type = MTYPE_ROCK,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+	.before_move = rollout_on_before_move,
+	.on_move_fail = rollout_on_move_fail,
+	.on_base_power_move = rollout_on_base_power_move,
 	},
 	
 	{

@@ -45,3 +45,40 @@ void thrash_on_after_move(u8 attacker)
     return;
 }
 
+
+u8 rollout_on_before_move(u8 attacker)
+{
+	if ((p_bank[attacker]->b_data.skip_move_select) && (p_bank[attacker]->b_data.move_lock_counter < 1)) {
+		p_bank[attacker]->b_data.skip_move_select = false;
+        p_bank[attacker]->b_data.move_lock_counter = 0;
+        REMOVE_VOLATILE(attacker, VOLATILE_MULTI_TURN);
+	} else if (p_bank[attacker]->b_data.skip_move_select) {
+		p_bank[attacker]->b_data.move_lock_counter--;
+	} else {
+		 p_bank[attacker]->b_data.move_lock_counter = 5;
+        p_bank[attacker]->b_data.skip_move_select = true;
+        ADD_VOLATILE(attacker, VOLATILE_MULTI_TURN);
+	}
+	return 1;
+}
+
+
+u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move)
+{
+    p_bank[attacker]->b_data.skip_move_select = false;
+    p_bank[attacker]->b_data.move_lock_counter = 0;
+    return 1;
+}
+
+u8 rollout_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move)
+{
+	u8 new_basep = base_power;
+	if (HAS_VOLATILE(user, VOLATILE_DEFENSE_CURL)) {
+		new_basep = new_basep << 1;
+	}
+	return (new_basep << (5 - p_bank[user]->b_data.move_lock_counter));
+}
+
+
+
+

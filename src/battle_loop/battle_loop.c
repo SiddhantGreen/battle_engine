@@ -107,6 +107,8 @@ void battle_loop()
 		u8 index = get_move_index(move_player, p_bank[PLAYER_SINGLES_BANK]->this_pkmn);
 		if (p_bank[PLAYER_SINGLES_BANK]->b_data.disabled_moves[index] > 0) {
 			enqueue_message(0, 0, STRING_DISABLED_PICKED, 0);
+			p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select = false;
+			p_bank[PLAYER_SINGLES_BANK]->b_data.move_lock_counter = 0;
 			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
 			set_callback1(run_decision);
 			return;
