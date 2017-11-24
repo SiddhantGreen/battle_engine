@@ -1186,7 +1186,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .before_move = thrash_on_before_move,
+    .on_tryhit_move = thrash_on_tryhit_move,
     .on_move_fail = thrash_on_move_fail,
     .on_after_move = thrash_on_after_move,
 	},
@@ -2216,6 +2216,7 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = metronome_on_modify_move,
 	},
 	
 	{

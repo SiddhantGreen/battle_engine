@@ -255,7 +255,7 @@ extern u8 minimize_on_effect_cb(u8 attacker, u8 defender, u16 move);
 extern u8 stomp_on_modify_move(u8 user, u8 target, u16 move);
 extern u8 jump_kick_on_move_fail(u8 user, u8 target, u16 move);
 extern u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move);
-extern u8 thrash_on_before_move(u8 attacker);
+extern u8 thrash_on_tryhit_move(u8 attacker, u8 target, u16 move);
 extern u8 thrash_on_move_fail(u8 attacker, u8 defender, u16 move);
 extern void thrash_on_after_move(u8 attacker);
 extern u8 sonic_boom_on_modify_move(u8 user, u8 target, u16 move);
@@ -264,7 +264,7 @@ extern u8 disable_on_effect_cb(u8 user, u8 target, u16 move);
 extern u8 rollout_on_before_move(u8 attacker);
 extern u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move);
 extern u8 rollout_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
-
+extern u8 metronome_on_modify_move(u8 bank, u8 target, u16 move);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

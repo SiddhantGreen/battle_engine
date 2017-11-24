@@ -4,7 +4,9 @@
 #include "../battle_data/battle_state.h"
 
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
-
+extern u16 rand_range(u16 min, u16 max);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern void dprintf(const char * str, ...);
 
 const static u16 metronome_disallow[] = {
 	MOVE_AFTER_YOU, MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW,
@@ -28,23 +30,26 @@ const static u16 metronome_disallow[] = {
 u16 pick_rand_metronome_move()
 {
 	bool unusable_move = true;
+    u16 selected_move = MOVE_NONE;
 	while (unusable_move) {
-		u16 selected_move = rand_range(1, MOVE_MAX);
+		selected_move = rand_range(1, MOVE_MAX);
 		for (u8 i = 0; i < (sizeof(metronome_disallow) / sizeof(u16)); i++) {
 			if (metronome_disallow[i] == selected_move) {
 				unusable_move = false;
 				break;
 			}
 		}
-		unusable_move = (unusable_move) ? true : false;
+		unusable_move = (unusable_move) ? false : true;
 	}
 	return selected_move;
 }
 
-void metronome_on_execute_external(u8 bank)
-{	
-	u16 move = pick_rand_metronome_move();
-	set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(move));
+u8 metronome_on_modify_move(u8 bank, u8 target, u16 move_metronome)
+{
+    CURRENT_MOVE(bank) = pick_rand_metronome_move();
+ 	set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+    enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+    return true;
 }
 
 
