@@ -10,9 +10,10 @@ extern u8 add_residual_cb(ResidualFunc to_add);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
 extern void apply_residual_dmg(u8 id);
+extern void set_status(u8 bank, enum Effect status);
 
 
-u8 thrash_on_before_move(u8 attacker)
+u8 thrash_on_tryhit_move(u8 attacker, u8 target, u16 move)
 {
     if ((p_bank[attacker]->b_data.skip_move_select) && (p_bank[attacker]->b_data.move_lock_counter < 1)) {
         p_bank[attacker]->b_data.skip_move_select = false;
@@ -39,7 +40,7 @@ void thrash_on_after_move(u8 attacker)
 {
     if (p_bank[attacker]->b_data.skip_move_select == false) {
         if (!(HAS_VOLATILE(attacker, VOLATILE_CONFUSION))) {
-            ADD_VOLATILE(attacker, VOLATILE_CONFUSION);
+            set_status(attacker, AILMENT_CONFUSION);
         }
     }
     return;
