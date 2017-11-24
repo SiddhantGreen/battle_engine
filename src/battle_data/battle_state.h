@@ -118,7 +118,7 @@ struct switch_menu {
 
 struct battle_main {
     struct battle_field_state field_state;
-	struct anonymous_callbacks_master anon_cbs;
+	//struct anonymous_callbacks_master anon_cbs;
     /* Object ids and positions */
     struct battle_selection_cursor battle_cursor;
     u8 selected_option;
