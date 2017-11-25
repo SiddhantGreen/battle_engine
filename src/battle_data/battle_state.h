@@ -73,6 +73,7 @@ struct battle_field_state {
     u8 safe_guard_turns[2];
     u8 lightscreen_turns[2];
     u8 weather_turns;
+    u16 last_used_move;
 };
 
 struct move_used {

@@ -271,6 +271,7 @@ extern u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 move);
 extern u8 sleep_talk_before_move(u8 bank);
 extern u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk);
 extern u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move);
+extern u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move);
 
 
 

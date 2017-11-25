@@ -150,6 +150,7 @@ void run_move()
             if (B_MOVE_FAILED(bank_index)) {
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
+            battle_master->field_state.last_used_move = CURRENT_MOVE(bank_index);
             super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
             break;
         }

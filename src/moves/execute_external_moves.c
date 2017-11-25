@@ -158,11 +158,12 @@ u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
     u16 move_set[24] = {MOVE_NONE};
     u8 array_slot = 0;
     u8 poke_count = count_pokemon();
+    struct Pokemon* bank_party = (SIDE_OF(bank)) ? (&party_opponent[0]) : (&party_player[0]);
     for (u8 i = 0; i < poke_count; i++) {
-        if ((u32)&party_player[i] == (u32)p_bank[bank]->this_pkmn)
+        if ((u32)&bank_party[i] == (u32)p_bank[bank]->this_pkmn)
             continue;
         for (u8 j = 0; j < 4; j++) {
-            u16 this_move = pokemon_getattr(&party_player[i], REQUEST_MOVE1 + j, NULL);
+            u16 this_move = pokemon_getattr(&bank_party[i], REQUEST_MOVE1 + j, NULL);
             if (is_allowed_assist(this_move)) {
                 move_set[array_slot] = this_move;
                 array_slot++;
@@ -181,12 +182,41 @@ u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
 }
 
 
+/* Copycat */
+const static u16 copycat_disallow[] = {
+    MOVE_ASSIST, MOVE_BANEFUL_BUNKER, MOVE_BESTOW, MOVE_CHATTER,
+    MOVE_CIRCLE_THROW, MOVE_COPYCAT, MOVE_COUNTER, MOVE_COVET,
+    MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_DRAGON_TAIL, MOVE_ENDURE,
+    MOVE_FEINT, MOVE_FOCUS_PUNCH, MOVE_FOLLOW_ME, MOVE_HELPING_HAND,
+    MOVE_ME_FIRST, MOVE_METRONOME, MOVE_MIMIC, MOVE_MIRROR_COAT,
+    MOVE_MIRROR_MOVE, MOVE_NATURE_POWER, MOVE_PROTECT,
+    MOVE_RAGE_POWDER, MOVE_ROAR, MOVE_SKETCH, MOVE_SLEEP_TALK,
+    MOVE_SNATCH, MOVE_STRUGGLE, MOVE_SWITCHEROO, MOVE_THIEF,
+    MOVE_TRANSFORM, MOVE_TRICK, MOVE_WHIRLWIND, MOVE_NONE, MOVE_MAX
+};
 
+bool is_allowed_copycat(u16 move)
+{
+    for (u8 i = 0; i < ((sizeof(copycat_disallow)) / sizeof(u16)); i++) {
+        if (copycat_disallow[i] == move)
+            return false;
+    }
+    return true;
+}
 
-
-
-
-
+u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move)
+{
+    u16 last_move = battle_master->field_state.last_used_move;
+    dprintf("Last move: %d\n", last_move);
+    if (is_allowed_copycat(last_move)) {
+        CURRENT_MOVE(bank) = last_move;
+        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
