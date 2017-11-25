@@ -10,6 +10,8 @@ extern void dprintf(const char * str, ...);
 extern u8 count_usable_moves(u8 bank);
 extern u8 count_total_moves(u8 bank);
 
+/* Metronome */
+
 const static u16 metronome_disallow[] = {
 	MOVE_AFTER_YOU, MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW,
 	MOVE_CELEBRATE, MOVE_CHATTER, MOVE_COPYCAT, MOVE_COUNTER,
@@ -54,7 +56,7 @@ u8 metronome_on_modify_move(u8 bank, u8 target, u16 move_metronome)
     return true;
 }
 
-
+/* Mirror Move */
 u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 mirror_move)
 {
     // fails if target hasn't made a move or target's move isn't mirrorable
@@ -67,6 +69,7 @@ u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 mirror_move)
     return false;
 }
 
+/* Sleep Talk */
 const static u16 sleep_talk_disallow[] = {
     MOVE_ASSIST, MOVE_BEAK_BLAST, MOVE_BELCH,
     MOVE_BIDE, MOVE_CHATTER, MOVE_COPYCAT,
@@ -76,7 +79,8 @@ const static u16 sleep_talk_disallow[] = {
 
 };
 
-bool is_allowed_sleep_talk(u16 move) {
+bool is_allowed_sleep_talk(u16 move)
+{
     for (u8 i = 0; i < (sizeof(sleep_talk_disallow) / sizeof(u16)); i++) {
         if (move == sleep_talk_disallow[i])
             return false;
@@ -84,7 +88,8 @@ bool is_allowed_sleep_talk(u16 move) {
     return true;
 }
 
-u8 sleep_talk_before_move(u8 bank) {
+u8 sleep_talk_before_move(u8 bank)
+{
     if ((B_STATUS(bank) == AILMENT_SLEEP) || (BANK_ABILITY(bank) == ABILITY_COMATOSE)) {
         REMOVE_VOLATILE(bank, VOLATILE_SLEEP_TURN);
         enqueue_message(0, bank, STRING_FAST_ASLEEP, 0);
@@ -120,6 +125,60 @@ u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
 }
 
 
+/* Assist */
+const static u16 assist_disallow[] = {
+    MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW, 
+    MOVE_BOUNCE, MOVE_CHATTER, MOVE_CIRCLE_THROW, 
+    MOVE_COPYCAT, MOVE_COUNTER, MOVE_COVET, 
+    MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_DIG, 
+    MOVE_DIVE, MOVE_DRAGON_TAIL, MOVE_ENDURE, 
+    MOVE_FEINT, MOVE_FLY, MOVE_FOCUS_PUNCH, 
+    MOVE_FOLLOW_ME, MOVE_HELPING_HAND, MOVE_KINGS_SHIELD, 
+    MOVE_MAT_BLOCK, MOVE_ME_FIRST, MOVE_METRONOME, 
+    MOVE_MIMIC, MOVE_MIRROR_COAT, MOVE_MIRROR_MOVE, 
+    MOVE_NATURE_POWER, MOVE_PHANTOM_FORCE, MOVE_PROTECT, 
+    MOVE_RAGE_POWDER, MOVE_ROAR, MOVE_SHADOW_FORCE, 
+    MOVE_SKETCH, MOVE_SKY_DROP, MOVE_SLEEP_TALK, 
+    MOVE_SNATCH, MOVE_SPIKY_SHIELD, MOVE_STRUGGLE, 
+    MOVE_SWITCHEROO, MOVE_THIEF, MOVE_TRANSFORM, 
+    MOVE_TRICK, MOVE_WHIRLWIND, MOVE_MAX, MOVE_NONE,
+};
+
+bool is_allowed_assist(u16 move)
+{
+    for (u8 i = 0; i < ((sizeof(assist_disallow)) / sizeof(u16)); i++) {
+        if (assist_disallow[i] == move)
+            return false;
+    }
+    return true;
+}
+
+u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
+{
+    u16 move_set[24] = {MOVE_NONE};
+    u8 array_slot = 0;
+    u8 poke_count = count_pokemon();
+    for (u8 i = 0; i < poke_count; i++) {
+        if ((u32)&party_player[i] == (u32)p_bank[bank]->this_pkmn)
+            continue;
+        for (u8 j = 0; j < 4; j++) {
+            u16 this_move = pokemon_getattr(&party_player[i], REQUEST_MOVE1 + j, NULL);
+            if (is_allowed_assist(this_move)) {
+                move_set[array_slot] = this_move;
+                array_slot++;
+            }
+        }
+    }
+    
+    if (array_slot) {
+        CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
+        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
