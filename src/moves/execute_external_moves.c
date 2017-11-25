@@ -7,6 +7,8 @@ extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
+extern u8 count_usable_moves(u8 bank);
+extern u8 count_total_moves(u8 bank);
 
 const static u16 metronome_disallow[] = {
 	MOVE_AFTER_YOU, MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW,
@@ -51,6 +53,83 @@ u8 metronome_on_modify_move(u8 bank, u8 target, u16 move_metronome)
     enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
     return true;
 }
+
+
+u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 mirror_move)
+{
+    // fails if target hasn't made a move or target's move isn't mirrorable
+    if ((LAST_MOVE(target) != MOVE_NONE) && (IS_MIRRORABLE(LAST_MOVE(target)))) {
+        CURRENT_MOVE(bank) = LAST_MOVE(target);
+        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        return true;
+    }
+    return false;
+}
+
+const static u16 sleep_talk_disallow[] = {
+    MOVE_ASSIST, MOVE_BEAK_BLAST, MOVE_BELCH,
+    MOVE_BIDE, MOVE_CHATTER, MOVE_COPYCAT,
+    MOVE_FOCUS_PUNCH, MOVE_ME_FIRST, MOVE_METRONOME,
+    MOVE_MIMIC, MOVE_MIRROR_MOVE, MOVE_NATURE_POWER,
+    MOVE_SHELL_TRAP, MOVE_SKETCH, MOVE_SLEEP_TALK, MOVE_UPROAR,
+
+};
+
+bool is_allowed_sleep_talk(u16 move) {
+    for (u8 i = 0; i < (sizeof(sleep_talk_disallow) / sizeof(u16)); i++) {
+        if (move == sleep_talk_disallow[i])
+            return false;
+    }
+    return true;
+}
+
+u8 sleep_talk_before_move(u8 bank) {
+    if ((B_STATUS(bank) == AILMENT_SLEEP) || (BANK_ABILITY(bank) == ABILITY_COMATOSE)) {
+        REMOVE_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+        enqueue_message(0, bank, STRING_FAST_ASLEEP, 0);
+    }
+    return true;
+}
+
+u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
+{
+    if ((B_STATUS(bank) == AILMENT_SLEEP) || (BANK_ABILITY(bank) == ABILITY_COMATOSE)) {
+        // fail if no moves learnt
+        u8 move_set[4] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+        u8 array_slot = 0;
+        for (u8 i = 0; i < 4; i++) {
+            u16 this_move = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL);
+            if ((this_move != MOVE_NONE) && (is_allowed_sleep_talk(this_move)) && (!(IS_CHARGE(this_move)))) {
+                move_set[array_slot] = this_move;
+                array_slot++;
+            }
+        }
+        
+        if (array_slot) {
+            CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
+            set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+            enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

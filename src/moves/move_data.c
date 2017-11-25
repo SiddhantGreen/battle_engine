@@ -2229,10 +2229,12 @@ struct move_data moves[] = {
 	.type = MTYPE_FLYING,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = mirror_move_on_modify_move,
 	},
 	
 	/*Self-Destruct*/
-	{_("Self-Destruct"),
+	{
+	.name_("Self-Destruct"),
 	.accuracy = 100,
 	.base_power = 200,
     .description = (pchar*)Self_Destruct_desc,
@@ -2427,7 +2429,8 @@ struct move_data moves[] = {
 	},
 	
 	/*Soft-Boiled*/
-	{_("Soft-Boiled"),
+	{
+    .name = _("Soft-Boiled"),
 	.accuracy = 101,
     .description = (pchar*)Soft_Boiled_desc,
 	.pp = 10,
@@ -2953,7 +2956,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Conversion 2"),
+	{
+	.name_("Conversion 2"),
 	.accuracy = 101,
     .description = (pchar*)Conversion_2_desc,
 	.pp = 30,
@@ -3115,7 +3119,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Mud-Slap"),
+	{
+	.name_("Mud-Slap"),
 	.accuracy = 100,
 	.base_power = 20,
     .description = (pchar*)Mud_Slap_desc,
@@ -3240,7 +3245,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Lock-On"),
+	{
+	.name_("Lock-On"),
 	.accuracy = 101,
     .description = (pchar*)Lock_On_desc,
 	.pp = 5,
@@ -3439,6 +3445,8 @@ struct move_data moves[] = {
 	.type = MTYPE_NORMAL,
 	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = sleep_talk_before_move,
+    .on_modify_move = sleep_talk_on_modify_move,
 	},
 	
 	{
@@ -4022,7 +4030,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Will-O-Wisp"),
+	{
+	.name_("Will-O-Wisp"),
 	.accuracy = 85,
     .description = (pchar*)Will_O_Wisp_desc,
 	.pp = 15,
@@ -5258,7 +5267,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Wake-Up Slap"),
+	{
+	.name_("Wake-Up Slap"),
 	.accuracy = 100,
 	.base_power = 70,
     .description = (pchar*)Wake_Up_Slap_desc,
@@ -5394,7 +5404,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("U-turn"),
+	{
+	.name_("U-turn"),
 	.accuracy = 100,
 	.base_power = 70,
     .description = (pchar*)U_turn_desc,
@@ -5831,7 +5842,8 @@ struct move_data moves[] = {
 	.flinch_chance = 30,
 	},
 	
-	{_("X-Scissor"),
+	{
+	.name_("X-Scissor"),
 	.accuracy = 100,
 	.base_power = 80,
     .description = (pchar*)X_Scissor_desc,
@@ -7816,7 +7828,8 @@ struct move_data moves[] = {
 	.flinch_chance = 30,
 	},
 	
-	{_("V-create"),
+	{
+	.name_("V-create"),
 	.accuracy = 95,
 	.base_power = 180,
     .description = (pchar*)V_create_desc,
@@ -7941,7 +7954,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Trick-or-Treat"),
+	{
+	.name_("Trick-or-Treat"),
 	.accuracy = 100,
     .description = (pchar*)Trick_or_Treat_desc,
 	.pp = 20,
@@ -7989,7 +8003,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Forest‘s Curse"),
+	{
+	.name_("Forest‘s Curse"),
 	.accuracy = 100,
     .description = (pchar*)Forests_Curse_desc,
 	.pp = 20,
@@ -8012,7 +8027,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Freeze-Dry"),
+	{
+	.name_("Freeze-Dry"),
 	.accuracy = 100,
 	.base_power = 70,
     .description = (pchar*)Freeze_Dry_desc,
@@ -8048,7 +8064,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Topsy-Turvy"),
+	{
+	.name_("Topsy-Turvy"),
 	.accuracy = 101,
     .description = (pchar*)Topsy_Turvy_desc,
 	.pp = 20,
@@ -8196,7 +8213,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("King‘s Shield"),
+	{
+	.name_("King‘s Shield"),
 	.accuracy = 101,
     .description = (pchar*)Kings_Shield_desc,
 	.pp = 10,
@@ -8433,7 +8451,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Baby-Doll Eyes"),
+	{
+	.name_("Baby-Doll Eyes"),
 	.accuracy = 100,
     .description = (pchar*)Baby_Doll_Eyes_desc,
 	.pp = 30,
@@ -8483,7 +8502,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Power-Up Punch"),
+	{
+	.name_("Power-Up Punch"),
 	.accuracy = 100,
 	.base_power = 40,
     .description = (pchar*)Power_Up_Punch_desc,
@@ -8546,7 +8566,8 @@ struct move_data moves[] = {
     .procs = &basic_proc,
 	},
 	
-	{_("Land‘s Wrath"),
+	{
+	.name_("Land‘s Wrath"),
 	.accuracy = 100,
 	.base_power = 90,
     .description = (pchar*)Lands_Wrath_desc,

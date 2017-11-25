@@ -68,6 +68,7 @@ struct move_procs {
 #define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
 #define IS_DEFROST(move) ((moves[move].m_flags) & (1 << 4))
+#define IS_CHARGE(move) ((moves[move].m_flags) & (1 << 1))
 #define IS_DANCE(move) ((moves[move].m_flags) & (1 << 21))
 #define IS_TRIAGE(move) ((moves[move].m_flags) & (1 << 20))
 #define IS_SOUND_BASE(move) ((moves[move].m_flags) & (1 << 14))
@@ -79,6 +80,7 @@ struct move_procs {
 #define CAT_OVERRIDE(move) ((moves[move].m_flags) & (1 << 25))
 #define STEAL_OFFENSIVE(move) ((moves[move].m_flags) & (1 << 26))
 #define STEAL_BOOSTS(move) ((moves[move].m_flags) & (1 << 27))
+#define IS_MIRRORABLE(move) ((moves[move].m_flags) & (1 << 7))
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
@@ -265,6 +267,9 @@ extern u8 rollout_on_before_move(u8 attacker);
 extern u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move);
 extern u8 rollout_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
 extern u8 metronome_on_modify_move(u8 bank, u8 target, u16 move);
+extern u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 move);
+extern u8 sleep_talk_before_move(u8 bank);
+extern u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

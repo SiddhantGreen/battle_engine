@@ -60,10 +60,11 @@ enum BeforeMoveStatus before_move_cb(u8 bank)
     return result;*/
 }
 
-void move_on_modify_move(u8 attacker, u8 defender, u16 move)
+u8 move_on_modify_move(u8 attacker, u8 defender, u16 move)
 {
     if (moves[move].on_modify_move)
-        moves[move].on_modify_move(attacker, defender, move);
+        return moves[move].on_modify_move(attacker, defender, move);
+    return 1;
 }
 
 extern void run_residual_cbs(u8 bank);
@@ -88,6 +89,7 @@ void run_move()
             switch (result) {
                 case CANT_USE_MOVE:
                 case TARGET_MOVE_IMMUNITY:
+                    enqueue_message(0, bank_index, STRING_FAILED, 0);
                     super.multi_purpose_state_tracker = S_PP_REDUCTION;
                     return;
             };
@@ -116,9 +118,13 @@ void run_move()
         }
         case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
             // Modify move callbacks
-            move_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            super.multi_purpose_state_tracker++;
+            if (move_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
+                ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                super.multi_purpose_state_tracker++;
+            } else {
+                enqueue_message(0, bank_index, STRING_FAILED, 0);
+                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+            }
             break;
         case S_CHECK_TARGET_EXISTS:
             // check target exists

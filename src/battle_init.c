@@ -47,17 +47,17 @@ void init_battle_elements()
     
     
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_METRONOME;
+    u16 t = MOVE_BUBBLE;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
-    t = MOVE_PLASMA_FISTS;
+    t = rand_range(0, MOVE_MAX);
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
-    t = 4;
+    t = 10;
     pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
     t = 10;
     pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
     //t = ITEM_POTION;
     //pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
-    t = MOVE_GROWL;
+    t = MOVE_MIRROR_MOVE;
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
     pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);

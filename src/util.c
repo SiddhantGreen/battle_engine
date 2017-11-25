@@ -103,3 +103,33 @@ void set_ability(u8 bank, u8 source, u8 new_ability)
 
 }
 
+u8 count_usable_moves(u8 bank)
+{
+    u8 usable_moves = 0;
+    for (u8 i = 0; i < 4; i++) {
+        if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
+            if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + 1, NULL))
+                usable_moves++;
+        } else {
+            break;
+        }     
+    }
+    return usable_moves;
+}
+
+u8 count_total_moves(u8 bank)
+{
+    u8 move_total = 0;
+    for (u8 i = 0; i < 4; i++) {
+        if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
+            move_total++;
+        } else {
+            break;
+        }     
+    }
+    return move_total;
+}
+
+
+
+
