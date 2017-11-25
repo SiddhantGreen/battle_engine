@@ -22,7 +22,7 @@ void sleep_on_before_move(u8 bank)
 			p_bank[bank]->b_data.status = AILMENT_NONE;
 			enqueue_message(0, bank, STRING_WOKE_UP, 0);
 			status_graphical_update(bank, AILMENT_NONE);
-			REMOVE_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+			CLEAR_VOLATILE(bank, VOLATILE_SLEEP_TURN);
 		}
 	}
 }
