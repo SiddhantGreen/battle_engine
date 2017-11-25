@@ -31,7 +31,7 @@ void init_battle_elements()
         for(u8 j = 0; j < 4; j++) {
             p_bank[i]->objid_hpbox[j] = 0x3F;
         }
-            
+
     }
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
@@ -39,15 +39,15 @@ void init_battle_elements()
     for(u8 i = 0; i < 10; ++i) {
         battle_master->switch_main.type_objid[i] = 0x3F;
     }
-    residual_cbs_init();    
+    residual_cbs_init();
     setup();
     help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
-    
-    
+
+
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_COPYCAT;
+    u16 t = MOVE_CLEAR_SMOG;
     pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
     t = rand_range(0, MOVE_MAX);
     pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
@@ -94,14 +94,14 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.evasion = 0;
         p_bank[bank]->b_data.crit_mod = 0;
     }
-    
+
     // user actions should always be cleared
     p_bank[bank]->b_data.is_running = 0;
     p_bank[bank]->b_data.using_item = 0;
     p_bank[bank]->b_data.is_switching = 0;
     p_bank[bank]->b_data.skip_move_select = 0;
     p_bank[bank]->b_data.first_turn = 1;
-    
+
     if (!flags->pass_atk_history) {
         p_bank[bank]->b_data.my_target = 0xFF;
         p_bank[bank]->b_data.last_move = 0;
@@ -124,7 +124,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
     } else {
         status_graphical_update(bank, p_bank[bank]->b_data.status);
     }
-    
+
     if (!flags->pass_disables) {
         p_bank[bank]->b_data.disabled_moves[0] = 0;
         p_bank[bank]->b_data.disabled_moves[1] = 0;
@@ -132,7 +132,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.disabled_moves[3] = 0;
 		p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
     }
-    
+
     p_bank[bank]->b_data.illusion = 0;
     p_bank[bank]->b_data.fainted = 0;
 }
@@ -180,12 +180,12 @@ void init_battle()
         {
             // wait for sliding animations to finish
             if (bs_anim_status)
-                return;  
+                return;
 
             // up and down movement of the active moving Pokemon
             u8 t_id = task_add(set_active_movement, 1);
             tasks[t_id].priv[0] = PLAYER_SINGLES_BANK;
-            
+
             // build p_bank data once animation is finished
             struct update_flags* flags = (struct update_flags*)malloc_and_clear(sizeof(struct update_flags));
             flags->pass_status = true;
@@ -252,20 +252,20 @@ void option_selection()
                 case OPTION_RUN:
                     super.multi_purpose_state_tracker = 5;
                     break;
-                    
+
             };
             break;
         case 2:
             /* FIGHT selected from fight menu */
-            
+
             // update tilemap
             vblank_handler_set(vblank_cb_merge_move_select);
             void* map_base = (void *)0x600F800;
             memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
-            
+
             // init cursor
             init_selection_cursor(0, 0);
-            
+
             // init move types
             load_icons_moves(PLAYER_SINGLES_BANK);
             // set into pause state
@@ -310,18 +310,5 @@ void option_selection()
             super.multi_purpose_state_tracker = 0;
             break;
         }
-    }; 
+    };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

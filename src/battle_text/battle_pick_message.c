@@ -70,14 +70,14 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_INFATUATED:
             case STRING_BIDE_CHARGE:
             case STRING_LOST_FOCUS:
-            case STRING_CANT_USE: 
-            case STRING_DISABLED:  
-            case STRING_FAILED:   
-            case STRING_CURSE_RESIDUAL: 
-            case STRING_MAGNITUDE_AMOUNT: 
+            case STRING_CANT_USE:
+            case STRING_DISABLED:
+            case STRING_FAILED:
+            case STRING_CURSE_RESIDUAL:
+            case STRING_MAGNITUDE_AMOUNT:
             case STRING_NO_TARGET:
-            case STRING_IMMUNE_ABILITY:  
-            case STRING_RAZORWIND:  
+            case STRING_IMMUNE_ABILITY:
+            case STRING_RAZORWIND:
             case STRING_SOLARBEAM:
             case STRING_FREEZE_SHOCK:
             case STRING_ICE_BURN:
@@ -126,6 +126,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
 			case STRING_FROZEN_SOLID:
 			case STRING_FREEZE_THAWED:
 			case STRING_FULL_PARA:
+      case STRING_CLEAR_SMOG:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:
@@ -138,4 +139,3 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
         };
     }
 }
-
