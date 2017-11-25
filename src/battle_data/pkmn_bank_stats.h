@@ -42,7 +42,7 @@
 // xor to flip bits
 #define REMOVE_VOLATILE(bank, v) p_bank[bank]->b_data.v_status ^= v
 // clear the bit, even when not set.
-#define CLEAR_VOLATILE(bank, v) p_bank[bank]-> &= ~(v)
+#define CLEAR_VOLATILE(bank, v) p_bank[bank]->b_data.v_status &= ~(v)
 #define HAS_VOLATILE(bank, v) p_bank[bank]->b_data.v_status & v
 
 /*
