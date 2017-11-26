@@ -1,6 +1,7 @@
 #include <pokeagb/pokeagb.h>
 #include "../moves/moves.h"
 
+typedef u8 (*AnonymousCallback)(u8 source, u8 target, u16 move);
 
 #define CB_ON_BEFORE_TURN 1
 #define CB_ON_BEFORE_SWITCH 2
@@ -17,11 +18,12 @@
 
 struct anonymous_callback {
 	s8 priority;
-	u8 delay_before_effect;
+	u8 delay_before_effect : 7;
+	u8 in_use : 1;
 	u8 duration;
 	u8 source_bank; // source bank using the effect
 	void* data_ptr;
-	void* func;
+	u32 func;
 };
 
 
