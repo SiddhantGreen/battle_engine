@@ -275,6 +275,8 @@ extern u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move);
 extern u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move);
 extern u8 clear_smog_effect(u8 attacker, u8 defender, u16 move);
 extern u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat);
+extern u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
@@ -342,8 +344,8 @@ extern struct move_procs sing_procs;
 extern struct move_procs burn_10_procs;
 extern struct move_procs freeze_10_procs;
 extern struct move_procs confuse_10_procs;
-extern struct move_procs paralyze_10_procs
-extern struct move_procs thunder_procs
+extern struct move_procs paralyze_10_procs;
+extern struct move_procs thunder_procs;
 extern struct move_procs shell_smash_procs;
 extern struct move_procs dragon_ascent_procs;
 extern struct move_procs shift_gear_procs;
