@@ -7,7 +7,7 @@
 #include "../abilities/ability_override.h"
 
 /* Ailment names and order:
-    
+
     AILMENT_NONE
     AILMENT_SLEEP
     AILMENT_POISON
@@ -20,7 +20,7 @@
 */
 
 /*  Order of stat boosts:
-    
+
     Attack
     Defense
     Speed
@@ -32,16 +32,16 @@
 */
 
 struct move_procs {
-	u8 chance_user[8];
-	s8 user_amounts[8];
+    u8 chance_user[8];
+    s8 user_amounts[8];
 
-	u8 chance_target[8];
-	s8 target_amounts[8];
-	
+    u8 chance_target[8];
+    s8 target_amounts[8];
+
     enum StatusAilments ailment_user;
     enum StatusAilments ailment_target;
-	u8 ailment_user_chance;
-	u8 ailment_target_chance;
+    u8 ailment_user_chance;      //
+    u8 ailment_target_chance;    // Chance the ailment affects the user
 };
 
 #define MOVE_AILMENT_PROCS_CHANCE_USER(move) moves[move].ailment_user_chance
@@ -52,7 +52,7 @@ struct move_procs {
 
 #include "../battle_data/battle_state.h"
 
-/* 
+/*
  * Field data fetch macros
  *
  */
@@ -87,7 +87,7 @@ struct move_procs {
 #define MOVE_SECONDARY_STATUS_CHANCE(move, bank) moves[move].procs->secondary_status_chance[SIDE_OF(bank)]
 #define MOVE_SECONDARY_STATUS(move, bank) moves[move].procs->secondary_status[SIDE_OF(bank)]
 
-    
+
 #define FLAG_CHARGE (1 << 1)
 #define FLAG_RECHARGE (1 << 2)
 #define FLAG_CONTACT (1 << 3)
@@ -155,8 +155,8 @@ enum PokemonStat {
     STAT_SPECIAL_ATTACK,
     STAT_SPECIAL_DEFENSE,
     STAT_ACCURACY,
-	STAT_EVASION,
-	STAT_CRIT,
+    STAT_EVASION,
+    STAT_CRIT,
 };
 
 /*
@@ -180,8 +180,8 @@ recharge: If this move is successful, the user must recharge on the following tu
 reflectable: Bounced back to the original user by Magic Coat or the Ability Magic Bounce.
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
-    
-*/	
+
+*/
 
 
 
@@ -215,9 +215,9 @@ struct move_data {
     u8 multi_hit[2];
     u8 recoil_struggle : 1;
     u8 flinch_chance : 7;
-    
+
     struct move_procs* procs;
-    
+
     MoveBeforeTurnCallback before_turn;
     MoveBeforeSwitchOutCallback before_switch;
     MoveOnStartCallback on_start;
@@ -232,7 +232,7 @@ struct move_data {
     MoveOnEffectCallback on_effect_cb;
     MoveOnAfterMoveCallback on_after_move;
     u8 base_power_move_priority;
-    u8 before_move_priority;    
+    u8 before_move_priority;
 };
 
 extern struct move_data moves[];
@@ -272,7 +272,7 @@ extern u8 sleep_talk_before_move(u8 bank);
 extern u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk);
 extern u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move);
 extern u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move);
-
+extern u8 clear_smog_effect(u8 attacker, u8 defender, u16 move);
 
 
 /* User stats */
@@ -347,5 +347,5 @@ extern struct move_procs shift_gear_procs;
 extern struct move_procs nuzzle_procs;
 extern struct move_procs bubble_beam_procs;
 extern struct move_procs aurora_beam_procs;
-#endif /* movesABLE_DATA_H_ */	
-
+extern struct move_procs shadow_ball_procs;
+#endif /* movesABLE_DATA_H_ */

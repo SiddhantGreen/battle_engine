@@ -78,17 +78,18 @@ enum battle_string_ids {
     STRING_STAT_MOD_SEVERELY_FELL = 123,
     STRING_STAT_MOD_ROSE_DRASTICALLY = 125,
     STRING_RESIDUAL_STATUS_DMG = 127,
-	STRING_FAST_ASLEEP = 128,
-	STRING_WOKE_UP = 130,
-	STRING_SNAPPED_OUT = 132,
-	STRING_CONFUSION_HURT = 134,
-	STRING_IS_CONFUSED = 136,
-	STRING_NO_PP = 138,
-	STRING_DISABLED_PICKED = 139,
-	STRING_FROZEN_SOLID = 140,
-	STRING_FREEZE_THAWED = 142,
-	STRING_FULL_PARA = 144,
-    
+    STRING_FAST_ASLEEP = 128,
+    STRING_WOKE_UP = 130,
+    STRING_SNAPPED_OUT = 132,
+    STRING_CONFUSION_HURT = 134,
+    STRING_IS_CONFUSED = 136,
+    STRING_NO_PP = 138,
+    STRING_DISABLED_PICKED = 139,
+    STRING_FROZEN_SOLID = 140,
+    STRING_FREEZE_THAWED = 142,
+    STRING_FULL_PARA = 144,
+    STRING_CLEAR_SMOG = 146,
+
 };
 
 static const pchar str_stat_mod_severely_fell_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
@@ -124,8 +125,8 @@ static const pchar str_no_target_o[] = _("But there was no target!");
 static const pchar str_failed_alone[] = _("But it failed!");
 static const pchar str_immunity_p[] = _("Foe {DEFENDING_MON}’s {ABILITY_NAME_OPPONENT}\nmade it immune!");
 static const pchar str_immunity_o[] = _("{DEFENDING_MON}’s {ABILITY_NAME_PLAYER}\nmade it immune!");
-static const pchar str_charging_up_razorwind_p[] = _("{ATTACKING_MON} whipped\nup a whirlwind!"); 
-static const pchar str_charging_up_razorwind_o[] = _("Foe {ATTACKING_MON} whipped\nup a whirlwind!"); 
+static const pchar str_charging_up_razorwind_p[] = _("{ATTACKING_MON} whipped\nup a whirlwind!");
+static const pchar str_charging_up_razorwind_o[] = _("Foe {ATTACKING_MON} whipped\nup a whirlwind!");
 static const pchar str_solarbeam_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_solarbeam_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
 static const pchar str_freeze_shock_p[] = _("{ATTACKING_MON} became cloaked\nin a freezing light!");
@@ -246,7 +247,8 @@ static const pchar str_thawed_out_p[] = _("{ATTACKING_MON}\nthawed out!");
 static const pchar str_thawed_out_o[] = _("Foe {ATTACKING_MON}\nthawed out!");
 static const pchar str_fully_paralyzed_p[] = _("{ATTACKING_MON} is paralyzed!\nIt can’t move!");
 static const pchar str_fully_paralyzed_o[] = _("Foe {ATTACKING_MON} is paralyzed!\nIt can’t move!");
-
+static const pchar str_clear_smog_p[] = _("{DEFENDING_MON}’s stat changes\nwere removed!");
+static const pchar str_clear_smog_o[] = _("Foe {DEFENDING_MON}’s stat changes\nwere removed!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -268,7 +270,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[146] = {
+static const pchar* battle_strings[148] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -325,7 +327,7 @@ static const pchar* battle_strings[146] = {
    (pchar*)&str_charge_sky_attack_p, (pchar*)&str_charge_sky_attack_o,
    (pchar*)&str_charge_dig_p, (pchar*)&str_charge_dig_o,
    (pchar*)&str_charge_dive_p, (pchar*)&str_charge_dive_o,
-   (pchar*)&str_fly_p, (pchar*)&str_fly_o,   
+   (pchar*)&str_fly_p, (pchar*)&str_fly_o,
    (pchar*)&str_phantom_force_p, (pchar*)&str_phantom_force_o,
    (pchar*)&str_shadow_force_p, (pchar*)&str_shadow_force_o,
    (pchar*)&str_bounce_p, (pchar*)&str_bounce_o,
@@ -348,9 +350,9 @@ static const pchar* battle_strings[146] = {
    (pchar*)&str_frozen_solid_p, (pchar*)&str_frozen_solid_o,
    (pchar*)&str_thawed_out_p, (pchar*)&str_thawed_out_o,
    (pchar*)&str_fully_paralyzed_p, (pchar*)&str_fully_paralyzed_o,
-   
-   
-   
+   (pchar*)&str_clear_smog_p, (pchar*)&str_clear_smog_o,
+
+
 };
 
 

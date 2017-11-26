@@ -68,7 +68,7 @@ enum TypeBits {
 #define VOLATILE_ATK_SKIP_TURN (1 << 17)
 #define VOLATILE_DEFENSE_CURL (1 << 18)
 
-	
+
 
 
 struct local_battler_data {
@@ -82,7 +82,7 @@ struct local_battler_data {
     u8 level;
     u8 poke_ball;
     u8 type[3];
-    
+
     // Delta applied to base stat. ex: -1 atk
     s8 attack;
     s8 defense;
@@ -92,7 +92,7 @@ struct local_battler_data {
     s8 accuracy;
     s8 evasion;
     s8 crit_mod;
-    
+
     // This Pokemon's action this turn
     u8 is_running : 1;
     u8 using_item : 1;
@@ -100,7 +100,7 @@ struct local_battler_data {
     u8 skip_move_select : 1;
     u8 first_turn : 1;
     u8 move_failed : 1;
-    
+
     u8 my_target;
     u8 pp_index;
     u16 last_move;
@@ -110,7 +110,7 @@ struct local_battler_data {
     u16 last_used_item;
     u8 last_attacked_by;
     u8 move_lock_counter;
-    
+
     // local user specific bitfield
     u8 illusion : 1;
     u8 fainted : 1;
@@ -118,16 +118,16 @@ struct local_battler_data {
     u8 is_taunted : 1;
     u8 is_charmed : 1;
     u8 is_grounded : 1;
-    
+
     enum StatusAilments status;
     u8 confusion_turns;
     u8 status_turns;
     u16 substitute_health;
-	u32 v_status; // enum volatile status
-    
-	u8 disable_used_on_slot;
+    u32 v_status; // enum volatile status
+
+    u8 disable_used_on_slot;
     u16 disabled_moves[4];
-	
+
     // counters
     u8 flee_count;
 };
@@ -152,4 +152,3 @@ extern struct pkmn_bank *p_bank[BANK_MAX];
 
 
 #endif /* BATTLE_PKMN_BANK_H_ */
-

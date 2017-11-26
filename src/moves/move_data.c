@@ -684,11 +684,11 @@ struct move_data moves[] = {
     /* Move NULL */
     .name = _("-"),
     .description = (pchar*)Pound_desc,
-	.type = MTYPE_EGG,
+    .type = MTYPE_EGG,
     .procs = &basic_proc,
     },
-    
-	{
+
+    {
     /* Pound */
     .name = _("Pound"),
     .accuracy = 100,
@@ -696,704 +696,704 @@ struct move_data moves[] = {
     .description = (pchar*)Pound_desc,
     .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc, 
+    .procs = &basic_proc,
     },
-    
-	{
-	/*Karate Chop*/
-	.name = _("Karate Chop"),
+
+    {
+    /*Karate Chop*/
+    .name = _("Karate Chop"),
     .accuracy = 100,
     .base_power = 50,
     .description = (pchar*)Karate_Chop_desc,
-	.pp = 25,
-	.crit_ratio = 1,
+    .pp = 25,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Double Slap*/
-	.name = _("Double Slap"),
-	.accuracy = 85,
-	.base_power = 15,
+    },
+
+    {
+    /*Double Slap*/
+    .name = _("Double Slap"),
+    .accuracy = 85,
+    .base_power = 15,
     .description = (pchar*)Double_Slap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Comet Punch*/
-	.name = _("Comet Punch"),
-	.accuracy = 85,
-	.base_power = 18,
+    },
+
+    {
+    /*Comet Punch*/
+    .name = _("Comet Punch"),
+    .accuracy = 85,
+    .base_power = 18,
     .description = (pchar*)Comet_Punch_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mega Punch*/
-	.name = _("Mega Punch"),
-	.accuracy = 85,
-	.base_power = 80,
+    },
+
+    {
+    /*Mega Punch*/
+    .name = _("Mega Punch"),
+    .accuracy = 85,
+    .base_power = 80,
     .description = (pchar*)Mega_Punch_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Pay Day*/
-	.name = _("Pay Day"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Pay Day*/
+    .name = _("Pay Day"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Pay_Day_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_damage_move = payday_ondmg,
-	},
-	
-	{
-	/*Fire Punch*/
-	.name = _("Fire Punch"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Fire Punch*/
+    .name = _("Fire Punch"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Fire_Punch_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ice Punch*/
-	.name = _("Ice Punch"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Ice Punch*/
+    .name = _("Ice Punch"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Ice_Punch_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunder Punch*/
-	.name = _("Thunder Punch"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Thunder Punch*/
+    .name = _("Thunder Punch"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Thunder_Punch_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Scratch*/
-	.name = _("Scratch"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Scratch*/
+    .name = _("Scratch"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Scratch_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Vice Grip*/
-	.name = _("Vice Grip"),
-	.accuracy = 100,
-	.base_power = 55,
+    },
+
+    {
+    /*Vice Grip*/
+    .name = _("Vice Grip"),
+    .accuracy = 100,
+    .base_power = 55,
     .description = (pchar*)Vice_Grip_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Guillotine*/
-	.name = _("Guillotine"),
-	.accuracy = 30,
+    },
+
+    {
+    /*Guillotine*/
+    .name = _("Guillotine"),
+    .accuracy = 30,
     .description = (pchar*)Guillotine_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
     .procs = &basic_proc,
     .on_tryhit_move = ohko_tryhit_move,
-	},
-	
-	{
-	/*Razor Wind*/
-	.name = _("Razor Wind"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Razor Wind*/
+    .name = _("Razor Wind"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Razor_Wind_desc,
-	.pp = 10,
-	.crit_ratio = 1,
+    .pp = 10,
+    .crit_ratio = 1,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
     .procs = &basic_proc,
     .before_move = razor_wind_before_move,
-	},
-	
-	{
-	/*Swords Dance*/
-	.name = _("Swords Dance"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Swords Dance*/
+    .name = _("Swords Dance"),
+    .accuracy = 101,
     .description = (pchar*)Swords_Dance_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_DANCE,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_DANCE,
     .procs = &user_raise_atk_2,
-	},
-	
-	{
-	/*Cut*/
-	.name = _("Cut"),
-	.accuracy = 95,
-	.base_power = 50,
+    },
+
+    {
+    /*Cut*/
+    .name = _("Cut"),
+    .accuracy = 95,
+    .base_power = 50,
     .description = (pchar*)Cut_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gust*/
-	.name = _("Gust"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Gust*/
+    .name = _("Gust"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Gust_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = gust_on_modify,
-	},
-	
-	{
-	/*Wing Attack*/
-	.name = _("Wing Attack"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Wing Attack*/
+    .name = _("Wing Attack"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Wing_Attack_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Whirlwind*/
-	.name = _("Whirlwind"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Whirlwind*/
+    .name = _("Whirlwind"),
+    .accuracy = 101,
     .description = (pchar*)Whirlwind_desc,
     .pp = 20,
     .priority = -6,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET | FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET | FLAG_AUTHENTIC,
     .procs = &basic_proc,
     .on_tryhit_move = whirlwind_on_tryhit_move,
     .on_effect_cb = whirlwind_on_effect_cb,
-	},
-	
-	{
-	/*Fly*/
-	.name = _("Fly"),
-	.accuracy = 95,
-	.base_power = 90,
+    },
+
+    {
+    /*Fly*/
+    .name = _("Fly"),
+    .accuracy = 95,
+    .base_power = 90,
     .description = (pchar*)Fly_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_GRAVITY,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_GRAVITY,
     .procs = &basic_proc,
     .before_move = fly_before_move,
-	},
-	
-	{
-	/*Bind*/
-	.name = _("Bind"),
-	.accuracy = 85,
-	.base_power = 15,
+    },
+
+    {
+    /*Bind*/
+    .name = _("Bind"),
+    .accuracy = 85,
+    .base_power = 15,
     .description = (pchar*)Bind_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = bind_on_effect_cb,
-	},
-	
-	{
-	/*Slam*/
-	.name = _("Slam"),
-	.accuracy = 75,
-	.base_power = 80,
+    },
+
+    {
+    /*Slam*/
+    .name = _("Slam"),
+    .accuracy = 75,
+    .base_power = 80,
     .description = (pchar*)Slam_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Vine Whip*/
-	.name = _("Vine Whip"),
-	.accuracy = 100,
-	.base_power = 45,
+    },
+
+    {
+    /*Vine Whip*/
+    .name = _("Vine Whip"),
+    .accuracy = 100,
+    .base_power = 45,
     .description = (pchar*)Vine_Whip_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stomp*/
-	.name = _("Stomp"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Stomp*/
+    .name = _("Stomp"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Stomp_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
+    .flinch_chance = 30,
     .on_modify_move = stomp_on_modify_move,
-	},
-	
-	{
-	/*Double Kick*/
-	.name = _("Double Kick"),
-	.accuracy = 100,
-	.base_power = 30,
+    },
+
+    {
+    /*Double Kick*/
+    .name = _("Double Kick"),
+    .accuracy = 100,
+    .base_power = 30,
     .description = (pchar*)Double_Kick_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
+    .type = MTYPE_FIGHTING,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mega Kick*/
-	.name = _("Mega Kick"),
-	.accuracy = 75,
-	.base_power = 120,
+    },
+
+    {
+    /*Mega Kick*/
+    .name = _("Mega Kick"),
+    .accuracy = 75,
+    .base_power = 120,
     .description = (pchar*)Mega_Kick_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Jump Kick*/
-	.name = _("Jump Kick"),
-	.accuracy = 55,
-	.base_power = 100,
+    },
+
+    {
+    /*Jump Kick*/
+    .name = _("Jump Kick"),
+    .accuracy = 55,
+    .base_power = 100,
     .description = (pchar*)Jump_Kick_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_GRAVITY | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_GRAVITY | FLAG_TARGET,
     .procs = &basic_proc,
     .on_move_fail = jump_kick_on_move_fail,
-	},
-	
-	{
-	/*Rolling Kick*/
-	.name = _("Rolling Kick"),
-	.accuracy = 85,
-	.base_power = 60,
+    },
+
+    {
+    /*Rolling Kick*/
+    .name = _("Rolling Kick"),
+    .accuracy = 85,
+    .base_power = 60,
     .description = (pchar*)Rolling_Kick_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Sand Attack*/
-	.name = _("Sand Attack"),
-	.accuracy = 100,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Sand Attack*/
+    .name = _("Sand Attack"),
+    .accuracy = 100,
     .description = (pchar*)Sand_Attack_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_acc_1,
-	},
-	
-	{
-	/*Headbutt*/
-	.name = _("Headbutt"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Headbutt*/
+    .name = _("Headbutt"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Headbutt_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Horn Attack*/
-	.name = _("Horn Attack"),
-	.accuracy = 100,
-	.base_power = 65,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Horn Attack*/
+    .name = _("Horn Attack"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Horn_Attack_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fury Attack*/
-	.name = _("Fury Attack"),
-	.accuracy = 85,
-	.base_power = 15,
+    },
+
+    {
+    /*Fury Attack*/
+    .name = _("Fury Attack"),
+    .accuracy = 85,
+    .base_power = 15,
     .description = (pchar*)Fury_Attack_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Horn Drill*/
-	.name = _("Horn Drill"),
-	.accuracy = 30,
+    },
+
+    {
+    /*Horn Drill*/
+    .name = _("Horn Drill"),
+    .accuracy = 30,
     .description = (pchar*)Horn_Drill_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
     .procs = &basic_proc,
     .on_tryhit_move = ohko_tryhit_move,
-	},
-	
-	{
-	/*Tackle*/
-	.name = _("Tackle"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Tackle*/
+    .name = _("Tackle"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Tackle_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Body Slam*/
-	.name = _("Body Slam"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Body Slam*/
+    .name = _("Body Slam"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Body_Slam_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = bodyslam_on_modify_move,
-	},
-	
-	{
-	/*Wrap*/
-	.name = _("Wrap"),
-	.accuracy = 90,
-	.base_power = 15,
+    },
+
+    {
+    /*Wrap*/
+    .name = _("Wrap"),
+    .accuracy = 90,
+    .base_power = 15,
     .description = (pchar*)Wrap_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = bind_on_effect_cb,
-	},
-	
-	{
-	/*Take Down*/
-	.name = _("Take Down"),
-	.accuracy = 85,
-	.base_power = 90,
+    },
+
+    {
+    /*Take Down*/
+    .name = _("Take Down"),
+    .accuracy = 85,
+    .base_power = 90,
     .description = (pchar*)Take_Down_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .recoil = 25,
-	},
-	
-	{
-	/*Thrash*/
-	.name = _("Thrash"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Thrash*/
+    .name = _("Thrash"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Thrash_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_tryhit_move = thrash_on_tryhit_move,
     .on_move_fail = thrash_on_move_fail,
     .on_after_move = thrash_on_after_move,
-	},
-	
-	/* Double edge*/
-	{
-	.name = _("Double-Edge"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    /* Double edge*/
+    {
+    .name = _("Double-Edge"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Double_Edge_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .recoil = 25,
-	},
-	
-	{
-	/*Tail Whip*/
-	.name = _("Tail Whip"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Tail Whip*/
+    .name = _("Tail Whip"),
+    .accuracy = 100,
     .description = (pchar*)Tail_Whip_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET |  FLAG_HITS_ALL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET |  FLAG_HITS_ALL,
     .procs = &target_lower_def_1,
-	},
-	
-	{
-	/*Poison Sting*/
-	.name = _("Poison Sting"),
-	.accuracy = 100,
-	.base_power = 15,
+    },
+
+    {
+    /*Poison Sting*/
+    .name = _("Poison Sting"),
+    .accuracy = 100,
+    .base_power = 15,
     .description = (pchar*)Poison_Sting_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &poison_sting_procs,
-	},
-	
-	{
-	/*Twineedle*/
-	.name = _("Twineedle"),
-	.accuracy = 100,
-	.base_power = 25,
+    },
+
+    {
+    /*Twineedle*/
+    .name = _("Twineedle"),
+    .accuracy = 100,
+    .base_power = 25,
     .description = (pchar*)Twineedle_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
+    .type = MTYPE_BUG,
     .multi_hit = {2, 2},
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &twineedle_procs,
-	},
-	
-	{
-	/*Pin Missile*/
-	.name = _("Pin Missile"),
-	.accuracy = 95,
-	.base_power = 25,
+    },
+
+    {
+    /*Pin Missile*/
+    .name = _("Pin Missile"),
+    .accuracy = 95,
+    .base_power = 25,
     .description = (pchar*)Pin_Missile_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
+    .type = MTYPE_BUG,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leer*/
-	.name = _("Leer"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Leer*/
+    .name = _("Leer"),
+    .accuracy = 100,
     .description = (pchar*)Leer_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_def_1,
-	},
-	
-	{
-	/*Bite*/
-	.name = _("Bite"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Bite*/
+    .name = _("Bite"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Bite_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Growl*/
-	.name = _("Growl"),
-	.accuracy = 100,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Growl*/
+    .name = _("Growl"),
+    .accuracy = 100,
     .description = (pchar*)Growl_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &target_lower_atk_1,
-	},
-	
-	{
-	/*Roar*/
-	.name = _("Roar"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Roar*/
+    .name = _("Roar"),
+    .accuracy = 101,
     .description = (pchar*)Roar_desc,
     .pp = 20,
     .priority = -6,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_tryhit_move = whirlwind_on_tryhit_move,
+    .on_tryhit_move = whirlwind_on_tryhit_move,
     .on_effect_cb = whirlwind_on_effect_cb,
-	},
-	
-	{
-	/*Sing*/
-	.name = _("Sing"),
-	.accuracy = 55,
+    },
+
+    {
+    /*Sing*/
+    .name = _("Sing"),
+    .accuracy = 55,
     .description = (pchar*)Sing_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &sing_procs,
-	},
-	
-	{
-	/*Supersonic*/
-	.name = _("Supersonic"),
-	.accuracy = 55,
+    },
+
+    {
+    /*Supersonic*/
+    .name = _("Supersonic"),
+    .accuracy = 55,
     .description = (pchar*)Supersonic_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &supersonic_procs,
-	},
-	
-	{
-	/*Sonic Boom*/
-	.name = _("Sonic Boom"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Sonic Boom*/
+    .name = _("Sonic Boom"),
+    .accuracy = 90,
     .description = (pchar*)Sonic_Boom_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_modify_move = sonic_boom_on_modify_move,
-	},
-	
-	{
-	/*Disable*/
-	.name = _("Disable"),
-	.accuracy = 100,
+    .on_modify_move = sonic_boom_on_modify_move,
+    },
+
+    {
+    /*Disable*/
+    .name = _("Disable"),
+    .accuracy = 100,
     .description = (pchar*)Disable_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_effect_cb = disable_on_effect_cb,
-	},
-	
-	{
-	/*Acid*/
-	.name = _("Acid"),
-	.accuracy = 100,
-	.base_power = 40,
+    .on_effect_cb = disable_on_effect_cb,
+    },
+
+    {
+    /*Acid*/
+    .name = _("Acid"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Acid_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spDef_1,
-	},
-	
-	{
-	/*Ember*/
-	.name = _("Ember"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Ember*/
+    .name = _("Ember"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Ember_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &burn_10_procs,
-	},
-	
-	{
-	/*Flamethrower*/
-	.name = _("Flamethrower"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Flamethrower*/
+    .name = _("Flamethrower"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Flamethrower_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
 	.type = MTYPE_FIRE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -1403,74 +1403,74 @@ struct move_data moves[] = {
 	{
 	/*Mist*/
 	.name = _("Mist"),
-	.accuracy = 101,
+	.accuracy = 101
     .description = (pchar*)Mist_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Gun*/
-	.name = _("Water Gun"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Water Gun*/
+    .name = _("Water Gun"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Water_Gun_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hydro Pump*/
-	.name = _("Hydro Pump"),
-	.accuracy = 80,
-	.base_power = 110,
+    },
+
+    {
+    /*Hydro Pump*/
+    .name = _("Hydro Pump"),
+    .accuracy = 80,
+    .base_power = 110,
     .description = (pchar*)Hydro_Pump_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Surf*/
-	.name = _("Surf"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Surf*/
+    .name = _("Surf"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Surf_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ALL,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ALL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ice Beam*/
-	.name = _("Ice Beam"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Ice Beam*/
+    .name = _("Ice Beam"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Ice_Beam_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &freeze_10_procs,
-	},
-	
-	{
-	/*Blizzard*/
-	.name = _("Blizzard"),
-	.accuracy = 70,
-	.base_power = 110,
+    },
+
+    {
+    /*Blizzard*/
+    .name = _("Blizzard"),
+    .accuracy = 70,
+    .base_power = 110,
     .description = (pchar*)Blizzard_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -1483,20 +1483,20 @@ struct move_data moves[] = {
 	.accuracy = 100,
 	.base_power = 65,
     .description = (pchar*)Psybeam_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &confuse_10_procs,
-	},
-	
-	{
-	/*Bubble Beam*/
-	.name = _("Bubble Beam"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Bubble Beam*/
+    .name = _("Bubble Beam"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Bubble_Beam_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
 	.type = MTYPE_WATER,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -1509,7 +1509,7 @@ struct move_data moves[] = {
 	.accuracy = 100,
 	.base_power = 65,
     .description = (pchar*)Aurora_Beam_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
 	.type = MTYPE_ICE,
 	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -1522,7800 +1522,7798 @@ struct move_data moves[] = {
 	.accuracy = 90,
 	.base_power = 150,
     .description = (pchar*)Hyper_Beam_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Peck*/
-	.name = _("Peck"),
-	.accuracy = 100,
-	.base_power = 35,
+    },
+
+    {
+    /*Peck*/
+    .name = _("Peck"),
+    .accuracy = 100,
+    .base_power = 35,
     .description = (pchar*)Peck_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Drill Peck*/
-	.name = _("Drill Peck"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Drill Peck*/
+    .name = _("Drill Peck"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Drill_Peck_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Submission*/
-	.name = _("Submission"),
-	.accuracy = 80,
-	.base_power = 80,
+    },
+
+    {
+    /*Submission*/
+    .name = _("Submission"),
+    .accuracy = 80,
+    .base_power = 80,
     .description = (pchar*)Submission_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Low Kick*/
-	.name = _("Low Kick"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Low Kick*/
+    .name = _("Low Kick"),
+    .accuracy = 100,
     .description = (pchar*)Low_Kick_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Counter*/
-	.name = _("Counter"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Counter*/
+    .name = _("Counter"),
+    .accuracy = 100,
     .description = (pchar*)Counter_desc,
     .pp = 20,
     .priority = -5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Seismic Toss*/
-	.name = _("Seismic Toss"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Seismic Toss*/
+    .name = _("Seismic Toss"),
+    .accuracy = 100,
     .description = (pchar*)Seismic_Toss_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Strength*/
-	.name = _("Strength"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Strength*/
+    .name = _("Strength"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Strength_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Absorb*/
-	.name = _("Absorb"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Absorb*/
+    .name = _("Absorb"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Absorb_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mega drain*/
-	.name = _("Mega drain"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Mega drain*/
+    .name = _("Mega drain"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Mega_Drain_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leech Seed*/
-	.name = _("Leech Seed"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Leech Seed*/
+    .name = _("Leech Seed"),
+    .accuracy = 90,
     .description = (pchar*)Leech_Seed_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Growth*/
-	.name = _("Growth"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Growth*/
+    .name = _("Growth"),
+    .accuracy = 101,
     .description = (pchar*)Growth_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Razor Leaf*/
-	.name = _("Razor Leaf"),
-	.accuracy = 95,
-	.base_power = 55,
+    },
+
+    {
+    /*Razor Leaf*/
+    .name = _("Razor Leaf"),
+    .accuracy = 95,
+    .base_power = 55,
     .description = (pchar*)Razor_Leaf_desc,
-	.pp = 25,
-	.crit_ratio = 1,
+    .pp = 25,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Solar Beam*/
-	.name = _("Solar Beam"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Solar Beam*/
+    .name = _("Solar Beam"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Solar_Beam_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = solarbeam_before_move,
-	},
-	
-	{
-	/*Poison Powder*/
-	.name = _("Poison Powder"),
-	.accuracy = 75,
+    },
+
+    {
+    /*Poison Powder*/
+    .name = _("Poison Powder"),
+    .accuracy = 75,
     .description = (pchar*)Poison_Powder_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stun Spore*/
-	.name = _("Stun Spore"),
-	.accuracy = 75,
+    },
+
+    {
+    /*Stun Spore*/
+    .name = _("Stun Spore"),
+    .accuracy = 75,
     .description = (pchar*)Stun_Spore_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sleep Powder*/
-	.name = _("Sleep Powder"),
-	.accuracy = 75,
+    },
+
+    {
+    /*Sleep Powder*/
+    .name = _("Sleep Powder"),
+    .accuracy = 75,
     .description = (pchar*)Sleep_Powder_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Petal Dance*/
-	.name = _("Petal Dance"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Petal Dance*/
+    .name = _("Petal Dance"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Petal_Dance_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_DANCE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_DANCE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*String Shot*/
-	.name = _("String Shot"),
-	.accuracy = 95,
+    },
+
+    {
+    /*String Shot*/
+    .name = _("String Shot"),
+    .accuracy = 95,
     .description = (pchar*)String_Shot_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HITS_ALL,
     .procs = &target_lower_spd_2,
-	},
-	
-	{
-	/*Dragon Rage*/
-	.name = _("Dragon Rage"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Dragon Rage*/
+    .name = _("Dragon Rage"),
+    .accuracy = 100,
     .description = (pchar*)Dragon_Rage_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fire Spin*/
-	.name = _("Fire Spin"),
-	.accuracy = 85,
-	.base_power = 35,
+    },
+
+    {
+    /*Fire Spin*/
+    .name = _("Fire Spin"),
+    .accuracy = 85,
+    .base_power = 35,
     .description = (pchar*)Fire_Spin_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunder Shock*/
-	.name = _("Thunder Shock"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Thunder Shock*/
+    .name = _("Thunder Shock"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Thunder_Shock_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunderbolt*/
-	.name = _("Thunderbolt"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Thunderbolt*/
+    .name = _("Thunderbolt"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Thunderbolt_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunder Wave*/
-	.name = _("Thunder Wave"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Thunder Wave*/
+    .name = _("Thunder Wave"),
+    .accuracy = 90,
     .description = (pchar*)Thunder_Wave_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunder*/
-	.name = _("Thunder"),
-	.accuracy = 70,
-	.base_power = 110,
+    },
+
+    {
+    /*Thunder*/
+    .name = _("Thunder"),
+    .accuracy = 70,
+    .base_power = 110,
     .description = (pchar*)Thunder_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Throw*/
-	.name = _("Rock Throw"),
-	.accuracy = 90,
-	.base_power = 50,
+    },
+
+    {
+    /*Rock Throw*/
+    .name = _("Rock Throw"),
+    .accuracy = 90,
+    .base_power = 50,
     .description = (pchar*)Rock_Throw_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Earthquake*/
-	.name = _("Earthquake"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Earthquake*/
+    .name = _("Earthquake"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Earthquake_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fissure*/
-	.name = _("Fissure"),
-	.accuracy = 30,
+    },
+
+    {
+    /*Fissure*/
+    .name = _("Fissure"),
+    .accuracy = 30,
     .description = (pchar*)Fissure_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_OHKO | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_OHKO | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_tryhit_move = ohko_tryhit_move,
-	},
-	
-	{
-	/*Dig*/
-	.name = _("Dig"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Dig*/
+    .name = _("Dig"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Dig_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Toxic*/
-	.name = _("Toxic"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Toxic*/
+    .name = _("Toxic"),
+    .accuracy = 90,
     .description = (pchar*)Toxic_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Confusion*/
-	.name = _("Confusion"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Confusion*/
+    .name = _("Confusion"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Confusion_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psychic*/
-	.name = _("Psychic"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Psychic*/
+    .name = _("Psychic"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Psychic_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hypnosis*/
-	.name = _("Hypnosis"),
-	.accuracy = 60,
+    },
+
+    {
+    /*Hypnosis*/
+    .name = _("Hypnosis"),
+    .accuracy = 60,
     .description = (pchar*)Hypnosis_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Meditate*/
-	.name = _("Meditate"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Meditate*/
+    .name = _("Meditate"),
+    .accuracy = 101,
     .description = (pchar*)Meditate_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Agility*/
-	.name = _("Agility"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Agility*/
+    .name = _("Agility"),
+    .accuracy = 101,
     .description = (pchar*)Agility_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spd_2,
-	},
-	
-	{
-	/*Quick Attack*/
-	.name = _("Quick Attack"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Quick Attack*/
+    .name = _("Quick Attack"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Quick_Attack_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rage*/
-	.name = _("Rage"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Rage*/
+    .name = _("Rage"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Rage_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Teleport*/
-	.name = _("Teleport"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Teleport*/
+    .name = _("Teleport"),
+    .accuracy = 101,
     .description = (pchar*)Teleport_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Night Shade*/
-	.name = _("Night Shade"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Night Shade*/
+    .name = _("Night Shade"),
+    .accuracy = 100,
     .description = (pchar*)Night_Shade_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mimic*/
-	.name = _("Mimic"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mimic*/
+    .name = _("Mimic"),
+    .accuracy = 101,
     .description = (pchar*)Mimic_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Screech*/
-	.name = _("Screech"),
-	.accuracy = 85,
+    },
+
+    {
+    /*Screech*/
+    .name = _("Screech"),
+    .accuracy = 85,
     .description = (pchar*)Screech_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_def_2,
-	},
-	
-	{
-	/*Double Team*/
-	.name = _("Double Team"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Double Team*/
+    .name = _("Double Team"),
+    .accuracy = 101,
     .description = (pchar*)Double_Team_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Recover*/
-	.name = _("Recover"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Recover*/
+    .name = _("Recover"),
+    .accuracy = 101,
     .description = (pchar*)Recover_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Harden*/
-	.name = _("Harden"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Harden*/
+    .name = _("Harden"),
+    .accuracy = 101,
     .description = (pchar*)Harden_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_1,
-	},
-	
-	{
-	/*Minimize*/
-	.name = _("Minimize"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Minimize*/
+    .name = _("Minimize"),
+    .accuracy = 101,
     .description = (pchar*)Minimize_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
     .on_effect_cb = minimize_on_effect_cb,
-	},
-	
-	{
-	/*Smokescreen*/
-	.name = _("Smokescreen"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Smokescreen*/
+    .name = _("Smokescreen"),
+    .accuracy = 100,
     .description = (pchar*)Smokescreen_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_acc_1,
-	},
-	
-	{
-	/*Confuse Ray*/
-	.name = _("Confuse Ray"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Confuse Ray*/
+    .name = _("Confuse Ray"),
+    .accuracy = 100,
     .description = (pchar*)Confuse_Ray_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Withdraw*/
-	.name = _("Withdraw"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Withdraw*/
+    .name = _("Withdraw"),
+    .accuracy = 101,
     .description = (pchar*)Withdraw_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_1,
-	},
-	
-	{
-	/*Defense Curl*/
-	.name = _("Defense Curl"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Defense Curl*/
+    .name = _("Defense Curl"),
+    .accuracy = 101,
     .description = (pchar*)Defense_Curl_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_1,
-	},
-	
-	{
-	/*Barrier*/
-	.name = _("Barrier"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Barrier*/
+    .name = _("Barrier"),
+    .accuracy = 101,
     .description = (pchar*)Barrier_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_2,
-	},
-	
-	{
-	/*Light Screen*/
-	.name = _("Light Screen"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Light Screen*/
+    .name = _("Light Screen"),
+    .accuracy = 101,
     .description = (pchar*)Light_Screen_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Haze*/
-	.name = _("Haze"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Haze*/
+    .name = _("Haze"),
+    .accuracy = 101,
     .description = (pchar*)Haze_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Reflect*/
-	.name = _("Reflect"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Reflect*/
+    .name = _("Reflect"),
+    .accuracy = 101,
     .description = (pchar*)Reflect_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Focus Energy*/
-	.name = _("Focus Energy"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Focus Energy*/
+    .name = _("Focus Energy"),
+    .accuracy = 101,
     .description = (pchar*)Focus_Energy_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bide*/
-	.name = _("Bide"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Bide*/
+    .name = _("Bide"),
+    .accuracy = 101,
     .description = (pchar*)Bide_desc,
-	.pp = 10,
-	.priority = 1,
+    .pp = 10,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Metronome*/
-	.name = _("Metronome"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Metronome*/
+    .name = _("Metronome"),
+    .accuracy = 101,
     .description = (pchar*)Metronome_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = metronome_on_modify_move,
-	},
-	
-	{
-	/*Mirror Move*/
-	.name = _("Mirror Move"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mirror Move*/
+    .name = _("Mirror Move"),
+    .accuracy = 101,
     .description = (pchar*)Mirror_Move_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = mirror_move_on_modify_move,
-	},
-	
-	/*Self-Destruct*/
-	{
-	.name = _("Self-Destruct"),
-	.accuracy = 100,
-	.base_power = 200,
+    },
+
+    /*Self-Destruct*/
+    {
+    .name = _("Self-Destruct"),
+    .accuracy = 100,
+    .base_power = 200,
     .description = (pchar*)Self_Destruct_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Egg Bomb*/
-	.name = _("Egg Bomb"),
-	.accuracy = 75,
-	.base_power = 100,
+    },
+
+    {
+    /*Egg Bomb*/
+    .name = _("Egg Bomb"),
+    .accuracy = 75,
+    .base_power = 100,
     .description = (pchar*)Egg_Bomb_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lick*/
-	.name = _("Lick"),
-	.accuracy = 100,
-	.base_power = 30,
+    },
+
+    {
+    /*Lick*/
+    .name = _("Lick"),
+    .accuracy = 100,
+    .base_power = 30,
     .description = (pchar*)Lick_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Smog*/
-	.name = _("Smog"),
-	.accuracy = 70,
-	.base_power = 30,
+    },
+
+    {
+    /*Smog*/
+    .name = _("Smog"),
+    .accuracy = 70,
+    .base_power = 30,
     .description = (pchar*)Smog_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sludge*/
-	.name = _("Sludge"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Sludge*/
+    .name = _("Sludge"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Sludge_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bone Club*/
-	.name = _("Bone Club"),
-	.accuracy = 85,
-	.base_power = 65,
+    },
+
+    {
+    /*Bone Club*/
+    .name = _("Bone Club"),
+    .accuracy = 85,
+    .base_power = 65,
     .description = (pchar*)Bone_Club_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Fire Blast*/
-	.name = _("Fire Blast"),
-	.accuracy = 85,
-	.base_power = 110,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Fire Blast*/
+    .name = _("Fire Blast"),
+    .accuracy = 85,
+    .base_power = 110,
     .description = (pchar*)Fire_Blast_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Waterfall*/
-	.name = _("Waterfall"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Waterfall*/
+    .name = _("Waterfall"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Waterfall_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 20,
-	},
-	
-	{
-	/*Clamp*/
-	.name = _("Clamp"),
-	.accuracy = 85,
-	.base_power = 35,
+    .flinch_chance = 20,
+    },
+
+    {
+    /*Clamp*/
+    .name = _("Clamp"),
+    .accuracy = 85,
+    .base_power = 35,
     .description = (pchar*)Clamp_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Swift*/
-	.name = _("Swift"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Swift*/
+    .name = _("Swift"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Swift_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Skull Bash*/
-	.name = _("Skull Bash"),
-	.accuracy = 100,
-	.base_power = 130,
+    },
+
+    {
+    /*Skull Bash*/
+    .name = _("Skull Bash"),
+    .accuracy = 100,
+    .base_power = 130,
     .description = (pchar*)Skull_Bash_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spike Cannon*/
-	.name = _("Spike Cannon"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Spike Cannon*/
+    .name = _("Spike Cannon"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Spike_Cannon_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Constrict*/
-	.name = _("Constrict"),
-	.accuracy = 100,
-	.base_power = 10,
+    },
+
+    {
+    /*Constrict*/
+    .name = _("Constrict"),
+    .accuracy = 100,
+    .base_power = 10,
     .description = (pchar*)Constrict_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Amnesia*/
-	.name = _("Amnesia"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Amnesia*/
+    .name = _("Amnesia"),
+    .accuracy = 101,
     .description = (pchar*)Amnesia_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spDef_2,
-	},
-	
-	{
-	/*Kinesis*/
-	.name = _("Kinesis"),
-	.accuracy = 80,
+    },
+
+    {
+    /*Kinesis*/
+    .name = _("Kinesis"),
+    .accuracy = 80,
     .description = (pchar*)Kinesis_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_acc_1,
-	},
-	
-	/*Soft-Boiled*/
-	{
+    },
+
+    /*Soft-Boiled*/
+    {
     .name = _("Soft-Boiled"),
-	.accuracy = 101,
+    .accuracy = 101,
     .description = (pchar*)Soft_Boiled_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*High Jump Kick*/
-	.name = _("High Jump Kick"),
-	.accuracy = 90,
-	.base_power = 130,
+    },
+
+    {
+    /*High Jump Kick*/
+    .name = _("High Jump Kick"),
+    .accuracy = 90,
+    .base_power = 130,
     .description = (pchar*)High_Jump_Kick_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_move_fail = jump_kick_on_move_fail,
-	},
-	
-	{
-	/*Glare*/
-	.name = _("Glare"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Glare*/
+    .name = _("Glare"),
+    .accuracy = 100,
     .description = (pchar*)Glare_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dream Eater*/
-	.name = _("Dream Eater"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Dream Eater*/
+    .name = _("Dream Eater"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Dream_Eater_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Poison Gas*/
-	.name = _("Poison Gas"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Poison Gas*/
+    .name = _("Poison Gas"),
+    .accuracy = 90,
     .description = (pchar*)Poison_Gas_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Barrage*/
-	.name = _("Barrage"),
-	.accuracy = 85,
-	.base_power = 15,
+    },
+
+    {
+    /*Barrage*/
+    .name = _("Barrage"),
+    .accuracy = 85,
+    .base_power = 15,
     .description = (pchar*)Barrage_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leech Life*/
-	.name = _("Leech Life"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Leech Life*/
+    .name = _("Leech Life"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Leech_Life_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 50,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lovely Kiss*/
-	.name = _("Lovely Kiss"),
-	.accuracy = 75,
+    },
+
+    {
+    /*Lovely Kiss*/
+    .name = _("Lovely Kiss"),
+    .accuracy = 75,
     .description = (pchar*)Lovely_Kiss_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sky Attack*/
-	.name = _("Sky Attack"),
-	.accuracy = 90,
-	.base_power = 140,
+    },
+
+    {
+    /*Sky Attack*/
+    .name = _("Sky Attack"),
+    .accuracy = 90,
+    .base_power = 140,
     .description = (pchar*)Sky_Attack_desc,
-	.pp = 5,
-	.crit_ratio = 1,
+    .pp = 5,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = sky_attack_before_move,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Transform*/
-	.name = _("Transform"),
-	.accuracy = 101,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Transform*/
+    .name = _("Transform"),
+    .accuracy = 101,
     .description = (pchar*)Transform_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bubble*/
-	.name = _("Bubble"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Bubble*/
+    .name = _("Bubble"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Bubble_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dizzy Punch*/
-	.name = _("Dizzy Punch"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Dizzy Punch*/
+    .name = _("Dizzy Punch"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Dizzy_Punch_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spore*/
-	.name = _("Spore"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Spore*/
+    .name = _("Spore"),
+    .accuracy = 100,
     .description = (pchar*)Spore_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flash*/
-	.name = _("Flash"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Flash*/
+    .name = _("Flash"),
+    .accuracy = 100,
     .description = (pchar*)Flash_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_acc_1,
-	},
-	
-	{
-	/*Psywave*/
-	.name = _("Psywave"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Psywave*/
+    .name = _("Psywave"),
+    .accuracy = 100,
     .description = (pchar*)Psywave_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Splash*/
-	.name = _("Splash"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Splash*/
+    .name = _("Splash"),
+    .accuracy = 101,
     .description = (pchar*)Splash_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Acid Armor*/
-	.name = _("Acid Armor"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Acid Armor*/
+    .name = _("Acid Armor"),
+    .accuracy = 101,
     .description = (pchar*)Acid_Armor_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_2,
-	},
-		
-	{
-	/*Crabhammer*/
-	.name = _("Crabhammer"),
-	.accuracy = 90,
-	.base_power = 100,
+    },
+
+    {
+    /*Crabhammer*/
+    .name = _("Crabhammer"),
+    .accuracy = 90,
+    .base_power = 100,
     .description = (pchar*)Crabhammer_desc,
-	.pp = 10,
-	.crit_ratio = 1,
+    .pp = 10,
+    .crit_ratio = 1,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Explosion*/
-	.name = _("Explosion"),
-	.accuracy = 100,
-	.base_power = 250,
+    },
+
+    {
+    /*Explosion*/
+    .name = _("Explosion"),
+    .accuracy = 100,
+    .base_power = 250,
     .description = (pchar*)Explosion_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fury Swipes*/
-	.name = _("Fury Swipes"),
-	.accuracy = 80,
-	.base_power = 18,
+    },
+
+    {
+    /*Fury Swipes*/
+    .name = _("Fury Swipes"),
+    .accuracy = 80,
+    .base_power = 18,
     .description = (pchar*)Fury_Swipes_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bonemerang*/
-	.name = _("Bonemerang"),
-	.accuracy = 90,
-	.base_power = 50,
+    },
+
+    {
+    /*Bonemerang*/
+    .name = _("Bonemerang"),
+    .accuracy = 90,
+    .base_power = 50,
     .description = (pchar*)Bonemerang_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
+    .type = MTYPE_GROUND,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rest*/
-	.name = _("Rest"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Rest*/
+    .name = _("Rest"),
+    .accuracy = 101,
     .description = (pchar*)Rest_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Slide*/
-	.name = _("Rock Slide"),
-	.accuracy = 90,
-	.base_power = 75,
+    },
+
+    {
+    /*Rock Slide*/
+    .name = _("Rock Slide"),
+    .accuracy = 90,
+    .base_power = 75,
     .description = (pchar*)Rock_Slide_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Hyper Fang*/
-	.name = _("Hyper Fang"),
-	.accuracy = 90,
-	.base_power = 80,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Hyper Fang*/
+    .name = _("Hyper Fang"),
+    .accuracy = 90,
+    .base_power = 80,
     .description = (pchar*)Hyper_Fang_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Sharpen*/
-	.name = _("Sharpen"),
-	.accuracy = 101,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Sharpen*/
+    .name = _("Sharpen"),
+    .accuracy = 101,
     .description = (pchar*)Sharpen_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_atk_2,
-	},
-	
-	{
-	/*Conversion*/
-	.name = _("Conversion"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Conversion*/
+    .name = _("Conversion"),
+    .accuracy = 101,
     .description = (pchar*)Conversion_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tri Attack*/
-	.name = _("Tri Attack"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Tri Attack*/
+    .name = _("Tri Attack"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Tri_Attack_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Super Fang*/
-	.name = _("Super Fang"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Super Fang*/
+    .name = _("Super Fang"),
+    .accuracy = 90,
     .description = (pchar*)Super_Fang_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Slash*/
-	.name = _("Slash"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Slash*/
+    .name = _("Slash"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Slash_desc,
-	.pp = 20,
-	.crit_ratio = 1,
+    .pp = 20,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Substitute*/
-	.name = _("Substitute"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Substitute*/
+    .name = _("Substitute"),
+    .accuracy = 101,
     .description = (pchar*)Substitute_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Struggle*/
-	.name = _("Struggle"),
-	.accuracy = 101,
-	.base_power = 50,
+    },
+
+    {
+    /*Struggle*/
+    .name = _("Struggle"),
+    .accuracy = 101,
+    .base_power = 50,
     .description = (pchar*)Struggle_desc,
-	.pp = 1,
+    .pp = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
 
     .recoil_struggle = true,
-	},
-	
-	{
-	/*Sketch*/
-	.name = _("Sketch"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Sketch*/
+    .name = _("Sketch"),
+    .accuracy = 101,
     .description = (pchar*)Sketch_desc,
-	.pp = 1,
+    .pp = 1,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Triple Kick*/
-	.name = _("Triple Kick"),
-	.accuracy = 90,
-	.base_power = 10,
+    },
+
+    {
+    /*Triple Kick*/
+    .name = _("Triple Kick"),
+    .accuracy = 90,
+    .base_power = 10,
     .description = (pchar*)Triple_Kick_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
+    .type = MTYPE_FIGHTING,
     .multi_hit = {3, 3},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thief*/
-	.name = _("Thief"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Thief*/
+    .name = _("Thief"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Thief_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spider Web*/
-	.name = _("Spider Web"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Spider Web*/
+    .name = _("Spider Web"),
+    .accuracy = 101,
     .description = (pchar*)Spider_Web_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mind Reader*/
-	.name = _("Mind Reader"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mind Reader*/
+    .name = _("Mind Reader"),
+    .accuracy = 101,
     .description = (pchar*)Mind_Reader_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Nightmare*/
-	.name = _("Nightmare"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Nightmare*/
+    .name = _("Nightmare"),
+    .accuracy = 100,
     .description = (pchar*)Nightmare_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flame Wheel*/
-	.name = _("Flame Wheel"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Flame Wheel*/
+    .name = _("Flame Wheel"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Flame_Wheel_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Snore*/
-	.name = _("Snore"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Snore*/
+    .name = _("Snore"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Snore_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Curse*/
-	.name = _("Curse"),
-	.accuracy = 101,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Curse*/
+    .name = _("Curse"),
+    .accuracy = 101,
     .description = (pchar*)Curse_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flail*/
-	.name = _("Flail"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Flail*/
+    .name = _("Flail"),
+    .accuracy = 100,
     .description = (pchar*)Flail_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Conversion 2"),
-	.accuracy = 101,
+    },
+
+    {
+    .name = _("Conversion 2"),
+    .accuracy = 101,
     .description = (pchar*)Conversion_2_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aeroblast*/
-	.name = _("Aeroblast"),
-	.accuracy = 95,
-	.base_power = 100,
+    },
+
+    {
+    /*Aeroblast*/
+    .name = _("Aeroblast"),
+    .accuracy = 95,
+    .base_power = 100,
     .description = (pchar*)Aeroblast_desc,
-	.pp = 5,
-	.crit_ratio = 1,
+    .pp = 5,
+    .crit_ratio = 1,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Cotton Spore*/
-	.name = _("Cotton Spore"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Cotton Spore*/
+    .name = _("Cotton Spore"),
+    .accuracy = 100,
     .description = (pchar*)Cotton_Spore_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spd_2,
-	},
-	
-	{
-	/*Reversal*/
-	.name = _("Reversal"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Reversal*/
+    .name = _("Reversal"),
+    .accuracy = 100,
     .description = (pchar*)Reversal_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spite*/
-	.name = _("Spite"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Spite*/
+    .name = _("Spite"),
+    .accuracy = 100,
     .description = (pchar*)Spite_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Powder Snow*/
-	.name = _("Powder Snow"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Powder Snow*/
+    .name = _("Powder Snow"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Powder_Snow_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Protect*/
-	.name = _("Protect"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Protect*/
+    .name = _("Protect"),
+    .accuracy = 101,
     .description = (pchar*)Protect_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mach Punch*/
-	.name = _("Mach Punch"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Mach Punch*/
+    .name = _("Mach Punch"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Mach_Punch_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Scary Face*/
-	.name = _("Scary Face"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Scary Face*/
+    .name = _("Scary Face"),
+    .accuracy = 100,
     .description = (pchar*)Scary_Face_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spd_2,
-	},
-	
-	{
-	/*Feint Attack*/
-	.name = _("Feint Attack"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Feint Attack*/
+    .name = _("Feint Attack"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Feint_Attack_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sweet Kiss*/
-	.name = _("Sweet Kiss"),
-	.accuracy = 75,
+    },
+
+    {
+    /*Sweet Kiss*/
+    .name = _("Sweet Kiss"),
+    .accuracy = 75,
     .description = (pchar*)Sweet_Kiss_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Belly Drum*/
-	.name = _("Belly Drum"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Belly Drum*/
+    .name = _("Belly Drum"),
+    .accuracy = 101,
     .description = (pchar*)Belly_Drum_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sludge Bomb*/
-	.name = _("Sludge Bomb"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Sludge Bomb*/
+    .name = _("Sludge Bomb"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Sludge_Bomb_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Mud-Slap"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    .name = _("Mud-Slap"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Mud_Slap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Octazooka*/
-	.name = _("Octazooka"),
-	.accuracy = 85,
-	.base_power = 65,
+    },
+
+    {
+    /*Octazooka*/
+    .name = _("Octazooka"),
+    .accuracy = 85,
+    .base_power = 65,
     .description = (pchar*)Octazooka_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spikes*/
-	.name = _("Spikes"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Spikes*/
+    .name = _("Spikes"),
+    .accuracy = 101,
     .description = (pchar*)Spikes_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_REFLECTABLE,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Zap Cannon*/
-	.name = _("Zap Cannon"),
-	.accuracy = 50,
-	.base_power = 120,
+    },
+
+    {
+    /*Zap Cannon*/
+    .name = _("Zap Cannon"),
+    .accuracy = 50,
+    .base_power = 120,
     .description = (pchar*)Zap_Cannon_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Foresight*/
-	.name = _("Foresight"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Foresight*/
+    .name = _("Foresight"),
+    .accuracy = 101,
     .description = (pchar*)Foresight_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Destiny Bond*/
-	.name = _("Destiny Bond"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Destiny Bond*/
+    .name = _("Destiny Bond"),
+    .accuracy = 101,
     .description = (pchar*)Destiny_Bond_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Perish Song*/
-	.name = _("Perish Song"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Perish Song*/
+    .name = _("Perish Song"),
+    .accuracy = 101,
     .description = (pchar*)Perish_Song_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_HITS_ALL | FLAG_ONSELF,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_HITS_ALL | FLAG_ONSELF,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Icy Wind*/
-	.name = _("Icy Wind"),
-	.accuracy = 95,
-	.base_power = 55,
+    },
+
+    {
+    /*Icy Wind*/
+    .name = _("Icy Wind"),
+    .accuracy = 95,
+    .base_power = 55,
     .description = (pchar*)Icy_Wind_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Detect*/
-	.name = _("Detect"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Detect*/
+    .name = _("Detect"),
+    .accuracy = 101,
     .description = (pchar*)Detect_desc,
-	.pp = 5,
-	.priority = 4,
+    .pp = 5,
+    .priority = 4,
     .category = MOVE_STATUS,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bone Rush*/
-	.name = _("Bone Rush"),
-	.accuracy = 90,
-	.base_power = 25,
+    },
+
+    {
+    /*Bone Rush*/
+    .name = _("Bone Rush"),
+    .accuracy = 90,
+    .base_power = 25,
     .description = (pchar*)Bone_Rush_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
+    .type = MTYPE_GROUND,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Lock-On"),
-	.accuracy = 101,
+    },
+
+    {
+    .name = _("Lock-On"),
+    .accuracy = 101,
     .description = (pchar*)Lock_On_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Outrage*/
-	.name = _("Outrage"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Outrage*/
+    .name = _("Outrage"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Outrage_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sandstorm*/
-	.name = _("Sandstorm"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Sandstorm*/
+    .name = _("Sandstorm"),
+    .accuracy = 101,
     .description = (pchar*)Sandstorm_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Giga drain*/
-	.name = _("Giga drain"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Giga drain*/
+    .name = _("Giga drain"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Giga_Drain_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Endure*/
-	.name = _("Endure"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Endure*/
+    .name = _("Endure"),
+    .accuracy = 101,
     .description = (pchar*)Endure_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Charm*/
-	.name = _("Charm"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Charm*/
+    .name = _("Charm"),
+    .accuracy = 100,
     .description = (pchar*)Charm_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_atk_2,
-	},
-	
-	{
-	/*Rollout*/
-	.name = _("Rollout"),
-	.accuracy = 90,
-	.base_power = 30,
+    },
+
+    {
+    /*Rollout*/
+    .name = _("Rollout"),
+    .accuracy = 90,
+    .base_power = 30,
     .description = (pchar*)Rollout_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.before_move = rollout_on_before_move,
-	.on_move_fail = rollout_on_move_fail,
-	.on_base_power_move = rollout_on_base_power_move,
-	},
-	
-	{
-	/*False Swipe*/
-	.name = _("False Swipe"),
-	.accuracy = 100,
-	.base_power = 40,
+    .before_move = rollout_on_before_move,
+    .on_move_fail = rollout_on_move_fail,
+    .on_base_power_move = rollout_on_base_power_move,
+    },
+
+    {
+    /*False Swipe*/
+    .name = _("False Swipe"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)False_Swipe_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Swagger*/
-	.name = _("Swagger"),
-	.accuracy = 85,
+    },
+
+    {
+    /*Swagger*/
+    .name = _("Swagger"),
+    .accuracy = 85,
     .description = (pchar*)Swagger_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Milk Drink*/
-	.name = _("Milk Drink"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Milk Drink*/
+    .name = _("Milk Drink"),
+    .accuracy = 101,
     .description = (pchar*)Milk_Drink_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spark*/
-	.name = _("Spark"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Spark*/
+    .name = _("Spark"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Spark_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fury Cutter*/
-	.name = _("Fury Cutter"),
-	.accuracy = 95,
-	.base_power = 40,
+    },
+
+    {
+    /*Fury Cutter*/
+    .name = _("Fury Cutter"),
+    .accuracy = 95,
+    .base_power = 40,
     .description = (pchar*)Fury_Cutter_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Steel Wing*/
-	.name = _("Steel Wing"),
-	.accuracy = 90,
-	.base_power = 70,
+    },
+
+    {
+    /*Steel Wing*/
+    .name = _("Steel Wing"),
+    .accuracy = 90,
+    .base_power = 70,
     .description = (pchar*)Steel_Wing_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mean Look*/
-	.name = _("Mean Look"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mean Look*/
+    .name = _("Mean Look"),
+    .accuracy = 101,
     .description = (pchar*)Mean_Look_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Attract*/
-	.name = _("Attract"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Attract*/
+    .name = _("Attract"),
+    .accuracy = 100,
     .description = (pchar*)Attract_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sleep Talk*/
-	.name = _("Sleep Talk"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Sleep Talk*/
+    .name = _("Sleep Talk"),
+    .accuracy = 101,
     .description = (pchar*)Sleep_Talk_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = sleep_talk_before_move,
     .on_modify_move = sleep_talk_on_modify_move,
-	},
-	
-	{
-	/*Heal Bell*/
-	.name = _("Heal Bell"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Heal Bell*/
+    .name = _("Heal Bell"),
+    .accuracy = 101,
     .description = (pchar*)Heal_Bell_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_SOUND,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_SOUND,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Return*/
-	.name = _("Return"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Return*/
+    .name = _("Return"),
+    .accuracy = 100,
     .description = (pchar*)Return_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Present*/
-	.name = _("Present"),
-	.accuracy = 90,
+    },
+
+    {
+    /*Present*/
+    .name = _("Present"),
+    .accuracy = 90,
     .description = (pchar*)Present_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Frustration*/
-	.name = _("Frustration"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Frustration*/
+    .name = _("Frustration"),
+    .accuracy = 100,
     .description = (pchar*)Frustration_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Safeguard*/
-	.name = _("Safeguard"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Safeguard*/
+    .name = _("Safeguard"),
+    .accuracy = 101,
     .description = (pchar*)Safeguard_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Pain Split*/
-	.name = _("Pain Split"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Pain Split*/
+    .name = _("Pain Split"),
+    .accuracy = 101,
     .description = (pchar*)Pain_Split_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sacred Fire*/
-	.name = _("Sacred Fire"),
-	.accuracy = 95,
-	.base_power = 100,
+    },
+
+    {
+    /*Sacred Fire*/
+    .name = _("Sacred Fire"),
+    .accuracy = 95,
+    .base_power = 100,
     .description = (pchar*)Sacred_Fire_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magnitude*/
-	.name = _("Magnitude"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Magnitude*/
+    .name = _("Magnitude"),
+    .accuracy = 100,
     .description = (pchar*)Magnitude_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dynamic Punch*/
-	.name = _("Dynamic Punch"),
-	.accuracy = 50,
-	.base_power = 100,
+    },
+
+    {
+    /*Dynamic Punch*/
+    .name = _("Dynamic Punch"),
+    .accuracy = 50,
+    .base_power = 100,
     .description = (pchar*)Dynamic_Punch_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Megahorn*/
-	.name = _("Megahorn"),
-	.accuracy = 85,
-	.base_power = 120,
+    },
+
+    {
+    /*Megahorn*/
+    .name = _("Megahorn"),
+    .accuracy = 85,
+    .base_power = 120,
     .description = (pchar*)Megahorn_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Breath*/
-	.name = _("Dragon Breath"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Dragon Breath*/
+    .name = _("Dragon Breath"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Dragon_Breath_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Baton Pass*/
-	.name = _("Baton Pass"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Baton Pass*/
+    .name = _("Baton Pass"),
+    .accuracy = 101,
     .description = (pchar*)Baton_Pass_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Encore*/
-	.name = _("Encore"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Encore*/
+    .name = _("Encore"),
+    .accuracy = 100,
     .description = (pchar*)Encore_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Pursuit*/
-	.name = _("Pursuit"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Pursuit*/
+    .name = _("Pursuit"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Pursuit_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rapid Spin*/
-	.name = _("Rapid Spin"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Rapid Spin*/
+    .name = _("Rapid Spin"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Rapid_Spin_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sweet Scent*/
-	.name = _("Sweet Scent"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Sweet Scent*/
+    .name = _("Sweet Scent"),
+    .accuracy = 100,
     .description = (pchar*)Sweet_Scent_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Iron Tail*/
-	.name = _("Iron Tail"),
-	.accuracy = 75,
-	.base_power = 100,
+    },
+
+    {
+    /*Iron Tail*/
+    .name = _("Iron Tail"),
+    .accuracy = 75,
+    .base_power = 100,
     .description = (pchar*)Iron_Tail_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Metal Claw*/
-	.name = _("Metal Claw"),
-	.accuracy = 95,
-	.base_power = 50,
+    },
+
+    {
+    /*Metal Claw*/
+    .name = _("Metal Claw"),
+    .accuracy = 95,
+    .base_power = 50,
     .description = (pchar*)Metal_Claw_desc,
-	.pp = 35,
+    .pp = 35,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Vital Throw*/
-	.name = _("Vital Throw"),
-	.accuracy = 101,
-	.base_power = 70,
+    },
+
+    {
+    /*Vital Throw*/
+    .name = _("Vital Throw"),
+    .accuracy = 101,
+    .base_power = 70,
     .description = (pchar*)Vital_Throw_desc,
     10,
     -1,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Morning Sun*/
-	.name = _("Morning Sun"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Morning Sun*/
+    .name = _("Morning Sun"),
+    .accuracy = 101,
     .description = (pchar*)Morning_Sun_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Synthesis*/
-	.name = _("Synthesis"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Synthesis*/
+    .name = _("Synthesis"),
+    .accuracy = 101,
     .description = (pchar*)Synthesis_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Moonlight*/
-	.name = _("Moonlight"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Moonlight*/
+    .name = _("Moonlight"),
+    .accuracy = 101,
     .description = (pchar*)Moonlight_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hidden Power*/
-	.name = _("Hidden Power"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Hidden Power*/
+    .name = _("Hidden Power"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Hidden_Power_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Cross Chop*/
-	.name = _("Cross Chop"),
-	.accuracy = 80,
-	.base_power = 100,
+    },
+
+    {
+    /*Cross Chop*/
+    .name = _("Cross Chop"),
+    .accuracy = 80,
+    .base_power = 100,
     .description = (pchar*)Cross_Chop_desc,
-	.pp = 5,
-	.crit_ratio = 1,
+    .pp = 5,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Twister*/
-	.name = _("Twister"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Twister*/
+    .name = _("Twister"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Twister_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rain Dance*/
-	.name = _("Rain Dance"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Rain Dance*/
+    .name = _("Rain Dance"),
+    .accuracy = 101,
     .description = (pchar*)Rain_Dance_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sunny Day*/
-	.name = _("Sunny Day"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Sunny Day*/
+    .name = _("Sunny Day"),
+    .accuracy = 101,
     .description = (pchar*)Sunny_Day_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Crunch*/
-	.name = _("Crunch"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Crunch*/
+    .name = _("Crunch"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Crunch_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mirror Coat*/
-	.name = _("Mirror Coat"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Mirror Coat*/
+    .name = _("Mirror Coat"),
+    .accuracy = 100,
     .description = (pchar*)Mirror_Coat_desc,
     .pp = 20,
     .priority = -5,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psych Up*/
-	.name = _("Psych Up"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Psych Up*/
+    .name = _("Psych Up"),
+    .accuracy = 101,
     .description = (pchar*)Psych_Up_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Extreme Speed*/
-	.name = _("Extreme Speed"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Extreme Speed*/
+    .name = _("Extreme Speed"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Extreme_Speed_desc,
-	.pp = 5,
-	.priority = 2,
+    .pp = 5,
+    .priority = 2,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ancient Power*/
-	.name = _("Ancient Power"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Ancient Power*/
+    .name = _("Ancient Power"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Ancient_Power_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ROCK,
+    .type = MTYPE_ROCK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shadow Ball*/
-	.name = _("Shadow Ball"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Shadow Ball*/
+    .name = _("Shadow Ball"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Shadow_Ball_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
-	},
-	
-	{
-	/*Future Sight*/
-	.name = _("Future Sight"),
-	.accuracy = 100,
-	.base_power = 120,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &shadow_ball_procs,
+    },
+
+    {
+    /*Future Sight*/
+    .name = _("Future Sight"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Future_Sight_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Smash*/
-	.name = _("Rock Smash"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Rock Smash*/
+    .name = _("Rock Smash"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Rock_Smash_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Whirlpool*/
-	.name = _("Whirlpool"),
-	.accuracy = 85,
-	.base_power = 35,
+    },
+
+    {
+    /*Whirlpool*/
+    .name = _("Whirlpool"),
+    .accuracy = 85,
+    .base_power = 35,
     .description = (pchar*)Whirlpool_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Beat Up*/
-	.name = _("Beat Up"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Beat Up*/
+    .name = _("Beat Up"),
+    .accuracy = 100,
     .description = (pchar*)Beat_Up_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
+    .type = MTYPE_DARK,
     .multi_hit = {6, 6},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fake Out*/
-	.name = _("Fake Out"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Fake Out*/
+    .name = _("Fake Out"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Fake_Out_desc,
-	.pp = 10,
-	.priority = 3,
+    .pp = 10,
+    .priority = 3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Uproar*/
-	.name = _("Uproar"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Uproar*/
+    .name = _("Uproar"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Uproar_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stockpile*/
-	.name = _("Stockpile"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Stockpile*/
+    .name = _("Stockpile"),
+    .accuracy = 101,
     .description = (pchar*)Stockpile_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spit Up*/
-	.name = _("Spit Up"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Spit Up*/
+    .name = _("Spit Up"),
+    .accuracy = 100,
     .description = (pchar*)Spit_Up_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Swallow*/
-	.name = _("Swallow"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Swallow*/
+    .name = _("Swallow"),
+    .accuracy = 101,
     .description = (pchar*)Swallow_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heat Wave*/
-	.name = _("Heat Wave"),
-	.accuracy = 90,
-	.base_power = 95,
+    },
+
+    {
+    /*Heat Wave*/
+    .name = _("Heat Wave"),
+    .accuracy = 90,
+    .base_power = 95,
     .description = (pchar*)Heat_Wave_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hail*/
-	.name = _("Hail"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Hail*/
+    .name = _("Hail"),
+    .accuracy = 101,
     .description = (pchar*)Hail_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Torment*/
-	.name = _("Torment"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Torment*/
+    .name = _("Torment"),
+    .accuracy = 100,
     .description = (pchar*)Torment_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flatter*/
-	.name = _("Flatter"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Flatter*/
+    .name = _("Flatter"),
+    .accuracy = 100,
     .description = (pchar*)Flatter_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Will-O-Wisp"),
-	.accuracy = 85,
+    },
+
+    {
+    .name = _("Will-O-Wisp"),
+    .accuracy = 85,
     .description = (pchar*)Will_O_Wisp_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Memento*/
-	.name = _("Memento"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Memento*/
+    .name = _("Memento"),
+    .accuracy = 100,
     .description = (pchar*)Memento_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Facade*/
-	.name = _("Facade"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Facade*/
+    .name = _("Facade"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Facade_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Focus Punch*/
-	.name = _("Focus Punch"),
-	.accuracy = 100,
-	.base_power = 150,
+    },
+
+    {
+    /*Focus Punch*/
+    .name = _("Focus Punch"),
+    .accuracy = 100,
+    .base_power = 150,
     .description = (pchar*)Focus_Punch_desc,
     .pp = 20,
     .priority = -3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Smelling Salts*/
-	.name = _("Smelling Salts"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Smelling Salts*/
+    .name = _("Smelling Salts"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Smelling_Salts_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Follow Me*/
-	.name = _("Follow Me"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Follow Me*/
+    .name = _("Follow Me"),
+    .accuracy = 101,
     .description = (pchar*)Follow_Me_desc,
-	.pp = 20,
-	.priority = 2,
+    .pp = 20,
+    .priority = 2,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Nature Power*/
-	.name = _("Nature Power"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Nature Power*/
+    .name = _("Nature Power"),
+    .accuracy = 101,
     .description = (pchar*)Nature_Power_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Charge*/
-	.name = _("Charge"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Charge*/
+    .name = _("Charge"),
+    .accuracy = 101,
     .description = (pchar*)Charge_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Taunt*/
-	.name = _("Taunt"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Taunt*/
+    .name = _("Taunt"),
+    .accuracy = 100,
     .description = (pchar*)Taunt_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Helping Hand*/
-	.name = _("Helping Hand"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Helping Hand*/
+    .name = _("Helping Hand"),
+    .accuracy = 101,
     .description = (pchar*)Helping_Hand_desc,
-	.pp = 20,
-	.priority = 5,
+    .pp = 20,
+    .priority = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Trick*/
-	.name = _("Trick"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Trick*/
+    .name = _("Trick"),
+    .accuracy = 100,
     .description = (pchar*)Trick_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Role Play*/
-	.name = _("Role Play"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Role Play*/
+    .name = _("Role Play"),
+    .accuracy = 101,
     .description = (pchar*)Role_Play_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wish*/
-	.name = _("Wish"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Wish*/
+    .name = _("Wish"),
+    .accuracy = 101,
     .description = (pchar*)Wish_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Assist*/
-	.name = _("Assist"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Assist*/
+    .name = _("Assist"),
+    .accuracy = 101,
     .description = (pchar*)Assist_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = assist_on_modify_move,
-	},
-	
-	{
-	/*Ingrain*/
-	.name = _("Ingrain"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Ingrain*/
+    .name = _("Ingrain"),
+    .accuracy = 101,
     .description = (pchar*)Ingrain_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Superpower*/
-	.name = _("Superpower"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Superpower*/
+    .name = _("Superpower"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Superpower_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magic Coat*/
-	.name = _("Magic Coat"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Magic Coat*/
+    .name = _("Magic Coat"),
+    .accuracy = 101,
     .description = (pchar*)Magic_Coat_desc,
-	.pp = 15,
-	.priority = 4,
+    .pp = 15,
+    .priority = 4,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Recycle*/
-	.name = _("Recycle"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Recycle*/
+    .name = _("Recycle"),
+    .accuracy = 101,
     .description = (pchar*)Recycle_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Revenge*/
-	.name = _("Revenge"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Revenge*/
+    .name = _("Revenge"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Revenge_desc,
     10,
     -4,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Brick Break*/
-	.name = _("Brick Break"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Brick Break*/
+    .name = _("Brick Break"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Brick_Break_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Yawn*/
-	.name = _("Yawn"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Yawn*/
+    .name = _("Yawn"),
+    .accuracy = 101,
     .description = (pchar*)Yawn_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Knock Off*/
-	.name = _("Knock Off"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Knock Off*/
+    .name = _("Knock Off"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Knock_Off_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Endeavor*/
-	.name = _("Endeavor"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Endeavor*/
+    .name = _("Endeavor"),
+    .accuracy = 100,
     .description = (pchar*)Endeavor_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Eruption*/
-	.name = _("Eruption"),
-	.accuracy = 100,
-	.base_power = 150,
+    },
+
+    {
+    /*Eruption*/
+    .name = _("Eruption"),
+    .accuracy = 100,
+    .base_power = 150,
     .description = (pchar*)Eruption_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Skill Swap*/
-	.name = _("Skill Swap"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Skill Swap*/
+    .name = _("Skill Swap"),
+    .accuracy = 101,
     .description = (pchar*)Skill_Swap_desc,
-	.pp = 10,
-	.category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .pp = 10,
+    .category = MOVE_STATUS,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Imprison*/
-	.name = _("Imprison"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Imprison*/
+    .name = _("Imprison"),
+    .accuracy = 101,
     .description = (pchar*)Imprison_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH |  FLAG_AUTHENTIC,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH |  FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Refresh*/
-	.name = _("Refresh"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Refresh*/
+    .name = _("Refresh"),
+    .accuracy = 101,
     .description = (pchar*)Refresh_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Grudge*/
-	.name = _("Grudge"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Grudge*/
+    .name = _("Grudge"),
+    .accuracy = 101,
     .description = (pchar*)Grudge_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Snatch*/
-	.name = _("Snatch"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Snatch*/
+    .name = _("Snatch"),
+    .accuracy = 101,
     .description = (pchar*)Snatch_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Secret Power*/
-	.name = _("Secret Power"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Secret Power*/
+    .name = _("Secret Power"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Secret_Power_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dive*/
-	.name = _("Dive"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Dive*/
+    .name = _("Dive"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Dive_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Arm Thrust*/
-	.name = _("Arm Thrust"),
-	.accuracy = 100,
-	.base_power = 15,
+    },
+
+    {
+    /*Arm Thrust*/
+    .name = _("Arm Thrust"),
+    .accuracy = 100,
+    .base_power = 15,
     .description = (pchar*)Arm_Thrust_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
+    .type = MTYPE_FIGHTING,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Camouflage*/
-	.name = _("Camouflage"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Camouflage*/
+    .name = _("Camouflage"),
+    .accuracy = 101,
     .description = (pchar*)Camouflage_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tail Glow*/
-	.name = _("Tail Glow"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Tail Glow*/
+    .name = _("Tail Glow"),
+    .accuracy = 101,
     .description = (pchar*)Tail_Glow_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spAtk_2,
-	},
-	
-	{
-	/*Luster Purge*/
-	.name = _("Luster Purge"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Luster Purge*/
+    .name = _("Luster Purge"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Luster_Purge_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mist Ball*/
-	.name = _("Mist Ball"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Mist Ball*/
+    .name = _("Mist Ball"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Mist_Ball_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Feather Dance*/
-	.name = _("Feather Dance"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Feather Dance*/
+    .name = _("Feather Dance"),
+    .accuracy = 100,
     .description = (pchar*)Feather_Dance_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_DANCE | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_DANCE | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_atk_2,
-	},
-	
-	{
-	/*Teeter Dance*/
-	.name = _("Teeter Dance"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Teeter Dance*/
+    .name = _("Teeter Dance"),
+    .accuracy = 100,
     .description = (pchar*)Teeter_Dance_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Blaze Kick*/
-	.name = _("Blaze Kick"),
-	.accuracy = 90,
-	.base_power = 85,
+    },
+
+    {
+    /*Blaze Kick*/
+    .name = _("Blaze Kick"),
+    .accuracy = 90,
+    .base_power = 85,
     .description = (pchar*)Blaze_Kick_desc,
-	.pp = 10,
-	.crit_ratio = 1,
+    .pp = 10,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mud Sport*/
-	.name = _("Mud Sport"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mud Sport*/
+    .name = _("Mud Sport"),
+    .accuracy = 101,
     .description = (pchar*)Mud_Sport_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ice Ball*/
-	.name = _("Ice Ball"),
-	.accuracy = 90,
-	.base_power = 30,
+    },
+
+    {
+    /*Ice Ball*/
+    .name = _("Ice Ball"),
+    .accuracy = 90,
+    .base_power = 30,
     .description = (pchar*)Ice_Ball_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.before_move = rollout_on_before_move,
-	.on_move_fail = rollout_on_move_fail,
-	.on_base_power_move = rollout_on_base_power_move,
-	},
-	
-	{
-	/*Needle Arm*/
-	.name = _("Needle Arm"),
-	.accuracy = 100,
-	.base_power = 60,
+    .before_move = rollout_on_before_move,
+    .on_move_fail = rollout_on_move_fail,
+    .on_base_power_move = rollout_on_base_power_move,
+    },
+
+    {
+    /*Needle Arm*/
+    .name = _("Needle Arm"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Needle_Arm_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Slack Off*/
-	.name = _("Slack Off"),
-	.accuracy = 101,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Slack Off*/
+    .name = _("Slack Off"),
+    .accuracy = 101,
     .description = (pchar*)Slack_Off_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hyper Voice*/
-	.name = _("Hyper Voice"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Hyper Voice*/
+    .name = _("Hyper Voice"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Hyper_Voice_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Poison Fang*/
-	.name = _("Poison Fang"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Poison Fang*/
+    .name = _("Poison Fang"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Poison_Fang_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Crush Claw*/
-	.name = _("Crush Claw"),
-	.accuracy = 95,
-	.base_power = 75,
+    },
+
+    {
+    /*Crush Claw*/
+    .name = _("Crush Claw"),
+    .accuracy = 95,
+    .base_power = 75,
     .description = (pchar*)Crush_Claw_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Blast Burn*/
-	.name = _("Blast Burn"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Blast Burn*/
+    .name = _("Blast Burn"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Blast_Burn_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hydro Cannon*/
-	.name = _("Hydro Cannon"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Hydro Cannon*/
+    .name = _("Hydro Cannon"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Hydro_Cannon_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Meteor Mash*/
-	.name = _("Meteor Mash"),
-	.accuracy = 90,
-	.base_power = 90,
+    },
+
+    {
+    /*Meteor Mash*/
+    .name = _("Meteor Mash"),
+    .accuracy = 90,
+    .base_power = 90,
     .description = (pchar*)Meteor_Mash_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Astonish*/
-	.name = _("Astonish"),
-	.accuracy = 100,
-	.base_power = 30,
+    },
+
+    {
+    /*Astonish*/
+    .name = _("Astonish"),
+    .accuracy = 100,
+    .base_power = 30,
     .description = (pchar*)Astonish_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Weather Ball*/
-	.name = _("Weather Ball"),
-	.accuracy = 100,
-	.base_power = 50,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Weather Ball*/
+    .name = _("Weather Ball"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Weather_Ball_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aromatherapy*/
-	.name = _("Aromatherapy"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Aromatherapy*/
+    .name = _("Aromatherapy"),
+    .accuracy = 101,
     .description = (pchar*)Aromatherapy_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fake Tears*/
-	.name = _("Fake Tears"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Fake Tears*/
+    .name = _("Fake Tears"),
+    .accuracy = 100,
     .description = (pchar*)Fake_Tears_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spDef_2,
-	},
-	
-	{
-	/*Air Cutter*/
-	.name = _("Air Cutter"),
-	.accuracy = 95,
-	.base_power = 60,
+    },
+
+    {
+    /*Air Cutter*/
+    .name = _("Air Cutter"),
+    .accuracy = 95,
+    .base_power = 60,
     .description = (pchar*)Air_Cutter_desc,
-	.pp = 25,
-	.crit_ratio = 1,
+    .pp = 25,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Overheat*/
-	.name = _("Overheat"),
-	.accuracy = 90,
-	.base_power = 130,
+    },
+
+    {
+    /*Overheat*/
+    .name = _("Overheat"),
+    .accuracy = 90,
+    .base_power = 130,
     .description = (pchar*)Overheat_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Odor Sleuth*/
-	.name = _("Odor Sleuth"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Odor Sleuth*/
+    .name = _("Odor Sleuth"),
+    .accuracy = 101,
     .description = (pchar*)Odor_Sleuth_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Tomb*/
-	.name = _("Rock Tomb"),
-	.accuracy = 95,
-	.base_power = 60,
+    },
+
+    {
+    /*Rock Tomb*/
+    .name = _("Rock Tomb"),
+    .accuracy = 95,
+    .base_power = 60,
     .description = (pchar*)Rock_Tomb_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Silver Wind*/
-	.name = _("Silver Wind"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Silver Wind*/
+    .name = _("Silver Wind"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Silver_Wind_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Metal Sound*/
-	.name = _("Metal Sound"),
-	.accuracy = 85,
+    },
+
+    {
+    /*Metal Sound*/
+    .name = _("Metal Sound"),
+    .accuracy = 85,
     .description = (pchar*)Metal_Sound_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spDef_2,
-	},
-	
-	{
-	/*Grass Whistle*/
-	.name = _("Grass Whistle"),
-	.accuracy = 55,
+    },
+
+    {
+    /*Grass Whistle*/
+    .name = _("Grass Whistle"),
+    .accuracy = 55,
     .description = (pchar*)Grass_Whistle_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tickle*/
-	.name = _("Tickle"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Tickle*/
+    .name = _("Tickle"),
+    .accuracy = 100,
     .description = (pchar*)Tickle_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Cosmic Power*/
-	.name = _("Cosmic Power"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Cosmic Power*/
+    .name = _("Cosmic Power"),
+    .accuracy = 101,
     .description = (pchar*)Cosmic_Power_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Spout*/
-	.name = _("Water Spout"),
-	.accuracy = 100,
-	.base_power = 150,
+    },
+
+    {
+    /*Water Spout*/
+    .name = _("Water Spout"),
+    .accuracy = 100,
+    .base_power = 150,
     .description = (pchar*)Water_Spout_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Signal Beam*/
-	.name = _("Signal Beam"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Signal Beam*/
+    .name = _("Signal Beam"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Signal_Beam_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shadow Punch*/
-	.name = _("Shadow Punch"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Shadow Punch*/
+    .name = _("Shadow Punch"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Shadow_Punch_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Extrasensory*/
-	.name = _("Extrasensory"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Extrasensory*/
+    .name = _("Extrasensory"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Extrasensory_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Sky Uppercut*/
-	.name = _("Sky Uppercut"),
-	.accuracy = 90,
-	.base_power = 85,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Sky Uppercut*/
+    .name = _("Sky Uppercut"),
+    .accuracy = 90,
+    .base_power = 85,
     .description = (pchar*)Sky_Uppercut_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sand Tomb*/
-	.name = _("Sand Tomb"),
-	.accuracy = 85,
-	.base_power = 35,
+    },
+
+    {
+    /*Sand Tomb*/
+    .name = _("Sand Tomb"),
+    .accuracy = 85,
+    .base_power = 35,
     .description = (pchar*)Sand_Tomb_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sheer Cold*/
-	.name = _("Sheer Cold"),
-	.accuracy = 30,
+    },
+
+    {
+    /*Sheer Cold*/
+    .name = _("Sheer Cold"),
+    .accuracy = 30,
     .description = (pchar*)Sheer_Cold_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_OHKO,
     .procs = &basic_proc,
     .on_tryhit_move = ohko_tryhit_move,
-	},
-	
-	{
-	/*Muddy Water*/
-	.name = _("Muddy Water"),
-	.accuracy = 85,
-	.base_power = 90,
+    },
+
+    {
+    /*Muddy Water*/
+    .name = _("Muddy Water"),
+    .accuracy = 85,
+    .base_power = 90,
     .description = (pchar*)Muddy_Water_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bullet Seed*/
-	.name = _("Bullet Seed"),
-	.accuracy = 100,
-	.base_power = 25,
+    },
+
+    {
+    /*Bullet Seed*/
+    .name = _("Bullet Seed"),
+    .accuracy = 100,
+    .base_power = 25,
     .description = (pchar*)Bullet_Seed_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
+    .type = MTYPE_GRASS,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aerial Ace*/
-	.name = _("Aerial Ace"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Aerial Ace*/
+    .name = _("Aerial Ace"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Aerial_Ace_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Icicle Spear*/
-	.name = _("Icicle Spear"),
-	.accuracy = 100,
-	.base_power = 25,
+    },
+
+    {
+    /*Icicle Spear*/
+    .name = _("Icicle Spear"),
+    .accuracy = 100,
+    .base_power = 25,
     .description = (pchar*)Icicle_Spear_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
+    .type = MTYPE_ICE,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Iron Defense*/
-	.name = _("Iron Defense"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Iron Defense*/
+    .name = _("Iron Defense"),
+    .accuracy = 101,
     .description = (pchar*)Iron_Defense_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_def_2,
-	},
-	
-	{
-	/*Block*/
-	.name = _("Block"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Block*/
+    .name = _("Block"),
+    .accuracy = 101,
     .description = (pchar*)Block_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Howl*/
-	.name = _("Howl"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Howl*/
+    .name = _("Howl"),
+    .accuracy = 101,
     .description = (pchar*)Howl_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_atk_1,
-	},
-	
-	{
-	/*Dragon Claw*/
-	.name = _("Dragon Claw"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Dragon Claw*/
+    .name = _("Dragon Claw"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Dragon_Claw_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Frenzy Plant*/
-	.name = _("Frenzy Plant"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Frenzy Plant*/
+    .name = _("Frenzy Plant"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Frenzy_Plant_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bulk Up*/
-	.name = _("Bulk Up"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Bulk Up*/
+    .name = _("Bulk Up"),
+    .accuracy = 101,
     .description = (pchar*)Bulk_Up_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bounce*/
-	.name = _("Bounce"),
-	.accuracy = 85,
-	.base_power = 85,
+    },
+
+    {
+    /*Bounce*/
+    .name = _("Bounce"),
+    .accuracy = 85,
+    .base_power = 85,
     .description = (pchar*)Bounce_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CHARGE | FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CHARGE | FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mud Shot*/
-	.name = _("Mud Shot"),
-	.accuracy = 95,
-	.base_power = 55,
+    },
+
+    {
+    /*Mud Shot*/
+    .name = _("Mud Shot"),
+    .accuracy = 95,
+    .base_power = 55,
     .description = (pchar*)Mud_Shot_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Poison Tail*/
-	.name = _("Poison Tail"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Poison Tail*/
+    .name = _("Poison Tail"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Poison_Tail_desc,
-	.pp = 25,
-	.crit_ratio = 1,
+    .pp = 25,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Covet*/
-	.name = _("Covet"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Covet*/
+    .name = _("Covet"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Covet_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Volt Tackle*/
-	.name = _("Volt Tackle"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Volt Tackle*/
+    .name = _("Volt Tackle"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Volt_Tackle_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magical Leaf*/
-	.name = _("Magical Leaf"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Magical Leaf*/
+    .name = _("Magical Leaf"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Magical_Leaf_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Sport*/
-	.name = _("Water Sport"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Water Sport*/
+    .name = _("Water Sport"),
+    .accuracy = 101,
     .description = (pchar*)Water_Sport_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Calm Mind*/
-	.name = _("Calm Mind"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Calm Mind*/
+    .name = _("Calm Mind"),
+    .accuracy = 101,
     .description = (pchar*)Calm_Mind_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leaf Blade*/
-	.name = _("Leaf Blade"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Leaf Blade*/
+    .name = _("Leaf Blade"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Leaf_Blade_desc,
-	.pp = 15,
-	.crit_ratio = 1,
+    .pp = 15,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Dance*/
-	.name = _("Dragon Dance"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Dragon Dance*/
+    .name = _("Dragon Dance"),
+    .accuracy = 101,
     .description = (pchar*)Dragon_Dance_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Blast*/
-	.name = _("Rock Blast"),
-	.accuracy = 90,
-	.base_power = 25,
+    },
+
+    {
+    /*Rock Blast*/
+    .name = _("Rock Blast"),
+    .accuracy = 90,
+    .base_power = 25,
     .description = (pchar*)Rock_Blast_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
+    .type = MTYPE_ROCK,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shock Wave*/
-	.name = _("Shock Wave"),
-	.accuracy = 101,
-	.base_power = 60,
+    },
+
+    {
+    /*Shock Wave*/
+    .name = _("Shock Wave"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Shock_Wave_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Pulse*/
-	.name = _("Water Pulse"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Water Pulse*/
+    .name = _("Water Pulse"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Water_Pulse_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Doom Desire*/
-	.name = _("Doom Desire"),
-	.accuracy = 100,
-	.base_power = 140,
+    },
+
+    {
+    /*Doom Desire*/
+    .name = _("Doom Desire"),
+    .accuracy = 100,
+    .base_power = 140,
     .description = (pchar*)Doom_Desire_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psycho Boost*/
-	.name = _("Psycho Boost"),
-	.accuracy = 90,
-	.base_power = 140,
+    },
+
+    {
+    /*Psycho Boost*/
+    .name = _("Psycho Boost"),
+    .accuracy = 90,
+    .base_power = 140,
     .description = (pchar*)Psycho_Boost_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Roost*/
-	.name = _("Roost"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Roost*/
+    .name = _("Roost"),
+    .accuracy = 101,
     .description = (pchar*)Roost_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gravity*/
-	.name = _("Gravity"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Gravity*/
+    .name = _("Gravity"),
+    .accuracy = 101,
     .description = (pchar*)Gravity_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Miracle Eye*/
-	.name = _("Miracle Eye"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Miracle Eye*/
+    .name = _("Miracle Eye"),
+    .accuracy = 101,
     .description = (pchar*)Miracle_Eye_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Wake-Up Slap"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    .name = _("Wake-Up Slap"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Wake_Up_Slap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hammer Arm*/
-	.name = _("Hammer Arm"),
-	.accuracy = 90,
-	.base_power = 100,
+    },
+
+    {
+    /*Hammer Arm*/
+    .name = _("Hammer Arm"),
+    .accuracy = 90,
+    .base_power = 100,
     .description = (pchar*)Hammer_Arm_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gyro Ball*/
-	.name = _("Gyro Ball"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Gyro Ball*/
+    .name = _("Gyro Ball"),
+    .accuracy = 100,
     .description = (pchar*)Gyro_Ball_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Healing Wish*/
-	.name = _("Healing Wish"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Healing Wish*/
+    .name = _("Healing Wish"),
+    .accuracy = 101,
     .description = (pchar*)Healing_Wish_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Brine*/
-	.name = _("Brine"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Brine*/
+    .name = _("Brine"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Brine_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Natural Gift*/
-	.name = _("Natural Gift"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Natural Gift*/
+    .name = _("Natural Gift"),
+    .accuracy = 100,
     .description = (pchar*)Natural_Gift_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Feint*/
-	.name = _("Feint"),
-	.accuracy = 100,
-	.base_power = 30,
+    },
+
+    {
+    /*Feint*/
+    .name = _("Feint"),
+    .accuracy = 100,
+    .base_power = 30,
     .description = (pchar*)Feint_desc,
-	.pp = 10,
-	.priority = 2,
+    .pp = 10,
+    .priority = 2,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Pluck*/
-	.name = _("Pluck"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Pluck*/
+    .name = _("Pluck"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Pluck_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tailwind*/
-	.name = _("Tailwind"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Tailwind*/
+    .name = _("Tailwind"),
+    .accuracy = 101,
     .description = (pchar*)Tailwind_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Acupressure*/
-	.name = _("Acupressure"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Acupressure*/
+    .name = _("Acupressure"),
+    .accuracy = 101,
     .description = (pchar*)Acupressure_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Metal Burst*/
-	.name = _("Metal Burst"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Metal Burst*/
+    .name = _("Metal Burst"),
+    .accuracy = 100,
     .description = (pchar*)Metal_Burst_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("U-turn"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    .name = _("U-turn"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)U_turn_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Close Combat*/
-	.name = _("Close Combat"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Close Combat*/
+    .name = _("Close Combat"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Close_Combat_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Payback*/
-	.name = _("Payback"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Payback*/
+    .name = _("Payback"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Payback_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Assurance*/
-	.name = _("Assurance"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Assurance*/
+    .name = _("Assurance"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Assurance_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Embargo*/
-	.name = _("Embargo"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Embargo*/
+    .name = _("Embargo"),
+    .accuracy = 100,
     .description = (pchar*)Embargo_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fling*/
-	.name = _("Fling"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Fling*/
+    .name = _("Fling"),
+    .accuracy = 100,
     .description = (pchar*)Fling_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psycho Shift*/
-	.name = _("Psycho Shift"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Psycho Shift*/
+    .name = _("Psycho Shift"),
+    .accuracy = 100,
     .description = (pchar*)Psycho_Shift_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Trump Card*/
-	.name = _("Trump Card"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Trump Card*/
+    .name = _("Trump Card"),
+    .accuracy = 101,
     .description = (pchar*)Trump_Card_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heal Block*/
-	.name = _("Heal Block"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Heal Block*/
+    .name = _("Heal Block"),
+    .accuracy = 100,
     .description = (pchar*)Heal_Block_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wring Out*/
-	.name = _("Wring Out"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Wring Out*/
+    .name = _("Wring Out"),
+    .accuracy = 100,
     .description = (pchar*)Wring_Out_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Power Trick*/
-	.name = _("Power Trick"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Power Trick*/
+    .name = _("Power Trick"),
+    .accuracy = 101,
     .description = (pchar*)Power_Trick_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gastro Acid*/
-	.name = _("Gastro Acid"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Gastro Acid*/
+    .name = _("Gastro Acid"),
+    .accuracy = 100,
     .description = (pchar*)Gastro_Acid_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lucky Chant*/
-	.name = _("Lucky Chant"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Lucky Chant*/
+    .name = _("Lucky Chant"),
+    .accuracy = 101,
     .description = (pchar*)Lucky_Chant_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Me First*/
-	.name = _("Me First"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Me First*/
+    .name = _("Me First"),
+    .accuracy = 101,
     .description = (pchar*)Me_First_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Copycat*/
-	.name = _("Copycat"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Copycat*/
+    .name = _("Copycat"),
+    .accuracy = 101,
     .description = (pchar*)Copycat_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_modify_move = copycat_on_modify_move,
-	},
-	
-	{
-	/*Power Swap*/
-	.name = _("Power Swap"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Power Swap*/
+    .name = _("Power Swap"),
+    .accuracy = 101,
     .description = (pchar*)Power_Swap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Guard Swap*/
-	.name = _("Guard Swap"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Guard Swap*/
+    .name = _("Guard Swap"),
+    .accuracy = 101,
     .description = (pchar*)Guard_Swap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Punishment*/
-	.name = _("Punishment"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Punishment*/
+    .name = _("Punishment"),
+    .accuracy = 100,
     .description = (pchar*)Punishment_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Last Resort*/
-	.name = _("Last Resort"),
-	.accuracy = 100,
-	.base_power = 140,
+    },
+
+    {
+    /*Last Resort*/
+    .name = _("Last Resort"),
+    .accuracy = 100,
+    .base_power = 140,
     .description = (pchar*)Last_Resort_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Worry Seed*/
-	.name = _("Worry Seed"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Worry Seed*/
+    .name = _("Worry Seed"),
+    .accuracy = 100,
     .description = (pchar*)Worry_Seed_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sucker Punch*/
-	.name = _("Sucker Punch"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Sucker Punch*/
+    .name = _("Sucker Punch"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Sucker_Punch_desc,
-	.pp = 5,
-	.priority = 1,
+    .pp = 5,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Toxic Spikes*/
-	.name = _("Toxic Spikes"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Toxic Spikes*/
+    .name = _("Toxic Spikes"),
+    .accuracy = 101,
     .description = (pchar*)Toxic_Spikes_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heart Swap*/
-	.name = _("Heart Swap"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Heart Swap*/
+    .name = _("Heart Swap"),
+    .accuracy = 101,
     .description = (pchar*)Heart_Swap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aqua Ring*/
-	.name = _("Aqua Ring"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Aqua Ring*/
+    .name = _("Aqua Ring"),
+    .accuracy = 101,
     .description = (pchar*)Aqua_Ring_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magnet Rise*/
-	.name = _("Magnet Rise"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Magnet Rise*/
+    .name = _("Magnet Rise"),
+    .accuracy = 101,
     .description = (pchar*)Magnet_Rise_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_SNATCH | FLAG_GRAVITY,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_SNATCH | FLAG_GRAVITY,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flare Blitz*/
-	.name = _("Flare Blitz"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Flare Blitz*/
+    .name = _("Flare Blitz"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Flare_Blitz_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DEFROST | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Force Palm*/
-	.name = _("Force Palm"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Force Palm*/
+    .name = _("Force Palm"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Force_Palm_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aura Sphere*/
-	.name = _("Aura Sphere"),
-	.accuracy = 101,
-	.base_power = 80,
+    },
+
+    {
+    /*Aura Sphere*/
+    .name = _("Aura Sphere"),
+    .accuracy = 101,
+    .base_power = 80,
     .description = (pchar*)Aura_Sphere_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PULSE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PULSE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Polish*/
-	.name = _("Rock Polish"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Rock Polish*/
+    .name = _("Rock Polish"),
+    .accuracy = 101,
     .description = (pchar*)Rock_Polish_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spd_2,
-	},
-	
-	{
-	/*Poison Jab*/
-	.name = _("Poison Jab"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Poison Jab*/
+    .name = _("Poison Jab"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Poison_Jab_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dark Pulse*/
-	.name = _("Dark Pulse"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Dark Pulse*/
+    .name = _("Dark Pulse"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Dark_Pulse_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 20,
-	},
-	
-	{
-	/*Night Slash*/
-	.name = _("Night Slash"),
-	.accuracy = 100,
-	.base_power = 70,
+    .flinch_chance = 20,
+    },
+
+    {
+    /*Night Slash*/
+    .name = _("Night Slash"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Night_Slash_desc,
-	.pp = 15,
-	.crit_ratio = 1,
+    .pp = 15,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aqua Tail*/
-	.name = _("Aqua Tail"),
-	.accuracy = 90,
-	.base_power = 90,
+    },
+
+    {
+    /*Aqua Tail*/
+    .name = _("Aqua Tail"),
+    .accuracy = 90,
+    .base_power = 90,
     .description = (pchar*)Aqua_Tail_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Seed Bomb*/
-	.name = _("Seed Bomb"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Seed Bomb*/
+    .name = _("Seed Bomb"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Seed_Bomb_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Air Slash*/
-	.name = _("Air Slash"),
-	.accuracy = 95,
-	.base_power = 75,
+    },
+
+    {
+    /*Air Slash*/
+    .name = _("Air Slash"),
+    .accuracy = 95,
+    .base_power = 75,
     .description = (pchar*)Air_Slash_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	.name = _("X-Scissor"),
-	.accuracy = 100,
-	.base_power = 80,
+    .flinch_chance = 30,
+    },
+
+    {
+    .name = _("X-Scissor"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)X_Scissor_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bug Buzz*/
-	.name = _("Bug Buzz"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Bug Buzz*/
+    .name = _("Bug Buzz"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Bug_Buzz_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Pulse*/
-	.name = _("Dragon Pulse"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Dragon Pulse*/
+    .name = _("Dragon Pulse"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Dragon_Pulse_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Rush*/
-	.name = _("Dragon Rush"),
-	.accuracy = 75,
-	.base_power = 100,
+    },
+
+    {
+    /*Dragon Rush*/
+    .name = _("Dragon Rush"),
+    .accuracy = 75,
+    .base_power = 100,
     .description = (pchar*)Dragon_Rush_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 20,
-	},
-	
-	{
-	/*Power Gem*/
-	.name = _("Power Gem"),
-	.accuracy = 100,
-	.base_power = 80,
+    .flinch_chance = 20,
+    },
+
+    {
+    /*Power Gem*/
+    .name = _("Power Gem"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Power_Gem_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/* Drain Punch*/
-	.name = _("Drain Punch"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /* Drain Punch*/
+    .name = _("Drain Punch"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*) Drain_Punch_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Vacuum Wave*/
-	.name = _("Vacuum Wave"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Vacuum Wave*/
+    .name = _("Vacuum Wave"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Vacuum_Wave_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Focus Blast*/
-	.name = _("Focus Blast"),
-	.accuracy = 70,
-	.base_power = 120,
+    },
+
+    {
+    /*Focus Blast*/
+    .name = _("Focus Blast"),
+    .accuracy = 70,
+    .base_power = 120,
     .description = (pchar*)Focus_Blast_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Energy Ball*/
-	.name = _("Energy Ball"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Energy Ball*/
+    .name = _("Energy Ball"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Energy_Ball_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Brave Bird*/
-	.name = _("Brave Bird"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Brave Bird*/
+    .name = _("Brave Bird"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Brave_Bird_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Earth Power*/
-	.name = _("Earth Power"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Earth Power*/
+    .name = _("Earth Power"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Earth_Power_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Switcheroo*/
-	.name = _("Switcheroo"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Switcheroo*/
+    .name = _("Switcheroo"),
+    .accuracy = 100,
     .description = (pchar*)Switcheroo_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Giga Impact*/
-	.name = _("Giga Impact"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Giga Impact*/
+    .name = _("Giga Impact"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Giga_Impact_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_RECHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_RECHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Nasty Plot*/
-	.name = _("Nasty Plot"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Nasty Plot*/
+    .name = _("Nasty Plot"),
+    .accuracy = 101,
     .description = (pchar*)Nasty_Plot_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spAtk_2,
-	},
-	
-	{
-	/*Bullet Punch*/
-	.name = _("Bullet Punch"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Bullet Punch*/
+    .name = _("Bullet Punch"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Bullet_Punch_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Avalanche*/
-	.name = _("Avalanche"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Avalanche*/
+    .name = _("Avalanche"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Avalanche_desc,
     10,
     -4,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ice Shard*/
-	.name = _("Ice Shard"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Ice Shard*/
+    .name = _("Ice Shard"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Ice_Shard_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shadow Claw*/
-	.name = _("Shadow Claw"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Shadow Claw*/
+    .name = _("Shadow Claw"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Shadow_Claw_desc,
-	.pp = 15,
-	.crit_ratio = 1,
+    .pp = 15,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thunder Fang*/
-	.name = _("Thunder Fang"),
-	.accuracy = 95,
-	.base_power = 65,
+    },
+
+    {
+    /*Thunder Fang*/
+    .name = _("Thunder Fang"),
+    .accuracy = 95,
+    .base_power = 65,
     .description = (pchar*)Thunder_Fang_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Ice Fang*/
-	.name = _("Ice Fang"),
-	.accuracy = 95,
-	.base_power = 65,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Ice Fang*/
+    .name = _("Ice Fang"),
+    .accuracy = 95,
+    .base_power = 65,
     .description = (pchar*)Ice_Fang_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Fire Fang*/
-	.name = _("Fire Fang"),
-	.accuracy = 95,
-	.base_power = 65,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Fire Fang*/
+    .name = _("Fire Fang"),
+    .accuracy = 95,
+    .base_power = 65,
     .description = (pchar*)Fire_Fang_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 10,
-	},
-	
-	{
-	/*Shadow Sneak*/
-	.name = _("Shadow Sneak"),
-	.accuracy = 100,
-	.base_power = 40,
+    .flinch_chance = 10,
+    },
+
+    {
+    /*Shadow Sneak*/
+    .name = _("Shadow Sneak"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Shadow_Sneak_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mud Bomb*/
-	.name = _("Mud Bomb"),
-	.accuracy = 85,
-	.base_power = 65,
+    },
+
+    {
+    /*Mud Bomb*/
+    .name = _("Mud Bomb"),
+    .accuracy = 85,
+    .base_power = 65,
     .description = (pchar*)Mud_Bomb_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psycho Cut*/
-	.name = _("Psycho Cut"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Psycho Cut*/
+    .name = _("Psycho Cut"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Psycho_Cut_desc,
-	.pp = 20,
-	.crit_ratio = 1,
+    .pp = 20,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Zen Headbutt*/
-	.name = _("Zen Headbutt"),
-	.accuracy = 90,
-	.base_power = 80,
+    },
+
+    {
+    /*Zen Headbutt*/
+    .name = _("Zen Headbutt"),
+    .accuracy = 90,
+    .base_power = 80,
     .description = (pchar*)Zen_Headbutt_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 20,
-	},
-	
-	{
-	/*Mirror Shot*/
-	.name = _("Mirror Shot"),
-	.accuracy = 85,
-	.base_power = 65,
+    .flinch_chance = 20,
+    },
+
+    {
+    /*Mirror Shot*/
+    .name = _("Mirror Shot"),
+    .accuracy = 85,
+    .base_power = 65,
     .description = (pchar*)Mirror_Shot_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flash Cannon*/
-	.name = _("Flash Cannon"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Flash Cannon*/
+    .name = _("Flash Cannon"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Flash_Cannon_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Climb*/
-	.name = _("Rock Climb"),
-	.accuracy = 85,
-	.base_power = 90,
+    },
+
+    {
+    /*Rock Climb*/
+    .name = _("Rock Climb"),
+    .accuracy = 85,
+    .base_power = 90,
     .description = (pchar*)Rock_Climb_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Defog*/
-	.name = _("Defog"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Defog*/
+    .name = _("Defog"),
+    .accuracy = 101,
     .description = (pchar*)Defog_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Trick Room*/
-	.name = _("Trick Room"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Trick Room*/
+    .name = _("Trick Room"),
+    .accuracy = 101,
     .description = (pchar*)Trick_Room_desc,
     5,
     -7,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Draco Meteor*/
-	.name = _("Draco Meteor"),
-	.accuracy = 90,
-	.base_power = 130,
+    },
+
+    {
+    /*Draco Meteor*/
+    .name = _("Draco Meteor"),
+    .accuracy = 90,
+    .base_power = 130,
     .description = (pchar*)Draco_Meteor_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Discharge*/
-	.name = _("Discharge"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Discharge*/
+    .name = _("Discharge"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Discharge_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lava Plume*/
-	.name = _("Lava Plume"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Lava Plume*/
+    .name = _("Lava Plume"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Lava_Plume_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leaf Storm*/
-	.name = _("Leaf Storm"),
-	.accuracy = 90,
-	.base_power = 130,
+    },
+
+    {
+    /*Leaf Storm*/
+    .name = _("Leaf Storm"),
+    .accuracy = 90,
+    .base_power = 130,
     .description = (pchar*)Leaf_Storm_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Power Whip*/
-	.name = _("Power Whip"),
-	.accuracy = 85,
-	.base_power = 120,
+    },
+
+    {
+    /*Power Whip*/
+    .name = _("Power Whip"),
+    .accuracy = 85,
+    .base_power = 120,
     .description = (pchar*)Power_Whip_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rock Wrecker*/
-	.name = _("Rock Wrecker"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Rock Wrecker*/
+    .name = _("Rock Wrecker"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Rock_Wrecker_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_RECHARGE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_RECHARGE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Cross Poison*/
-	.name = _("Cross Poison"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Cross Poison*/
+    .name = _("Cross Poison"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Cross_Poison_desc,
-	.pp = 20,
-	.crit_ratio = 1,
+    .pp = 20,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gunk Shot*/
-	.name = _("Gunk Shot"),
-	.accuracy = 80,
-	.base_power = 120,
+    },
+
+    {
+    /*Gunk Shot*/
+    .name = _("Gunk Shot"),
+    .accuracy = 80,
+    .base_power = 120,
     .description = (pchar*)Gunk_Shot_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Iron Head*/
-	.name = _("Iron Head"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Iron Head*/
+    .name = _("Iron Head"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Iron_Head_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Magnet Bomb*/
-	.name = _("Magnet Bomb"),
-	.accuracy = 101,
-	.base_power = 60,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Magnet Bomb*/
+    .name = _("Magnet Bomb"),
+    .accuracy = 101,
+    .base_power = 60,
     .description = (pchar*)Magnet_Bomb_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stone Edge*/
-	.name = _("Stone Edge"),
-	.accuracy = 80,
-	.base_power = 100,
+    },
+
+    {
+    /*Stone Edge*/
+    .name = _("Stone Edge"),
+    .accuracy = 80,
+    .base_power = 100,
     .description = (pchar*)Stone_Edge_desc,
-	.pp = 5,
-	.crit_ratio = 1,
+    .pp = 5,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Captivate*/
-	.name = _("Captivate"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Captivate*/
+    .name = _("Captivate"),
+    .accuracy = 100,
     .description = (pchar*)Captivate_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stealth Rock*/
-	.name = _("Stealth Rock"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Stealth Rock*/
+    .name = _("Stealth Rock"),
+    .accuracy = 101,
     .description = (pchar*)Stealth_Rock_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_REFLECTABLE,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Grass Knot*/
-	.name = _("Grass Knot"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Grass Knot*/
+    .name = _("Grass Knot"),
+    .accuracy = 100,
     .description = (pchar*)Grass_Knot_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Chatter*/
-	.name = _("Chatter"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Chatter*/
+    .name = _("Chatter"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Chatter_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Judgment*/
-	.name = _("Judgment"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Judgment*/
+    .name = _("Judgment"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Judgment_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bug Bite*/
-	.name = _("Bug Bite"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Bug Bite*/
+    .name = _("Bug Bite"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Bug_Bite_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Charge Beam*/
-	.name = _("Charge Beam"),
-	.accuracy = 90,
-	.base_power = 50,
+    },
+
+    {
+    /*Charge Beam*/
+    .name = _("Charge Beam"),
+    .accuracy = 90,
+    .base_power = 50,
     .description = (pchar*)Charge_Beam_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wood Hammer*/
-	.name = _("Wood Hammer"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Wood Hammer*/
+    .name = _("Wood Hammer"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Wood_Hammer_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aqua Jet*/
-	.name = _("Aqua Jet"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Aqua Jet*/
+    .name = _("Aqua Jet"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Aqua_Jet_desc,
-	.pp = 20,
-	.priority = 1,
+    .pp = 20,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Attack Order*/
-	.name = _("Attack Order"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Attack Order*/
+    .name = _("Attack Order"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Attack_Order_desc,
-	.pp = 15,
-	.crit_ratio = 1,
+    .pp = 15,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Defend Order*/
-	.name = _("Defend Order"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Defend Order*/
+    .name = _("Defend Order"),
+    .accuracy = 101,
     .description = (pchar*)Defend_Order_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heal Order*/
-	.name = _("Heal Order"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Heal Order*/
+    .name = _("Heal Order"),
+    .accuracy = 101,
     .description = (pchar*)Heal_Order_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Head Smash*/
-	.name = _("Head Smash"),
-	.accuracy = 80,
-	.base_power = 150,
+    },
+
+    {
+    /*Head Smash*/
+    .name = _("Head Smash"),
+    .accuracy = 80,
+    .base_power = 150,
     .description = (pchar*)Head_Smash_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Double Hit*/
-	.name = _("Double Hit"),
-	.accuracy = 90,
-	.base_power = 35,
+    },
+
+    {
+    /*Double Hit*/
+    .name = _("Double Hit"),
+    .accuracy = 90,
+    .base_power = 35,
     .description = (pchar*)Double_Hit_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 2},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Roar of Time*/
-	.name = _("Roar of Time"),
-	.accuracy = 90,
-	.base_power = 150,
+    },
+
+    {
+    /*Roar of Time*/
+    .name = _("Roar of Time"),
+    .accuracy = 90,
+    .base_power = 150,
     .description = (pchar*)Roar_of_Time_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spacial Rend*/
-	.name = _("Spacial Rend"),
-	.accuracy = 95,
-	.base_power = 100,
+    },
+
+    {
+    /*Spacial Rend*/
+    .name = _("Spacial Rend"),
+    .accuracy = 95,
+    .base_power = 100,
     .description = (pchar*)Spacial_Rend_desc,
-	.pp = 5,
-	.crit_ratio = 1,
+    .pp = 5,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lunar Dance*/
-	.name = _("Lunar Dance"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Lunar Dance*/
+    .name = _("Lunar Dance"),
+    .accuracy = 101,
     .description = (pchar*)Lunar_Dance_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_DANCE,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_DANCE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Crush Grip*/
-	.name = _("Crush Grip"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Crush Grip*/
+    .name = _("Crush Grip"),
+    .accuracy = 100,
     .description = (pchar*)Crush_Grip_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magma Storm*/
-	.name = _("Magma Storm"),
-	.accuracy = 75,
-	.base_power = 100,
+    },
+
+    {
+    /*Magma Storm*/
+    .name = _("Magma Storm"),
+    .accuracy = 75,
+    .base_power = 100,
     .description = (pchar*)Magma_Storm_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dark Void*/
-	.name = _("Dark Void"),
-	.accuracy = 50,
+    },
+
+    {
+    /*Dark Void*/
+    .name = _("Dark Void"),
+    .accuracy = 50,
     .description = (pchar*)Dark_Void_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Seed Flare*/
-	.name = _("Seed Flare"),
-	.accuracy = 85,
-	.base_power = 120,
+    },
+
+    {
+    /*Seed Flare*/
+    .name = _("Seed Flare"),
+    .accuracy = 85,
+    .base_power = 120,
     .description = (pchar*)Seed_Flare_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ominous Wind*/
-	.name = _("Ominous Wind"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Ominous Wind*/
+    .name = _("Ominous Wind"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Ominous_Wind_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shadow Force*/
-	.name = _("Shadow Force"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Shadow Force*/
+    .name = _("Shadow Force"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Shadow_Force_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hone Claws*/
-	.name = _("Hone Claws"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Hone Claws*/
+    .name = _("Hone Claws"),
+    .accuracy = 101,
     .description = (pchar*)Hone_Claws_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wide Guard*/
-	.name = _("Wide Guard"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Wide Guard*/
+    .name = _("Wide Guard"),
+    .accuracy = 101,
     .description = (pchar*)Wide_Guard_desc,
-	.pp = 10,
-	.priority = 3,
+    .pp = 10,
+    .priority = 3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Guard Split*/
-	.name = _("Guard Split"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Guard Split*/
+    .name = _("Guard Split"),
+    .accuracy = 101,
     .description = (pchar*)Guard_Split_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Power Split*/
-	.name = _("Power Split"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Power Split*/
+    .name = _("Power Split"),
+    .accuracy = 101,
     .description = (pchar*)Power_Split_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wonder Room*/
-	.name = _("Wonder Room"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Wonder Room*/
+    .name = _("Wonder Room"),
+    .accuracy = 101,
     .description = (pchar*)Wonder_Room_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psyshock*/
-	.name = _("Psyshock"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Psyshock*/
+    .name = _("Psyshock"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Psyshock_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Venoshock*/
-	.name = _("Venoshock"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Venoshock*/
+    .name = _("Venoshock"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Venoshock_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Autotomize*/
-	.name = _("Autotomize"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Autotomize*/
+    .name = _("Autotomize"),
+    .accuracy = 101,
     .description = (pchar*)Autotomize_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spd_2,
-	},
-	
-	{
-	/*Rage Powder*/
-	.name = _("Rage Powder"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Rage Powder*/
+    .name = _("Rage Powder"),
+    .accuracy = 101,
     .description = (pchar*)Rage_Powder_desc,
-	.pp = 20,
-	.priority = 2,
+    .pp = 20,
+    .priority = 2,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_POWDER,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_POWDER,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Telekinesis*/
-	.name = _("Telekinesis"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Telekinesis*/
+    .name = _("Telekinesis"),
+    .accuracy = 101,
     .description = (pchar*)Telekinesis_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_GRAVITY | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_GRAVITY | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magic Room*/
-	.name = _("Magic Room"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Magic Room*/
+    .name = _("Magic Room"),
+    .accuracy = 101,
     .description = (pchar*)Magic_Room_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Smack Down*/
-	.name = _("Smack Down"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Smack Down*/
+    .name = _("Smack Down"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Smack_Down_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Storm Throw*/
-	.name = _("Storm Throw"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Storm Throw*/
+    .name = _("Storm Throw"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Storm_Throw_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flame Burst*/
-	.name = _("Flame Burst"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Flame Burst*/
+    .name = _("Flame Burst"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Flame_Burst_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sludge Wave*/
-	.name = _("Sludge Wave"),
-	.accuracy = 100,
-	.base_power = 95,
+    },
+
+    {
+    /*Sludge Wave*/
+    .name = _("Sludge Wave"),
+    .accuracy = 100,
+    .base_power = 95,
     .description = (pchar*)Sludge_Wave_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Quiver Dance*/
-	.name = _("Quiver Dance"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Quiver Dance*/
+    .name = _("Quiver Dance"),
+    .accuracy = 101,
     .description = (pchar*)Quiver_Dance_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_SNATCH | FLAG_DANCE,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_SNATCH | FLAG_DANCE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heavy Slam*/
-	.name = _("Heavy Slam"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Heavy Slam*/
+    .name = _("Heavy Slam"),
+    .accuracy = 100,
     .description = (pchar*)Heavy_Slam_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Synchronoise*/
-	.name = _("Synchronoise"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Synchronoise*/
+    .name = _("Synchronoise"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Synchronoise_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Electro Ball*/
-	.name = _("Electro Ball"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Electro Ball*/
+    .name = _("Electro Ball"),
+    .accuracy = 100,
     .description = (pchar*)Electro_Ball_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Soak*/
-	.name = _("Soak"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Soak*/
+    .name = _("Soak"),
+    .accuracy = 100,
     .description = (pchar*)Soak_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flame Charge*/
-	.name = _("Flame Charge"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Flame Charge*/
+    .name = _("Flame Charge"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Flame_Charge_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Coil*/
-	.name = _("Coil"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Coil*/
+    .name = _("Coil"),
+    .accuracy = 101,
     .description = (pchar*)Coil_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Low Sweep*/
-	.name = _("Low Sweep"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Low Sweep*/
+    .name = _("Low Sweep"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Low_Sweep_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Acid Spray*/
-	.name = _("Acid Spray"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Acid Spray*/
+    .name = _("Acid Spray"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Acid_Spray_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Foul Play*/
-	.name = _("Foul Play"),
-	.accuracy = 100,
-	.base_power = 95,
+    },
+
+    {
+    /*Foul Play*/
+    .name = _("Foul Play"),
+    .accuracy = 100,
+    .base_power = 95,
     .description = (pchar*)Foul_Play_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Simple Beam*/
-	.name = _("Simple Beam"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Simple Beam*/
+    .name = _("Simple Beam"),
+    .accuracy = 100,
     .description = (pchar*)Simple_Beam_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Entrainment*/
-	.name = _("Entrainment"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Entrainment*/
+    .name = _("Entrainment"),
+    .accuracy = 100,
     .description = (pchar*)Entrainment_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*After You*/
-	.name = _("After You"),
-	.accuracy = 101,
+    },
+
+    {
+    /*After You*/
+    .name = _("After You"),
+    .accuracy = 101,
     .description = (pchar*)After_You_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Round*/
-	.name = _("Round"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Round*/
+    .name = _("Round"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Round_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Echoed Voice*/
-	.name = _("Echoed Voice"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Echoed Voice*/
+    .name = _("Echoed Voice"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Echoed_Voice_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Chip Away*/
-	.name = _("Chip Away"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Chip Away*/
+    .name = _("Chip Away"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Chip_Away_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Clear Smog*/
-	.name = _("Clear Smog"),
-	.accuracy = 101,
-	.base_power = 50,
+    },
+
+    {
+    /*Clear Smog*/
+    .name = _("Clear Smog"),
+    .accuracy = 101,
+    .base_power = 50,
     .description = (pchar*)Clear_Smog_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stored Power*/
-	.name = _("Stored Power"),
-	.accuracy = 100,
-	.base_power = 20,
+    .on_effect_cb = clear_smog_effect,
+    },
+
+    {
+    /*Stored Power*/
+    .name = _("Stored Power"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Stored_Power_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Quick Guard*/
-	.name = _("Quick Guard"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Quick Guard*/
+    .name = _("Quick Guard"),
+    .accuracy = 101,
     .description = (pchar*)Quick_Guard_desc,
-	.pp = 15,
-	.priority = 3,
+    .pp = 15,
+    .priority = 3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ally Switch*/
-	.name = _("Ally Switch"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Ally Switch*/
+    .name = _("Ally Switch"),
+    .accuracy = 101,
     .description = (pchar*)Ally_Switch_desc,
-	.pp = 15,
-	.priority = 2,
+    .pp = 15,
+    .priority = 2,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Scald*/
-	.name = _("Scald"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Scald*/
+    .name = _("Scald"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Scald_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shell Smash*/
-	.name = _("Shell Smash"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Shell Smash*/
+    .name = _("Shell Smash"),
+    .accuracy = 101,
     .description = (pchar*)Shell_Smash_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &shell_smash_procs,
-	},
-	
-	{
-	/*Heal Pulse*/
-	.name = _("Heal Pulse"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Heal Pulse*/
+    .name = _("Heal Pulse"),
+    .accuracy = 101,
     .description = (pchar*)Heal_Pulse_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_PULSE | FLAG_HEAL | FLAG_PROTECT | FLAG_REFLECTABLE | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_PULSE | FLAG_HEAL | FLAG_PROTECT | FLAG_REFLECTABLE | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hex*/
-	.name = _("Hex"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Hex*/
+    .name = _("Hex"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Hex_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sky Drop*/
-	.name = _("Sky Drop"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Sky Drop*/
+    .name = _("Sky Drop"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Sky_Drop_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_GRAVITY | FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_GRAVITY | FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shift Gear*/
-	.name = _("Shift Gear"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Shift Gear*/
+    .name = _("Shift Gear"),
+    .accuracy = 101,
     .description = (pchar*)Shift_Gear_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_SNATCH,
     .procs = &shift_gear_procs,
-	},
-	
-	{
-	/*Circle Throw*/
-	.name = _("Circle Throw"),
-	.accuracy = 90,
-	.base_power = 60,
+    },
+
+    {
+    /*Circle Throw*/
+    .name = _("Circle Throw"),
+    .accuracy = 90,
+    .base_power = 60,
     .description = (pchar*)Circle_Throw_desc,
     10,
     -6,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Incinerate*/
-	.name = _("Incinerate"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Incinerate*/
+    .name = _("Incinerate"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Incinerate_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Quash*/
-	.name = _("Quash"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Quash*/
+    .name = _("Quash"),
+    .accuracy = 100,
     .description = (pchar*)Quash_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Acrobatics*/
-	.name = _("Acrobatics"),
-	.accuracy = 100,
-	.base_power = 55,
+    },
+
+    {
+    /*Acrobatics*/
+    .name = _("Acrobatics"),
+    .accuracy = 100,
+    .base_power = 55,
     .description = (pchar*)Acrobatics_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_base_power_move = acrobatics_on_base_power_move,
-	},
-	
-	{
-	/*Reflect Type*/
-	.name = _("Reflect Type"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Reflect Type*/
+    .name = _("Reflect Type"),
+    .accuracy = 101,
     .description = (pchar*)Reflect_Type_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Retaliate*/
-	.name = _("Retaliate"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Retaliate*/
+    .name = _("Retaliate"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Retaliate_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Final Gambit*/
-	.name = _("Final Gambit"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Final Gambit*/
+    .name = _("Final Gambit"),
+    .accuracy = 100,
     .description = (pchar*)Final_Gambit_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bestow*/
-	.name = _("Bestow"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Bestow*/
+    .name = _("Bestow"),
+    .accuracy = 101,
     .description = (pchar*)Bestow_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Inferno*/
-	.name = _("Inferno"),
-	.accuracy = 50,
-	.base_power = 100,
+    },
+
+    {
+    /*Inferno*/
+    .name = _("Inferno"),
+    .accuracy = 50,
+    .base_power = 100,
     .description = (pchar*)Inferno_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Pledge*/
-	.name = _("Water Pledge"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Water Pledge*/
+    .name = _("Water Pledge"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Water_Pledge_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fire Pledge*/
-	.name = _("Fire Pledge"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Fire Pledge*/
+    .name = _("Fire Pledge"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Fire_Pledge_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Grass Pledge*/
-	.name = _("Grass Pledge"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Grass Pledge*/
+    .name = _("Grass Pledge"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Grass_Pledge_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Volt Switch*/
-	.name = _("Volt Switch"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Volt Switch*/
+    .name = _("Volt Switch"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Volt_Switch_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Struggle Bug*/
-	.name = _("Struggle Bug"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Struggle Bug*/
+    .name = _("Struggle Bug"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Struggle_Bug_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bulldoze*/
-	.name = _("Bulldoze"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Bulldoze*/
+    .name = _("Bulldoze"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Bulldoze_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Frost Breath*/
-	.name = _("Frost Breath"),
-	.accuracy = 90,
-	.base_power = 60,
+    },
+
+    {
+    /*Frost Breath*/
+    .name = _("Frost Breath"),
+    .accuracy = 90,
+    .base_power = 60,
     .description = (pchar*)Frost_Breath_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Tail*/
-	.name = _("Dragon Tail"),
-	.accuracy = 90,
-	.base_power = 60,
+    },
+
+    {
+    /*Dragon Tail*/
+    .name = _("Dragon Tail"),
+    .accuracy = 90,
+    .base_power = 60,
     .description = (pchar*)Dragon_Tail_desc,
     .pp = 10,
     .priority = -6,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Work Up*/
-	.name = _("Work Up"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Work Up*/
+    .name = _("Work Up"),
+    .accuracy = 101,
     .description = (pchar*)Work_Up_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Electroweb*/
-	.name = _("Electroweb"),
-	.accuracy = 95,
-	.base_power = 55,
+    },
+
+    {
+    /*Electroweb*/
+    .name = _("Electroweb"),
+    .accuracy = 95,
+    .base_power = 55,
     .description = (pchar*)Electroweb_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Wild Charge*/
-	.name = _("Wild Charge"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Wild Charge*/
+    .name = _("Wild Charge"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Wild_Charge_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Drill Run*/
-	.name = _("Drill Run"),
-	.accuracy = 95,
-	.base_power = 80,
+    },
+
+    {
+    /*Drill Run*/
+    .name = _("Drill Run"),
+    .accuracy = 95,
+    .base_power = 80,
     .description = (pchar*)Drill_Run_desc,
-	.pp = 10,
-	.crit_ratio = 1,
+    .pp = 10,
+    .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dual Chop*/
-	.name = _("Dual Chop"),
-	.accuracy = 90,
-	.base_power = 40,
+    },
+
+    {
+    /*Dual Chop*/
+    .name = _("Dual Chop"),
+    .accuracy = 90,
+    .base_power = 40,
     .description = (pchar*)Dual_Chop_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
+    .type = MTYPE_DRAGON,
     .multi_hit = {2, 2},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heart Stamp*/
-	.name = _("Heart Stamp"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Heart Stamp*/
+    .name = _("Heart Stamp"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Heart_Stamp_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Horn Leech*/
-	.name = _("Horn Leech"),
-	.accuracy = 100,
-	.base_power = 75,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Horn Leech*/
+    .name = _("Horn Leech"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Horn_Leech_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sacred Sword*/
-	.name = _("Sacred Sword"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Sacred Sword*/
+    .name = _("Sacred Sword"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Sacred_Sword_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Razor Shell*/
-	.name = _("Razor Shell"),
-	.accuracy = 95,
-	.base_power = 75,
+    },
+
+    {
+    /*Razor Shell*/
+    .name = _("Razor Shell"),
+    .accuracy = 95,
+    .base_power = 75,
     .description = (pchar*)Razor_Shell_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Heat Crash*/
-	.name = _("Heat Crash"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Heat Crash*/
+    .name = _("Heat Crash"),
+    .accuracy = 100,
     .description = (pchar*)Heat_Crash_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Leaf Tornado*/
-	.name = _("Leaf Tornado"),
-	.accuracy = 90,
-	.base_power = 65,
+    },
+
+    {
+    /*Leaf Tornado*/
+    .name = _("Leaf Tornado"),
+    .accuracy = 90,
+    .base_power = 65,
     .description = (pchar*)Leaf_Tornado_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Steamroller*/
-	.name = _("Steamroller"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Steamroller*/
+    .name = _("Steamroller"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Steamroller_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	/*Cotton Guard*/
-	.name = _("Cotton Guard"),
-	.accuracy = 101,
+    .flinch_chance = 30,
+    },
+
+    {
+    /*Cotton Guard*/
+    .name = _("Cotton Guard"),
+    .accuracy = 101,
     .description = (pchar*)Cotton_Guard_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Night Daze*/
-	.name = _("Night Daze"),
-	.accuracy = 95,
-	.base_power = 85,
+    },
+
+    {
+    /*Night Daze*/
+    .name = _("Night Daze"),
+    .accuracy = 95,
+    .base_power = 85,
     .description = (pchar*)Night_Daze_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psystrike*/
-	.name = _("Psystrike"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Psystrike*/
+    .name = _("Psystrike"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Psystrike_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tail Slap*/
-	.name = _("Tail Slap"),
-	.accuracy = 85,
-	.base_power = 25,
+    },
+
+    {
+    /*Tail Slap*/
+    .name = _("Tail Slap"),
+    .accuracy = 85,
+    .base_power = 25,
     .description = (pchar*)Tail_Slap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
+    .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hurricane*/
-	.name = _("Hurricane"),
-	.accuracy = 70,
-	.base_power = 110,
+    },
+
+    {
+    /*Hurricane*/
+    .name = _("Hurricane"),
+    .accuracy = 70,
+    .base_power = 110,
     .description = (pchar*)Hurricane_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Head Charge*/
-	.name = _("Head Charge"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Head Charge*/
+    .name = _("Head Charge"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Head_Charge_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gear Grind*/
-	.name = _("Gear Grind"),
-	.accuracy = 85,
-	.base_power = 50,
+    },
+
+    {
+    /*Gear Grind*/
+    .name = _("Gear Grind"),
+    .accuracy = 85,
+    .base_power = 50,
     .description = (pchar*)Gear_Grind_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
+    .type = MTYPE_STEEL,
     .multi_hit = {2, 2},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Searing Shot*/
-	.name = _("Searing Shot"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Searing Shot*/
+    .name = _("Searing Shot"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Searing_Shot_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Techno Blast*/
-	.name = _("Techno Blast"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Techno Blast*/
+    .name = _("Techno Blast"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Techno_Blast_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Relic Song*/
-	.name = _("Relic Song"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Relic Song*/
+    .name = _("Relic Song"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Relic_Song_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Secret Sword*/
-	.name = _("Secret Sword"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Secret Sword*/
+    .name = _("Secret Sword"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Secret_Sword_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Glaciate*/
-	.name = _("Glaciate"),
-	.accuracy = 95,
-	.base_power = 65,
+    },
+
+    {
+    /*Glaciate*/
+    .name = _("Glaciate"),
+    .accuracy = 95,
+    .base_power = 65,
     .description = (pchar*)Glaciate_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Bolt Strike*/
-	.name = _("Bolt Strike"),
-	.accuracy = 85,
-	.base_power = 130,
+    },
+
+    {
+    /*Bolt Strike*/
+    .name = _("Bolt Strike"),
+    .accuracy = 85,
+    .base_power = 130,
     .description = (pchar*)Bolt_Strike_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Blue Flare*/
-	.name = _("Blue Flare"),
-	.accuracy = 85,
-	.base_power = 130,
+    },
+
+    {
+    /*Blue Flare*/
+    .name = _("Blue Flare"),
+    .accuracy = 85,
+    .base_power = 130,
     .description = (pchar*)Blue_Flare_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fiery Dance*/
-	.name = _("Fiery Dance"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Fiery Dance*/
+    .name = _("Fiery Dance"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Fiery_Dance_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Freeze Shock*/
-	.name = _("Freeze Shock"),
-	.accuracy = 90,
-	.base_power = 140,
+    },
+
+    {
+    /*Freeze Shock*/
+    .name = _("Freeze Shock"),
+    .accuracy = 90,
+    .base_power = 140,
     .description = (pchar*)Freeze_Shock_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = freeze_shock_before_move,
-	},
-	
-	{
-	/*Ice Burn*/
-	.name = _("Ice Burn"),
-	.accuracy = 90,
-	.base_power = 140,
+    },
+
+    {
+    /*Ice Burn*/
+    .name = _("Ice Burn"),
+    .accuracy = 90,
+    .base_power = 140,
     .description = (pchar*)Ice_Burn_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = ice_burn_before_move,
-	},
-	
-	{
-	/*Snarl*/
-	.name = _("Snarl"),
-	.accuracy = 95,
-	.base_power = 55,
+    },
+
+    {
+    /*Snarl*/
+    .name = _("Snarl"),
+    .accuracy = 95,
+    .base_power = 55,
     .description = (pchar*)Snarl_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Icicle Crash*/
-	.name = _("Icicle Crash"),
-	.accuracy = 90,
-	.base_power = 85,
+    },
+
+    {
+    /*Icicle Crash*/
+    .name = _("Icicle Crash"),
+    .accuracy = 90,
+    .base_power = 85,
     .description = (pchar*)Icicle_Crash_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	{
-	.name = _("V-create"),
-	.accuracy = 95,
-	.base_power = 180,
+    .flinch_chance = 30,
+    },
+
+    {
+    .name = _("V-create"),
+    .accuracy = 95,
+    .base_power = 180,
     .description = (pchar*)V_create_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fusion Flare*/
-	.name = _("Fusion Flare"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Fusion Flare*/
+    .name = _("Fusion Flare"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Fusion_Flare_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fusion Bolt*/
-	.name = _("Fusion Bolt"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Fusion Bolt*/
+    .name = _("Fusion Bolt"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Fusion_Bolt_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flying Press*/
-	.name = _("Flying Press"),
-	.accuracy = 95,
-	.base_power = 100,
+    },
+
+    {
+    /*Flying Press*/
+    .name = _("Flying Press"),
+    .accuracy = 95,
+    .base_power = 100,
     .description = (pchar*)Flying_Press_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mat Block*/
-	.name = _("Mat Block"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Mat Block*/
+    .name = _("Mat Block"),
+    .accuracy = 101,
     .description = (pchar*)Mat_Block_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Belch*/
-	.name = _("Belch"),
-	.accuracy = 90,
-	.base_power = 120,
+    },
+
+    {
+    /*Belch*/
+    .name = _("Belch"),
+    .accuracy = 90,
+    .base_power = 120,
     .description = (pchar*)Belch_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Rototiller*/
-	.name = _("Rototiller"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Rototiller*/
+    .name = _("Rototiller"),
+    .accuracy = 101,
     .description = (pchar*)Rototiller_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sticky Web*/
-	.name = _("Sticky Web"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Sticky Web*/
+    .name = _("Sticky Web"),
+    .accuracy = 101,
     .description = (pchar*)Sticky_Web_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_REFLECTABLE,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_REFLECTABLE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fell Stinger*/
-	.name = _("Fell Stinger"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /*Fell Stinger*/
+    .name = _("Fell Stinger"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*)Fell_Stinger_desc,
-	.pp = 25,
+    .pp = 25,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Phantom Force*/
-	.name = _("Phantom Force"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Phantom Force*/
+    .name = _("Phantom Force"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Phantom_Force_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Trick-or-Treat"),
-	.accuracy = 100,
+    },
+
+    {
+    .name = _("Trick-or-Treat"),
+    .accuracy = 100,
     .description = (pchar*)Trick_or_Treat_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Noble Roar*/
-	.name = _("Noble Roar"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Noble Roar*/
+    .name = _("Noble Roar"),
+    .accuracy = 100,
     .description = (pchar*)Noble_Roar_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ion Deluge*/
-	.name = _("Ion Deluge"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Ion Deluge*/
+    .name = _("Ion Deluge"),
+    .accuracy = 101,
     .description = (pchar*)Ion_Deluge_desc,
-	.pp = 25,
-	.priority = 1,
+    .pp = 25,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Parabolic Charge*/
-	.name = _("Parabolic Charge"),
-	.accuracy = 100,
-	.base_power = 65,
+    },
+
+    {
+    /*Parabolic Charge*/
+    .name = _("Parabolic Charge"),
+    .accuracy = 100,
+    .base_power = 65,
     .description = (pchar*)Parabolic_Charge_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Forest‘s Curse"),
-	.accuracy = 100,
+    },
+
+    {
+    .name = _("Forest‘s Curse"),
+    .accuracy = 100,
     .description = (pchar*)Forests_Curse_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Petal Blizzard*/
-	.name = _("Petal Blizzard"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Petal Blizzard*/
+    .name = _("Petal Blizzard"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Petal_Blizzard_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Freeze-Dry"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    .name = _("Freeze-Dry"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Freeze_Dry_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Disarming Voice*/
-	.name = _("Disarming Voice"),
-	.accuracy = 101,
-	.base_power = 40,
+    },
+
+    {
+    /*Disarming Voice*/
+    .name = _("Disarming Voice"),
+    .accuracy = 101,
+    .base_power = 40,
     .description = (pchar*)Disarming_Voice_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Parting Shot*/
-	.name = _("Parting Shot"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Parting Shot*/
+    .name = _("Parting Shot"),
+    .accuracy = 100,
     .description = (pchar*)Parting_Shot_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE |FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE |FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Topsy-Turvy"),
-	.accuracy = 101,
+    },
+
+    {
+    .name = _("Topsy-Turvy"),
+    .accuracy = 101,
     .description = (pchar*)Topsy_Turvy_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/* Draining Kiss*/
-	.name = _("Draining Kiss"),
-	.accuracy = 100,
-	.base_power = 50,
+    },
+
+    {
+    /* Draining Kiss*/
+    .name = _("Draining Kiss"),
+    .accuracy = 100,
+    .base_power = 50,
     .description = (pchar*) Draining_Kiss_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_HEAL | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Crafty Shield*/
-	.name = _("Crafty Shield"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Crafty Shield*/
+    .name = _("Crafty Shield"),
+    .accuracy = 101,
     .description = (pchar*)Crafty_Shield_desc,
-	.pp = 10,
-	.priority = 3,
+    .pp = 10,
+    .priority = 3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Flower Shield*/
-	.name = _("Flower Shield"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Flower Shield*/
+    .name = _("Flower Shield"),
+    .accuracy = 101,
     .description = (pchar*)Flower_Shield_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Grassy Terrain*/
-	.name = _("Grassy Terrain"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Grassy Terrain*/
+    .name = _("Grassy Terrain"),
+    .accuracy = 101,
     .description = (pchar*)Grassy_Terrain_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Misty Terrain*/
-	.name = _("Misty Terrain"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Misty Terrain*/
+    .name = _("Misty Terrain"),
+    .accuracy = 101,
     .description = (pchar*)Misty_Terrain_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Electrify*/
-	.name = _("Electrify"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Electrify*/
+    .name = _("Electrify"),
+    .accuracy = 101,
     .description = (pchar*)Electrify_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Play Rough*/
-	.name = _("Play Rough"),
-	.accuracy = 90,
-	.base_power = 90,
+    },
+
+    {
+    /*Play Rough*/
+    .name = _("Play Rough"),
+    .accuracy = 90,
+    .base_power = 90,
     .description = (pchar*)Play_Rough_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fairy Wind*/
-	.name = _("Fairy Wind"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Fairy Wind*/
+    .name = _("Fairy Wind"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Fairy_Wind_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Moonblast*/
-	.name = _("Moonblast"),
-	.accuracy = 100,
-	.base_power = 95,
+    },
+
+    {
+    /*Moonblast*/
+    .name = _("Moonblast"),
+    .accuracy = 100,
+    .base_power = 95,
     .description = (pchar*)Moonblast_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Boomburst*/
-	.name = _("Boomburst"),
-	.accuracy = 100,
-	.base_power = 140,
+    },
+
+    {
+    /*Boomburst*/
+    .name = _("Boomburst"),
+    .accuracy = 100,
+    .base_power = 140,
     .description = (pchar*)Boomburst_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fairy Lock*/
-	.name = _("Fairy Lock"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Fairy Lock*/
+    .name = _("Fairy Lock"),
+    .accuracy = 101,
     .description = (pchar*)Fairy_Lock_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("King‘s Shield"),
-	.accuracy = 101,
+    },
+
+    {
+    .name = _("King‘s Shield"),
+    .accuracy = 101,
     .description = (pchar*)Kings_Shield_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Play Nice*/
-	.name = _("Play Nice"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Play Nice*/
+    .name = _("Play Nice"),
+    .accuracy = 101,
     .description = (pchar*)Play_Nice_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_atk_1,
-	},
-	
-	{
-	/*Confide*/
-	.name = _("Confide"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Confide*/
+    .name = _("Confide"),
+    .accuracy = 101,
     .description = (pchar*)Confide_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spAtk_1,
-	},
-	
-	{
-	/*Diamond Storm*/
-	.name = _("Diamond Storm"),
-	.accuracy = 95,
-	.base_power = 100,
+    },
+
+    {
+    /*Diamond Storm*/
+    .name = _("Diamond Storm"),
+    .accuracy = 95,
+    .base_power = 100,
     .description = (pchar*)Diamond_Storm_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Steam Eruption*/
-	.name = _("Steam Eruption"),
-	.accuracy = 95,
-	.base_power = 110,
+    },
+
+    {
+    /*Steam Eruption*/
+    .name = _("Steam Eruption"),
+    .accuracy = 95,
+    .base_power = 110,
     .description = (pchar*)Steam_Eruption_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hyperspace Hole*/
-	.name = _("Hyperspace Hole"),
-	.accuracy = 101,
-	.base_power = 80,
+    },
+
+    {
+    /*Hyperspace Hole*/
+    .name = _("Hyperspace Hole"),
+    .accuracy = 101,
+    .base_power = 80,
     .description = (pchar*)Hyperspace_Hole_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Water Shuriken*/
-	.name = _("Water Shuriken"),
-	.accuracy = 100,
-	.base_power = 15,
+    },
+
+    {
+    /*Water Shuriken*/
+    .name = _("Water Shuriken"),
+    .accuracy = 100,
+    .base_power = 15,
     .description = (pchar*)Water_Shuriken_desc,
-	.pp = 20,
-	.priority = 1,
+    .pp = 20,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
+    .type = MTYPE_WATER,
     .multi_hit = {2, 5},
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Mystical Fire*/
-	.name = _("Mystical Fire"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Mystical Fire*/
+    .name = _("Mystical Fire"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Mystical_Fire_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spiky Shield*/
-	.name = _("Spiky Shield"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Spiky Shield*/
+    .name = _("Spiky Shield"),
+    .accuracy = 101,
     .description = (pchar*)Spiky_Shield_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aromatic Mist*/
-	.name = _("Aromatic Mist"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Aromatic Mist*/
+    .name = _("Aromatic Mist"),
+    .accuracy = 101,
     .description = (pchar*)Aromatic_Mist_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Eerie Impulse*/
-	.name = _("Eerie Impulse"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Eerie Impulse*/
+    .name = _("Eerie Impulse"),
+    .accuracy = 100,
     .description = (pchar*)Eerie_Impulse_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_spAtk_2,
-	},
-	
-	{
-	/*Venom Drench*/
-	.name = _("Venom Drench"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Venom Drench*/
+    .name = _("Venom Drench"),
+    .accuracy = 100,
     .description = (pchar*)Venom_Drench_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Powder*/
-	.name = _("Powder"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Powder*/
+    .name = _("Powder"),
+    .accuracy = 100,
     .description = (pchar*)Powder_desc,
-	.pp = 20,
-	.priority = 1,
+    .pp = 20,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Geomancy*/
-	.name = _("Geomancy"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Geomancy*/
+    .name = _("Geomancy"),
+    .accuracy = 101,
     .description = (pchar*)Geomancy_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CHARGE,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CHARGE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Magnetic Flux*/
-	.name = _("Magnetic Flux"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Magnetic Flux*/
+    .name = _("Magnetic Flux"),
+    .accuracy = 101,
     .description = (pchar*)Magnetic_Flux_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_SNATCH | FLAG_AUTHENTIC,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Happy Hour*/
-	.name = _("Happy Hour"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Happy Hour*/
+    .name = _("Happy Hour"),
+    .accuracy = 101,
     .description = (pchar*)Happy_Hour_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Electric Terrain*/
-	.name = _("Electric Terrain"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Electric Terrain*/
+    .name = _("Electric Terrain"),
+    .accuracy = 101,
     .description = (pchar*)Electric_Terrain_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dazzling Gleam*/
-	.name = _("Dazzling Gleam"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Dazzling Gleam*/
+    .name = _("Dazzling Gleam"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Dazzling_Gleam_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Celebrate*/
-	.name = _("Celebrate"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Celebrate*/
+    .name = _("Celebrate"),
+    .accuracy = 101,
     .description = (pchar*)Celebrate_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Baby-Doll Eyes"),
-	.accuracy = 100,
+    },
+
+    {
+    .name = _("Baby-Doll Eyes"),
+    .accuracy = 100,
     .description = (pchar*)Baby_Doll_Eyes_desc,
-	.pp = 30,
-	.priority = 1,
+    .pp = 30,
+    .priority = 1,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &target_lower_atk_1,
-	},
-	
-	{
-	/*Nuzzle*/
-	.name = _("Nuzzle"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Nuzzle*/
+    .name = _("Nuzzle"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Nuzzle_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &nuzzle_procs,
-	},
-	
-	{
-	/*Hold Back*/
-	.name = _("Hold Back"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Hold Back*/
+    .name = _("Hold Back"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Hold_Back_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Infestation*/
-	.name = _("Infestation"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Infestation*/
+    .name = _("Infestation"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Infestation_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Power-Up Punch"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    .name = _("Power-Up Punch"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Power_Up_Punch_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIGHTING,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIGHTING,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Oblivion Wing*/
-	.name = _("Oblivion Wing"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Oblivion Wing*/
+    .name = _("Oblivion Wing"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Oblivion_Wing_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .drain = 75,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thousand Arrows*/
-	.name = _("Thousand Arrows"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Thousand Arrows*/
+    .name = _("Thousand Arrows"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Thousand_Arrows_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Thousand Waves*/
-	.name = _("Thousand Waves"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Thousand Waves*/
+    .name = _("Thousand Waves"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Thousand_Waves_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Hold Hands*/
-	.name = _("Hold Hands"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Hold Hands*/
+    .name = _("Hold Hands"),
+    .accuracy = 101,
     .description = (pchar*)Hold_Hands_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_AUTHENTIC,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
-	},
-	
-	{
-	.name = _("Land‘s Wrath"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    .name = _("Land‘s Wrath"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Lands_Wrath_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Light of Ruin*/
-	.name = _("Light of Ruin"),
-	.accuracy = 90,
-	.base_power = 140,
+    },
+
+    {
+    /*Light of Ruin*/
+    .name = _("Light of Ruin"),
+    .accuracy = 90,
+    .base_power = 140,
     .description = (pchar*)Light_of_Ruin_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Origin Pulse*/
-	.name = _("Origin Pulse"),
-	.accuracy = 85,
-	.base_power = 110,
+    },
+
+    {
+    /*Origin Pulse*/
+    .name = _("Origin Pulse"),
+    .accuracy = 85,
+    .base_power = 110,
     .description = (pchar*)Origin_Pulse_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Precipice Blades*/
-	.name = _("Precipice Blades"),
-	.accuracy = 85,
-	.base_power = 120,
+    },
+
+    {
+    /*Precipice Blades*/
+    .name = _("Precipice Blades"),
+    .accuracy = 85,
+    .base_power = 120,
     .description = (pchar*)Precipice_Blades_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Ascent*/
-	.name = _("Dragon Ascent"),
-	.accuracy = 100,
-	.base_power = 120,
+    },
+
+    {
+    /*Dragon Ascent*/
+    .name = _("Dragon Ascent"),
+    .accuracy = 100,
+    .base_power = 120,
     .description = (pchar*)Dragon_Ascent_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &dragon_ascent_procs,
-	},
-	
-	{
-	/*Hyperspace Fury*/
-	.name = _("Hyperspace Fury"),
-	.accuracy = 101,
-	.base_power = 100,
+    },
+
+    {
+    /*Hyperspace Fury*/
+    .name = _("Hyperspace Fury"),
+    .accuracy = 101,
+    .base_power = 100,
     .description = (pchar*)Hyperspace_Fury_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shore Up*/
-	.name = _("Shore Up"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Shore Up*/
+    .name = _("Shore Up"),
+    .accuracy = 101,
     .description = (pchar*)Shore_Up_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*First Impression*/
-	.name = _("First Impression"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*First Impression*/
+    .name = _("First Impression"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)First_Impression_desc,
-	.pp = 10,
-	.priority = 2,
+    .pp = 10,
+    .priority = 2,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Baneful Bunker*/
-	.name = _("Baneful Bunker"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Baneful Bunker*/
+    .name = _("Baneful Bunker"),
+    .accuracy = 101,
     .description = (pchar*)Baneful_Bunker_desc,
-	.pp = 10,
-	.priority = 4,
+    .pp = 10,
+    .priority = 4,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spirit Shackle*/
-	.name = _("Spirit Shackle"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Spirit Shackle*/
+    .name = _("Spirit Shackle"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Spirit_Shackle_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Darkest Lariat*/
-	.name = _("Darkest Lariat"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Darkest Lariat*/
+    .name = _("Darkest Lariat"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Darkest_Lariat_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sparkling Aria*/
-	.name = _("Sparkling Aria"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Sparkling Aria*/
+    .name = _("Sparkling Aria"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Sparkling_Aria_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Ice Hammer*/
-	.name = _("Ice Hammer"),
-	.accuracy = 90,
-	.base_power = 100,
+    },
+
+    {
+    /*Ice Hammer*/
+    .name = _("Ice Hammer"),
+    .accuracy = 90,
+    .base_power = 100,
     .description = (pchar*)Ice_Hammer_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Floral Healing*/
-	.name = _("Floral Healing"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Floral Healing*/
+    .name = _("Floral Healing"),
+    .accuracy = 101,
     .description = (pchar*)Floral_Healing_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*High Horsepower*/
-	.name = _("High Horsepower"),
-	.accuracy = 95,
-	.base_power = 95,
+    },
+
+    {
+    /*High Horsepower*/
+    .name = _("High Horsepower"),
+    .accuracy = 95,
+    .base_power = 95,
     .description = (pchar*)High_Horsepower_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Strength Sap*/
-	.name = _("Strength Sap"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Strength Sap*/
+    .name = _("Strength Sap"),
+    .accuracy = 100,
     .description = (pchar*)Strength_Sap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_REFLECTABLE,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_REFLECTABLE,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Solar Blade*/
-	.name = _("Solar Blade"),
-	.accuracy = 100,
-	.base_power = 125,
+    },
+
+    {
+    /*Solar Blade*/
+    .name = _("Solar Blade"),
+    .accuracy = 100,
+    .base_power = 125,
     .description = (pchar*)Solar_Blade_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .before_move = solarblade_before_move,
-	},
-	
-	{
-	/*Leafage*/
-	.name = _("Leafage"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Leafage*/
+    .name = _("Leafage"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Leafage_desc,
-	.pp = 40,
+    .pp = 40,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spotlight*/
-	.name = _("Spotlight"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Spotlight*/
+    .name = _("Spotlight"),
+    .accuracy = 101,
     .description = (pchar*)Spotlight_desc,
-	.pp = 15,
-	.priority = 3,
+    .pp = 15,
+    .priority = 3,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Toxic Thread*/
-	.name = _("Toxic Thread"),
-	.accuracy = 100,
+    },
+
+    {
+    /*Toxic Thread*/
+    .name = _("Toxic Thread"),
+    .accuracy = 100,
     .description = (pchar*)Toxic_Thread_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Laser Focus*/
-	.name = _("Laser Focus"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Laser Focus*/
+    .name = _("Laser Focus"),
+    .accuracy = 101,
     .description = (pchar*)Laser_Focus_desc,
-	.pp = 30,
+    .pp = 30,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Gear Up*/
-	.name = _("Gear Up"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Gear Up*/
+    .name = _("Gear Up"),
+    .accuracy = 101,
     .description = (pchar*)Gear_Up_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Throat Chop*/
-	.name = _("Throat Chop"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Throat Chop*/
+    .name = _("Throat Chop"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Throat_Chop_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Pollen Puff*/
-	.name = _("Pollen Puff"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Pollen Puff*/
+    .name = _("Pollen Puff"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Pollen_Puff_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Anchor Shot*/
-	.name = _("Anchor Shot"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Anchor Shot*/
+    .name = _("Anchor Shot"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Anchor_Shot_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psychic Terrain*/
-	.name = _("Psychic Terrain"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Psychic Terrain*/
+    .name = _("Psychic Terrain"),
+    .accuracy = 101,
     .description = (pchar*)Psychic_Terrain_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Lunge*/
-	.name = _("Lunge"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Lunge*/
+    .name = _("Lunge"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Lunge_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_BUG,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_BUG,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fire Lash*/
-	.name = _("Fire Lash"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Fire Lash*/
+    .name = _("Fire Lash"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Fire_Lash_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Power Trip*/
-	.name = _("Power Trip"),
-	.accuracy = 100,
-	.base_power = 20,
+    },
+
+    {
+    /*Power Trip*/
+    .name = _("Power Trip"),
+    .accuracy = 100,
+    .base_power = 20,
     .description = (pchar*)Power_Trip_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Burn Up*/
-	.name = _("Burn Up"),
-	.accuracy = 100,
-	.base_power = 130,
+    },
+
+    {
+    /*Burn Up*/
+    .name = _("Burn Up"),
+    .accuracy = 100,
+    .base_power = 130,
     .description = (pchar*)Burn_Up_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Speed Swap*/
-	.name = _("Speed Swap"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Speed Swap*/
+    .name = _("Speed Swap"),
+    .accuracy = 101,
     .description = (pchar*)Speed_Swap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Smart Strike*/
-	.name = _("Smart Strike"),
-	.accuracy = 101,
-	.base_power = 70,
+    },
+
+    {
+    /*Smart Strike*/
+    .name = _("Smart Strike"),
+    .accuracy = 101,
+    .base_power = 70,
     .description = (pchar*)Smart_Strike_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Purify*/
-	.name = _("Purify"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Purify*/
+    .name = _("Purify"),
+    .accuracy = 101,
     .description = (pchar*)Purify_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_POISON,
-	.m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_POISON,
+    .m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Revelation Dance*/
-	.name = _("Revelation Dance"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Revelation Dance*/
+    .name = _("Revelation Dance"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Revelation_Dance_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_DANCE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Core Enforcer*/
-	.name = _("Core Enforcer"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Core Enforcer*/
+    .name = _("Core Enforcer"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Core_Enforcer_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Trop Kick*/
-	.name = _("Trop Kick"),
-	.accuracy = 100,
-	.base_power = 70,
+    },
+
+    {
+    /*Trop Kick*/
+    .name = _("Trop Kick"),
+    .accuracy = 100,
+    .base_power = 70,
     .description = (pchar*)Trop_Kick_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GRASS,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GRASS,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Instruct*/
-	.name = _("Instruct"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Instruct*/
+    .name = _("Instruct"),
+    .accuracy = 101,
     .description = (pchar*)Instruct_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_STATUS,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Beak Blast*/
-	.name = _("Beak Blast"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Beak Blast*/
+    .name = _("Beak Blast"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Beak_Blast_desc,
     15,
     -3,
     1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FLYING,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FLYING,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Clanging Scales*/
-	.name = _("Clanging Scales"),
-	.accuracy = 100,
-	.base_power = 110,
+    },
+
+    {
+    /*Clanging Scales*/
+    .name = _("Clanging Scales"),
+    .accuracy = 100,
+    .base_power = 110,
     .description = (pchar*)Clanging_Scales_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Dragon Hammer*/
-	.name = _("Dragon Hammer"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Dragon Hammer*/
+    .name = _("Dragon Hammer"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Dragon_Hammer_desc,
-	.pp = 15,
+    .pp = 15,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DRAGON,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DRAGON,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Brutal Swing*/
-	.name = _("Brutal Swing"),
-	.accuracy = 100,
-	.base_power = 60,
+    },
+
+    {
+    /*Brutal Swing*/
+    .name = _("Brutal Swing"),
+    .accuracy = 100,
+    .base_power = 60,
     .description = (pchar*)Brutal_Swing_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_DARK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_DARK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Aurora Veil*/
-	.name = _("Aurora Veil"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Aurora Veil*/
+    .name = _("Aurora Veil"),
+    .accuracy = 101,
     .description = (pchar*)Aurora_Veil_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ICE,
-	.m_flags = FLAG_SNATCH,
+    .type = MTYPE_ICE,
+    .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shell Trap*/
-	.name = _("Shell Trap"),
-	.accuracy = 100,
-	.base_power = 150,
+    },
+
+    {
+    /*Shell Trap*/
+    .name = _("Shell Trap"),
+    .accuracy = 100,
+    .base_power = 150,
     .description = (pchar*)Shell_Trap_desc,
     .pp = 5,
     .priority = -3,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FIRE,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Fleur Cannon*/
-	.name = _("Fleur Cannon"),
-	.accuracy = 90,
-	.base_power = 130,
+    },
+
+    {
+    /*Fleur Cannon*/
+    .name = _("Fleur Cannon"),
+    .accuracy = 90,
+    .base_power = 130,
     .description = (pchar*)Fleur_Cannon_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Psychic Fangs*/
-	.name = _("Psychic Fangs"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Psychic Fangs*/
+    .name = _("Psychic Fangs"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Psychic_Fangs_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Stomping Tantrum*/
-	.name = _("Stomping Tantrum"),
-	.accuracy = 100,
-	.base_power = 75,
+    },
+
+    {
+    /*Stomping Tantrum*/
+    .name = _("Stomping Tantrum"),
+    .accuracy = 100,
+    .base_power = 75,
     .description = (pchar*)Stomping_Tantrum_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GROUND,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GROUND,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Shadow Bone*/
-	.name = _("Shadow Bone"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Shadow Bone*/
+    .name = _("Shadow Bone"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Shadow_Bone_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Accelerock*/
-	.name = _("Accelerock"),
-	.accuracy = 100,
-	.base_power = 40,
+    },
+
+    {
+    /*Accelerock*/
+    .name = _("Accelerock"),
+    .accuracy = 100,
+    .base_power = 40,
     .description = (pchar*)Accelerock_desc,
-	.pp = 20,
-	.priority = 1,
+    .pp = 20,
+    .priority = 1,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ROCK,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ROCK,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Liquidation*/
-	.name = _("Liquidation"),
-	.accuracy = 100,
-	.base_power = 85,
+    },
+
+    {
+    /*Liquidation*/
+    .name = _("Liquidation"),
+    .accuracy = 100,
+    .base_power = 85,
     .description = (pchar*)Liquidation_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_WATER,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_WATER,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Prismatic Laser*/
-	.name = _("Prismatic Laser"),
-	.accuracy = 100,
-	.base_power = 160,
+    },
+
+    {
+    /*Prismatic Laser*/
+    .name = _("Prismatic Laser"),
+    .accuracy = 100,
+    .base_power = 160,
     .description = (pchar*)Prismatic_Laser_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_SPECIAL,
-	.type = MTYPE_PSYCHIC,
-	.m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_RECHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Spectral Thief*/
-	.name = _("Spectral Thief"),
-	.accuracy = 100,
-	.base_power = 90,
+    },
+
+    {
+    /*Spectral Thief*/
+    .name = _("Spectral Thief"),
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Spectral_Thief_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_AUTHENTIC | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_AUTHENTIC | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Sunsteel Strike*/
-	.name = _("Sunsteel Strike"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Sunsteel Strike*/
+    .name = _("Sunsteel Strike"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Sunsteel_Strike_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_STEEL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_STEEL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Moongeist Beam*/
-	.name = _("Moongeist Beam"),
-	.accuracy = 100,
-	.base_power = 100,
+    },
+
+    {
+    /*Moongeist Beam*/
+    .name = _("Moongeist Beam"),
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Moongeist_Beam_desc,
-	.pp = 5,
+    .pp = 5,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_GHOST,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_GHOST,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Tearful Look*/
-	.name = _("Tearful Look"),
-	.accuracy = 101,
+    },
+
+    {
+    /*Tearful Look*/
+    .name = _("Tearful Look"),
+    .accuracy = 101,
     .description = (pchar*)Tearful_Look_desc,
-	.pp = 20,
+    .pp = 20,
     .category = MOVE_STATUS,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	{
-	/*Zing Zap*/
-	.name = _("Zing Zap"),
-	.accuracy = 100,
-	.base_power = 80,
+    },
+
+    {
+    /*Zing Zap*/
+    .name = _("Zing Zap"),
+    .accuracy = 100,
+    .base_power = 80,
     .description = (pchar*)Zing_Zap_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.flinch_chance = 30,
-	},
-	
-	/* Nature's Madness */
-	{
+    .flinch_chance = 30,
+    },
+
+    /* Nature's Madness */
+    {
     .name = _("Nature‘s Madness"),
-	.accuracy = 90,
+    .accuracy = 90,
     .description = (pchar*)Natures_Madness_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_FAIRY,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_FAIRY,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
-	/* Multi-Attack */
-	{
+    },
+
+    /* Multi-Attack */
+    {
     .name = _("Multi-Attack"),
-	.accuracy = 100,
-	.base_power = 90,
+    .accuracy = 100,
+    .base_power = 90,
     .description = (pchar*)Multi_Attack_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_NORMAL,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_NORMAL,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-    
-	/* Plasma Fists */
-	{
+    },
+
+    /* Plasma Fists */
+    {
     .name = _("Plasma Fists"),
-	.accuracy = 100,
-	.base_power = 100,
+    .accuracy = 100,
+    .base_power = 100,
     .description = (pchar*)Plasma_Fists_desc,
-	.pp = 10,
+    .pp = 10,
     .category = MOVE_PHYSICAL,
-	.type = MTYPE_ELECTRIC,
-	.m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .type = MTYPE_ELECTRIC,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	},
-	
+    },
+
 };
-
-
-
