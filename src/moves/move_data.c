@@ -1667,7 +1667,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_USER,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
     },
 
