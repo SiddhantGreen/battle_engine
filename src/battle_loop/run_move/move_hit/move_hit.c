@@ -205,8 +205,10 @@ void move_hit()
             }
 
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
-                s16 delta = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
-                delta = MIN(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
+                u16 heal = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
+                heal = NUM_MOD(TOTAL_HP(bank_index), heal);
+                heal = MIN(TOTAL_HP(bank_index), (heal + B_CURRENT_HP(bank_index)));
+                s16 delta = heal;
                 hp_anim_change(bank_index, delta);
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
             }
