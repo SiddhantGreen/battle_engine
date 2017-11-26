@@ -35,14 +35,6 @@ void set_player_battle_components()
 void set_opponent_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
-<<<<<<< HEAD
-    u16 species = SPECIES_STEELIX;
-    //u16 species = pokemon_getattr(&party_opponent[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_SMOG;
-    u16 move_2 = MOVE_SLUDGE;
-    u16 move_3 = MOVE_BONE_CLUB;
-    u16 move_4 = MOVE_FIRE_BLAST;
-=======
     u16 species = SPECIES_SQUIRTLE;
     //u16 species = pokemon_getattr(&party_opponent[0], REQUEST_SPECIES, NULL);
     u16 move_1 = MOVE_EMBER;
@@ -50,7 +42,6 @@ void set_opponent_battle_components()
     u16 move_3 = MOVE_HOWL;
     u16 move_4 = MOVE_IRON_DEFENSE;
     u8 level = 27;
->>>>>>> upstream/master
 
     pokemon_setattr(&party_opponent[0], REQUEST_SPECIES, &species);
     pokemon_setattr(&party_opponent[0], REQUEST_NICK, &pokemon_names[species]);
