@@ -834,3 +834,28 @@ struct move_procs poison_powder_procs = {
     0,
     100,
 };
+
+//10% Paralyze 
+struct move_procs paralyze_10_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_PARALYZE,
+    0,
+    10,
+};
+
+//Thunder
+struct move_procs thunder_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_PARALYZE,
+    0,
+    30,

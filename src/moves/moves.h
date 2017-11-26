@@ -342,6 +342,8 @@ extern struct move_procs sing_procs;
 extern struct move_procs burn_10_procs;
 extern struct move_procs freeze_10_procs;
 extern struct move_procs confuse_10_procs;
+extern struct move_procs paralyze_10_procs
+extern struct move_procs thunder_procs
 extern struct move_procs shell_smash_procs;
 extern struct move_procs dragon_ascent_procs;
 extern struct move_procs shift_gear_procs;
