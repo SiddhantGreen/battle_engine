@@ -28,7 +28,7 @@ void set_player_battle_components()
 void set_opponent_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
-    u16 species = SPECIES_SLOWBRO;
+    u16 species = SPECIES_BULBASAUR;
     //u16 species = pokemon_getattr(&party_opponent[0], REQUEST_SPECIES, NULL);
     u16 move_1 = MOVE_GROWL;
     u16 move_2 = MOVE_ASSIST;

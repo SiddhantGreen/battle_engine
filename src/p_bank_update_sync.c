@@ -73,7 +73,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.disabled_moves[1] = 0;
         p_bank[bank]->b_data.disabled_moves[2] = 0;
         p_bank[bank]->b_data.disabled_moves[3] = 0;
-		p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
+        p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
     }
 
     p_bank[bank]->b_data.illusion = 0;
