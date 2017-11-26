@@ -72,7 +72,7 @@ void run_decision(void)
             set_callback1(option_selection);
             super.multi_purpose_state_tracker = 0;
             battle_master->execution_index = 0;
-			battle_master->fight_menu_content_spawned  = 0;
+            battle_master->fight_menu_content_spawned  = 0;
             break;
         }
         case S_END_BATTLE:
@@ -102,7 +102,7 @@ void battle_loop()
 			set_callback1(run_decision);
 			return;
 		}
-		
+
 		// check if Player is trying to use a disabled move
 		u8 index = get_move_index(move_player, p_bank[PLAYER_SINGLES_BANK]->this_pkmn);
 		if (p_bank[PLAYER_SINGLES_BANK]->b_data.disabled_moves[index] > 0) {
@@ -118,5 +118,3 @@ void battle_loop()
 	battle_set_order();
 	set_callback1(run_decision);
 }
-
-

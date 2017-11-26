@@ -1,6 +1,7 @@
 #include <pokeagb/pokeagb.h>
 #include "../moves/moves.h"
 
+extern void dprintf(const char * str, ...);
 
 struct anonymous_callback* get_anonymous_callback(u8 CB_id) {
   struct anonymous_callback* a_cb_start = NULL;
@@ -51,6 +52,7 @@ bool add_anon_cb(u8 CB_id, s8 priority, u8 delay, u8 dur, u8 src, u32 func)
         a_cb_start[i].duration = dur;
         a_cb_start[i].source_bank = src;
         a_cb_start[i].func = func;
+        a_cb_start[i].in_use = true;
         return true;
       }
     }
@@ -72,6 +74,8 @@ u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move)
     if (!a_cb_start[i].in_use)
       break;
     for (u8 j = i + 1; j < 4; j++) {
+      if (!a_cb_start[j].in_use)
+        break;
       if (a_cb_start[i].priority > a_cb_start[j].priority) {
         struct anonymous_callback temp = a_cb_start[i];
         a_cb_start[i] = a_cb_start[j];
@@ -79,13 +83,21 @@ u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move)
       }
     }
   }
-
   // execute in order
   for (u8 i = 0; i < 4; i++) {
     if (!a_cb_start[i].in_use)
       return false;
     AnonymousCallback func = (AnonymousCallback)a_cb_start[i].func;
-    return func(attacker, defender, move);
+    if (a_cb_start[i].delay_before_effect < 1) {
+      if (a_cb_start[i].duration == 0) {
+        a_cb_start[i].in_use = false;
+      } else {
+        a_cb_start[i].duration--;
+      }
+    } else {
+      a_cb_start[i].delay_before_effect--;
+    }
+    return func(attacker, a_cb_start[i].source_bank, move);
   }
   return false;
 }
