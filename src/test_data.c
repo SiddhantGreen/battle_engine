@@ -9,9 +9,9 @@ void set_player_battle_components()
     /* Change these variables to change what the player's first pokemon has */
     u16 species = SPECIES_CHARIZARD;
     //u16 species = pokemon_getattr(&party_player[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_MAGIC_COAT;
-    u16 move_2 = MOVE_STUN_SPORE;
-    u16 move_3 = MOVE_SLEEP_POWDER;
+    u16 move_1 = MOVE_ME_FIRST;
+    u16 move_2 = MOVE_EMBER;
+    u16 move_3 = MOVE_FLAME_WHEEL;
     u16 move_4 = MOVE_POISON_POWDER;
 
     pokemon_setattr(&party_player[0], REQUEST_SPECIES, &species);
@@ -32,10 +32,10 @@ void set_opponent_battle_components()
     /* Change these variables to change what the player's first pokemon has */
     u16 species = SPECIES_BULBASAUR;
     //u16 species = pokemon_getattr(&party_opponent[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_MAGIC_COAT;
-    u16 move_2 = MOVE_MAGIC_COAT;
-    u16 move_3 = MOVE_STUN_SPORE;
-    u16 move_4 = MOVE_SLEEP_POWDER;
+    u16 move_1 = MOVE_EMBER;
+    u16 move_2 = MOVE_QUICK_ATTACK;
+    u16 move_3 = MOVE_GROWL;
+    u16 move_4 = MOVE_QUICK_ATTACK;
 
     pokemon_setattr(&party_opponent[0], REQUEST_SPECIES, &species);
     pokemon_setattr(&party_opponent[0], REQUEST_NICK, &pokemon_names[species]);

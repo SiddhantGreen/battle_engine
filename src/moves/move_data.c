@@ -5576,6 +5576,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = me_first_on_tryhit,
     },
 
     {

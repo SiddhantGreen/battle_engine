@@ -23,7 +23,7 @@ extern u16 rand_range(u16, u16);
 extern bool is_fainted(void);
 extern void move_procs_perform(u8 bank_index, u16 move);
 extern void status_procs_perform(u8 bank_index);
-
+extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
 
 bool damage_result_msg(u8 bank_index)
 {
@@ -84,7 +84,7 @@ enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move)
     return USE_MOVE_NORMAL;
 }
 
-extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
+
 void move_hit()
 {
     if (task_is_running(hpbar_apply_dmg))

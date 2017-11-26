@@ -235,3 +235,46 @@ u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat)
 	enqueue_message(CURRENT_MOVE(bank), bank, STRING_SHROUDED_MAGICCOAT, 0);
 	return add_anon_cb(CB_ON_TRYHIT_MOVE, 2, 0, 1, bank, (u32)(magic_coat_tryhit_anon));
 }
+
+
+/* Me first */
+const static u16 me_first_disallow[] = {
+	MOVE_CHATTER, MOVE_COUNTER, MOVE_COVET, MOVE_FOCUS_PUNCH,
+	MOVE_ME_FIRST, MOVE_METAL_BURST, MOVE_MIRROR_COAT,
+	MOVE_STRUGGLE, MOVE_THIEF, MOVE_MAX, MOVE_NONE
+};
+
+u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move)
+{
+	u8 base_power = B_MOVE_POWER(attacker);
+	if (attacker == src) {
+		u8 bp = NUM_MOD(base_power, 150);
+		if (bp < base_power)
+			base_power = 255;
+	}
+	return base_power;
+}
+
+u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first)
+{
+	// fail if user hasn't moved before target
+	if (attacker != battle_master->first_bank)
+		return false;
+
+	u16 move = CURRENT_MOVE(defender);
+	if (IS_MOVE_STATUS(move))
+		return false;
+	for (u8 i = 0; i < (sizeof(me_first_disallow) / sizeof(u16)); i++) {
+		if (me_first_disallow[i] == move)
+			return false;
+	}
+
+	// move is valid to be copied
+	CURRENT_MOVE(attacker) = move;
+	set_attack_battle_master(attacker, B_MOVE_BANK(attacker),
+	 												MOVE_PRIORITY(CURRENT_MOVE(attacker)));
+	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_ATTACK_USED, 0);
+	add_anon_cb(CB_ON_BASE_POWER_MOVE, 0, 0, 0,
+		 					attacker, (u32)me_first_on_base_power_anon);
+	return true;
+}
