@@ -91,6 +91,8 @@ enum battle_string_ids {
     STRING_CLEAR_SMOG = 146,
     STRING_BOUNCED_BACK = 148,
     STRING_SHROUDED_MAGICCOAT = 150,
+    STRING_SNATCH_WAITING = 152,
+    STRING_SNATCHED_MOVE = 154,
 
 };
 
@@ -212,23 +214,18 @@ static const pchar str_charge_dive_p[] = _("{ATTACKING_MON} became\ncloaked in a
 static const pchar str_charge_dive_o[] = _("Foe {ATTACKING_MON} became\ncloaked in a harsh light!");
 static const pchar str_fly_p[] = _("{ATTACKING_MON} flew up high!");
 static const pchar str_fly_o[] = _("Foe {ATTACKING_MON} flew up high!");
-
 static const pchar str_phantom_force_p[] = _("{ATTACKING_MON} vanished instantly!");
 static const pchar str_phantom_force_o[] = _("Foe {ATTACKING_MON} vanished instantly!");
-
 static const pchar str_shadow_force_p[] = _("{ATTACKING_MON} vanished instantly!");
 static const pchar str_shadow_force_o[] = _("Foe {ATTACKING_MON} vanished instantly!");
-
 static const pchar str_bounce_p[] = _("{ATTACKING_MON} sprang up!");
 static const pchar str_bounce_o[] = _("Foe {ATTACKING_MON} sprang up!");
 static const pchar str_sky_drop_p[] = _("{ATTACKING_MON} took\n{DEFENDING_MON} into the sky!");
 static const pchar str_sky_drop_o[] = _("Foe {ATTACKING_MON} took\n{DEFENDING_MON} into the sky!");
 static const pchar str_charge_solarblade_p[] = _("{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_solarblade_o[] = _("Foe {ATTACKING_MON} absorbed\nlight!");
-
 static const pchar str_invulnerable_p[] = _("Foe {DEFENDING_MON} was invulnerable\nto the attack!");
 static const pchar str_invulnerable_o[] = _("{DEFENDING_MON} was invulnerable\nto the attack!");
-
 static const pchar str_residual_dmg[] = _("{ATTACKING_MON} took some damage from\n{ATTACK_NAME}!");
 static const pchar str_residual_status_dmg[] = _("{ATTACKING_MON} took some damage from\nbeing {STATUS_NAME}!");
 static const pchar str_fast_asleep_p[] = _("{ATTACKING_MON}\nis fast asleep.");
@@ -252,9 +249,13 @@ static const pchar str_fully_paralyzed_o[] = _("Foe {ATTACKING_MON} is paralyzed
 static const pchar str_clear_smog_p[] = _("{DEFENDING_MON}’s stat changes\nwere removed!");
 static const pchar str_clear_smog_o[] = _("Foe {DEFENDING_MON}’s stat changes\nwere removed!");
 static const pchar str_bounced_back_p[] = _("Foe’s {ATTACKING_MON}’s {ATTACK_NAME}\nwas bounced back by Magic Coat!");
-static const pchar str_bounced_back_o[] = _("{ATTACKING_MON}’s {ATTACK_NAME} was\nbounced back by Magic Coat");
-static const pchar str_shrouded_magiccoat_p[] = _("{ATTACKING_MON} shrouded\nitself with Magic Coat");
-static const pchar str_shrouded_magiccoat_o[] = _("Foe {ATTACKING_MON} shrouded\nitself with Magic Coat");
+static const pchar str_bounced_back_o[] = _("{ATTACKING_MON}’s {ATTACK_NAME} was\nbounced back by Magic Coat!");
+static const pchar str_shrouded_magiccoat_p[] = _("{ATTACKING_MON} shrouded\nitself with Magic Coat!");
+static const pchar str_shrouded_magiccoat_o[] = _("Foe {ATTACKING_MON} shrouded\nitself with Magic Coat!");
+static const pchar str_snatch_waiting_p[] = _("{ATTACKING_MON} waits for a target\nto make a move!");
+static const pchar str_snatch_waiting_o[] = _("Foe {ATTACKING_MON} waits for a target\nto make a move!");
+static const pchar str_snatched_p[] = _("{ATTACKING_MON} snatched\nfoe {DEFENDING_MON}’s move!");
+static const pchar str_snatched_o[] = _("Foe {ATTACKING_MON} snatched\n{DEFENDING_MON}’s move!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -276,7 +277,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[152] = {
+static const pchar* battle_strings[156] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -359,6 +360,8 @@ static const pchar* battle_strings[152] = {
    (pchar*)&str_clear_smog_p, (pchar*)&str_clear_smog_o,
    (pchar*)&str_bounced_back_p, (pchar*)&str_bounced_back_o,
    (pchar*)&str_shrouded_magiccoat_p, (pchar*)&str_shrouded_magiccoat_o,
+   (pchar*)&str_snatch_waiting_p, (pchar*)&str_snatch_waiting_o,
+   (pchar*)&str_snatched_p, (pchar*)&str_snatched_o,
 
 
 };

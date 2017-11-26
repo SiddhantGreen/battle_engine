@@ -69,6 +69,7 @@ struct move_procs {
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
 #define IS_DEFROST(move) ((moves[move].m_flags) & (1 << 4))
 #define IS_REFLECTABLE(move) ((moves[move].m_flags) & (1 << 12))
+#define IS_SNATCHABLE(move) ((moves[move].m_flags) & (1 << 13))
 #define IS_CHARGE(move) ((moves[move].m_flags) & (1 << 1))
 #define IS_DANCE(move) ((moves[move].m_flags) & (1 << 21))
 #define IS_TRIAGE(move) ((moves[move].m_flags) & (1 << 20))
@@ -275,6 +276,8 @@ extern u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move);
 extern u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move);
 extern u8 clear_smog_effect(u8 attacker, u8 defender, u16 move);
 extern u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat);
+extern u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first);
+extern u8 snatch_on_effect(u8 attacker, u8 defender, u16 move);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
@@ -342,8 +345,8 @@ extern struct move_procs sing_procs;
 extern struct move_procs burn_10_procs;
 extern struct move_procs freeze_10_procs;
 extern struct move_procs confuse_10_procs;
-extern struct move_procs paralyze_10_procs
-extern struct move_procs thunder_procs
+extern struct move_procs paralyze_10_procs;
+extern struct move_procs thunder_procs;
 extern struct move_procs shell_smash_procs;
 extern struct move_procs dragon_ascent_procs;
 extern struct move_procs shift_gear_procs;
