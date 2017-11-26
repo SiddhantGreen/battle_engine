@@ -822,3 +822,15 @@ struct move_procs shadow_ball_procs = {
     0,
 };
 
+//poison powder
+struct move_procs poison_powder_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_POISON,
+    0,
+    100,
+};
