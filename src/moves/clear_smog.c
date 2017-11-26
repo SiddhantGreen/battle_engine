@@ -17,4 +17,5 @@ u8 clear_smog_effect(u8 attacker, u8 defender, u16 move)
   p_bank[defender]->b_data.evasion = 0;
   p_bank[defender]->b_data.crit_mod = 0;
   enqueue_message(move, attacker, STRING_CLEAR_SMOG, 0);
+  return true;
 }
