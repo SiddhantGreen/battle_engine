@@ -109,13 +109,13 @@ void move_hit()
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
                     enqueue_message(move, bank_index, STRING_FAILED, move);
-                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
                     return;
                 case TARGET_MOVE_IMMUNITY:
                     B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
-                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
                     return;
                 default:
@@ -125,13 +125,13 @@ void move_hit()
             switch (move_tryhit_side(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
                     enqueue_message(move, bank_index, STRING_FAILED, move);
-                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
                     return;
                 case TARGET_MOVE_IMMUNITY:
                     B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
-                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
                     return;
                 default:
@@ -151,7 +151,7 @@ void move_hit()
                 super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
             } else {
                 B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
                 set_callback1(run_move);
                 return;
             }
@@ -161,7 +161,7 @@ void move_hit()
             if (!try_hit(bank_index)) {
                 // move has missed
                 B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
                 set_callback1(run_move);
                 return;
             }
@@ -172,7 +172,7 @@ void move_hit()
             if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
                 enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
                 B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
                 set_callback1(run_move);
                 return;
             }
@@ -188,7 +188,7 @@ void move_hit()
             u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             if (!damage_result_msg(bank_index)) {
                 set_callback1(run_move);
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
                 return;
             }
             battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
@@ -222,7 +222,7 @@ void move_hit()
 			if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
 				if (!(moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index)))) {
 					enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_FAILED, 0);
-					super.multi_purpose_state_tracker = S_PP_REDUCTION;
+					super.multi_purpose_state_tracker = S_MOVE_FAILED;
 					set_callback1(run_move);
 					return;
 				}
@@ -303,7 +303,7 @@ void move_hit()
         if (moves[move].on_after_move) {
             moves[move].on_after_move(bank_index);
         }
-        super.multi_purpose_state_tracker = S_PP_REDUCTION;
+        super.multi_purpose_state_tracker = S_MOVE_FAILED;
         set_callback1(run_move);
         break;
     };
