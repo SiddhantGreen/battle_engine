@@ -4393,6 +4393,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
+    .on_effect_cb = snatch_on_effect,
     },
 
     {

@@ -274,7 +274,30 @@ u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first)
 	set_attack_battle_master(attacker, B_MOVE_BANK(attacker),
 	 												MOVE_PRIORITY(CURRENT_MOVE(attacker)));
 	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_ATTACK_USED, 0);
-	add_anon_cb(CB_ON_BASE_POWER_MOVE, 0, 0, 0,
+	return add_anon_cb(CB_ON_BASE_POWER_MOVE, 0, 0, 0,
 		 					attacker, (u32)me_first_on_base_power_anon);
+}
+
+/* Snatch */
+extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
+u16 statch_tryhit_anon(u8 user, u8 source, u16 move)
+{
+	if ((user == source) || (!IS_SNATCHABLE(move))) {
+		return true;
+	}
+	if (battle_master->execution_index) {
+		battle_master->second_bank = source;
+	} else {
+		battle_master->first_bank = source;
+	}
+	CURRENT_MOVE(source) = move;
+	set_attack_battle_master(source, B_MOVE_BANK(source), 0);
+	enqueue_message(0, source, STRING_SNATCHED_MOVE, 0);
 	return true;
+}
+
+u8 snatch_on_effect(u8 attacker, u8 defender, u16 move)
+{
+	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_SNATCH_WAITING, 0);
+	return add_anon_cb(CB_ON_TRYHIT_MOVE, 0, 0, 1, attacker, (u32)(statch_tryhit_anon));
 }

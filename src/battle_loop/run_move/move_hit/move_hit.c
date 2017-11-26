@@ -271,40 +271,40 @@ void move_hit()
 			status_procs_perform(bank_index);
 			break;
 		}
-        case S_AFTER_MOVE_SECONDARY:
-        // after_move_secondary
-		// set flinch chance of target
-            battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
-        // if multi-hit not satisfied call again
-            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter++;
-                if (is_fainted()) {
-                    dprintf("Fainted on %d hits\n", battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 0;
-                    super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
-                } else {
-                    super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
-                }
+    case S_AFTER_MOVE_SECONDARY:
+    // after_move_secondary
+// set flinch chance of target
+        battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
+    // if multi-hit not satisfied call again
+        if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
+            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;
+            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter++;
+            if (is_fainted()) {
+                dprintf("Fainted on %d hits\n", battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 0;
+                super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
             } else {
-                if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
-                    u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
-                    damage_result_msg(bank_index);
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
-                    enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
-                }
-                super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
             }
-            break;
-        case S_AFTER_MOVE:
-        // after move
-            if (moves[move].on_after_move) {
-                moves[move].on_after_move(bank_index);
+        } else {
+            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
+                u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
+                damage_result_msg(bank_index);
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
+                enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
             }
-            super.multi_purpose_state_tracker = S_PP_REDUCTION;
-            set_callback1(run_move);
-            break;
+            super.multi_purpose_state_tracker = S_AFTER_MOVE;
+        }
+        break;
+    case S_AFTER_MOVE:
+    // after move
+        if (moves[move].on_after_move) {
+            moves[move].on_after_move(bank_index);
+        }
+        super.multi_purpose_state_tracker = S_PP_REDUCTION;
+        set_callback1(run_move);
+        break;
     };
 }

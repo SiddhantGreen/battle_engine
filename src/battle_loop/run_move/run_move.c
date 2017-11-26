@@ -44,7 +44,7 @@ enum BeforeMoveStatus before_move_cb(u8 bank)
     /*
     u16 move_foe = CURRENT_MOVE(FOE_BANK(bank));
     u16 move = CURRENT_MOVE(bank);
-    
+
     u8 result = USE_MOVE_NORMAL;
     if (moves[move].before_move_priority > moves[move_foe].foe_before_move_priority) {
         result = foe_move_before_move(bank);
@@ -155,14 +155,14 @@ void run_move()
             break;
         }
         case S_RESIDUAL_MOVES:
-        {        
+        {
             if (bank_index != battle_master->first_bank) {
                 // residual callbacks for moves
                 u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
                 u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
                 if (player_speed > opponent_speed) {
                     run_residual_cbs(PLAYER_SINGLES_BANK);
-                    run_residual_cbs(OPPONENT_SINGLES_BANK); 
+                    run_residual_cbs(OPPONENT_SINGLES_BANK);
                 } else {
                     run_residual_cbs(OPPONENT_SINGLES_BANK);
                     run_residual_cbs(PLAYER_SINGLES_BANK);
@@ -184,45 +184,39 @@ void run_move()
                 super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
                 return;
             }
-            
+
             if (battle_master->status_state == 2)
                 super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
             break;
         }
         case S_WAIT_HPUPDATE_RUN_MOVE:
         {
-			/* Passive residual effects from engine structs */
-			for (u8 i = 0; i < 4; i++) {
-				if (p_bank[bank_index]->b_data.disabled_moves[i] > 0) {
-					p_bank[bank_index]->b_data.disabled_moves[i]--;
-				}
-			}
-			u8 index = p_bank[bank_index]->b_data.disable_used_on_slot;
-			if (index < 4) {
-				if (!(p_bank[bank_index]->b_data.disabled_moves[index])) {
-					p_bank[bank_index]->b_data.disable_used_on_slot = 0xFF;
-				}
-			}
-			LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
-			// update moves used history
-			for (u8 i = 0; i < 4; i++) {
-				if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
-					break;;
-				if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
-					p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
-					break;
-				}
-			}
-			
-            super.multi_purpose_state_tracker = S_RUN_FAINT;
-            set_callback1(run_decision);
-            break;
+          /* Passive residual effects from engine structs */
+          for (u8 i = 0; i < 4; i++) {
+          	if (p_bank[bank_index]->b_data.disabled_moves[i] > 0) {
+          		p_bank[bank_index]->b_data.disabled_moves[i]--;
+          	}
+          }
+          u8 index = p_bank[bank_index]->b_data.disable_used_on_slot;
+          if (index < 4) {
+          	if (!(p_bank[bank_index]->b_data.disabled_moves[index])) {
+          		p_bank[bank_index]->b_data.disable_used_on_slot = 0xFF;
+          	}
+          }
+          LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
+          // update moves used history
+          for (u8 i = 0; i < 4; i++) {
+          	if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
+          		break;;
+          	if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
+          		p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
+          		break;
+          	}
+          }
+
+          super.multi_purpose_state_tracker = S_RUN_FAINT;
+          set_callback1(run_decision);
+          break;
         }
     };
 }
-
-
-
-
-
-
