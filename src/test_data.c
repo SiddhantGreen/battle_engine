@@ -3,6 +3,7 @@
 #include "battle_data/pkmn_bank_stats.h"
 #include "battle_data/battle_state.h"
 
+extern void dprintf(const char * str, ...);
 void set_player_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
@@ -23,6 +24,7 @@ void set_player_battle_components()
     pokemon_setattr(&party_player[0], REQUEST_PP2, &moves[move_2].pp);
     pokemon_setattr(&party_player[0], REQUEST_PP3, &moves[move_3].pp);
     pokemon_setattr(&party_player[0], REQUEST_PP4, &moves[move_4].pp);
+    dprintf("%d is size\n", sizeof(battle_master->anon_cbs));
 }
 
 void set_opponent_battle_components()
