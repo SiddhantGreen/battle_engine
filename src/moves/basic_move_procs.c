@@ -638,9 +638,21 @@ struct move_procs user_raise_acc_2 = {
     0,
 };
 
+//Raises user's evasiveness 1 stage
+struct move_procs user_raise_evn_1 = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 100, 0},
+    {0, 0, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
 
-//poison sting
-struct move_procs poison_sting_procs = {
+//poison sting, sludge (30%)
+struct move_procs poison_30_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -650,6 +662,19 @@ struct move_procs poison_sting_procs = {
     AILMENT_POISON,
     0,
     30,
+};
+
+//smog (40%)
+struct move_procs poison_40_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_POISON,
+    0,
+    40,
 };
 
 // Twineedle
@@ -691,7 +716,7 @@ struct move_procs supersonic_procs = {
     100,
 };
 
-// 10% Burn: Ember
+// 10% Burn: Ember, Fire Blast
 struct move_procs burn_10_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -728,6 +753,19 @@ struct move_procs confuse_10_procs = {
     AILMENT_CONFUSION,
     0,
     10,
+};
+
+// 100% Confuse
+struct move_procs confuse_100_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_CONFUSION,
+    0,
+    100,
 };
 
 // Shell Smash
@@ -846,6 +884,19 @@ struct move_procs paralyze_10_procs = {
     AILMENT_PARALYZE,
     0,
     10,
+};
+
+//30% Paralyze
+struct move_procs paralyze_30_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_PARALYZE,
+    0,
+    30,
 };
 
 //Thunder

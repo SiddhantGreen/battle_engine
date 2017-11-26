@@ -1227,7 +1227,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_POISON,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &poison_sting_procs,
+    .procs = &poison_30_procs,
     },
 
     {
@@ -2045,8 +2045,8 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &user_raise_evn_1,
     },
 
     {
@@ -2057,7 +2057,8 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
+	.heal = 50,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
     .procs = &basic_proc,
     },
 
@@ -2069,7 +2070,7 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_def_1,
     },
 
@@ -2081,8 +2082,8 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &user_raise_def_1,
     .on_effect_cb = minimize_on_effect_cb,
     },
 
@@ -2107,7 +2108,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_GHOST,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &confuse_100_procs,
     },
 
     {
@@ -2118,7 +2119,7 @@ struct move_data moves[] = {
     .pp = 40,
     .category = MOVE_STATUS,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_def_1,
     },
 
@@ -2130,7 +2131,7 @@ struct move_data moves[] = {
     .pp = 40,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_def_1,
     },
 
@@ -2142,7 +2143,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_def_2,
     },
 
@@ -2269,7 +2270,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GHOST,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &paralyze_30_procs,
     },
 
     {
@@ -2279,10 +2280,10 @@ struct move_data moves[] = {
     .base_power = 30,
     .description = (pchar*)Smog_desc,
     .pp = 20,
-    .category = MOVE_SPECIAL,
+    .category = MOVE_SPECIAL,	
     .type = MTYPE_POISON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_40_procs,
     },
 
     {
@@ -2295,7 +2296,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_30_procs,
     },
 
     {
@@ -2322,7 +2323,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &burn_10_procs,
     },
 
     {
@@ -4998,7 +4999,7 @@ struct move_data moves[] = {
     .pp = 40,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_atk_1,
     },
 
