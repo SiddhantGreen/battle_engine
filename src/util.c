@@ -10,7 +10,7 @@ extern void dprintf(const char * str, ...);
 
 u16 rand_range(u16 min, u16 max)
 {
-    return (rand() / (0xFFFF / (max - min))) + min;
+    return (rand() % (max - min)) + min;
 }
 
 bool knows_move(u16 move_id, struct Pokemon* p)
@@ -112,7 +112,7 @@ u8 count_usable_moves(u8 bank)
                 usable_moves++;
         } else {
             break;
-        }     
+        }
     }
     return usable_moves;
 }
@@ -125,11 +125,7 @@ u8 count_total_moves(u8 bank)
             move_total++;
         } else {
             break;
-        }     
+        }
     }
     return move_total;
 }
-
-
-
-
