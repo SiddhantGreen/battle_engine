@@ -348,4 +348,5 @@ extern struct move_procs nuzzle_procs;
 extern struct move_procs bubble_beam_procs;
 extern struct move_procs aurora_beam_procs;
 extern struct move_procs shadow_ball_procs;
+extern struct move_procs poison_powder_procs;
 #endif /* movesABLE_DATA_H_ */

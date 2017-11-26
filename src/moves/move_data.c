@@ -1398,12 +1398,12 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &burn_10_procs,
-    },
-
-    {
-    /*Mist*/
-    .name = _("Mist"),
-    .accuracy = 101,
+	},
+	
+	{
+	/*Mist*/
+	.name = _("Mist"),
+	.accuracy = 101,
     .description = (pchar*)Mist_desc,
     .pp = 30,
     .category = MOVE_PHYSICAL,
@@ -1566,6 +1566,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+	.recoil = 25,
     },
 
     {
@@ -1707,7 +1708,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_POISON,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_powder_procs,
     },
 
     {
@@ -1719,7 +1720,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &nuzzle_procs,
     },
 
     {
@@ -1731,7 +1732,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &sing_procs,
     },
 
     {
