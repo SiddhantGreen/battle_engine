@@ -1395,15 +1395,15 @@ struct move_data moves[] = {
     .description = (pchar*)Flamethrower_desc,
     .pp = 15,
     .category = MOVE_SPECIAL,
-    .type = MTYPE_FIRE,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
-    },
-
-    {
-    /*Mist*/
-    .name = _("Mist"),
-    .accuracy = 101,
+	.type = MTYPE_FIRE,
+	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &burn_10_procs,
+	},
+	
+	{
+	/*Mist*/
+	.name = _("Mist"),
+	.accuracy = 101
     .description = (pchar*)Mist_desc,
     .pp = 30,
     .category = MOVE_PHYSICAL,
@@ -1459,8 +1459,8 @@ struct move_data moves[] = {
     .description = (pchar*)Ice_Beam_desc,
     .pp = 10,
     .category = MOVE_SPECIAL,
-    .type = MTYPE_ICE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+	.type = MTYPE_ICE,
+	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &freeze_10_procs,
     },
 
@@ -1472,16 +1472,16 @@ struct move_data moves[] = {
     .description = (pchar*)Blizzard_desc,
     .pp = 5,
     .category = MOVE_SPECIAL,
-    .type = MTYPE_ICE,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
-    },
-
-    {
-    /*Psybeam*/
-    .name = _("Psybeam"),
-    .accuracy = 100,
-    .base_power = 65,
+	.type = MTYPE_ICE,
+	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &freeze_10_procs,
+	},
+	
+	{
+	/*Psybeam*/
+	.name = _("Psybeam"),
+	.accuracy = 100,
+	.base_power = 65,
     .description = (pchar*)Psybeam_desc,
     .pp = 20,
     .category = MOVE_SPECIAL,
@@ -1498,29 +1498,29 @@ struct move_data moves[] = {
     .description = (pchar*)Bubble_Beam_desc,
     .pp = 20,
     .category = MOVE_SPECIAL,
-    .type = MTYPE_WATER,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
-    },
-
-    {
-    /*Aurora Beam*/
-    .name = _("Aurora Beam"),
-    .accuracy = 100,
-    .base_power = 65,
+	.type = MTYPE_WATER,
+	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &bubble_beam_procs,
+	},
+	
+	{
+	/*Aurora Beam*/
+	.name = _("Aurora Beam"),
+	.accuracy = 100,
+	.base_power = 65,
     .description = (pchar*)Aurora_Beam_desc,
     .pp = 20,
     .category = MOVE_SPECIAL,
-    .type = MTYPE_ICE,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
-    },
-
-    {
-    /*Hyper Beam*/
-    .name = _("Hyper Beam"),
-    .accuracy = 90,
-    .base_power = 150,
+	.type = MTYPE_ICE,
+	.m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &aurora_beam_procs,
+	},
+	
+	{
+	/*Hyper Beam*/
+	.name = _("Hyper Beam"),
+	.accuracy = 90,
+	.base_power = 150,
     .description = (pchar*)Hyper_Beam_desc,
     .pp = 5,
     .category = MOVE_SPECIAL,

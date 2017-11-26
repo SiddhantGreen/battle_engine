@@ -782,6 +782,33 @@ struct move_procs nuzzle_procs = {
     100,
 };
 
+
+// Bubble Beam
+struct move_procs bubble_beam_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{0, 0, 10, 0, 0, 0, 0, 0},
+    {0, 0, -1, 0, 0, 0, 0, 0},   
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
+};
+
+// Aurora Beam
+struct move_procs aurora_beam_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+	{10, 0, 0, 0, 0, 0, 0, 0},
+    {-1, 0, 0, 0, 0, 0, 0, 0},   
+	AILMENT_NONE,
+	AILMENT_NONE,
+	0,
+	0,
+};
+
 // Shadow ball
 struct move_procs shadow_ball_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
@@ -794,3 +821,4 @@ struct move_procs shadow_ball_procs = {
     0,
     0,
 };
+
