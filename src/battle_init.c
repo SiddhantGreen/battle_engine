@@ -10,19 +10,13 @@ extern void setup(void);
 extern void battle_slidein(void);
 extern void player_throwball_and_moveout_scene(struct Object*);
 extern void player_hpbar_slidin_slow(u8 t_id);
-extern void vblank_cb_no_merge(void);
-extern void vblank_cb_merge_move_select(void);
-extern void battle_loop(void);
-extern void init_selection_cursor(u8 mode, u8 bank);
-extern void load_icons_moves(u8 bank);
 extern void set_active_movement(u8 task_id);
-extern void update_cursor_move_select(u8 task_id);
-extern void show_move_data(void);
 extern void option_selection(void);
-extern u8 get_ability(struct Pokemon* p);
 extern void dprintf(const char * str, ...);
-extern void status_graphical_update(u8 bank, enum Effect status);
 extern void residual_cbs_init(void);
+extern void test_battle_data(void);
+extern void update_pbank(u8 bank, struct update_flags* flags);
+
 void init_battle_elements()
 {
     // allocate battle specific resources
@@ -44,110 +38,10 @@ void init_battle_elements()
     help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
-
-
     battle_type_flags = BATTLE_FLAG_WILD;
-    u16 t = MOVE_CLEAR_SMOG;
-    pokemon_setattr(&party_player[0], REQUEST_MOVE3, &t);
-    t = rand_range(0, MOVE_MAX);
-    pokemon_setattr(&party_player[0], REQUEST_MOVE4, &t);
-    t = 10;
-    pokemon_setattr(&party_player[0], REQUEST_PP3, &t);
-    t = 10;
-    pokemon_setattr(&party_player[0], REQUEST_PP4, &t);
-    //t = ITEM_POTION;
-    //pokemon_setattr(&party_player[0], REQUEST_HELD_ITEM, &t);
-    t = rand_range(0, MOVE_MAX);
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE1, &t);
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE2, &t);
-    pokemon_setattr(&party_opponent[0], REQUEST_MOVE3, &t);
+    test_battle_data();
 }
 
-extern void ailment_decode(u8 bank, u8 ailment);
-
-void update_pbank(u8 bank, struct update_flags* flags)
-{
-    // base stats
-    u16 species = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPECIES, NULL);
-    p_bank[bank]->b_data.species = species;
-    p_bank[bank]->b_data.gender = pokemon_get_gender(p_bank[bank]->this_pkmn);
-    p_bank[bank]->b_data.current_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, NULL);;
-    p_bank[bank]->b_data.total_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_TOTAL_HP, NULL);;
-    p_bank[bank]->b_data.ability = get_ability(p_bank[bank]->this_pkmn);
-    p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
-    p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
-    p_bank[bank]->b_data.poke_ball = 0;
-    p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
-    p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
-    p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
-    p_bank[bank]->b_data.type[2] = MTYPE_EGG;
-
-    ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
-
-    if (!flags->pass_stats) {
-        p_bank[bank]->b_data.attack = 0;
-        p_bank[bank]->b_data.defense = 0;
-        p_bank[bank]->b_data.speed = 0;
-        p_bank[bank]->b_data.sp_atk = 0;
-        p_bank[bank]->b_data.sp_def = 0;
-        p_bank[bank]->b_data.accuracy = 0;
-        p_bank[bank]->b_data.evasion = 0;
-        p_bank[bank]->b_data.crit_mod = 0;
-    }
-
-    // user actions should always be cleared
-    p_bank[bank]->b_data.is_running = 0;
-    p_bank[bank]->b_data.using_item = 0;
-    p_bank[bank]->b_data.is_switching = 0;
-    p_bank[bank]->b_data.skip_move_select = 0;
-    p_bank[bank]->b_data.first_turn = 1;
-
-    if (!flags->pass_atk_history) {
-        p_bank[bank]->b_data.my_target = 0xFF;
-        p_bank[bank]->b_data.last_move = 0;
-        p_bank[bank]->b_data.current_move = 0;
-        p_bank[bank]->b_data.last_damage = 0;
-        p_bank[bank]->b_data.last_attacked_by = 0xFF;
-        p_bank[bank]->b_data.last_used_item = 0;
-        p_bank[bank]->b_data.ate_berry = 0;
-    }
-
-    if (!flags->pass_status) {
-        p_bank[bank]->b_data.status = 0;
-        p_bank[bank]->b_data.confusion_turns = 0;
-        p_bank[bank]->b_data.status_turns = 0;
-        p_bank[bank]->b_data.substitute_health = 0;
-        p_bank[bank]->b_data.v_status = 0;
-        p_bank[bank]->b_data.is_taunted = 0;
-        p_bank[bank]->b_data.is_charmed = 0;
-        p_bank[bank]->b_data.is_grounded = 0;
-    } else {
-        status_graphical_update(bank, p_bank[bank]->b_data.status);
-    }
-
-    if (!flags->pass_disables) {
-        p_bank[bank]->b_data.disabled_moves[0] = 0;
-        p_bank[bank]->b_data.disabled_moves[1] = 0;
-        p_bank[bank]->b_data.disabled_moves[2] = 0;
-        p_bank[bank]->b_data.disabled_moves[3] = 0;
-		p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
-    }
-
-    p_bank[bank]->b_data.illusion = 0;
-    p_bank[bank]->b_data.fainted = 0;
-}
-
-extern u8 ailment_encode(u8 bank);
-
-void sync_battler_struct(u8 bank)
-{
-    u16 c_hp = p_bank[bank]->b_data.current_hp;
-    u8 ailment = ailment_encode(bank);
-    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
-
-    /* TODO: make ailment array conform with external ailments */
-    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
-}
 
 /* Called right after sliding in effects have finished executing. */
 void init_battle()
@@ -206,109 +100,5 @@ void init_battle()
         }
         default:
             break;
-    };
-}
-
-/* Fight menu and move menu selection. Preperation to go into battle loop*/
-void option_selection()
-{
-    switch (super.multi_purpose_state_tracker) {
-        case 0:
-        {
-            // if move is charging up, then option selection is skipped
-            if (HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_CHARGING)) {
-                set_callback1(battle_loop);
-                return;
-            } else if (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select) {
-                set_callback1(battle_loop);
-                return;
-            }
-            // initialize fight menu selection
-            vblank_handler_set(vblank_cb_no_merge);
-            void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textbox_action_selectMap, sizeof(battle_textbox_action_selectMap));
-            init_selection_cursor(1, 0);
-
-            // next state
-            bs_anim_status = 1;
-            super.multi_purpose_state_tracker++;
-            break;
-        }
-        case 1:
-            // wait for input selection from fight menu
-            if (bs_anim_status)
-                return;
-            // interpret selection
-            switch (battle_master->selected_option) {
-                case OPTION_FIGHT:
-                    super.multi_purpose_state_tracker = (battle_master->fight_menu_content_spawned) ? 7 : 2;
-                    break;
-                case OPTION_POKEMON:
-                    super.multi_purpose_state_tracker = 3;
-                    break;
-                case OPTION_BAG:
-                    super.multi_purpose_state_tracker = 4;
-                    break;
-                case OPTION_RUN:
-                    super.multi_purpose_state_tracker = 5;
-                    break;
-
-            };
-            break;
-        case 2:
-            /* FIGHT selected from fight menu */
-
-            // update tilemap
-            vblank_handler_set(vblank_cb_merge_move_select);
-            void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
-
-            // init cursor
-            init_selection_cursor(0, 0);
-
-            // init move types
-            load_icons_moves(PLAYER_SINGLES_BANK);
-            // set into pause state
-            bs_anim_status = 1;
-            super.multi_purpose_state_tracker = 6;
-            break;
-        case 3:
-            // POKEMON selection from fight menu
-            fade_screen(0xFFFFFFFF, 0,0,16, 0x0000);
-            extern void switch_scene_main(void);
-            super.multi_purpose_state_tracker = 0;
-            set_callback1(switch_scene_main);
-            break;
-        case 4:
-            // BAG selected from fight menu
-            break;
-        case 5:
-        {
-            // RUN selected from fight menu
-            p_bank[PLAYER_SINGLES_BANK]->b_data.is_running = true;
-            super.multi_purpose_state_tracker = 8;
-        }
-            break;
-        case 6:
-            break;
-        case 7:
-            {
-            vblank_handler_set(vblank_cb_merge_move_select);
-            void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
-            show_move_data();
-            tasks[task_add(update_cursor_move_select, 1)].priv[0] = 0;
-            bs_anim_status = 1;
-            super.multi_purpose_state_tracker = 6;
-            break;
-            }
-        case 8:
-        {
-            set_callback1(battle_loop);
-            void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textboxMap, sizeof(battle_textboxMap));
-            super.multi_purpose_state_tracker = 0;
-            break;
-        }
     };
 }
