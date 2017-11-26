@@ -1947,7 +1947,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_SNATCH,
-    .procs = &target_raise_atk_1,
+    .procs = &user_raise_atk_1,
     },
 
     {
