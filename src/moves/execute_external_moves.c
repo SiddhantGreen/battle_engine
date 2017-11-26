@@ -51,7 +51,7 @@ u16 pick_rand_metronome_move()
 u8 metronome_on_modify_move(u8 bank, u8 target, u16 move_metronome)
 {
     CURRENT_MOVE(bank) = pick_rand_metronome_move();
- 	set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
+		set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
     enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
     return true;
 }
@@ -110,7 +110,7 @@ u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
                 array_slot++;
             }
         }
-        
+
         if (array_slot) {
             CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
             set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
@@ -127,20 +127,20 @@ u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
 
 /* Assist */
 const static u16 assist_disallow[] = {
-    MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW, 
-    MOVE_BOUNCE, MOVE_CHATTER, MOVE_CIRCLE_THROW, 
-    MOVE_COPYCAT, MOVE_COUNTER, MOVE_COVET, 
-    MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_DIG, 
-    MOVE_DIVE, MOVE_DRAGON_TAIL, MOVE_ENDURE, 
-    MOVE_FEINT, MOVE_FLY, MOVE_FOCUS_PUNCH, 
-    MOVE_FOLLOW_ME, MOVE_HELPING_HAND, MOVE_KINGS_SHIELD, 
-    MOVE_MAT_BLOCK, MOVE_ME_FIRST, MOVE_METRONOME, 
-    MOVE_MIMIC, MOVE_MIRROR_COAT, MOVE_MIRROR_MOVE, 
-    MOVE_NATURE_POWER, MOVE_PHANTOM_FORCE, MOVE_PROTECT, 
-    MOVE_RAGE_POWDER, MOVE_ROAR, MOVE_SHADOW_FORCE, 
-    MOVE_SKETCH, MOVE_SKY_DROP, MOVE_SLEEP_TALK, 
-    MOVE_SNATCH, MOVE_SPIKY_SHIELD, MOVE_STRUGGLE, 
-    MOVE_SWITCHEROO, MOVE_THIEF, MOVE_TRANSFORM, 
+    MOVE_ASSIST, MOVE_BELCH, MOVE_BESTOW,
+    MOVE_BOUNCE, MOVE_CHATTER, MOVE_CIRCLE_THROW,
+    MOVE_COPYCAT, MOVE_COUNTER, MOVE_COVET,
+    MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_DIG,
+    MOVE_DIVE, MOVE_DRAGON_TAIL, MOVE_ENDURE,
+    MOVE_FEINT, MOVE_FLY, MOVE_FOCUS_PUNCH,
+    MOVE_FOLLOW_ME, MOVE_HELPING_HAND, MOVE_KINGS_SHIELD,
+    MOVE_MAT_BLOCK, MOVE_ME_FIRST, MOVE_METRONOME,
+    MOVE_MIMIC, MOVE_MIRROR_COAT, MOVE_MIRROR_MOVE,
+    MOVE_NATURE_POWER, MOVE_PHANTOM_FORCE, MOVE_PROTECT,
+    MOVE_RAGE_POWDER, MOVE_ROAR, MOVE_SHADOW_FORCE,
+    MOVE_SKETCH, MOVE_SKY_DROP, MOVE_SLEEP_TALK,
+    MOVE_SNATCH, MOVE_SPIKY_SHIELD, MOVE_STRUGGLE,
+    MOVE_SWITCHEROO, MOVE_THIEF, MOVE_TRANSFORM,
     MOVE_TRICK, MOVE_WHIRLWIND, MOVE_MAX, MOVE_NONE,
 };
 
@@ -170,7 +170,7 @@ u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
             }
         }
     }
-    
+
     if (array_slot) {
         CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
         set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
@@ -218,7 +218,20 @@ u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move)
     }
 }
 
+/* Mirror coat */
+extern bool add_anon_cb(u8 CB_id, s8 priority, u8 delay, u8 dur, u8 src, u32 func);
 
+u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move)
+{
+	if ((user == source) || B_MOVE_HAS_BOUNCED(user) || (!IS_REFLECTABLE(move)))
+		return true;
+	TARGET_OF(user) = user;
+	enqueue_message(CURRENT_MOVE(user), user, STRING_BOUNCED_BACK, 0);
+	return true;
+}
 
-
-
+u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat)
+{
+	enqueue_message(CURRENT_MOVE(bank), bank, STRING_SHROUDED_MAGICCOAT, 0);
+	return add_anon_cb(CB_ON_TRYHIT_MOVE, 2, 0, 1, bank, (u32)(magic_coat_tryhit_anon));
+}

@@ -89,6 +89,8 @@ enum battle_string_ids {
     STRING_FREEZE_THAWED = 142,
     STRING_FULL_PARA = 144,
     STRING_CLEAR_SMOG = 146,
+    STRING_BOUNCED_BACK = 148,
+    STRING_SHROUDED_MAGICCOAT = 150,
 
 };
 
@@ -249,6 +251,10 @@ static const pchar str_fully_paralyzed_p[] = _("{ATTACKING_MON} is paralyzed!\nI
 static const pchar str_fully_paralyzed_o[] = _("Foe {ATTACKING_MON} is paralyzed!\nIt can’t move!");
 static const pchar str_clear_smog_p[] = _("{DEFENDING_MON}’s stat changes\nwere removed!");
 static const pchar str_clear_smog_o[] = _("Foe {DEFENDING_MON}’s stat changes\nwere removed!");
+static const pchar str_bounced_back_p[] = _("Foe’s {ATTACKING_MON}’s {ATTACK_NAME}\nwas bounced back by Magic Coat!");
+static const pchar str_bounced_back_o[] = _("{ATTACKING_MON}’s {ATTACK_NAME} was\nbounced back by Magic Coat");
+static const pchar str_shrouded_magiccoat_p[] = _("{ATTACKING_MON} shrouded\nitself with Magic Coat");
+static const pchar str_shrouded_magiccoat_o[] = _("Foe {ATTACKING_MON} shrouded\nitself with Magic Coat");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -270,7 +276,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[148] = {
+static const pchar* battle_strings[152] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -351,6 +357,8 @@ static const pchar* battle_strings[148] = {
    (pchar*)&str_thawed_out_p, (pchar*)&str_thawed_out_o,
    (pchar*)&str_fully_paralyzed_p, (pchar*)&str_fully_paralyzed_o,
    (pchar*)&str_clear_smog_p, (pchar*)&str_clear_smog_o,
+   (pchar*)&str_bounced_back_p, (pchar*)&str_bounced_back_o,
+   (pchar*)&str_shrouded_magiccoat_p, (pchar*)&str_shrouded_magiccoat_o,
 
 
 };

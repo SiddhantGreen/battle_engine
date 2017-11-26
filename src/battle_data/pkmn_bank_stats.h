@@ -8,8 +8,8 @@
 #include "battle_text/battle_pick_message.h"
 
 
-/* 
- * Get Pokemon's current battle stats based on stage changes to stat 
+/*
+ * Get Pokemon's current battle stats based on stage changes to stat
  *
  */
 #define B_ATTACK_STAT(bank) stage_modify_stat(pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK, NULL), p_bank[bank]->b_data.attack, 0, bank)
@@ -53,7 +53,7 @@
 #define LAST_MOVE(bank) p_bank[bank]->b_data.last_move
 #define BANK_ABILITY(bank) p_bank[bank]->b_data.ability
 #define B_MOVE_BANK(bank) (bank == battle_master->first_bank) ? 0 : 1
-#define B_MOVE_TYPE(bank, i) battle_master->b_moves[B_MOVE_BANK(bank)].type[i] 
+#define B_MOVE_TYPE(bank, i) battle_master->b_moves[B_MOVE_BANK(bank)].type[i]
 #define B_MOVE_POWER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].power
 #define B_MOVE_STAB(bank) battle_master->b_moves[B_MOVE_BANK(bank)].stab
 #define B_MOVE_ACCURACY(bank) battle_master->b_moves[B_MOVE_BANK(bank)].accuracy
@@ -68,6 +68,7 @@
 #define B_MOVE_WILL_CRIT_SET(bank, result) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit = result
 #define B_MOVE_WILL_CRIT(bank) battle_master->b_moves[B_MOVE_BANK(bank)].will_crit
 #define B_MOVE_CAN_CRIT(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].can_crit)
+#define B_MOVE_HAS_BOUNCED(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].has_bounced)
 #define B_MOVE_DMG(bank) battle_master->b_moves[B_MOVE_BANK(bank)].dmg
 #define B_MOVE_EFFECTIVENESS(bank) battle_master->b_moves[B_MOVE_BANK(bank)].effectiveness
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_atk)
@@ -114,7 +115,7 @@
 #define OPPONENT_SIDE(bank) ((!(get_side(bank))) * 2)
 
 #define MOVE_EFFECTIVENESS(target_type, dmg_type) effectiveness_chart[((target_type * 19) + (dmg_type))]
- 
+
 extern s8 ability_priority_mod(u8 bank, u16 move_id);
 extern s8 ability_attack_mod(u8 bank, u16 stat_total);
 extern s8 ability_defense_mod(u8 bank, u16 stat_total);

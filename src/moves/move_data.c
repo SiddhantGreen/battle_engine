@@ -1399,7 +1399,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &burn_10_procs,
 	},
-	
+
 	{
 	/*Mist*/
 	.name = _("Mist"),
@@ -3808,7 +3808,7 @@ struct move_data moves[] = {
     .accuracy = 100,
     .description = (pchar*)Mirror_Coat_desc,
     .pp = 20,
-    .priority = -5,
+    .priority = -4,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -4241,6 +4241,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = magic_coat_on_tryhit,
     },
 
     {

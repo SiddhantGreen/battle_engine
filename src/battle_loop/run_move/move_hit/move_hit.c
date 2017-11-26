@@ -27,7 +27,7 @@ extern void status_procs_perform(u8 bank_index);
 
 bool damage_result_msg(u8 bank_index)
 {
-    
+
     // effectiveness msgs
     bool effective = true;
     switch (B_MOVE_EFFECTIVENESS(bank_index)) {
@@ -41,11 +41,11 @@ bool damage_result_msg(u8 bank_index)
                 enqueue_message(0, 0, STRING_MOVE_NVE, 0);
             break;
         case TE_SUPER_EFFECTIVE:
-            if (!B_MOVE_MULTI(bank_index))    
+            if (!B_MOVE_MULTI(bank_index))
                 enqueue_message(0, 0, STRING_MOVE_SE, 0);
             break;
         case TE_OHKO:
-            if (!B_MOVE_MULTI(bank_index))    
+            if (!B_MOVE_MULTI(bank_index))
                 enqueue_message(0, 0, STRING_OHKO, 0);
             break;
         default:
@@ -68,7 +68,7 @@ enum TryHitMoveStatus {
     TARGET_MOVE_IMMUNITY,
 };
 
-enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move) 
+enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
 {
     if (moves[move].on_tryhit_move) {
         return moves[move].on_tryhit_move(attacker, defender, move);
@@ -76,7 +76,7 @@ enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
     return USE_MOVE_NORMAL;
 }
 
-enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move) 
+enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move)
 {
     if (moves[move].on_tryhit_side_move) {
         return moves[move].on_tryhit_side_move(attacker, defender, move);
@@ -84,14 +84,14 @@ enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move)
     return USE_MOVE_NORMAL;
 }
 
-
+extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
 void move_hit()
 {
     if (task_is_running(hpbar_apply_dmg))
         return;
     while (peek_message())
         return;
-        
+
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     u16 move = CURRENT_MOVE(bank_index);
     switch (super.multi_purpose_state_tracker) {
@@ -103,6 +103,8 @@ void move_hit()
                 set_callback1(run_decision);
                 return;
             }
+            // anon move tryhit cb
+            exec_anonymous_callback(CB_ON_TRYHIT_MOVE, bank_index, TARGET_OF(bank_index), move);
             // move tryhit callback
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
@@ -155,7 +157,7 @@ void move_hit()
             }
             break;
         case S_GENERAL_TRYHIT:
-        
+
             if (!try_hit(bank_index)) {
                 // move has missed
                 B_MOVE_FAILED(bank_index) = 1;
@@ -201,7 +203,7 @@ void move_hit()
             if (moves[move].heal) {
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
             }
-            
+
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
                 s16 delta = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
                 delta = MIN(B_CURRENT_HP(bank_index) + delta, TOTAL_HP(bank_index));
@@ -255,7 +257,7 @@ void move_hit()
                 hp_anim_change(bank_index, delta);
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_DRAIN, 0);
             }
-            super.multi_purpose_state_tracker = S_SECONDARY_ROLL_CHANCE;            
+            super.multi_purpose_state_tracker = S_SECONDARY_ROLL_CHANCE;
             break;
         }
         case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
@@ -306,5 +308,3 @@ void move_hit()
             break;
     };
 }
-
-

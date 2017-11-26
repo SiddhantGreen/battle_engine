@@ -97,8 +97,9 @@ struct move_used {
     u16 ignore_target_atk : 1;
     u16 ignore_target_def : 1;
     u16 ignore_target_evasion : 1;
+    u16 has_bounced : 1;
 
-	struct move_procs b_procs;
+    struct move_procs b_procs;
 
     u8 hit_times;
     u8 hit_counter;
