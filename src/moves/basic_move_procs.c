@@ -789,7 +789,7 @@ struct move_procs bubble_beam_procs = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 0, 10, 0, 0, 0, 0, 0},
-    {0, 0, -1, 0, 0, 0, 0, 0},   
+    {0, 0, -1, 0, 0, 0, 0, 0},
 	AILMENT_NONE,
 	AILMENT_NONE,
 	0,
@@ -802,7 +802,7 @@ struct move_procs aurora_beam_procs = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
 	{10, 0, 0, 0, 0, 0, 0, 0},
-    {-1, 0, 0, 0, 0, 0, 0, 0},   
+    {-1, 0, 0, 0, 0, 0, 0, 0},
 	AILMENT_NONE,
 	AILMENT_NONE,
 	0,
@@ -835,7 +835,7 @@ struct move_procs poison_powder_procs = {
     100,
 };
 
-//10% Paralyze 
+//10% Paralyze
 struct move_procs paralyze_10_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -860,6 +860,7 @@ struct move_procs thunder_procs = {
     0,
     30,
 };
+
 
 //Toxic
 struct move_procs toxic_procs = {
@@ -886,3 +887,4 @@ struct move_procs psychic_procs = {
     0,
     0,
 };
+
