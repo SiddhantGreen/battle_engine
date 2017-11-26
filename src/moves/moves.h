@@ -345,6 +345,7 @@ extern struct move_procs shell_smash_procs;
 extern struct move_procs dragon_ascent_procs;
 extern struct move_procs shift_gear_procs;
 extern struct move_procs nuzzle_procs;
-
+extern struct move_procs bubble_beam_procs;
+extern struct move_procs aurora_beam_procs;
 #endif /* movesABLE_DATA_H_ */	
 
