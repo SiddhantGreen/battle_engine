@@ -1,8 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../moves/moves.h"
 
-typedef u8 (*AnonymousCallback)(u8 source, u8 target, u16 move);
-
 #define CB_ON_BEFORE_TURN 1
 #define CB_ON_BEFORE_SWITCH 2
 #define CB_ON_BEFORE_MOVE 3
@@ -26,7 +24,6 @@ struct anonymous_callback {
 	u32 func;
 };
 
-
 struct anonymous_callbacks_master {
 	struct anonymous_callback before_turn[4];
 	struct anonymous_callback before_switch[4];
@@ -39,3 +36,5 @@ struct anonymous_callbacks_master {
 	struct anonymous_callback on_effect_cb[4];
 	struct anonymous_callback on_after_move[4];
 };
+
+typedef u8 (*AnonymousCallback)(u8 source, u8 target, u16 move, struct anonymous_callback* acb);

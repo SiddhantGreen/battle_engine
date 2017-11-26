@@ -97,7 +97,7 @@ u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move)
     } else {
       a_cb_start[i].delay_before_effect--;
     }
-    return func(attacker, a_cb_start[i].source_bank, move);
+    return func(attacker, a_cb_start[i].source_bank, move, &a_cb_start[i]);
   }
   return false;
 }

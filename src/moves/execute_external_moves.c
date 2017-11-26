@@ -3,6 +3,7 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 
+
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -221,16 +222,17 @@ u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move)
 /* Mirror coat */
 extern bool add_anon_cb(u8 CB_id, s8 priority, u8 delay, u8 dur, u8 src, u32 func);
 
-u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move)
+u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if ((user == source) || B_MOVE_HAS_BOUNCED(user) || (!IS_REFLECTABLE(move)))
 		return true;
 	TARGET_OF(user) = user;
 	enqueue_message(CURRENT_MOVE(user), user, STRING_BOUNCED_BACK, 0);
+	acb->in_use = false;
 	return true;
 }
 
-u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat)
+u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_magic_coat)
 {
 	enqueue_message(CURRENT_MOVE(bank), bank, STRING_SHROUDED_MAGICCOAT, 0);
 	return add_anon_cb(CB_ON_TRYHIT_MOVE, 2, 0, 1, bank, (u32)(magic_coat_tryhit_anon));
@@ -244,10 +246,11 @@ const static u16 me_first_disallow[] = {
 	MOVE_STRUGGLE, MOVE_THIEF, MOVE_MAX, MOVE_NONE
 };
 
-u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move)
+u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	u8 base_power = B_MOVE_POWER(attacker);
 	if (attacker == src) {
+		acb->in_use = false;
 		u8 bp = NUM_MOD(base_power, 150);
 		if (bp < base_power)
 			base_power = 255;
@@ -280,7 +283,7 @@ u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first)
 
 /* Snatch */
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
-u16 statch_tryhit_anon(u8 user, u8 source, u16 move)
+u16 statch_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if ((user == source) || (!IS_SNATCHABLE(move))) {
 		return true;
@@ -293,11 +296,12 @@ u16 statch_tryhit_anon(u8 user, u8 source, u16 move)
 	CURRENT_MOVE(source) = move;
 	set_attack_battle_master(source, B_MOVE_BANK(source), 0);
 	enqueue_message(0, source, STRING_SNATCHED_MOVE, 0);
+	acb->in_use = false;
 	return true;
 }
 
 u8 snatch_on_effect(u8 attacker, u8 defender, u16 move)
 {
 	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_SNATCH_WAITING, 0);
-	return add_anon_cb(CB_ON_TRYHIT_MOVE, 0, 0, 1, attacker, (u32)(statch_tryhit_anon));
+	return add_anon_cb(CB_ON_TRYHIT_MOVE, 0, 0, 0, attacker, (u32)(statch_tryhit_anon));
 }
