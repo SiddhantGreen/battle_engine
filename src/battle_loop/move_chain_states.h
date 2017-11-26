@@ -10,7 +10,7 @@ enum RunDecisionStates {
     S_RUN_MOVE_ALTERNATE_BANK,
     S_SOFT_RESET_BANK,
     S_END_BATTLE,
-    
+
 };
 
 enum RunFaintStates {
@@ -23,7 +23,7 @@ enum RunFaintStates {
 enum RunFleeStates {
     S_CHECK_FLEEING = 0,
     S_NOT_FLEEING,
-    S_TRY_FLEE,    
+    S_TRY_FLEE,
 };
 
 
@@ -38,7 +38,7 @@ enum RunMoveStates {
     S_BEFORE_MOVE_ABILITY,
     S_CHECK_TARGET_EXISTS,
     S_RUN_MOVE_HIT,
-    S_PP_REDUCTION,
+    S_MOVE_FAILED,
     S_RESIDUAL_MOVES,
     S_RESIDUAL_STATUS,
     S_WAIT_HPUPDATE_RUN_MOVE,
@@ -56,12 +56,11 @@ enum MoveHitStates {
     S_RECOIL_APPLY,
     S_DRAIN_APPLY,
     S_SECONDARY_ROLL_CHANCE,
-	S_SECONDARY_ROLL_AILMENTS,
+    S_SECONDARY_ROLL_AILMENTS,
     S_SECONDARY_ON_HIT,
     S_AFTER_MOVE_SECONDARY,
-    S_AFTER_MOVE,    
+    S_AFTER_MOVE,
 };
 
 
 #endif /* MOVE_CHAIN_STATES_H_ */
-

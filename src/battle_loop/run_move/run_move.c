@@ -90,7 +90,7 @@ void run_move()
                 case CANT_USE_MOVE:
                 case TARGET_MOVE_IMMUNITY:
                     enqueue_message(0, bank_index, STRING_FAILED, 0);
-                    super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     return;
             };
             u16 move = CURRENT_MOVE(bank_index);
@@ -123,30 +123,30 @@ void run_move()
                 super.multi_purpose_state_tracker++;
             } else {
                 enqueue_message(0, bank_index, STRING_FAILED, 0);
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
             }
             break;
         case S_CHECK_TARGET_EXISTS:
             // check target exists
             if (!target_exists(bank_index)) {
                 enqueue_message(0, bank_index, STRING_FAILED, 0);
-                super.multi_purpose_state_tracker = S_PP_REDUCTION;
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
             } else {
                 super.multi_purpose_state_tracker++;
             }
             break;
         case S_RUN_MOVE_HIT:
-            set_callback1(move_hit); // move hit will advance the state when complete
-            super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
-            break;
-        case S_PP_REDUCTION:
-        {
             // reduce PP
             if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
                 u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
                 pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
             }
+            set_callback1(move_hit); // move hit will advance the state when complete
+            super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
+            break;
+        case S_MOVE_FAILED:
+        {
             if (B_MOVE_FAILED(bank_index)) {
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
