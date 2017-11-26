@@ -10,9 +10,9 @@ void set_player_battle_components()
     u16 species = SPECIES_CHARIZARD;
     //u16 species = pokemon_getattr(&party_player[0], REQUEST_SPECIES, NULL);
     u16 move_1 = MOVE_MAGIC_COAT;
-    u16 move_2 = MOVE_STUN_SPORE;
-    u16 move_3 = MOVE_SLEEP_POWDER;
-    u16 move_4 = MOVE_POISON_POWDER;
+    u16 move_2 = MOVE_TOXIC;
+    u16 move_3 = MOVE_THUNDER_SHOCK;
+    u16 move_4 = MOVE_THUNDERBOLT;
 
     pokemon_setattr(&party_player[0], REQUEST_SPECIES, &species);
     pokemon_setattr(&party_player[0], REQUEST_NICK, &pokemon_names[species]);

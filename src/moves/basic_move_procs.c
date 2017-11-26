@@ -859,3 +859,30 @@ struct move_procs thunder_procs = {
     AILMENT_PARALYZE,
     0,
     30,
+};
+
+//Toxic
+struct move_procs toxic_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_BAD_POISON,
+    0,
+    100,
+};
+
+//Psychic spD drop
+struct move_procs psychic_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 10, 0, 0, 0},
+    {0, 0, 0, 0, -1, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
