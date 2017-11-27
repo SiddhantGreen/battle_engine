@@ -7,6 +7,8 @@
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
+#define SPECIES_ARCEUS 1000
+#define SPECIES_SILVALLY 1001
 
 u16 rand_range(u16 min, u16 max)
 {
@@ -58,14 +60,39 @@ bool ignoring_item(struct Pokemon* p)
 
 bool b_pkmn_has_type(u8 bank, enum PokemonType type)
 {
-    u8 i;
-    for (i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
+    for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
         if (p_bank[bank]->b_data.type[i] == type) {
             return true;
         }
     }
     return false;
 }
+
+bool b_pkmn_add_type(u8 bank, enum PokemonType type)
+{
+    // cap at first two types. 3rd would be added types only
+    for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
+        if (p_bank[bank]->b_data.type[i] == TYPE_NONE) {
+            p_bank[bank]->b_data.type[i] = type;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool b_pkmn_set_type(u8 bank, enum PokemonType type)
+{
+    // Arceus and Silvally cannot have their types changed
+    u16 species = p_bank[bank]->b_data.species;
+    if ((species == SPECIES_ARCEUS) || (species == SPECIES_SILVALLY)) {
+        return false;
+    }
+    p_bank[bank]->b_data.type[0] = type;
+    p_bank[bank]->b_data.type[1] = TYPE_NONE;
+    p_bank[bank]->b_data.type[2] = TYPE_NONE;
+    return true;
+}
+
 
 bool on_ground(u8 bank)
 {
