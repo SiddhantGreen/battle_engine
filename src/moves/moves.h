@@ -360,4 +360,6 @@ extern struct move_procs shadow_ball_procs;
 extern struct move_procs poison_100_procs;
 extern struct move_procs toxic_procs;
 extern struct move_procs psychic_procs;
+extern struct move_procs confuse_20_procs;
+extern struct move_procs rest_procs;
 #endif /* movesABLE_DATA_H_ */
