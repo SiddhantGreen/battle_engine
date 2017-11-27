@@ -341,7 +341,7 @@ extern struct move_procs target_raise_acc_2;
 /* Move Specific procs */
 extern struct move_procs poison_30_procs;
 extern struct move_procs poison_40_procs;
-extern struct move_procs twineedle_procs;
+extern struct move_procs poison_20_procs;
 extern struct move_procs supersonic_procs;
 extern struct move_procs sing_procs;
 extern struct move_procs burn_10_procs;
@@ -350,15 +350,14 @@ extern struct move_procs confuse_10_procs;
 extern struct move_procs confuse_100_procs;
 extern struct move_procs paralyze_10_procs;
 extern struct move_procs paralyze_30_procs;
-extern struct move_procs thunder_procs;
 extern struct move_procs shell_smash_procs;
 extern struct move_procs dragon_ascent_procs;
 extern struct move_procs shift_gear_procs;
-extern struct move_procs nuzzle_procs;
+extern struct move_procs paralyze_100_procs;
 extern struct move_procs bubble_beam_procs;
 extern struct move_procs aurora_beam_procs;
 extern struct move_procs shadow_ball_procs;
-extern struct move_procs poison_powder_procs;
+extern struct move_procs poison_100_procs;
 extern struct move_procs toxic_procs;
 extern struct move_procs psychic_procs;
 #endif /* movesABLE_DATA_H_ */
