@@ -200,10 +200,6 @@ void move_hit()
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
-            if (moves[move].heal) {
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].heal = moves[move].heal;
-            }
-
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
                 u16 heal = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
                 heal = NUM_MOD(TOTAL_HP(bank_index), heal);

@@ -21,7 +21,7 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
                 return;
         }
     }
-	
+
     s8* stat_stored;
     switch (stat_id + 1) {
         case STAT_ATTACK:
@@ -113,7 +113,7 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
 void move_procs_perform(u8 bank_index, u16 move)
 {
 	if (moves[move].procs) {
-        
+
 		/* first step is to apply user boosts */
 		for (u8 i = 0; i < 8; i++) {
 			if (B_USER_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
@@ -122,7 +122,7 @@ void move_procs_perform(u8 bank_index, u16 move)
                 return;
 			}
 		}
-		
+
 		/* second step is to apply target boosts */
 		for (u8 i = 0; i < 8; i++) {
 			if (B_TARGET_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
@@ -205,11 +205,11 @@ void set_status(u8 bank, enum Effect status)
         default:
             break;
     };
-  
+
     if (status_applied) {
-        status_graphical_update(bank, status);
         if (statuses[status].on_inflict) {
             statuses[status].on_inflict(bank);
+            status_graphical_update(bank, status);
         }
     } else {
         enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
@@ -263,20 +263,12 @@ void status_procs_perform(u8 bank_index)
 		set_status(bank_index, B_AILMENT_PROCS_USER(bank_index));
 		return;
 	}
-	
+
 	if (B_AILMENT_PROCS_CHANCE_TARGET(bank_index) >= rand_range(1, 100)) {
 		// apply status target
 		B_AILMENT_PROCS_CHANCE_TARGET(bank_index) = 0;
 		set_status(TARGET_OF(bank_index), B_AILMENT_PROCS_TARGET(bank_index));
 		return;
 	}
-	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY; 
+	super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
 }
-
-
-
-
-
-
-
-

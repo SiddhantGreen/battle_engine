@@ -29,9 +29,9 @@ void sleep_on_before_move(u8 bank)
 
 void sleep_on_inflict(u8 bank)
 {
-	if ((BANK_ABILITY(user) == ABILITY_COMATOSE) || (BANK_ABILITY(user) == ABILITY_INSOMNIA) || 
-	(BANK_ABILITY(user) == ABILITY_VITAL_SPIRIT) || (BANK_ABILITY(user) == ABILITY_SWEET_VEIL)) {
-		u8 ailment = rand_range(1, 3);
+	if ((BANK_ABILITY(bank) != ABILITY_COMATOSE) || (BANK_ABILITY(bank) != ABILITY_INSOMNIA) ||
+	(BANK_ABILITY(bank) != ABILITY_VITAL_SPIRIT) || (BANK_ABILITY(bank) != ABILITY_SWEET_VEIL)) {
+		u8 ailment = rand_range(1, 4);
 		p_bank[bank]->b_data.status_turns = ailment;
 		p_bank[bank]->b_data.status = AILMENT_SLEEP;
 		pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
@@ -119,7 +119,7 @@ void paralyze_on_before_move(u8 bank)
 {
     if (rand_range(0, 100) < 25) {
         ADD_VOLATILE(bank, VOLATILE_ATK_SKIP_TURN);
-        enqueue_message(0, bank, STRING_FULL_PARA, 0); 
+        enqueue_message(0, bank, STRING_FULL_PARA, 0);
     }
 }
 
@@ -233,7 +233,7 @@ void do_residual_status_effects(u8 order)
             statuses[B_STATUS(OPPONENT_SINGLES_BANK)].on_residual(OPPONENT_SINGLES_BANK);
         }
     }
-    
+
     if (!battle_master->status_state) {
         battle_master->status_state = 2;
     } else {
@@ -241,7 +241,7 @@ void do_residual_status_effects(u8 order)
     }
 }
 
-struct status_ailments statuses[] = 
+struct status_ailments statuses[] =
 {
     // Ailment none
     {
@@ -252,48 +252,47 @@ struct status_ailments statuses[] =
         .on_inflict = sleep_on_inflict,
         .on_residual = sleep_on_residual,
     },
-    
+
     // Ailment poison
     {
         .on_inflict = poison_on_inflict,
         .on_residual = poison_on_residual,
     },
-    
+
     // Ailment burn
     {
         .on_inflict = burn_on_inflict,
         .on_residual = burn_on_residual,
     },
-    
+
     // Ailment freeze
     {
         .on_before_move = freeze_on_before_move,
         .on_inflict = freeze_on_inflict,
     },
-    
+
     // Ailment paralyze
     {
         .on_before_move = paralyze_on_before_move,
         .on_mod_speed = paralyze_on_mod_speed,
         .on_inflict = paralyze_on_inflict,
     },
-    
+
     // Ailment toxic
     {
         .on_inflict = toxic_on_inflict,
         .on_residual = toxic_on_residual,
     },
-    
+
     // Ailment confusion
     {
 		.on_before_move = confusion_on_before_move,
         .on_inflict = confusion_on_inflict,
         .on_residual = confusion_on_residual,
     },
-    
+
     // Ailment cure
     {
         .on_inflict = effect_cure_on_inflict,
     },
 };
-

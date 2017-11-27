@@ -2711,9 +2711,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
-    .procs = &rest_procs,
-	.heal = 100,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
+    .procs = &basic_proc,
+    .on_tryhit_move = rest_on_tryhit_move,
     },
 
     {
