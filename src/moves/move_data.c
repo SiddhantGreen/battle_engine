@@ -1241,7 +1241,7 @@ struct move_data moves[] = {
     .type = MTYPE_BUG,
     .multi_hit = {2, 2},
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &twineedle_procs,
+    .procs = &poison_20_procs,
     },
 
     {
@@ -1708,7 +1708,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_POISON,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &poison_powder_procs,
+    .procs = &poison_100_procs,
     },
 
     {
@@ -1720,7 +1720,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &nuzzle_procs,
+    .procs = &paralyze_100_procs,
     },
 
     {
@@ -1820,7 +1820,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &nuzzle_procs,
+    .procs = &paralyze_100_procs,
     },
 
     {
@@ -1833,7 +1833,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &thunder_procs,
+    .procs = &paralyze_30_procs,
     },
 
     {
@@ -2360,9 +2360,9 @@ struct move_data moves[] = {
     .base_power = 60,
     .description = (pchar*)Swift_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -2389,7 +2389,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -2439,6 +2439,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SNATCH | FLAG_HEAL,
+	.heal = 50,
     .procs = &basic_proc,
     },
 
@@ -2465,7 +2466,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &paralyze_100_procs,
     },
 
     {
@@ -2490,7 +2491,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_POISON,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_100_procs,
     },
 
     {
@@ -2503,7 +2504,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .multi_hit = {2, 5},
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -8482,7 +8483,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &nuzzle_procs,
+    .procs = &paralyze_100_procs,
     },
 
     {
