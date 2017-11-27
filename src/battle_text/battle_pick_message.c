@@ -118,20 +118,21 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_STAT_MOD_CANT_GO_HIGHER:
             case STRING_STAT_MOD_SEVERELY_FELL:
             case STRING_STAT_MOD_ROSE_DRASTICALLY:
-      			case STRING_FAST_ASLEEP:
-      			case STRING_WOKE_UP:
-      			case STRING_SNAPPED_OUT:
-      			case STRING_CONFUSION_HURT:
-      			case STRING_IS_CONFUSED:
-      			case STRING_FROZEN_SOLID:
-      			case STRING_FREEZE_THAWED:
-      			case STRING_FULL_PARA:
+  			case STRING_FAST_ASLEEP:
+  			case STRING_WOKE_UP:
+  			case STRING_SNAPPED_OUT:
+  			case STRING_CONFUSION_HURT:
+  			case STRING_IS_CONFUSED:
+  			case STRING_FROZEN_SOLID:
+  			case STRING_FREEZE_THAWED:
+  			case STRING_FULL_PARA:
             case STRING_CLEAR_SMOG:
             case STRING_BOUNCED_BACK:
             case STRING_SHROUDED_MAGICCOAT:
             case STRING_SNATCH_WAITING:
             case STRING_SNATCHED_MOVE:
             case STRING_MUST_RECHARGE:
+            case STRING_CONVERSION_TYPE:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:

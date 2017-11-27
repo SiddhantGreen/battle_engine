@@ -277,6 +277,7 @@ extern u8 clear_smog_effect(u8 attacker, u8 defender, u16 move);
 extern u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat);
 extern u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first);
 extern u8 snatch_on_effect(u8 attacker, u8 defender, u16 move);
+extern u8 conversion_on_effect(u8 attacker, u8 defender, u16 move);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

@@ -22,8 +22,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.poke_ball = 0;
     p_bank[bank]->b_data.type[0] = pokemon_base_stats[species].type[0];
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
-    p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : MTYPE_EGG;
-    p_bank[bank]->b_data.type[2] = MTYPE_EGG;
+    p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : TYPE_NONE;
+    p_bank[bank]->b_data.type[2] = TYPE_NONE;
 
     ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
 

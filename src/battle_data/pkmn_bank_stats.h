@@ -53,6 +53,7 @@
 #define LAST_MOVE(bank) p_bank[bank]->b_data.last_move
 #define BANK_ABILITY(bank) p_bank[bank]->b_data.ability
 #define B_MOVE_BANK(bank) (bank == battle_master->first_bank) ? 0 : 1
+#define B_PKMN(bank) p_bank[bank]->this_pkmn
 #define B_MOVE_TYPE(bank, i) battle_master->b_moves[B_MOVE_BANK(bank)].type[i]
 #define B_MOVE_POWER(bank) battle_master->b_moves[B_MOVE_BANK(bank)].power
 #define B_MOVE_STAB(bank) battle_master->b_moves[B_MOVE_BANK(bank)].stab

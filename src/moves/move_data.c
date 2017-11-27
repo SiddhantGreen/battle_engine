@@ -2280,7 +2280,7 @@ struct move_data moves[] = {
     .base_power = 30,
     .description = (pchar*)Smog_desc,
     .pp = 20,
-    .category = MOVE_SPECIAL,	
+    .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &poison_40_procs,
@@ -2762,8 +2762,9 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = conversion_on_effect,
     },
 
     {
