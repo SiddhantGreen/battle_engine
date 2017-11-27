@@ -116,7 +116,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     result_index = pstrlen(result);
                     break;
                 case 0x11:
-                    // buffer Defending Pokemon name 
+                    // buffer Defending Pokemon name
                     buffer_write_pkmn_nick(&(result[result_index]), p_bank[bank]->b_data.my_target);
                     result_index = pstrlen(result);
                     break;
@@ -156,9 +156,15 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                         result_index = pstrlen(result);
                         break;
                     }
+                case 0x17:
+                    {
+                        pstrcpy(&result[result_index], (const pchar*)pokemon_type_names[move_effect_id]);
+                        result_index = pstrlen(result);
+                        break;
+                    }
                 default:
                     {
-                  
+
                     result[result_index] = buffer[i - 1];
                     result[result_index + 1] = buffer[i];
                     result_index += 2;
@@ -170,8 +176,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
             result_index++;
         }
     }
-    
+
     fdecoder(string_buffer, result);
     free(result);
 }
-
