@@ -9,6 +9,7 @@ extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern bool b_pkmn_add_type(u8 bank, enum PokemonType type);
 extern u16 rand_range(u16, u16);
+extern bool add_anon_cb(u8 CB_id, s8 priority, u8 delay, u8 dur, u8 src, u32 func);
 
 /* Conversion */
 u8 conversion_on_effect(u8 attacker, u8 defender, u16 move)
@@ -128,4 +129,55 @@ u8 trick_or_treat_on_effect(u8 attacker, u8 defender, u16 move)
     return true;
 }
 
-/* */
+
+/* Ion Deluge */
+u8 ion_deluge_on_modify_move_anon(u8 attacker, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (B_MOVE_TYPE(attacker, 0) == MTYPE_NORMAL) {
+        B_MOVE_TYPE(attacker, 0) = MTYPE_ELECTRIC;
+    } else if (B_MOVE_TYPE(attacker, 1) == MTYPE_NORMAL) {
+        B_MOVE_TYPE(attacker, 0) = MTYPE_ELECTRIC;
+    }
+    return true;
+}
+
+u8 ion_deluge_on_effect(u8 attacker, u8 defender, u16 move)
+{
+    // a deluge of ions showers the battlefield!
+    enqueue_message(move, attacker, STRING_ION_DELUGE, 0);
+    return add_anon_cb(CB_ON_TRYHIT_MOVE, -2, 0, 0, attacker, (u32)(ion_deluge_on_modify_move_anon));
+}
+
+
+/* Forest's Curse */
+u8 forests_curse_on_effect(u8 attacker, u8 defender, u16 move)
+{
+    // The Type type was added to\nthe foe defender!
+    if (b_pkmn_has_type(defender, MTYPE_GRASS))
+        return false;
+    B_PKMN_TYPE(defender, 2) = MTYPE_GRASS;
+    enqueue_message(move, attacker, STRING_TYPE_ADDED, MTYPE_GRASS);
+    return true;
+}
+
+
+/* Electrify */
+u8 electrify_on_tryhit(u8 attacker, u8 defender, u16 move)
+{
+    return (attacker == battle_master->first_bank);
+}
+
+u8 electrify_on_modify_move_anon(u8 attacker, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (attacker == TARGET_OF(source)) {
+        B_MOVE_TYPE(attacker, 0) = MTYPE_ELECTRIC;
+        acb->in_use = false;
+    }
+    return true;
+}
+
+u8 electrify_on_effect(u8 attacker, u8 defender, u16 move)
+{
+    enqueue_message(move, attacker, STRING_ELECTRIFIED, MTYPE_GRASS);
+    return add_anon_cb(CB_ON_TRYHIT_MOVE, -2, 0, 0, attacker, (u32)(electrify_on_modify_move_anon));
+}

@@ -97,6 +97,8 @@ enum battle_string_ids {
     STRING_CONVERSION_TYPE = 158,
     STRING_REFLECT_TYPE_MATCHED = 160,
     STRING_TYPE_ADDED = 162,
+    STRING_ION_DELUGE = 164,
+    STRING_ELECTRIFIED = 165,
 
 };
 
@@ -266,9 +268,11 @@ static const pchar str_conversion_gain_type_p[] = _("{ATTACKING_MON} transformed
 static const pchar str_conversion_gain_type_o[] = _("Foe {ATTACKING_MON} transformed\ninto the {PKMN_TYPE} type!");
 static const pchar str_reflect_type_match_p[] = _("{ATTACKING_MON}’s type changed to\nmatch the foe {DEFENDING_MON}’s!");
 static const pchar str_reflect_type_match_o[] = _("Foe {ATTACKING_MON}’s type changed\nto match {DEFENDING_MON}’s!");
-// The Type type was added to\nthe foe defender!
 static const pchar str_type_added_p[] = _("The {PKMN_TYPE} type was added\nto the foe {DEFENDING_MON}!");
 static const pchar str_type_added_o[] = _("The {PKMN_TYPE} type was added\nto {DEFENDING_MON}!");
+static const pchar str_ion_deluge_field[] = _("A deluge of ions showers\nthe battlefield!");
+static const pchar str_electrified_p[] = _("Foe {DEFENDING_MON}’s moves\nhave been electrified!");
+static const pchar str_electrified_o[] = _("{DEFENDING_MON}’s moves\nhave been electrified!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -290,7 +294,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[164] = {
+static const pchar* battle_strings[167] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -379,6 +383,8 @@ static const pchar* battle_strings[164] = {
    (pchar*)&str_conversion_gain_type_p, (pchar*)&str_conversion_gain_type_o,
    (pchar*)&str_reflect_type_match_p, (pchar*)&str_reflect_type_match_o,
    (pchar*)&str_type_added_p, (pchar*)&str_type_added_o,
+   (pchar*)&str_ion_deluge_field,
+   (pchar*)&str_electrified_p, (pchar*)&str_electrified_o,
 
 
 };

@@ -8001,10 +8001,11 @@ struct move_data moves[] = {
     .description = (pchar*)Ion_Deluge_desc,
     .pp = 25,
     .priority = 1,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = ion_deluge_on_effect,
     },
 
     {
@@ -8162,8 +8163,10 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = electrify_on_tryhit,
+    .on_effect_cb = electrify_on_effect,
     },
 
     {
