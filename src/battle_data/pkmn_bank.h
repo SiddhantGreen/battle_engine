@@ -67,6 +67,7 @@ enum TypeBits {
 #define VOLATILE_CONFUSE_TURN (1 << 16)
 #define VOLATILE_ATK_SKIP_TURN (1 << 17)
 #define VOLATILE_DEFENSE_CURL (1 << 18)
+#define VOLATILE_RECHARGING (1 << 18)
 
 
 

@@ -305,6 +305,9 @@ void move_hit()
         if (moves[move].on_after_move) {
             moves[move].on_after_move(bank_index);
         }
+        if (IS_RECHARGE(move)) {
+            ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
+        }
         super.multi_purpose_state_tracker = S_MOVE_FAILED;
         set_callback1(run_move);
         break;

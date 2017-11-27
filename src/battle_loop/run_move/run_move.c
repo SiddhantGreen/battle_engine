@@ -79,6 +79,12 @@ void run_move()
     switch(super.multi_purpose_state_tracker) {
         case S_BEFORE_MOVE:
         {
+            if (HAS_VOLATILE(bank_index, VOLATILE_RECHARGING)) {
+                super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
+                CLEAR_VOLATILE(bank_index, VOLATILE_RECHARGING);
+                enqueue_message(0, bank_index, STRING_MUST_RECHARGE, 0);
+                return;
+            }
 			/* status ailments before move callbacks */
 			if (B_STATUS(bank_index) != AILMENT_NONE) {
 				if (statuses[B_STATUS(bank_index)].on_before_move) {

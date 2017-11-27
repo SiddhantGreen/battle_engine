@@ -20,10 +20,9 @@ void option_selection()
         case 0:
         {
             // if move is charging up, then option selection is skipped
-            if (HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_CHARGING)) {
-                set_callback1(battle_loop);
-                return;
-            } else if (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select) {
+            if ((HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_CHARGING))||
+                (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select) ||
+                (HAS_VOLATILE(PLAYER_SINGLES_BANK, VOLATILE_RECHARGING))) {
                 set_callback1(battle_loop);
                 return;
             }

@@ -71,6 +71,7 @@ struct move_procs {
 #define IS_REFLECTABLE(move) ((moves[move].m_flags) & (1 << 12))
 #define IS_SNATCHABLE(move) ((moves[move].m_flags) & (1 << 13))
 #define IS_CHARGE(move) ((moves[move].m_flags) & (1 << 1))
+#define IS_RECHARGE(move) ((moves[move].m_flags) & (1 << 2))
 #define IS_DANCE(move) ((moves[move].m_flags) & (1 << 21))
 #define IS_TRIAGE(move) ((moves[move].m_flags) & (1 << 20))
 #define IS_SOUND_BASE(move) ((moves[move].m_flags) & (1 << 14))
@@ -233,8 +234,6 @@ struct move_data {
     MoveOnDamageCallback on_damage_move;
     MoveOnEffectCallback on_effect_cb;
     MoveOnAfterMoveCallback on_after_move;
-    u8 base_power_move_priority;
-    u8 before_move_priority;
 };
 
 extern struct move_data moves[];

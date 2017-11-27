@@ -93,6 +93,7 @@ enum battle_string_ids {
     STRING_SHROUDED_MAGICCOAT = 150,
     STRING_SNATCH_WAITING = 152,
     STRING_SNATCHED_MOVE = 154,
+    STRING_MUST_RECHARGE = 156,
 
 };
 
@@ -256,6 +257,8 @@ static const pchar str_snatch_waiting_p[] = _("{ATTACKING_MON} waits for a targe
 static const pchar str_snatch_waiting_o[] = _("Foe {ATTACKING_MON} waits for a target\nto make a move!");
 static const pchar str_snatched_p[] = _("{ATTACKING_MON} snatched\nfoe {DEFENDING_MON}’s move!");
 static const pchar str_snatched_o[] = _("Foe {ATTACKING_MON} snatched\n{DEFENDING_MON}’s move!");
+static const pchar str_must_recharge_p[] = _("{ATTACKING_MON} must recharge!");
+static const pchar str_must_recharge_o[] = _("Foe {ATTACKING_MON} must recharge!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -277,7 +280,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[156] = {
+static const pchar* battle_strings[158] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -362,6 +365,7 @@ static const pchar* battle_strings[156] = {
    (pchar*)&str_shrouded_magiccoat_p, (pchar*)&str_shrouded_magiccoat_o,
    (pchar*)&str_snatch_waiting_p, (pchar*)&str_snatch_waiting_o,
    (pchar*)&str_snatched_p, (pchar*)&str_snatched_o,
+   (pchar*)&str_must_recharge_p, (pchar*)&str_must_recharge_o,
 
 
 };
