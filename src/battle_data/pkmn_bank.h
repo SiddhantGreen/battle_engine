@@ -8,8 +8,9 @@
 #define PARTICIPANTS_AMOUNT_WILD 2
 
 #define BANK_MAX 4
-
-
+#define MTYPES_MAX 19
+#define SPECIES_ARCEUS 1000
+#define SPECIES_SILVALLY 1001
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*DamageCallback)(u8, u8);
@@ -149,7 +150,7 @@ struct pkmn_bank {
 };
 
 extern struct pkmn_bank *p_bank[BANK_MAX];
-
-
+extern const pchar pkmn_type_names[MTYPES_MAX][13];
+extern u8 effectiveness_chart[342];
 
 #endif /* BATTLE_PKMN_BANK_H_ */

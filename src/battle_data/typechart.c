@@ -29,7 +29,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Fighting */ 
+/* Fighting */
 	100, // Normal
 	100, // Fighting
 	200, // Flying
@@ -50,7 +50,7 @@ u8 effectiveness_chart[361] = {
 	50, // Dark
 	200, // Fairy
 
-/* Flying */ 
+/* Flying */
 	100, // Normal
 	50, // Fighting
 	100, // Flying
@@ -68,10 +68,10 @@ u8 effectiveness_chart[361] = {
 	101, // Psychic
 	200, // Ice
 	250, // Dragon
-	130, // Dark
+	100, // Dark
 	100, // Fairy
 
-/* Poison */ 
+/* Poison */
 	100, // Normal
 	50, // Fighting
 	100, // Flying
@@ -92,7 +92,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	50, // Fairy
 
-/* Ground */ 
+/* Ground */
 	100, // Normal
 	100, // Fighting
 	100, // Flying
@@ -113,7 +113,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Rock */ 
+/* Rock */
 	50, // Normal
 	200, // Fighting
 	50, // Flying
@@ -134,7 +134,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Bug */ 
+/* Bug */
 	100, // Normal
 	50, // Fighting
 	200, // Flying
@@ -155,7 +155,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Ghost */ 
+/* Ghost */
 	0, // Normal
 	0, // Fighting
 	100, // Flying
@@ -176,7 +176,7 @@ u8 effectiveness_chart[361] = {
 	200, // Dark
 	100, // Fairy
 
-/* Steel */ 
+/* Steel */
 	50, // Normal
 	200, // Fighting
 	50, // Flying
@@ -218,7 +218,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Fire */ 
+/* Fire */
 	100, // Normal
 	100, // Fighting
 	100, // Flying
@@ -239,7 +239,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	50, // Fairy
 
-/* Water */ 
+/* Water */
 	100, // Normal
 	100, // Fighting
 	100, // Flying
@@ -260,7 +260,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Grass */ 
+/* Grass */
 	100, // Normal
 	100, // Fighting
 	200, // Flying
@@ -281,7 +281,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Electric */ 
+/* Electric */
 	100, // Normal
 	100, // Fighting
 	50, // Flying
@@ -302,7 +302,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Psychic */ 
+/* Psychic */
 	100, // Normal
 	50, // Fighting
 	100, // Flying
@@ -323,7 +323,7 @@ u8 effectiveness_chart[361] = {
 	200, // Dark
 	100, // Fairy
 
-/* Ice */ 
+/* Ice */
 	100, // Normal
 	200, // Fighting
 	100, // Flying
@@ -344,7 +344,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	100, // Fairy
 
-/* Dragon */ 
+/* Dragon */
 	100, // Normal
 	100, // Fighting
 	100, // Flying
@@ -365,7 +365,7 @@ u8 effectiveness_chart[361] = {
 	100, // Dark
 	200, // Fairy
 
-/* Dark */ 
+/* Dark */
 	100, // Normal
 	200, // Fighting
 	100, // Flying
@@ -386,23 +386,23 @@ u8 effectiveness_chart[361] = {
 	50, // Dark
 	200, // Fairy
 
-/* Fairy */ 
+/* Fairy */
 	100, // Normal
     50, // Fighting
  	100, // Flying
     200, // Poison
 	100, // Ground
-	100, // Rock    
+	100, // Rock
 	50, // Bug
 	100, // Ghost
-	200, // Steel    
-	100, // ??? 
+	200, // Steel
+	100, // ???
 	100, // Fire
 	100, // Water
 	100, // Grass
 	100, // Electric
-	100, // Psychic 
-	100, // Ice    
+	100, // Psychic
+	100, // Ice
     0, // Dragon
 	50, // Dark
 	100, // Fairy

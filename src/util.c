@@ -7,8 +7,7 @@
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
-#define SPECIES_ARCEUS 1000
-#define SPECIES_SILVALLY 1001
+
 
 u16 rand_range(u16 min, u16 max)
 {
@@ -72,7 +71,7 @@ bool b_pkmn_add_type(u8 bank, enum PokemonType type)
 {
     // cap at first two types. 3rd would be added types only
     for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
-        if (p_bank[bank]->b_data.type[i] == TYPE_NONE) {
+        if (p_bank[bank]->b_data.type[i] == MTYPE_EGG) {
             p_bank[bank]->b_data.type[i] = type;
             return true;
         }
@@ -88,8 +87,8 @@ bool b_pkmn_set_type(u8 bank, enum PokemonType type)
         return false;
     }
     p_bank[bank]->b_data.type[0] = type;
-    p_bank[bank]->b_data.type[1] = TYPE_NONE;
-    p_bank[bank]->b_data.type[2] = TYPE_NONE;
+    p_bank[bank]->b_data.type[1] = MTYPE_EGG;
+    p_bank[bank]->b_data.type[2] = MTYPE_EGG;
     return true;
 }
 
