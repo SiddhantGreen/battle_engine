@@ -207,7 +207,6 @@ void set_status(u8 bank, enum Effect status)
     };
   
     if (status_applied) {
-        p_bank[bank]->b_data.status = status;
         status_graphical_update(bank, status);
         if (statuses[status].on_inflict) {
             statuses[status].on_inflict(bank);
