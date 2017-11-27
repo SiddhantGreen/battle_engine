@@ -925,3 +925,29 @@ struct move_procs psychic_procs = {
     0,
 };
 
+// 20% Confuse
+struct move_procs confuse_20_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_CONFUSION,
+    0,
+    20,
+};
+
+// user sleep
+struct move_procs rest_procs = {
+    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_SLEEP,
+    AILMENT_NONE,
+    100,
+    0,
+};
+
