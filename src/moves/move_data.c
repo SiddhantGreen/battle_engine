@@ -2968,8 +2968,9 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = conversion_two_on_effect,
     },
 
     {
@@ -6940,6 +6941,7 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = soak_on_effect,
     },
 
     {
@@ -7273,6 +7275,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = reflect_type_on_effect,
     },
 
     {
@@ -7888,6 +7891,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = flying_press_on_modify_move,
+    .on_base_power_move = flying_press_on_base_power,
     },
 
     {
@@ -7966,7 +7971,7 @@ struct move_data moves[] = {
     },
 
     {
-    .name = _("Trick-or-Treat"),
+    .name = _("Trick-Or-Treat"),
     .accuracy = 100,
     .description = (pchar*)Trick_or_Treat_desc,
     .pp = 20,
@@ -7974,6 +7979,7 @@ struct move_data moves[] = {
     .type = MTYPE_GHOST,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = trick_or_treat_on_effect,
     },
 
     {

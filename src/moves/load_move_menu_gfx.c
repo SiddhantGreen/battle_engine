@@ -1,6 +1,8 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/battle_state.h"
 #include "moves/moves.h"
+#include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../../generated/images/type_icons.h"
 #include "../../generated/images/PSS_icons.h"
 #include "../../generated/images/hpbox/empty_bar.h"
@@ -63,6 +65,28 @@ static const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (*
 
 extern void oac_nullsub(struct Object*);
 
+const u16 pal_font[16] = {0x532E, 0x7FFF, 0x318C, 0x675A, 0x037D, 0x47DF, 0x025F, 0x47DF, 0x001D, 0x025F, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+};
+
+u8 font_color_set(u8 i)
+{
+    u8 pp = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, (REQUEST_PP1 + i), NULL);
+    u16 pp_total = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, (REQUEST_MOVE1 + i), NULL);
+    pp_total = moves[pp_total].pp;
+    pp_total = (100 * pp) / pp_total;
+    if (pp_total > 50) {
+        return 0x2;
+    } else if (pp_total < 20) {
+        // orange
+        return 0x8;
+    } else if (pp_total < 30) {
+        // darker orange
+        return 0x6;
+    } else {
+        // yellow
+        return 0x4;
+    }
+}
 
 u8 load_dmg_type_icon(u8 type, s16 x, s16 y, u8 tag)
 {
@@ -99,17 +123,22 @@ void draw_text_obj(u8 font, u8 x_shift, u8 y_shift, pchar* string_buff, void* vr
 
 u8 draw_pp(u8 bank, u8 index)
 {
-    pchar prefix[] = _("{HIGHLIGHT 1}{COLOR 2}{SHADOW 3} ");
+    u8 prefix[] = {0xFC, 0x2, 0x1, 0xFC, 0x1, 0x2, 0xFC, 0x3, 0x3, 0xFC, 0x6, 0x0, 0xFF};
+    u8 num = font_color_set(index);
+    prefix[5] = num;
+    prefix[8] = num + 1;
     pstrcpy(string_buffer, prefix);
     u8 pp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + index, NULL);
-    fmt_int_10(pstrlen(string_buffer) + string_buffer - ((pp < 10) ? 0 : 1), pp, 0, 3);
+    u8 pp_str[3];
+    fmt_int_10(pp_str, pp, 0, 3);
+    pstrcat(string_buffer, pp_str);
     
     /* Make canvas object */
-    struct SpritePalette text_pal = {(void*)stdpal_get(1), MOVE_PP_TAG};
+    struct SpritePalette text_pal = {(void*)pal_font, MOVE_PP_TAG};
     struct SpriteTiles text_gfx = {(void*)empty_barTiles, 1024, MOVE_PP_TAG + index};
     struct Template text_temp = {MOVE_PP_TAG + index, MOVE_PP_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};
     gpu_tile_obj_decompress_alloc_tag_and_upload(&text_gfx);
-    gpu_pal_obj_alloc_tag_and_apply(&text_pal);
+    p_bank[PLAYER_SINGLES_BANK]->pp_pal = gpu_pal_obj_alloc_tag_and_apply(&text_pal);
     
     void* vram_addr;
     u8 objid;
@@ -138,21 +167,23 @@ u8 draw_pp(u8 bank, u8 index)
 
 void load_names_moves(u8 bank)
 {
-    u8 i;
-    pchar prefix[] = _("{HIGHLIGHT 1}{COLOR 2}{SHADOW 3}");
+    u8 prefix[] = {0xFC, 0x2, 0x1, 0xFC, 0x1, 0x2, 0xFC, 0x3, 0x3, 0xFC, 0x6, 0x0, 0xFF};
     u16 p_moves[4];
-    for (i = 0; i < 4; i++) {
+    for (u8 i = 0; i < 4; i++) {
         /* figure out move string */
+        u8 num = font_color_set(i);
+        prefix[5] = num;
+        prefix[8] = num + 1;
         p_moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
-        pstrcpy(string_buffer, prefix);
+        pstrcpy(string_buffer, (pchar*)prefix);
         pstrcat(string_buffer, moves[p_moves[i]].name);
         
         /* Make canvas object */
-        struct SpritePalette text_pal = {(void*)stdpal_get(1), MOVE_NAMES_TAG};
+        struct SpritePalette text_pal = {(void*)pal_font, MOVE_NAMES_TAG};
         struct SpriteTiles text_gfx = {(void*)empty_barTiles, 1024, MOVE_NAMES_TAG + i};
-        struct Template text_temp = {MOVE_NAMES_TAG + i, MOVE_NAMES_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};
+        struct Template text_temp = {MOVE_NAMES_TAG + i, MOVE_NAMES_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};     
         gpu_tile_obj_decompress_alloc_tag_and_upload(&text_gfx);
-        gpu_pal_obj_alloc_tag_and_apply(&text_pal);
+        p_bank[PLAYER_SINGLES_BANK]->move_pal = gpu_pal_obj_alloc_tag_and_apply(&text_pal);
         
         
         void* vram_addr;
@@ -177,6 +208,7 @@ void load_names_moves(u8 bank)
         };
         draw_text_obj(0, 0, 3, string_buffer, vram_addr, 0);
         battle_master->move_name_objid[i] = objid;
+        
             // 0, 0
     
     }    

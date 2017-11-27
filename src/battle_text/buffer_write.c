@@ -158,7 +158,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     }
                 case 0x17:
                     {
-                        pstrcpy(&result[result_index], (const pchar*)pokemon_type_names[move_effect_id]);
+                        pstrcpy(&result[result_index], (const pchar*)pkmn_type_names[move_effect_id]);
                         result_index = pstrlen(result);
                         break;
                     }

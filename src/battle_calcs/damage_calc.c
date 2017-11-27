@@ -6,7 +6,6 @@
 #include "../battle_text/battle_pick_message.h"
 
 extern u16 rand_range(u16, u16);
-extern u8 effectiveness_chart[342];
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern void dprintf(const char * str, ...);
 extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
@@ -23,7 +22,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 u8 target_type = B_PKMN_TYPE(defender, j);
                 u8 move_type = B_MOVE_TYPE(attacker, i);
 				if (move_type == MTYPE_NONE)
-					return 100;
+					return percent;
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
                 if (move_effectiveness > 0) {
                     percent = NUM_MOD(percent, move_effectiveness);

@@ -8,8 +8,9 @@
 #define PARTICIPANTS_AMOUNT_WILD 2
 
 #define BANK_MAX 4
-
-
+#define MTYPES_MAX 19
+#define SPECIES_ARCEUS 1000
+#define SPECIES_SILVALLY 1001
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*DamageCallback)(u8, u8);
@@ -145,11 +146,13 @@ struct pkmn_bank {
     struct Pokemon* this_pkmn;
     u8 objid;
     u8 objid_hpbox[4]; // Main box, tag on part and
+    u8 pp_pal;
+    u8 move_pal;
     struct local_battler_data b_data;
 };
 
 extern struct pkmn_bank *p_bank[BANK_MAX];
-
-
+extern const pchar pkmn_type_names[MTYPES_MAX][13];
+extern u8 effectiveness_chart[342];
 
 #endif /* BATTLE_PKMN_BANK_H_ */
