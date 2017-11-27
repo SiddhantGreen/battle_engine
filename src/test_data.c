@@ -7,13 +7,13 @@ extern void dprintf(const char * str, ...);
 void set_player_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
-	u16 species = SPECIES_IVYSAUR;
+	u16 species = SPECIES_SQUIRTLE;
     //u16 species = pokemon_getattr(&party_player[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_RAIN_DANCE;
-    u16 move_2 = MOVE_REFLECT_TYPE;
-    u16 move_3 = MOVE_FRENZY_PLANT;
-    u16 move_4 = MOVE_GIGA_IMPACT;
-    u8 level = 8;
+    u16 move_1 = MOVE_BARRAGE;
+    u16 move_2 = MOVE_STUN_SPORE;
+    u16 move_3 = MOVE_DOUBLE_KICK;
+    u16 move_4 = MOVE_TWINEEDLE;
+    u8 level = 80;
 
     pokemon_setattr(&party_player[0], REQUEST_SPECIES, &species);
     pokemon_setattr(&party_player[0], REQUEST_NICK, &pokemon_names[species]);

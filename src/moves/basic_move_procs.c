@@ -677,8 +677,8 @@ struct move_procs poison_40_procs = {
     40,
 };
 
-// Twineedle
-struct move_procs twineedle_procs = {
+// posion 20
+struct move_procs poison_20_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -807,8 +807,8 @@ struct move_procs shift_gear_procs = {
     0,
 };
 
-// Nuzzle
-struct move_procs nuzzle_procs = {
+// Paralyze 100%
+struct move_procs paralyze_100_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -860,8 +860,8 @@ struct move_procs shadow_ball_procs = {
     0,
 };
 
-//poison powder
-struct move_procs poison_powder_procs = {
+//100% poison
+struct move_procs poison_100_procs = {
     // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -898,20 +898,6 @@ struct move_procs paralyze_30_procs = {
     0,
     30,
 };
-
-//Thunder
-struct move_procs thunder_procs = {
-    // Atk, Def, Spd, SpA, SpD, Acc, Evn, Crt
-    {0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0},
-    AILMENT_NONE,
-    AILMENT_PARALYZE,
-    0,
-    30,
-};
-
 
 //Toxic
 struct move_procs toxic_procs = {
