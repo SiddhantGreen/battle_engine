@@ -223,8 +223,14 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 s16 get_damage(u8 attacker, u8 defender, u16 move)
 {
 	if (B_MOVE_DMG(attacker)) {
-		B_MOVE_EFFECTIVENESS(attacker) = TE_EFFECTIVE;
-        return B_MOVE_DMG(attacker);
+        u16 percent = type_effectiveness_mod(attacker, defender, move);
+        if (percent) {
+            B_MOVE_EFFECTIVENESS(attacker) = TE_EFFECTIVE;
+            return B_MOVE_DMG(attacker);
+        } else {
+            B_MOVE_EFFECTIVENESS(attacker) = TE_IMMUNE;
+            return (0);
+        }
     }
 
     if (IS_OHKO(move)) {
