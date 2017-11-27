@@ -285,6 +285,7 @@ extern u8 flying_press_on_modify_move(u8 attacker, u8 defender, u16 move);
 extern u8 flying_press_on_base_power(u8 base_power, u8 user, u8 target, u16 move);
 extern u8 trick_or_treat_on_effect(u8 attacker, u8 defender, u16 move);
 extern u8 rest_on_tryhit_move(u8 user, u8 target, u16 move);
+extern void psywave_on_modify_move(u8 user, u8 target, u16 move);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
