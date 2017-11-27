@@ -115,3 +115,17 @@ u8 flying_press_on_base_power(u8 base_power, u8 user, u8 target, u16 move)
     }
     return base_power;
 }
+
+
+/* Trick-or-Treat */
+u8 trick_or_treat_on_effect(u8 attacker, u8 defender, u16 move)
+{
+    // The Type type was added to\nthe foe defender!
+    if (b_pkmn_has_type(defender, MTYPE_GHOST))
+        return false;
+    B_PKMN_TYPE(defender, 2) = MTYPE_GHOST;
+    enqueue_message(move, attacker, STRING_TYPE_ADDED, MTYPE_GHOST);
+    return true;
+}
+
+/* */

@@ -146,6 +146,8 @@ struct pkmn_bank {
     struct Pokemon* this_pkmn;
     u8 objid;
     u8 objid_hpbox[4]; // Main box, tag on part and
+    u8 pp_pal;
+    u8 move_pal;
     struct local_battler_data b_data;
 };
 

@@ -22,7 +22,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 u8 target_type = B_PKMN_TYPE(defender, j);
                 u8 move_type = B_MOVE_TYPE(attacker, i);
 				if (move_type == MTYPE_NONE)
-					return 100;
+					return percent;
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
                 if (move_effectiveness > 0) {
                     percent = NUM_MOD(percent, move_effectiveness);
