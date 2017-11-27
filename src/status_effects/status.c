@@ -29,11 +29,14 @@ void sleep_on_before_move(u8 bank)
 
 void sleep_on_inflict(u8 bank)
 {
-	u8 ailment = rand_range(1, 3);
-	p_bank[bank]->b_data.status_turns = ailment;
-	p_bank[bank]->b_data.status = AILMENT_SLEEP;
-	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
-    enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_SLEEP);
+	if ((BANK_ABILITY(user) == ABILITY_COMATOSE) || (BANK_ABILITY(user) == ABILITY_INSOMNIA) || 
+	(BANK_ABILITY(user) == ABILITY_VITAL_SPIRIT) || (BANK_ABILITY(user) == ABILITY_SWEET_VEIL)) {
+		u8 ailment = rand_range(1, 3);
+		p_bank[bank]->b_data.status_turns = ailment;
+		p_bank[bank]->b_data.status = AILMENT_SLEEP;
+		pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+		enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_SLEEP);
+	}
 }
 
 void sleep_on_residual(u8 bank)
