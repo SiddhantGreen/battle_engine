@@ -8962,13 +8962,14 @@ struct move_data moves[] = {
     /*Burn Up*/
     .name = _("Burn Up"),
     .accuracy = 100,
-    .base_power = 130,
+    .base_power = 10,
     .description = (pchar*)Burn_Up_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR,
+    .m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
+
     },
 
     {

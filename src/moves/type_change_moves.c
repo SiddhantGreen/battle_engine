@@ -181,3 +181,20 @@ u8 electrify_on_effect(u8 attacker, u8 defender, u16 move)
     enqueue_message(move, attacker, STRING_ELECTRIFIED, MTYPE_GRASS);
     return add_anon_cb(CB_ON_TRYHIT_MOVE, -2, 0, 0, attacker, (u32)(electrify_on_modify_move_anon));
 }
+
+
+/* Burn up */
+u8 burn_up_on_tryhit(u8 attacker, u8 defender, u16 move)
+{
+    return b_pkmn_has_type(attacker, MTYPE_FIRE);
+}
+
+u8 burn_up_on_effect(u8 attacker, u8 defender, u16 move)
+{
+    for (u8 i = 0; i < sizeof(p_bank[attacker]->b_data.type); i++) {
+        if (B_PKMN_TYPE(attacker, i) == MTYPE_FIRE) {
+            B_PKMN_TYPE(attacker, i) = MTYPE_EGG;
+        }
+    }
+    return true;
+}

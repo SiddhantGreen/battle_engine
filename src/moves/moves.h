@@ -288,7 +288,9 @@ extern u8 rest_on_tryhit_move(u8 user, u8 target, u16 move);
 extern u8 ion_deluge_on_effect(u8 attacker, u8 defender, u16 move);
 extern u8 electrify_on_effect(u8 attacker, u8 defender, u16 move);
 extern u8 electrify_on_tryhit(u8 attacker, u8 defender, u16 move);
-extern void psywave_on_modify_move(u8 user, u8 target, u16 move);
+extern u8 psywave_on_modify_move(u8 user, u8 target, u16 move);
+extern u8 burn_up_on_tryhit(u8 attacker, u8 defender, u16 move);
+extern u8 burn_up_on_effect(u8 attacker, u8 defender, u16 move);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
