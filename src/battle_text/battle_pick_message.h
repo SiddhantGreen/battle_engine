@@ -99,6 +99,7 @@ enum battle_string_ids {
     STRING_TYPE_ADDED = 162,
     STRING_ION_DELUGE = 164,
     STRING_ELECTRIFIED = 165,
+    STRING_BURNT_OUT = 167,
 
 };
 
@@ -273,6 +274,8 @@ static const pchar str_type_added_o[] = _("The {PKMN_TYPE} type was added\nto {D
 static const pchar str_ion_deluge_field[] = _("A deluge of ions showers\nthe battlefield!");
 static const pchar str_electrified_p[] = _("Foe {DEFENDING_MON}’s moves\nhave been electrified!");
 static const pchar str_electrified_o[] = _("{DEFENDING_MON}’s moves\nhave been electrified!");
+static const pchar str_burnt_out_p[] = _("{ATTACKING_MON} burnt\nitself out!");
+static const pchar str_burnt_out_o[] = _("Foe {ATTACKING_MON} burnt\nitself out!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -294,7 +297,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[167] = {
+static const pchar* battle_strings[169] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -385,6 +388,7 @@ static const pchar* battle_strings[167] = {
    (pchar*)&str_type_added_p, (pchar*)&str_type_added_o,
    (pchar*)&str_ion_deluge_field,
    (pchar*)&str_electrified_p, (pchar*)&str_electrified_o,
+   (pchar*)&str_burnt_out_p, (pchar*)&str_burnt_out_o,
 
 
 };

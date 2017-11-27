@@ -136,6 +136,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_REFLECT_TYPE_MATCHED:
             case STRING_TYPE_ADDED:
             case STRING_ELECTRIFIED:
+            case STRING_BURNT_OUT:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:
