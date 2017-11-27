@@ -8970,6 +8970,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_DEFROST | FLAG_PROTECT | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = burn_up_on_tryhit,
+    .on_effect_cb = burn_up_on_effect,
 
     },
 

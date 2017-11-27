@@ -196,5 +196,6 @@ u8 burn_up_on_effect(u8 attacker, u8 defender, u16 move)
             B_PKMN_TYPE(attacker, i) = MTYPE_EGG;
         }
     }
+    enqueue_message(move, attacker, STRING_BURNT_OUT, 0);
     return true;
 }
