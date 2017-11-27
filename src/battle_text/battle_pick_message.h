@@ -95,6 +95,7 @@ enum battle_string_ids {
     STRING_SNATCHED_MOVE = 154,
     STRING_MUST_RECHARGE = 156,
     STRING_CONVERSION_TYPE = 158,
+    STRING_REFLECT_TYPE_MATCHED = 160,
 
 };
 
@@ -262,6 +263,8 @@ static const pchar str_must_recharge_p[] = _("{ATTACKING_MON} must recharge!");
 static const pchar str_must_recharge_o[] = _("Foe {ATTACKING_MON} must recharge!");
 static const pchar str_conversion_gain_type_p[] = _("{ATTACKING_MON} transformed\ninto the {PKMN_TYPE} type!");
 static const pchar str_conversion_gain_type_o[] = _("Foe {ATTACKING_MON} transformed\ninto the {PKMN_TYPE} type!");
+static const pchar str_reflect_type_match_p[] = _("{ATTACKING_MON}’s type changed to\nmatch the foe {DEFENDING_MON}’s!");
+static const pchar str_reflect_type_match_o[] = _("Foe {ATTACKING_MON}’s type changed\nto match {DEFENDING_MON}’s!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -283,7 +286,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[160] = {
+static const pchar* battle_strings[162] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -370,6 +373,7 @@ static const pchar* battle_strings[160] = {
    (pchar*)&str_snatched_p, (pchar*)&str_snatched_o,
    (pchar*)&str_must_recharge_p, (pchar*)&str_must_recharge_o,
    (pchar*)&str_conversion_gain_type_p, (pchar*)&str_conversion_gain_type_o,
+   (pchar*)&str_reflect_type_match_p, (pchar*)&str_reflect_type_match_o,
 
 
 };

@@ -278,6 +278,12 @@ extern u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat);
 extern u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first);
 extern u8 snatch_on_effect(u8 attacker, u8 defender, u16 move);
 extern u8 conversion_on_effect(u8 attacker, u8 defender, u16 move);
+extern u8 conversion_two_on_effect(u8 attacker, u8 defender, u16 move);
+extern u8 reflect_type_on_effect(u8 attacker, u8 defender, u16 move);
+extern u8 soak_on_effect(u8 attacker, u8 defender, u16 move);
+extern u8 flying_press_on_modify_move(u8 attacker, u8 defender, u16 move);
+extern u8 flying_press_on_base_power(u8 base_power, u8 user, u8 target, u16 move);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

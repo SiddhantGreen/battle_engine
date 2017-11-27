@@ -2968,6 +2968,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC,
     .procs = &basic_proc,
+    .on_effect_cb = conversion_two_on_effect,
     },
 
     {
@@ -6938,6 +6939,7 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = soak_on_effect,
     },
 
     {
@@ -7271,6 +7273,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = reflect_type_on_effect,
     },
 
     {
@@ -7886,6 +7889,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = flying_press_on_modify_move,
+    .on_base_power_move = flying_press_on_base_power,
     },
 
     {
