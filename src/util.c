@@ -11,6 +11,7 @@ extern void dprintf(const char * str, ...);
 
 u16 rand_range(u16 min, u16 max)
 {
+    if (min == max) return min;
     return (rand() % (max - min)) + min;
 }
 

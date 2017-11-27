@@ -20,13 +20,13 @@ u16 pick_player_attack()
         player_moveid -= 1;
     }
     p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = player_moveid - REQUEST_MOVE1;
-    return pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, player_moveid, NULL);    
+    return pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, player_moveid, NULL);
 }
 
 u16 pick_opponent_attack()
 {
     if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
-        return 0;    
+        return 0;
     u8 move_total = 0;
     u8 usable_moves = 0;
     u8 i;
@@ -37,14 +37,14 @@ u16 pick_opponent_attack()
                 usable_moves++;
         } else {
             break;
-        }     
+        }
     }
     if (usable_moves < 1) {
         return MOVE_STRUGGLE;
     }
     while (true) {
         u8 pp_index = rand_range(0, move_total);
-        if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total) + 
+        if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total) +
             REQUEST_PP1, NULL) > 0) {
             p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = pp_index;
             return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, pp_index + REQUEST_MOVE1, NULL);
@@ -57,7 +57,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
 {
     u16 move_id = p_bank[bank]->b_data.current_move;
     B_MOVE_FAILED(bank) = false;
-    
+
     battle_master->b_moves[index].user_bank = bank;
     battle_master->b_moves[index].move_id = move_id;
     battle_master->b_moves[index].priority = priority;
@@ -85,14 +85,20 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
                     hit_times = 3;
                     break;
                 case 2:
-                    hit_times = rand_range(4, 5);
+                    hit_times = rand_range(4, 6);
                     break;
             };
         } else {
-            hit_times = ((rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1])) | 1);
+            if (moves[move_id].multi_hit[0] == moves[move_id].multi_hit[1]) {
+                hit_times = moves[move_id].multi_hit[1];
+                dprintf("hittimes: %d", hit_times);
+            } else {
+                hit_times = rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1]);
+                hit_times |= 1;
+            }
         }
-        battle_master->b_moves[index].hit_times = hit_times;
-        battle_master->b_moves[index].hit_counter = 0;
+        battle_master->b_moves[index].hit_times = hit_times - 1;
+        battle_master->b_moves[index].hit_counter = 1;
     }
 	battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
 }
@@ -103,7 +109,7 @@ void reset_turn_bits(u8 bank)
     p_bank[bank]->b_data.is_switching = 0;
     p_bank[bank]->b_data.first_turn = 1;
     memset((void*)(&battle_master->b_moves[B_MOVE_BANK(bank)]), 0x0, sizeof(struct move_used));
-    
+
 }
 
 u8 set_target_bank(u8 user_bank, u16 move_id)
@@ -126,6 +132,3 @@ bool target_exists(u8 bank)
         return true;
     return false;
 }
-
-
-
