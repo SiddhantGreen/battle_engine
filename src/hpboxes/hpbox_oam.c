@@ -127,6 +127,14 @@ u8 hpbar_build_full(struct Pokemon* pkmn, s16 x, s16 y, u16 tag)
     return objid_main;
 }
 
+u8 count_digits(u16 n) {
+    if (n < 10) return 1;
+    if (n < 100) return 2;
+    if (n < 1000) return 3;
+    return 0;
+}
+
+
 void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid, u8 mode, u8 bank)
 {
     pchar hp_prefix[] = _("{HIGHLIGHT 0}{COLOR 3}{SHADOW 5}");
@@ -142,22 +150,17 @@ void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid, u8 mode, u8 bank)
         current_hp = pokemon_getattr(pkmn, REQUEST_CURRENT_HP, NULL);
         total_hp = pokemon_getattr(pkmn, REQUEST_TOTAL_HP, NULL);
     }
-    u8 tile_length = total_hp > 99 ? 3 : 2;
+    u8 tile_length = total_hp > 99 ? 6 : 5;
 
-    if (current_hp < 10) {
-        // single digit, space pad 2 digits
-        tile_length += 3;
-    } else if (current_hp < 100) {
-        // two digits, space pad 1 digit
-        tile_length += 3;
-    } else {
-        // the digits, space pad 0 digits
-        tile_length += 3;
+    if (total_hp > 99) {
         tile_id -= 1;
     }
 
-    /* format as XXX/YYY */
-    fmt_int_10(&hp_buff[0], current_hp, 0, 3);
+    u8 padding = count_digits(total_hp) - count_digits(current_hp);
+    for (u8 i = 0; i < padding; i++) {
+        hp_buff[i] = 0; // space
+    }
+    fmt_int_10(&hp_buff[padding], current_hp, 0, 3);
     pstrcat(string_buffer, hp_buff);
     pstrcat(string_buffer, hp_slash);
     fmt_int_10(&hp_buff[0], total_hp, 0, 3);
@@ -167,7 +170,7 @@ void draw_hp(struct Pokemon* pkmn, u8 tile_id, u8 objid, u8 mode, u8 bank)
     void* vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + (tile_id * 32)+ 0x6010000);
     u32 pixels = write_to_rbox(&string_buffer[0], 1, 4, &rboxid_buffer);
     rbox_to_vram(vram_addr, (void*)(pixels), tile_length);
-    
+
     // once written on Object, we can free this
     rboxid_clean(rboxid_buffer, 0);
     rboxid_free(rboxid_buffer);
@@ -187,7 +190,7 @@ void draw_level(struct Pokemon* pkmn, u8 tile_id, u8 objid)
     void* vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + (tile_id * 32)+ 0x6010000);
     u32 pixels = write_to_rbox(&string_buffer[0], 1, 3, &rboxid_buffer);
     rbox_to_vram(vram_addr, (void*)(pixels), 3);
-    
+
     // once written on Object, we can free this
     rboxid_clean(rboxid_buffer, 0);
     rboxid_free(rboxid_buffer);
@@ -373,7 +376,7 @@ void player_hpbar_slidin_slow(u8 t_id)
     }
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[0]].pos1.x -= 4;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[1]].pos1.x -= 4;
-    objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x -= 4;  
+    objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x -= 4;
 }
 
 void spawn_hpboxes_wild(void)
@@ -426,7 +429,3 @@ void hp_anim_change(u8 bank, s16 delta)
     tasks[t_id].priv[0] = bank;
     tasks[t_id].priv[1] = delta;
 }
-
-
-
-
