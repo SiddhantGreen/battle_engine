@@ -31,7 +31,7 @@ u8 conversion_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 u8 conversion_two_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    u8 last_type = MOVE_TYPE(LAST_MOVE(TARGET_OF(user)));
+    u8 last_type = MOVE_TYPE(LAST_MOVE(FOE_BANK(user)));
     u8 possible_types[MTYPE_NONE];
     memset(&possible_types, MTYPE_NONE, MTYPE_NONE);
     if (last_type == MTYPE_EGG)

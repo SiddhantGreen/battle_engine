@@ -8965,7 +8965,7 @@ struct move_data moves[] = {
     /*Burn Up*/
     .name = _("Burn Up"),
     .accuracy = 100,
-    .base_power = 10,
+    .base_power = 130,
     .description = (pchar*)Burn_Up_desc,
     .pp = 5,
     .category = MOVE_SPECIAL,
