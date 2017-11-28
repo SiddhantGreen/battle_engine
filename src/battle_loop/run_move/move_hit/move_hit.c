@@ -130,7 +130,6 @@ void move_hit()
                 break;
             }
             super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
-            }
             break;
         case S_GENERAL_TRYHIT:
 

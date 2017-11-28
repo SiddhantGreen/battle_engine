@@ -91,8 +91,8 @@ u8 reflect_type_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 soak_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    if (b_pkmn_set_type(user, MTYPE_WATER))
-        enqueue_message(move, user, STRING_CONVERSION_TYPE, MTYPE_WATER);
+    if (b_pkmn_set_type(TARGET_OF(src), MTYPE_WATER))
+        enqueue_message(move, TARGET_OF(src), STRING_CONVERSION_TYPE, MTYPE_WATER);
     else
         return false;
     return true;
@@ -142,7 +142,6 @@ u8 trick_or_treat_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 /* Ion Deluge */
 u8 ion_deluge_on_modify_move_anon(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != src) return true;
     if (B_MOVE_TYPE(user, 0) == MTYPE_NORMAL) {
         B_MOVE_TYPE(user, 0) = MTYPE_ELECTRIC;
     } else if (B_MOVE_TYPE(user, 1) == MTYPE_NORMAL) {
@@ -184,7 +183,6 @@ u8 electrify_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 u8 electrify_on_modify_move_anon(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != src) return true;
     if (user == TARGET_OF(src)) {
         B_MOVE_TYPE(user, 0) = MTYPE_ELECTRIC;
         acb->in_use = false;
