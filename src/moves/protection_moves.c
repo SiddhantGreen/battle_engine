@@ -26,7 +26,6 @@ u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 u8 protect_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return true;
-    dprintf("protect in ID: %d\n", id_by_func((u32)(protect_on_tryhit_anon)));
     if (IS_PROTECTABLE(move)) {
         return false; // fail the move
     }
@@ -39,6 +38,5 @@ u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     // queue an anon func to read and interrupt
     if (user != src) return true;
     add_callback(CB_ON_TRYHIT_MOVE, 0, 0, user, (u32)(protect_on_tryhit_anon));
-    dprintf("protect added to ID: %d\n", id_by_func((u32)(protect_on_tryhit_anon)));
     return true;
 }

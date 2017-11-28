@@ -69,7 +69,6 @@ enum TryHitMoveStatus {
 enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
 {
     // add callbacks specific to field
-    dprintf("Bank: %d \tMove: %d\n", attacker, move);
     if (moves[move].on_tryhit_move) {
         add_callback(CB_ON_TRYHIT_MOVE, 0, 0, attacker, (u32)moves[move].on_tryhit_move);
     }

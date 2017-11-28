@@ -37,11 +37,8 @@ void build_execution_order(u8 CB_id) {
     CB_EXEC_ORDER[CB_EXEC_INDEX] = ANON_CB_MAX;
     if (CB_EXEC_INDEX) {
         CB_EXEC_INDEX = 0;
-        dprintf("Some callback was queued at ID: %d\n", CB_id);
     } else {
         CB_EXEC_INDEX = ANON_CB_MAX;
-
-        dprintf("No callback at ID: %d\n", CB_id);
     }
 }
 
@@ -80,9 +77,7 @@ void update_callbacks() {
             if (CB_MASTER[i].duration) {
                 CB_MASTER[i].duration--;
             } else {
-                dprintf("CB id %d marked unused\n", i);
                 CB_MASTER[i].in_use = false;
-                dprintf("CB id %d marked to:%d\n", i, CB_MASTER[i].in_use);
             }
         }
     }
