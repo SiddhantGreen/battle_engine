@@ -49,22 +49,25 @@ u16 pick_rand_metronome_move()
 	return selected_move;
 }
 
-u8 metronome_on_modify_move(u8 bank, u8 target, u16 move_metronome)
+u8 metronome_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    CURRENT_MOVE(bank) = pick_rand_metronome_move();
-		set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
-    enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+	if (user != src) return true;
+    CURRENT_MOVE(user) = pick_rand_metronome_move();
+		set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+    enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
     return true;
 }
 
 /* Mirror Move */
-u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 mirror_move)
+u8 mirror_move_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
     // fails if target hasn't made a move or target's move isn't mirrorable
+	u8 target = TARGET_OF(user);
     if ((LAST_MOVE(target) != MOVE_NONE) && (IS_MIRRORABLE(LAST_MOVE(target)))) {
-        CURRENT_MOVE(bank) = LAST_MOVE(target);
-        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
-        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        CURRENT_MOVE(user) = LAST_MOVE(target);
+        set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+        enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return true;
     }
     return false;
@@ -89,23 +92,25 @@ bool is_allowed_sleep_talk(u16 move)
     return true;
 }
 
-u8 sleep_talk_before_move(u8 bank)
+u8 sleep_talk_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if ((B_STATUS(bank) == AILMENT_SLEEP) || (BANK_ABILITY(bank) == ABILITY_COMATOSE)) {
-        REMOVE_VOLATILE(bank, VOLATILE_SLEEP_TURN);
-        enqueue_message(0, bank, STRING_FAST_ASLEEP, 0);
+	if (user != src) return true;
+    if ((B_STATUS(user) == AILMENT_SLEEP) || (BANK_ABILITY(user) == ABILITY_COMATOSE)) {
+        REMOVE_VOLATILE(user, VOLATILE_SLEEP_TURN);
+        enqueue_message(0, user, STRING_FAST_ASLEEP, 0);
     }
     return true;
 }
 
-u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
+u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if ((B_STATUS(bank) == AILMENT_SLEEP) || (BANK_ABILITY(bank) == ABILITY_COMATOSE)) {
+	if (user != src) return true;
+    if ((B_STATUS(user) == AILMENT_SLEEP) || (BANK_ABILITY(user) == ABILITY_COMATOSE)) {
         // fail if no moves learnt
         u8 move_set[4] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
         u8 array_slot = 0;
         for (u8 i = 0; i < 4; i++) {
-            u16 this_move = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL);
+            u16 this_move = pokemon_getattr(p_bank[user]->this_pkmn, REQUEST_MOVE1 + i, NULL);
             if ((this_move != MOVE_NONE) && (is_allowed_sleep_talk(this_move)) && (!(IS_CHARGE(this_move)))) {
                 move_set[array_slot] = this_move;
                 array_slot++;
@@ -113,9 +118,9 @@ u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk)
         }
 
         if (array_slot) {
-            CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
-            set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
-            enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+            CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
+            set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+            enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
             return true;
         } else {
             return false;
@@ -154,14 +159,15 @@ bool is_allowed_assist(u16 move)
     return true;
 }
 
-u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
+u8 assist_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
     u16 move_set[24] = {MOVE_NONE};
     u8 array_slot = 0;
     u8 poke_count = count_pokemon();
-    struct Pokemon* bank_party = (SIDE_OF(bank)) ? (&party_opponent[0]) : (&party_player[0]);
+    struct Pokemon* bank_party = (SIDE_OF(user)) ? (&party_opponent[0]) : (&party_player[0]);
     for (u8 i = 0; i < poke_count; i++) {
-        if ((u32)&bank_party[i] == (u32)p_bank[bank]->this_pkmn)
+        if ((u32)&bank_party[i] == (u32)p_bank[user]->this_pkmn)
             continue;
         for (u8 j = 0; j < 4; j++) {
             u16 this_move = pokemon_getattr(&bank_party[i], REQUEST_MOVE1 + j, NULL);
@@ -173,9 +179,9 @@ u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move)
     }
 
     if (array_slot) {
-        CURRENT_MOVE(bank) = move_set[rand_range(0, array_slot)];
-        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
-        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
+        set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+        enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return true;
     } else {
         return false;
@@ -205,14 +211,14 @@ bool is_allowed_copycat(u16 move)
     return true;
 }
 
-u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move)
+u8 copycat_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
     u16 last_move = battle_master->field_state.last_used_move;
-    dprintf("Last move: %d\n", last_move);
     if (is_allowed_copycat(last_move)) {
-        CURRENT_MOVE(bank) = last_move;
-        set_attack_battle_master(bank, B_MOVE_BANK(bank), MOVE_PRIORITY(CURRENT_MOVE(bank)));
-        enqueue_message(CURRENT_MOVE(bank), bank, STRING_ATTACK_USED, 0);
+        CURRENT_MOVE(user) = last_move;
+        set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+        enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return true;
     } else {
         return false;
@@ -220,8 +226,6 @@ u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move)
 }
 
 /* Mirror coat */
-extern bool add_anon_cb(u8 CB_id, s8 priority, u8 delay, u8 dur, u8 src, u32 func);
-
 u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if ((user == source) || B_MOVE_HAS_BOUNCED(user) || (!IS_REFLECTABLE(move)))
@@ -232,10 +236,12 @@ u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callba
 	return true;
 }
 
-u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_magic_coat)
+u8 magic_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	enqueue_message(CURRENT_MOVE(bank), bank, STRING_SHROUDED_MAGICCOAT, 0);
-	return add_anon_cb(CB_ON_TRYHIT_MOVE, 2, 0, 1, bank, (u32)(magic_coat_tryhit_anon));
+	if (user != src) return true;
+	enqueue_message(CURRENT_MOVE(user), user, STRING_SHROUDED_MAGICCOAT, 0);
+	add_callback(CB_ON_TRYHIT_MOVE, 2, 0, user, (u32)(magic_coat_tryhit_anon));
+	return true;
 }
 
 
@@ -258,12 +264,13 @@ u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move, struct anonymous_c
 	return base_power;
 }
 
-u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first)
+u8 me_first_on_tryhit(u8 user, u8 src, u16 move_user, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
 	// fail if user hasn't moved before target
-	if (attacker != battle_master->first_bank)
+	if (user != battle_master->first_bank)
 		return false;
-
+	u8 defender = TARGET_OF(user);
 	u16 move = CURRENT_MOVE(defender);
 	if (IS_MOVE_STATUS(move))
 		return false;
@@ -273,12 +280,11 @@ u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first)
 	}
 
 	// move is valid to be copied
-	CURRENT_MOVE(attacker) = move;
-	set_attack_battle_master(attacker, B_MOVE_BANK(attacker),
-	 												MOVE_PRIORITY(CURRENT_MOVE(attacker)));
-	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_ATTACK_USED, 0);
-	return add_anon_cb(CB_ON_BASE_POWER_MOVE, 0, 0, 0,
-		 					attacker, (u32)me_first_on_base_power_anon);
+	CURRENT_MOVE(user) = move;
+	set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+	enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
+	add_callback(CB_ON_BASE_POWER_MOVE, 0, 0, user, (u32)me_first_on_base_power_anon);
+	return true;
 }
 
 /* Snatch */
@@ -300,8 +306,10 @@ u16 statch_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* 
 	return true;
 }
 
-u8 snatch_on_effect(u8 attacker, u8 defender, u16 move)
+u8 snatch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_SNATCH_WAITING, 0);
-	return add_anon_cb(CB_ON_TRYHIT_MOVE, 0, 0, 0, attacker, (u32)(statch_tryhit_anon));
+	if (user != src) return true;
+	enqueue_message(CURRENT_MOVE(user), user, STRING_SNATCH_WAITING, 0);
+	add_callback(CB_ON_TRYHIT_MOVE, 0, 0, user, (u32)(statch_tryhit_anon));
+	return true;
 }

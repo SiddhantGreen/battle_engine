@@ -4,12 +4,9 @@
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
-u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move)
+void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (B_GET_ITEM(user) != 0) {
-        return base_power;
-    }
-    return (base_power << 1);
+    if (user != src) return;
+    if (B_GET_ITEM(user) == 0)
+        B_MOVE_POWER(user) *= 2;
 }
-
-

@@ -22,49 +22,39 @@ enum BeforeMoveStatus {
     TARGET_MOVE_IMMUNITY,
 };
 
-enum BeforeMoveStatus move_before_move(u8 bank)
-{
-    u16 move = CURRENT_MOVE(bank);
-    if (moves[move].before_move)
-        return moves[move].before_move(bank);
-    return USE_MOVE_NORMAL;
-}
-/*
-enum BeforeMoveStatus foe_move_before_move(u8 bank)
-{
-    u16 move = CURRENT_MOVE(FOE_BANK(bank));
-    if (moves[move].foe_before_move)
-        return moves[move].foe_before_move(FOE_BANK(bank));
-    return USE_MOVE_NORMAL;
-}*/
 
-enum BeforeMoveStatus before_move_cb(u8 bank)
+enum BeforeMoveStatus before_move_cb(u8 attacker)
 {
-    return move_before_move(bank);
-    /*
-    u16 move_foe = CURRENT_MOVE(FOE_BANK(bank));
-    u16 move = CURRENT_MOVE(bank);
-
-    u8 result = USE_MOVE_NORMAL;
-    if (moves[move].before_move_priority > moves[move_foe].foe_before_move_priority) {
-        result = foe_move_before_move(bank);
-        if (result == USE_MOVE_NORMAL) {
-            result = move_before_move(bank);
-        }
-    } else {
-        result = move_before_move(bank);
-        if (result == USE_MOVE_NORMAL) {
-            result = foe_move_before_move(bank);
-        }
+    u16 move = CURRENT_MOVE(attacker);
+    // add callbacks specific to field
+    if (moves[move].before_move) {
+        add_callback(CB_ON_BEFORE_MOVE, 0, 0, attacker, (u32)moves[move].before_move);
     }
-    return result;*/
+    // run callbacks
+    build_execution_order(CB_ON_BEFORE_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        enum BeforeMoveStatus status = pop_callback(attacker, move);
+        if (status != USE_MOVE_NORMAL)
+            return status;
+    }
+    return USE_MOVE_NORMAL;
 }
 
-u8 move_on_modify_move(u8 attacker, u8 defender, u16 move)
+bool on_modify_move(u8 attacker, u8 defender, u16 move)
 {
-    if (moves[move].on_modify_move)
-        return moves[move].on_modify_move(attacker, defender, move);
-    return 1;
+    // add callbacks specific to field
+    if (moves[move].on_modify_move) {
+        add_callback(CB_ON_MODIFY_MOVE, 0, 0, attacker, (u32)moves[move].on_modify_move);
+    }
+    // run callbacks
+    build_execution_order(CB_ON_MODIFY_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        if (!(pop_callback(attacker, move)))
+            return false;
+    }
+    return true;
 }
 
 extern void run_residual_cbs(u8 bank);
@@ -99,12 +89,7 @@ void run_move()
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     return;
             };
-            u16 move = CURRENT_MOVE(bank_index);
-            if (!move) {
-                set_callback1(run_decision);
-                super.multi_purpose_state_tracker = S_RUN_FAINT;
-                break;
-            }
+
 			/* Residual effects which cause turn ending */
 			super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
 			if (HAS_VOLATILE(bank_index, VOLATILE_SLEEP_TURN)) {
@@ -124,8 +109,7 @@ void run_move()
         }
         case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
             // Modify move callbacks
-            if (move_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
-                ability_on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+            if (on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
                 super.multi_purpose_state_tracker++;
             } else {
                 enqueue_message(0, bank_index, STRING_FAILED, 0);

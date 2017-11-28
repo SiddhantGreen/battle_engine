@@ -9,22 +9,22 @@
 extern void run_decision(void);
 extern bool peek_message(void);
 
-void move_on_start(u8 bank)
-{
-    u16 move = CURRENT_MOVE(bank);
-    if (moves[move].on_start)
-        moves[move].on_start(bank);
-}
 
 void run_after_switch()
 {
     while (peek_message())
         return;
-    
-    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
-    ability_on_switch(bank_index);
-    move_on_start(bank_index);
+    u8 attacker = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
+    u16 move = CURRENT_MOVE(attacker);
+    if (moves[move].on_start) {
+        add_callback(CB_ON_START, 0, 0, attacker, (u32)moves[move].on_start);
+    }
+    // run on start callbacks
+    build_execution_order(CB_ON_START);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(attacker, move);
+    }
     super.multi_purpose_state_tracker = S_RUN_SWITCH_ALTERNATE_BANK;
     set_callback1(run_decision);
 }
-

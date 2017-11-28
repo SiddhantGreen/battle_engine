@@ -5,9 +5,8 @@
 
 extern void dprintf(const char * str, ...);
 
-u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move)
+void payday_ondmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+    if (user != src) return true;
     battle_master->field_state.payday_coins = B_LEVEL(user);
-    dprintf("Payday coins bonus is %d", B_LEVEL(user));
-    return dmg_taken;
 }

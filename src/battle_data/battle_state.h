@@ -120,7 +120,13 @@ struct switch_menu {
 
 struct battle_main {
     struct battle_field_state field_state;
-    struct anonymous_callbacks_master anon_cbs;
+
+    /* Main Battle callbacks */
+    struct anonymous_callback anon_cb_master[ANON_CB_MAX];
+    u8 cb_execution_order[ANON_CB_MAX];
+    u8 current_cb_index : 7;
+    u8 executing : 1;
+
     /* Object ids and positions */
     struct battle_selection_cursor battle_cursor;
     u8 selected_option;

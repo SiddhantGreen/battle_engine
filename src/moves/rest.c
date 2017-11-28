@@ -8,9 +8,10 @@ extern void dprintf(const char * str, ...);
 extern void status_graphical_update(u8 bank, enum Effect status);
 
 
-u8 rest_on_tryhit_move(u8 user, u8 target, u16 move)
+u8 rest_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 {
+    if (user != src) return true;
     if (B_CURRENT_HP(user) == TOTAL_HP(user))
         return false;
     statuses[AILMENT_SLEEP].on_inflict(user);

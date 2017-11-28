@@ -7,18 +7,18 @@
 
 typedef u16 (*StatCallback)(u8, u16);
 
-/* 
+/*
  * Ability stat modifier callback execution
  */
 
  s8 ability_priority_mod(u8 bank, u16 move_id)
 {
     u8 ability = p_bank[bank]->b_data.ability;
-    
+
     // ability doesn't exist in table
     if (ability > ABILITIES_MAX)
         return 0;
-        
+
     // check callback exists for ability
     if (abilities_table[ability]->on_priority_mod) {
         // exec callback from ability
@@ -117,15 +117,6 @@ void ability_on_before_switch(u8 bank)
     }
 }
 
-void ability_on_switch(u8 bank)
-{
-    if (p_bank[bank]->b_data.ability > ABILITIES_MAX)
-        return;
-    if (abilities_table[p_bank[bank]->b_data.ability]->on_switch) {
-        abilities_table[p_bank[bank]->b_data.ability]->on_switch(bank);
-    }
-}
-
 void ability_on_modify_move(u8 attacker, u8 defender, u16 move)
 {
     if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
@@ -145,7 +136,7 @@ u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move)
     return false;
 }
 
-u16 ability_on_base_power(u8 base_power, u8 attacker, u8 defender, u16 move) 
+u16 ability_on_base_power(u8 base_power, u8 attacker, u8 defender, u16 move)
 {
     if (p_bank[attacker]->b_data.ability > ABILITIES_MAX)
         return base_power;
@@ -155,5 +146,3 @@ u16 ability_on_base_power(u8 base_power, u8 attacker, u8 defender, u16 move)
         return base_power;
     }
 }
-
-

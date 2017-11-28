@@ -4,72 +4,69 @@
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
-extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
 
-u8 before_move_charge_frame(u8 bank, u8 string_id)
+u8 before_move_charge_frame(u8 user, u8 string_id)
 {
-    if (HAS_VOLATILE(bank, VOLATILE_CHARGING)) {
-        REMOVE_VOLATILE(bank, VOLATILE_CHARGING);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        REMOVE_VOLATILE(user, VOLATILE_CHARGING);
         return true;
     } else {
-        enqueue_message(0, bank, string_id, 0);
-        ADD_VOLATILE(bank, VOLATILE_CHARGING);
+        enqueue_message(0, user, string_id, 0);
+        ADD_VOLATILE(user, VOLATILE_CHARGING);
         return false; // don't fire move if charging
     }
 }
 
 /* Basic one turn charge, then simple attack moves */
-u8 freeze_shock_before_move(u8 bank)
+u8 freeze_shock_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_FREEZE_SHOCK);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_FREEZE_SHOCK);
 }
 
-u8 solarbeam_before_move(u8 bank)
+u8 solarbeam_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_SOLARBEAM);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_SOLARBEAM);
 }
 
-u8 solarblade_before_move(u8 bank)
+u8 solarblade_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_SOLARBEAM);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_SOLARBEAM);
 }
 
-u8 ice_burn_before_move(u8 bank)
+u8 ice_burn_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_ICE_BURN);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_ICE_BURN);
 }
 
-u8 razor_wind_before_move(u8 bank)
+u8 razor_wind_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_RAZORWIND);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_RAZORWIND);
 }
 
-u8 sky_attack_before_move(u8 bank)
+u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return before_move_charge_frame(bank, STRING_CHARGE_SKY_ATTACK);
+    if (src != user) return true;
+    return before_move_charge_frame(user, STRING_CHARGE_SKY_ATTACK);
 }
 
 /* Moves with some effect during the charging turn */
 
-u8 fly_before_move(u8 bank)
+u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (before_move_charge_frame(bank, STRING_CHARGE_FLY)) {
-        REMOVE_VOLATILE(bank, VOLATILE_FLYING);
-        REMOVE_VOLATILE(bank, VOLATILE_SEMI_INVULNERABLE);
+    if (src != user) return true;
+    if (before_move_charge_frame(user, STRING_CHARGE_FLY)) {
+        REMOVE_VOLATILE(user, VOLATILE_FLYING);
+        REMOVE_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
         return true;
     } else {
-        ADD_VOLATILE(bank, VOLATILE_FLYING);
-        ADD_VOLATILE(bank, VOLATILE_SEMI_INVULNERABLE);
+        ADD_VOLATILE(user, VOLATILE_FLYING);
+        ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
         return false;
     }
 }
-
-
-
-
-
-
-
-
-
-

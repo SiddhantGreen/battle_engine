@@ -29,23 +29,27 @@ void switch_battler(u8 switching_bank)
     return;
 }
 
-void move_on_switch_cb()
+void move_on_switch_cb(u8 attacker)
 {
-    u16 move = CURRENT_MOVE(battle_master->first_bank);
-    if (moves[move].before_switch)
-        moves[move].before_switch(battle_master->first_bank);
-        
-    move = CURRENT_MOVE(battle_master->second_bank);
-    if (moves[move].before_switch)
-        moves[move].before_switch(battle_master->second_bank);
+    u16 move = CURRENT_MOVE(attacker);
+    // add callbacks specific to field
+    if (moves[move].before_switch) {
+        add_callback(CB_ON_BEFORE_SWITCH, 0, 0, attacker, (u32)moves[move].before_switch);
+    }
+    // run callbacks
+    build_execution_order(CB_ON_BEFORE_SWITCH);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(attacker, move);
+    }
 }
 
 void run_switch()
 {
     while (peek_message())
         return;
-        
-    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;   
+
+    u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch(super.multi_purpose_state_tracker) {
         case S_RUN_FLEE:
             set_callback1(run_flee);
@@ -54,7 +58,6 @@ void run_switch()
         case S_RUN_SWITCH_CHECKS:
             // if first bank is switching exec before switch cbs. Else jump to second bank is switching check
             if (p_bank[bank_index]->b_data.is_switching) {
-                ability_on_before_switch(bank_index);
                 super.multi_purpose_state_tracker++;
             } else {
                 set_callback1(run_decision);
@@ -62,7 +65,7 @@ void run_switch()
             }
             break;
         case S_SWITCH_LOGIC:
-            move_on_switch_cb();
+            move_on_switch_cb(bank_index);
             // do actual switch
             switch_battler(bank_index);
             dprintf("trying to alternate bank inside run switch\n");

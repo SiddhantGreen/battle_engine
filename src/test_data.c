@@ -7,9 +7,9 @@ extern void dprintf(const char * str, ...);
 void set_player_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
-	u16 species = SPECIES_SQUIRTLE;
+	u16 species = SPECIES_CHARMANDER;
     //u16 species = pokemon_getattr(&party_player[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_ELECTRIFY;
+    u16 move_1 = MOVE_PROTECT;
     u16 move_2 = MOVE_RECOVER;
     u16 move_3 = MOVE_DOUBLE_KICK;
     u16 move_4 = MOVE_TWINEEDLE;
@@ -34,13 +34,13 @@ void set_player_battle_components()
 void set_opponent_battle_components()
 {
     /* Change these variables to change what the player's first pokemon has */
-    u16 species = SPECIES_MACHAMP;
+    u16 species = SPECIES_GEODUDE;
     //u16 species = pokemon_getattr(&party_opponent[0], REQUEST_SPECIES, NULL);
-    u16 move_1 = MOVE_TACKLE;
-    u16 move_2 = MOVE_TACKLE;
-    u16 move_3 = MOVE_TACKLE;
-    u16 move_4 = MOVE_TACKLE;
-    u8 level = 1;
+    u16 move_1 = MOVE_WATER_GUN;
+    u16 move_2 = MOVE_DISARMING_VOICE;
+    u16 move_3 = MOVE_WATER_GUN;
+    u16 move_4 = MOVE_DISARMING_VOICE;
+    u8 level = 60;
 
     pokemon_setattr(&party_opponent[0], REQUEST_SPECIES, &species);
     pokemon_setattr(&party_opponent[0], REQUEST_NICK, &pokemon_names[species]);
