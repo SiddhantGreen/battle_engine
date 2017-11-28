@@ -99,7 +99,9 @@ u8 sleep_talk_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
         REMOVE_VOLATILE(user, VOLATILE_SLEEP_TURN);
         enqueue_message(0, user, STRING_FAST_ASLEEP, 0);
     }
-    return true;
+	// don't fail here, fail after posting "Used move" string
+	return true;
+
 }
 
 u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -123,9 +125,11 @@ u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
             enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
             return true;
         } else {
+			dprintf("can't find a usable move for sleep talk\n");
             return false;
         }
     } else {
+		dprintf("user not asleep.\n");
         return false;
     }
 }
@@ -257,11 +261,9 @@ u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move, struct anonymous_c
 	u8 base_power = B_MOVE_POWER(attacker);
 	if (attacker == src) {
 		acb->in_use = false;
-		u8 bp = NUM_MOD(base_power, 150);
-		if (bp < base_power)
-			base_power = 255;
+		B_MOVE_POWER(attacker) = NUM_MOD(base_power, 150);
 	}
-	return base_power;
+	return true;
 }
 
 u8 me_first_on_tryhit(u8 user, u8 src, u16 move_user, struct anonymous_callback* acb)
@@ -283,7 +285,8 @@ u8 me_first_on_tryhit(u8 user, u8 src, u16 move_user, struct anonymous_callback*
 	CURRENT_MOVE(user) = move;
 	set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
 	enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
-	add_callback(CB_ON_BASE_POWER_MOVE, 0, 0, user, (u32)me_first_on_base_power_anon);
+	add_callback(CB_ON_BASE_POWER_MOVE, 4, 0, user, (u32)me_first_on_base_power_anon);
+	acb->in_use = false;
 	return true;
 }
 
@@ -311,5 +314,6 @@ u8 snatch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 	if (user != src) return true;
 	enqueue_message(CURRENT_MOVE(user), user, STRING_SNATCH_WAITING, 0);
 	add_callback(CB_ON_TRYHIT_MOVE, 0, 0, user, (u32)(statch_tryhit_anon));
+	acb->in_use = false;
 	return true;
 }
