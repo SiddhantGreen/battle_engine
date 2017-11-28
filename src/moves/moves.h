@@ -293,7 +293,7 @@ extern u8 burn_up_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern u8 seismic_toss_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
