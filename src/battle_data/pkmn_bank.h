@@ -125,6 +125,7 @@ struct local_battler_data {
     u8 confusion_turns;
     u8 status_turns;
     u16 substitute_health;
+    u8 protect_used_turns;
     u32 v_status; // enum volatile status
 
     u8 disable_used_on_slot;

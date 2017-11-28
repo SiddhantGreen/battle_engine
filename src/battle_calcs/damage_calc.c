@@ -8,7 +8,6 @@
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern void dprintf(const char * str, ...);
-extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
 
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
@@ -57,43 +56,24 @@ u16 weather_dmg_mod(u16 damage, u8 attacker)
     return damage;
 }
 
-/* TODO utilize priority */
-u16 move_on_base_power_move(u8 base_power, u8 attacker, u8 defender, u16 move)
-{
-    if (moves[move].on_base_power_move) {
-        return moves[move].on_base_power_move(base_power, attacker, defender, move);
-    } else {
-        return base_power;
-    }
-}
-
-u16 move_on_damage_callback(u16 damage_taken, u8 attacker, u8 defender, u16 move)
-{
-    if (moves[move].on_damage_move) {
-        return moves[move].on_damage_move(damage_taken, attacker, defender, move);
-    }
-    return 0;
-}
-
 
 u16 get_base_damage(u8 attacker, u8 defender, u16 move)
 {
-    // moves like counter/bide/seismic toss calc damage outside of the formula & ignore type immunities
-    u16 predmg = move_on_damage_callback(p_bank[attacker]->b_data.last_damage, attacker, defender, move);
-    if (predmg) {
-        return predmg;
-    }
-
     if (B_MOVE_IS_STATUS(attacker))
         return 0;
 
 
-    u8 base_power = B_MOVE_POWER(attacker);
-    u8 new_power = exec_anonymous_callback(CB_ON_BASE_POWER_MOVE, attacker, TARGET_OF(attacker), move);
-    if (new_power) {
-      base_power = new_power;
+    // add base power callbacks specific to field
+    if (moves[move].on_base_power_move) {
+        add_callback(CB_ON_BASE_POWER_MOVE, 0, 0, attacker, (u32)moves[move].on_base_power_move);
     }
-    base_power = move_on_base_power_move(base_power, attacker, defender, move);
+    // run base power callbacks
+    build_execution_order(CB_ON_BASE_POWER_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(attacker, move);
+    }
+    u8 base_power = B_MOVE_POWER(attacker);
 
     // get defending and attacking stats
     enum MoveCategory atk_category = B_MOVE_CATEGORY(attacker);
@@ -222,29 +202,50 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 
 s16 get_damage(u8 attacker, u8 defender, u16 move)
 {
+    u16 dmg = 0;
+    bool return_now = false;
 	if (B_MOVE_DMG(attacker)) {
         u16 percent = type_effectiveness_mod(attacker, defender, move);
         if (percent) {
             B_MOVE_EFFECTIVENESS(attacker) = TE_EFFECTIVE;
-            return B_MOVE_DMG(attacker);
+            dmg = B_MOVE_DMG(attacker);
+            return_now = true;
         } else {
             B_MOVE_EFFECTIVENESS(attacker) = TE_IMMUNE;
-            return (0);
+            dmg = 0;
+            return_now = true;
         }
     }
 
-    if (IS_OHKO(move)) {
-        battle_master->b_moves[B_MOVE_BANK(attacker)].effectiveness = TE_OHKO;
-        return (TOTAL_HP(defender));
+    if (!return_now) {
+        if (IS_OHKO(move)) {
+            battle_master->b_moves[B_MOVE_BANK(attacker)].effectiveness = TE_OHKO;
+            dmg = (TOTAL_HP(defender));
+            return_now = true;
+        }
+
+        if (!return_now) {
+            // get base damage
+            u16 base_dmg = get_base_damage(attacker, defender, move);
+            if (base_dmg == 0) {
+                dmg = 0;
+            } else {
+                u16 result = modify_damage(base_dmg, attacker, defender, move);
+                dmg = MAX(result, 1);
+            }
+        }
     }
-    // get base damage
-    u16 base_dmg = get_base_damage(attacker, defender, move);
+    B_MOVE_DMG(attacker) = dmg;
 
-    // if base damage is 0, target is immune. Display text and exit TODO
-    if (base_dmg == 0)
-        return 0;
-
-    // return damage
-    u16 result = modify_damage(base_dmg, attacker, defender, move);
-    return MAX(result, 1);
+    // add base power callbacks specific to field
+    if (moves[move].on_damage_move) {
+        add_callback(CB_ON_DAMAGE_MOVE, 0, 0, attacker, (u32)moves[move].on_damage_move);
+    }
+    // run base power callbacks
+    build_execution_order(CB_ON_DAMAGE_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(attacker, move);
+    }
+    return B_MOVE_DMG(attacker);
 }

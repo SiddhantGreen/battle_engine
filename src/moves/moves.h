@@ -5,6 +5,7 @@
 #include "../battle_data/pkmn_bank.h"
 #include "move_override.h"
 #include "../abilities/ability_override.h"
+#include "../anonymous_callbacks/anonymous_callbacks.h"
 
 /* Ailment names and order:
 
@@ -68,6 +69,7 @@ struct move_procs {
 #define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
 #define IS_DEFROST(move) ((moves[move].m_flags) & (1 << 4))
+#define IS_PROTECTABLE(move) ((moves[move].m_flags) & (1 << 9))
 #define IS_REFLECTABLE(move) ((moves[move].m_flags) & (1 << 12))
 #define IS_SNATCHABLE(move) ((moves[move].m_flags) & (1 << 13))
 #define IS_CHARGE(move) ((moves[move].m_flags) & (1 << 1))
@@ -188,18 +190,18 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 
 
 
-typedef void (*MoveBeforeTurnCallback)(u8 bank);
-typedef void (*MoveBeforeSwitchOutCallback)(u8 bank);
-typedef void (*MoveOnStartCallback)(u8 bank);
-typedef u8 (*MoveBeforeMoveCallback)(u8 bank);
-typedef u8 (*MoveOnFailCallback)(u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnInvulnerableTryHitMoveCallback)(u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnBasePowerCallback)(u8 base_power, u8 user, u8 target, u16 move);
-typedef u16 (*MoveOnDamageCallback)(u16 dmg_taken, u8 user, u8 target, u16 move);
-typedef u8 (*MoveOnEffectCallback)(u8 attacker, u8 defender, u16 move);
-typedef void (*MoveOnAfterMoveCallback)(u8 attacker);
+typedef void (*MoveBeforeTurnCallback)(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+typedef void (*MoveBeforeSwitchOutCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef void (*MoveOnStartCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveBeforeMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveOnFailCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveOnModifyMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveOnTryHitMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveOnInvulnerableTryHitMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef void (*MoveOnBasePowerCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef void (*MoveOnDamageCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*MoveOnEffectCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef void (*MoveOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 struct move_data {
     pchar name[22];
@@ -229,7 +231,6 @@ struct move_data {
     MoveOnModifyMoveCallback on_modify_move;
     MoveOnTryHitMoveCallback on_tryhit_move;
     MoveOnInvulnerableTryHitMoveCallback on_inv_tryhit_move;
-    MoveOnTryHitMoveCallback on_tryhit_side_move;
     MoveOnBasePowerCallback on_base_power_move;
     MoveOnDamageCallback on_damage_move;
     MoveOnEffectCallback on_effect_cb;
@@ -240,58 +241,60 @@ extern struct move_data moves[];
 
 
 /* Move callback funcs */
-extern u16 payday_ondmg(u16 dmg_taken, u8 user, u8 target, u16 move);
-extern u8 ohko_tryhit_move(u8 user, u8 target, u16 move);
-extern u8 solarbeam_before_move(u8 bank);
-extern u8 solarblade_before_move(u8 bank);
-extern u8 freeze_shock_before_move(u8 bank);
-extern u8 ice_burn_before_move(u8 bank);
-extern u8 razor_wind_before_move(u8 bank);
-extern u8 sky_attack_before_move(u8 bank);
-extern u8 fly_before_move(u8 bank);
-extern u8 gust_on_modify(u8 user, u8 target, u16 move);
-extern u8 whirlwind_on_tryhit_move(u8 user, u8 target, u16 move);
-extern u8 whirlwind_on_effect_cb(u8 attacker, u8 defender, u16 move);
-extern u8 acrobatics_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
-extern u8 bind_on_effect_cb(u8 attacker, u8 defender, u16 move);
-extern u8 minimize_on_effect_cb(u8 attacker, u8 defender, u16 move);
-extern u8 stomp_on_modify_move(u8 user, u8 target, u16 move);
-extern u8 jump_kick_on_move_fail(u8 user, u8 target, u16 move);
-extern u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move);
-extern u8 thrash_on_tryhit_move(u8 attacker, u8 target, u16 move);
-extern u8 thrash_on_move_fail(u8 attacker, u8 defender, u16 move);
-extern void thrash_on_after_move(u8 attacker);
-extern u8 sonic_boom_on_modify_move(u8 user, u8 target, u16 move);
-extern u16 sonic_boom_on_damage_move(u16 dmg_taken, u8 user, u8 target, u16 move);
-extern u8 seismic_toss_on_modify_move(u8 user, u8 target, u16 move);
-extern u8 disable_on_effect_cb(u8 user, u8 target, u16 move);
-extern u8 rollout_on_before_move(u8 attacker);
-extern u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move);
-extern u8 rollout_on_base_power_move(u8 base_power, u8 user, u8 target, u16 move);
-extern u8 metronome_on_modify_move(u8 bank, u8 target, u16 move);
-extern u8 mirror_move_on_modify_move(u8 bank, u8 target, u16 move);
-extern u8 sleep_talk_before_move(u8 bank);
-extern u8 sleep_talk_on_modify_move(u8 bank, u8 target, u16 sleep_talk);
-extern u8 assist_on_modify_move(u8 bank, u8 target, u16 assist_move);
-extern u8 copycat_on_modify_move(u8 bank, u8 target, u16 copycat_move);
-extern u8 clear_smog_effect(u8 attacker, u8 defender, u16 move);
-extern u8 magic_coat_on_tryhit(u8 bank, u8 defender, u16 move_mirror_coat);
-extern u8 me_first_on_tryhit (u8 attacker, u8 defender, u16 move_me_first);
-extern u8 snatch_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 conversion_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 conversion_two_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 reflect_type_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 soak_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 flying_press_on_modify_move(u8 attacker, u8 defender, u16 move);
-extern u8 flying_press_on_base_power(u8 base_power, u8 user, u8 target, u16 move);
-extern u8 trick_or_treat_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 rest_on_tryhit_move(u8 user, u8 target, u16 move);
-extern u8 ion_deluge_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 electrify_on_effect(u8 attacker, u8 defender, u16 move);
-extern u8 electrify_on_tryhit(u8 attacker, u8 defender, u16 move);
-extern u8 psywave_on_modify_move(u8 user, u8 target, u16 move);
-extern u8 burn_up_on_tryhit(u8 attacker, u8 defender, u16 move);
-extern u8 burn_up_on_effect(u8 attacker, u8 defender, u16 move);
+extern void payday_ondmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 ohko_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 solarbeam_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 solarblade_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 freeze_shock_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 ice_burn_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 razor_wind_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gust_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 whirlwind_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 whirlwind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 bind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 minimize_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 stomp_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 jump_kick_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 bodyslam_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 thrash_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 thrash_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void thrash_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sonic_boom_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rollout_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rollout_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void rollout_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 metronome_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mirror_move_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sleep_talk_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 assist_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 copycat_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 clear_smog_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 magic_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 me_first_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 snatch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 conversion_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 conversion_two_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 reflect_type_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 soak_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 flying_press_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void flying_press_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 trick_or_treat_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rest_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 ion_deluge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 electrify_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 electrify_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 psywave_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 burn_up_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 seismic_toss_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

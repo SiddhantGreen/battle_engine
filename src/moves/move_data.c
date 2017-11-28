@@ -3047,8 +3047,10 @@ struct move_data moves[] = {
     .priority = 4,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_tryhit_move = protect_on_tryhit,
+    .on_effect_cb = protect_on_effect,
     },
 
     {

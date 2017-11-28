@@ -5,30 +5,32 @@
 
 extern void dprintf(const char * str, ...);
 
-u8 minimize_on_effect_cb(u8 attacker, u8 defender, u16 move)
+u8 minimize_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (!(HAS_VOLATILE(attacker, VOLATILE_MINIMIZE))) {
-        ADD_VOLATILE(attacker, VOLATILE_MINIMIZE);
+    if (user != src) return true;
+    if (!(HAS_VOLATILE(user, VOLATILE_MINIMIZE))) {
+        ADD_VOLATILE(user, VOLATILE_MINIMIZE);
     }
-    return 1;
+    return true;
 }
 
 
-u8 stomp_on_modify_move(u8 user, u8 target, u16 move)
+u8 stomp_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (HAS_VOLATILE(target, VOLATILE_MINIMIZE)) {
+    if (user != src) return true;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_MINIMIZE)) {
         B_MOVE_ACCURACY(user) = 101;
         B_MOVE_POWER(user) *= 2;
     }
-    return 1;
+    return true;
 }
 
-u8 bodyslam_on_modify_move(u8 user, u8 target, u16 move)
+u8 bodyslam_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (HAS_VOLATILE(target, VOLATILE_MINIMIZE)) {
+    if (user != src) return true;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_MINIMIZE)) {
         B_MOVE_ACCURACY(user) = 101;
         B_MOVE_POWER(user) *= 2;
     }
-    return 1;
+    return true;
 }
-

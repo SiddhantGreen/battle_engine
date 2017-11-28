@@ -13,7 +13,6 @@ extern bool peek_message(void);
 extern void run_move(void);
 extern bool try_hit(u8 bank);
 extern bool target_exists(u8 bank);
-extern bool is_immune(u8 attacker, u8 defender, u16 move);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void hp_anim_change(u8 bank, s16 delta);
 extern void hpbar_apply_dmg(u8 task_id);
@@ -23,7 +22,6 @@ extern u16 rand_range(u16, u16);
 extern bool is_fainted(void);
 extern void move_procs_perform(u8 bank_index, u16 move);
 extern void status_procs_perform(u8 bank_index);
-extern u8 exec_anonymous_callback(u8 CB_id, u8 attacker, u8 defender, u16 move);
 
 bool damage_result_msg(u8 bank_index)
 {
@@ -70,19 +68,21 @@ enum TryHitMoveStatus {
 
 enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
 {
+    // add callbacks specific to field
     if (moves[move].on_tryhit_move) {
-        return moves[move].on_tryhit_move(attacker, defender, move);
+        add_callback(CB_ON_TRYHIT_MOVE, 0, 0, attacker, (u32)moves[move].on_tryhit_move);
+    }
+    // run callbacks
+    build_execution_order(CB_ON_TRYHIT_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        enum TryHitMoveStatus status = pop_callback(attacker, move);
+        if (status != USE_MOVE_NORMAL)
+            return status;
     }
     return USE_MOVE_NORMAL;
 }
 
-enum TryHitMoveStatus move_tryhit_side(u8 attacker, u8 defender, u16 move)
-{
-    if (moves[move].on_tryhit_side_move) {
-        return moves[move].on_tryhit_side_move(attacker, defender, move);
-    }
-    return USE_MOVE_NORMAL;
-}
 
 
 void move_hit()
@@ -103,26 +103,9 @@ void move_hit()
                 set_callback1(run_decision);
                 return;
             }
-            // anon move tryhit cb
-            exec_anonymous_callback(CB_ON_TRYHIT_MOVE, bank_index, TARGET_OF(bank_index), move);
             // move tryhit callback
+            dprintf("Here with index %d\n",bank_index);
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
-                case CANT_USE_MOVE:
-                    enqueue_message(move, bank_index, STRING_FAILED, move);
-                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                    set_callback1(run_move);
-                    return;
-                case TARGET_MOVE_IMMUNITY:
-                    B_MOVE_FAILED(bank_index) = 1;
-                    enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
-                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                    set_callback1(run_move);
-                    return;
-                default:
-                    break;
-            };
-            // move tryhit side callback
-            switch (move_tryhit_side(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
                     enqueue_message(move, bank_index, STRING_FAILED, move);
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
@@ -169,13 +152,6 @@ void move_hit()
             break;
         case S_IMMUNITY_CHECK:
             // check immunity
-            if (is_immune(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
-                enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
-                B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                set_callback1(run_move);
-                return;
-            }
             super.multi_purpose_state_tracker = S_DAMAGE_CALC_AND_APPLY;
             break;
         case S_DAMAGE_CALC_AND_APPLY:
@@ -217,13 +193,23 @@ void move_hit()
         case S_MOVE_EFFECT:
         {
             /* execute move effect */
-			if (moves[CURRENT_MOVE(bank_index)].on_effect_cb) {
-				if (!(moves[CURRENT_MOVE(bank_index)].on_effect_cb(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index)))) {
-					enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_FAILED, 0);
+            u8 attacker = bank_index;
+            u16 move = CURRENT_MOVE(attacker);
+
+            // add callbacks specific to field
+            if (moves[move].on_effect_cb) {
+                add_callback(CB_ON_EFFECT, 0, 0, attacker, (u32)moves[move].on_effect_cb);
+            }
+            // run callbacks
+            build_execution_order(CB_ON_EFFECT);
+            battle_master->executing = true;
+            while (battle_master->executing) {
+                if (!(pop_callback(attacker, move))) {
+                    enqueue_message(move, attacker, STRING_FAILED, 0);
 					super.multi_purpose_state_tracker = S_MOVE_FAILED;
 					set_callback1(run_move);
 					return;
-				}
+                }
             }
 			super.multi_purpose_state_tracker = S_RECOIL_APPLY;
 			break;
@@ -270,15 +256,13 @@ void move_hit()
 			break;
 		}
     case S_AFTER_MOVE_SECONDARY:
-    // after_move_secondary
-// set flinch chance of target
+        // set flinch chance of target
         battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
-    // if multi-hit not satisfied call again
+        // if multi-hit not satisfied call again
         if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
             battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;
             battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter++;
             if (is_fainted()) {
-                dprintf("Fainted on %d hits\n", battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 0;
                 super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
             } else {
@@ -286,26 +270,36 @@ void move_hit()
             }
         } else {
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
-                u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
-                damage_result_msg(bank_index);
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
-                enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
-            }
-            super.multi_purpose_state_tracker = S_AFTER_MOVE;
+            u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
+            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
+            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
+            damage_result_msg(bank_index);
+            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
+            enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
+        }
+        super.multi_purpose_state_tracker = S_AFTER_MOVE;
         }
         break;
     case S_AFTER_MOVE:
-    // after move
-        if (moves[move].on_after_move) {
-            moves[move].on_after_move(bank_index);
+        {
+            // add callbacks specific to field
+            u8 attacker = bank_index;
+            if (moves[move].on_after_move) {
+                add_callback(CB_ON_AFTER_MOVE, 0, 0, attacker, (u32)moves[move].on_after_move);
+            }
+
+            // run callbacks
+            build_execution_order(CB_ON_AFTER_MOVE);
+            battle_master->executing = true;
+            while (battle_master->executing) {
+                pop_callback(attacker, move);
+            }
+            if (IS_RECHARGE(move)) {
+                ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
+            }
+            super.multi_purpose_state_tracker = S_MOVE_FAILED;
+            set_callback1(run_move);
         }
-        if (IS_RECHARGE(move)) {
-            ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
-        }
-        super.multi_purpose_state_tracker = S_MOVE_FAILED;
-        set_callback1(run_move);
         break;
     };
 }

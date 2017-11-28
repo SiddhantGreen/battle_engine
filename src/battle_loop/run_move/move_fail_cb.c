@@ -16,8 +16,14 @@ extern void dprintf(const char * str, ...);
 
 void run_move_failed_cbs(u8 attacker, u8 defender, u16 move)
 {
+    // add callbacks specific to field
     if (moves[move].on_move_fail) {
-        moves[move].on_move_fail(attacker, defender, move);
+        add_callback(CB_ON_MOVE_FAIL, 0, 0, attacker, (u32)moves[move].on_move_fail);
+    }
+    // run callbacks
+    build_execution_order(CB_ON_MOVE_FAIL);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(attacker, move);
     }
 }
-

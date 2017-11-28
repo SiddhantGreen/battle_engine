@@ -67,6 +67,7 @@ void run_decision(void)
         case S_SOFT_RESET_BANK:
         {
             // reset turn based bits
+            update_callbacks();
             reset_turn_bits(battle_master->first_bank);
             reset_turn_bits(battle_master->second_bank);
             set_callback1(option_selection);
