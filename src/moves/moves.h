@@ -288,12 +288,12 @@ extern u8 rest_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callba
 extern u8 ion_deluge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 electrify_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 electrify_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 psywave_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void psywave_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 burn_up_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 seismic_toss_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void seismic_toss_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

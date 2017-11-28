@@ -14,6 +14,8 @@ u8 rest_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if (user != src) return true;
     if (B_CURRENT_HP(user) == TOTAL_HP(user))
         return false;
+    if (B_STATUS(user) == AILMENT_SLEEP)
+        return false;
     statuses[AILMENT_SLEEP].on_inflict(user);
     status_graphical_update(user, AILMENT_SLEEP);
     if ((B_STATUS(user) != AILMENT_SLEEP))
