@@ -129,13 +129,7 @@ void move_hit()
                 super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
                 break;
             }
-            if (ability_on_tryhit(bank_index, TARGET_OF(bank_index), move)) {
-                super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
-            } else {
-                B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                set_callback1(run_move);
-                return;
+            super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
             }
             break;
         case S_GENERAL_TRYHIT:
