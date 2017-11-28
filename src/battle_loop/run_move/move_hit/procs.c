@@ -192,11 +192,7 @@ void set_status(u8 bank, enum Effect status)
 			break;
         case EFFECT_CONFUSION:
             // Confusion isn't affected by type
-            if ((p_bank[bank]->b_data.status == AILMENT_CONFUSION)) {
-                status_applied = false;
-            } else {
-                status_applied = true;
-            }
+            status_applied = true;
 			break;
         case EFFECT_CURE:
             // cure status
