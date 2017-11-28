@@ -27,6 +27,8 @@ u16 pick_opponent_attack()
 {
     if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
         return 0;
+    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select)
+        return LAST_MOVE(OPPONENT_SINGLES_BANK);
     u8 move_total = 0;
     u8 usable_moves = 0;
     u8 i;

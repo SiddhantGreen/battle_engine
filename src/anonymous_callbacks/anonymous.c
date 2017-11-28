@@ -29,34 +29,28 @@ void build_execution_order(u8 CB_id) {
     sort_priority_cbs();
     CB_EXEC_INDEX = 0;
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
-        if (CB_MASTER[i].cb_id == CB_id) {
+        if ((CB_MASTER[i].cb_id != CB_id) || (!CB_MASTER[i].in_use) || (CB_MASTER[i].delay_before_effect)) {
+            continue;
+        } else {
             CB_EXEC_ORDER[CB_EXEC_INDEX] = i;
             CB_EXEC_INDEX++;
         }
     }
     CB_EXEC_ORDER[CB_EXEC_INDEX] = ANON_CB_MAX;
-    if (CB_EXEC_INDEX) {
-        CB_EXEC_INDEX = 0;
-    } else {
-        CB_EXEC_INDEX = ANON_CB_MAX;
-    }
+    CB_EXEC_INDEX = 0;
 }
 
 // Run the next callback in the built list
 u16 pop_callback(u8 attacker, u16 move) {
-    // respect delays. Delayed CBs not executed until after delay
-    for (u8 i = CB_EXEC_INDEX; i < ANON_CB_MAX; i++) {
-        if (CB_MASTER[CB_EXEC_ORDER[i]].delay_before_effect)
-            continue;
-        if (CB_MASTER[i].in_use == false) {
-            continue;
-        } else {
-            CB_EXEC_INDEX++;
-            i = CB_EXEC_ORDER[i];
-            AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
-            battle_master->executing = true;
-            return func(attacker, CB_MASTER[i].source_bank, move, &CB_MASTER[i]);
-        }
+    u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+    if (i != ANON_CB_MAX) {
+        i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+        CB_EXEC_INDEX++;
+        AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
+        battle_master->executing = true;
+        dprintf("executing a function at %x\n", CB_MASTER[i].func -1);
+        return func(attacker, CB_MASTER[i].source_bank, move, &CB_MASTER[i]);
+
     }
     // callbacks are done executing here
     battle_master->executing = false;
@@ -88,12 +82,9 @@ void update_callbacks() {
 /* Array sorting by struct element Priority */
 void callbacks_swap(u8 i, u8 j)
 {
-    struct anonymous_callback temp;
-    memcpy(&temp, &CB_MASTER[i], sizeof(struct anonymous_callback));
-    memcpy(&CB_MASTER[i], &CB_MASTER[j], sizeof(struct anonymous_callback));
-    memcpy(&CB_MASTER[j], &CB_MASTER[i], sizeof(struct anonymous_callback));
-    //CB_MASTER[i] = CB_MASTER[j];
-    //CB_MASTER[j] = temp;
+    struct anonymous_callback temp = CB_MASTER[i];
+    CB_MASTER[i] = CB_MASTER[j];
+    CB_MASTER[j] = temp;
     return;
 }
 

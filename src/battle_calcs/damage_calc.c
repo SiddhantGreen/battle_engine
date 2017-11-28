@@ -233,6 +233,8 @@ s16 get_damage(u8 attacker, u8 defender, u16 move)
                 u16 result = modify_damage(base_dmg, attacker, defender, move);
                 dmg = MAX(result, 1);
             }
+            if (B_MOVE_POWER(attacker) == 0)
+                dmg = 0;
         }
     }
     B_MOVE_DMG(attacker) = dmg;

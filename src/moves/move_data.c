@@ -1604,7 +1604,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_modify_move = seismic_toss_on_modify_move,
+	.on_damage_move = seismic_toss_on_damage_move,
     },
 
     {
@@ -2621,9 +2621,9 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_SPECIAL,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_modify_move = psywave_on_modify_move,
+	.on_damage_move = psywave_on_damage_move,
     },
 
     {
@@ -7094,9 +7094,9 @@ struct move_data moves[] = {
     .base_power = 50,
     .description = (pchar*)Clear_Smog_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = clear_smog_effect,
     },

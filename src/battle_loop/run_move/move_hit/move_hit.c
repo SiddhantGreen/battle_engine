@@ -104,7 +104,6 @@ void move_hit()
                 return;
             }
             // move tryhit callback
-            dprintf("Here with index %d\n",bank_index);
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
                     enqueue_message(move, bank_index, STRING_FAILED, move);
@@ -155,24 +154,25 @@ void move_hit()
             super.multi_purpose_state_tracker = S_DAMAGE_CALC_AND_APPLY;
             break;
         case S_DAMAGE_CALC_AND_APPLY:
-            // Skip damage checks if move doesn't do damage
-            if ((B_MOVE_POWER(bank_index) < 1) && (!IS_OHKO(move))) {
+            {
+                // get dmg
+                u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
+                if (dmg < 1) {
+                    super.multi_purpose_state_tracker = S_HEAL_CALC_AND_APPLY;
+                    return;
+                }
+                if (!damage_result_msg(bank_index)) {
+                    set_callback1(run_move);
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                    return;
+                }
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
+                // HP bar damage animation
+                s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
+                delta = MAX(delta, 0);
+                hp_anim_change(TARGET_OF(bank_index), delta);
                 super.multi_purpose_state_tracker = S_HEAL_CALC_AND_APPLY;
-                return;
             }
-            // get dmg
-            u16 dmg = get_damage(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
-            if (!damage_result_msg(bank_index)) {
-                set_callback1(run_move);
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                return;
-            }
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
-            // HP bar damage animation
-            s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
-            delta = MAX(delta, 0);
-            hp_anim_change(TARGET_OF(bank_index), delta);
-            super.multi_purpose_state_tracker = S_HEAL_CALC_AND_APPLY;
             break;
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
