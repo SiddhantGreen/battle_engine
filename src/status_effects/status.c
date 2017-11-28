@@ -4,6 +4,7 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "status.h"
+#include "../battle_loop/move_chain_states.h"
 
 extern u16 rand_range(u16, u16);
 extern void status_graphical_update(u8 bank, enum Effect status);
@@ -195,19 +196,22 @@ void confusion_on_before_move(u8 bank)
 
 void confusion_on_inflict(u8 bank)
 {
-    p_bank[bank]->b_data.status = AILMENT_CONFUSION;
+	if (p_bank[bank]->b_data.confusion_turns > 0) {
+		enqueue_message(0, bank, STRING_AILMENT_IMMUNE, AILMENT_CONFUSION);
+		return;
+	}
+    ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 	p_bank[bank]->b_data.confusion_turns = rand_range(1, 5);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_CONFUSION);
+
 }
 
 void confusion_on_residual(u8 bank)
 {
 	if (p_bank[bank]->b_data.confusion_turns) {
 		p_bank[bank]->b_data.confusion_turns--;
-	} else {
-		p_bank[bank]->b_data.status_turns = 0;
 	}
-	REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+	CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 }
 
 
@@ -220,26 +224,40 @@ void effect_cure_on_inflict(u8 bank)
 	enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
 }
 
-void do_residual_status_effects(u8 order)
-{
-    bool do_player = (statuses[B_STATUS(PLAYER_SINGLES_BANK)].on_residual) ? true : false;
-    bool do_opponent = (statuses[B_STATUS(OPPONENT_SINGLES_BANK)].on_residual) ? true : false;
-    if (order) {
-        if (do_player) {
-            statuses[B_STATUS(PLAYER_SINGLES_BANK)].on_residual(PLAYER_SINGLES_BANK);
-        }
-    } else {
-        if (do_opponent) {
-            statuses[B_STATUS(OPPONENT_SINGLES_BANK)].on_residual(OPPONENT_SINGLES_BANK);
-        }
-    }
 
-    if (!battle_master->status_state) {
-        battle_master->status_state = 2;
-    } else {
-        battle_master->status_state = 0;
-    }
+extern void hpbar_apply_dmg(u8 task_id);
+extern bool peek_message(void);
+extern void run_move(void);
+void c1_residual_status_effects()
+{
+	if (task_is_running(hpbar_apply_dmg))
+		return;
+	while (peek_message())
+		return;
+	u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
+	u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
+	u16 bank_index = (player_speed > opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
+	switch (super.multi_purpose_state_tracker) {
+	case 0:
+		if (statuses[B_STATUS(bank_index)].on_residual)
+			statuses[B_STATUS(bank_index)].on_residual(bank_index);
+		statuses[AILMENT_CONFUSION].on_residual(bank_index);
+		super.multi_purpose_state_tracker++;
+		break;
+	case 1:
+		bank_index = (player_speed < opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
+		if (statuses[B_STATUS(bank_index)].on_residual)
+			statuses[B_STATUS(bank_index)].on_residual(bank_index);
+		statuses[AILMENT_CONFUSION].on_residual(bank_index);
+		super.multi_purpose_state_tracker++;
+		break;
+	default:
+		set_callback1(run_move);
+		super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+		return;
+	};
 }
+
 
 struct status_ailments statuses[] =
 {

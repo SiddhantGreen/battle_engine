@@ -15,6 +15,7 @@ extern bool target_exists(u8 bank);
 extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
 extern void do_residual_status_effects(u8 order);
 extern void dprintf(const char * str, ...);
+extern void c1_residual_status_effects(void);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -76,7 +77,7 @@ void run_move()
                 return;
             }
 			/* status ailments before move callbacks */
-			if (B_STATUS(bank_index) != AILMENT_NONE) {
+			if ((B_STATUS(bank_index) != AILMENT_NONE) || (p_bank[bank_index]->b_data.confusion_turns)) {
 				if (statuses[B_STATUS(bank_index)].on_before_move) {
 					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
 				}
@@ -165,18 +166,11 @@ void run_move()
         case S_RESIDUAL_STATUS:
         {
             if (bank_index != battle_master->first_bank) {
-                // residual callbacks for statuses
-                u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
-                u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
-                u8 order = ((player_speed > opponent_speed) && (battle_master->status_state)) ? 1 : 0;
-                do_residual_status_effects(order);
-            } else {
-                super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+                set_callback1(c1_residual_status_effects);
+                super.multi_purpose_state_tracker = 0;
                 return;
             }
-
-            if (battle_master->status_state == 2)
-                super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
+            super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
             break;
         }
         case S_WAIT_HPUPDATE_RUN_MOVE:
