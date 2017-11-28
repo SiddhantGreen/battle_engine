@@ -263,6 +263,7 @@ extern u8 thrash_on_move_fail(u8 attacker, u8 defender, u16 move);
 extern void thrash_on_after_move(u8 attacker);
 extern u8 sonic_boom_on_modify_move(u8 user, u8 target, u16 move);
 extern u16 sonic_boom_on_damage_move(u16 dmg_taken, u8 user, u8 target, u16 move);
+extern u8 seismic_toss_on_modify_move(u8 user, u8 target, u16 move);
 extern u8 disable_on_effect_cb(u8 user, u8 target, u16 move);
 extern u8 rollout_on_before_move(u8 attacker);
 extern u8 rollout_on_move_fail(u8 attacker, u8 defender, u16 move);
