@@ -13,13 +13,8 @@ void update_move_pbank_flags(u8 bank, u16 move_id)
     if (move_id) {
         p_bank[bank]->b_data.current_move = move_id;
     } else {
-		return;
+		p_bank[bank]->b_data.current_move = MOVE_STRUGGLE;
 	}
-    // figure out target
-    if (moves[move_id].m_flags == FLAG_ONSELF)
-        p_bank[bank]->b_data.my_target = bank;
-    else if (moves[move_id].m_flags == FLAG_TARGET)
-        p_bank[bank]->b_data.my_target = FOE_BANK(bank);
 }
 
 /*
