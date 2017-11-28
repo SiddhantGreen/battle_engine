@@ -229,13 +229,13 @@ u8 copycat_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
     }
 }
 
-/* Mirror coat */
+/* Magic coat */
 u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if ((user == source) || B_MOVE_HAS_BOUNCED(user) || (!IS_REFLECTABLE(move)))
 		return true;
 	TARGET_OF(user) = user;
-	enqueue_message(CURRENT_MOVE(user), user, STRING_BOUNCED_BACK, 0);
+	enqueue_message(CURRENT_MOVE(user), source, STRING_BOUNCED_BACK, 0);
 	acb->in_use = false;
 	return true;
 }
