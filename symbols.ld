@@ -12,5 +12,3 @@ bs_env_windows = 0x03004F88;
 bs_anim_status = 0x03004F90;
 
 battle_master = 0x03004F94;
-
-residual_callbacks = 0x02023BE4;

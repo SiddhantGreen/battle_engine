@@ -33,7 +33,6 @@ void init_battle_elements()
     for(u8 i = 0; i < 10; ++i) {
         battle_master->switch_main.type_objid[i] = 0x3F;
     }
-    residual_cbs_init();
     setup();
     help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;

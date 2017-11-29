@@ -16,6 +16,7 @@ extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
 extern void do_residual_status_effects(u8 order);
 extern void dprintf(const char * str, ...);
 extern void c1_residual_status_effects(void);
+extern void hpbar_apply_dmg(u8 task_id);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -58,8 +59,7 @@ bool on_modify_move(u8 attacker, u8 defender, u16 move)
     return true;
 }
 
-extern void run_residual_cbs(u8 bank);
-extern void hpbar_apply_dmg(u8 task_id);
+
 void run_move()
 {
     while (peek_message())
@@ -153,16 +153,13 @@ void run_move()
         {
             if (bank_index != battle_master->first_bank) {
                 // residual callbacks for moves
-                u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
-                u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
-                if (player_speed > opponent_speed) {
-                    run_residual_cbs(PLAYER_SINGLES_BANK);
-                    run_residual_cbs(OPPONENT_SINGLES_BANK);
-                } else {
-                    run_residual_cbs(OPPONENT_SINGLES_BANK);
-                    run_residual_cbs(PLAYER_SINGLES_BANK);
+                u16 move = CURRENT_MOVE(bank_index);
+                // run callbacks
+                build_execution_order(CB_ON_RESIDUAL);
+                battle_master->executing = true;
+                while (battle_master->executing) {
+                    pop_callback(bank_index, move);
                 }
-                battle_master->status_state = 1;
             }
             super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
             break;

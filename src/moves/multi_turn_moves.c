@@ -3,13 +3,10 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 #include "../battle_loop/move_chain_states.h"
-#include "../volatile/residual_effects.h"
 
 extern void dprintf(const char * str, ...);
-extern u8 add_residual_cb(ResidualFunc to_add);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
-extern void apply_residual_dmg(u8 id);
 extern void set_status(u8 bank, enum Effect status);
 
 

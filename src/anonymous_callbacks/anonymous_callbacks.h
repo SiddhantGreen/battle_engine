@@ -24,6 +24,7 @@
 #define CB_ON_EFFECT 9
 #define CB_ON_AFTER_MOVE 10
 #define CB_ON_TRYHIT_INV_MOVE 12
+#define CB_ON_RESIDUAL 13
 
 
 
