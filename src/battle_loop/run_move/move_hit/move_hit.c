@@ -64,6 +64,7 @@ enum TryHitMoveStatus {
     CANT_USE_MOVE = 0,
     USE_MOVE_NORMAL,
     TARGET_MOVE_IMMUNITY,
+    FAIL_SILENTLY,
 };
 
 enum TryHitMoveStatus move_tryhit(u8 attacker, u8 defender, u16 move)
@@ -106,6 +107,7 @@ void move_hit()
             // move tryhit callback
             switch (move_tryhit(bank_index, TARGET_OF(bank_index), move)) {
                 case CANT_USE_MOVE:
+                    B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(move, bank_index, STRING_FAILED, move);
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
@@ -113,6 +115,11 @@ void move_hit()
                 case TARGET_MOVE_IMMUNITY:
                     B_MOVE_FAILED(bank_index) = 1;
                     enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+                    super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                    set_callback1(run_move);
+                    return;
+                case FAIL_SILENTLY:
+                    B_MOVE_FAILED(bank_index) = 1;
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     set_callback1(run_move);
                     return;

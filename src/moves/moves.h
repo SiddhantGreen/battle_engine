@@ -292,10 +292,10 @@ extern void psywave_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_c
 extern u8 burn_up_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 protection_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void seismic_toss_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 cotton_spore_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern void endure_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

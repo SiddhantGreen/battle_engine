@@ -100,6 +100,9 @@ enum battle_string_ids {
     STRING_ION_DELUGE = 164,
     STRING_ELECTRIFIED = 165,
     STRING_BURNT_OUT = 167,
+    STRING_PROTECTED_SELF = 169,
+    STRING_ENDURED = 171,
+    STRING_BRACED_ITSELF = 173,
 
 };
 
@@ -276,6 +279,12 @@ static const pchar str_electrified_p[] = _("Foe {DEFENDING_MON}’s moves\nhave 
 static const pchar str_electrified_o[] = _("{DEFENDING_MON}’s moves\nhave been electrified!");
 static const pchar str_burnt_out_p[] = _("{ATTACKING_MON} burnt\nitself out!");
 static const pchar str_burnt_out_o[] = _("Foe {ATTACKING_MON} burnt\nitself out!");
+static const pchar str_protected_itself_p[] = _("{ATTACKING_MON} protected\nitself!");
+static const pchar str_protected_itself_o[] = _("Foe {ATTACKING_MON} protected\nitself!");
+static const pchar str_endured_hit_p[] = _("{ATTACKING_MON} endured\nthe hit!");
+static const pchar str_endured_hit_o[] = _("Foe {ATTACKING_MON} endured\nthe hit!");
+static const pchar str_braced_self_p[] = _("{ATTACKING_MON} braced\nitself!");
+static const pchar str_braced_self_o[] = _("Foe {ATTACKING_MON} braced\nitself!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -297,7 +306,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[169] = {
+static const pchar* battle_strings[175] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -312,7 +321,7 @@ static const pchar* battle_strings[169] = {
    (pchar*)&str_immunity_o, (pchar*)&str_charging_up_razorwind_p,
    (pchar*)&str_charging_up_razorwind_o, (pchar*)&str_solarbeam_p,
    (pchar*)&str_solarbeam_o, (pchar*)&str_freeze_shock_p,
-   (pchar*)&str_freeze_shock_o, (pchar*)&str_ice_burn_p, // 30
+   (pchar*)&str_freeze_shock_o, (pchar*)&str_ice_burn_p,
    (pchar*)&str_ice_burn_o, (pchar*)&str_geomancy_p,
    (pchar*)&str_geomancy_o, (pchar*)&str_skull_bash_p,
    (pchar*)&str_skull_bash_o, (pchar*)str_started_rain,
@@ -389,6 +398,9 @@ static const pchar* battle_strings[169] = {
    (pchar*)&str_ion_deluge_field,
    (pchar*)&str_electrified_p, (pchar*)&str_electrified_o,
    (pchar*)&str_burnt_out_p, (pchar*)&str_burnt_out_o,
+   (pchar*)&str_protected_itself_p, (pchar*)&str_protected_itself_o,
+   (pchar*)&str_endured_hit_p, (pchar*)&str_endured_hit_p,
+   (pchar*)&str_braced_self_p, (pchar*)&str_braced_self_o,
 
 
 };
