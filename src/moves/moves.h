@@ -294,6 +294,7 @@ extern u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 protect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 protect_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void seismic_toss_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 cotton_spore_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -356,14 +357,16 @@ extern struct move_procs target_raise_spd_2;
 extern struct move_procs target_raise_acc_2;
 
 /* Move Specific procs */
+extern struct move_procs poison_20_procs;
 extern struct move_procs poison_30_procs;
 extern struct move_procs poison_40_procs;
-extern struct move_procs poison_20_procs;
+extern struct move_procs poison_100_procs;
+extern struct move_procs toxic_procs;
 extern struct move_procs supersonic_procs;
-extern struct move_procs sing_procs;
 extern struct move_procs burn_10_procs;
 extern struct move_procs freeze_10_procs;
 extern struct move_procs confuse_10_procs;
+extern struct move_procs confuse_20_procs;
 extern struct move_procs confuse_100_procs;
 extern struct move_procs paralyze_10_procs;
 extern struct move_procs paralyze_30_procs;
@@ -374,9 +377,8 @@ extern struct move_procs paralyze_100_procs;
 extern struct move_procs bubble_beam_procs;
 extern struct move_procs aurora_beam_procs;
 extern struct move_procs shadow_ball_procs;
-extern struct move_procs poison_100_procs;
-extern struct move_procs toxic_procs;
 extern struct move_procs psychic_procs;
-extern struct move_procs confuse_20_procs;
+extern struct move_procs target_lower_acc_1_chance_50;
+extern struct move_procs sing_procs;
 extern struct move_procs rest_procs;
 #endif /* movesABLE_DATA_H_ */
