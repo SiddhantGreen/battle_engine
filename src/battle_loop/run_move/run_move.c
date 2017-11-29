@@ -62,9 +62,9 @@ extern void run_residual_cbs(u8 bank);
 extern void hpbar_apply_dmg(u8 task_id);
 void run_move()
 {
-    if (task_is_running(hpbar_apply_dmg))
-        return;
     while (peek_message())
+        return;
+    if (task_is_running(hpbar_apply_dmg))
         return;
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch(super.multi_purpose_state_tracker) {
@@ -77,11 +77,15 @@ void run_move()
                 return;
             }
 			/* status ailments before move callbacks */
-			if ((B_STATUS(bank_index) != AILMENT_NONE) || (p_bank[bank_index]->b_data.confusion_turns)) {
+			if (B_STATUS(bank_index) != AILMENT_NONE) {
 				if (statuses[B_STATUS(bank_index)].on_before_move) {
 					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
 				}
 			}
+            if (B_PSTATUS(bank_index) != AILMENT_NONE) {
+                if (statuses[B_PSTATUS(bank_index)].on_before_move)
+                    statuses[B_PSTATUS(bank_index)].on_before_move(bank_index);
+            }
             u8 result = before_move_cb(bank_index);
             switch (result) {
                 case CANT_USE_MOVE:

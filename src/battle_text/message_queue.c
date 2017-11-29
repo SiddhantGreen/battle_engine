@@ -34,6 +34,11 @@ bool peek_message()
     return true;
 }
 
+bool message_exists()
+{
+    return (battle_master->queue_size != battle_master->queue_front_index);
+}
+
 /* Peek message without displaying the message */
 bool peek_message_silent()
 {
@@ -71,7 +76,7 @@ void play_bmessage()
             super.multi_purpose_state_tracker = battle_master->state;
             battle_master->queue_front_index++;
             set_callback1(battle_master->c1);
-            
+
             break;
         }
         default:
@@ -79,5 +84,3 @@ void play_bmessage()
             break;
     };
 }
-
-

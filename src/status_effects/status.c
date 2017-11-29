@@ -174,10 +174,9 @@ void confusion_on_before_move(u8 bank)
 	ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 	if (p_bank[bank]->b_data.confusion_turns) {
 		enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
-		if (rand_range(0, 100) <= 100) {
+		if (rand_range(0, 100) <= 33) {
 			// hurt itself in confusion
 			enqueue_message(0, bank, STRING_CONFUSION_HURT, 0);
-			dprintf("so %d\n", message_exists());
 			B_MOVE_TYPE(bank, 0) = MTYPE_NONE;
 			B_MOVE_POWER(bank) = 40;
 			B_MOVE_ACCURACY(bank) = 101;
