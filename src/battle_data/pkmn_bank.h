@@ -28,6 +28,7 @@ enum StatusAilments {
     AILMENT_CURE,
 };
 
+
 enum TypeBits {
     TYPE_BITS_NORMAL = (1 << 0),
     TYPE_BITS_FIGHTING = (1 << 1),
@@ -47,6 +48,7 @@ enum TypeBits {
     TYPE_BITS_DRAGON = (1 << 15),
     TYPE_BITS_DARK = (1 << 16),
 };
+
 
 /* Volatile definitions for Bitmasks -- enum is unsuitable */
 #define VOLATILE_FLASH_FIRE (1 << 0)
@@ -122,6 +124,7 @@ struct local_battler_data {
     u8 is_grounded : 1;
 
     enum StatusAilments status;
+    u8 pseudo_ailment;
     u8 confusion_turns;
     u8 status_turns;
     u16 substitute_health;

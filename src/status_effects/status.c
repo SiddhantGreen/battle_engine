@@ -12,6 +12,9 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void do_damage(u8 bank_index, u16 dmg);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void dprintf(const char * str, ...);
+extern void hpbar_apply_dmg(u8 task_id);
+extern bool peek_message(void);
+extern void run_move(void);
 
 /* Sleep Related */
 void sleep_on_before_move(u8 bank)
@@ -171,9 +174,10 @@ void confusion_on_before_move(u8 bank)
 	ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 	if (p_bank[bank]->b_data.confusion_turns) {
 		enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
-		if (rand_range(0, 100) <= 33) {
+		if (rand_range(0, 100) <= 100) {
 			// hurt itself in confusion
 			enqueue_message(0, bank, STRING_CONFUSION_HURT, 0);
+			dprintf("so %d\n", message_exists());
 			B_MOVE_TYPE(bank, 0) = MTYPE_NONE;
 			B_MOVE_POWER(bank) = 40;
 			B_MOVE_ACCURACY(bank) = 101;
@@ -188,7 +192,7 @@ void confusion_on_before_move(u8 bank)
 			REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN); // don't skip turn
 		}
 	} else {
-		p_bank[bank]->b_data.status = AILMENT_NONE;
+		p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
 		enqueue_message(0, bank, STRING_SNAPPED_OUT, 0);
 		REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 	}
@@ -196,14 +200,9 @@ void confusion_on_before_move(u8 bank)
 
 void confusion_on_inflict(u8 bank)
 {
-	if (p_bank[bank]->b_data.confusion_turns > 0) {
-		enqueue_message(0, bank, STRING_AILMENT_IMMUNE, AILMENT_CONFUSION);
-		return;
-	}
-    ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+	p_bank[bank]->b_data.pseudo_ailment = AILMENT_CONFUSION;
 	p_bank[bank]->b_data.confusion_turns = rand_range(1, 5);
-    enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_CONFUSION);
-
+	enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_CONFUSION);
 }
 
 void confusion_on_residual(u8 bank)
@@ -219,20 +218,18 @@ void confusion_on_residual(u8 bank)
 void effect_cure_on_inflict(u8 bank)
 {
 	p_bank[bank]->b_data.status = AILMENT_NONE;
+	p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
 	p_bank[bank]->b_data.status_turns = 0;
 	p_bank[bank]->b_data.confusion_turns = 0;
 	enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
 }
 
 
-extern void hpbar_apply_dmg(u8 task_id);
-extern bool peek_message(void);
-extern void run_move(void);
 void c1_residual_status_effects()
 {
-	if (task_is_running(hpbar_apply_dmg))
-		return;
 	while (peek_message())
+		return;
+	if (task_is_running(hpbar_apply_dmg))
 		return;
 	u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
 	u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
@@ -241,14 +238,16 @@ void c1_residual_status_effects()
 	case 0:
 		if (statuses[B_STATUS(bank_index)].on_residual)
 			statuses[B_STATUS(bank_index)].on_residual(bank_index);
-		statuses[AILMENT_CONFUSION].on_residual(bank_index);
+		if (statuses[B_PSTATUS(bank_index)].on_residual)
+			statuses[B_PSTATUS(bank_index)].on_residual(bank_index);
 		super.multi_purpose_state_tracker++;
 		break;
 	case 1:
 		bank_index = (player_speed < opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
 		if (statuses[B_STATUS(bank_index)].on_residual)
 			statuses[B_STATUS(bank_index)].on_residual(bank_index);
-		statuses[AILMENT_CONFUSION].on_residual(bank_index);
+		if (statuses[B_PSTATUS(bank_index)].on_residual)
+			statuses[B_PSTATUS(bank_index)].on_residual(bank_index);
 		super.multi_purpose_state_tracker++;
 		break;
 	default:

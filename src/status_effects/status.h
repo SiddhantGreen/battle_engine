@@ -12,8 +12,6 @@ typedef void (*StatusOnHit)(u8 bank);
 typedef void (*StatusOnInflict)(u8 bank);
 typedef void (*StatusOnResidual)(u8 bank);
 
-
-
 struct status_ailments {
 	StatusOnStart on_start;
 	StatusOnBeforeMove on_before_move;
@@ -28,4 +26,3 @@ extern struct status_ailments statuses[];
 
 
 #endif /* STATUS_DATA_H_ */
-
