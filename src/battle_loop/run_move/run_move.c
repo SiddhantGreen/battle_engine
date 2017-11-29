@@ -160,6 +160,8 @@ void run_move()
                 while (battle_master->executing) {
                     pop_callback(bank_index, move);
                 }
+                p_bank[PLAYER_SINGLES_BANK]->b_data.first_turn = false;
+                p_bank[OPPONENT_SINGLES_BANK]->b_data.first_turn = false;
             }
             super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
             break;

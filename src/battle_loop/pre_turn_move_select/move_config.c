@@ -110,7 +110,7 @@ void reset_turn_bits(u8 bank)
 {
     p_bank[bank]->b_data.is_running = 0;
     p_bank[bank]->b_data.is_switching = 0;
-    p_bank[bank]->b_data.first_turn = 1;
+    p_bank[bank]->b_data.first_turn = 0;
     memset((void*)(&battle_master->b_moves[B_MOVE_BANK(bank)]), 0x0, sizeof(struct move_used));
 
 }

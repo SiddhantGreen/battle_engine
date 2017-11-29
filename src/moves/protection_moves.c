@@ -142,7 +142,7 @@ u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     // queue an anon func to read and interrupt
     if (user != src) return true;
     // fail if user is last to move
-    if (src == battler_master->second_bank) return false;
+    if (src == battle_master->second_bank) return false;
     /* Todo fail if mat block effect is active on field */
     enqueue_message(MOVE_MAT_BLOCK, src, STRING_PROTECTED_TEAM, 0);
     add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)mat_block_on_tryhit_anon);
@@ -172,6 +172,35 @@ u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 }
 
 
+/* Crafty shield */
+u8 crafty_shield_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return true;
+    /* Todo: check if effect is active */
+    if (source != battle_master->second_bank)
+        return true;
+    return false;
+}
+
+u8 crafty_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return true;
+    if (B_MOVE_IS_STATUS(move)) {
+        enqueue_message(MOVE_CRAFTY_SHIELD, TARGET_OF(user), STRING_PROTECTED_MON, 0);
+        return 3; // fail the move silently
+    }
+    return true;
+}
+
+u8 crafty_shield_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    // msg: X protected itself
+    // queue an anon func to read and interrupt
+    if (user != src) return true;
+    enqueue_message(MOVE_CRAFTY_SHIELD, src, STRING_PROTECTED_TEAM, 0);
+    add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)crafty_shield_on_tryhit_anon);
+    return true;
+}
 
 /* Endure */
 // tryhit with protection moves is shared

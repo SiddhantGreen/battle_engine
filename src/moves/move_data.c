@@ -8126,10 +8126,12 @@ struct move_data moves[] = {
     .description = (pchar*)Crafty_Shield_desc,
     .pp = 10,
     .priority = 3,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF | FLAG_SNATCH | FLAG_HITS_SIDE,
     .procs = &basic_proc,
+    .on_tryhit_move = crafty_sheild_on_tryhit,
+    .on_effect_cb = crafty_sheild_on_effect,
     },
 
     {
