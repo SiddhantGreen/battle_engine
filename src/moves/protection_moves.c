@@ -8,6 +8,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void do_damage(u8 bank_index, u16 dmg);
 void set_status(u8 bank, enum Effect status);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern bool protection_effect_exists_side(u8 bank, u32 func);
 
 const static u8 chances_protect[] = {100, 33, 3, 1};
 const static u16 protection_moves[] = {
@@ -143,7 +144,7 @@ u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if (user != src) return true;
     // fail if user is last to move
     if (src == battle_master->second_bank) return false;
-    /* Todo fail if mat block effect is active on field */
+    if (protection_effect_exists_side(src, (u32)mat_block_on_tryhit_anon)) return false;
     enqueue_message(MOVE_MAT_BLOCK, src, STRING_PROTECTED_TEAM, 0);
     add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)mat_block_on_tryhit_anon);
     return true;
@@ -173,15 +174,6 @@ u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 
 /* Crafty shield */
-u8 crafty_shield_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
-{
-    if (user != source) return true;
-    /* Todo: check if effect is active */
-    if (source != battle_master->second_bank)
-        return true;
-    return false;
-}
-
 u8 crafty_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return true;
@@ -190,6 +182,15 @@ u8 crafty_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_c
         return 3; // fail the move silently
     }
     return true;
+}
+
+u8 crafty_shield_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return true;
+    if (protection_effect_exists_side(source, (u32)crafty_shield_on_tryhit_anon)) return false;
+    if (source != battle_master->second_bank)
+        return true;
+    return false;
 }
 
 u8 crafty_shield_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -221,4 +222,36 @@ u8 endure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(0, src, STRING_BRACED_ITSELF, 0);
     add_callback(CB_ON_DAMAGE_MOVE, -10, 0, user, (u32)endure_on_damage);
     return true;
+}
+
+
+/* Protection breaking */
+const static u32 protects_to_break[] = {
+    (u32)protect_on_tryhit_anon, (u32)spiky_shield_on_tryhit_anon,
+    (u32)baneful_bunker_on_tryhit_anon, (u32)kings_shield_on_tryhit_anon,
+    (u32)mat_block_on_tryhit_anon, (u32)wide_guard_on_tryhit_anon
+};
+
+bool break_protection(u8 bank)
+{
+    bool broke_protection = false;
+    for (u8 i = 0; i < (sizeof(protects_to_break) / sizeof(u32)); i++) {
+        u8 protect_index = id_by_func(protects_to_break[i]);
+        if (protect_index != 255) {
+            // valid ID. Check is it's source is bank, then mark inactive
+            if (CB_MASTER[protect_index].in_use && (CB_MASTER[protect_index].source_bank == bank)) {
+                CB_MASTER[protect_index].in_use = false;
+                broke_protection = true;
+            }
+        }
+    }
+    return broke_protection;
+}
+
+bool protection_effect_exists_side(u8 bank, u32 func)
+{
+    u8 i = id_by_func(func);
+    if (i == 255) return false;
+    if (SIDE_OF(CB_MASTER[i].source_bank) == SIDE_OF(bank)) return true;
+    return false;
 }
