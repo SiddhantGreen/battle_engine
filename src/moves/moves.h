@@ -303,8 +303,12 @@ extern u8 endure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback*
 extern u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mat_block_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 crafty_sheild_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
-extern u8 crafty_sheild_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 crafty_shield_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 crafty_shield_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 feint_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hyperspace_hole_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 shadow_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 phantom_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

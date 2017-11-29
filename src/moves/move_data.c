@@ -5371,6 +5371,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = feint_on_before_move,
     },
 
     {
@@ -6701,6 +6702,7 @@ struct move_data moves[] = {
     .type = MTYPE_GHOST,
     .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = shadow_force_on_before_move,
     },
 
     {
@@ -7981,6 +7983,7 @@ struct move_data moves[] = {
     .type = MTYPE_GHOST,
     .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = phantom_force_on_before_move,
     },
 
     {
@@ -8130,8 +8133,8 @@ struct move_data moves[] = {
     .type = MTYPE_FAIRY,
     .m_flags = FLAG_ONSELF | FLAG_SNATCH | FLAG_HITS_SIDE,
     .procs = &basic_proc,
-    .on_tryhit_move = crafty_sheild_on_tryhit,
-    .on_effect_cb = crafty_sheild_on_effect,
+    .on_tryhit_move = crafty_shield_on_tryhit,
+    .on_effect_cb = crafty_shield_on_effect,
     },
 
     {
@@ -8321,8 +8324,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_SPECIAL,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = hyperspace_hole_before_move,
     },
 
     {
