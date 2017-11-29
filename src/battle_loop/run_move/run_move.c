@@ -82,6 +82,7 @@ void run_move()
 					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
 				}
 			}
+
             if (B_PSTATUS(bank_index) != AILMENT_NONE) {
                 if (statuses[B_PSTATUS(bank_index)].on_before_move)
                     statuses[B_PSTATUS(bank_index)].on_before_move(bank_index);
@@ -104,6 +105,8 @@ void run_move()
 				return;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN)) {
                 REMOVE_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
+                return;
+            } else if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
                 return;
             } else {
 				// display "Pokemon used move!"

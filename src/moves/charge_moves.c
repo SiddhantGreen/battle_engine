@@ -9,12 +9,12 @@ extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 ef
 u8 before_move_charge_frame(u8 user, u8 string_id)
 {
     if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
-        REMOVE_VOLATILE(user, VOLATILE_CHARGING);
+        CLEAR_VOLATILE(user, VOLATILE_CHARGING);
         return true;
     } else {
         enqueue_message(0, user, string_id, 0);
         ADD_VOLATILE(user, VOLATILE_CHARGING);
-        return false; // don't fire move if charging
+        return true; // don't fire move if charging
     }
 }
 
@@ -60,13 +60,13 @@ u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (src != user) return true;
-    if (before_move_charge_frame(user, STRING_CHARGE_FLY)) {
-        REMOVE_VOLATILE(user, VOLATILE_FLYING);
-        REMOVE_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
-        return true;
-    } else {
+    before_move_charge_frame(user, STRING_CHARGE_FLY);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
         ADD_VOLATILE(user, VOLATILE_FLYING);
         ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
-        return false;
+        return true;
     }
+    REMOVE_VOLATILE(user, VOLATILE_FLYING);
+    REMOVE_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    return true;
 }
