@@ -56,22 +56,6 @@ struct battle_field_state {
     u32 is_primordial_sea : 1;
     u32 is_delta_stream : 1;
     u32 suppress_weather : 1;
-    u32 is_tailwind : 2; // side
-    u32 is_gravity : 1;
-    u32 is_ion_deluge : 1;
-    u32 electric_terrain : 1;
-    u32 grassy_terrain : 1;
-    u32 misty_terrain : 1;
-    u32 psychic_terrain : 1;
-    u32 aura_break : 1;
-    u32 fairy_aura : 1;
-    u32 dark_aura : 1;
-    u32 quick_guard : 2; // side
-    u8 aurora_veil_turns[2];
-    u8 tailwind_turns[2];
-    u8 reflect_turns[2];
-    u8 safe_guard_turns[2];
-    u8 lightscreen_turns[2];
     u8 weather_turns;
     u16 last_used_move;
 };

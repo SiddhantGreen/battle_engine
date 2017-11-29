@@ -35,13 +35,14 @@ struct b_ability b_stench = {
 void drizzle_on_switch(u8 bank)
 {
     // if weather can't be changed, return
+    /*
     if ((battle_master->field_state.is_raining) ||
         (battle_master->field_state.is_primordial_sea) ||
         (battle_master->field_state.is_desolate_land)) {
         return;
     }
     // set new weather
-    battle_master->field_state.is_raining = 1;
+    battle_master->field_state.is_raining = 1;*/
     enqueue_message(0, 0, STRING_RAINING, 0);
 }
 
@@ -161,7 +162,7 @@ struct b_ability b_limber = {
 
 // Sand Veil
 u16 sand_veil_on_evasion(u8 bank, u16 stat) {
-    if (battle_master->field_state.is_sandstorm)
+//    if (battle_master->field_state.is_sandstorm)
         return ((stat * 25) / 100);
     return stat;
 }
@@ -250,10 +251,11 @@ struct b_ability b_oblivious = {
     .on_update = oblivious_on_update,
 };
 
-    
+
 // Cloud Nine
 void cloud_nine_on_switch(u8 bank)
 {
+    /*
     battle_master->field_state.is_sunny = false;
     battle_master->field_state.is_raining = false;
     battle_master->field_state.is_sandstorm = false;
@@ -262,6 +264,7 @@ void cloud_nine_on_switch(u8 bank)
     battle_master->field_state.is_primordial_sea = false;
     battle_master->field_state.suppress_weather = true;
     enqueue_message(0, 0, STRING_WEATHER_GONE, 0);
+    */
 }
 
 struct b_ability b_cloud_nine = {
@@ -314,9 +317,9 @@ void color_change_after_move_secondary(u8 bank, u8 target, u16 move, u8 ability,
     if (B_CURRENT_HP(TARGET_OF(bank)) && (bank != target)) {
         if (IS_MOVE_STATUS(move)) {
             return;
-            
+
         // target already has this type
-        } else if((B_PKMN_TYPE(bank, 0) == MOVE_TYPE(move)) || 
+        } else if((B_PKMN_TYPE(bank, 0) == MOVE_TYPE(move)) ||
             (B_PKMN_TYPE(bank, 1) == MOVE_TYPE(move)) ||
             (B_PKMN_TYPE(bank, 2) == MOVE_TYPE(move))) {
             return;
@@ -382,14 +385,14 @@ struct b_ability b_flash_fire = {
     .on_tryhit = flash_fire_tryhit,
     .on_attack = flash_fire_on_attack,
     .on_sp_attack = flash_fire_on_attack, // spatk and atk are clones in functionality
-    
+
 };
 
 
 // Shield Dust
 void shield_dust_on_mod_secondary(u8 bank, u8 target, u16 move, u8 ability, u16 item)
 {
-    
+
 }
 
 struct b_ability b_shield_dust = {
@@ -442,7 +445,7 @@ struct b_ability b_suction_cups = {
 void intimidate_on_switch(u8 bank)
 {
     u8 foe = FOE_BANK(bank);
-    if (B_CURRENT_HP(foe) && (!(HAS_VOLATILE(foe, VOLATILE_SUBSTITUTE) || 
+    if (B_CURRENT_HP(foe) && (!(HAS_VOLATILE(foe, VOLATILE_SUBSTITUTE) ||
         HAS_VOLATILE(foe, VOLATILE_STAT_REDUC_IMMUNE))))  {
         enqueue_message(0, bank, STRING_INTIMIDATE, 0);
     }
@@ -460,7 +463,7 @@ void shadow_tag_on_switch(u8 bank)
     if (!(BANK_ABILITY(foe) == ABILITY_SHADOW_TAG) && !(b_pkmn_has_type(foe, TYPE_GHOST))) {
         ADD_VOLATILE(foe, VOLATILE_TRAPPED);
     }
-    
+
     if (!(BANK_ABILITY(bank) == ABILITY_SHADOW_TAG) && !(b_pkmn_has_type(bank, TYPE_GHOST))) {
         ADD_VOLATILE(bank, VOLATILE_TRAPPED);
     }
@@ -501,11 +504,13 @@ struct b_ability b_wonder_gaurd = {
 // LEVITATE
 u8 levitate_on_tryhit(u8 bank, u8 target, u16 move)
 {
+    /*
     if (bank != target) {
         if ((MOVE_TYPE(move) == MTYPE_GROUND) && (!(battle_master->field_state.is_gravity) && !(B_IS_GROUNDED(target))))
             return false;
-    }
+    }*/
     return true;
+
 }
 
 struct b_ability b_levitate = {
@@ -516,7 +521,7 @@ struct b_ability b_levitate = {
 // EFFECT SPORE
 void effect_spore_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg_taken, u8 ability, u16 item)
 {
-    
+
 
 }
 
@@ -574,12 +579,12 @@ struct b_ability b_serene_grace = {
 // SWIFT SWIM
 u16 swift_swim_on_speed(u8 bank, u16 amount)
 {
-    if(battle_master->field_state.is_raining)
+/*    if(battle_master->field_state.is_raining)
     {
         return amount * 2;
     }
     return amount;
-}
+*/return 0;}
 
 struct b_ability b_swift_swim = {
     .on_speed = swift_swim_on_speed,
@@ -588,10 +593,10 @@ struct b_ability b_swift_swim = {
 // CHLOROPHYLL
 u16 chlorophyll_on_speed(u8 bank, u16 amount)
 {
-    if(battle_master->field_state.is_sunny)
+    /*if(battle_master->field_state.is_sunny)
     {
         return amount * 2;
-    }
+    }*/
     return amount;
 }
 
@@ -882,10 +887,10 @@ struct b_ability b_big_pecks = {
 
 // SAND RUSH
 u16 sand_rush_on_speed(u8 bank, u16 speed)
-{
+{/*
     if (battle_master->field_state.is_sandstorm) {
         return speed * 2;
-    }
+    }*/
     return speed;
 }
 
@@ -1046,7 +1051,7 @@ struct b_ability b_prankster = {
 // SAND FORCE
 void sand_force_on_base_power(u8 bank, u16 move)
 {
-    if (B_MOVE_HAS_TYPE(bank, MTYPE_ROCK) || B_MOVE_HAS_TYPE(bank, MTYPE_STEEL) || 
+    if (B_MOVE_HAS_TYPE(bank, MTYPE_ROCK) || B_MOVE_HAS_TYPE(bank, MTYPE_STEEL) ||
         B_MOVE_HAS_TYPE(bank, MTYPE_GROUND)) {
         B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 130);
     }
@@ -1321,8 +1326,8 @@ struct b_ability b_mega_launcher = {
 // GRASS PELT
 u16 grass_pelt_on_defense(u8 bank, u16 stat)
 {
-    if (battle_master->field_state.grassy_terrain)
-        return NUM_MOD(stat, 150);
+    //if (battle_master->field_state.grassy_terrain)
+//        return NUM_MOD(stat, 150);
     return stat;
 }
 
@@ -1401,20 +1406,20 @@ struct b_ability b_aerilate = {
 // DARK AURA
 void dark_aura_on_switch(u8 bank)
 {
-    if (battle_master->field_state.aura_break)
-        return;
-    battle_master->field_state.dark_aura = 1;
+    //if (battle_master->field_state.aura_break)
+    //    return;
+    //battle_master->field_state.dark_aura = 1;
 }
 
 void dark_aura_on_base_power(u8 bank, u16 move)
 {
     if (!((B_MOVE_TYPE(bank, 0) == MTYPE_DARK) || (B_MOVE_TYPE(bank, 1) == MTYPE_DARK)))
         return;
-    if (battle_master->field_state.aura_break) {
+    /*if (battle_master->field_state.aura_break) {
         B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 75);
     } else if (battle_master->field_state.dark_aura) {
-        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133); 
-    }
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133);
+    }*/
 }
 
 struct b_ability b_dark_aura = {
@@ -1426,20 +1431,20 @@ struct b_ability b_dark_aura = {
 // FAIRY AURA
 void fairy_aura_on_switch(u8 bank)
 {
-    if (battle_master->field_state.aura_break)
+    /*if (battle_master->field_state.aura_break)
         return;
-    battle_master->field_state.fairy_aura = 1;
+    battle_master->field_state.fairy_aura = 1;*/
 }
 
 void fairy_aura_on_base_power(u8 bank, u16 move)
 {
-    if (!((B_MOVE_TYPE(bank, 0) == MTYPE_FAIRY) || (B_MOVE_TYPE(bank, 1) == MTYPE_FAIRY)))
+    /*if (!((B_MOVE_TYPE(bank, 0) == MTYPE_FAIRY) || (B_MOVE_TYPE(bank, 1) == MTYPE_FAIRY)))
         return;
     if (battle_master->field_state.aura_break) {
         B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 75);
     } else if (battle_master->field_state.fairy_aura) {
-        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133); 
-    }
+        B_MOVE_POWER(bank) = NUM_MOD(B_MOVE_POWER(bank), 133);
+    }*/
 }
 
 struct b_ability b_fairy_aura = {
@@ -1451,7 +1456,7 @@ struct b_ability b_fairy_aura = {
 // AURA BREAK
 void aura_break_on_switch(u8 bank)
 {
-    battle_master->field_state.aura_break = 1;
+    //battle_master->field_state.aura_break = 1;
 }
 
 struct b_ability b_aura_break = {
@@ -1462,7 +1467,7 @@ struct b_ability b_aura_break = {
 // PRIMORDIAL SEA
 void primordial_sea_on_switch(u8 bank)
 {
-    battle_master->field_state.is_primordial_sea = 1;
+    //battle_master->field_state.is_primordial_sea = 1;
     enqueue_message(0, 0, STRING_PRIMORDIAL_SEA, 0);
 }
 
@@ -1474,7 +1479,7 @@ struct b_ability b_primordial_sea = {
 // DESOLATE LAND
 void desolate_land_on_switch(u8 bank)
 {
-    battle_master->field_state.is_desolate_land = 1;
+//    battle_master->field_state.is_desolate_land = 1;
     enqueue_message(0, 0, STRING_DESOLATE_LAND, 0);
 }
 
@@ -1486,7 +1491,7 @@ struct b_ability b_desolate_land = {
 // DELTA STREAM
 void delta_stream_on_switch(u8 bank)
 {
-    battle_master->field_state.is_delta_stream = 1;
+//    battle_master->field_state.is_delta_stream = 1;
     enqueue_message(0, 0, STRING_DELTA_STREAM, 0);
 }
 
@@ -1519,7 +1524,7 @@ struct b_ability b_stamina = {
 void water_compaction_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u16 item)
 {
     if ((bank != target) && (BANK_ABILITY(target) == ABILITY_WATER_COMPACTION)) {
-        if ((B_MOVE_TYPE(bank, 0) == MTYPE_WATER) || (B_MOVE_TYPE(bank, 1) == MTYPE_WATER)) 
+        if ((B_MOVE_TYPE(bank, 0) == MTYPE_WATER) || (B_MOVE_TYPE(bank, 1) == MTYPE_WATER))
              stat_boost(target, REQUEST_DEF, 2);
     }
 }
@@ -1611,7 +1616,7 @@ void steelworker_on_base_power(u8 bank, u16 move)
 {
     if (MOVE_TYPE(move) == MTYPE_STEEL)
         B_MOVE_POWER(bank) = NUM_MOD(MOVE_POWER(move), 150);
-} 
+}
 
 struct b_ability b_steel_worker = {
     .on_base_power = steelworker_on_base_power,
@@ -1636,8 +1641,8 @@ struct b_ability b_berserk = {
 // SLUSH RUSH
 u16 slush_rush_on_speed(u8 bank, u16 amount)
 {
-    if (battle_master->field_state.is_hail)
-        return amount * 2;
+    //if (battle_master->field_state.is_hail)
+    //    return amount * 2;
     return amount;
 }
 
@@ -1706,8 +1711,8 @@ struct b_ability b_galvanize = {
 // SURGE SURFER
 u16 surge_surfer_on_speed(u8 bank, u16 amount)
 {
-    if (battle_master->field_state.electric_terrain)
-        return amount * 2;
+    //if (battle_master->field_state.electric_terrain)
+    //    return amount * 2;
     return amount;
 }
 
@@ -1827,7 +1832,7 @@ u16 fluffy_on_damage(u8 bank, u8 tbank, u16 move, u16 dmg, u8 ability, u16 item)
     if (MAKES_CONTACT(move, tbank)) {
         dmg = ((dmg * 50) / 100);
     }
-    return dmg; 
+    return dmg;
 }
 
 struct b_ability b_fluffy = {
@@ -1913,7 +1918,7 @@ struct b_ability b_RKS_system = {
 // ELECTRIC SURGE
 void electric_surge_on_switch(u8 bank)
 {
-    battle_master->field_state.electric_terrain = 1;
+//    battle_master->field_state.electric_terrain = 1;
     return;
 }
 
@@ -1924,7 +1929,7 @@ struct b_ability b_electric_surge = {
 // PSYCHIC SURGE
 void psychic_surge_on_switch(u8 bank)
 {
-    battle_master->field_state.psychic_terrain = 1;
+//    battle_master->field_state.psychic_terrain = 1;
     return;
 }
 
@@ -1936,7 +1941,7 @@ struct b_ability b_psychic_surge = {
 // MISTY SURGE
 void misty_surge_on_switch(u8 bank)
 {
-    battle_master->field_state.misty_terrain = 1;
+    //battle_master->field_state.misty_terrain = 1;
     return;
 }
 
@@ -1948,7 +1953,7 @@ struct b_ability b_misty_surge = {
 // GRASSY SURGE
 void grassy_surge_on_switch(u8 bank)
 {
-    battle_master->field_state.grassy_terrain = 1;
+//    battle_master->field_state.grassy_terrain = 1;
     return;
 }
 
@@ -1999,7 +2004,6 @@ struct b_ability* abilities_table[11] = {
     &b_sand_veil,
     &b_static,
     &b_volt_absorb,
-    
-    
-};
 
+
+};
