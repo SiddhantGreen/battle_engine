@@ -129,14 +129,7 @@ void move_hit()
                 super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
                 break;
             }
-            if (ability_on_tryhit(bank_index, TARGET_OF(bank_index), move)) {
-                super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
-            } else {
-                B_MOVE_FAILED(bank_index) = 1;
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-                set_callback1(run_move);
-                return;
-            }
+            super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
             break;
         case S_GENERAL_TRYHIT:
 
@@ -179,10 +172,13 @@ void move_hit()
             if (battle_master->b_moves[B_MOVE_BANK(bank_index)].heal) {
                 u16 heal = battle_master->b_moves[B_MOVE_BANK(bank_index)].heal;
                 heal = NUM_MOD(TOTAL_HP(bank_index), heal);
-                heal = MIN(TOTAL_HP(bank_index), (heal + B_CURRENT_HP(bank_index)));
-                s16 delta = heal;
-                hp_anim_change(bank_index, delta);
-                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
+                if (TOTAL_HP(bank_index) < (heal + B_CURRENT_HP(bank_index))) {
+                    heal = TOTAL_HP(bank_index) - B_CURRENT_HP(bank_index);
+                }
+                if (heal > 0) {
+                    hp_anim_change(bank_index, heal + B_CURRENT_HP(bank_index));
+                    enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
+                }
             }
             super.multi_purpose_state_tracker = S_STATUS_CHANGE;
             break;
