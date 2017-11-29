@@ -116,6 +116,63 @@ u8 kings_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_ca
 }
 
 
+/* Mat block */
+u8 mat_block_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return true;
+    u8 status = protection_on_tryhit(user, source, move, acb);
+    if (status && p_bank[user]->b_data.first_turn)
+        return true;
+    return false;
+}
+
+u8 mat_block_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return true;
+    if (IS_PROTECTABLE(move)) {
+        enqueue_message(0, TARGET_OF(user), STRING_KICKED_UP_MAT, 0);
+        return 3; // fail the move silently
+    }
+    return true;
+}
+
+u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    // msg: X protected itself
+    // queue an anon func to read and interrupt
+    if (user != src) return true;
+    // fail if user is last to move
+    if (src == battler_master->second_bank) return false;
+    /* Todo fail if mat block effect is active on field */
+    enqueue_message(MOVE_MAT_BLOCK, src, STRING_PROTECTED_TEAM, 0);
+    add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)mat_block_on_tryhit_anon);
+    return true;
+}
+
+
+/* Wide guard */
+u8 wide_guard_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return true;
+    if (IS_PROTECTABLE(move) && M_HITS_SIDE(move) && M_HITS_TARGET(move)) {
+        enqueue_message(MOVE_WIDE_GUARD, TARGET_OF(user), STRING_PROTECTED_MON, 0);
+        return 3; // fail the move silently
+    }
+    return true;
+}
+
+u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    // msg: X protected itself
+    // queue an anon func to read and interrupt
+    if (user != src) return true;
+    enqueue_message(MOVE_WIDE_GUARD, src, STRING_PROTECTED_TEAM, 0);
+    add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)wide_guard_on_tryhit_anon);
+    return true;
+}
+
+
+
 /* Endure */
 // tryhit with protection moves is shared
 void endure_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
@@ -123,7 +180,16 @@ void endure_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* a
     if (TARGET_OF(user) != source) return;
     u16 dmg = B_MOVE_DMG(user);
     if (dmg > B_CURRENT_HP(source)) {
-        B_MOVE_DMG(user) = C_CURRENT_HP(source) - 1;
+        B_MOVE_DMG(user) = B_CURRENT_HP(source) - 1;
         enqueue_message(0, source, STRING_ENDURED, 0);
     }
+}
+
+u8 endure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    // msg: braced itself
+    if (user != src) return true;
+    enqueue_message(0, src, STRING_BRACED_ITSELF, 0);
+    add_callback(CB_ON_DAMAGE_MOVE, -10, 0, user, (u32)endure_on_damage);
+    return true;
 }

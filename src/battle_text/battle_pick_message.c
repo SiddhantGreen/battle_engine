@@ -143,9 +143,12 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:
-      			case STRING_NO_PP:
-      			case STRING_DISABLED_PICKED:
-      			case STRING_ION_DELUGE:
+  			case STRING_NO_PP:
+  			case STRING_DISABLED_PICKED:
+  			case STRING_ION_DELUGE:
+  			case STRING_PROTECTED_MON:
+            case STRING_KICKED_UP_MAT:
+            case STRING_PROTECTED_TEAM:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             default:

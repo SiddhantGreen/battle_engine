@@ -86,6 +86,8 @@ struct move_procs {
 #define STEAL_OFFENSIVE(move) ((moves[move].m_flags) & (1 << 26))
 #define STEAL_BOOSTS(move) ((moves[move].m_flags) & (1 << 27))
 #define IS_MIRRORABLE(move) ((moves[move].m_flags) & (1 << 7))
+#define M_HITS_SIDE(move) ((moves[move].m_flags) & (1 << 28))
+#define M_HITS_TARGET(move) ((moves[move].m_flags) & (1 << 18))
 
 
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))
@@ -120,7 +122,8 @@ struct move_procs {
 #define FLAG_CATEGORY_OVERRIDE (1 << 25)
 #define FLAG_STEAL_OFFENSIVE (1 << 26)
 #define FLAG_STEAL_BOOSTS (1 << 27)
-#define FLAGS_UNUSED (1 << 28)
+#define FLAG_HITS_SIDE (1 << 28)
+#define FLAGS_UNUSED (1 << 29)
 
 
 enum MoveTypes {
@@ -296,6 +299,12 @@ extern u8 protection_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callb
 extern void seismic_toss_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 cotton_spore_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void endure_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 endure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mat_block_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

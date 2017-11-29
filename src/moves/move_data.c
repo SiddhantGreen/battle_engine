@@ -1447,7 +1447,7 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_SPECIAL,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ALL,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ALL | FLAG_HITS_SIDE | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -3318,6 +3318,8 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = protection_on_tryhit,
+    .on_effect_cb = endure_on_effect,
     },
 
     {
@@ -6720,10 +6722,12 @@ struct move_data moves[] = {
     .description = (pchar*)Wide_Guard_desc,
     .pp = 10,
     .priority = 3,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ROCK,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_ONSELF | FLAG_SNATCH | FLAG_HITS_SIDE,
     .procs = &basic_proc,
+    .on_tryhit_move = protection_on_tryhit,
+    .on_effect_cb = wide_guard_on_effect,
     },
 
     {
@@ -7908,10 +7912,12 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Mat_Block_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FIGHTING,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_ONSELF | FLAG_SNATCH | FLAG_HITS_SIDE,
     .procs = &basic_proc,
+    .on_tryhit_move = mat_block_on_tryhit,
+    .on_effect_cb = mat_block_on_effect,
     },
 
     {
