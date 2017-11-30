@@ -115,13 +115,17 @@ void do_damage(u8 bank_index, u16 dmg)
     hp_anim_change(bank_index, delta);
 }
 
-void do_heal(u8 bank_index, u16 heal)
+void do_heal(u8 bank_index, u8 percent_heal)
 {
     // HP bar damage animation
     extern void hp_anim_change(u8 bank, s16 delta);
-    s16 delta = B_CURRENT_HP(bank_index) + heal;
-    delta = MIN(delta, TOTAL_HP(bank_index));
-    hp_anim_change(bank_index, delta);
+    u16 heal = NUM_MOD(TOTAL_HP(bank_index), percent_heal);
+    if (TOTAL_HP(bank_index) < (heal + B_CURRENT_HP(bank_index))) {
+        heal = TOTAL_HP(bank_index) - B_CURRENT_HP(bank_index);
+    }
+    if (heal > 0) {
+        hp_anim_change(bank_index, heal + B_CURRENT_HP(bank_index));
+    }
 }
 
 //TODO: IMPLEMENT

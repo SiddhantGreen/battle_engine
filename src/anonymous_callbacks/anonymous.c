@@ -68,7 +68,7 @@ void update_callbacks() {
             CB_MASTER[i].delay_before_effect--;
         } else {
             // Count down duration if delay done
-            if (CB_MASTER[i].duration) {
+            if ((CB_MASTER[i].duration) && (CB_MASTER[i].duration < 0xFF)) {
                 CB_MASTER[i].duration--;
             } else {
                 CB_MASTER[i].in_use = false;

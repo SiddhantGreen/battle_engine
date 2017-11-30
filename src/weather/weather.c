@@ -99,8 +99,12 @@ u8 desolate_land_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // Sandstorm
 void sand_storm_init_effect()
 {
-    battle_master->field_state.is_sand_storm
+    battle_master->field_state.is_sandstorm = true;
+    add_callback(CB_ON_RESIDUAL, 1, 5, NULL, NULL);
 }
+
+
+
 
 u16 sweather_dmg_mod(u16 damage, u8 attacker)
 {
