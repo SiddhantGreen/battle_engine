@@ -38,22 +38,17 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 
 u16 weather_dmg_mod(u16 damage, u8 attacker)
 {
-    if (battle_master->field_state.is_raining || battle_master->field_state.is_primordial_sea) {
-        if (B_MOVE_HAS_TYPE(attacker, MTYPE_WATER)) {
-            return NUM_MOD(damage, 150);
-        } else if (B_MOVE_HAS_TYPE(attacker, MTYPE_FIRE)) {
-            return NUM_MOD(damage, 50);
+    u16 modifier = 100;
+    build_execution_order(CB_ON_WEATHER_DMG);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        u16 test_modifier = pop_callback(attacker, CURRENT_MOVE(attacker));
+        if (test_modifier != 1) {
+            modifier = test_modifier;
         }
-    } else if (battle_master->field_state.is_sunny || battle_master->field_state.is_desolate_land) {
-        if (B_MOVE_HAS_TYPE(attacker, MTYPE_FIRE)) {
-            return NUM_MOD(damage, 150);
-        } else if (B_MOVE_HAS_TYPE(attacker, MTYPE_WATER)) {
-            return NUM_MOD(damage, 50);
-        }
-    } else {
-        return damage;
     }
-    return damage;
+    dprintf("original damage: %d\nAfter weather: %d\n", damage, NUM_MOD(damage, modifier));
+    return NUM_MOD(damage, modifier);
 }
 
 

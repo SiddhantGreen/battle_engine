@@ -25,6 +25,8 @@
 #define CB_ON_AFTER_MOVE 10
 #define CB_ON_TRYHIT_INV_MOVE 12
 #define CB_ON_RESIDUAL 13
+#define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
+#define CB_ON_WEATHER_DMG 15 // (user, src, stat_id, acb)
 
 
 
@@ -39,12 +41,13 @@ struct anonymous_callback {
 	u32 func;
 };
 
-typedef u16 (*AnonymousCallback)(u8 source, u8 target, u16 move, struct anonymous_callback* acb);
+typedef u16 (*AnonymousCallback)(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 extern void add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func);
 extern void build_execution_order(u8 CB_id);
 extern u16 pop_callback(u8 attacker, u16 move);
 extern void update_callbacks(void);
 extern u8 id_by_func(u32 func);
+extern u16 set_data_next_acb(u32 data);
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */
