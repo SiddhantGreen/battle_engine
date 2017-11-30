@@ -356,6 +356,7 @@ extern struct move_procs target_lower_spAtk_2;
 extern struct move_procs target_lower_spDef_2;
 extern struct move_procs target_lower_spd_2;
 extern struct move_procs target_lower_acc_2;
+extern struct move_procs target_lower_evn_2;
 
 extern struct move_procs target_raise_atk_1;
 extern struct move_procs target_raise_def_1;
@@ -396,4 +397,9 @@ extern struct move_procs psychic_procs;
 extern struct move_procs target_lower_acc_1_chance_50;
 extern struct move_procs sing_procs;
 extern struct move_procs rest_procs;
+extern struct move_procs target_raise_atk_2_confuse;
+extern struct move_procs user_raise_atk_1_10;
+extern struct move_procs target_burn_50;
+extern struct move_procs target_lower_def_1_30;
+extern struct move_procs user_raise_def_1_10;
 #endif /* movesABLE_DATA_H_ */

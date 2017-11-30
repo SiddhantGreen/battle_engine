@@ -175,8 +175,20 @@ struct move_procs target_lower_acc_2 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 100, 100, 0},
+    {0, 0, 0, 0, 0, 0, 100, 0},
     {0, 0, 0, 0, 0, 0, -2, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+struct move_procs target_lower_evn_2 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 100, 0, 0},
+    {0, 0, 0, 0, 0, -2, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,
@@ -216,6 +228,18 @@ struct move_procs user_lower_def_1 = {
     {0, -1, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+struct move_procs target_lower_def_1_30 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 30, 0, 0, 0, 0, 0, 0},
+    {0, -1, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,
@@ -499,6 +523,18 @@ struct move_procs target_raise_acc_2 = {
 struct move_procs user_raise_atk_1 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {100, 0, 0, 0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+struct move_procs user_raise_atk_1_10 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {10, 0, 0, 0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -964,3 +1000,38 @@ struct move_procs rest_procs = {
     0,
 };
 
+struct move_procs target_raise_atk_2_confuse = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {100, 0, 0, 0, 0, 0, 0, 0},
+    {2, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_CONFUSION,
+    0,
+    100,
+};
+
+struct move_procs user_raise_def_1_10 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 10, 0, 0, 0, 0, 0, 0},
+    {0, 1, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+struct move_procs target_burn_50 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_BURN,
+    0,
+    50,
+};

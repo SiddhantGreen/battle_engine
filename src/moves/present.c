@@ -14,7 +14,6 @@ u8 present_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	{
 		if (rand_num < 20) {
 			B_HEAL(TARGET_OF(user)) = 25;
-			return 1;
 		}
 		else if (rand_num < 60) {
 			B_MOVE_POWER(user) = 40;
