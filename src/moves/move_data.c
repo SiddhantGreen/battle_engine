@@ -3500,7 +3500,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.on_tryhit_move = present_on_tryhit_move,
+	.on_modify_move = present_on_modify_move,
     },
 
     {
