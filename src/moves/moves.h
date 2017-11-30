@@ -309,6 +309,7 @@ extern u8 feint_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 hyperspace_hole_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 shadow_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 phantom_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 present_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
