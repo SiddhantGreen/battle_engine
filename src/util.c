@@ -119,7 +119,7 @@ void do_heal(u8 bank_index, u8 percent_heal)
 {
     // HP bar damage animation
     extern void hp_anim_change(u8 bank, s16 delta);
-    heal = NUM_MOD(TOTAL_HP(bank_index), percent_heal);
+    u16 heal = NUM_MOD(TOTAL_HP(bank_index), percent_heal);
     if (TOTAL_HP(bank_index) < (heal + B_CURRENT_HP(bank_index))) {
         heal = TOTAL_HP(bank_index) - B_CURRENT_HP(bank_index);
     }
