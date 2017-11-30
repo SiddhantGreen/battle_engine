@@ -112,3 +112,10 @@ u8 id_by_func(u32 func)
     }
     return 255;
 }
+
+u16 set_data_next_acb(u32 data) {
+    u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+    if (i != ANON_CB_MAX) {
+        CB_MASTER[i].data_ptr = data;
+    }
+}
