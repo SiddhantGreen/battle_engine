@@ -177,14 +177,15 @@ void move_hit()
         case S_HEAL_CALC_AND_APPLY:
             /* TODO calc healing */
             if (B_HEAL(bank_index)) {
+                u16 heal_target =  TARGET_OF(bank_index);
                 u16 heal = B_HEAL(bank_index);
-                heal = NUM_MOD(TOTAL_HP(bank_index), heal);
-                if (TOTAL_HP(bank_index) < (heal + B_CURRENT_HP(bank_index))) {
-                    heal = TOTAL_HP(bank_index) - B_CURRENT_HP(bank_index);
+                heal = NUM_MOD(TOTAL_HP(heal_target), heal);
+                if (TOTAL_HP(heal_target) < (heal + B_CURRENT_HP(heal_target))) {
+                    heal = TOTAL_HP(heal_target) - B_CURRENT_HP(heal_target);
                 }
                 if (heal > 0) {
-                    hp_anim_change(bank_index, heal + B_CURRENT_HP(bank_index));
-                    enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_HEAL, 0);
+                    hp_anim_change(heal_target, heal + B_CURRENT_HP(heal_target));
+                    enqueue_message(CURRENT_MOVE(bank_index), heal_target, STRING_HEAL, 0);
                 }
             }
             super.multi_purpose_state_tracker = S_STATUS_CHANGE;
