@@ -107,6 +107,8 @@ enum battle_string_ids {
     STRING_PROTECTED_TEAM = 176,
     STRING_PROTECTED_MON = 177,
     STRING_BROKE_PROTECT = 178,
+    STRING_RAIN_FALLING = 179,
+    STRING_RAIN_STOPPED = 180,
 
 };
 
@@ -293,6 +295,8 @@ static const pchar str_kicked_mat[] = _("It was blocked by\nthe kicked-up mat!")
 static const pchar str_protected_side[] = _("{ATTACK_NAME} protected\nthe team!");
 static const pchar str_protected_mon[] = _("{ATTACK_NAME} protected {ATTACKING_MON}!");
 static const pchar str_broke_protect[] = _("{ATTACK_NAME} broke the\nprotection!");
+static const pchar str_rain_continue[] = _("Rain continues to fall.");
+static const pchar str_rain_stop[] = _("The rain stopped.");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -314,7 +318,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[179] = {
+static const pchar* battle_strings[181] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -413,7 +417,8 @@ static const pchar* battle_strings[179] = {
    (pchar*)&str_protected_side,
    (pchar*)&str_protected_mon,
    (pchar*)&str_broke_protect,
-
+   (pchar*)&str_rain_continue,
+   (pchar*)&str_rain_stop,
 
 };
 

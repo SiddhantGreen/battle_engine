@@ -150,6 +150,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_KICKED_UP_MAT:
             case STRING_PROTECTED_TEAM:
             case STRING_BROKE_PROTECT:
+            case STRING_RAIN_FALLING:
+            case STRING_RAIN_STOPPED:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             default:

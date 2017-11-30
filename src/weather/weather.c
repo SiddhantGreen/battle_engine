@@ -3,30 +3,47 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+
 void clear_other_weather()
 {
   // todo
 }
 
 // Rain
+u16 rain_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((battle_master->field_state.is_raining) && (B_MOVE_HAS_TYPE(user, MTYPE_WATER))) {
+        return 150;
+    } else if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
+        return 50;
+    } else {
+        return 100;
+    }
+}
+
+u16 rain_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (acb->duration == 0) {
+        // rain stopped message
+        enqueue_message(NULL, NULL, STRING_RAIN_STOPPED, NULL);
+    } else {
+        // rain continues to fall message
+        enqueue_message(NULL, NULL, STRING_RAIN_FALLING, NULL);
+    }
+    return true;
+}
+
 void rain_init_effect()
 {
     // if another weather condition is present, remove it TODO
     battle_master->field_state.is_raining = true;
-    add_callback(CB_ON_RESIDUAL, 1, 5, 0, NULL); // rain continues to fall, or The rain stopped
-
+    add_callback(CB_ON_RESIDUAL, 1, 5, NULL, (u32)rain_on_residual);
+    add_callback(CB_ON_WEATHER_DMG, 0, 5, NULL, (u32)rain_dmg_mod);
+    enqueue_message(0, 0, STRING_RAINING, 0);
 }
 
-u16 rain_dmg_mod(u8 user, u16 damage)
-{
-    if ((battle_master->field_state.is_raining) && (B_MOVE_HAS_TYPE(user, MTYPE_WATER))) {
-        return NUM_MOD(damage, 150);
-    } else if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
-        return NUM_MOD(damage, 50);
-    } else {
-        return damage;
-    }
-}
+
 
 // Primordial sea
 void primordial_sea_init_effect()
@@ -97,11 +114,14 @@ u8 desolate_land_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 }
 
 // Sandstorm
-void sand_storm_init_effect()
+void sandstorm_init_effect()
 {
     battle_master->field_state.is_sandstorm = true;
     add_callback(CB_ON_RESIDUAL, 1, 5, NULL, NULL);
+    add_callback(CB_ON_STAT_MOD, 10, 5, NULL, NULL);
 }
+
+
 
 
 
