@@ -28,7 +28,7 @@ const static u16 crit_mod[4] = {6, 13, 50, 100};
 u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
 {
     u16 stat_total;
-    
+
     /* atk, def, spd, spa, spdef */
     if (id < 5) {
         stat_total = NUM_MOD(stat, stat_mod[mod + 6]);
@@ -39,58 +39,15 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
         /* crit chance */
         stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
     }
-    
-    // apply modifiers to stat via callback. Example: Ability Huge Power
-    switch (id) {
-        case 0:
-            stat_total += ability_attack_mod(bank, stat_total);
-            break;
-        case 1:
-            stat_total += ability_defense_mod(bank, stat_total);
-            break;
-        case 2:
-            stat_total += ability_speed_mod(bank, stat_total);
-            if (B_STATUS(bank) != AILMENT_NONE) {
-				if (statuses[B_STATUS(bank)].on_mod_speed) {
-					stat_total = statuses[B_STATUS(bank)].on_mod_speed(bank, stat_total);
-				}
-			}
-            break;
-        case 3:
-            stat_total += ability_sp_attack_mod(bank, stat_total);
-            break;
-        case 4:
-            stat_total += ability_sp_defense_mod(bank, stat_total);
-            break;
-        case 5:
-            stat_total += ability_accuracy_mod(bank, stat_total);
-            break;
-        case 6:
-            stat_total += ability_evasion_mod(bank, stat_total);
-            break;
-        case 7:
-            stat_total += ability_critchance_mod(bank, stat_total);
-            break;
-    };
-    
+    // Stat modifying callbacks
+    build_execution_order(CB_ON_STAT_MOD);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        set_data_next_acb(stat_total);
+        u16 new_total = pop_callback(bank, id);
+        if (new_total != 1) {
+            stat_total = new_total;
+        }
+    }
     return stat_total;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

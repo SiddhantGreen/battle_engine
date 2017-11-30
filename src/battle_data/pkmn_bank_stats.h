@@ -7,6 +7,17 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
+/*
+ * Names of stats as IDs in stage_modify_stat
+ */
+#define ATTACK_MOD 0
+#define DEFENSE_MOD 1
+#define SPEED_MOD 2
+#define SPATTACK_MOD 3
+#define SPDEFENSE_MOD 4
+#define ACCURACY_MOD 5
+#define EVASION_MOD 6
+#define CRIT_CHANCE_MOD 7
 
 /*
  * Get Pokemon's current battle stats based on stage changes to stat
