@@ -127,12 +127,16 @@ void paralyze_on_before_move(u8 bank)
     }
 }
 
-u16 paralyze_on_mod_speed(u8 bank, u16 speed)
+u16 paralyze_on_mod_stat(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
-    if (!(BANK_ABILITY(bank) == ABILITY_QUICK_FEET))
-        return NUM_MOD(speed, 50);
-    else
-        return speed;
+	if (B_STATUS(bank) != AILMENT_NONE) {
+		if (stat_id != SPEED_MOD) return (u32)acb->data_ptr;
+	    if (!(BANK_ABILITY(bank) == ABILITY_QUICK_FEET))
+	        return NUM_MOD((u32)acb->data_ptr, 50);
+	} else {
+		acb->in_use = false;
+	}
+	return (u32)acb->data_ptr;
 }
 
 void paralyze_on_inflict(u8 bank)
@@ -142,7 +146,7 @@ void paralyze_on_inflict(u8 bank)
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_PARALYZE);
-
+	add_callback(CB_ON_STAT_MOD, 0, 0xFF, NULL, (u32)paralyze_on_mod_stat);
 }
 
 
@@ -290,7 +294,6 @@ struct status_ailments statuses[] =
     // Ailment paralyze
     {
         .on_before_move = paralyze_on_before_move,
-        .on_mod_speed = paralyze_on_mod_speed,
         .on_inflict = paralyze_on_inflict,
     },
 
