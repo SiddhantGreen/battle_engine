@@ -26,7 +26,8 @@
 #define CB_ON_TRYHIT_INV_MOVE 12
 #define CB_ON_RESIDUAL 13
 #define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
-#define CB_ON_WEATHER_DMG 15 // (user, src, stat_id, acb)
+#define CB_ON_WEATHER_DMG 15
+#define CB_ON_EFFECTIVENESS 16
 
 
 
@@ -51,5 +52,6 @@ extern u8 id_by_func(u32 func);
 extern void set_data_next_acb(u32 data);
 extern void delete_callback(u32 func);
 extern u16 run_callback(u8 attacker, u16 move);
+extern bool callback_exists(u32 func);
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */

@@ -61,7 +61,6 @@ u16 pop_callback(u8 attacker, u16 move) {
 // run current callback
 u16 run_callback(u8 attacker, u16 move) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
-    dprintf("func index %d, which is %x is running\n", CB_EXEC_ORDER[CB_EXEC_INDEX], CB_MASTER[CB_EXEC_ORDER[CB_EXEC_INDEX]].func);
     if (i != ANON_CB_MAX) {
         i = CB_EXEC_ORDER[CB_EXEC_INDEX];
         AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
@@ -80,10 +79,9 @@ void list_cbs()
     dprintf("Runnable functions include: \n");
     for (u8 i = 0; ((i < ANON_CB_MAX) && (CB_EXEC_ORDER[i] < 40)); i++) {
         dprintf("func: %x\n", CB_MASTER[CB_EXEC_ORDER[i]].func);
-        dprintf("func2: %x\n", CB_EXEC_ORDER[i]);
+        dprintf("func index: %x\n", CB_EXEC_ORDER[i]);
     }
 }
-
 
 // turn end, drop counters of array elements
 void update_callbacks() {
@@ -152,4 +150,9 @@ void set_data_next_acb(u32 data) {
     if (i != ANON_CB_MAX) {
         CB_MASTER[i].data_ptr = (void*)data;
     }
+}
+
+bool callback_exists(u32 func)
+{
+    return (id_by_func(func) < 255);
 }

@@ -11,18 +11,27 @@ extern void dprintf(const char * str, ...);
 
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
-    u8 i, j;
     u16 percent = 100;
     // for each type of the attacker's move
-    for (i = 0; i < sizeof(battle_master->b_moves[B_MOVE_BANK(attacker)].type); i++) {
+    for (u8 i = 0; i < sizeof(battle_master->b_moves[B_MOVE_BANK(attacker)].type); i++) {
         // get the type effectiveness for each type of the defender
-        for (j = 0; j < sizeof(p_bank[defender]->b_data.type); j++) {
+        for (u8 j = 0; j < sizeof(p_bank[defender]->b_data.type); j++) {
             if ((B_MOVE_TYPE(attacker, i) != MTYPE_EGG) && (B_PKMN_TYPE(defender, j) != MTYPE_EGG)) {
                 u8 target_type = B_PKMN_TYPE(defender, j);
                 u8 move_type = B_MOVE_TYPE(attacker, i);
 				if (move_type == MTYPE_NONE)
 					return percent;
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
+                // callbacks for effectiveness of moves
+                build_execution_order(CB_ON_EFFECTIVENESS);
+                battle_master->executing = true;
+                while (battle_master->executing) {
+                    set_data_next_acb(move_effectiveness);
+                    u16 effectiveness_temp = pop_callback(target_type, move_type);
+                    if (effectiveness_temp != 1) {
+                        move_effectiveness = effectiveness_temp;
+                    }
+                }
                 if (move_effectiveness > 0) {
                     percent = NUM_MOD(percent, move_effectiveness);
                 } else {
