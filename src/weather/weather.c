@@ -8,6 +8,7 @@ extern void clear_other_weather(void);
 extern void dprintf(const char * str, ...);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern void do_damage(u8 bank_index, u16 dmg);
+extern bool b_pkmn_pure_type(u8 bank, enum PokemonType type);
 
 /* Rain */
 u16 rain_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -48,6 +49,7 @@ void rain_init_effect()
 
 void clear_rain()
 {
+    battle_master->field_state.is_raining = false;
     delete_callback((u32)rain_dmg_mod);
     delete_callback((u32)rain_on_residual);
 }
@@ -79,7 +81,7 @@ void primordial_sea_end()
     CB_MASTER[id].in_use = false;
     id = id_by_func((u32)primordial_sea_tryhit);
     CB_MASTER[id].in_use = false;
-    enqueue_message(0, 0, STRING_HEAVY_RAIN_LIFTED, 0);
+
 }
 
 void primordial_sea_init_effect()
@@ -94,8 +96,7 @@ void primordial_sea_init_effect()
 void clear_primordial_sea()
 {
     if (battle_master->field_state.is_primordial_sea) {
-        primordial_sea_end();
-    } else {
+        enqueue_message(0, 0, STRING_HEAVY_RAIN_LIFTED, 0);
         delete_callback((u32)primordial_sea_dmg_mod);
         delete_callback((u32)primordial_sea_tryhit);
     }
@@ -138,6 +139,13 @@ void sun_init_effect()
     enqueue_message(0, 0, STRING_SUNLIGHT_HARSH, 0);
 }
 
+void clear_sun()
+{
+    battle_master->field_state.is_sunny = false;
+    delete_callback((u32)sun_dmg_mod);
+    delete_callback((u32)sun_on_residual);
+}
+
 
 /* Desolate land */
 u16 desolate_land_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -159,15 +167,6 @@ u8 desolate_land_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     return true;
 }
 
-void desolate_land_end()
-{
-    u8 id = id_by_func((u32)desolate_land_dmg_mod);
-    CB_MASTER[id].in_use = false;
-    id = id_by_func((u32)desolate_land_tryhit);
-    CB_MASTER[id].in_use = false;
-    enqueue_message(0, 0, STRING_HARSH_SUN_END, 0);
-}
-
 void desolate_land_init_effect()
 {
     clear_other_weather();
@@ -180,8 +179,7 @@ void desolate_land_init_effect()
 void clear_desolate_land()
 {
     if (battle_master->field_state.is_desolate_land) {
-        desolate_land_end();
-    } else {
+        enqueue_message(0, 0, STRING_HARSH_SUN_END, 0);
         delete_callback((u32)desolate_land_dmg_mod);
         delete_callback((u32)desolate_land_tryhit);
     }
@@ -233,6 +231,14 @@ void sandstorm_init_effect()
     enqueue_message(NULL, NULL, STRING_SANDSTORM_KICKED, NULL);
 }
 
+void clear_sandstorm()
+{
+    battle_master->field_state.is_sandstorm = false;
+    delete_callback((u32)sandstorm_on_residual);
+    delete_callback((u32)sandstorm_on_residual_buffet);
+    delete_callback((u32)sandstorm_stat_mod);
+}
+
 
 /* hail */
 u16 hail_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -267,6 +273,50 @@ void hail_init_effect()
     add_callback(CB_ON_RESIDUAL, 1, 5, NULL, (u32)hail_on_residual_buffet);
     enqueue_message(0, 0, STRING_RAINING, MOVE_HAIL);
 }
+
+void clear_hail()
+{
+    battle_master->field_state.is_hail = false;
+    delete_callback((u32)hail_on_residual_buffet);
+    delete_callback((u32)hail_on_residual);
+}
+
+
+/* Delta stream */
+u16 delta_stream_on_effect(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
+{
+    enqueue_message(0, 0, STRING_DELTA_STREAM_EFFECT, 0);
+    acb->in_use = false;
+    return true;
+}
+
+u16 delta_stream_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
+{
+    if ((target_type == MTYPE_FLYING) && ((u32)acb->data_ptr > 100)) {
+        if (!callback_exists((u32)delta_stream_on_effect))
+            add_callback(CB_ON_EFFECT, 101, 0, NULL, (u32)delta_stream_on_effect);
+        return 100;
+    } else {
+        return (u16)acb->data_ptr;
+    }
+}
+
+void delta_stream_init_effect()
+{
+    battle_master->field_state.is_delta_stream = true;
+    add_callback(CB_ON_EFFECTIVENESS, 0, 0xFF, NULL, (u32)delta_stream_effectiveness);
+    enqueue_message(0, 0, STRING_DELTA_STREAM, NULL);
+}
+
+void dela_stream_end()
+{
+    if (battle_master->field_state.is_desolate_land) {
+        delete_callback((u32)delta_stream_effectiveness);
+        battle_master->field_state.is_delta_stream = false;
+        enqueue_message(0, 0, STRING_DELTA_STREAM_END, 0);
+    }
+}
+
 
 void clear_other_weather()
 {

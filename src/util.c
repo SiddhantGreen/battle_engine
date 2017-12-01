@@ -68,6 +68,15 @@ bool b_pkmn_has_type(u8 bank, enum PokemonType type)
     return false;
 }
 
+bool b_pkmn_pure_type(u8 bank, enum PokemonType type)
+{
+    for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
+        if ((p_bank[bank]->b_data.type[i] != type) && (p_bank[bank]->b_data.type[i] != MTYPE_EGG))
+            return false;
+    }
+    return true;
+}
+
 bool b_pkmn_add_type(u8 bank, enum PokemonType type)
 {
     // cap at first two types. 3rd would be added types only
