@@ -67,6 +67,8 @@ void run_decision(void)
         case S_SOFT_RESET_BANK:
         {
             // reset turn based bits
+            p_bank[PLAYER_SINGLES_BANK]->b_data.first_turn = false;
+            p_bank[OPPONENT_SINGLES_BANK]->b_data.first_turn = false;
             update_callbacks();
             reset_turn_bits(battle_master->first_bank);
             reset_turn_bits(battle_master->second_bank);

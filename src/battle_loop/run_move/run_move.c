@@ -155,16 +155,10 @@ void run_move()
         case S_RESIDUAL_MOVES:
         {
             if (bank_index != battle_master->first_bank) {
-                // residual callbacks for moves
-                u16 move = CURRENT_MOVE(bank_index);
-                // run callbacks
-                build_execution_order(CB_ON_RESIDUAL);
-                battle_master->executing = true;
-                while (battle_master->executing) {
-                    pop_callback(bank_index, move);
-                }
-                p_bank[PLAYER_SINGLES_BANK]->b_data.first_turn = false;
-                p_bank[OPPONENT_SINGLES_BANK]->b_data.first_turn = false;
+                extern void c1_residual_callbacks(void);
+                set_callback1(c1_residual_callbacks);
+                super.multi_purpose_state_tracker = 0;
+                return;
             }
             super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
             break;
@@ -209,4 +203,52 @@ void run_move()
           break;
         }
     };
+}
+
+
+void c1_residual_callbacks()
+{
+    while (peek_message())
+		return;
+	if (task_is_running(hpbar_apply_dmg))
+		return;
+
+	switch (super.multi_purpose_state_tracker) {
+        case 0:
+        {
+            u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
+            u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
+            battle_master->bank_state = (player_speed < opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
+            build_execution_order(CB_ON_RESIDUAL);
+            battle_master->executing = true;
+            super.multi_purpose_state_tracker++;
+            break;
+        }
+        case 1:
+        {
+            if (battle_master->executing) {
+                battle_master->bank_state  = FOE_BANK(battle_master->bank_state);
+                run_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state ));
+                super.multi_purpose_state_tracker++;
+            } else {
+                super.multi_purpose_state_tracker = 3;
+            }
+            break;
+        }
+        case 2:
+        {
+            if (battle_master->executing) {
+                battle_master->bank_state  = FOE_BANK(battle_master->bank_state);
+                pop_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state ));
+                super.multi_purpose_state_tracker = 1;
+            } else {
+                super.multi_purpose_state_tracker = 3;
+            }
+            break;
+        }
+        case 3:
+            set_callback1(run_move);
+            super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+            break;
+        };
 }
