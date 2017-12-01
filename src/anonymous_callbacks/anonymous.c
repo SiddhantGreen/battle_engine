@@ -58,6 +58,32 @@ u16 pop_callback(u8 attacker, u16 move) {
     return true;
 }
 
+// run current callback
+u16 run_callback(u8 attacker, u16 move) {
+    u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+    dprintf("func index %d, which is %x is running\n", CB_EXEC_ORDER[CB_EXEC_INDEX], CB_MASTER[CB_EXEC_ORDER[CB_EXEC_INDEX]].func);
+    if (i != ANON_CB_MAX) {
+        i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+        AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
+        battle_master->executing = true;
+        dprintf("executing a function at %x\n", CB_MASTER[i].func -1);
+        return func(attacker, CB_MASTER[i].source_bank, move, &CB_MASTER[i]);
+    }
+    battle_master->executing = false;
+    CB_EXEC_INDEX = 0;
+    return true;
+}
+
+// list built callbacks
+void list_cbs()
+{
+    dprintf("Runnable functions include: \n");
+    for (u8 i = 0; ((i < ANON_CB_MAX) && (CB_EXEC_ORDER[i] < 40)); i++) {
+        dprintf("func: %x\n", CB_MASTER[CB_EXEC_ORDER[i]].func);
+        dprintf("func2: %x\n", CB_EXEC_ORDER[i]);
+    }
+}
+
 
 // turn end, drop counters of array elements
 void update_callbacks() {
