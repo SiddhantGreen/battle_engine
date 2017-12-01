@@ -162,6 +162,17 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                         result_index = pstrlen(result);
                         break;
                     }
+                case 0x18:
+                    {
+                        if (move_effect_id == MOVE_HAIL) {
+                            pstrcpy(&result[result_index], (const pchar*)str_hail_w);
+                        } else if (move_effect_id == MOVE_RAIN_DANCE) {
+                            pstrcpy(&result[result_index], (const pchar*)str_rain_w);
+                        } else {
+                            pstrcpy(&result[result_index], (const pchar*)str_sandstorm_w);
+                        }
+                        result_index = pstrlen(result);
+                    }
                 default:
                     {
 
