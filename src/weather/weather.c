@@ -5,6 +5,9 @@
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void clear_other_weather(void);
+extern void dprintf(const char * str, ...);
+extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
+extern void do_damage(u8 bank_index, u16 dmg);
 
 /* Rain */
 u16 rain_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -20,10 +23,16 @@ u16 rain_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 u16 rain_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (acb->duration == 0) {
-        enqueue_message(NULL, NULL, STRING_RAIN_STOPPED, NULL);
+    if (acb->data_ptr) {
+        acb->data_ptr = 0;
     } else {
-        enqueue_message(NULL, NULL, STRING_RAIN_FALLING, NULL);
+        acb->data_ptr = (void*)1;
+        return true;
+    }
+    if (acb->duration == 0) {
+        enqueue_message(NULL, NULL, STRING_RAIN_STOPPED, MOVE_RAIN_DANCE);
+    } else {
+        enqueue_message(NULL, NULL, STRING_RAIN_FALLING, MOVE_RAIN_DANCE);
     }
     return true;
 }
@@ -33,7 +42,7 @@ void rain_init_effect()
     battle_master->field_state.is_raining = true;
     add_callback(CB_ON_RESIDUAL, 1, 5, NULL, (u32)rain_on_residual);
     add_callback(CB_ON_WEATHER_DMG, 0, 5, 0, (u32)rain_dmg_mod);
-    enqueue_message(0, 0, STRING_RAINING, 0);
+    enqueue_message(0, 0, STRING_RAINING, MOVE_RAIN_DANCE);
     return true;
 }
 
@@ -107,6 +116,12 @@ u16 sun_dmg_mod(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 u16 sun_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+    if (acb->data_ptr) {
+        acb->data_ptr = 0;
+    } else {
+        acb->data_ptr = (void*)1;
+        return true;
+    }
     if (acb->duration == 0) {
         enqueue_message(NULL, NULL, STRING_SUNLIGHT_FADE, NULL);
     } else {
@@ -172,17 +187,86 @@ void clear_desolate_land()
     }
 }
 
-// Sandstorm
+
+/* Sandstorm */
+u16 sandstorm_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (stat_id != SPDEFENSE_MOD) return (u32)acb->data_ptr;
+    if (b_pkmn_has_type(user, MTYPE_ROCK)) {
+        return NUM_MOD((u32)acb->data_ptr, 150);
+    } else {
+        return (u32)acb->data_ptr;
+    }
+}
+
+u16 sandstorm_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (acb->data_ptr) {
+        acb->data_ptr = 0;
+    } else {
+        acb->data_ptr = (void*)1;
+        return true;
+    }
+    if (acb->duration == 0) {
+        enqueue_message(NULL, NULL, STRING_SANDSTORM_END, NULL);
+    } else {
+        enqueue_message(NULL, NULL, STRING_SANDSTORM_RAGE, NULL);
+    }
+    return true;
+}
+
+u16 sandstorm_on_residual_buffet(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (b_pkmn_has_type(user, MTYPE_ROCK) || b_pkmn_has_type(user, MTYPE_STEEL) || b_pkmn_has_type(user, MTYPE_GROUND))
+        return true;
+    enqueue_message(NULL, user, STRING_SANDSTORM_BUFFET, MOVE_SANDSTORM);
+    do_damage(user, (TOTAL_HP(user) / 16));
+    return true;
+}
+
 void sandstorm_init_effect()
 {
     battle_master->field_state.is_sandstorm = true;
-    add_callback(CB_ON_RESIDUAL, 1, 5, NULL, NULL);
-    add_callback(CB_ON_STAT_MOD, 10, 5, NULL, NULL);
+    add_callback(CB_ON_RESIDUAL, 2, 5, NULL, (u32)sandstorm_on_residual);
+    add_callback(CB_ON_RESIDUAL, 1, 5, NULL, (u32)sandstorm_on_residual_buffet);
+    add_callback(CB_ON_STAT_MOD, 10, 5, NULL, (u32)sandstorm_stat_mod);
+    enqueue_message(NULL, NULL, STRING_SANDSTORM_KICKED, NULL);
 }
 
 
+/* hail */
+u16 hail_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (acb->data_ptr) {
+        acb->data_ptr = 0;
+    } else {
+        acb->data_ptr = (void*)1;
+        return true;
+    }
+    if (acb->duration == 0) {
+        enqueue_message(NULL, NULL, STRING_RAIN_STOPPED, MOVE_HAIL);
+    } else {
+        enqueue_message(NULL, NULL, STRING_RAIN_FALLING, MOVE_HAIL);
+    }
+    return true;
+}
 
+u16 hail_on_residual_buffet(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (b_pkmn_has_type(user, MTYPE_ICE))
+        return true;
+    enqueue_message(NULL, user, STRING_SANDSTORM_BUFFET, MOVE_HAIL);
+    do_damage(user, (TOTAL_HP(user) / 16));
+    return true;
+}
 
+void hail_init_effect()
+{
+    battle_master->field_state.is_hail = true;
+    add_callback(CB_ON_RESIDUAL, 2, 5, NULL, (u32)hail_on_residual);
+    add_callback(CB_ON_RESIDUAL, 1, 5, NULL, (u32)hail_on_residual_buffet);
+    enqueue_message(0, 0, STRING_RAINING, MOVE_HAIL);
+}
 
 void clear_other_weather()
 {
