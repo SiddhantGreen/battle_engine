@@ -109,6 +109,13 @@ enum battle_string_ids {
     STRING_BROKE_PROTECT = 178,
     STRING_RAIN_FALLING = 179,
     STRING_RAIN_STOPPED = 180,
+    STRING_HEAVY_RAIN_FIZZLE = 181,
+    STRING_HEAVY_RAIN_LIFTED = 182,
+    STRING_SUNLIGHT_HARSH = 183,
+    STRING_SUNLIGHT_STRONG = 184,
+    STRING_SUNLIGHT_FADE = 185,
+    STRING_HARSH_SUN_WATER = 186,
+    STRING_HARSH_SUN_END = 187,
 
 };
 
@@ -274,12 +281,12 @@ static const pchar str_snatched_p[] = _("{ATTACKING_MON} snatched\nfoe {DEFENDIN
 static const pchar str_snatched_o[] = _("Foe {ATTACKING_MON} snatched\n{DEFENDING_MON}’s move!");
 static const pchar str_must_recharge_p[] = _("{ATTACKING_MON} must recharge!");
 static const pchar str_must_recharge_o[] = _("Foe {ATTACKING_MON} must recharge!");
-static const pchar str_conversion_gain_type_p[] = _("{ATTACKING_MON} transformed\ninto the {PKMN_TYPE} type!");
-static const pchar str_conversion_gain_type_o[] = _("Foe {ATTACKING_MON} transformed\ninto the {PKMN_TYPE} type!");
+static const pchar str_conversion_gain_type_p[] = _("{ATTACKING_MON} transformed\ninto the {PKMN_TYPE}-type!");
+static const pchar str_conversion_gain_type_o[] = _("Foe {ATTACKING_MON} transformed\ninto the {PKMN_TYPE}-type!");
 static const pchar str_reflect_type_match_p[] = _("{ATTACKING_MON}’s type changed to\nmatch the foe {DEFENDING_MON}’s!");
 static const pchar str_reflect_type_match_o[] = _("Foe {ATTACKING_MON}’s type changed\nto match {DEFENDING_MON}’s!");
-static const pchar str_type_added_p[] = _("The {PKMN_TYPE} type was added\nto the foe {DEFENDING_MON}!");
-static const pchar str_type_added_o[] = _("The {PKMN_TYPE} type was added\nto {DEFENDING_MON}!");
+static const pchar str_type_added_p[] = _("The {PKMN_TYPE}-type was added\nto the foe {DEFENDING_MON}!");
+static const pchar str_type_added_o[] = _("The {PKMN_TYPE}-type was added\nto {DEFENDING_MON}!");
 static const pchar str_ion_deluge_field[] = _("A deluge of ions showers\nthe battlefield!");
 static const pchar str_electrified_p[] = _("Foe {DEFENDING_MON}’s moves\nhave been electrified!");
 static const pchar str_electrified_o[] = _("{DEFENDING_MON}’s moves\nhave been electrified!");
@@ -297,6 +304,14 @@ static const pchar str_protected_mon[] = _("{ATTACK_NAME} protected {ATTACKING_M
 static const pchar str_broke_protect[] = _("{ATTACK_NAME} broke the\nprotection!");
 static const pchar str_rain_continue[] = _("Rain continues to fall.");
 static const pchar str_rain_stop[] = _("The rain stopped.");
+static const pchar str_heavy_rain_atk[] = _("The Fire-type attack fizzled out\nin the heavy rain!");
+static const pchar str_heavy_rain_lift[] = _("The heavy rain has lifted!");
+static const pchar str_sun_start[] = _("The sunlight turned harsh!");
+static const pchar str_sun_strong[] = _("The sunlight is strong.");
+static const pchar str_sun_finish[] = _("The sunlight faded.");
+static const pchar str_harsh_sun_evaporates[] = _("The Water-type attack evaporated\nin the harsh sunlight!");
+static const pchar str_harsh_sun_over[] = _("The harsh sunlight faded.");
+
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -318,7 +333,7 @@ static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
 
-static const pchar* battle_strings[181] = {
+static const pchar* battle_strings[188] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -419,6 +434,13 @@ static const pchar* battle_strings[181] = {
    (pchar*)&str_broke_protect,
    (pchar*)&str_rain_continue,
    (pchar*)&str_rain_stop,
+   (pchar*)&str_heavy_rain_atk,
+   (pchar*)&str_heavy_rain_lift,
+   (pchar*)&str_sun_start,
+   (pchar*)&str_sun_strong,
+   (pchar*)&str_sun_finish,
+   (pchar*)&str_harsh_sun_evaporates,
+   (pchar*)&str_harsh_sun_over,
 
 };
 
