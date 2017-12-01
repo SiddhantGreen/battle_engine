@@ -350,6 +350,7 @@ TYPE = FD 14
 STAT_NAME = FD 15
 STATUS_NAME = FD 16
 PKMN_TYPE = FD 17
+WEATHER = FD 18
 
 @ battle macros deprecated
 @UNKNOWN_STR = FD 00

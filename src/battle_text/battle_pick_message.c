@@ -140,6 +140,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_PROTECTED_SELF:
             case STRING_ENDURED:
             case STRING_BRACED_ITSELF:
+            case STRING_SANDSTORM_BUFFET:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             case STRING_RESIDUAL_STATUS_DMG:
@@ -159,6 +160,9 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_SUNLIGHT_FADE:
             case STRING_HARSH_SUN_WATER:
             case STRING_HARSH_SUN_END:
+            case STRING_SANDSTORM_KICKED:
+            case STRING_SANDSTORM_RAGE:
+            case STRING_SANDSTORM_END:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             default:

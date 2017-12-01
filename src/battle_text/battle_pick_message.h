@@ -116,6 +116,10 @@ enum battle_string_ids {
     STRING_SUNLIGHT_FADE = 185,
     STRING_HARSH_SUN_WATER = 186,
     STRING_HARSH_SUN_END = 187,
+    STRING_SANDSTORM_KICKED = 188,
+    STRING_SANDSTORM_RAGE = 189,
+    STRING_SANDSTORM_BUFFET = 190,
+    STRING_SANDSTORM_END = 192,
 
 };
 
@@ -164,7 +168,7 @@ static const pchar str_geomancy_p[] = _("{ATTACKING_MON} is absorbing\npower!");
 static const pchar str_geomancy_o[] = _("Foe {ATTACKING_MON} is absorbing\npower!");
 static const pchar str_skull_bash_p[] = _("{ATTACKING_MON} lowered\nits head!");
 static const pchar str_skull_bash_o[] = _("Foe {ATTACKING_MON} lowered\nits head!");
-static const pchar str_started_rain[] = _("It started to rain!");
+static const pchar str_started_rain[] = _("It started to {WEATHER}!");
 static const pchar str_speed_up_p[] = _("{ATTACKING_MON}’s Speed rose!");
 static const pchar str_speed_up_o[] = _("Foe {ATTACKING_MON}’s Speed rose!");
 static const pchar str_sturdy_immune_p[] = _("{DEFENDING_MON}’s sturdy makes\nit immune to {ATTACK_NAME}!");
@@ -302,8 +306,8 @@ static const pchar str_kicked_mat[] = _("It was blocked by\nthe kicked-up mat!")
 static const pchar str_protected_side[] = _("{ATTACK_NAME} protected\nthe team!");
 static const pchar str_protected_mon[] = _("{ATTACK_NAME} protected {ATTACKING_MON}!");
 static const pchar str_broke_protect[] = _("{ATTACK_NAME} broke the\nprotection!");
-static const pchar str_rain_continue[] = _("Rain continues to fall.");
-static const pchar str_rain_stop[] = _("The rain stopped.");
+static const pchar str_rain_continue[] = _("{WEATHER} continues to fall.");
+static const pchar str_rain_stop[] = _("The {WEATHER} stopped.");
 static const pchar str_heavy_rain_atk[] = _("The Fire-type attack fizzled out\nin the heavy rain!");
 static const pchar str_heavy_rain_lift[] = _("The heavy rain has lifted!");
 static const pchar str_sun_start[] = _("The sunlight turned harsh!");
@@ -311,6 +315,11 @@ static const pchar str_sun_strong[] = _("The sunlight is strong.");
 static const pchar str_sun_finish[] = _("The sunlight faded.");
 static const pchar str_harsh_sun_evaporates[] = _("The Water-type attack evaporated\nin the harsh sunlight!");
 static const pchar str_harsh_sun_over[] = _("The harsh sunlight faded.");
+static const pchar str_sandstorm_start[] = _("A sandstorm kicked up!");
+static const pchar str_sandstorm_continue[] = _("The sandstorm rages.");
+static const pchar str_sandstorm_hit_p[] = _("{ATTACKING_MON} is buffeted\nby the {WEATHER}!");
+static const pchar str_sandstorm_o[] = _("Foe {ATTACKING_MON} is buffeted\nby the {WEATHER}!");
+static const pchar str_sandstorm_finish[] = _("The sandstorm subsided.");
 
 
 // stat names
@@ -332,8 +341,13 @@ static const pchar str_status_frozen[] = _("frozen");
 static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
 
+// weather names
+static const pchar str_hail_w[] = _("hail");
+static const pchar str_sandstorm_w[] = _("sandstorm");
+static const pchar str_rain_w[] = _("rain");
 
-static const pchar* battle_strings[188] = {
+
+static const pchar* battle_strings[193] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -441,6 +455,10 @@ static const pchar* battle_strings[188] = {
    (pchar*)&str_sun_finish,
    (pchar*)&str_harsh_sun_evaporates,
    (pchar*)&str_harsh_sun_over,
+   (pchar*)&str_sandstorm_start,
+   (pchar*)&str_sandstorm_continue,
+   (pchar*)&str_sandstorm_hit_p, (pchar*)&str_sandstorm_o,
+   (pchar*)&str_sandstorm_finish,
 
 };
 
