@@ -15,14 +15,14 @@
 #define CB_ON_BEFORE_TURN 1
 #define CB_ON_BEFORE_SWITCH 2
 #define CB_ON_BEFORE_MOVE 3
-#define CB_ON_START 11
-#define CB_ON_MOVE_FAIL 4
-#define CB_ON_MODIFY_MOVE 5
-#define CB_ON_TRYHIT_MOVE 6
-#define CB_ON_BASE_POWER_MOVE 7
-#define CB_ON_DAMAGE_MOVE 8
-#define CB_ON_EFFECT 9
-#define CB_ON_AFTER_MOVE 10
+#define CB_ON_START 4
+#define CB_ON_MOVE_FAIL 5
+#define CB_ON_MODIFY_MOVE 6
+#define CB_ON_TRYHIT_MOVE 7
+#define CB_ON_BASE_POWER_MOVE 8
+#define CB_ON_DAMAGE_MOVE 9
+#define CB_ON_EFFECT 10
+#define CB_ON_AFTER_MOVE 11
 #define CB_ON_TRYHIT_INV_MOVE 12
 #define CB_ON_RESIDUAL 13
 #define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
@@ -48,6 +48,7 @@ extern void build_execution_order(u8 CB_id);
 extern u16 pop_callback(u8 attacker, u16 move);
 extern void update_callbacks(void);
 extern u8 id_by_func(u32 func);
-extern u16 set_data_next_acb(u32 data);
+extern void set_data_next_acb(u32 data);
+extern void delete_callback(u32 func);
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */

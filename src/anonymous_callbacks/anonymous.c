@@ -26,8 +26,8 @@ void add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
 
 // execution order building before executing a specific type of CB
 void build_execution_order(u8 CB_id) {
-    sort_priority_cbs();
     CB_EXEC_INDEX = 0;
+    sort_priority_cbs();
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
         if ((CB_MASTER[i].cb_id != CB_id) || (!CB_MASTER[i].in_use) || (CB_MASTER[i].delay_before_effect)) {
             continue;
@@ -68,8 +68,9 @@ void update_callbacks() {
             CB_MASTER[i].delay_before_effect--;
         } else {
             // Count down duration if delay done
-            if ((CB_MASTER[i].duration) && (CB_MASTER[i].duration < 0xFF)) {
-                CB_MASTER[i].duration--;
+            if (CB_MASTER[i].duration > 0) {
+                if (CB_MASTER[i].duration < 0xFF)
+                    CB_MASTER[i].duration--;
             } else {
                 CB_MASTER[i].in_use = false;
             }
@@ -107,15 +108,22 @@ void sort_priority_cbs()
 u8 id_by_func(u32 func)
 {
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
-        if (CB_MASTER[i].func == func)
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true))
             return i;
     }
     return 255;
 }
 
-u16 set_data_next_acb(u32 data) {
+void delete_callback(u32 func)
+{
+    u8 id = id_by_func(func);
+    if (id != 255)
+        CB_MASTER[id].in_use = false;
+}
+
+void set_data_next_acb(u32 data) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
     if (i != ANON_CB_MAX) {
-        CB_MASTER[i].data_ptr = data;
+        CB_MASTER[i].data_ptr = (void*)data;
     }
 }
