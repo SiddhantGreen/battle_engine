@@ -110,6 +110,7 @@ struct battle_main {
     u8 cb_execution_order[ANON_CB_MAX];
     u8 current_cb_index : 7;
     u8 executing : 1;
+    u8 bank_state;
 
     /* Object ids and positions */
     struct battle_selection_cursor battle_cursor;
