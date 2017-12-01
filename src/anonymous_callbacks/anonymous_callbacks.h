@@ -50,5 +50,6 @@ extern void update_callbacks(void);
 extern u8 id_by_func(u32 func);
 extern void set_data_next_acb(u32 data);
 extern void delete_callback(u32 func);
+extern u16 run_callback(u8 attacker, u16 move);
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */
