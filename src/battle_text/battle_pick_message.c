@@ -165,6 +165,9 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_SANDSTORM_END:
             case STRING_DELTA_STREAM_EFFECT:
             case STRING_DELTA_STREAM_END:
+            case STRING_DELTA_STREAM_IMM:
+            case STRING_PRIMORDIAL_SEA_IMM:
+            case STRING_DESOLATE_LAND_IMM:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             default:

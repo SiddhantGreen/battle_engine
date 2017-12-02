@@ -86,7 +86,6 @@ void primordial_sea_end()
 
 void primordial_sea_init_effect()
 {
-    clear_other_weather();
     battle_master->field_state.is_primordial_sea = true;
     add_callback(CB_ON_WEATHER_DMG, 0, 0xFF, NULL, (u32)primordial_sea_dmg_mod);
     add_callback(CB_ON_TRYHIT_MOVE, 0, 0xFF, NULL, (u32)primordial_sea_tryhit);
@@ -308,15 +307,32 @@ void delta_stream_init_effect()
     enqueue_message(0, 0, STRING_DELTA_STREAM, NULL);
 }
 
-void dela_stream_end()
+void clear_dela_stream()
 {
-    if (battle_master->field_state.is_desolate_land) {
+    if (battle_master->field_state.is_delta_stream) {
         delete_callback((u32)delta_stream_effectiveness);
+        delete_callback((u32)delta_stream_on_effect);
         battle_master->field_state.is_delta_stream = false;
         enqueue_message(0, 0, STRING_DELTA_STREAM_END, 0);
     }
 }
 
+/* Setting and clearing weather done using below funcs */
+bool check_alpha_weather()
+{
+    if (battle_master->field_state.is_primordial_sea) {
+        enqueue_message(0, 0, STRING_PRIMORDIAL_SEA_IMM, 0);
+        return true;
+    } else if (battle_master->field_state.is_desolate_land) {
+        enqueue_message(0, 0, STRING_DESOLATE_LAND_IMM, 0);
+        return true;
+    } else if (battle_master->field_state.is_delta_stream) {
+        enqueue_message(0, 0, STRING_DELTA_STREAM_IMM, 0);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 void clear_other_weather()
 {
@@ -330,5 +346,48 @@ void clear_other_weather()
     battle_master->field_state.is_delta_stream = false;
     battle_master->field_state.suppress_weather = false;
     clear_rain();
+    clear_sun();
+    clear_sandstorm();
+    clear_hail();
+    clear_desolate_land();
     clear_primordial_sea();
+    clear_dela_stream();
+}
+
+bool set_weather(enum WeatherTypes weather)
+{
+    if (weather < WEATHER_HARSH_SUN) {
+        if (check_alpha_weather())
+            return false;
+    }
+    clear_other_weather();
+    switch (weather) {
+        case WEATHER_RAIN:
+            rain_init_effect();
+            break;
+        case WEATHER_SUN:
+            sun_init_effect();
+            break;
+        case WEATHER_SANDSTORM:
+            sandstorm_init_effect();
+            break;
+        case WEATHER_HAIL:
+            hail_init_effect();
+            break;
+        case WEATHER_HARSH_SUN:
+            clear_other_weather();
+            desolate_land_init_effect();
+            break;
+        case WEATHER_HARSH_RAIN:
+            clear_other_weather();
+            primordial_sea_init_effect();
+            break;
+        case WEATHER_MYSTERIOUS_AIR_CURRENT:
+            clear_other_weather();
+            delta_stream_init_effect();
+            break;
+        default:
+            return false;
+    };
+    return true;
 }

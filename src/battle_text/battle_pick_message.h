@@ -122,6 +122,9 @@ enum battle_string_ids {
     STRING_SANDSTORM_END = 192,
     STRING_DELTA_STREAM_EFFECT = 193,
     STRING_DELTA_STREAM_END = 194,
+    STRING_DELTA_STREAM_IMM = 195,
+    STRING_PRIMORDIAL_SEA_IMM = 196,
+    STRING_DESOLATE_LAND_IMM = 197,
 
 };
 
@@ -324,6 +327,9 @@ static const pchar str_sandstorm_o[] = _("Foe {ATTACKING_MON} is buffeted\nby th
 static const pchar str_sandstorm_finish[] = _("The sandstorm subsided.");
 static const pchar str_delta_stream_effectiveness[] = _("The mysterious strong winds\nweakened the attack!");
 static const pchar str_delta_stream_fin[] = _("The mysterious strong winds\nweakened the attack!");
+static const pchar str_delta_stream_imm[] = _("The mysterious strong winds\nblow on regardless!");
+static const pchar str_harsh_sun_imm[] = _("The extremely harsh sunlight\nwas not lessened at all!");
+static const pchar str_harsh_rain_imm[] = _("There is no relief\nfrom this heavy rain!");
 
 
 // stat names
@@ -351,7 +357,7 @@ static const pchar str_sandstorm_w[] = _("sandstorm");
 static const pchar str_rain_w[] = _("rain");
 
 
-static const pchar* battle_strings[195] = {
+static const pchar* battle_strings[198] = {
    (pchar*)&str_atk_used_p, (pchar*)&str_atk_used_o,
    (pchar*)&str_infatuated_p, (pchar*)&str_infatuated_o,
    (pchar*)&str_bide_p, (pchar*)&str_bide_o,
@@ -465,8 +471,10 @@ static const pchar* battle_strings[195] = {
    (pchar*)&str_sandstorm_finish,
    (pchar*)&str_delta_stream_effectiveness,
    (pchar*)&str_delta_stream_fin,
+   (pchar*)&str_delta_stream_imm,
+   (pchar*)&str_harsh_sun_imm,
+   (pchar*)&str_harsh_rain_imm,
 
 };
-
 
 #endif /* BATTLE_PICK_MESSAGES_H_ */

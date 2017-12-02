@@ -19,9 +19,18 @@ enum Effect {
     EFFECT_BAD_POISON,
     EFFECT_CONFUSION,
     EFFECT_CURE,
-    EFFECT_TOXIC_SPIKES,
-    EFFECT_SANDSTORM,
 };
+
+enum WeatherTypes {
+    WEATHER_RAIN,
+    WEATHER_SUN,
+    WEATHER_SANDSTORM,
+    WEATHER_HAIL,
+    WEATHER_HARSH_SUN,
+    WEATHER_HARSH_RAIN,
+    WEATHER_MYSTERIOUS_AIR_CURRENT,
+};
+
 
 enum TypeEffectiveness {
     TE_IMMUNE,
@@ -122,7 +131,7 @@ struct battle_main {
     u8 fight_menu_content_spawned;
 
     /* Message system variables */
-    struct global_message b_message[5]; // message queue depth is 5
+    struct global_message b_message[7]; // message queue depth is 5
     u8 queue_size;
     u8 queue_front_index;
     u8 state;
