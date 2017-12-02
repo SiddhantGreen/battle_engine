@@ -3899,7 +3899,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
-    .on_tryhit_move = future_sight_on_trhit,
+    .on_tryhit_move = future_sight_on_tryhit,
     },
 
     {
@@ -4320,7 +4320,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_tryhit_move = yawn_on_trhit,
+    .on_tryhit_move = yawn_on_tryhit,
     .on_effect_cb = yawn_on_effect,
     },
 
@@ -5244,10 +5244,11 @@ struct move_data moves[] = {
     .base_power = 140,
     .description = (pchar*)Doom_Desire_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = doom_desire_on_tryhit,
     },
 
     {

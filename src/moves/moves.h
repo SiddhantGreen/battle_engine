@@ -319,11 +319,12 @@ extern u8 sunny_day_on_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 extern u8 hail_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 sandstorm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 brickbreak_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 future_sight_on_trhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 future_sight_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 wish_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 yawn_on_trhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 yawn_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 yawn_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 charge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 doom_desire_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
