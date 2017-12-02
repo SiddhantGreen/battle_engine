@@ -780,7 +780,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIRE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &burn_10_procs,
     },
 
     {
@@ -793,7 +793,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ICE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &freeze_10_procs,
     },
 
     {
@@ -806,7 +806,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_PUNCH,
-    .procs = &basic_proc,
+    .procs = &paralyze_10_procs,
     },
 
     {
@@ -1143,7 +1143,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &paralyze_30_procs,
     .on_modify_move = bodyslam_on_modify_move,
     },
 
@@ -1345,7 +1345,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_modify_move = sonic_boom_on_modify_move,
+    .on_damage_move = sonic_boom_on_dmg,
     },
 
     {
@@ -2702,7 +2702,7 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .multi_hit = {2, 5},
+    .multi_hit = {2, 2},
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },

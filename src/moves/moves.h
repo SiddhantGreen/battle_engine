@@ -265,7 +265,7 @@ extern u8 bodyslam_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_ca
 extern u8 thrash_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 thrash_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void thrash_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 sonic_boom_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void sonic_boom_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rollout_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rollout_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
