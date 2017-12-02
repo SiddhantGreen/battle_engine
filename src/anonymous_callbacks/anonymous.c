@@ -6,7 +6,7 @@ extern void dprintf(const char * str, ...);
 extern void sort_priority_cbs(void);
 
 // insert a new anonymous callback
-void add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
+u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
 {
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
         if (!(CB_MASTER[i].in_use)) {
@@ -17,11 +17,12 @@ void add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
             CB_MASTER[i].duration = dur;
             CB_MASTER[i].source_bank = src;
             CB_MASTER[i].cb_id = CB_id;
-            CB_MASTER[i].data_ptr = NULL;
+            CB_MASTER[i].data_ptr = 0;
             CB_MASTER[i].func = func;
-            break;
+            return i;
         }
     }
+    return ANON_CB_MAX;
 }
 
 // execution order building before executing a specific type of CB
@@ -148,7 +149,7 @@ void delete_callback(u32 func)
 void set_data_next_acb(u32 data) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
     if (i != ANON_CB_MAX) {
-        CB_MASTER[i].data_ptr = (void*)data;
+        CB_MASTER[i].data_ptr = data;
     }
 }
 

@@ -174,7 +174,7 @@ void wild_battle_slidein()
 {
     // wild mon first
     u8 objid = spawn_pkmn_obj_slot(0, OPP1_BTAG);
-    p_bank[2]->objid = objid;
+    p_bank[OPPONENT_SINGLES_BANK]->objid = objid;
 
     // gender based player character
         if (walkrun_state.gender) {

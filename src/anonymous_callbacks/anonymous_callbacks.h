@@ -38,13 +38,13 @@ struct anonymous_callback {
 	u8 duration;
 	u8 source_bank; // source bank using the effect
 	u8 cb_id; // execution timing, callback id
-	void* data_ptr;
+	u32 data_ptr;
 	u32 func;
 };
 
 typedef u16 (*AnonymousCallback)(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
-extern void add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func);
+extern u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func);
 extern void build_execution_order(u8 CB_id);
 extern u16 pop_callback(u8 attacker, u16 move);
 extern void update_callbacks(void);
@@ -53,5 +53,6 @@ extern void set_data_next_acb(u32 data);
 extern void delete_callback(u32 func);
 extern u16 run_callback(u8 attacker, u16 move);
 extern bool callback_exists(u32 func);
+
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */

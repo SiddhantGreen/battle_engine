@@ -80,6 +80,7 @@ struct local_battler_data {
     u16 species;
     u16 current_hp;
     u16 total_hp;
+    u8 slot;
     u8 gender;
     u8 ability;
     u16 item;
