@@ -88,6 +88,17 @@ struct local_battler_data {
     u8 poke_ball;
     u8 type[3];
 
+    // moves
+    u16 moves[4];
+    u8 move_pp[4];
+
+    // raw base stats
+    u16 attack_raw;
+    u16 defense_raw;
+    u16 speed_raw;
+    u16 sp_atk_raw;
+    u16 sp_def_raw;
+
     // Delta applied to base stat. ex: -1 atk
     s8 attack;
     s8 defense;

@@ -1592,6 +1592,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = counter_before_turn,
+    .on_tryhit_move = counter_on_tryhit,
     },
 
     {
@@ -3832,8 +3834,11 @@ struct move_data moves[] = {
     .priority = -4,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = mirror_coat_before_turn,
+    .on_tryhit_move = mirror_coat_on_tryhit,
+
     },
 
     {
@@ -5434,8 +5439,10 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = metal_burst_before_turn,
+    .on_tryhit_move = metal_burst_on_tryhit,
     },
 
     {

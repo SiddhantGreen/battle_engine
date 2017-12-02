@@ -8,19 +8,21 @@
 
 extern u16 rand_range(u16 min, u16 max);
 extern void dprintf(const char * str, ...);
+extern u8 count_usable_moves(u8 bank);
+extern u8 count_total_moves(u8 bank);
 
 u16 pick_player_attack()
 {
     if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
         return 0;
-    u16 player_moveid = battle_master->battle_cursor.cursor_pos + REQUEST_MOVE1;
-    if (player_moveid == (REQUEST_MOVE1 + 1)) {
+    u16 player_moveid = battle_master->battle_cursor.cursor_pos;
+    if (player_moveid == 1) {
         player_moveid += 1;
-    } else if (player_moveid == (REQUEST_MOVE1 + 2)) {
+    } else if (player_moveid == 2) {
         player_moveid -= 1;
     }
-    p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = player_moveid - REQUEST_MOVE1;
-    return pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, player_moveid, NULL);
+    p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = player_moveid;
+    return (B_GET_MOVE(PLAYER_SINGLES_BANK, player_moveid));
 }
 
 u16 pick_opponent_attack()
@@ -29,28 +31,14 @@ u16 pick_opponent_attack()
         return 0;
     if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select)
         return LAST_MOVE(OPPONENT_SINGLES_BANK);
-    u8 move_total = 0;
-    u8 usable_moves = 0;
-    u8 i;
-    for (i = 0; i < 4; i++) {
-        if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
-            move_total++;
-            if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, REQUEST_PP1 + 1, NULL))
-                usable_moves++;
-        } else {
-            break;
-        }
-    }
-    if (usable_moves < 1) {
+    u8 move_total = count_total_moves(OPPONENT_SINGLES_BANK);
+    if (count_usable_moves(OPPONENT_SINGLES_BANK) < 1) {
         return MOVE_STRUGGLE;
     }
     while (true) {
-        u8 pp_index = rand_range(0, move_total);
-        if (pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, rand_range(0, move_total) +
-            REQUEST_PP1, NULL) > 0) {
-            p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = pp_index;
-            return pokemon_getattr(p_bank[OPPONENT_SINGLES_BANK]->this_pkmn, pp_index + REQUEST_MOVE1, NULL);
-        }
+        u8 rand_index = rand_range(0, move_total);
+        if (B_GET_MOVE_PP(OPPONENT_SINGLES_BANK, rand_index) > 0)
+            return B_GET_MOVE(OPPONENT_SINGLES_BANK, rand_index);
     }
     return 0;
 }
@@ -58,6 +46,7 @@ u16 pick_opponent_attack()
 void set_attack_battle_master(u8 bank, u8 index, s8 priority)
 {
     u16 move_id = p_bank[bank]->b_data.current_move;
+    p_bank[bank]->b_data.last_damage = 0;
     B_MOVE_FAILED(bank) = false;
 
     battle_master->b_moves[index].user_bank = bank;

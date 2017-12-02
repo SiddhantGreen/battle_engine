@@ -15,33 +15,30 @@ u16 rand_range(u16 min, u16 max)
     return (rand() % (max - min)) + min;
 }
 
-bool knows_move(u16 move_id, struct Pokemon* p)
+bool knows_move(u16 move_id, u8 bank)
 {
-    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
-        u16 move = pokemon_getattr(p, i, NULL);
-        if (move == move_id)
+    for (u8 i = 0; i < 4; i++) {
+        if (B_GET_MOVE(bank, i) == move_id)
             return true;
     }
     return false;
 }
 
-
-u8 get_move_index(u16 move_id, struct Pokemon* p)
+u8 get_move_index(u16 move_id, u8 bank)
 {
-    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
-        u16 move = pokemon_getattr(p, i, NULL);
-        if (move == move_id)
-            return i - REQUEST_MOVE1;
+    for (u8 i = 0; i < 4; i++) {
+        if (B_GET_MOVE(bank, i) == move_id)
+            return i;
     }
     return 255;
 }
 
-u8 move_pp_count(u16 move_id, struct Pokemon* p)
+u8 move_pp_count(u16 move_id, u8 bank)
 {
-    for (u8 i = REQUEST_MOVE1; i < (REQUEST_MOVE1 + 4); i++) {
-        u16 move = pokemon_getattr(p, i, NULL);
-        if (move == move_id)
-            return pokemon_getattr(p, ((i - REQUEST_MOVE1) + REQUEST_PP1), NULL);
+    for (u8 i = 0; i < 4; i++) {
+        if (B_GET_MOVE(bank, i) == move_id) {
+            return B_GET_MOVE_PP(bank, i);
+        }
     }
 	// move not found
     return 0;
@@ -147,8 +144,8 @@ u8 count_usable_moves(u8 bank)
 {
     u8 usable_moves = 0;
     for (u8 i = 0; i < 4; i++) {
-        if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
-            if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + 1, NULL))
+        if (B_GET_MOVE(bank, i) != 0) {
+            if (B_GET_MOVE_PP(bank, i) != 0)
                 usable_moves++;
         } else {
             break;
@@ -161,7 +158,7 @@ u8 count_total_moves(u8 bank)
 {
     u8 move_total = 0;
     for (u8 i = 0; i < 4; i++) {
-        if (pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL)) {
+        if (B_GET_MOVE(bank, i)) {
             move_total++;
         } else {
             break;

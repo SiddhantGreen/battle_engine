@@ -25,6 +25,19 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : TYPE_NONE;
     p_bank[bank]->b_data.type[2] = TYPE_NONE;
 
+    // pp and moves
+    for (u8 i = 0; i < 4; i++) {
+        p_bank[bank]->b_data.moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_MOVE1 + i, NULL);
+        p_bank[bank]->b_data.move_pp[i] = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + i, NULL);
+    }
+
+    // raw base stats
+    p_bank[bank]->b_data.attack_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK, NULL);
+    p_bank[bank]->b_data.defense_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_DEF, NULL);
+    p_bank[bank]->b_data.speed_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD, NULL);
+    p_bank[bank]->b_data.sp_atk_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK, NULL);
+    p_bank[bank]->b_data.sp_def_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF, NULL);
+
     ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
 
     if (!flags->pass_stats) {

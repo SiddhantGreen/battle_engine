@@ -70,8 +70,8 @@ const u16 pal_font[16] = {0x532E, 0x7FFF, 0x318C, 0x675A, 0x037D, 0x47DF, 0x025F
 
 u8 font_color_set(u8 i)
 {
-    u8 pp = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, (REQUEST_PP1 + i), NULL);
-    u16 pp_total = pokemon_getattr(p_bank[PLAYER_SINGLES_BANK]->this_pkmn, (REQUEST_MOVE1 + i), NULL);
+    u8 pp = B_GET_MOVE_PP(PLAYER_SINGLES_BANK, i);
+    u16 pp_total = B_GET_MOVE(PLAYER_SINGLES_BANK, i);
     pp_total = moves[pp_total].pp;
     pp_total = (100 * pp) / pp_total;
     if (pp_total > 50) {
@@ -128,25 +128,25 @@ u8 draw_pp(u8 bank, u8 index)
     prefix[5] = num;
     prefix[8] = num + 1;
     pstrcpy(string_buffer, prefix);
-    u8 pp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + index, NULL);
+    u8 pp = B_GET_MOVE_PP(bank, index);
     u8 pp_str[3];
     fmt_int_10(pp_str, pp, 0, 3);
     pstrcat(string_buffer, pp_str);
-    
+
     /* Make canvas object */
     struct SpritePalette text_pal = {(void*)pal_font, MOVE_PP_TAG};
     struct SpriteTiles text_gfx = {(void*)empty_barTiles, 1024, MOVE_PP_TAG + index};
     struct Template text_temp = {MOVE_PP_TAG + index, MOVE_PP_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};
     gpu_tile_obj_decompress_alloc_tag_and_upload(&text_gfx);
     p_bank[PLAYER_SINGLES_BANK]->pp_pal = gpu_pal_obj_alloc_tag_and_apply(&text_pal);
-    
+
     void* vram_addr;
     u8 objid;
- 
+
      switch (index) {
         case 0:
             objid = template_instanciate_forward_search(&text_temp, 110, 131, 0);
-            vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + 0x6010000);   
+            vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + 0x6010000);
             break;
         case 1:
             objid = template_instanciate_forward_search(&text_temp, 212, 131, 0);
@@ -174,24 +174,24 @@ void load_names_moves(u8 bank)
         u8 num = font_color_set(i);
         prefix[5] = num;
         prefix[8] = num + 1;
-        p_moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
+        p_moves[i] = B_GET_MOVE(bank, i);
         pstrcpy(string_buffer, (pchar*)prefix);
         pstrcat(string_buffer, moves[p_moves[i]].name);
-        
+
         /* Make canvas object */
         struct SpritePalette text_pal = {(void*)pal_font, MOVE_NAMES_TAG};
         struct SpriteTiles text_gfx = {(void*)empty_barTiles, 1024, MOVE_NAMES_TAG + i};
-        struct Template text_temp = {MOVE_NAMES_TAG + i, MOVE_NAMES_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};     
+        struct Template text_temp = {MOVE_NAMES_TAG + i, MOVE_NAMES_TAG, &text_oam, nullframe, &text_gfx, nullrsf, (ObjectCallback)oac_nullsub};
         gpu_tile_obj_decompress_alloc_tag_and_upload(&text_gfx);
         p_bank[PLAYER_SINGLES_BANK]->move_pal = gpu_pal_obj_alloc_tag_and_apply(&text_pal);
-        
-        
+
+
         void* vram_addr;
-        u8 objid;        
+        u8 objid;
         switch (i) {
             case 0:
                 objid = template_instanciate_forward_search(&text_temp, 43, 131, 0);
-                vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + 0x6010000);                
+                vram_addr = (void*)((objects[objid].final_oam.tile_num * 32) + 0x6010000);
                 break;
             case 1:
                 objid = template_instanciate_forward_search(&text_temp, 145, 131, 0);
@@ -208,11 +208,11 @@ void load_names_moves(u8 bank)
         };
         draw_text_obj(0, 0, 3, string_buffer, vram_addr, 0);
         battle_master->move_name_objid[i] = objid;
-        
+
             // 0, 0
-    
-    }    
-    
+
+    }
+
 }
 
 void load_icons_moves(u8 bank)
@@ -220,7 +220,7 @@ void load_icons_moves(u8 bank)
     u16 p_moves[4];
     u8 i;
     for (i = 0; i < 4; i++) {
-        p_moves[i] = pokemon_getattr(p_bank[bank]->this_pkmn, (0xD + i), NULL);
+        p_moves[i] = B_GET_MOVE(bank, i);
         s16 x = (!i || (i == 2)) ? 92 : 194;
         s16 y = (i < 2) ? 126 : 145;
         u8 type = moves[p_moves[i]].type;
@@ -241,18 +241,3 @@ void load_icons_moves(u8 bank)
     }
     load_names_moves(bank);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

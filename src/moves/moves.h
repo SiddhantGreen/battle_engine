@@ -325,6 +325,12 @@ extern u8 yawn_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* a
 extern u8 yawn_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 charge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 doom_desire_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void counter_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 counter_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mirror_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void mirror_coat_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 metal_burst_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void metal_burst_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

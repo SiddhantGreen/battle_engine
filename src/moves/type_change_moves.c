@@ -15,8 +15,7 @@ u8 conversion_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 {
     if (user != src) return true;
     // get type of move in first slot
-    u16 first_move = pokemon_getattr(B_PKMN(user), REQUEST_MOVE1, NULL);
-    u8 type = moves[first_move].type;
+    u8 type = moves[(B_GET_MOVE(user, 0))].type;
     if (b_pkmn_has_type(user, type)) {
         return false;
     }

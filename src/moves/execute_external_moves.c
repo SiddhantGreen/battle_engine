@@ -112,7 +112,7 @@ u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
         u8 move_set[4] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
         u8 array_slot = 0;
         for (u8 i = 0; i < 4; i++) {
-            u16 this_move = pokemon_getattr(p_bank[user]->this_pkmn, REQUEST_MOVE1 + i, NULL);
+            u16 this_move = B_GET_MOVE(user, i);
             if ((this_move != MOVE_NONE) && (is_allowed_sleep_talk(this_move)) && (!(IS_CHARGE(this_move)))) {
                 move_set[array_slot] = this_move;
                 array_slot++;

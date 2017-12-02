@@ -4,8 +4,8 @@
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
-extern u8 move_pp_count(u16 move_id, struct Pokemon* p);
-extern u8 get_move_index(u16 move_id, struct Pokemon* p);
+extern u8 move_pp_count(u16 move_id, u8 bank);
+extern u8 get_move_index(u16 move_id, u8 bank);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
 u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -19,11 +19,11 @@ u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 		return false;
 
 	// fail if move has 0 PP remaining
-	if (move_pp_count(last_move, p_bank[defender]->this_pkmn) < 1)
+	if (move_pp_count(last_move, defender) < 1)
 		return false;
 
 	// fail if move index not found
-	u8 index = get_move_index(last_move, p_bank[defender]->this_pkmn);
+	u8 index = get_move_index(last_move, defender);
 	if (index == 255)
 		return false;
 

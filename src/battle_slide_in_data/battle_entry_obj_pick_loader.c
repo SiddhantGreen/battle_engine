@@ -10,6 +10,12 @@ SuperCallback object_slidein_table[11] =
     (SuperCallback)wild_battle_slidein,
 };
 
+void wild_battle_initializer()
+{
+    p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[0];
+    p_bank[OPPONENT_SINGLES_BANK]->this_pkmn = &party_opponent[0];
+}
+
 void pick_obj_creator()
 {
     /*
@@ -30,8 +36,7 @@ void pick_obj_creator()
     p_bank[2]->objid = 0x3F;
     p_bank[3]->objid = 0x3F;
 
-    p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[0];
-    p_bank[OPPONENT_SINGLES_BANK]->this_pkmn = &party_opponent[0];
+    wild_battle_initializer();
 
     switch (battle_type_flags) {
         case BATTLE_FLAG_WILD:
@@ -40,10 +45,3 @@ void pick_obj_creator()
             break;
     };
 }
-
-
-
-
-
-
-

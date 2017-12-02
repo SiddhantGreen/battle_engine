@@ -167,6 +167,9 @@ void move_hit()
                     return;
                 }
                 battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg = dmg;
+                p_bank[TARGET_OF(bank_index)]->b_data.last_damage = dmg;
+                p_bank[TARGET_OF(bank_index)]->b_data.last_attacked_by = bank_index;
+
                 // HP bar damage animation
                 s16 delta = B_CURRENT_HP(TARGET_OF(bank_index)) - dmg;
                 delta = MAX(delta, 0);
