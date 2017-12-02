@@ -27,7 +27,7 @@ u16 rain_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (acb->data_ptr) {
         acb->data_ptr = 0;
     } else {
-        acb->data_ptr = (void*)1;
+        acb->data_ptr = 1;
         return true;
     }
     if (acb->duration == 0) {
@@ -119,7 +119,7 @@ u16 sun_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (acb->data_ptr) {
         acb->data_ptr = 0;
     } else {
-        acb->data_ptr = (void*)1;
+        acb->data_ptr = 1;
         return true;
     }
     if (acb->duration == 0) {
@@ -201,7 +201,7 @@ u16 sandstorm_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
     if (acb->data_ptr) {
         acb->data_ptr = 0;
     } else {
-        acb->data_ptr = (void*)1;
+        acb->data_ptr = 1;
         return true;
     }
     if (acb->duration == 0) {
@@ -245,7 +245,7 @@ u16 hail_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (acb->data_ptr) {
         acb->data_ptr = 0;
     } else {
-        acb->data_ptr = (void*)1;
+        acb->data_ptr = 1;
         return true;
     }
     if (acb->duration == 0) {
