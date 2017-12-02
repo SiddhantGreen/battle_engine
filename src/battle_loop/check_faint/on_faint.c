@@ -9,6 +9,7 @@
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool peek_message(void);
 extern void run_decision(void);
+extern void run_move(void);
 extern void dprintf(const char * str, ...);
 extern void give_exp(u8 fainted, u8 reciever);
 
@@ -18,11 +19,11 @@ void obj_battler_fall_through(struct Object* obj)
         obj->priv[1]++;
         obj->priv[0] += 8;
         obj->pos1.y += 8;
-        
+
         // remove a tile layer from the bottom
         void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
         dst += 32 * 8 * (8 - obj->priv[1]);
-        memset(dst, 0, 32 * 8 * obj->priv[1]); 
+        memset(dst, 0, 32 * 8 * obj->priv[1]);
     } else {
         // free the hp bars too
         obj_free(&objects[obj->priv[2]]);
@@ -48,7 +49,7 @@ void faint(u8 bank)
     objects[p_bank[bank]->objid].priv[3] = p_bank[bank]->objid_hpbox[1];
     objects[p_bank[bank]->objid].priv[4] = p_bank[bank]->objid_hpbox[2];
     objects[p_bank[bank]->objid].priv[5] = p_bank[bank]->objid_hpbox[3];
-    
+
     enqueue_message(0, bank, STRING_FAINTED, 0);
 }
 
@@ -72,15 +73,20 @@ void on_faint()
             if (p_bank[PLAYER_SINGLES_BANK]->b_data.fainted) {
                 // player has lost, exit battle TODO: Teleport to PC & whiteout checks. Else switch.
                 super.multi_purpose_state_tracker = S_END_BATTLE;
+                set_callback1(run_decision);
+                return;
             } else if (p_bank[OPPONENT_SINGLES_BANK]->b_data.fainted) {
                 // player wins, give exp
                 give_exp(OPPONENT_SINGLES_BANK, PLAYER_SINGLES_BANK);
                 super.multi_purpose_state_tracker = S_END_BATTLE;
+                set_callback1(run_decision);
+                return;
             } else {
-                super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
-                
+                super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
+                set_callback1(run_move);
+                return;
             }
-            set_callback1(run_decision);
+
         break;
     };
 }
@@ -93,7 +99,3 @@ bool is_fainted()
         return 0;
     }
 }
-
-
-
-

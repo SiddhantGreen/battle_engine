@@ -46,13 +46,12 @@ void run_decision(void)
             break;
         }
         case S_RUN_MOVE:
-            set_callback1(run_move);
-            super.multi_purpose_state_tracker = 0;
-            break;
-        case S_RUN_FAINT:
-            // Run on faint stuff
-            set_callback1(on_faint);
-            super.multi_purpose_state_tracker = S_CHECK_BANK1_FAINT;
+            if ((p_bank[bank_index]->b_data.is_running) && (bank_index == PLAYER_SINGLES_BANK)) {
+                super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
+            } else {
+                set_callback1(run_move);
+                super.multi_purpose_state_tracker = 0;
+            }
             break;
         case S_RUN_MOVE_ALTERNATE_BANK:
             // run move for second bank after first bank is run.

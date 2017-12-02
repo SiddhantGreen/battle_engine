@@ -188,10 +188,6 @@ void move_hit()
                     enqueue_message(CURRENT_MOVE(bank_index), heal_target, STRING_HEAL, 0);
                 }
             }
-            super.multi_purpose_state_tracker = S_STATUS_CHANGE;
-            break;
-        case S_STATUS_CHANGE:
-            // something about statuses (??)
             super.multi_purpose_state_tracker = S_MOVE_EFFECT;
             break;
         case S_MOVE_EFFECT:
@@ -259,51 +255,51 @@ void move_hit()
 			status_procs_perform(bank_index);
 			break;
 		}
-    case S_AFTER_MOVE_SECONDARY:
-        // set flinch chance of target
-        battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
-        // if multi-hit not satisfied call again
-        if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter++;
-            if (is_fainted()) {
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 0;
-                super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+        case S_AFTER_MOVE_SECONDARY:
+            // set flinch chance of target
+            battle_master->b_moves[B_MOVE_BANK(TARGET_OF(bank_index))].flinch = M_FLINCH(move);
+            // if multi-hit not satisfied call again
+            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times > 0) {
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times--;
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter++;
+                if (is_fainted()) {
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 0;
+                    super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
+                } else {
+                    super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
+                }
             } else {
-                super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
+                if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
+                u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
+                damage_result_msg(bank_index);
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
+                enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
             }
-        } else {
-            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
-            u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
-            damage_result_msg(bank_index);
-            battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
-            enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
-        }
-        super.multi_purpose_state_tracker = S_AFTER_MOVE;
-        }
-        break;
-    case S_AFTER_MOVE:
-        {
-            // add callbacks specific to field
-            u8 attacker = bank_index;
-            if (moves[move].on_after_move) {
-                add_callback(CB_ON_AFTER_MOVE, 0, 0, attacker, (u32)moves[move].on_after_move);
+            super.multi_purpose_state_tracker = S_AFTER_MOVE;
             }
+            break;
+        case S_AFTER_MOVE:
+            {
+                // add callbacks specific to field
+                u8 attacker = bank_index;
+                if (moves[move].on_after_move) {
+                    add_callback(CB_ON_AFTER_MOVE, 0, 0, attacker, (u32)moves[move].on_after_move);
+                }
 
-            // run callbacks
-            build_execution_order(CB_ON_AFTER_MOVE);
-            battle_master->executing = true;
-            while (battle_master->executing) {
-                pop_callback(attacker, move);
+                // run callbacks
+                build_execution_order(CB_ON_AFTER_MOVE);
+                battle_master->executing = true;
+                while (battle_master->executing) {
+                    pop_callback(attacker, move);
+                }
+                if (IS_RECHARGE(move)) {
+                    ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
+                }
+                super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                set_callback1(run_move);
             }
-            if (IS_RECHARGE(move)) {
-                ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
-            }
-            super.multi_purpose_state_tracker = S_MOVE_FAILED;
-            set_callback1(run_move);
-        }
-        break;
+            break;
     };
 }

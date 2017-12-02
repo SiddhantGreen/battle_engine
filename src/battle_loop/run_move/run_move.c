@@ -11,6 +11,7 @@ extern void run_decision(void);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool peek_message(void);
 extern void move_hit(void);
+extern void on_faint(void);
 extern bool target_exists(u8 bank);
 extern void run_move_failed_cbs(u8 attacker, u8 defender, u16 move);
 extern void do_residual_status_effects(u8 order);
@@ -149,9 +150,14 @@ void run_move()
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
             battle_master->field_state.last_used_move = CURRENT_MOVE(bank_index);
-            super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
+            super.multi_purpose_state_tracker = S_RUN_FAINT;
             break;
         }
+        case S_RUN_FAINT:
+            // Run on faint stuff
+            set_callback1(on_faint);
+            super.multi_purpose_state_tracker = S_CHECK_BANK1_FAINT;
+            break;
         case S_RESIDUAL_MOVES:
         {
             if (bank_index != battle_master->first_bank) {
@@ -198,7 +204,7 @@ void run_move()
           	}
           }
 
-          super.multi_purpose_state_tracker = S_RUN_FAINT;
+          super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
           set_callback1(run_decision);
           break;
         }
