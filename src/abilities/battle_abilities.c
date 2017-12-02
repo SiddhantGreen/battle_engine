@@ -169,8 +169,8 @@ u16 sand_veil_on_evasion(u8 bank, u16 stat) {
 
 bool sand_veil_on_immunity(u8 bank, enum Effect effect)
 {
-    if (effect == EFFECT_SANDSTORM)
-        return true;
+    //if (effect == EFFECT_SANDSTORM)
+    //    return true;
     return false;
 }
 
@@ -530,8 +530,8 @@ bool synchronize_on_set_status(u8 bank, u8 source, enum Effect effect, bool sett
 {
     if(source == bank)
         return false;
-    if((effect == EFFECT_TOXIC_SPIKES) && settable)
-        return false;
+    //if((effect == EFFECT_TOXIC_SPIKES) && settable)
+    //    return false;
     if(B_STATUS(bank) == AILMENT_SLEEP || B_STATUS(bank) == AILMENT_FREEZE || B_STATUS(bank) == AILMENT_CONFUSION)
         return false;
     set_status(bank, source, B_STATUS(bank));
@@ -896,8 +896,8 @@ u16 sand_rush_on_speed(u8 bank, u16 speed)
 
 bool sand_rush_on_immunity(u8 bank, enum Effect effect)
 {
-    if (effect == EFFECT_SANDSTORM)
-        return true;
+    //if (effect == EFFECT_SANDSTORM)
+    //    return true;
     return false;
 }
 
@@ -1059,8 +1059,8 @@ void sand_force_on_base_power(u8 bank, u16 move)
 
 bool sand_force_on_immunity(u8 bank, enum Effect effect)
 {
-    if (effect == EFFECT_SANDSTORM)
-        return true;
+    //if (effect == EFFECT_SANDSTORM)
+    //    return true;
     return false;
 }
 
