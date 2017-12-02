@@ -447,7 +447,7 @@ void intimidate_on_switch(u8 bank)
     u8 foe = FOE_BANK(bank);
     if (B_CURRENT_HP(foe) && (!(HAS_VOLATILE(foe, VOLATILE_SUBSTITUTE) ||
         HAS_VOLATILE(foe, VOLATILE_STAT_REDUC_IMMUNE))))  {
-        enqueue_message(0, bank, STRING_INTIMIDATE, 0);
+        //enqueue_message(0, bank, STRING_INTIMIDATE, 0);
     }
 }
 
@@ -958,7 +958,7 @@ void mummy_on_after_damage(u8 bank, u8 target, u16 move, u16 dmg, u8 ability, u1
 {
     if (MAKES_CONTACT(move, bank)) {
         BANK_ABILITY(target) = ABILITY_MUMMY;
-        enqueue_message(0, target, STRING_ABILITY_CHANGE, ABILITY_MUMMY);
+        //enqueue_message(0, target, STRING_ABILITY_CHANGE, ABILITY_MUMMY);
     }
 }
 

@@ -172,7 +172,25 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                             pstrcpy(&result[result_index], (const pchar*)str_sandstorm_w);
                         }
                         result_index = pstrlen(result);
+                        break;
                     }
+                case 0x19:
+                    {
+                        if (SIDE_OF(bank) == 0) {
+                            pstrcpy(&result[result_index], (const pchar*)str_thefoe_p);
+                        } else {
+                            pstrcpy(&result[result_index], (const pchar*)str_thefoe);
+                        }
+                        result_index = pstrlen(result);
+                        break;
+                    }
+                case 0x1A:
+                {
+                    if (SIDE_OF(bank) == 0) break;
+                    pstrcpy(&result[result_index], (const pchar*)str_nfoe);
+                    result_index = pstrlen(result);
+                    break;
+                }
                 default:
                     {
 

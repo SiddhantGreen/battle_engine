@@ -42,31 +42,11 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
     remo_reset_acknowledgement_flags();
     if (battle_type_flags == BATTLE_FLAG_WILD) {
         switch (id) {
-            case STRING_FAILED_ALONE:
-            case STRING_DELTA_STREAM:
-            case STRING_DESOLATE_LAND:
-            case STRING_PRIMORDIAL_SEA:
-            case STRING_ATTACK_AVOIDED:
-            case STRING_ATTACK_MISSED:
-            case STRING_FLEE_FAILED:
-            case STRING_MOVE_CRIT:
-            case STRING_MOVE_NVE:
-            case STRING_MOVE_SE:
-            case STRING_LEVEL_UP:
-            case STRING_WEATHER_GONE:
-            case STRING_OHKO:
-                fdecoder_battle(battle_strings[id], 0, 0, 0);
-                break;
-            case STRING_RECOIL:
-            case STRING_DRAIN:
-                fdecoder_battle(battle_strings[id], user_bank, 0, 0);
-                break;
             case STRING_EXP_GAIN:
             case STRING_MULTI_HIT:
                 fmt_int_10(fcode_buffer2, move_effect_id, 0, 8);
                 fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;
-            case STRING_ATTACK_USED:
             case STRING_INFATUATED:
             case STRING_BIDE_CHARGE:
             case STRING_LOST_FOCUS:
@@ -76,7 +56,6 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_CURSE_RESIDUAL:
             case STRING_MAGNITUDE_AMOUNT:
             case STRING_NO_TARGET:
-            case STRING_IMMUNE_ABILITY:
             case STRING_RAZORWIND:
             case STRING_SOLARBEAM:
             case STRING_FREEZE_SHOCK:
@@ -84,13 +63,11 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_GOEMANCY:
             case STRING_SKULL_BASH:
             case STRING_RAINING:
-            case STRING_GAINED_SPEED:
             case STRING_STATUS_CURED:
             case STRING_EFFECT_ENDED:
             case STRING_GAINED_TYPE:
             case STRING_CONFUSION_ENDED:
             case STRING_DRAGGED_OUT_FAILED:
-            case STRING_INTIMIDATE:
             case STRING_STAT_MOD_HARSH_DROP:
             case STRING_STAT_MOD_DROP:
             case STRING_STAT_MOD_HARSH_RISE:
@@ -99,9 +76,6 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_AILMENT_IMMUNE:
             case STRING_AILMENT_CURED:
             case STRING_PROTEAN:
-            case STRING_ABILITY_CHANGE:
-            case STRING_FLEE:
-            case STRING_MOVE_IMMUNE:
             case STRING_FAINTED:
             case STRING_HEAL:
             case STRING_FLINCHED:
@@ -127,7 +101,6 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
   			case STRING_FREEZE_THAWED:
   			case STRING_FULL_PARA:
             case STRING_CLEAR_SMOG:
-            case STRING_BOUNCED_BACK:
             case STRING_SHROUDED_MAGICCOAT:
             case STRING_SNATCH_WAITING:
             case STRING_SNATCHED_MOVE:
@@ -135,14 +108,35 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_CONVERSION_TYPE:
             case STRING_REFLECT_TYPE_MATCHED:
             case STRING_TYPE_ADDED:
-            case STRING_ELECTRIFIED:
             case STRING_BURNT_OUT:
             case STRING_PROTECTED_SELF:
             case STRING_ENDURED:
             case STRING_BRACED_ITSELF:
             case STRING_SANDSTORM_BUFFET:
-                fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
-                break;
+            case STRING_AURORA_VEIL:
+            case STRING_REFLECT:
+            case STRING_LIGHTSCREEN:
+            case STRING_FUTURE_FORESAW:
+            case STRING_TOOK_ATTACK:
+            case STRING_DOOM_DESIRE:
+            case STRING_WISH_TRUE:
+            case STRING_GREW_DROWSY:
+            case STRING_RECOIL:
+            case STRING_DRAIN:
+            case STRING_FAILED_ALONE:
+            case STRING_DELTA_STREAM:
+            case STRING_DESOLATE_LAND:
+            case STRING_PRIMORDIAL_SEA:
+            case STRING_ATTACK_AVOIDED:
+            case STRING_ATTACK_MISSED:
+            case STRING_FLEE_FAILED:
+            case STRING_MOVE_CRIT:
+            case STRING_MOVE_NVE:
+            case STRING_MOVE_SE:
+            case STRING_LEVEL_UP:
+            case STRING_WEATHER_GONE:
+            case STRING_OHKO:
+            case STRING_ATTACK_USED:
             case STRING_RESIDUAL_STATUS_DMG:
   			case STRING_NO_PP:
   			case STRING_DISABLED_PICKED:
@@ -168,7 +162,15 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_DELTA_STREAM_IMM:
             case STRING_PRIMORDIAL_SEA_IMM:
             case STRING_DESOLATE_LAND_IMM:
+            case STRING_SHATTER_BARRIER:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
+                break;
+            case STRING_IMMUNE_ABILITY:
+            case STRING_FLEE:
+            case STRING_MOVE_IMMUNE:
+            case STRING_BOUNCED_BACK:
+            case STRING_ELECTRIFIED:
+                fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:
                 break;
