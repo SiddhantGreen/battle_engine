@@ -310,7 +310,20 @@ extern u8 hyperspace_hole_before_move(u8 user, u8 src, u16 move, struct anonymou
 extern u8 shadow_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 phantom_force_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 present_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern u8 reflect_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 light_screen_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 aurora_veil_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 aurora_veil_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rain_dance_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sunny_day_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hail_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sandstorm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 brickbreak_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 future_sight_on_trhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 wish_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 yawn_on_trhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 yawn_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 charge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

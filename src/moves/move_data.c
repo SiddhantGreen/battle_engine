@@ -2156,8 +2156,9 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = light_screen_on_effect,
     },
 
     {
@@ -2180,8 +2181,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = reflect_on_effect,
     },
 
     {
@@ -3290,8 +3292,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_ROCK,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = sandstorm_on_effect,
     },
 
     {
@@ -3789,8 +3792,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = rain_dance_on_effect,
     },
 
     {
@@ -3801,8 +3805,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = sunny_day_on_effect,
     },
 
     {
@@ -3892,8 +3897,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_SPECIAL,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = future_sight_on_trhit,
     },
 
     {
@@ -4019,8 +4025,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_ICE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = hail_on_effect,
     },
 
     {
@@ -4143,8 +4150,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &user_raise_spDef_1,
+    .on_effect_cb = charge_on_effect,
     },
 
     {
@@ -4206,6 +4214,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SNATCH,
     .procs = &basic_proc,
+    .on_effect_cb = wish_on_effect,
     },
 
     {
@@ -4298,6 +4307,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = brickbreak_on_tryhit,
     },
 
     {
@@ -4310,6 +4320,8 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = yawn_on_trhit,
+    .on_effect_cb = yawn_on_effect,
     },
 
     {
@@ -9148,10 +9160,12 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Aurora_Veil_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ICE,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_tryhit_move = aurora_veil_on_tryhit,
+    .on_effect_cb = aurora_veil_on_effect,
     },
 
     {
