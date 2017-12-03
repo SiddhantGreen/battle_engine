@@ -12,6 +12,7 @@ u8 gust_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
         if (HAS_VOLATILE(defender, VOLATILE_SEMI_INVULNERABLE)) {
             B_MOVE_POWER(user) *= 2;
         }
+        return true;
     }
-    return true;
+    return false;
 }
