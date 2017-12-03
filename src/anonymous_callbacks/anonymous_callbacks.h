@@ -28,6 +28,7 @@
 #define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
 #define CB_ON_WEATHER_DMG 15
 #define CB_ON_EFFECTIVENESS 16
+#define CB_ON_STATUS 16
 
 
 
