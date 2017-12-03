@@ -22,6 +22,7 @@ enum Effect {
 };
 
 enum WeatherTypes {
+    WEATHER_CLEAR,
     WEATHER_RAIN,
     WEATHER_SUN,
     WEATHER_SANDSTORM,

@@ -129,6 +129,7 @@ struct local_battler_data {
 
     // local user specific bitfield
     u8 illusion : 1;
+    u8 is_transformed : 1;
     u8 fainted : 1;
     u8 ate_berry : 1;
     u8 is_taunted : 1;

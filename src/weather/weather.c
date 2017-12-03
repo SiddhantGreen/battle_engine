@@ -391,3 +391,17 @@ bool set_weather(enum WeatherTypes weather)
     };
     return true;
 }
+
+
+enum WeatherTypes get_weather()
+{
+    if (battle_master->field_state.is_raining) return WEATHER_RAIN;
+    if (battle_master->field_state.is_sunny) return WEATHER_SUN;
+    if (battle_master->field_state.is_sandstorm) return WEATHER_SANDSTORM;
+    if (battle_master->field_state.is_hail) return WEATHER_HAIL;
+    if (battle_master->field_state.is_desolate_land) return WEATHER_HARSH_SUN;
+    if (battle_master->field_state.is_primordial_sea) return WEATHER_HARSH_RAIN;
+    if (battle_master->field_state.is_delta_stream) return WEATHER_MYSTERIOUS_AIR_CURRENT;
+    if (battle_master->field_state.suppress_weather) return WEATHER_CLEAR;
+    return WEATHER_CLEAR;
+}
