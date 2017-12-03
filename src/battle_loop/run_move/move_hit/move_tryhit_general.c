@@ -35,7 +35,7 @@ bool try_hit(u8 attacker)
                 break;
             }
         }
-        if (!is_inv) {
+        if (is_inv) {
             // if user's move doesn't hit invulnerable target
             enqueue_message(0, attacker, STRING_INVULNERABLE, 0);
             return false;
