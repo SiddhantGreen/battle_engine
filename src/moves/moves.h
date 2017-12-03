@@ -341,6 +341,7 @@ extern u8 psychic_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymo
 extern u8 secret_power_on_modify(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 floral_healing_on_modify(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 camouflage_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

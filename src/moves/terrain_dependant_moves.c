@@ -7,6 +7,8 @@ extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
+extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
+
 
 // Secret power
 u8 secret_power_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -66,4 +68,23 @@ u8 camouflage_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
         return true;
     }
     return false;
+}
+
+// Nature power
+u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (battle_master->field_state.is_electric_terrain) {
+        CURRENT_MOVE(user) = MOVE_THUNDER_BOLT;
+    } else if (battle_master->field_state.is_grassy_terrain) {
+        CURRENT_MOVE(user) = MOVE_ENERGY_BALL;
+    } else if (battle_master->field_state.is_misty_terrain) {
+        CURRENT_MOVE(user) = MOVE_MOON_BLAST;
+    } else if (battle_master->field_state.is_psychic_terrain) {
+        CURRENT_MOVE(user) = MOVE_PSYCHIC;
+    } else {
+        CURRENT_MOVE(user) = MOVE_TRI_ATTACK;
+    }
+    set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+    return true;
 }
