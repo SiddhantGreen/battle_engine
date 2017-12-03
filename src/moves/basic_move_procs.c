@@ -987,6 +987,19 @@ struct move_procs confuse_20_procs = {
     20,
 };
 
+// 30% Confuse
+struct move_procs confuse_30_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_CONFUSION,
+    0,
+    20,
+};
+
 // user sleep
 struct move_procs rest_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt

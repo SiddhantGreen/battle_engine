@@ -1837,6 +1837,8 @@ struct move_data moves[] = {
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &paralyze_30_procs,
+    .before_move = hurricane_on_before_move,
+    .on_inv_tryhit_move = hurricane_on_tryhit_inv,
     },
 
     {
@@ -4714,6 +4716,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = weather_ball_on_modify_move,
     },
 
     {
@@ -7685,10 +7688,12 @@ struct move_data moves[] = {
     .base_power = 110,
     .description = (pchar*)Hurricane_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FLYING,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET | FLAG_MIRROR,
+    .procs = &confuse_30_procs,
+    .before_move = hurricane_on_before_move,
+    .on_inv_tryhit_move = hurricane_on_tryhit_inv,
     },
 
     {

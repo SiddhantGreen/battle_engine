@@ -331,6 +331,10 @@ extern u8 mirror_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_call
 extern void mirror_coat_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 metal_burst_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void metal_burst_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hurricane_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hurricane_on_tryhit_inv(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 weather_ball_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
@@ -403,6 +407,7 @@ extern struct move_procs burn_10_procs;
 extern struct move_procs freeze_10_procs;
 extern struct move_procs confuse_10_procs;
 extern struct move_procs confuse_20_procs;
+extern struct move_procs confuse_30_procs;
 extern struct move_procs confuse_100_procs;
 extern struct move_procs paralyze_10_procs;
 extern struct move_procs paralyze_30_procs;
