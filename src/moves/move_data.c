@@ -4440,8 +4440,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = secret_power_on_modify,
     },
 
     {
@@ -4479,8 +4480,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH |  FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = camouflage_on_effect,
     },
 
     {
@@ -8819,6 +8821,7 @@ struct move_data moves[] = {
     .type = MTYPE_FAIRY,
     .m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = floral_healing_on_modify,
     },
 
     {

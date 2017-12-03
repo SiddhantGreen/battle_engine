@@ -89,6 +89,7 @@
 #define B_MOVE_MULTI(bank) ((battle_master->b_moves[B_MOVE_BANK(bank)].hit_times > 1) || (battle_master->b_moves[B_MOVE_BANK(bank)].hit_counter > 1))
 #define PROTECTION_TURNS(bank) (p_bank[bank]->b_data.protect_used_turns)
 
+
 #define B_PKMN_TYPE(bank, index) (p_bank[bank]->b_data.type[index])
 #define B_CURRENT_HP(bank) (p_bank[bank]->b_data.current_hp)
 #define B_LEVEL(bank) (p_bank[bank]->b_data.level)

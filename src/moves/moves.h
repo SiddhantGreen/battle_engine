@@ -22,14 +22,14 @@
 
 /*  Order of stat boosts:
 
-    Attack
-    Defense
-    Speed
-    Special Attack
-    Special Defense
-    Accuracy
-    Evasion
-    Critical chance
+    Attack - 0
+    Defense - 1
+    Speed - 2
+    Special Attack - 3
+    Special Defense - 4
+    Accuracy - 5
+    Evasion - 6
+    Critical chance - 7
 */
 
 struct move_procs {
@@ -338,6 +338,10 @@ extern u8 electric_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonym
 extern u8 grassy_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 misty_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 psychic_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 secret_power_on_modify(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 floral_healing_on_modify(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 camouflage_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
