@@ -5920,7 +5920,7 @@ struct move_data moves[] = {
     .base_power = 85,
     .description = (pchar*)Dragon_Pulse_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_DRAGON,
     .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
@@ -8182,10 +8182,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Grassy_Terrain_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = grassy_terrain_on_effect,
     },
 
     {
@@ -8194,10 +8195,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Misty_Terrain_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = misty_terrain_on_effect,
     },
 
     {
@@ -8490,10 +8492,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Electric_Terrain_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags =FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = electric_terrain_on_effect,
     },
 
     {
@@ -8964,10 +8967,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Psychic_Terrain_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = psychic_terrain_on_effect,
     },
 
     {

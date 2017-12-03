@@ -131,6 +131,11 @@ enum battle_string_ids {
     STRING_DOOM_DESIRE,
     STRING_WISH_TRUE,
     STRING_GREW_DROWSY,
+    STRING_MOVE_ENDED,
+    STRING_ELECTRIC_TERRAIN_START,
+    STRING_PSYCHIC_TERRAIN_START,
+    STRING_GRASSY_TERRAIN_START,
+    STRING_MISTY_TERRAIN_START,
     STRINGS_TABLE_MAX,
 };
 
@@ -274,6 +279,11 @@ static const pchar str_chose_doom_o[] = _("{FOE}{ATTACKING_MON}\nchose Doom Desi
 static const pchar str_wish_true_o[] = _("{FOE}{ATTACKING_MON}’s wish\ncame true!");
 static const pchar str_grew_drowsy_o[] = _("{DEFENDING_MON} grew drowsy!");
 static const pchar str_began_charging_o[] = _("{FOE}{ATTACKING_MON} began\ncharging power!");
+static const pchar str_move_end[] = _("The {ATTACK_NAME} ended.");
+static const pchar str_elec_terrain[] = _("An Electric current runs\nacross the battlefield!");
+static const pchar str_psyc_terrain[] = _("The battlefield got weird!");
+static const pchar str_grass_terrain[] = _("Grass grew to\ncover the battlefield!");
+static const pchar str_misty_terrain[] = _("Mist swirled about\nthe battlefield!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -432,6 +442,12 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_chose_doom_o, // 128
    (pchar*)&str_wish_true_o, // 129
    (pchar*)&str_grew_drowsy_o, // 130
+   (pchar*)&str_move_end, // 131
+   (pchar*)&str_elec_terrain, // 132
+   (pchar*)&str_psyc_terrain, // 133
+   (pchar*)&str_grass_terrain, // 134
+   (pchar*)&str_misty_terrain, // 135
+
 
 };
 

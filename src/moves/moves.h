@@ -334,7 +334,10 @@ extern void metal_burst_before_turn(u8 user, u8 src, u16 move, struct anonymous_
 extern u8 hurricane_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 hurricane_on_tryhit_inv(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 weather_ball_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern u8 electric_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 grassy_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 misty_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 psychic_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

@@ -9,6 +9,7 @@ extern void do_damage(u8 bank_index, u16 dmg);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void do_heal(u8 bank_index, u8 percent_heal);
 extern void set_status(u8 bank, enum Effect status);
+extern bool is_grounded(u8 bank);
 
 //Future Sight
 u16 future_sight_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -77,7 +78,7 @@ u16 yawn_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 u8 yawn_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user!= src) return true;
-    if (B_STATUS(user))
+    if (B_STATUS(user) || (is_grounded(user) && battle_master->field_state.is_electric_terrain))
         return false;
     return true;
 }

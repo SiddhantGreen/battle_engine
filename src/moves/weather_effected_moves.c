@@ -63,6 +63,8 @@ u8 weather_ball_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callb
             B_MOVE_TYPE(user, 0) = MTYPE_WATER;
             B_MOVE_POWER(user) *= 2;
             break;
+        default:
+            break;
     };
     return true;
 }

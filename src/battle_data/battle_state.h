@@ -66,6 +66,10 @@ struct battle_field_state {
     u32 is_primordial_sea : 1;
     u32 is_delta_stream : 1;
     u32 suppress_weather : 1;
+    u32 is_electric_terrain : 1;
+    u32 is_grassy_terrain : 1;
+    u32 is_misty_terrain : 1;
+    u32 is_psychic_terrain : 1;
     u8 weather_turns;
     u16 last_used_move;
 };
