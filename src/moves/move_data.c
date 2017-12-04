@@ -5672,6 +5672,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = punishment_on_base_power_move,
     },
 
     {
@@ -7151,6 +7152,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = stored_power_on_base_power_move,
     },
 
     {
@@ -9017,6 +9019,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = stored_power_on_base_power_move,
     },
 
     {

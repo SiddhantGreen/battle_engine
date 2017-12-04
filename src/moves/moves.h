@@ -343,6 +343,8 @@ extern u8 floral_healing_on_modify(u8 bank, u8 src, u16 stat_id, struct anonymou
 extern u8 camouflage_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void water_spout_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void stored_power_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void punishment_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
