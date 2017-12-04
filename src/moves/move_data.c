@@ -4368,6 +4368,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = water_spout_on_base_power_move,
     },
 
     {
@@ -4870,6 +4871,7 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = water_spout_on_base_power_move,
     },
 
     {
