@@ -35,13 +35,13 @@
 #define B_ATTACKING_STAT(attacker) (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) ? B_ATTACK_STAT(attacker) : B_SPATTACK_STAT(attacker)
 #define B_DEFENDING_STAT(defender, category) (category == MOVE_PHYSICAL) ? B_DEFENSE_STAT(defender) : B_SPDEFENSE_STAT(defender)
 
-#define B_ATTACK_BUFF(bank) p_bank[bank]->b_data.attack
-#define B_DEFENSE_BUFF(bank) p_bank[bank]->b_data.defense
-#define B_SPEED_BUFF(bank) p_bank[bank]->b_data.speed
-#define B_SPATTACK_BUFF(bank) p_bank[bank]->b_data.sp_atk
-#define B_SPDEFENSE_BUFF(bank) p_bank[bank]->b_data.sp_def
-#define B_ACCURACY_BUFF(bank)  p_bank[bank]->b_data.accuracy
-#define B_EVASION_BUFF(bank) p_bank[bank]->b_data.evasion
+#define B_ATTACK_BUFF(bank) (p_bank[bank]->b_data.attack)
+#define B_DEFENSE_BUFF(bank) (p_bank[bank]->b_data.defense)
+#define B_SPEED_BUFF(bank) (p_bank[bank]->b_data.speed)
+#define B_SPATTACK_BUFF(bank) (p_bank[bank]->b_data.sp_atk)
+#define B_SPDEFENSE_BUFF(bank) (p_bank[bank]->b_data.sp_def)
+#define B_ACCURACY_BUFF(bank)  (p_bank[bank]->b_data.accuracy)
+#define B_EVASION_BUFF(bank) (p_bank[bank]->b_data.evasion)
 
 /*
  * Umodified battle sats
