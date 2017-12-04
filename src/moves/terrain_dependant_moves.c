@@ -75,11 +75,11 @@ u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
     if (user != src) return true;
     if (battle_master->field_state.is_electric_terrain) {
-        CURRENT_MOVE(user) = MOVE_THUNDER_BOLT;
+        CURRENT_MOVE(user) = MOVE_THUNDERBOLT;
     } else if (battle_master->field_state.is_grassy_terrain) {
         CURRENT_MOVE(user) = MOVE_ENERGY_BALL;
     } else if (battle_master->field_state.is_misty_terrain) {
-        CURRENT_MOVE(user) = MOVE_MOON_BLAST;
+        CURRENT_MOVE(user) = MOVE_MOONBLAST;
     } else if (battle_master->field_state.is_psychic_terrain) {
         CURRENT_MOVE(user) = MOVE_PSYCHIC;
     } else {
