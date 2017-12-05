@@ -216,3 +216,26 @@ u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(move, user, STRING_BURNT_OUT, 0);
     return true;
 }
+
+/* Revelation Dance */
+u8 revelation_dance_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    B_MOVE_TYPE(user, 0) = B_PKMN_TYPE(user, 0);
+    return true;
+}
+
+/* Hidden Power*/
+u8 hidden_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    u8 correlated_sum = 0;
+    correlated_sum  += p_bank[user]->b_data.hp_iv;
+    correlated_sum  += p_bank[user]->b_data.attack_iv << 1;
+    correlated_sum  += p_bank[user]->b_data.defense_iv << 2;
+    correlated_sum  += p_bank[user]->b_data.speed_iv << 3;
+    correlated_sum  += p_bank[user]->b_data.sp_atk_iv << 4;
+    correlated_sum  += p_bank[user]->b_data.sp_def_iv << 5;
+    B_MOVE_TYPE(user, 0) = (correlated_sum *15)/63;
+    return true;
+}
