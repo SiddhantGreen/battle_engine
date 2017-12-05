@@ -203,7 +203,7 @@ void set_status(u8 bank, enum Effect status)
             return;
     };
 
-    // run callbacks
+    // cbs
     u8* old_index = (u8*)malloc_and_clear(ANON_CB_MAX);
     memcpy(old_index, &CB_MASTER[0], ANON_CB_MAX);
     build_execution_order(CB_ON_STATUS);

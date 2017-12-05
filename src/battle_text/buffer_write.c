@@ -30,7 +30,7 @@ void buffer_write_ability_name(pchar* buffer, u8 ability)
 
 void buffer_write_move_type(pchar* buffer, u16 move)
 {
-    pstrcpy(buffer, pokemon_type_names[MOVE_TYPE(move)]);
+    pstrcpy(buffer, pkmn_type_names[MOVE_TYPE(move)]);
 }
 
 void buffer_write_stat_mod(pchar* buffer, u8 stat_id)

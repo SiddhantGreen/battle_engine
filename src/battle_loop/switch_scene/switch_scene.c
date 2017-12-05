@@ -439,7 +439,8 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     if (item == 0) {
         rboxid_print(SWB_ITEM, 0, 1, 1, &switch_color, 0, &str_no_item[0]);
     } else {
-        rboxid_print(SWB_ITEM, 0, 1, 1, &switch_color, 0, &items[item].name[0]);
+        /* TODO Use item table */
+        //rboxid_print(SWB_ITEM, 0, 1, 1, &switch_color, 0, &items[item].name[0]);
     }
 
     for (u32 i = 0; i < 4; ++i) {

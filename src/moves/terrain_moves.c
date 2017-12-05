@@ -101,8 +101,9 @@ u8 grassy_terrain_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 // Misty Terrain
 bool misty_terrain_on_status(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
 {
-    if (is_grounded(user) && ((status_id != EFFECT_CURE) ||(status_id != EFFECT_NONE))) {
+    if (is_grounded(user) && ((status_id != EFFECT_CURE) && (status_id != EFFECT_NONE))) {
         enqueue_message(MOVE_MISTY_TERRAIN, user, STRING_AILMENT_IMMUNE, status_id);
+        dprintf("immune from here, status_id %d on %d\n", status_id, user);
         return false;
     }
     return true;
