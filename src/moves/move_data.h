@@ -111,6 +111,7 @@ extern void punishment_on_base_power_move(u8 user, u8 src, u16 move, struct anon
 extern u8 hidden_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 revelation_dance_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rage_on_effect_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mimic_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

@@ -2030,6 +2030,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mimic_on_effect,
     },
 
     {
@@ -2853,8 +2854,9 @@ struct move_data moves[] = {
     .pp = 1,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
+    .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mimic_on_effect,
     },
 
     {
