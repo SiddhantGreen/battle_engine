@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "moves.h"
+#include "move_data.h"
 #include "../items/items.h"
 
 
