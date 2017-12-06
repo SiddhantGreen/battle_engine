@@ -353,6 +353,7 @@ PKMN_TYPE = FD 17
 WEATHER = FD 18
 THE_FOE = FD 19
 FOE = FD 1A
+SLOT_MON = FD 1B
 
 @ battle macros deprecated
 @UNKNOWN_STR = FD 00
