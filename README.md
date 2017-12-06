@@ -12,7 +12,7 @@ Requirements (Windows):
 
 Make sure you have an *environment variable* for `DEVKITARM`, `python` and `armips`. If not, create them.
 
-Extract the `deps.zip` file. I've taken the liberty of building a few dependancies to save some work.
+After cloning the repository, delete the deps folder if you're not planning to build the dependancies. Extract the `deps.zip` file. I've taken the liberty of building them so you don't have to.
 
 Next, create a directory called `roms` and place a clean FireRed US version 1.0 ROM inside called `BPRE0.gba`.
 
