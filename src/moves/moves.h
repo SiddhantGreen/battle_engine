@@ -438,4 +438,5 @@ extern struct move_procs user_raise_atk_1_10;
 extern struct move_procs target_burn_50;
 extern struct move_procs target_lower_def_1_30;
 extern struct move_procs user_raise_def_1_10;
+extern struct move_procs poison_10_procs;
 #endif /* movesABLE_DATA_H_ */

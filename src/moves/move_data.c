@@ -5003,7 +5003,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ICE,
     .multi_hit = {2, 5},
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -5118,7 +5118,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_POISON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_10_procs,
     },
 
     {
