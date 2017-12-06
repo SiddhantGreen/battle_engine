@@ -23,7 +23,7 @@ install:
     - (cd deps/armips && cmake . && make -j 8)
     - (cd deps/pokeruby && ./build_tools.sh)
     - sudo mkdir roms
-    - touch roms/BPRE0.gba
+    - sudo touch roms/BPRE0.gba
 
 script:
     - make
