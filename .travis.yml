@@ -15,7 +15,12 @@ before_install:
   - export DEVKITARM=$DEVKITPRO/devkitARM
   - export PATH=$PATH:$DEVKITARM/bin
   - export ARMIPS=$TRAVIS_BUILD_DIR/deps/armips/armips
-  - ./travis/dependencies.sh
-  - ./travis/setup.sh
+
+install:
+    - sudo perl devkitARMupdate.pl
+
+script:
+    - make
+
 after_success:
   - ./travis/deploy.sh
