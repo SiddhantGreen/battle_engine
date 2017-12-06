@@ -54,9 +54,10 @@ extern void set_data_next_acb(u32 data);
 extern void delete_callback(u32 func);
 extern u16 run_callback(u8 attacker, u16 move);
 extern bool callback_exists(u32 func);
+extern u8 id_by_acb(struct anonymous_callback* acb);
 
 // callback stack restoration related
-extern void pop_callbacks(u32* data_ptr);
-extern u32* restore_callbacks();
+extern void restore_callbacks(u32* data_ptr);
+extern u32* push_callbacks();
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */
