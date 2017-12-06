@@ -1,0 +1,8 @@
+[submodule "deps/g3headers"]
+	path = deps/g3headers
+	url = https://github.com/EternalCode/g3headers
+	branch = master
+[submodule "deps/armips"]
+	path = deps/armips
+	url = https://github.com/Kingcom/armips
+	branch = master
