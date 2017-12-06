@@ -137,6 +137,7 @@ enum battle_string_ids {
     STRING_GRASSY_TERRAIN_START,
     STRING_MISTY_TERRAIN_START,
     STRING_LEARNED_MOVE,
+    STRING_SLOT_ATTACK,
     STRINGS_TABLE_MAX,
 };
 
@@ -286,6 +287,7 @@ static const pchar str_psyc_terrain[] = _("The battlefield got weird!");
 static const pchar str_grass_terrain[] = _("Grass grew to\ncover the battlefield!");
 static const pchar str_misty_terrain[] = _("Mist swirled about\nthe battlefield!");
 static const pchar str_learnt_move[] = _("{FOE}{ATTACKING_MON} learned\n{ATTACK_NAME}!");
+static const pchar str_whos_attack[] = _("{SLOT_MON}’s attack!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -450,6 +452,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_grass_terrain, // 134
    (pchar*)&str_misty_terrain, // 135
    (pchar*)&str_learnt_move, // 136
+   (pchar*)&str_whos_attack, // 137
 
 
 };
