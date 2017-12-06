@@ -275,9 +275,11 @@ void move_hit()
             } else {
                 if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
                     u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
-                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
-                    //damage_result_msg(bank_index);
+                    if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 1) {
+                        battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
+                        battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
+                        damage_result_msg(bank_index);
+                    }
                     battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
                     enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
                 }

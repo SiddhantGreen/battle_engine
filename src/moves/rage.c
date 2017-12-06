@@ -9,7 +9,6 @@ extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
 void rage_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return;
-    dprintf("being attacked?\n");
     if (B_MOVE_DMG(user) > 0) {
         // +1 atk if hit
         stat_boost(src, 0, 1);
