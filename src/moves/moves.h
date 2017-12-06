@@ -345,6 +345,8 @@ extern u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_cal
 extern void water_spout_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void stored_power_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void punishment_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hidden_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 revelation_dance_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -438,4 +440,5 @@ extern struct move_procs user_raise_atk_1_10;
 extern struct move_procs target_burn_50;
 extern struct move_procs target_lower_def_1_30;
 extern struct move_procs user_raise_def_1_10;
+extern struct move_procs poison_10_procs;
 #endif /* movesABLE_DATA_H_ */

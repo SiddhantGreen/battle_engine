@@ -38,6 +38,15 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.sp_atk_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK, NULL);
     p_bank[bank]->b_data.sp_def_raw = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF, NULL);
 
+    // pokemon IVs
+    p_bank[bank]->b_data.hp_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HP_IV, NULL);
+    p_bank[bank]->b_data.attack_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_ATK_IV, NULL);
+    p_bank[bank]->b_data.defense_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_DEF_IV, NULL);
+    p_bank[bank]->b_data.speed_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD_IV, NULL);
+    p_bank[bank]->b_data.sp_atk_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK_IV, NULL);
+    p_bank[bank]->b_data.sp_def_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF_IV, NULL);
+
+    // status ailment
     ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
 
     if (!flags->pass_stats) {

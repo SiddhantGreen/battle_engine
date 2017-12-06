@@ -24,14 +24,15 @@ void punishment_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
 {
     if (user != src) return;
 
+    u8 defender = TARGET_OF(user);
     u8 boost_factor = 0;
-    boost_factor += MAX(B_ATTACK_BUFF(src), 0);
-    boost_factor += MAX(B_DEFENSE_BUFF(src), 0);
-    boost_factor += MAX(B_SPEED_BUFF(src), 0);
-    boost_factor += MAX(B_SPATTACK_BUFF(src), 0);
-    boost_factor += MAX(B_SPDEFENSE_BUFF(src), 0);
-    boost_factor += MAX(B_ACCURACY_BUFF(src), 0);
-    boost_factor += MAX(B_EVASION_BUFF(src), 0);
+    boost_factor += MAX(B_ATTACK_BUFF(defender), 0);
+    boost_factor += MAX(B_DEFENSE_BUFF(defender), 0);
+    boost_factor += MAX(B_SPEED_BUFF(defender), 0);
+    boost_factor += MAX(B_SPATTACK_BUFF(defender), 0);
+    boost_factor += MAX(B_SPDEFENSE_BUFF(defender), 0);
+    boost_factor += MAX(B_ACCURACY_BUFF(defender), 0);
+    boost_factor += MAX(B_EVASION_BUFF(defender), 0);
 
     B_MOVE_POWER(user) = 60 + 20*(boost_factor);
 }
