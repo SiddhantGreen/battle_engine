@@ -16,10 +16,12 @@ before_install:
   - export PATH=$PATH:$DEVKITARM/bin
   - export ARMIPS=$TRAVIS_BUILD_DIR/deps/armips/armips
 
+
 install:
     - sudo perl devkitARMupdate.pl
 
 script:
+    - ls
     - make
 
 after_success:
