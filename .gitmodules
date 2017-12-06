@@ -1,5 +1,5 @@
-[submodule "deps/g3headers"]
-	path = deps/g3headers
+[submodule "deps/pokeagb"]
+	path = deps/pokeagb
 	url = https://github.com/EternalCode/g3headers
 	branch = master
 [submodule "deps/armips"]
