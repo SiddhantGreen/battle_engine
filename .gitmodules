@@ -5,3 +5,7 @@
 [submodule "pokeagb"]
 	path = deps/g3headers
 	url = https://github.com/EternalCode/g3headers
+[submodule "preproc_tools"]
+	path = deps/pokeruby
+	url = https://github.com/pret/pokeruby
+	branch = master
