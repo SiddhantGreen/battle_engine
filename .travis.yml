@@ -24,6 +24,7 @@ install:
     - (cd deps/pokeruby && ./build_tools.sh)
     - sudo mkdir roms
     - sudo touch roms/BPRE0.gba
+    - sudo chmod 777 roms/BPRE0.gba
 
 script:
     - make
