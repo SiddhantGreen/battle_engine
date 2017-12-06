@@ -8,7 +8,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern u8 get_move_index(u16 move_id, u8 bank);
 
 
-static const u8 mimic_disallow[] = {
+static const u16 mimic_disallow[] = {
         MOVE_CHATTER, MOVE_SKETCH, MOVE_STRUGGLE,
         MOVE_TRANSFORM, MOVE_NONE, MOVE_MAX,
 };
