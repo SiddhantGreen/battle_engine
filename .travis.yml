@@ -29,5 +29,3 @@ install:
 script:
     - make
 
-after_success:
-  - ./travis/deploy.sh
