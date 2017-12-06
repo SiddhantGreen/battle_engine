@@ -158,7 +158,7 @@ bool callback_exists(u32 func)
     return (id_by_func(func) < 255);
 }
 
-u32* push_callbacks()
+u32* restore_callbacks()
 {
     u32* data_ptr = (u32*)malloc_and_clear(ANON_CB_MAX);
     memcpy(data_ptr, &CB_MASTER[0], ANON_CB_MAX);

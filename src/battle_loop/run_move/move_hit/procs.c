@@ -205,7 +205,7 @@ void set_status(u8 bank, enum Effect status)
 
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
-    u32* old_execution_array = push_callbacks();
+    u32* old_execution_array = restore_callbacks();
 
     // execute cbs
     build_execution_order(CB_ON_STATUS);

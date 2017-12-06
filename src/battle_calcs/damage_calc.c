@@ -24,7 +24,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
                 // back up cbs
                 u8 old_index = CB_EXEC_INDEX;
-                u32* old_execution_array = push_callbacks();
+                u32* old_execution_array = restore_callbacks();
                 // callbacks for effectiveness of moves
                 build_execution_order(CB_ON_EFFECTIVENESS);
                 battle_master->executing = true;
@@ -56,7 +56,7 @@ u16 weather_dmg_mod(u16 damage, u8 attacker)
     u16 modifier = 100;
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
-    u32* old_execution_array = push_callbacks();
+    u32* old_execution_array = restore_callbacks();
     build_execution_order(CB_ON_WEATHER_DMG);
     battle_master->executing = true;
     while (battle_master->executing) {
@@ -84,7 +84,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     }
     // run base power callbacks
     u8 old_index = CB_EXEC_INDEX;
-    u32* old_execution_array = push_callbacks();
+    u32* old_execution_array = restore_callbacks();
     build_execution_order(CB_ON_BASE_POWER_MOVE);
     battle_master->executing = true;
     while (battle_master->executing) {
@@ -265,7 +265,7 @@ s16 get_damage(u8 attacker, u8 defender, u16 move)
 
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
-    u32* old_execution_array = push_callbacks();
+    u32* old_execution_array = restore_callbacks();
     // run base power callbacks
     build_execution_order(CB_ON_DAMAGE_MOVE);
     battle_master->executing = true;

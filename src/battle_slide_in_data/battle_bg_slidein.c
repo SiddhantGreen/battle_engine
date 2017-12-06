@@ -220,13 +220,13 @@ void battle_slidein(void)
         }
         case 8:
         {
-            
+
             //REG_BLDCNT = 0;
             extern void task_lightup_obj(u8);
             u8 t_id = task_add(task_lightup_obj, 0x1);
             tasks[t_id].priv[0] = 0x7;
             gpu_sync_bg_hide(1);
-            
+
 
             // spawn HP boxes
             spawn_hpboxes_wild();
@@ -249,7 +249,7 @@ void task_lightup_obj(u8 t_id)
     } else {
         // objects opponent side light up original palette
         REG_BLDCNT = 0;
-        
+
         // player remove blending
         obj_mode_normal_set(bs_env_windows->player_trainer_objid);
         task_del(t_id);

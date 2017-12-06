@@ -57,6 +57,6 @@ extern bool callback_exists(u32 func);
 
 // callback stack restoration related
 extern void pop_callbacks(u32* data_ptr);
-extern u32* push_callbacks();
+extern u32* restore_callbacks();
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */
