@@ -1048,3 +1048,15 @@ struct move_procs target_burn_50 = {
     0,
     50,
 };
+
+struct move_procs poison_10_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_POISON,
+    0,
+    10,
+};
