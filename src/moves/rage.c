@@ -4,14 +4,21 @@
 #include "../battle_data/battle_state.h"
 
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
 
-u8 rage_on_effect_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+void rage_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return;
+    dprintf("being attacked?\n");
+    if (B_MOVE_DMG(user) > 0) {
+        // +1 atk if hit
+        stat_boost(src, 0, 1);
+    }
+}
+
+u8 rage_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    if (p_bank[user]->b_data.last_damage > 0) {
-        // +1 atk if hit
-        B_USER_STAT_MOD_CHANCE(user, 0) = 100;
-        B_USER_STAT_MOD_AMOUNT(user, 0) = 1;
-    }
+    add_callback(CB_ON_DAMAGE_MOVE, 0, 0, src, (u32)rage_on_damage_move);
     return true;
 }
