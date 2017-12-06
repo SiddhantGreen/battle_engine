@@ -270,17 +270,18 @@ void move_hit()
                     super.multi_purpose_state_tracker = S_AFTER_MOVE_SECONDARY;
                 } else {
                     super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
+                    B_MOVE_DMG(bank_index) = 0;
                 }
             } else {
                 if (battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter > 0) {
-                u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
-                damage_result_msg(bank_index);
-                battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
-                enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
-            }
-            super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                    u16 temp = battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter;
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = 1;
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_times = 1;
+                    damage_result_msg(bank_index);
+                    battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
+                    enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
+                }
+                super.multi_purpose_state_tracker = S_AFTER_MOVE;
             }
             break;
         case S_AFTER_MOVE:
