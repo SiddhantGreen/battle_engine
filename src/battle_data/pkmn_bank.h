@@ -99,6 +99,14 @@ struct local_battler_data {
     u16 sp_atk_raw;
     u16 sp_def_raw;
 
+    // IVs
+    u8 hp_iv : 5;
+    u8 attack_iv : 5;
+    u8 defense_iv : 5;
+    u8 speed_iv : 5;
+    u8 sp_atk_iv : 5;
+    u8 sp_def_iv : 5;
+
     // Delta applied to base stat. ex: -1 atk
     s8 attack;
     s8 defense;
