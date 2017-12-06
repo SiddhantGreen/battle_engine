@@ -152,6 +152,7 @@ extern struct move_procs target_lower_acc_1;
 
 extern struct move_procs target_lower_atk_2;
 extern struct move_procs target_lower_def_2;
+extern struct move_procs target_lower_def_50_procs;
 extern struct move_procs target_lower_spAtk_2;
 extern struct move_procs target_lower_spDef_2;
 extern struct move_procs target_lower_spd_2;

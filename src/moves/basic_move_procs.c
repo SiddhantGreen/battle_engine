@@ -1060,3 +1060,15 @@ struct move_procs poison_10_procs = {
     0,
     10,
 };
+
+struct move_procs target_lower_def_50_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 50, 0, 0, 0, 0, 0, 0},
+    {0, -1, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
