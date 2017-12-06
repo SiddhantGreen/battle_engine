@@ -28,7 +28,7 @@
 #define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
 #define CB_ON_WEATHER_DMG 15
 #define CB_ON_EFFECTIVENESS 16
-#define CB_ON_STATUS 16
+#define CB_ON_STATUS 17
 
 
 
@@ -55,5 +55,8 @@ extern void delete_callback(u32 func);
 extern u16 run_callback(u8 attacker, u16 move);
 extern bool callback_exists(u32 func);
 
+// callback stack restoration related
+extern void pop_callbacks(u32* data_ptr);
+extern u32* push_callbacks();
 
 #endif /* ANONYMOUS_CALLBACKS_H_ */

@@ -203,20 +203,22 @@ void set_status(u8 bank, enum Effect status)
             return;
     };
 
-    // cbs
-    u8* old_index = (u8*)malloc_and_clear(ANON_CB_MAX);
-    memcpy(old_index, &CB_MASTER[0], ANON_CB_MAX);
+    // back up cbs
+    u8 old_index = CB_EXEC_INDEX;
+    u32* old_execution_array = push_callbacks();
+
+    // execute cbs
     build_execution_order(CB_ON_STATUS);
     battle_master->executing = true;
     while (battle_master->executing) {
         if (!pop_callback(bank, status)) {
-            memcpy(&CB_MASTER[0], old_index, ANON_CB_MAX);
-            free(old_index);
+            pop_callbacks(old_execution_array);
+            CB_EXEC_INDEX = old_index;
             return;
         }
     }
-    memcpy(&CB_MASTER[0], old_index, ANON_CB_MAX);
-    free(old_index);
+    pop_callbacks(old_execution_array);
+    CB_EXEC_INDEX = old_index;
 
     if (status_applied) {
         if (statuses[status].on_inflict) {

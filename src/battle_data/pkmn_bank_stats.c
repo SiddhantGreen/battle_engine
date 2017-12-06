@@ -6,6 +6,7 @@
 #include "pkmn_bank_stats.h"
 #include "../status_effects/status.h"
 
+extern void dprintf(const char * str, ...);
 typedef u16 (*StatCallback)(u8, u16);
 
 void update_move_pbank_flags(u8 bank, u16 move_id)
@@ -39,6 +40,9 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
         /* crit chance */
         stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
     }
+    // back up cbs
+    u32* old_execution_array = push_callbacks();
+    u8 old_index = CB_EXEC_INDEX;
     // Stat modifying callbacks
     build_execution_order(CB_ON_STAT_MOD);
     battle_master->executing = true;
@@ -49,5 +53,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
             stat_total = new_total;
         }
     }
+    pop_callbacks(old_execution_array);
+    CB_EXEC_INDEX = old_index;
     return stat_total;
 }
