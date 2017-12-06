@@ -6,3 +6,6 @@
 	path = deps/armips
 	url = https://github.com/Kingcom/armips
 	branch = master
+[submodule "pokeagb"]
+	path = deps/g3headers
+	url = https://github.com/EternalCode/g3headers

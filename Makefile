@@ -14,12 +14,12 @@ export ROM_CODE := BPRE
 export LD := $(PREFIX)ld
 export PREPROC := deps/preproc/preproc
 export CHARMAP := charmap.txt
-export INCLUDE := -I deps/pokeagb/build/include -I $(SRC) -I .
+export INCLUDE := -I deps/g3headers/build/include -I $(SRC) -I .
 export ASFLAGS := -mthumb
 export CFLAGS := -g -O2 -Wall -mthumb -std=c11 $(INCLUDE) -mcpu=arm7tdmi \
 	-march=armv4t -mno-thumb-interwork -fno-inline -fno-builtin -mlong-calls -DROM_$(ROM_CODE) \
 	-fdiagnostics-color
-export LDFLAGS := -T layout.ld -T deps/pokeagb/build/linker/$(ROM_CODE).ld -r
+export LDFLAGS := -T layout.ld -T deps/g3headers/build/linker/$(ROM_CODE).ld -r
 export DEPDIR = .d
 export DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 
