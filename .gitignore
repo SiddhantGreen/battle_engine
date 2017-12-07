@@ -6,9 +6,6 @@ roms
 generated
 make.exe.stackdump
 test.sh
-images/portraits/*.png
-images/portraits/*.grit
-deps
 output.txt
 moves completed.txt
 move_cb_timings.txt

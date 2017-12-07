@@ -1,0 +1,11 @@
+[submodule "deps/armips"]
+	path = deps/armips
+	url = https://github.com/Kingcom/armips
+	branch = master
+[submodule "pokeagb"]
+	path = deps/g3headers
+	url = https://github.com/EternalCode/g3headers
+[submodule "preproc_tools"]
+	path = deps/pokeruby
+	url = https://github.com/pret/pokeruby
+	branch = master

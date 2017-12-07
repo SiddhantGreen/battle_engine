@@ -1994,7 +1994,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_effect_cb = rage_on_effect_move,
+    .on_effect_cb = rage_on_effect,
     },
 
     {
@@ -2031,6 +2031,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mimic_on_effect,
     },
 
     {
@@ -2854,8 +2855,9 @@ struct move_data moves[] = {
     .pp = 1,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
+    .m_flags = FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mimic_on_effect,
     },
 
     {
@@ -3947,9 +3949,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_DARK,
-    .multi_hit = {6, 6},
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = beatup_before_turn,
     },
 
     {
@@ -5427,10 +5429,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Tailwind_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FLYING,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = tailwind_on_effect,
     },
 
     {
