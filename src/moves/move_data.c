@@ -5426,10 +5426,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Tailwind_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FLYING,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = tailwind_on_effect,
     },
 
     {

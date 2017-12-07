@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../moves/moves.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
@@ -156,6 +157,17 @@ void set_data_next_acb(u32 data) {
 bool callback_exists(u32 func)
 {
     return (id_by_func(func) < 255);
+}
+
+
+u8 callback_exists_side(u32 func, u8 bank)
+{
+    u8 id = id_by_func(func);
+    if (id < 255) {
+        if (SIDE_OF(bank) == SIDE_OF(CB_MASTER[id].source_bank))
+            return id;
+    }
+    return ANON_CB_MAX;
 }
 
 u32* push_callbacks()
