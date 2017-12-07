@@ -4026,8 +4026,8 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &burn_10_procs,
     },
 
     {
@@ -5059,7 +5059,7 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_DRAGON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -5108,10 +5108,10 @@ struct move_data moves[] = {
     .base_power = 55,
     .description = (pchar*)Mud_Shot_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
+    .procs = &target_lower_spd_1,
     },
 
     {
@@ -5201,7 +5201,7 @@ struct move_data moves[] = {
     .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GRASS,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
