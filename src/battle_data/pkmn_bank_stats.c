@@ -41,7 +41,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
         stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
     }
     // back up cbs
-    u32* old_execution_array = restore_callbacks();
+    u32* old_execution_array = push_callbacks();
     u8 old_index = CB_EXEC_INDEX;
     // Stat modifying callbacks
     build_execution_order(CB_ON_STAT_MOD);
@@ -53,7 +53,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
             stat_total = new_total;
         }
     }
-    pop_callbacks(old_execution_array);
+    restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
     return stat_total;
 }

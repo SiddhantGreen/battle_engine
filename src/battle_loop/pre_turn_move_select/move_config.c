@@ -83,7 +83,6 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
         } else {
             if (moves[move_id].multi_hit[0] == moves[move_id].multi_hit[1]) {
                 hit_times = moves[move_id].multi_hit[1];
-                dprintf("hittimes: %d", hit_times);
             } else {
                 hit_times = rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1]);
                 hit_times |= 1;

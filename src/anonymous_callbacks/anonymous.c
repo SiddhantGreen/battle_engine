@@ -1,5 +1,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../moves/moves.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
@@ -158,15 +159,36 @@ bool callback_exists(u32 func)
     return (id_by_func(func) < 255);
 }
 
-u32* restore_callbacks()
+
+u8 callback_exists_side(u32 func, u8 bank)
+{
+    u8 id = id_by_func(func);
+    if (id < 255) {
+        if (SIDE_OF(bank) == SIDE_OF(CB_MASTER[id].source_bank))
+            return id;
+    }
+    return ANON_CB_MAX;
+}
+
+u32* push_callbacks()
 {
     u32* data_ptr = (u32*)malloc_and_clear(ANON_CB_MAX);
-    memcpy(data_ptr, &CB_MASTER[0], ANON_CB_MAX);
+    memcpy(data_ptr, &CB_EXEC_ORDER[0], ANON_CB_MAX);
     return data_ptr;
 }
 
-void pop_callbacks(u32* data_ptr)
+void restore_callbacks(u32* data_ptr)
 {
-    memcpy(&CB_MASTER[0], data_ptr, ANON_CB_MAX);
+    memcpy(&CB_EXEC_ORDER[0], data_ptr, ANON_CB_MAX);
     free(data_ptr);
+}
+
+
+u8 id_by_acb(struct anonymous_callback* acb)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((u32)acb == ((u32)&CB_MASTER[i]))
+            return i;
+    }
+    return ANON_CB_MAX;
 }

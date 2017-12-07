@@ -87,6 +87,7 @@ struct local_battler_data {
     u8 level;
     u8 poke_ball;
     u8 type[3];
+    u16 weight;
 
     // moves
     u16 moves[4];

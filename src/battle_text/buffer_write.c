@@ -13,6 +13,17 @@ void buffer_write_pkmn_nick(pchar* buffer, u8 bank)
 
 }
 
+void buffer_pkmn_nick_arbitrary(pchar* buffer, u8 bank, u8 slot)
+{
+    if (SIDE_OF(bank)) {
+        memcpy(buffer, party_opponent[slot].base.nick, sizeof(party_opponent[slot].base.nick));
+        buffer[sizeof(party_opponent[slot].base.nick)] = 0xFF;
+    } else {
+        memcpy(buffer, party_player[slot].base.nick, sizeof(party_player[slot].base.nick));
+        buffer[sizeof(party_player[slot].base.nick)] = 0xFF;
+    }
+}
+
 void buffer_write_player_name(pchar* buffer)
 {
     pstrcpy(buffer, saveblock2->name);
@@ -185,12 +196,18 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                         break;
                     }
                 case 0x1A:
-                {
-                    if (SIDE_OF(bank) == 0) break;
-                    pstrcpy(&result[result_index], (const pchar*)str_nfoe);
-                    result_index = pstrlen(result);
-                    break;
-                }
+                    {
+                        if (SIDE_OF(bank) == 0) break;
+                        pstrcpy(&result[result_index], (const pchar*)str_nfoe);
+                        result_index = pstrlen(result);
+                        break;
+                    }
+                case 0x1B:
+                    {
+                        buffer_pkmn_nick_arbitrary(&result[result_index], bank, move_effect_id);
+                        result_index = pstrlen(result);
+                        break;
+                    }
                 default:
                     {
 
