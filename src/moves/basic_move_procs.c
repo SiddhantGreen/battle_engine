@@ -1109,7 +1109,7 @@ struct move_procs burn_100_procs = {
     AILMENT_NONE,
     AILMENT_BURN,
     0,
-	100,
+   100,	
 };
 
 };
