@@ -1061,6 +1061,7 @@ struct move_procs poison_10_procs = {
     10,
 };
 
+// Lowers Defense 50% by 1 stage
 struct move_procs target_lower_def_50_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1085,6 +1086,7 @@ struct move_procs target_lower_def_20_procs = {
     0,
 };
 
+// Ancient Power
 struct move_procs ancient_power_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {10, 10, 10, 10, 10, 10, 0, 0},
@@ -1097,6 +1099,7 @@ struct move_procs ancient_power_procs = {
     0,
 };
 
+// Burns 100%
 struct move_procs burn_100_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
