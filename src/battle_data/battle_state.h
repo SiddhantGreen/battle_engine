@@ -70,6 +70,7 @@ struct battle_field_state {
     u32 is_grassy_terrain : 1;
     u32 is_misty_terrain : 1;
     u32 is_psychic_terrain : 1;
+    u32 speed_inverse : 1;
     u8 weather_turns;
     u16 last_used_move;
 };
