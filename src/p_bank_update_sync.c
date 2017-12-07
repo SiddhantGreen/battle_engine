@@ -24,6 +24,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.type[1] = pokemon_base_stats[species].type[1];
     p_bank[bank]->b_data.type[1] = (p_bank[bank]->b_data.type[1]) ? p_bank[bank]->b_data.type[1] : TYPE_NONE;
     p_bank[bank]->b_data.type[2] = TYPE_NONE;
+    p_bank[bank]->b_data.weight = 0; //To add logic of fetching weight.
 
     // pp and moves
     for (u8 i = 0; i < 4; i++) {

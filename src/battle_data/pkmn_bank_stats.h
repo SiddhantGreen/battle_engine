@@ -43,6 +43,8 @@
 #define B_ACCURACY_BUFF(bank)  (p_bank[bank]->b_data.accuracy)
 #define B_EVASION_BUFF(bank) (p_bank[bank]->b_data.evasion)
 
+#define B_WEIGHT(bank) (p_bank[bank]->b_data.weight)
+
 /*
  * Umodified battle sats
  */
