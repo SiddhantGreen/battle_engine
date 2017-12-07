@@ -6294,13 +6294,13 @@ struct move_data moves[] = {
     .name = _("Trick Room"),
     .accuracy = 101,
     .description = (pchar*)Trick_Room_desc,
-    5,
-    -7,
-    1,
-    .category = MOVE_PHYSICAL,
+    .pp = 5,
+    .priority = -7,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = trick_room_on_effect,
     },
 
     {

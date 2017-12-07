@@ -36,3 +36,32 @@ u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 }
 
 /* Trick room */
+u8 trick_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((acb->duration == 0) && (acb->in_use)) {
+        enqueue_message(NULL, user, STRING_TWISTED_DIM_NORM, NULL);
+        acb->in_use = false;
+        battle_master->field_state.speed_inverse = false;
+    }
+    return true;
+}
+
+
+u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)trick_room_on_residual)) {
+        delete_callback((u32)trick_room_on_residual);
+    }
+    if (battle_master->field_state.speed_inverse) {
+        enqueue_message(NULL, user, STRING_TWISTED_DIM_NORM, NULL);
+        battle_master->field_state.speed_inverse = false;
+        return true;
+    } else {
+        enqueue_message(NULL, user, STRING_TWISTED_DIM, NULL);
+    }
+    u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)trick_room_on_residual);
+    CB_MASTER[id].delay_before_effect = 5;
+    battle_master->field_state.speed_inverse = true;
+    return true;
+}

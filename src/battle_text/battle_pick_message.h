@@ -140,6 +140,8 @@ enum battle_string_ids {
     STRING_SLOT_ATTACK,
     STRING_TAILWIND_BLEW,
     STRING_TAILWIND_PETER,
+    STRING_TWISTED_DIM,
+    STRING_TWISTED_DIM_NORM,
     STRINGS_TABLE_MAX,
 };
 
@@ -292,6 +294,8 @@ static const pchar str_learnt_move[] = _("{FOE}{ATTACKING_MON} learned\n{ATTACK_
 static const pchar str_whos_attack[] = _("{SLOT_MON}’s attack!");
 static const pchar str_tailwind_behind[] = _("The tailwind blew from\nbehind {THE_FOE}team!");
 static const pchar str_tailwind_peter[] = _("{FOE}Tailwind petered out!");
+static const pchar str_twisted_dim[] = _("{FOE}{ATTACKING_MON} twisted\nthe dimensions!");
+static const pchar str_twisted_dim_n[] = _("The twisted dimensions\nreturned to normal!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -458,7 +462,9 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_learnt_move, // 136
    (pchar*)&str_whos_attack, // 137
    (pchar*)&str_tailwind_behind, // 138
-   (pchar*)&str_tailwind_peter, // 138
+   (pchar*)&str_tailwind_peter, // 139
+   (pchar*)&str_twisted_dim, // 140
+   (pchar*)&str_twisted_dim_n, // 141
 
 
 };
