@@ -2,7 +2,6 @@ language: c
 sudo: required
 os:
     - linux
-    - windows
 
 dist: trusty
 
@@ -29,5 +28,3 @@ install:
 script:
     - make
 
-after_success:
-  - ./travis/deploy.sh
