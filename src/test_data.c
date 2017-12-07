@@ -4,15 +4,15 @@
 #include "battle_data/battle_state.h"
 
 /* Player data */
-const static u16 player_species = SPECIES_BLASTOISE;
-const static u16 player_move_1 = MOVE_CRUNCH;
-const static u16 player_move_2 = MOVE_WILLOWISP;
-const static u16 player_move_3 = MOVE_EXTREME_SPEED;
-const static u16 player_move_4 = MOVE_ANCIENT_POWER;
-const static u8 player_level = 80;
+-const static u16 player_species = SPECIES_GARDEVOIR;
+-const static u16 player_move_1 = MOVE_GRASSY_TERRAIN;
+ -const static u16 player_move_2 = MOVE_PSYCHIC_TERRAIN;
+ -const static u16 player_move_3 = MOVE_ELECTRIC_TERRAIN;
+ -const static u16 player_move_4 = MOVE_MISTY_TERRAIN;
+ -const static u8 player_level = 60;
 
 /* Opponent data */
-const static u16 opponent_species = SPECIES_BULBASAUR;
+const static u16 opponent_species = SPECIES_CHARMANDER;
 const static u16 opponent_move_1 = MOVE_NATURE_POWER;
 const static u16 opponent_move_2 = MOVE_NATURE_POWER;
 const static u16 opponent_move_3 = MOVE_NATURE_POWER;
