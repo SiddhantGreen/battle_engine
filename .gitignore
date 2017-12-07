@@ -9,3 +9,9 @@ test.sh
 output.txt
 moves completed.txt
 move_cb_timings.txt
+deps/armips
+deps/armips
+libiconv2.dll
+libintl3.dll
+msvcp140.dll
+deps/armips
