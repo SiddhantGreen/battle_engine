@@ -4,21 +4,12 @@
 #include "battle_data/battle_state.h"
 
 /* Player data */
-<<<<<<< HEAD
 const static u16 player_species = SPECIES_GARDEVOIR;
 const static u16 player_move_1 = MOVE_GRASSY_TERRAIN;
 const static u16 player_move_2 = MOVE_PSYCHIC_TERRAIN;
 const static u16 player_move_3 = MOVE_ELECTRIC_TERRAIN;
 const static u16 player_move_4 = MOVE_MISTY_TERRAIN;
 const static u8 player_level = 60;
-=======
--const static u16 player_species = SPECIES_GARDEVOIR;
--const static u16 player_move_1 = MOVE_GRASSY_TERRAIN;
- -const static u16 player_move_2 = MOVE_PSYCHIC_TERRAIN;
- -const static u16 player_move_3 = MOVE_ELECTRIC_TERRAIN;
- -const static u16 player_move_4 = MOVE_MISTY_TERRAIN;
- -const static u8 player_level = 60;
->>>>>>> 5aa34cd877f9cf8bf4e31abf94ef9474d86af0fa
 
 /* Opponent data */
 const static u16 opponent_species = SPECIES_CHARMANDER;
