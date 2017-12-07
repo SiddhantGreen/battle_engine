@@ -60,7 +60,8 @@ void battle_set_order()
     // higher speed goes first. Exec before move callbacks in order.
     u16 m1 = 0;
     u16 m2 = 0;
-    if (player_speed > opponent_speed) {
+    bool speed_result = (battle_master->field_state.speed_inverse) ? (player_speed < opponent_speed) : (player_speed > opponent_speed);
+    if (speed_result) {
         battle_master->first_bank = PLAYER_SINGLES_BANK;
         battle_master->second_bank = OPPONENT_SINGLES_BANK;
         m1 = CURRENT_MOVE(PLAYER_SINGLES_BANK);

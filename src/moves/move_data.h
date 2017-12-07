@@ -121,6 +121,7 @@ extern u8 mimic_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 extern void beatup_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void beatup_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
