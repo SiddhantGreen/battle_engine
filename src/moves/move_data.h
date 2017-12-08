@@ -16,6 +16,7 @@ extern u8 ice_burn_before_move(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 razor_wind_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 bounce_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 gust_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -126,6 +127,7 @@ extern u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 extern u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 lucky_chant_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

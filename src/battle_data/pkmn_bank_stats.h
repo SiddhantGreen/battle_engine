@@ -48,23 +48,23 @@
 /*
  * Umodified battle sats
  */
-#define B_ATTACK_STAT_UMOD(bank) p_bank[bank]->b_data.attack_raw
-#define B_DEFENSE_STAT_UMOD(bank) p_bank[bank]->b_data.defense_raw
-#define B_SPEED_STAT_UMOD(bank) p_bank[bank]->b_data.speed_raw
-#define B_SPATTACK_STAT_UMOD(bank) p_bank[bank]->b_data.sp_atk_raw
-#define B_SPDEFENSE_STAT_UMOD(bank) p_bank[bank]->b_data.sp_def_raw
+#define B_ATTACK_STAT_UMOD(bank) (p_bank[bank]->b_data.attack_raw)
+#define B_DEFENSE_STAT_UMOD(bank) (p_bank[bank]->b_data.defense_raw)
+#define B_SPEED_STAT_UMOD(bank) (p_bank[bank]->b_data.speed_raw)
+#define B_SPATTACK_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_atk_raw)
+#define B_SPDEFENSE_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_def_raw)
 
 #define NUM_MOD(number, percent) ((number * percent) / 100)
 
 /*
  * P_bank b_data volatile macros
  */
-#define ADD_VOLATILE(bank, v) p_bank[bank]->b_data.v_status |= v
+#define ADD_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status |= v)
 // xor to flip bits
-#define REMOVE_VOLATILE(bank, v) p_bank[bank]->b_data.v_status ^= v
+#define REMOVE_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status ^= v)
 // clear the bit, even when not set.
-#define CLEAR_VOLATILE(bank, v) p_bank[bank]->b_data.v_status &= ~(v)
-#define HAS_VOLATILE(bank, v) p_bank[bank]->b_data.v_status & v
+#define CLEAR_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status &= ~(v))
+#define HAS_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status & v)
 
 /*
  * P_bank b_data set and fetch macros
