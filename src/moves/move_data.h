@@ -133,7 +133,7 @@ extern struct move_procs user_lower_spAtk_1;
 extern struct move_procs user_lower_spDef_1;
 extern struct move_procs user_lower_spd_1;
 extern struct move_procs user_lower_acc_1;
-
+extern struct move_procs dec_user_atk_def_procs;
 extern struct move_procs user_lower_atk_2;
 extern struct move_procs user_lower_def_2;
 extern struct move_procs user_lower_spAtk_2;
@@ -148,7 +148,7 @@ extern struct move_procs user_raise_spDef_1;
 extern struct move_procs user_raise_spd_1;
 extern struct move_procs user_raise_acc_1;
 extern struct move_procs user_raise_evn_1;
-
+extern struct move_procs inc_user_spa_3_procs;
 extern struct move_procs user_raise_atk_2;
 extern struct move_procs user_raise_def_2;
 extern struct move_procs user_raise_spAtk_2;
@@ -163,7 +163,7 @@ extern struct move_procs target_lower_spAtk_1;
 extern struct move_procs target_lower_spDef_1;
 extern struct move_procs target_lower_spd_1;
 extern struct move_procs target_lower_acc_1;
-
+struct move_procs dec_SpD_50_procs;
 extern struct move_procs target_lower_atk_2;
 extern struct move_procs target_lower_def_2;
 extern struct move_procs target_lower_def_50_procs;
@@ -222,4 +222,5 @@ extern struct move_procs poison_10_procs;
 extern struct move_proc target_lower_def_20_procs ;
 extern struct move_procs ancient_power_procs;
 extern struct move_procs burn_100_procs;
+extern struct move_procs flatter_procs;
 #endif /* MOVE_DATA_H_ */

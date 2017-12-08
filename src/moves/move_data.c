@@ -4065,7 +4065,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_DARK,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &flatter_procs,
     },
 
     {
@@ -4268,7 +4268,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &dec_user_atk_def_procs,
     },
 
     {
@@ -4503,8 +4503,8 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_BUG,
-    .m_flags = FLAG_SNATCH,
-    .procs = &user_raise_spAtk_2,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &inc_user_spa_3_procs,
     },
 
     {
@@ -4517,7 +4517,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &dec_SpD_50_procs,
     },
 
     {

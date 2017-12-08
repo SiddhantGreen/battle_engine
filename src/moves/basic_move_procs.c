@@ -1112,3 +1112,54 @@ struct move_procs burn_100_procs = {
    100,	
 };
 
+// Flatter
+struct move_procs flatter_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 100, 0, 0, 0, 0},
+    {0, 0, 0, -1, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_CONFUSION,
+    0,
+   100,	
+};
+
+// Decreases User's Attack and Defense
+struct move_procs dec_user_atk_def_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {100, 100, 0, 0, 0, 0, 0, 0},
+    {-1, -1, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Increases User's SpA by 3 stages 
+struct move_procs inc_user_spa_3_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 100, 0, 0, 0, 0},
+    {0, 0, 0, 3, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Decreases  50% SpD 
+struct move_procs dec_SpD_50_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 50, 0, 0, 0},
+    {0, 0, 0, 0, -1, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
