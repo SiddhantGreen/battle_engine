@@ -131,6 +131,8 @@ extern u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 miracle_eye_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 water_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 magnet_rise_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 telekinesis_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

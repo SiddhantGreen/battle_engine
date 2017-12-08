@@ -75,6 +75,10 @@ enum TypeBits {
 #define VOLATILE_BOUNCE (1 << 21)
 #define VOLATILE_SKYDROP (1 << 22)
 #define VOLATILE_MIRACLE_EYE (1 << 22)
+#define VOLATILE_MAGNET_RISE (1 << 23)
+#define VOLATILE_THOUSAND_ARROWS (1 << 25)
+#define VOLATILE_SMACK_DOWN (1 << 26)
+#define VOLATILE_TELEKINESIS (1 << 27)
 
 
 

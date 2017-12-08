@@ -29,7 +29,8 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 build_execution_order(CB_ON_EFFECTIVENESS);
                 battle_master->executing = true;
                 while (battle_master->executing) {
-                    set_data_next_acb(move_effectiveness);
+                    u32 data = ((attacker << 16) | move_effectiveness);
+                    set_data_next_acb(data);
                     u16 effectiveness_temp = pop_callback(target_type, move_type);
                     if (effectiveness_temp != 1) {
                         move_effectiveness = effectiveness_temp;

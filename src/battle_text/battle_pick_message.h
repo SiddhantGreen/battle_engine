@@ -149,6 +149,8 @@ enum battle_string_ids {
     STRING_FAILED_EXECUTION,
     STRING_IDENTIFIED,
     STRING_TYPE_WEAKEN,
+    STRING_MAGNETISM_LEV,
+    STRING_HURLED_AIR,
     STRINGS_TABLE_MAX,
 };
 
@@ -310,6 +312,8 @@ static const pchar str_grav_instense[] = _("Gravity intensified!");
 static const pchar str_exec_failed[] = _("{FOE}{ATTACKING_MON}’s move\n{ATTACK_NAME} failed due to {EFFECT_NAME}!");
 static const pchar str_was_identified[] = _("{FOE}{ATTACKING_MON} was identified!");
 static const pchar str_weaken_type[] = _("{PKMN_TYPE}’s power was weakened!");
+static const pchar str_lev_mag[] = _("{FOE}{ATTACKING_MON} levitated\nwith electromagnetism!");
+static const pchar str_teleken_hurled[] = _("{FOE}{ATTACKING_MON} was hurled\ninto the air!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -486,6 +490,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_exec_failed, // 146
    (pchar*)&str_was_identified, // 147
    (pchar*)&str_weaken_type, // 148
+   (pchar*)&str_lev_mag, // 149
+   (pchar*)&str_teleken_hurled, // 150
 
 
 };

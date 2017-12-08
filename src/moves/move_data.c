@@ -5773,10 +5773,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Magnet_Rise_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_SNATCH | FLAG_GRAVITY,
+    .m_flags = FLAG_SNATCH | FLAG_GRAVITY | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = magnet_rise_on_effect,
     },
 
     {
@@ -6879,6 +6880,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_GRAVITY | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = telekinesis_on_effect,
     },
 
     {

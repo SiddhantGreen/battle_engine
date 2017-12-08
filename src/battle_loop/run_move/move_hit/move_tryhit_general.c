@@ -16,6 +16,10 @@ bool try_hit(u8 attacker)
         enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_FAILED, 0);
         return false;
     }
+
+    // OHKO moves have their own accuracy checks
+    if (IS_OHKO(CURRENT_MOVE(attacker))) return true;
+
     // if moves never misses, exit early
     u8 move_accuracy = B_MOVE_ACCURACY(attacker);
     if (move_accuracy > 100)
