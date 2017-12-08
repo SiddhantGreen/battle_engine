@@ -124,6 +124,7 @@ extern u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callbac
 extern u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -219,7 +220,8 @@ extern struct move_procs target_burn_50;
 extern struct move_procs target_lower_def_1_30;
 extern struct move_procs user_raise_def_1_10;
 extern struct move_procs poison_10_procs;
-extern struct move_proc target_lower_def_20_procs ;
+extern struct move_procs target_lower_def_20_procs;
 extern struct move_procs ancient_power_procs;
 extern struct move_procs burn_100_procs;
+
 #endif /* MOVE_DATA_H_ */

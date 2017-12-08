@@ -3536,8 +3536,9 @@ struct move_data moves[] = {
     .pp = 25,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = safe_guard_on_effect,
     },
 
     {

@@ -103,6 +103,37 @@ u8 wonder_room_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback
 }
 
 
+/* Safe guard */
+bool safe_guard_on_status(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
+{
+    if ((status_id != EFFECT_CURE) && (status_id != EFFECT_NONE)) {
+        enqueue_message(MOVE_SAFEGUARD, user, STRING_AILMENT_IMMUNE, status_id);
+        return false;
+    }
+    return true;
+}
+
+u16 safe_guard_on_residual(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
+{
+    if (acb->in_use) {
+        enqueue_message(MOVE_SAFEGUARD, user, STRING_MOVE_ENDED, NULL);
+        acb->in_use = false;
+    }
+    return true;
+}
+
+u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)safe_guard_on_status)) return false;
+
+    add_callback(CB_ON_STATUS, 0, 5, src, (u32)safe_guard_on_status);
+    u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)safe_guard_on_residual);
+    CB_MASTER[id].delay_before_effect = 5;
+    enqueue_message(NULL, NULL, STRING_SAFE_GUARD_VEIL, NULL);
+    return true;
+}
+
 /* Mist */
 u8 mist_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
