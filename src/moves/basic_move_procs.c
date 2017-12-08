@@ -1112,4 +1112,3 @@ struct move_procs burn_100_procs = {
    100,	
 };
 
-};
