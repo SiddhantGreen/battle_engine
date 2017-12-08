@@ -3778,7 +3778,7 @@ struct move_data moves[] = {
     .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIGHTING,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_TARGET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT,
     .procs = &basic_proc,
     },
 
@@ -3831,7 +3831,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_DARK,
     .m_flags = FLAG_BITE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &target_lower_def_20_procs,
     },
 
     {
@@ -3886,7 +3886,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_ROCK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT,
-    .procs = &basic_proc,
+    .procs = &ancient_power_procs,
     },
 
     {
@@ -4076,7 +4076,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_FIRE,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &burn_100_procs,
     },
 
     {

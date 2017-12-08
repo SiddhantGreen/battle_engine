@@ -20,7 +20,6 @@ const static u16 opponent_move_4 = MOVE_NATURE_POWER;
 const static u8 opponent_level = 60;
 
 
-
 void set_side_battle_components(u8 side)
 {
 	struct Pokemon* p = (side) ? (&party_player[0]) : (&party_opponent[0]);

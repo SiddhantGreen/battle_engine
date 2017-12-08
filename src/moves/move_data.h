@@ -218,6 +218,7 @@ extern struct move_procs target_burn_50;
 extern struct move_procs target_lower_def_1_30;
 extern struct move_procs user_raise_def_1_10;
 extern struct move_procs poison_10_procs;
-
-
+extern struct move_proc target_lower_def_20_procs ;
+extern struct move_procs ancient_power_procs;
+extern struct move_procs burn_100_procs;
 #endif /* MOVE_DATA_H_ */
