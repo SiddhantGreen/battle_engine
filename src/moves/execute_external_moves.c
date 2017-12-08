@@ -96,7 +96,7 @@ u8 sleep_talk_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
 	if (user != src) return true;
     if ((B_STATUS(user) == AILMENT_SLEEP) || (BANK_ABILITY(user) == ABILITY_COMATOSE)) {
-        REMOVE_VOLATILE(user, VOLATILE_SLEEP_TURN);
+        CLEAR_VOLATILE(user, VOLATILE_SLEEP_TURN);
         enqueue_message(0, user, STRING_FAST_ASLEEP, 0);
     }
 	// don't fail here, fail after posting "Used move" string

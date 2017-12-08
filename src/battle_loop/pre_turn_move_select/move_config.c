@@ -65,7 +65,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
     battle_master->b_moves[index].ignore_abilities = false;
     battle_master->b_moves[index].prankstered = HAS_VOLATILE(bank, VOLATILE_PRANKSTERED);
     battle_master->b_moves[index].heal = moves[move_id].heal;
-    REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
+    CLEAR_VOLATILE(bank, VOLATILE_PRANKSTERED);
     battle_master->b_moves[index].infiltrates = false;
     if (moves[move_id].multi_hit[0]) {
         u8 hit_times = 0;

@@ -16,7 +16,7 @@ u8 thrash_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if ((p_bank[user]->b_data.skip_move_select) && (p_bank[user]->b_data.move_lock_counter < 1)) {
         p_bank[user]->b_data.skip_move_select = false;
         p_bank[user]->b_data.move_lock_counter = 0;
-        REMOVE_VOLATILE(user, VOLATILE_MULTI_TURN);
+        CLEAR_VOLATILE(user, VOLATILE_MULTI_TURN);
     } else if (p_bank[user]->b_data.skip_move_select) {
         p_bank[user]->b_data.move_lock_counter--;
     } else {
@@ -53,7 +53,7 @@ u8 rollout_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	if ((p_bank[user]->b_data.skip_move_select) && (p_bank[user]->b_data.move_lock_counter < 1)) {
 		p_bank[user]->b_data.skip_move_select = false;
         p_bank[user]->b_data.move_lock_counter = 0;
-        REMOVE_VOLATILE(user, VOLATILE_MULTI_TURN);
+        CLEAR_VOLATILE(user, VOLATILE_MULTI_TURN);
 	} else if (p_bank[user]->b_data.skip_move_select) {
 		p_bank[user]->b_data.move_lock_counter--;
 	} else {

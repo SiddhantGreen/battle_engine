@@ -23,6 +23,7 @@ u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
             return i;
         }
     }
+    dprintf("WARNING, CALLBACKS ARRAY FULL ADDING CALLBACK %x!\n", func);
     return ANON_CB_MAX;
 }
 

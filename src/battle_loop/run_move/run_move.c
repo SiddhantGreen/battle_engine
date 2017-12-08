@@ -105,7 +105,7 @@ void run_move()
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_CONFUSE_TURN)) {
 				return;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN)) {
-                REMOVE_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
+                CLEAR_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
                 return;
             } else if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
                 return;

@@ -7,6 +7,10 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
+extern bool has_volatile(u8 bank, enum Volatiles v);
+extern void clear_volatile(u8 bank, enum Volatiles v);
+extern void add_volatile(u8 bank, enum Volatiles v);
+
 /*
  * Names of stats as IDs in stage_modify_stat
  */
@@ -59,12 +63,10 @@
 /*
  * P_bank b_data volatile macros
  */
-#define ADD_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status |= v)
-// xor to flip bits
-#define REMOVE_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status ^= v)
+#define ADD_VOLATILE(bank, v) (add_volatile(bank, v))
 // clear the bit, even when not set.
-#define CLEAR_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status &= ~(v))
-#define HAS_VOLATILE(bank, v) (p_bank[bank]->b_data.v_status & v)
+#define CLEAR_VOLATILE(bank, v) (clear_volatile(bank, v))
+#define HAS_VOLATILE(bank, v) (has_volatile(bank, v))
 
 /*
  * P_bank b_data set and fetch macros

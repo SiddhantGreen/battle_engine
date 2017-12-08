@@ -27,11 +27,11 @@ void run_decision(void)
     switch (super.multi_purpose_state_tracker) {
        case S_RUN_SWITCH:
             set_callback1(run_switch);
-            super.multi_purpose_state_tracker = 0;
+            super.multi_purpose_state_tracker = S_CHECK_FLEEING;
             break;
         case S_RUN_AFTER_SWITCH:
             set_callback1(run_after_switch);
-            super.multi_purpose_state_tracker = 0;
+            super.multi_purpose_state_tracker = S_RUN_FLEE;
             break;
         case S_RUN_SWITCH_ALTERNATE_BANK:
         {
@@ -39,10 +39,10 @@ void run_decision(void)
             if (bank_index == battle_master->second_bank) {
                 // if second bank run, switch back to first bank and go to next phase
                 battle_master->execution_index = 0;
-                super.multi_purpose_state_tracker++;
+                super.multi_purpose_state_tracker = S_RUN_MOVE;
             } else {
                 battle_master->execution_index = 1;
-                super.multi_purpose_state_tracker = 0;
+                super.multi_purpose_state_tracker = S_RUN_SWITCH;
             }
             break;
         }
@@ -51,25 +51,28 @@ void run_decision(void)
                 super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
             } else {
                 set_callback1(run_move);
-                super.multi_purpose_state_tracker = 0;
+                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
             }
             break;
         case S_RUN_MOVE_ALTERNATE_BANK:
             // run move for second bank after first bank is run.
             if (bank_index == battle_master->second_bank) {
                 battle_master->execution_index = 0;
-                super.multi_purpose_state_tracker++;
+                super.multi_purpose_state_tracker = S_UPDATE_TURN_CALLBACKS;
             } else {
                 battle_master->execution_index = 1;
-                super.multi_purpose_state_tracker = 3;
+                super.multi_purpose_state_tracker = S_RUN_MOVE;
             }
+            break;
+        case S_UPDATE_TURN_CALLBACKS:
+            update_callbacks();
+            super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
             break;
         case S_SOFT_RESET_BANK:
         {
             // reset turn based bits
             p_bank[PLAYER_SINGLES_BANK]->b_data.first_turn = false;
             p_bank[OPPONENT_SINGLES_BANK]->b_data.first_turn = false;
-            update_callbacks();
             reset_turn_bits(battle_master->first_bank);
             reset_turn_bits(battle_master->second_bank);
             set_callback1(option_selection);

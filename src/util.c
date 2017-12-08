@@ -146,6 +146,12 @@ bool move_is_usabled(u8 bank, u16 move)
     if (HAS_VOLATILE(bank, VOLATILE_GRAVITY) && IS_GRAVITY(move)) {
         return false;
     }
+
+    // unusable under healblock
+    if (HAS_VOLATILE(bank, VOLATILE_HEAL_BLOCK) && IS_HEAL(move)) {
+        return false;
+    }
+    
     // unusable before lack of PP or move Null
     u8 index = get_move_index(move, bank);
     if ((move == 0) || (B_GET_MOVE_PP(bank, index) == 0)) {

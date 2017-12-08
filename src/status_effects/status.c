@@ -192,12 +192,12 @@ void confusion_on_before_move(u8 bank)
 			u16 dmg = get_damage(bank, bank, CURRENT_MOVE(bank));
 			do_damage(bank, MAX(1, dmg));
 		} else {
-			REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN); // don't skip turn
+			CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN); // don't skip turn
 		}
 	} else {
 		p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
 		enqueue_message(0, bank, STRING_SNAPPED_OUT, 0);
-		REMOVE_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+		CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
 	}
 }
 

@@ -57,3 +57,37 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
     CB_EXEC_INDEX = old_index;
     return stat_total;
 }
+
+
+bool has_volatile(u8 bank, enum Volatiles v)
+{
+    u32* byte_index = &(p_bank[bank]->b_data.v_status);
+    u8 shift_amount = (u8)v;
+    if (shift_amount > 31) {
+        byte_index++;
+        shift_amount -= 32;
+    }
+    return (1 & ((*byte_index) >> shift_amount));
+}
+
+void clear_volatile(u8 bank, enum Volatiles v)
+{
+    u32* byte_index = &(p_bank[bank]->b_data.v_status);
+    u8 shift_amount = (u8)v;
+    if (shift_amount > 31) {
+        byte_index++;
+        shift_amount -= 32;
+    }
+    *byte_index &= ~(1 << shift_amount);
+}
+
+void add_volatile(u8 bank, enum Volatiles v)
+{
+    u32* byte_index = &(p_bank[bank]->b_data.v_status);
+    u8 shift_amount = (u8)v;
+    if (shift_amount > 31) {
+        byte_index++;
+        shift_amount -= 32;
+    }
+    *byte_index |= (1 << shift_amount);
+}
