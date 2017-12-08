@@ -21,8 +21,10 @@ void init_battle_elements()
 {
     // allocate battle specific resources
     setup();
-    for(u8 i = 0; i < 4; i++) {
-        p_bank[i] = malloc_and_clear(sizeof(struct pkmn_bank));
+    void* p_bank_data = malloc_and_clear(sizeof(struct pkmn_bank) * 4);
+    for(u8 i = 0; i < BANK_MAX; i++) {
+        p_bank[i] = (struct pkmn_bank*)(p_bank_data + (sizeof(struct pkmn_bank) * i));
+        dprintf("Bank %d allocated to %x\n", i, (u32)(p_bank_data + (sizeof(struct pkmn_bank) * i)));
         for(u8 j = 0; j < 4; j++) {
             p_bank[i]->objid_hpbox[j] = 0x3F;
         }
@@ -30,7 +32,9 @@ void init_battle_elements()
     }
     //p_bank = (struct pkmn_bank(*)[4])malloc_and_clear(sizeof(struct pkmn_bank) * 4);
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
+    dprintf("windows allocated to %x\n", (u32)bs_env_windows);
     battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
+    dprintf("battle master allocated to %x\n", battle_master);
     for(u8 i = 0; i < 10; ++i) {
         battle_master->switch_main.type_objid[i] = 0x3F;
     }
