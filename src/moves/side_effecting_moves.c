@@ -35,6 +35,7 @@ u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     return true;
 }
 
+
 /* Trick room */
 u8 trick_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -45,7 +46,6 @@ u8 trick_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
     }
     return true;
 }
-
 
 u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -134,6 +134,7 @@ u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     return true;
 }
 
+
 /* Lucky Chant */
 u16 lucky_chant_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -169,7 +170,6 @@ bool gravity_on_disabled_move(u8 user, u8 src, u16 move, struct anonymous_callba
 {
     return (!IS_GRAVITY(move));
 }
-
 
 u16 gravity_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
 {
@@ -262,3 +262,41 @@ u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(MOVE_MIST, user, STRING_PROTECTED_TEAM, NULL);
     return true;
 }
+
+
+/* Mud sport */
+void mud_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (B_MOVE_HAS_TYPE(user, MTYPE_ELECTRIC)) {
+        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+    }
+}
+
+u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)mud_sport_on_base_power)) return false;
+    add_callback(CB_ON_BASE_POWER_MOVE, 1, 5, src, (u32)mud_sport_on_base_power);
+    enqueue_message(MTYPE_ELECTRIC, user, STRING_TYPE_WEAKEN, MTYPE_ELECTRIC);
+    return true;
+}
+
+
+/* Water sport */
+void water_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
+        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+    }
+}
+
+u8 water_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)water_sport_on_base_power)) return false;
+    add_callback(CB_ON_BASE_POWER_MOVE, 1, 5, src, (u32)water_sport_on_base_power);
+    enqueue_message(MTYPE_ELECTRIC, user, STRING_TYPE_WEAKEN, MTYPE_ELECTRIC);
+    return true;
+}
+
+/* Perish Song */

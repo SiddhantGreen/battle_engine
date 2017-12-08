@@ -147,6 +147,8 @@ enum battle_string_ids {
     STRING_SHIELDED_CRITS,
     STRING_GRAVITY_INTENSE,
     STRING_FAILED_EXECUTION,
+    STRING_IDENTIFIED,
+    STRING_TYPE_WEAKEN,
     STRINGS_TABLE_MAX,
 };
 
@@ -301,11 +303,13 @@ static const pchar str_tailwind_behind[] = _("The tailwind blew from\nbehind {TH
 static const pchar str_tailwind_peter[] = _("{FOE}Tailwind petered out!");
 static const pchar str_twisted_dim[] = _("{FOE}{ATTACKING_MON} twisted\nthe dimensions!");
 static const pchar str_twisted_dim_n[] = _("The twisted dimensions\nreturned to normal!");
-static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\nare swapped!");
+static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\lare swapped!");
 static const pchar str_safe_guard_v[] = _("{FOE}{ATTACKING_MON}’s team became\ncloaked in a mystical veil!");
 static const pchar str_shield_team_crit[] = _("The {ATTACK_NAME} shielded {THE_FOE}\nteam from critical hits!");
 static const pchar str_grav_instense[] = _("Gravity intensified!");
 static const pchar str_exec_failed[] = _("{FOE}{ATTACKING_MON}’s move\n{ATTACK_NAME} failed due to {EFFECT_NAME}!");
+static const pchar str_was_identified[] = _("{FOE}{ATTACKING_MON} was identified!");
+static const pchar str_weaken_type[] = _("{PKMN_TYPE}’s power was weakened!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -480,6 +484,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_shield_team_crit, // 144
    (pchar*)&str_grav_instense, // 145
    (pchar*)&str_exec_failed, // 146
+   (pchar*)&str_was_identified, // 147
+   (pchar*)&str_weaken_type, // 148
 
 
 };

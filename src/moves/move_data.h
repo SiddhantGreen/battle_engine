@@ -128,6 +128,9 @@ extern u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 lucky_chant_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 miracle_eye_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 water_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

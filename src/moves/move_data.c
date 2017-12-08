@@ -4578,10 +4578,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Mud_Sport_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = mud_sport_on_effect,
     },
 
     {
@@ -5176,10 +5177,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Water_Sport_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = water_sport_on_effect,
     },
 
     {
@@ -5322,6 +5324,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = miracle_eye_effect,
     },
 
     {
