@@ -151,6 +151,7 @@ enum battle_string_ids {
     STRING_TYPE_WEAKEN,
     STRING_MAGNETISM_LEV,
     STRING_HURLED_AIR,
+    STRING_HEAL_PREVENT,
     STRINGS_TABLE_MAX,
 };
 
@@ -314,6 +315,7 @@ static const pchar str_was_identified[] = _("{FOE}{ATTACKING_MON} was identified
 static const pchar str_weaken_type[] = _("{PKMN_TYPE}’s power was weakened!");
 static const pchar str_lev_mag[] = _("{FOE}{ATTACKING_MON} levitated\nwith electromagnetism!");
 static const pchar str_teleken_hurled[] = _("{FOE}{ATTACKING_MON} was hurled\ninto the air!");
+static const pchar str_heal_b[] = _("{FOE}{ATTACKING_MON} was prevented\nfrom healing!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -492,6 +494,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_weaken_type, // 148
    (pchar*)&str_lev_mag, // 149
    (pchar*)&str_teleken_hurled, // 150
+   (pchar*)&str_heal_b, // 151
 
 
 };

@@ -5576,8 +5576,9 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = heal_block_on_effect,
     },
 
     {

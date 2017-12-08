@@ -17,6 +17,12 @@ bool try_hit(u8 attacker)
         return false;
     }
 
+    // if move fails under heal block, fail
+    if (HAS_VOLATILE(attacker, VOLATILE_HEAL_BLOCK) && IS_HEAL(CURRENT_MOVE(attacker))) {
+        enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_FAILED, 0);
+        return false;
+    }
+
     // OHKO moves have their own accuracy checks
     if (IS_OHKO(CURRENT_MOVE(attacker))) return true;
 

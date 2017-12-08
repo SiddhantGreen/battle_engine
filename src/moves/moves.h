@@ -70,6 +70,7 @@ struct move_procs {
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
 #define IS_DEFROST(move) ((moves[move].m_flags) & (1 << 4))
 #define IS_GRAVITY(move) ((moves[move].m_flags) & (1 << 5))
+#define IS_HEAL(move) ((moves[move].m_flags) & (1 << 6))
 #define IS_PROTECTABLE(move) ((moves[move].m_flags) & (1 << 9))
 #define IS_REFLECTABLE(move) ((moves[move].m_flags) & (1 << 12))
 #define IS_SNATCHABLE(move) ((moves[move].m_flags) & (1 << 13))
