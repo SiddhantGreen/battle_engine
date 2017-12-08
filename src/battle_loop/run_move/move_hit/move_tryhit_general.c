@@ -11,6 +11,11 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 
 bool try_hit(u8 attacker)
 {
+    // if move fails under gravity, fail
+    if (HAS_VOLATILE(attacker, VOLATILE_GRAVITY) && IS_GRAVITY(CURRENT_MOVE(attacker))) {
+        enqueue_message(CURRENT_MOVE(attacker), attacker, STRING_FAILED, 0);
+        return false;
+    }
     // if moves never misses, exit early
     u8 move_accuracy = B_MOVE_ACCURACY(attacker);
     if (move_accuracy > 100)
