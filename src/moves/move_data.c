@@ -3536,8 +3536,9 @@ struct move_data moves[] = {
     .pp = 25,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = safe_guard_on_effect,
     },
 
     {
@@ -5616,10 +5617,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Lucky_Chant_desc,
     .pp = 30,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = lucky_chant_on_effect,
     },
 
     {
