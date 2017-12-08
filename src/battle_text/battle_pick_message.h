@@ -144,6 +144,7 @@ enum battle_string_ids {
     STRING_TWISTED_DIM_NORM,
     STRING_WONDER_AREA,
     STRING_SAFE_GUARD_VEIL,
+    STRING_SHIELDED_CRITS,
     STRINGS_TABLE_MAX,
 };
 
@@ -300,6 +301,7 @@ static const pchar str_twisted_dim[] = _("{FOE}{ATTACKING_MON} twisted\nthe dime
 static const pchar str_twisted_dim_n[] = _("The twisted dimensions\nreturned to normal!");
 static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\nare swapped!");
 static const pchar str_safe_guard_v[] = _("{FOE}{ATTACKING_MON}’s team became\ncloaked in a mystical veil!");
+static const pchar str_shield_team_crit[] = _("The {ATTACK_NAME} shielded {THE_FOE}\nteam from critical hits!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -471,6 +473,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_twisted_dim_n, // 141
    (pchar*)&str_wonder_area, // 142
    (pchar*)&str_safe_guard_v, // 143
+   (pchar*)&str_shield_team_crit, // 144
 
 
 };
