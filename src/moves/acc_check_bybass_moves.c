@@ -6,6 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
+/* Miracle eye */
 u16 miracle_eye_on_effectiveness(u8 target_type, u8 defender, u16 move_type, struct anonymous_callback* acb)
 {
     u8 user = (u8)(acb->data_ptr >> 16);
@@ -45,3 +46,10 @@ u8 miracle_eye_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(MOVE_MIRACLE_EYE, TARGET_OF(user), STRING_IDENTIFIED, NULL);
     return true;
 }
+
+
+/* Odor Sleuth */
+
+/* Foresight */
+
+/* Mind Reader */
