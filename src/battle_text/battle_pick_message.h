@@ -142,6 +142,7 @@ enum battle_string_ids {
     STRING_TAILWIND_PETER,
     STRING_TWISTED_DIM,
     STRING_TWISTED_DIM_NORM,
+    STRING_WONDER_AREA,
     STRINGS_TABLE_MAX,
 };
 
@@ -296,6 +297,7 @@ static const pchar str_tailwind_behind[] = _("The tailwind blew from\nbehind {TH
 static const pchar str_tailwind_peter[] = _("{FOE}Tailwind petered out!");
 static const pchar str_twisted_dim[] = _("{FOE}{ATTACKING_MON} twisted\nthe dimensions!");
 static const pchar str_twisted_dim_n[] = _("The twisted dimensions\nreturned to normal!");
+static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\nare swapped!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -465,6 +467,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_tailwind_peter, // 139
    (pchar*)&str_twisted_dim, // 140
    (pchar*)&str_twisted_dim_n, // 141
+   (pchar*)&str_wonder_area, // 142
 
 
 };

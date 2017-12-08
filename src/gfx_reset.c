@@ -100,8 +100,8 @@ void reset_boxes()
 
 
 void setup()
-{
     // callbacks
+    {
     handlers_clear();
     // BGs
     reset_bg_settings();
@@ -113,6 +113,7 @@ void setup()
     // VRAM clear
     memset((void *)(ADDR_VRAM), 0x0, 0x10000);
     // tasks
+    malloc_init((void*)0x2000000, 0x1C000);
     tasks_init();
     // textboxes
 }

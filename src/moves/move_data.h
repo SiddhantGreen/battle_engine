@@ -123,6 +123,7 @@ extern void beatup_on_base_power(u8 user, u8 src, u16 move, struct anonymous_cal
 extern u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

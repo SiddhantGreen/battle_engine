@@ -177,7 +177,7 @@ struct pkmn_bank {
     struct local_battler_data b_data;
 };
 
-extern struct pkmn_bank *p_bank[BANK_MAX];
+extern struct pkmn_bank* p_bank[BANK_MAX];
 extern const pchar pkmn_type_names[MTYPES_MAX][13];
 extern u8 effectiveness_chart[342];
 
