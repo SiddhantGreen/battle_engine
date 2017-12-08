@@ -29,6 +29,8 @@
 #define CB_ON_WEATHER_DMG 15
 #define CB_ON_EFFECTIVENESS 16
 #define CB_ON_STATUS 17
+#define CB_ON_BEFORE_STAT_MOD 18
+
 
 
 

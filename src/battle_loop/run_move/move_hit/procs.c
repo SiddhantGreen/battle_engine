@@ -10,18 +10,13 @@
 extern u16 rand_range(u16, u16);
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern struct move_procs basic_proc;
 
 void stat_boost(u8 bank, u8 stat_id, s8 amount)
 {
     if (!amount)
         return;
-    if (ABILITIES_MAX > BANK_ABILITY(bank)) {
-        if (abilities_table[BANK_ABILITY(bank)]->on_boost) {
-            if (abilities_table[BANK_ABILITY(bank)]->on_boost(bank, amount, stat_id))
-                return;
-        }
-    }
-
+    s8 new_amount = amount;
     s8* stat_stored;
     switch (stat_id + 1) {
         case STAT_ATTACK:
@@ -68,13 +63,13 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             return;
     };
 
-    s8 stat_total = *stat_stored + amount;
+    s8 stat_total = *stat_stored + new_amount;
     stat_total = MIN(6, stat_total);
     stat_total = MAX(-6, stat_total);
     switch ((ABS(stat_total - (*stat_stored)))) {
         case 0:
            // stat didn't change - string can't go up/down anymore
-            if (amount > 0) {
+            if (new_amount > 0) {
                 enqueue_message(0, bank, STRING_STAT_MOD_CANT_GO_HIGHER, stat_id + REQUEST_ATK);
             } else {
                 enqueue_message(0, bank, STRING_STAT_MOD_CANT_GO_LOWER, stat_id + REQUEST_ATK);
@@ -82,8 +77,8 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             break;
         case 1:
             // stat changed by 1 stage
-            *stat_stored += (amount > 0) ? 1 : -1;
-            if (amount > 0) {
+            *stat_stored += (new_amount > 0) ? 1 : -1;
+            if (new_amount > 0) {
                 enqueue_message(0, bank, STRING_STAT_MOD_RISE, stat_id + REQUEST_ATK);
             } else {
                 enqueue_message(0, bank, STRING_STAT_MOD_DROP, stat_id + REQUEST_ATK);
@@ -91,8 +86,8 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             break;
         case 2:
             // stat changed by 2 stages
-            *stat_stored += (amount > 0) ? 2 : -2;
-            if (amount > 0) {
+            *stat_stored += (new_amount > 0) ? 2 : -2;
+            if (new_amount > 0) {
                 enqueue_message(0, bank, STRING_STAT_MOD_HARSH_RISE, stat_id + REQUEST_ATK);
             } else {
                 enqueue_message(0, bank, STRING_STAT_MOD_HARSH_DROP, stat_id + REQUEST_ATK);
@@ -100,8 +95,8 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
             break;
         case 3:
             // stat changed by 3 stages
-            *stat_stored += (amount > 0) ? 3 : -3;
-            if (amount > 0) {
+            *stat_stored += (new_amount > 0) ? 3 : -3;
+            if (new_amount > 0) {
                 enqueue_message(0, bank, STRING_STAT_MOD_ROSE_DRASTICALLY, stat_id + REQUEST_ATK);
             } else {
                 enqueue_message(0, bank, STRING_STAT_MOD_SEVERELY_FELL, stat_id + REQUEST_ATK);
@@ -112,28 +107,36 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
 
 void move_procs_perform(u8 bank_index, u16 move)
 {
-	if (moves[move].procs) {
+    // back up cbs
+    u32* old_execution_array = push_callbacks();
+    u8 old_index = CB_EXEC_INDEX;
+    // Stat modifying callbacks
+    build_execution_order(CB_ON_BEFORE_STAT_MOD);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        pop_callback(bank_index, NULL);
+    }
+    restore_callbacks(old_execution_array);
+    CB_EXEC_INDEX = old_index;
 
-		/* first step is to apply user boosts */
-		for (u8 i = 0; i < 8; i++) {
-			if (B_USER_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
-				stat_boost(bank_index, i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
-				B_USER_STAT_MOD_CHANCE(bank_index, i) = 0;
-                return;
-			}
+	/* first step is to apply user boosts */
+	for (u8 i = 0; i < 8; i++) {
+		if (B_USER_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
+			stat_boost(bank_index, i, B_USER_STAT_MOD_AMOUNT(bank_index, i));
+			B_USER_STAT_MOD_CHANCE(bank_index, i) = 0;
+            return;
 		}
-
-		/* second step is to apply target boosts */
-		for (u8 i = 0; i < 8; i++) {
-			if (B_TARGET_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
-				stat_boost(TARGET_OF(bank_index), i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
-				B_TARGET_STAT_MOD_CHANCE(bank_index, i) = 0;
-                return;
-			}
-		}
-        super.multi_purpose_state_tracker = S_SECONDARY_ROLL_AILMENTS;
 	}
-	super.multi_purpose_state_tracker = S_SECONDARY_ROLL_AILMENTS;
+
+	/* second step is to apply target boosts */
+	for (u8 i = 0; i < 8; i++) {
+		if (B_TARGET_STAT_MOD_CHANCE(bank_index, i) >= rand_range(0, 100)) {
+			stat_boost(TARGET_OF(bank_index), i, B_TARGET_STAT_MOD_AMOUNT(bank_index, i));
+			B_TARGET_STAT_MOD_CHANCE(bank_index, i) = 0;
+            return;
+		}
+	}
+    super.multi_purpose_state_tracker = S_SECONDARY_ROLL_AILMENTS;
 }
 
 
