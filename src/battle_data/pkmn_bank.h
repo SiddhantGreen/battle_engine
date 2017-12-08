@@ -74,6 +74,7 @@ enum TypeBits {
 #define VOLATILE_GRAVITY (1 << 20)
 #define VOLATILE_BOUNCE (1 << 21)
 #define VOLATILE_SKYDROP (1 << 22)
+#define VOLATILE_MIRACLE_EYE (1 << 22)
 
 
 
