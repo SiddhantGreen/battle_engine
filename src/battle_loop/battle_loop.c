@@ -16,6 +16,7 @@ extern void on_faint(void);
 extern void run_switch(void);
 extern void sync_battler_struct(u8 bank);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern u8 count_usable_moves(u8 bank);
 
 void run_decision(void)
 {
@@ -95,26 +96,50 @@ extern u8 get_move_index(u16 move_id, u8 bank);
 void battle_loop()
 {
     extern void battle_set_order(void);
-	// check if Player picked a move with PP
+    /* TODO Un-hard code this */
+	// if player is not running, get picked move
 	if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running == false) {
 		u16 move_player = pick_player_attack();
-		if (move_pp_count(move_player, PLAYER_SINGLES_BANK) < 1) {
-			enqueue_message(0, 0, STRING_NO_PP, 0);
-			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
-			set_callback1(run_decision);
-			return;
-		}
+        // make sure picked move has PP
+        if (count_usable_moves(PLAYER_SINGLES_BANK) > 0) {
+    		if (move_pp_count(move_player, PLAYER_SINGLES_BANK) < 1) {
+    			enqueue_message(0, 0, STRING_NO_PP, 0);
+                // prompt move lacks PP and continue
+    			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
+    			set_callback1(run_decision);
+    			return;
+    		}
 
-		// check if Player is trying to use a disabled move
-		u8 index = get_move_index(move_player, PLAYER_SINGLES_BANK);
-		if (p_bank[PLAYER_SINGLES_BANK]->b_data.disabled_moves[index] > 0) {
-			enqueue_message(0, 0, STRING_DISABLED_PICKED, 0);
-			p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select = false;
-			p_bank[PLAYER_SINGLES_BANK]->b_data.move_lock_counter = 0;
-			super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
-			set_callback1(run_decision);
-			return;
-		}
+            // check if Player is trying to use a disabled move
+            u8 index = get_move_index(move_player, PLAYER_SINGLES_BANK);
+            if (p_bank[PLAYER_SINGLES_BANK]->b_data.disabled_moves[index] > 0) {
+                enqueue_message(0, 0, STRING_DISABLED_PICKED, 0);
+                p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select = false;
+                p_bank[PLAYER_SINGLES_BANK]->b_data.move_lock_counter = 0;
+                super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
+                set_callback1(run_decision);
+                return;
+            }
+
+            // callbacks for external move disables
+            build_execution_order(CB_ON_DISABLE_MOVE);
+            battle_master->executing = true;
+            while (battle_master->executing) {
+                if (!pop_callback(PLAYER_SINGLES_BANK, move_player)) {
+                    enqueue_message(0, 0, STRING_DISABLED_PICKED, 0);
+                    p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select = false;
+                    p_bank[PLAYER_SINGLES_BANK]->b_data.move_lock_counter = 0;
+                    super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
+                    set_callback1(run_decision);
+                    return;
+                }
+            }
+        } else {
+            // use struggle instead
+            CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_STRUGGLE;
+        }
+
+
 	}
 	// A usable move was picked
 	battle_set_order();

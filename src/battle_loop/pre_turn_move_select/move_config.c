@@ -10,6 +10,7 @@ extern u16 rand_range(u16 min, u16 max);
 extern void dprintf(const char * str, ...);
 extern u8 count_usable_moves(u8 bank);
 extern u8 count_total_moves(u8 bank);
+extern bool move_is_usabled(u8 bank, u16 move);
 
 u16 pick_player_attack()
 {
@@ -37,7 +38,7 @@ u16 pick_opponent_attack()
     }
     while (true) {
         u8 rand_index = rand_range(0, move_total);
-        if (B_GET_MOVE_PP(OPPONENT_SINGLES_BANK, rand_index) > 0)
+        if (move_is_usabled(OPPONENT_SINGLES_BANK, B_GET_MOVE(OPPONENT_SINGLES_BANK, rand_index)))
             return B_GET_MOVE(OPPONENT_SINGLES_BANK, rand_index);
     }
     return 0;
