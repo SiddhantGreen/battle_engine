@@ -1407,10 +1407,11 @@ struct move_data moves[] = {
 	.accuracy = 101,
     .description = (pchar*)Mist_desc,
     .pp = 30,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ICE,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mist_on_effect,
     },
 
     {
