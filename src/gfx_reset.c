@@ -23,7 +23,7 @@ void vblank_cb_merge_move_select()
 {
     gpu_sprites_upload();
     copy_queue_process();
-    gpu_pal_upload(); 
+    gpu_pal_upload();
     u16 i;
     u8 **bg0_map = (u8**)0x030008EC;
     u8 *dst = (u8 *)(*bg0_map);
@@ -49,8 +49,8 @@ void c2_battle()
     obj_sync_superstate();
     objc_exec();
     process_palfade();
-    task_exec();    
-    tilemaps_sync();
+    task_exec();
+    //tilemaps_sync();
     // merge textbox and text tile maps
     remoboxes_upload_tilesets();
 }

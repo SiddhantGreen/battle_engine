@@ -65,3 +65,30 @@ u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     battle_master->field_state.speed_inverse = true;
     return true;
 }
+
+
+/* Mist */
+u8 mist_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if ((SIDE_OF(TARGET_OF(user)) != SIDE_OF(src)) || (user == src)) return true;
+    bool dropped = false;
+    for (u8 i = 0; i < 8; i++) {
+        // drop boosts
+        if (B_TARGET_STAT_MOD_CHANCE(user, i)) {
+            dropped = true;
+            B_TARGET_STAT_MOD_CHANCE(user, i) = 0;
+        }
+	}
+    if (dropped)
+        enqueue_message(MOVE_MIST, TARGET_OF(user), STRING_PROTECTED_MON, NULL);
+        enqueue_message(NULL, TARGET_OF(user), STRING_MOVE_IMMUNE, NULL);
+    return true;
+}
+
+u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    add_callback(CB_ON_BEFORE_STAT_MOD, 0, 5, user, (u32)mist_on_before_stat_mod);
+    enqueue_message(MOVE_MIST, user, STRING_PROTECTED_TEAM, NULL);
+    return true;
+}

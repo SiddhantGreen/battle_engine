@@ -20,6 +20,7 @@ extern void update_pbank(u8 bank, struct update_flags* flags);
 void init_battle_elements()
 {
     // allocate battle specific resources
+    setup();
     for(u8 i = 0; i < 4; i++) {
         p_bank[i] = malloc_and_clear(sizeof(struct pkmn_bank));
         for(u8 j = 0; j < 4; j++) {
@@ -33,7 +34,7 @@ void init_battle_elements()
     for(u8 i = 0; i < 10; ++i) {
         battle_master->switch_main.type_objid[i] = 0x3F;
     }
-    setup();
+
     help_system_disable__sp198();
     super.multi_purpose_state_tracker = 0;
     set_callback1((SuperCallback)battle_slidein);
