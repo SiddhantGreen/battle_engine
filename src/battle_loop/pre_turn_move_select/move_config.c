@@ -91,7 +91,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
         battle_master->b_moves[index].hit_times = hit_times - 1;
         battle_master->b_moves[index].hit_counter = 1;
     }
-	battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
+   battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
 }
 
 void reset_turn_bits(u8 bank)
