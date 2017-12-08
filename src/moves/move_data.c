@@ -6804,10 +6804,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Wonder_Room_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = wonder_room_on_effect,
     },
 
     {

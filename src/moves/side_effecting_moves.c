@@ -67,6 +67,42 @@ u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 }
 
 
+/* Wonder room */
+u8 wonder_room_on_residual(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if ((acb->duration == 0) && (acb->in_use)) {
+        enqueue_message(NULL, user, STRING_TWISTED_DIM_NORM, NULL);
+        acb->in_use = false;
+        // take defense and spdef and swap them
+        for (u8 i = 0; i < BANK_MAX; i++) {
+            u16 temp = p_bank[i]->b_data.defense_raw;
+            p_bank[i]->b_data.defense_raw = p_bank[i]->b_data.sp_def_raw;
+            p_bank[i]->b_data.sp_def_raw = temp;
+        }
+    }
+    return true;
+}
+
+u8 wonder_room_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)wonder_room_on_residual)) {
+        delete_callback((u32)wonder_room_on_residual);
+        enqueue_message(NULL, user, STRING_TWISTED_DIM_NORM, NULL);
+    } else {
+        enqueue_message(NULL, user, STRING_WONDER_AREA, NULL);
+        u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)wonder_room_on_residual);
+        CB_MASTER[id].delay_before_effect = 5;
+    }
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u16 temp = p_bank[i]->b_data.defense_raw;
+        p_bank[i]->b_data.defense_raw = p_bank[i]->b_data.sp_def_raw;
+        p_bank[i]->b_data.sp_def_raw = temp;
+    }
+    return true;
+}
+
+
 /* Mist */
 u8 mist_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {

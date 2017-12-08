@@ -158,7 +158,7 @@ struct battle_main {
 
 enum fight_menu { OPTION_FIGHT, OPTION_POKEMON, OPTION_BAG, OPTION_RUN };
 
-extern struct battle_main *battle_master;
+extern struct battle_main* battle_master;
 extern u8 bs_anim_status;
 extern void play_bmessage(void);
 

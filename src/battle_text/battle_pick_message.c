@@ -174,6 +174,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_TAILWIND_PETER:
             case STRING_TWISTED_DIM:
             case STRING_TWISTED_DIM_NORM:
+            case STRING_WONDER_AREA:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:
