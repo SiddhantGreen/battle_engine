@@ -165,7 +165,7 @@ extern struct move_procs target_lower_spAtk_1;
 extern struct move_procs target_lower_spDef_1;
 extern struct move_procs target_lower_spd_1;
 extern struct move_procs target_lower_acc_1;
-struct move_procs dec_SpD_50_procs;
+extern struct move_procs dec_SpD_50_procs;
 extern struct move_procs target_lower_atk_2;
 extern struct move_procs target_lower_def_2;
 extern struct move_procs target_lower_def_50_procs;
@@ -174,6 +174,7 @@ extern struct move_procs target_lower_spDef_2;
 extern struct move_procs target_lower_spd_2;
 extern struct move_procs target_lower_acc_2;
 extern struct move_procs target_lower_evn_2;
+extern struct move_procs dec_SpA_50_procs;
 
 extern struct move_procs target_raise_atk_1;
 extern struct move_procs target_raise_def_1;
@@ -224,9 +225,7 @@ extern struct move_procs poison_10_procs;
 extern struct move_procs target_lower_def_20_procs;
 extern struct move_procs ancient_power_procs;
 extern struct move_procs burn_100_procs;
-<<<<<<< HEAD
 extern struct move_procs flatter_procs;
-=======
-
->>>>>>> 36583e65cd8f7b1c5402e222196bed0ea5af6516
+extern struct move_procs bad_poison_50_procs;
+extern struct move_procs raise_user_atk_20;
 #endif /* MOVE_DATA_H_ */

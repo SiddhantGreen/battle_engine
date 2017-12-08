@@ -1163,3 +1163,42 @@ struct move_procs dec_SpD_50_procs = {
     0,
     0,	
 };
+
+// Decreases  50% SpA 
+struct move_procs dec_SpA_50_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 50, 0, 0, 0, 0},
+    {0, 0, 0, -1, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Bad Poison 50%
+struct move_procs bad_poison_50_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_BAD_POISON,
+    0,
+    50,	
+};
+
+// Raises Uer's Attack by 20% in 1 satge
+struct move_procs raise_user_atk_20 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {20, 0, 0, 0, 0, 0, 0, 0},
+    {1, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
