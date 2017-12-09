@@ -1089,8 +1089,8 @@ struct move_procs target_lower_def_20_procs = {
 // Ancient Power
 struct move_procs ancient_power_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
-    {10, 10, 10, 10, 10, 10, 0, 0},
-    {1, 1, 1, 1, 1, 1, 0, 0},
+    {10, 10, 10, 10, 10, 0, 0, 0},
+    {1, 1, 1, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
@@ -1190,13 +1190,52 @@ struct move_procs bad_poison_50_procs = {
     50,	
 };
 
-// Raises Uer's Attack by 20% in 1 satge
+// Raises User's Attack by 20% in 1 Stage
 struct move_procs raise_user_atk_20 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {20, 0, 0, 0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Lowers Target's Attack and Defense by 1 Stage
+struct move_procs low_targ_atk_def = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {100, 100, 0, 0, 0, 0, 0, 0},
+    {-1, -1, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Raises User's Special Defense and Defense by 1 Stage
+struct move_procs raise_user_Def_SpD = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 100, 0, 0, 100, 0, 0, 0},
+    {0, 1, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Lowers Target's Accuracy by 1 Stage
+struct move_procs low_tar_Acc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 30, 0},
+    {0, 0, 0, 0, 0, 0, -1, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,

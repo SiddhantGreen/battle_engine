@@ -180,7 +180,7 @@ extern struct move_procs user_raise_spAtk_2;
 extern struct move_procs user_raise_spDef_2;
 extern struct move_procs user_raise_spd_2;
 extern struct move_procs user_raise_acc_2;
-
+extern struct move_procs raise_user_Def_SpD;
 /* Target stats */
 extern struct move_procs target_lower_atk_1;
 extern struct move_procs target_lower_def_1;
@@ -198,6 +198,7 @@ extern struct move_procs target_lower_spd_2;
 extern struct move_procs target_lower_acc_2;
 extern struct move_procs target_lower_evn_2;
 extern struct move_procs dec_SpA_50_procs;
+extern struct move_procs low_targ_atk_def;
 
 extern struct move_procs target_raise_atk_1;
 extern struct move_procs target_raise_def_1;
@@ -251,4 +252,5 @@ extern struct move_procs burn_100_procs;
 extern struct move_procs flatter_procs;
 extern struct move_procs bad_poison_50_procs;
 extern struct move_procs raise_user_atk_20;
+extern struct move_procs low_tar_Acc;
 #endif /* MOVE_DATA_H_ */
