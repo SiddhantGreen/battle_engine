@@ -49,7 +49,8 @@ void update_pbank(u8 bank, struct update_flags* flags)
 
     // status ailment
     ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
-
+    extern void battle_start_ailment_callback_init(u8 bank);
+    battle_start_ailment_callback_init(bank);
     if (!flags->pass_stats) {
         p_bank[bank]->b_data.attack = 0;
         p_bank[bank]->b_data.defense = 0;

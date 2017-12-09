@@ -13,12 +13,7 @@ typedef void (*StatusOnInflict)(u8 bank);
 typedef void (*StatusOnResidual)(u8 bank);
 
 struct status_ailments {
-	StatusOnStart on_start;
-	StatusOnBeforeMove on_before_move;
-	StatusOnModSpeed on_mod_speed;
-	StatusOnHit on_hit;
 	StatusOnInflict on_inflict;
-	StatusOnResidual on_residual;
 };
 
 

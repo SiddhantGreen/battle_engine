@@ -15,20 +15,35 @@ extern void dprintf(const char * str, ...);
 extern void hpbar_apply_dmg(u8 task_id);
 extern bool peek_message(void);
 extern void run_move(void);
+extern void ailment_decode(u8 bank, u8 ailment);
 
 /* Sleep Related */
-void sleep_on_before_move(u8 bank)
+u8 sleep_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (p_bank[bank]->b_data.status == AILMENT_SLEEP) {
-		if (p_bank[bank]->b_data.status_turns) {
-			ADD_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+	if (user != src) return true;
+	if (p_bank[user]->b_data.status == AILMENT_SLEEP) {
+		if (p_bank[user]->b_data.status_turns) {
+			ADD_VOLATILE(user, VOLATILE_SLEEP_TURN);
 		} else {
-			p_bank[bank]->b_data.status = AILMENT_NONE;
-			enqueue_message(0, bank, STRING_WOKE_UP, 0);
-			status_graphical_update(bank, AILMENT_NONE);
-			CLEAR_VOLATILE(bank, VOLATILE_SLEEP_TURN);
+			p_bank[user]->b_data.status = AILMENT_NONE;
+			enqueue_message(0, user, STRING_WOKE_UP, 0);
+			status_graphical_update(user, AILMENT_NONE);
+			CLEAR_VOLATILE(user, VOLATILE_SLEEP_TURN);
 		}
 	}
+	return true;
+}
+
+u8 sleep_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	if (p_bank[user]->b_data.status_turns) {
+		p_bank[user]->b_data.status_turns--;
+	} else {
+		p_bank[user]->b_data.status_turns = 0;
+		acb->in_use = false;
+	}
+	return true;
 }
 
 void sleep_on_inflict(u8 bank)
@@ -40,20 +55,24 @@ void sleep_on_inflict(u8 bank)
 		p_bank[bank]->b_data.status = AILMENT_SLEEP;
 		pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
 		enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_SLEEP);
-	}
-}
-
-void sleep_on_residual(u8 bank)
-{
-	if (p_bank[bank]->b_data.status_turns) {
-		p_bank[bank]->b_data.status_turns--;
-	} else {
-		p_bank[bank]->b_data.status_turns = 0;
+		add_callback(CB_ON_RESIDUAL, 3, ailment, bank, (u32)sleep_on_residual);
+		add_callback(CB_ON_BEFORE_MOVE, 3, ailment, bank, (u32)sleep_on_before_move);
 	}
 }
 
 
 /* Poison Related */
+u8 poison_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// do dmg
+    u16 dmg = TOTAL_HP(user) / 8;
+    do_damage(user, MAX(1, dmg));
+    enqueue_message(0, user, STRING_RESIDUAL_STATUS_DMG, AILMENT_POISON);
+    p_bank[user]->b_data.status_turns++;
+	return true;
+}
+
 void poison_on_inflict(u8 bank)
 {
 	u8 ailment = AILMENTBITS_POISON;
@@ -61,19 +80,22 @@ void poison_on_inflict(u8 bank)
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_POISON);
-}
-
-void poison_on_residual(u8 bank)
-{
-	// do dmg
-    u16 dmg = TOTAL_HP(bank) / 8;
-    do_damage(bank, MAX(1, dmg));
-    enqueue_message(0, bank, STRING_RESIDUAL_STATUS_DMG, AILMENT_POISON);
-    p_bank[bank]->b_data.status_turns++;
+	add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)poison_on_residual);
 }
 
 
 /* Burn Related */
+u8 burn_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// do dmg
+    u16 dmg = TOTAL_HP(user) / 8;
+    do_damage(user, MAX(1, dmg));
+    enqueue_message(0, user, STRING_RESIDUAL_STATUS_DMG, AILMENT_BURN);
+    p_bank[user]->b_data.status_turns++;
+	return true;
+}
+
 void burn_on_inflict(u8 bank)
 {
 	u8 ailment = AILMENTBITS_BURN;
@@ -81,31 +103,25 @@ void burn_on_inflict(u8 bank)
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_BURN);
+	add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)burn_on_residual);
 
-}
-
-void burn_on_residual(u8 bank)
-{
-	// do dmg
-    u16 dmg = TOTAL_HP(bank) / 8;
-    do_damage(bank, MAX(1, dmg));
-    enqueue_message(0, bank, STRING_RESIDUAL_STATUS_DMG, AILMENT_BURN);
-    p_bank[bank]->b_data.status_turns++;
 }
 
 
 /* Freeze Related */
-void freeze_on_before_move(u8 bank)
+u8 freeze_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
     // 20% change to break out
-    if ((rand_range(0, 100) < 20) || (IS_DEFROST(CURRENT_MOVE(bank))))  {
-        p_bank[bank]->b_data.status = AILMENT_NONE;
-		enqueue_message(0, bank, STRING_FREEZE_THAWED, 0);
-		status_graphical_update(bank, AILMENT_NONE);
+    if ((rand_range(0, 100) < 20) || (IS_DEFROST(CURRENT_MOVE(user))))  {
+        p_bank[user]->b_data.status = AILMENT_NONE;
+		enqueue_message(0, user, STRING_FREEZE_THAWED, 0);
+		status_graphical_update(user, AILMENT_NONE);
     } else {
-        ADD_VOLATILE(bank, VOLATILE_ATK_SKIP_TURN);
-        enqueue_message(0, bank, STRING_FROZEN_SOLID, 0);
+        ADD_VOLATILE(user, VOLATILE_ATK_SKIP_TURN);
+        enqueue_message(0, user, STRING_FROZEN_SOLID, 0);
     }
+	return true;
 }
 
 void freeze_on_inflict(u8 bank)
@@ -115,21 +131,25 @@ void freeze_on_inflict(u8 bank)
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_FREEZE);
+	add_callback(CB_ON_BEFORE_MOVE, 3, 0xFF, bank, (u32)freeze_on_before_move);
 }
 
 
 /* Paralyze Related */
-void paralyze_on_before_move(u8 bank)
+u8 paralyze_on_before_move(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
+	if (user != src) return true;
     if (rand_range(0, 100) < 25) {
-        ADD_VOLATILE(bank, VOLATILE_ATK_SKIP_TURN);
-        enqueue_message(0, bank, STRING_FULL_PARA, 0);
+        ADD_VOLATILE(user, VOLATILE_ATK_SKIP_TURN);
+        enqueue_message(0, user, STRING_FULL_PARA, 0);
     }
+	return true;
 }
 
 u16 paralyze_on_mod_stat(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
 	if (B_STATUS(bank) != AILMENT_NONE) {
+		dprintf("old speed = %d\tnew speed = %d\n",(u32)acb->data_ptr,  NUM_MOD((u32)acb->data_ptr, 50));
 		if (stat_id != SPEED_MOD) return (u32)acb->data_ptr;
 	    if (!(BANK_ABILITY(bank) == ABILITY_QUICK_FEET))
 	        return NUM_MOD((u32)acb->data_ptr, 50);
@@ -147,10 +167,24 @@ void paralyze_on_inflict(u8 bank)
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_PARALYZE);
 	add_callback(CB_ON_STAT_MOD, 0, 0xFF, NULL, (u32)paralyze_on_mod_stat);
+	add_callback(CB_ON_BEFORE_MOVE, 3, 0xFF, bank, (u32)paralyze_on_before_move);
 }
 
 
 /* Toxic Related */
+u8 toxic_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// do dmg
+    if (p_bank[user]->b_data.status_turns < 15) {
+        p_bank[user]->b_data.status_turns++;
+    }
+    u16 dmg = ((MAX(1, (TOTAL_HP(user) / 16))) * p_bank[user]->b_data.status_turns);
+    do_damage(user, dmg);
+    enqueue_message(0, user, STRING_RESIDUAL_STATUS_DMG, AILMENT_POISON);
+	return true;
+}
+
 void toxic_on_inflict(u8 bank)
 {
 	u8 ailment = AILMENTBITS_TOXIC;
@@ -158,47 +192,49 @@ void toxic_on_inflict(u8 bank)
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_BAD_POISON);
-}
-
-void toxic_on_residual(u8 bank)
-{
-	// do dmg
-    if (p_bank[bank]->b_data.status_turns < 15) {
-        p_bank[bank]->b_data.status_turns++;
-    }
-    u16 dmg = ((MAX(1, (TOTAL_HP(bank) / 16))) * p_bank[bank]->b_data.status_turns);
-    do_damage(bank, dmg);
-    enqueue_message(0, bank, STRING_RESIDUAL_STATUS_DMG, AILMENT_POISON);
+	add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)toxic_on_residual);
 }
 
 
 /* Confusion Related */
-void confusion_on_before_move(u8 bank)
+u8 confusion_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	ADD_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
-	if (p_bank[bank]->b_data.confusion_turns) {
-		enqueue_message(0, bank, STRING_IS_CONFUSED, 0);
+	if (user != src) return true;
+	ADD_VOLATILE(user, VOLATILE_CONFUSE_TURN);
+	if (p_bank[user]->b_data.confusion_turns) {
+		enqueue_message(0, user, STRING_IS_CONFUSED, 0);
 		if (rand_range(0, 100) <= 33) {
 			// hurt itself in confusion
-			enqueue_message(0, bank, STRING_CONFUSION_HURT, 0);
-			B_MOVE_TYPE(bank, 0) = MTYPE_NONE;
-			B_MOVE_POWER(bank) = 40;
-			B_MOVE_ACCURACY(bank) = 101;
-			B_MOVE_IGNORING_ABILITIES(bank) = true;
-			B_MOVE_CATEGORY(bank) = MOVE_PHYSICAL;
-			B_MOVE_CAN_CRIT(bank) = false;
-			B_MOVE_WILL_CRIT_SET(bank, 0);
-			battle_master->b_moves[B_MOVE_BANK(bank)].hit_times = 0;
-			u16 dmg = get_damage(bank, bank, CURRENT_MOVE(bank));
-			do_damage(bank, MAX(1, dmg));
+			enqueue_message(0, user, STRING_CONFUSION_HURT, 0);
+			B_MOVE_TYPE(user, 0) = MTYPE_NONE;
+			B_MOVE_POWER(user) = 40;
+			B_MOVE_ACCURACY(user) = 101;
+			B_MOVE_IGNORING_ABILITIES(user) = true;
+			B_MOVE_CATEGORY(user) = MOVE_PHYSICAL;
+			B_MOVE_CAN_CRIT(user) = false;
+			B_MOVE_WILL_CRIT_SET(user, 0);
+			battle_master->b_moves[B_MOVE_BANK(user)].hit_times = 0;
+			u16 dmg = get_damage(user, user, CURRENT_MOVE(user));
+			do_damage(user, MAX(1, dmg));
 		} else {
-			CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN); // don't skip turn
+			CLEAR_VOLATILE(user, VOLATILE_CONFUSE_TURN); // don't skip turn
 		}
 	} else {
-		p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
-		enqueue_message(0, bank, STRING_SNAPPED_OUT, 0);
-		CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+		p_bank[user]->b_data.pseudo_ailment = AILMENT_NONE;
+		enqueue_message(0, user, STRING_SNAPPED_OUT, 0);
+		CLEAR_VOLATILE(user, VOLATILE_CONFUSE_TURN);
 	}
+	return true;
+}
+
+u8 confusion_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	if (p_bank[user]->b_data.confusion_turns) {
+		p_bank[user]->b_data.confusion_turns--;
+	}
+	CLEAR_VOLATILE(user, VOLATILE_CONFUSE_TURN);
+	return true;
 }
 
 void confusion_on_inflict(u8 bank)
@@ -206,59 +242,65 @@ void confusion_on_inflict(u8 bank)
 	p_bank[bank]->b_data.pseudo_ailment = AILMENT_CONFUSION;
 	p_bank[bank]->b_data.confusion_turns = rand_range(1, 5);
 	enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_CONFUSION);
-}
-
-void confusion_on_residual(u8 bank)
-{
-	if (p_bank[bank]->b_data.confusion_turns) {
-		p_bank[bank]->b_data.confusion_turns--;
-	}
-	CLEAR_VOLATILE(bank, VOLATILE_CONFUSE_TURN);
+	add_callback(CB_ON_RESIDUAL, 0, p_bank[bank]->b_data.confusion_turns, bank, (u32)confusion_on_residual);
+	add_callback(CB_ON_BEFORE_MOVE, 3, p_bank[bank]->b_data.confusion_turns, bank, (u32)confusion_on_before_move);
 }
 
 
 /* Misc Ailment related effects */
-void effect_cure_on_inflict(u8 bank)
-{
+void clear_ailments_silent(u8 bank) {
 	p_bank[bank]->b_data.status = AILMENT_NONE;
 	p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
 	p_bank[bank]->b_data.status_turns = 0;
 	p_bank[bank]->b_data.confusion_turns = 0;
+	delete_callback_src((u32)confusion_on_residual, bank);
+	delete_callback_src((u32)confusion_on_before_move, bank);
+	delete_callback_src((u32)toxic_on_residual, bank);
+	delete_callback_src((u32)paralyze_on_before_move, bank);
+	delete_callback_src((u32)paralyze_on_mod_stat, bank);
+	delete_callback_src((u32)freeze_on_before_move, bank);
+	delete_callback_src((u32)burn_on_residual, bank);
+	delete_callback_src((u32)poison_on_residual, bank);
+	delete_callback_src((u32)sleep_on_before_move, bank);
+	delete_callback_src((u32)sleep_on_residual, bank);
+}
+
+void effect_cure_on_inflict(u8 bank)
+{
+	clear_ailments_silent(bank);
 	enqueue_message(0, bank, STRING_AILMENT_CURED, 0);
 }
 
 
-void c1_residual_status_effects()
+void battle_start_ailment_callback_init(u8 bank)
 {
-	while (peek_message())
-		return;
-	if (task_is_running(hpbar_apply_dmg))
-		return;
-	u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
-	u16 opponent_speed = B_SPEED_STAT(OPPONENT_SINGLES_BANK);
-	u16 bank_index = (player_speed > opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
-	switch (super.multi_purpose_state_tracker) {
-	case 0:
-		if (statuses[B_STATUS(bank_index)].on_residual)
-			statuses[B_STATUS(bank_index)].on_residual(bank_index);
-		if (statuses[B_PSTATUS(bank_index)].on_residual)
-			statuses[B_PSTATUS(bank_index)].on_residual(bank_index);
-		super.multi_purpose_state_tracker++;
-		break;
-	case 1:
-		bank_index = (player_speed < opponent_speed) ? PLAYER_SINGLES_BANK : OPPONENT_SINGLES_BANK;
-		if (statuses[B_STATUS(bank_index)].on_residual)
-			statuses[B_STATUS(bank_index)].on_residual(bank_index);
-		if (statuses[B_PSTATUS(bank_index)].on_residual)
-			statuses[B_PSTATUS(bank_index)].on_residual(bank_index);
-		super.multi_purpose_state_tracker++;
-		break;
-	default:
-		set_callback1(run_move);
-		super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
-		return;
+	ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));
+	switch (p_bank[bank]->b_data.status) {
+		case AILMENT_BURN:
+			add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)burn_on_residual);
+			break;
+		case AILMENT_SLEEP:
+			add_callback(CB_ON_RESIDUAL, 3, 3, bank, (u32)sleep_on_residual);
+			add_callback(CB_ON_BEFORE_MOVE, 3, 3, bank, (u32)sleep_on_before_move);
+			break;
+		case AILMENT_POISON:
+			add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)poison_on_residual);
+			break;
+		case AILMENT_BAD_POISON:
+			add_callback(CB_ON_RESIDUAL, 0, 0xFF, bank, (u32)toxic_on_residual);
+			break;
+		case AILMENT_FREEZE:
+			add_callback(CB_ON_BEFORE_MOVE, 3, 0xFF, bank, (u32)freeze_on_before_move);
+			break;
+		case AILMENT_PARALYZE:
+			add_callback(CB_ON_STAT_MOD, 0, 0xFF, NULL, (u32)paralyze_on_mod_stat);
+			add_callback(CB_ON_BEFORE_MOVE, 3, 0xFF, bank, (u32)paralyze_on_before_move);
+			break;
+		default:
+			return;
 	};
 }
+
 
 
 struct status_ailments statuses[] =
@@ -268,46 +310,37 @@ struct status_ailments statuses[] =
     },
     // Ailment sleep
     {
-		.on_before_move = sleep_on_before_move,
         .on_inflict = sleep_on_inflict,
-        .on_residual = sleep_on_residual,
     },
 
     // Ailment poison
     {
         .on_inflict = poison_on_inflict,
-        .on_residual = poison_on_residual,
     },
 
     // Ailment burn
     {
         .on_inflict = burn_on_inflict,
-        .on_residual = burn_on_residual,
     },
 
     // Ailment freeze
     {
-        .on_before_move = freeze_on_before_move,
         .on_inflict = freeze_on_inflict,
     },
 
     // Ailment paralyze
     {
-        .on_before_move = paralyze_on_before_move,
         .on_inflict = paralyze_on_inflict,
     },
 
     // Ailment toxic
     {
         .on_inflict = toxic_on_inflict,
-        .on_residual = toxic_on_residual,
     },
 
     // Ailment confusion
     {
-		.on_before_move = confusion_on_before_move,
         .on_inflict = confusion_on_inflict,
-        .on_residual = confusion_on_residual,
     },
 
     // Ailment cure

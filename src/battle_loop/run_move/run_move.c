@@ -77,17 +77,7 @@ void run_move()
                 enqueue_message(0, bank_index, STRING_MUST_RECHARGE, 0);
                 return;
             }
-			/* status ailments before move callbacks */
-			if (B_STATUS(bank_index) != AILMENT_NONE) {
-				if (statuses[B_STATUS(bank_index)].on_before_move) {
-					statuses[B_STATUS(bank_index)].on_before_move(bank_index);
-				}
-			}
-
-            if (B_PSTATUS(bank_index) != AILMENT_NONE) {
-                if (statuses[B_PSTATUS(bank_index)].on_before_move)
-                    statuses[B_PSTATUS(bank_index)].on_before_move(bank_index);
-            }
+			/* Move callbacks  */
             u8 result = before_move_cb(bank_index);
             switch (result) {
                 case CANT_USE_MOVE:
@@ -97,34 +87,27 @@ void run_move()
                     return;
             };
 
-			/* Residual effects which cause turn ending */
+			/* Before Move effects which cause turn ending */
 			super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+            B_MOVE_FAILED(bank_index) = true;
 			if (HAS_VOLATILE(bank_index, VOLATILE_SLEEP_TURN)) {
 				enqueue_message(0, bank_index, STRING_FAST_ASLEEP, 0);
-				return;
+                break;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_CONFUSE_TURN)) {
-				return;
+                break;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN)) {
                 CLEAR_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
-                return;
+                break;
             } else if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
-                return;
+                break;
             } else {
 				// display "Pokemon used move!"
+                B_MOVE_FAILED(bank_index) = false;
 				enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
-				super.multi_purpose_state_tracker = S_BEFORE_MOVE_ABILITY;
+				super.multi_purpose_state_tracker = S_CHECK_TARGET_EXISTS;
 			}
             break;
         }
-        case S_BEFORE_MOVE_ABILITY: /* use_move() is inlined */
-            // Modify move callbacks
-            if (on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
-                super.multi_purpose_state_tracker++;
-            } else {
-                enqueue_message(0, bank_index, STRING_FAILED, 0);
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-            }
-            break;
         case S_CHECK_TARGET_EXISTS:
             // check target exists
             if (!target_exists(bank_index)) {
@@ -164,16 +147,6 @@ void run_move()
             if (bank_index != battle_master->first_bank) {
                 extern void c1_residual_callbacks(void);
                 set_callback1(c1_residual_callbacks);
-                super.multi_purpose_state_tracker = 0;
-                return;
-            }
-            super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
-            break;
-        }
-        case S_RESIDUAL_STATUS:
-        {
-            if (bank_index != battle_master->first_bank) {
-                set_callback1(c1_residual_status_effects);
                 super.multi_purpose_state_tracker = 0;
                 return;
             }
