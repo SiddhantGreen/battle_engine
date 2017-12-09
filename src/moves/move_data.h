@@ -140,6 +140,9 @@ extern u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern u8 guard_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 power_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 speed_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 chip_away_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 photon_geyser_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mind_blown_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

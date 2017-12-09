@@ -7153,6 +7153,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -7611,6 +7612,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -8818,6 +8820,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -9422,6 +9425,20 @@ struct move_data moves[] = {
     .procs = &basic_proc,
     },
 
+    /* Mind Blown */
+    {
+    .name = _("Mind Blown"),
+    .accuracy = 100,
+    .base_power = 150,
+    .description = (pchar*)Mind_Blown_desc,
+    .pp = 5,
+    .category = MOVE_SPECIAL,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &basic_proc,
+    .on_effect_cb = mind_blown_on_effect,
+    },
+
     /* Plasma Fists */
     {
     .name = _("Plasma Fists"),
@@ -9433,6 +9450,20 @@ struct move_data moves[] = {
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    },
+
+    /* Photon Geyser */
+    {
+    .name = _("Photon Geyser"),
+    .accuracy = 100,
+    .base_power = 100,
+    .description = (pchar*)Plasma_Fists_desc,
+    .pp = 5,
+    .category = MOVE_SPECIAL,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &basic_proc,
+    .on_modify_move = photon_geyser_on_modify_move,
     },
 
 };

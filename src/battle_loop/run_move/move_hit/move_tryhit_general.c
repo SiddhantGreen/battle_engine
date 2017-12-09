@@ -59,9 +59,14 @@ bool try_hit(u8 attacker)
 
     // OHKO moves have their own accuracy checks
     if (IS_OHKO(CURRENT_MOVE(attacker))) return true;
-    
+
     // standard accuracy formula check
-    u16 target_evasion = B_EVASION_STAT(defender);
+    u16 target_evasion;
+    if (B_MOVE_IGNORE_EVASION(attacker)) {
+        target_evasion = 100;
+    } else {
+        target_evasion = B_EVASION_STAT(defender);
+    }
     u16 user_accuracy = B_ACCURACY_STAT(attacker);
 
     u16 result = (user_accuracy / target_evasion) * move_accuracy;
