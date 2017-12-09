@@ -28,18 +28,28 @@ u8 guard_split_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback
 u8 power_split_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    u16 target_atk = B_ATTACK_BUFF(TARGET_OF(user));
-    u16 user_atk = B_ATTACK_BUFF(user);
+    u16 target_atk = B_ATTACK_STAT_UMOD(TARGET_OF(user));
+    u16 user_atk = B_ATTACK_STAT_UMOD(user);
     u16 new_atk = (target_atk + user_atk) >> 1;
 
-    target_atk = B_SPATTACK_BUFF(TARGET_OF(user));
-    user_atk = B_SPATTACK_BUFF(user);
+    target_atk = B_SPATTACK_STAT_UMOD(TARGET_OF(user));
+    user_atk = B_SPATTACK_STAT_UMOD(user);
     u16 new_satk = (target_atk + user_atk) >> 1;
 
-    B_ATTACK_BUFF(user) = new_atk;
-    B_ATTACK_BUFF(TARGET_OF(user)) = new_atk;
-    B_SPATTACK_BUFF(user) = new_satk;
-    B_SPATTACK_BUFF(TARGET_OF(user)) = new_satk;
+    B_ATTACK_STAT_UMOD(user) = new_atk;
+    B_ATTACK_STAT_UMOD(TARGET_OF(user)) = new_atk;
+    B_SPATTACK_STAT_UMOD(user) = new_satk;
+    B_SPATTACK_STAT_UMOD(TARGET_OF(user)) = new_satk;
     enqueue_message(NULL, user, STRING_POWER_S, NULL);
+    return true;
+}
+
+u16 speed_swap_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    u16 target_speed = B_SPEED_STAT_UMOD(TARGET_OF(user));
+    B_SPEED_STAT_UMOD(TARGET_OF(user)) = B_SPEED_STAT_UMOD(user);
+    B_SPEED_STAT_UMOD(user) = target_speed;
+    enqueue_message(NULL, user, STRING_SPE_SWAP, NULL);
     return true;
 }

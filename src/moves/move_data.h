@@ -139,6 +139,7 @@ extern u8 foresight_effect(u8 user, u8 src, u16 move, struct anonymous_callback*
 extern u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 guard_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 power_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 speed_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
