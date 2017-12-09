@@ -134,6 +134,8 @@ extern u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 extern u8 magnet_rise_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 telekinesis_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 heal_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 odor_sleuth_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 foresight_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
