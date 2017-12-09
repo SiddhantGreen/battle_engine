@@ -10,7 +10,10 @@ extern u16 rand_range(u16 min, u16 max);
 extern void dprintf(const char * str, ...);
 extern u8 count_usable_moves(u8 bank);
 extern u8 count_total_moves(u8 bank);
-extern bool move_is_usabled(u8 bank, u16 move);
+extern bool move_is_usable(u8 bank, u16 move);
+extern u8 move_pp_count(u16 move_id, u8 bank);
+extern u8 get_move_index(u16 move_id, u8 bank);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
 u16 pick_player_attack()
 {
@@ -28,30 +31,101 @@ u16 pick_player_attack()
     return (B_GET_MOVE(PLAYER_SINGLES_BANK, player_moveid));
 }
 
-u16 pick_opponent_attack()
+bool external_move_disable_callbacks(u8 bank, u16 move)
 {
-    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running)
-        return 0;
-    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select)
-        return LAST_MOVE(OPPONENT_SINGLES_BANK);
-    u8 move_total = count_total_moves(OPPONENT_SINGLES_BANK);
+    // callbacks for external move disables
     build_execution_order(CB_ON_DISABLE_MOVE);
     battle_master->executing = true;
     while (battle_master->executing) {
-        if (!pop_callback(OPPONENT_SINGLES_BANK, CURRENT_MOVE(OPPONENT_SINGLES_BANK))) {
-            return CURRENT_MOVE(OPPONENT_SINGLES_BANK);
+        // if a move is successfully disabled, the child should return false to halt
+        if (!pop_callback(bank, move)) {
+            // this is to stoping moves in multi turn is left to the child callback.
+            // some moves like disable stop them, but moves like torment do not
+            battle_master->executing = false;
+            return false;
         }
     }
-    if (count_usable_moves(OPPONENT_SINGLES_BANK) < 1) {
-        return MOVE_STRUGGLE;
-    }
-    while (true) {
-        u8 rand_index = rand_range(0, move_total);
-        if (move_is_usabled(OPPONENT_SINGLES_BANK, B_GET_MOVE(OPPONENT_SINGLES_BANK, rand_index)))
-            return B_GET_MOVE(OPPONENT_SINGLES_BANK, rand_index);
-    }
-    return 0;
+    return true;
 }
+
+// Return True = Continue; False = Reset
+bool player_move_selection_singles()
+{
+    // get and set currently selected move
+    u16 move_player = pick_player_attack();
+    CURRENT_MOVE(PLAYER_SINGLES_BANK) = move_player;
+
+    // if player is fleeing, don't use a move
+    if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running) {
+        CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_NONE;
+        p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        return true;
+    }
+
+    // if player doesn't have an available move, struggle instead
+    if (count_usable_moves(PLAYER_SINGLES_BANK) < 1) {
+        CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_STRUGGLE;
+        p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        return true;
+    }
+
+    // ensure player has PP for move being used
+    if (move_pp_count(move_player, PLAYER_SINGLES_BANK) < 1) {
+        enqueue_message(0, 0, STRING_NO_PP, 0);
+        return false;
+    }
+
+    return external_move_disable_callbacks(PLAYER_SINGLES_BANK, move_player);
+}
+
+void pick_wild_singles_ai_attack()
+{
+    // If bank is attempting to flee, don't queue a move
+    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running) {
+        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_NONE;
+        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        return;
+    }
+
+    // if AI is locked into current move, use that move instead
+    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select) {
+        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = LAST_MOVE(OPPONENT_SINGLES_BANK);
+        return;
+    }
+
+    // if AI is charging or recharging, don't use a move
+    if (HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_CHARGING) || HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_RECHARGING)) {
+        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_NONE;
+        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        return;
+    }
+
+    // pick a valid move for the AI
+    u16 to_pick[4] = {0};
+    u8 index = 0;
+    for (u8 i = 0; i < 4; i++) {
+        // if move is usable insert to array
+        u16 selected_move = B_GET_MOVE(OPPONENT_SINGLES_BANK, i);
+        if (move_is_usable(OPPONENT_SINGLES_BANK, selected_move)) {
+            if (external_move_disable_callbacks(OPPONENT_SINGLES_BANK, selected_move)) {
+                to_pick[index] = selected_move;
+                index++;
+            }
+        }
+    }
+    if (index < 1) {
+        // all moves disabled or unpickable
+        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_STRUGGLE;
+        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        return;
+    }
+
+    u16 rand_index = rand_range(0, index);
+    CURRENT_MOVE(OPPONENT_SINGLES_BANK) = to_pick[rand_index];
+    p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = get_move_index(to_pick[rand_index], OPPONENT_SINGLES_BANK);
+    return true;
+}
+
 
 void set_attack_battle_master(u8 bank, u8 index, s8 priority)
 {

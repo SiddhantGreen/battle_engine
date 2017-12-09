@@ -140,7 +140,7 @@ void set_ability(u8 bank, u8 source, u8 new_ability)
 
 }
 
-bool move_is_usabled(u8 bank, u16 move)
+bool move_is_usable(u8 bank, u16 move)
 {
     // unusable under gravity
     if (HAS_VOLATILE(bank, VOLATILE_GRAVITY) && IS_GRAVITY(move)) {
@@ -151,8 +151,8 @@ bool move_is_usabled(u8 bank, u16 move)
     if (HAS_VOLATILE(bank, VOLATILE_HEAL_BLOCK) && IS_HEAL(move)) {
         return false;
     }
-    
-    // unusable before lack of PP or move Null
+
+    // unusable because lack of PP or move Null
     u8 index = get_move_index(move, bank);
     if ((move == 0) || (B_GET_MOVE_PP(bank, index) == 0)) {
         return false;
@@ -169,7 +169,7 @@ u8 count_usable_moves(u8 bank)
 {
     u8 usable_moves = 0;
     for (u8 i = 0; i < 4; i++) {
-        if (move_is_usabled(bank, B_GET_MOVE(bank, i))) {
+        if (move_is_usable(bank, B_GET_MOVE(bank, i))) {
             usable_moves++;
         }
     }

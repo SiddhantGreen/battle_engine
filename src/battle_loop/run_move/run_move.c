@@ -138,7 +138,9 @@ void run_move()
             // reduce PP
             if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
-                p_bank[bank_index]->b_data.move_pp[pp_index]--;
+                if (pp_index < 4) {
+                    p_bank[bank_index]->b_data.move_pp[pp_index]--;
+                }
             }
             set_callback1(move_hit); // move hit will advance the state when complete
             super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
