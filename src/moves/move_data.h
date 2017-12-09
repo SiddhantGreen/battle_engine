@@ -144,6 +144,7 @@ extern u8 chip_away_on_before_move(u8 user, u8 src, u16 move, struct anonymous_c
 extern u8 photon_geyser_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mind_blown_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 laser_focus_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

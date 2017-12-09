@@ -137,6 +137,25 @@ u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 }
 
 
+/* Laser Focus */
+// Laser focus is just similar to Mind reader, so I put it here
+u8 laser_focus_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_MOVE_CAN_CRIT(user)) {
+        B_MOVE_WILL_CRIT(user) = true;
+    }
+    return true;
+}
+
+u8 laser_focus_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    add_callback(CB_ON_MODIFY_MOVE, 0, 1, user, (u32)laser_focus_on_modify_move);
+    return true;
+}
+
+
 /* Chip Away */
 /* Sacred Sword */
 /* Darkest Lariat */

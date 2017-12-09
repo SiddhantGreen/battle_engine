@@ -86,6 +86,7 @@ u8 nature_power_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* 
         CURRENT_MOVE(user) = MOVE_TRI_ATTACK;
     }
     set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+    LAST_MOVE(user) = MOVE_NATURE_POWER;
     enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
     return true;
 }

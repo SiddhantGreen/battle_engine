@@ -196,7 +196,7 @@ void run_move()
           // update moves used history
           for (u8 i = 0; i < 4; i++) {
           	if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
-          		break;;
+          		break;
           	if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
           		p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
           		break;
