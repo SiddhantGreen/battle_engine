@@ -900,7 +900,7 @@ struct move_data moves[] = {
     .type = MTYPE_FLYING,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_modify_move = gust_on_modify,
+    .on_inv_tryhit_move = gust_on_invul_hit,
     },
 
     {
@@ -2908,8 +2908,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mind_reader_on_effect,
     },
 
     {
@@ -6791,10 +6792,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Guard_Split_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = guard_split_on_effect,
     },
 
     {
@@ -6803,10 +6805,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Power_Split_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = power_split_on_effect,
     },
 
     {

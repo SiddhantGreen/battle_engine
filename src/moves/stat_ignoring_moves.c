@@ -110,4 +110,27 @@ u8 foresight_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(MOVE_FORESIGHT, TARGET_OF(user), STRING_IDENTIFIED, NULL);
     return true;
 }
+
 /* Mind Reader */
+u8 mind_reader_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(src) != user) return true;
+    B_MOVE_ACCURACY(src) = 101;
+    return true;
+}
+
+u8 mind_reader_on_semi_invulnerable(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    return false;
+}
+
+u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (LAST_MOVE(user) == MOVE_MIND_READER) return false;
+    add_callback(CB_ON_BEFORE_MOVE, 0, 1, user, (u32)mind_reader_on_before_move);
+    add_callback(CB_ON_TRYHIT_INV_MOVE, 0, 1, user, (u32)mind_reader_on_semi_invulnerable);
+    enqueue_message(MOVE_FORESIGHT, TARGET_OF(user), STRING_IDENTIFIED, NULL);
+    return true;
+}

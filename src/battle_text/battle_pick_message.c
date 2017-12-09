@@ -184,6 +184,9 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_MAGNETISM_LEV:
             case STRING_HURLED_AIR:
             case STRING_HEAL_PREVENT:
+            case STRING_GUARD_S:
+            case STRING_POWER_S:
+            case STRING_SPE_SWAP:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:

@@ -70,6 +70,7 @@ u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
         ADD_VOLATILE(user, VOLATILE_FLYING);
         ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        dprintf("semi invul added\n");
         return true;
     }
     CLEAR_VOLATILE(user, VOLATILE_FLYING);

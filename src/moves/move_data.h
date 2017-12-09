@@ -17,7 +17,7 @@ extern u8 razor_wind_before_move(u8 user, u8 src, u16 move, struct anonymous_cal
 extern u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 bounce_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 gust_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gust_on_invul_hit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -136,6 +136,9 @@ extern u8 telekinesis_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern u8 heal_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 odor_sleuth_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 foresight_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 guard_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 power_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
