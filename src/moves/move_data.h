@@ -175,6 +175,7 @@ extern struct move_procs target_lower_spd_2;
 extern struct move_procs target_lower_acc_2;
 extern struct move_procs target_lower_evn_2;
 extern struct move_procs dec_SpA_50_procs;
+extern struct move_procs low_targ_atk_def;
 
 extern struct move_procs target_raise_atk_1;
 extern struct move_procs target_raise_def_1;

@@ -1190,13 +1190,26 @@ struct move_procs bad_poison_50_procs = {
     50,	
 };
 
-// Raises Uer's Attack by 20% in 1 satge
+// Raises User's Attack by 20% in 1 satge
 struct move_procs raise_user_atk_20 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {20, 0, 0, 0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Lowers Target's Attack and Defense by 1 satge
+struct move_procs low_targ_atk_def = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {100, 100, 0, 0, 0, 0, 0, 0},
+    {-1, -1, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,
