@@ -157,10 +157,6 @@ bool move_is_usable(u8 bank, u16 move)
     if ((move == 0) || (B_GET_MOVE_PP(bank, index) == 0)) {
         return false;
     }
-    // unusable because disabled
-    if (p_bank[bank]->b_data.disabled_moves[index] > 0) {
-        return false;
-    }
     return true;
 
 }

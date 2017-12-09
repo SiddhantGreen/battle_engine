@@ -85,19 +85,14 @@ void update_pbank(u8 bank, struct update_flags* flags)
         p_bank[bank]->b_data.status_turns = 0;
         p_bank[bank]->b_data.substitute_health = 0;
         p_bank[bank]->b_data.v_status = 0;
-        p_bank[bank]->b_data.is_taunted = 0;
-        p_bank[bank]->b_data.is_charmed = 0;
+        p_bank[bank]->b_data.v_status2 = 0;
         p_bank[bank]->b_data.is_grounded = 0;
     } else {
         status_graphical_update(bank, p_bank[bank]->b_data.status);
     }
 
     if (!flags->pass_disables) {
-        p_bank[bank]->b_data.disabled_moves[0] = 0;
-        p_bank[bank]->b_data.disabled_moves[1] = 0;
-        p_bank[bank]->b_data.disabled_moves[2] = 0;
-        p_bank[bank]->b_data.disabled_moves[3] = 0;
-        p_bank[bank]->b_data.disable_used_on_slot = 0xFF; // valid slot means used
+        
     }
 
     p_bank[bank]->b_data.illusion = 0;

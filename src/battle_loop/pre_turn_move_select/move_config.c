@@ -63,7 +63,24 @@ bool player_move_selection_singles()
     }
 
     // if player doesn't have an available move, struggle instead
-    if (count_usable_moves(PLAYER_SINGLES_BANK) < 1) {
+    u8 index = 0;
+    // suppress messages
+    u8 front_index = battle_master->queue_front_index;
+    u8 q_size = battle_master->queue_size;
+    for (u8 i = 0; i < 4; i++) {
+        // if move is usable insert to array
+        u16 selected_move = B_GET_MOVE(PLAYER_SINGLES_BANK, i);
+        if (move_is_usable(PLAYER_SINGLES_BANK, selected_move)) {
+            if (external_move_disable_callbacks(PLAYER_SINGLES_BANK, selected_move)) {
+                index++;
+            }
+        }
+    }
+    // restore suppression
+    battle_master->queue_front_index = front_index;
+    battle_master->queue_size = q_size;
+    if (index < 1) {
+        // all moves disabled or unpickable
         CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_STRUGGLE;
         B_MOVE_CAN_CRIT(PLAYER_SINGLES_BANK) = false;
         p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;

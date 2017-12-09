@@ -237,15 +237,15 @@ u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
         if (HAS_VOLATILE(i, VOLATILE_MAGNET_RISE)) {
             extern u8 magnet_rise_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
             extern u8 magnet_rise_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
-            delete_callback((u32)magnet_rise_on_residual);
-            delete_callback((u32)magnet_rise_on_effectiveness);
+            delete_callback_src((u32)magnet_rise_on_residual, i);
+            delete_callback_src((u32)magnet_rise_on_effectiveness, i);
             CLEAR_VOLATILE(i, VOLATILE_MAGNET_RISE);
         }
         if (HAS_VOLATILE(i, VOLATILE_TELEKINESIS)) {
             extern u8 telekinesis_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
             extern u8 telekinesis_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
-            delete_callback((u32)telekinesis_on_effectiveness);
-            delete_callback((u32)telekinesis_on_residual);
+            delete_callback_src((u32)telekinesis_on_effectiveness, i);
+            delete_callback_src((u32)telekinesis_on_residual, i);
             CLEAR_VOLATILE(i, VOLATILE_TELEKINESIS);
         }
     }

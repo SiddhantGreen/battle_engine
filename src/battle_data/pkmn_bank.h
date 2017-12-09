@@ -154,8 +154,7 @@ struct local_battler_data {
     u8 is_transformed : 1;
     u8 fainted : 1;
     u8 ate_berry : 1;
-    u8 is_taunted : 1;
-    u8 is_charmed : 1;
+    u8 is_trapped : 1;
     u8 is_grounded : 1;
 
     enum StatusAilments status;
@@ -166,9 +165,6 @@ struct local_battler_data {
     u8 protect_used_turns;
     u32 v_status; // enum volatile status
     u32 v_status2; // continue of above
-    u8 disable_used_on_slot;
-    u16 disabled_moves[4];
-
     // counters
     u8 flee_count;
 };
