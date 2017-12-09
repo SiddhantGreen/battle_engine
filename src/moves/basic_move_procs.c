@@ -1229,7 +1229,7 @@ struct move_procs raise_user_Def_SpD = {
     0,	
 };
 
-// Lowers Target's Accuracy by 1 satge
+// Lowers Target's Accuracy by 1 Stage
 struct move_procs low_tar_Acc = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
