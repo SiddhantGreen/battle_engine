@@ -65,6 +65,7 @@ bool player_move_selection_singles()
     // if player doesn't have an available move, struggle instead
     if (count_usable_moves(PLAYER_SINGLES_BANK) < 1) {
         CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_STRUGGLE;
+        B_MOVE_CAN_CRIT(PLAYER_SINGLES_BANK) = false;
         p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;
         return true;
     }
@@ -74,7 +75,7 @@ bool player_move_selection_singles()
         enqueue_message(0, 0, STRING_NO_PP, 0);
         return false;
     }
-
+    B_MOVE_CAN_CRIT(PLAYER_SINGLES_BANK) = true;
     return external_move_disable_callbacks(PLAYER_SINGLES_BANK, move_player);
 }
 
@@ -116,6 +117,7 @@ void pick_wild_singles_ai_attack()
     if (index < 1) {
         // all moves disabled or unpickable
         CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_STRUGGLE;
+        B_MOVE_CAN_CRIT(OPPONENT_SINGLES_BANK) = false;
         p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
         return;
     }
@@ -123,6 +125,7 @@ void pick_wild_singles_ai_attack()
     u16 rand_index = rand_range(0, index);
     CURRENT_MOVE(OPPONENT_SINGLES_BANK) = to_pick[rand_index];
     p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = get_move_index(to_pick[rand_index], OPPONENT_SINGLES_BANK);
+    B_MOVE_CAN_CRIT(OPPONENT_SINGLES_BANK) = true;
     return true;
 }
 
@@ -176,7 +179,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
         battle_master->b_moves[index].hit_times = hit_times - 1;
         battle_master->b_moves[index].hit_counter = 1;
     }
-    B_MOVE_CAN_CRIT(bank) = true;
+    //B_MOVE_CAN_CRIT(bank) = true;
     battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
 }
 

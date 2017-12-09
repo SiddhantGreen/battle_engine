@@ -158,6 +158,7 @@ enum battle_string_ids {
     STRING_RECIEVED_ENCORE,
     STRING_SUBJECTED_TORM,
     STRING_FELL_FOR_TAUNT,
+    STRING_CANT_REASON,
     STRINGS_TABLE_MAX,
 };
 
@@ -328,6 +329,7 @@ static const pchar str_swap_spe[] = _("{FOE}{ATTACKING_MON} swapped its\nspeed s
 static const pchar str_enc_rec[] = _("{FOE}{ATTACKING_MON} recieved\nan encore!");
 static const pchar str_sub_torment[] = _("{FOE}{ATTACKING_MON} was subjected\nto torment!");
 static const pchar str_fell_taunt[] = _("{FOE}{ATTACKING_MON} fell\nfor the taunt!");
+static const pchar string_reason_cant[] = _("Can’t use {ATTACK_NAME}\nwhile {EFFECT_NAME} is active!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -513,6 +515,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_enc_rec, // 155
    (pchar*)&str_sub_torment, // 156
    (pchar*)&str_fell_taunt, // 157
+   (pchar*)&string_reason_cant, // 158
 
 
 };

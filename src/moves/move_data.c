@@ -1361,6 +1361,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = disable_on_before_move,
     .on_effect_cb = disable_on_effect_cb,
     },
 
@@ -2846,7 +2847,6 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-
     .recoil_struggle = true,
     },
 
@@ -4190,6 +4190,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = taunt_on_effect,
+    .before_move = taunt_on_before_move,
     },
 
     {
