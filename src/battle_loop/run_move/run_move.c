@@ -88,7 +88,7 @@ void run_move()
             };
 
 			/* Before Move effects which cause turn ending */
-			super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+			super.multi_purpose_state_tracker = S_RESIDUAL_MOVES;
             B_MOVE_FAILED(bank_index) = true;
 			if (HAS_VOLATILE(bank_index, VOLATILE_SLEEP_TURN)) {
 				enqueue_message(0, bank_index, STRING_FAST_ASLEEP, 0);
@@ -192,7 +192,6 @@ void c1_residual_callbacks()
 		return;
 	if (task_is_running(hpbar_apply_dmg))
 		return;
-
 	switch (super.multi_purpose_state_tracker) {
         case 0:
         {
@@ -228,7 +227,7 @@ void c1_residual_callbacks()
         }
         case 3:
             set_callback1(run_move);
-            super.multi_purpose_state_tracker = S_RESIDUAL_STATUS;
+            super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
             break;
         };
 }
