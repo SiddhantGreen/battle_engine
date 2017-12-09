@@ -156,11 +156,9 @@ u8 photon_geyser_on_modify_move(u8 user, u8 src, u16 stat_id, struct anonymous_c
     if (user != src) return true;
     // set move's attacking stat to higher of the two.
     if (B_ATTACK_STAT(user) > B_SPATTACK_STAT(user)) {
-        B_MOVE_IS_PHYSICAL(user) = true;
-        B_MOVE_IS_SPECIAL(user) = false;
+        B_MOVE_CATEGORY(user) = MOVE_PHYSICAL;
     } else {
-        B_MOVE_IS_PHYSICAL(user) = false;
-        B_MOVE_IS_SPECIAL(user) = true;
+        B_MOVE_CATEGORY(user) = MOVE_SPECIAL;
     }
     return true;
 }

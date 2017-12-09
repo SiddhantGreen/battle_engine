@@ -676,7 +676,9 @@ pchar Tearful_Look_desc[] = _("Lowers the target‘s Attack and Sp. Atk by 1.");
 pchar Zing_Zap_desc[] = _("30% chance to flinch the target.");
 pchar Natures_Madness_desc[] = _("Does damage equal to 1/2 target‘s current HP.");
 pchar Multi_Attack_desc[] = _("Type varies based on the held Memory.");
+pchar Mind_Blown_desc[] = _("Does damage, and user loses half of max HP");
 pchar Plasma_Fists_desc[] = _("Does damage.");
+pchar Photon_Geyser_desc[] = _("Does damage based on higher attacking stat.");
 
 extern struct move_procs basic_proc;
 
@@ -9457,7 +9459,7 @@ struct move_data moves[] = {
     .name = _("Photon Geyser"),
     .accuracy = 100,
     .base_power = 100,
-    .description = (pchar*)Plasma_Fists_desc,
+    .description = (pchar*)Photon_Geyser_desc,
     .pp = 5,
     .category = MOVE_SPECIAL,
     .type = MTYPE_PSYCHIC,
