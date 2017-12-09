@@ -1215,3 +1215,29 @@ struct move_procs low_targ_atk_def = {
     0,
     0,	
 };
+
+// Raises User's Special Defense and Defense by 1 satge
+struct move_procs raise_user_Def_SpD = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 100, 0, 0, 100, 0, 0, 0},
+    {0, 1, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Lowers Target's Accuracy by 1 satge
+struct move_procs low_tar_Acc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 30, 0},
+    {0, 0, 0, 0, 0, 0, -1, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
