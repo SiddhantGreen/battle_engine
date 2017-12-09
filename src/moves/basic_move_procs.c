@@ -1190,7 +1190,7 @@ struct move_procs bad_poison_50_procs = {
     50,	
 };
 
-// Raises User's Attack by 20% in 1 satge
+// Raises User's Attack by 20% in 1 Stage
 struct move_procs raise_user_atk_20 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {20, 0, 0, 0, 0, 0, 0, 0},
@@ -1203,7 +1203,7 @@ struct move_procs raise_user_atk_20 = {
     0,	
 };
 
-// Lowers Target's Attack and Defense by 1 satge
+// Lowers Target's Attack and Defense by 1 Stage
 struct move_procs low_targ_atk_def = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1216,7 +1216,7 @@ struct move_procs low_targ_atk_def = {
     0,	
 };
 
-// Raises User's Special Defense and Defense by 1 satge
+// Raises User's Special Defense and Defense by 1 Stage
 struct move_procs raise_user_Def_SpD = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 100, 0, 0, 100, 0, 0, 0},
