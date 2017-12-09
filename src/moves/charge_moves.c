@@ -60,13 +60,40 @@ u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (src != user) return true;
+    if (HAS_VOLATILE(user, VOLATILE_GRAVITY)) {
+        CLEAR_VOLATILE(user, VOLATILE_FLYING);
+        CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        enqueue_message(MOVE_FLY, user, STRING_ATTACK_USED, NULL);
+        return false;
+    }
     before_move_charge_frame(user, STRING_CHARGE_FLY);
     if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
         ADD_VOLATILE(user, VOLATILE_FLYING);
         ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        dprintf("semi invul added\n");
         return true;
     }
-    REMOVE_VOLATILE(user, VOLATILE_FLYING);
-    REMOVE_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    CLEAR_VOLATILE(user, VOLATILE_FLYING);
+    CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    return true;
+}
+
+u8 bounce_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (src != user) return true;
+    if (HAS_VOLATILE(user, VOLATILE_GRAVITY)) {
+        CLEAR_VOLATILE(user, VOLATILE_BOUNCE);
+        CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        enqueue_message(MOVE_BOUNCE, user, STRING_ATTACK_USED, NULL);
+        return false;
+    }
+    before_move_charge_frame(user, STRING_CHARGE_BOUNCE);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        ADD_VOLATILE(user, VOLATILE_BOUNCE);
+        ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        return true;
+    }
+    CLEAR_VOLATILE(user, VOLATILE_BOUNCE);
+    CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
     return true;
 }

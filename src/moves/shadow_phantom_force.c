@@ -14,7 +14,7 @@ u8 shadow_force_phantom_force_effect(u8 user, u8 src, u8 string_id) {
         ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
         return true;
     }
-    REMOVE_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
     // on after charge complete, break protection effect
     if (break_protection(TARGET_OF(src))) {
         enqueue_message(MOVE_SHADOW_FORCE, src, STRING_BROKE_PROTECT, 0);

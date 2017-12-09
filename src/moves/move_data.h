@@ -16,7 +16,8 @@ extern u8 ice_burn_before_move(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 razor_wind_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 gust_on_modify(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 bounce_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gust_on_invul_hit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -126,6 +127,28 @@ extern u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 extern u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 lucky_chant_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 miracle_eye_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 water_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 magnet_rise_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 telekinesis_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 heal_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 odor_sleuth_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 foresight_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mind_reader_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 guard_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 power_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 speed_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 chip_away_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 photon_geyser_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mind_blown_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 laser_focus_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 encore_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 encore_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 torment_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

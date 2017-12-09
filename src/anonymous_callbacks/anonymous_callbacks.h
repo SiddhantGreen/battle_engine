@@ -25,11 +25,12 @@
 #define CB_ON_AFTER_MOVE 11
 #define CB_ON_TRYHIT_INV_MOVE 12
 #define CB_ON_RESIDUAL 13
-#define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb)
+#define CB_ON_STAT_MOD 14 // (user, src, stat_id, acb = current stat return)
 #define CB_ON_WEATHER_DMG 15
-#define CB_ON_EFFECTIVENESS 16
+#define CB_ON_EFFECTIVENESS 16 //(target_type, src, move_type, acb = current effectiveness)
 #define CB_ON_STATUS 17
 #define CB_ON_BEFORE_STAT_MOD 18
+#define CB_ON_DISABLE_MOVE 19 // run before  before turn. Resets banks and prompts move selection on fail
 
 
 
@@ -58,6 +59,8 @@ extern u16 run_callback(u8 attacker, u16 move);
 extern bool callback_exists(u32 func);
 extern u8 id_by_acb(struct anonymous_callback* acb);
 extern u8 callback_exists_side(u32 func, u8 bank);
+extern void delete_callback_src(u32 func, u8 src);
+extern bool has_callback_src(u32 func, u8 src);
 
 // callback stack restoration related
 extern void restore_callbacks(u32* data_ptr);

@@ -105,7 +105,7 @@ void run_move()
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_CONFUSE_TURN)) {
 				return;
 			} else if (HAS_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN)) {
-                REMOVE_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
+                CLEAR_VOLATILE(bank_index, VOLATILE_ATK_SKIP_TURN);
                 return;
             } else if (HAS_VOLATILE(bank_index, VOLATILE_CHARGING)) {
                 return;
@@ -138,8 +138,7 @@ void run_move()
             // reduce PP
             if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
-                u8 pp = pokemon_getattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, NULL) - 1;
-                pokemon_setattr(p_bank[bank_index]->this_pkmn, pp_index + REQUEST_PP1, &pp);
+                p_bank[bank_index]->b_data.move_pp[pp_index]--;
             }
             set_callback1(move_hit); // move hit will advance the state when complete
             super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
@@ -197,7 +196,7 @@ void run_move()
           // update moves used history
           for (u8 i = 0; i < 4; i++) {
           	if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
-          		break;;
+          		break;
           	if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
           		p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
           		break;

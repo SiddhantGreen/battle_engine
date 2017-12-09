@@ -53,7 +53,8 @@ u8 metronome_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback
 {
 	if (user != src) return true;
     CURRENT_MOVE(user) = pick_rand_metronome_move();
-		set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+	set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+	LAST_MOVE(user) = MOVE_METRONOME;
     enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
     return true;
 }
@@ -67,6 +68,7 @@ u8 mirror_move_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
     if ((LAST_MOVE(target) != MOVE_NONE) && (IS_MIRRORABLE(LAST_MOVE(target)))) {
         CURRENT_MOVE(user) = LAST_MOVE(target);
         set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+		LAST_MOVE(user) = MOVE_MIRROR_MOVE;
         enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return true;
     }
@@ -96,7 +98,7 @@ u8 sleep_talk_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
 	if (user != src) return true;
     if ((B_STATUS(user) == AILMENT_SLEEP) || (BANK_ABILITY(user) == ABILITY_COMATOSE)) {
-        REMOVE_VOLATILE(user, VOLATILE_SLEEP_TURN);
+        CLEAR_VOLATILE(user, VOLATILE_SLEEP_TURN);
         enqueue_message(0, user, STRING_FAST_ASLEEP, 0);
     }
 	// don't fail here, fail after posting "Used move" string
@@ -122,6 +124,7 @@ u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
         if (array_slot) {
             CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
             set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+			LAST_MOVE(user) = MOVE_SLEEP_TALK;
             enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
             return true;
         } else {
@@ -186,6 +189,7 @@ u8 assist_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
         CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
         set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
         enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
+		LAST_MOVE(user) = MOVE_ASSIST;
         return true;
     } else {
         return false;
@@ -223,6 +227,7 @@ u8 copycat_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
         CURRENT_MOVE(user) = last_move;
         set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
         enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
+		LAST_MOVE(user) = MOVE_COPYCAT;
         return true;
     } else {
         return false;
@@ -284,6 +289,7 @@ u8 me_first_on_tryhit(u8 user, u8 src, u16 move_user, struct anonymous_callback*
 	// move is valid to be copied
 	CURRENT_MOVE(user) = move;
 	set_attack_battle_master(user, B_MOVE_BANK(user), MOVE_PRIORITY(CURRENT_MOVE(user)));
+	LAST_MOVE(user) = MOVE_ME_FIRST;
 	enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
 	add_callback(CB_ON_BASE_POWER_MOVE, 4, 0, user, (u32)me_first_on_base_power_anon);
 	acb->in_use = false;

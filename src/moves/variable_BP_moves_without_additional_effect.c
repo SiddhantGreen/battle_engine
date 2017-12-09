@@ -98,3 +98,12 @@ void low_kick_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_cal
     else
         B_MOVE_POWER(user) = 20;
 };
+
+
+void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_LAST_MOVE_FAILED(user)) {
+        B_MOVE_POWER(user) *= 2;
+    }
+}

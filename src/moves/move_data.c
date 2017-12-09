@@ -676,7 +676,9 @@ pchar Tearful_Look_desc[] = _("Lowers the target‘s Attack and Sp. Atk by 1.");
 pchar Zing_Zap_desc[] = _("30% chance to flinch the target.");
 pchar Natures_Madness_desc[] = _("Does damage equal to 1/2 target‘s current HP.");
 pchar Multi_Attack_desc[] = _("Type varies based on the held Memory.");
+pchar Mind_Blown_desc[] = _("Does damage, and user loses half of max HP");
 pchar Plasma_Fists_desc[] = _("Does damage.");
+pchar Photon_Geyser_desc[] = _("Does damage based on higher attacking stat.");
 
 extern struct move_procs basic_proc;
 
@@ -695,7 +697,7 @@ struct move_data moves[] = {
     .accuracy = 100,
     .base_power = 40,
     .description = (pchar*)Pound_desc,
-    .pp = 35,
+    .pp = 3,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -900,7 +902,7 @@ struct move_data moves[] = {
     .type = MTYPE_FLYING,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_modify_move = gust_on_modify,
+    .on_inv_tryhit_move = gust_on_invul_hit,
     },
 
     {
@@ -2908,8 +2910,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mind_reader_on_effect,
     },
 
     {
@@ -3202,6 +3205,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = foresight_effect,
     },
 
     {
@@ -3639,6 +3643,8 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = encore_on_tryhit,
+    .on_effect_cb = encore_on_effect,
     },
 
     {
@@ -4055,6 +4061,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = torment_on_effect,
     },
 
     {
@@ -4182,6 +4189,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = taunt_on_effect,
     },
 
     {
@@ -4578,10 +4586,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Mud_Sport_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = mud_sport_on_effect,
     },
 
     {
@@ -4793,6 +4802,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = odor_sleuth_effect,
     },
 
     {
@@ -5101,6 +5111,7 @@ struct move_data moves[] = {
     .type = MTYPE_FLYING,
     .m_flags = FLAG_CHARGE | FLAG_GRAVITY | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = bounce_before_move,
     },
 
     {
@@ -5175,10 +5186,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Water_Sport_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = water_sport_on_effect,
     },
 
     {
@@ -5304,10 +5316,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Gravity_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF | FLAG_HITS_SIDE | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = gravity_on_effect,
     },
 
     {
@@ -5320,6 +5333,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = miracle_eye_effect,
     },
 
     {
@@ -5571,8 +5585,9 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = heal_block_on_effect,
     },
 
     {
@@ -5768,10 +5783,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Magnet_Rise_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_SNATCH | FLAG_GRAVITY,
+    .m_flags = FLAG_SNATCH | FLAG_GRAVITY | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = magnet_rise_on_effect,
     },
 
     {
@@ -6782,10 +6798,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Guard_Split_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = guard_split_on_effect,
     },
 
     {
@@ -6794,10 +6811,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Power_Split_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = power_split_on_effect,
     },
 
     {
@@ -6874,6 +6892,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_GRAVITY | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = telekinesis_on_effect,
     },
 
     {
@@ -7140,6 +7159,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -7598,6 +7618,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -8805,6 +8826,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = chip_away_on_before_move,
     },
 
     {
@@ -8929,10 +8951,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Laser_Focus_desc,
     .pp = 30,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = laser_focus_on_effect,
     },
 
     {
@@ -9065,6 +9088,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = speed_swap_on_effect,
     },
 
     {
@@ -9263,6 +9287,7 @@ struct move_data moves[] = {
     .type = MTYPE_GROUND,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = stomping_tantrum_on_base_power_move,
     },
 
     {
@@ -9408,6 +9433,20 @@ struct move_data moves[] = {
     .procs = &basic_proc,
     },
 
+    /* Mind Blown */
+    {
+    .name = _("Mind Blown"),
+    .accuracy = 100,
+    .base_power = 150,
+    .description = (pchar*)Mind_Blown_desc,
+    .pp = 5,
+    .category = MOVE_SPECIAL,
+    .type = MTYPE_FIRE,
+    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &basic_proc,
+    .on_effect_cb = mind_blown_on_effect,
+    },
+
     /* Plasma Fists */
     {
     .name = _("Plasma Fists"),
@@ -9419,6 +9458,20 @@ struct move_data moves[] = {
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    },
+
+    /* Photon Geyser */
+    {
+    .name = _("Photon Geyser"),
+    .accuracy = 100,
+    .base_power = 100,
+    .description = (pchar*)Photon_Geyser_desc,
+    .pp = 5,
+    .category = MOVE_SPECIAL,
+    .type = MTYPE_PSYCHIC,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &basic_proc,
+    .on_modify_move = photon_geyser_on_modify_move,
     },
 
 };

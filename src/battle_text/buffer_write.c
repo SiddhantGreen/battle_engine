@@ -147,7 +147,7 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                         break;
                     }
                 case 0x14:
-                    // type of move
+                    // type of current move
                     {
                         buffer_write_move_type(&result[result_index], move_id);
                         result_index = pstrlen(result);
@@ -169,12 +169,14 @@ void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_
                     }
                 case 0x17:
                     {
+                    // Buffer the name of a general type
                         pstrcpy(&result[result_index], (const pchar*)pkmn_type_names[move_effect_id]);
                         result_index = pstrlen(result);
                         break;
                     }
                 case 0x18:
                     {
+                    // buffer name of a weather
                         if (move_effect_id == MOVE_HAIL) {
                             pstrcpy(&result[result_index], (const pchar*)str_hail_w);
                         } else if (move_effect_id == MOVE_RAIN_DANCE) {

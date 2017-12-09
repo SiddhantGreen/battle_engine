@@ -145,6 +145,19 @@ enum battle_string_ids {
     STRING_WONDER_AREA,
     STRING_SAFE_GUARD_VEIL,
     STRING_SHIELDED_CRITS,
+    STRING_GRAVITY_INTENSE,
+    STRING_FAILED_EXECUTION,
+    STRING_IDENTIFIED,
+    STRING_TYPE_WEAKEN,
+    STRING_MAGNETISM_LEV,
+    STRING_HURLED_AIR,
+    STRING_HEAL_PREVENT,
+    STRING_GUARD_S,
+    STRING_POWER_S,
+    STRING_SPE_SWAP,
+    STRING_RECIEVED_ENCORE,
+    STRING_SUBJECTED_TORM,
+    STRING_FELL_FOR_TAUNT,
     STRINGS_TABLE_MAX,
 };
 
@@ -299,9 +312,22 @@ static const pchar str_tailwind_behind[] = _("The tailwind blew from\nbehind {TH
 static const pchar str_tailwind_peter[] = _("{FOE}Tailwind petered out!");
 static const pchar str_twisted_dim[] = _("{FOE}{ATTACKING_MON} twisted\nthe dimensions!");
 static const pchar str_twisted_dim_n[] = _("The twisted dimensions\nreturned to normal!");
-static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\nare swapped!");
+static const pchar str_wonder_area[] = _("It created a bizzare area in which\nthe Defense and Sp. Def stats\lare swapped!");
 static const pchar str_safe_guard_v[] = _("{FOE}{ATTACKING_MON}’s team became\ncloaked in a mystical veil!");
 static const pchar str_shield_team_crit[] = _("The {ATTACK_NAME} shielded {THE_FOE}\nteam from critical hits!");
+static const pchar str_grav_instense[] = _("Gravity intensified!");
+static const pchar str_exec_failed[] = _("{FOE}{ATTACKING_MON}’s move\n{ATTACK_NAME} failed due to {EFFECT_NAME}!");
+static const pchar str_was_identified[] = _("{FOE}{ATTACKING_MON} was identified!");
+static const pchar str_weaken_type[] = _("{PKMN_TYPE}’s power was weakened!");
+static const pchar str_lev_mag[] = _("{FOE}{ATTACKING_MON} levitated\nwith electromagnetism!");
+static const pchar str_teleken_hurled[] = _("{FOE}{ATTACKING_MON} was hurled\ninto the air!");
+static const pchar str_heal_b[] = _("{FOE}{ATTACKING_MON} was prevented\nfrom healing!");
+static const pchar str_guard_s[] = _("{FOE}{ATTACKING_MON} shared its\nguard with the target!");
+static const pchar str_power_s[] = _("{FOE}{ATTACKING_MON} shared its\npower with the target!");
+static const pchar str_swap_spe[] = _("{FOE}{ATTACKING_MON} swapped its\nspeed stat with the target!");
+static const pchar str_enc_rec[] = _("{FOE}{ATTACKING_MON} recieved\nan encore!");
+static const pchar str_sub_torment[] = _("{FOE}{ATTACKING_MON} was subjected\nto torment!");
+static const pchar str_fell_taunt[] = _("{FOE}{ATTACKING_MON} fell\nfor the taunt!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -474,6 +500,19 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_wonder_area, // 142
    (pchar*)&str_safe_guard_v, // 143
    (pchar*)&str_shield_team_crit, // 144
+   (pchar*)&str_grav_instense, // 145
+   (pchar*)&str_exec_failed, // 146
+   (pchar*)&str_was_identified, // 147
+   (pchar*)&str_weaken_type, // 148
+   (pchar*)&str_lev_mag, // 149
+   (pchar*)&str_teleken_hurled, // 150
+   (pchar*)&str_heal_b, // 151
+   (pchar*)&str_guard_s, // 152
+   (pchar*)&str_power_s, // 153
+   (pchar*)&str_swap_spe, // 154
+   (pchar*)&str_enc_rec, // 155
+   (pchar*)&str_sub_torment, // 156
+   (pchar*)&str_fell_taunt, // 157
 
 
 };
