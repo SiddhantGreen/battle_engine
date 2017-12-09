@@ -697,7 +697,7 @@ struct move_data moves[] = {
     .accuracy = 100,
     .base_power = 40,
     .description = (pchar*)Pound_desc,
-    .pp = 35,
+    .pp = 3,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
@@ -3643,6 +3643,8 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = encore_on_tryhit,
+    .on_effect_cb = encore_on_effect,
     },
 
     {

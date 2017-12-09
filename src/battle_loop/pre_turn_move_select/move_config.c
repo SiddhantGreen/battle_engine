@@ -16,6 +16,8 @@ u16 pick_player_attack()
 {
     if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
         return 0;
+    if (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select)
+        return LAST_MOVE(PLAYER_SINGLES_BANK);
     u16 player_moveid = battle_master->battle_cursor.cursor_pos;
     if (player_moveid == 1) {
         player_moveid += 1;
@@ -35,6 +37,13 @@ u16 pick_opponent_attack()
     u8 move_total = count_total_moves(OPPONENT_SINGLES_BANK);
     if (count_usable_moves(OPPONENT_SINGLES_BANK) < 1) {
         return MOVE_STRUGGLE;
+    }
+    build_execution_order(CB_ON_DISABLE_MOVE);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        if (!pop_callback(OPPONENT_SINGLES_BANK, CURRENT_MOVE(OPPONENT_SINGLES_BANK))) {
+            return CURRENT_MOVE(OPPONENT_SINGLES_BANK);
+        }
     }
     while (true) {
         u8 rand_index = rand_range(0, move_total);
