@@ -404,7 +404,7 @@ struct b_ability b_shield_dust = {
 void own_tempo_on_update(u8 bank)
 {
     if (HAS_VOLATILE(bank, VOLATILE_CONFUSION)) {
-       REMOVE_VOLATILE(bank, VOLATILE_CONFUSION);
+       CLEAR_VOLATILE(bank, VOLATILE_CONFUSION);
        SET_CONFUSION_TURNS(bank, 0);
        enqueue_message(0, bank, STRING_CONFUSION_ENDED, ABILITY_OWN_TEMPO);
     }
@@ -1032,7 +1032,7 @@ s8 prankster_on_priority_mod(u8 bank, u16 move)
         ADD_VOLATILE(bank, VOLATILE_PRANKSTERED);
         return 1;
     }
-    REMOVE_VOLATILE(bank, VOLATILE_PRANKSTERED);
+    CLEAR_VOLATILE(bank, VOLATILE_PRANKSTERED);
     return 0;
 }
 

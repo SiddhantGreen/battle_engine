@@ -23,6 +23,7 @@ u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
             return i;
         }
     }
+    dprintf("WARNING, CALLBACKS ARRAY FULL ADDING CALLBACK %x!\n", func);
     return ANON_CB_MAX;
 }
 
@@ -146,6 +147,29 @@ void delete_callback(u32 func)
     if (id != 255)
         CB_MASTER[id].in_use = false;
 }
+
+
+void delete_callback_src(u32 func, u8 src)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (CB_MASTER[i].source_bank == src)) {
+            CB_MASTER[i].in_use = false;
+        }
+    }
+}
+
+bool has_callback_src(u32 func, u8 src)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (CB_MASTER[i].source_bank == src)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 void set_data_next_acb(u32 data) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];

@@ -51,28 +51,40 @@ enum TypeBits {
 
 
 /* Volatile definitions for Bitmasks -- enum is unsuitable */
-#define VOLATILE_FLASH_FIRE (1 << 0)
-#define VOLATILE_CONFUSION (1 << 1)
-#define VOLATILE_SUBSTITUTE (1 << 2)
-#define VOLATILE_STAT_REDUC_IMMUNE (1 << 3)
-#define VOLATILE_TRAPPED (1 << 4)
-#define VOLATILE_AROMA_VEIL (1 << 5)
-#define VOLATILE_MOLDBREAKER (1 << 6)
-#define VOLATILE_PRANKSTERED (1 << 7)
-#define VOLATILE_SEMI_INVULNERABLE (1 << 8)
-#define VOLATILE_CHARGING (1 << 9)
-#define VOLATILE_INGRAIN (1 << 10)
-#define VOLATILE_BIND (1 << 11)
-#define VOLATILE_FLYING (1 << 12)
-#define VOLATILE_MINIMIZE (1 << 13)
-#define VOLATILE_MULTI_TURN (1 << 14)// disables PP reduction
-#define VOLATILE_SLEEP_TURN (1 << 15)
-#define VOLATILE_CONFUSE_TURN (1 << 16)
-#define VOLATILE_ATK_SKIP_TURN (1 << 17)
-#define VOLATILE_DEFENSE_CURL (1 << 18)
-#define VOLATILE_RECHARGING (1 << 18)
-
-
+enum Volatiles {
+    VOLATILE_FLASH_FIRE,
+    VOLATILE_CONFUSION,
+    VOLATILE_SUBSTITUTE,
+    VOLATILE_STAT_REDUC_IMMUNE,
+    VOLATILE_TRAPPED,
+    VOLATILE_AROMA_VEIL,
+    VOLATILE_MOLDBREAKER,
+    VOLATILE_PRANKSTERED,
+    VOLATILE_SEMI_INVULNERABLE,
+    VOLATILE_CHARGING,
+    VOLATILE_INGRAIN,
+    VOLATILE_BIND,
+    VOLATILE_FLYING,
+    VOLATILE_MINIMIZE,
+    VOLATILE_MULTI_TURN,// disables PP reduction
+    VOLATILE_SLEEP_TURN,
+    VOLATILE_CONFUSE_TURN,
+    VOLATILE_ATK_SKIP_TURN,
+    VOLATILE_DEFENSE_CURL,
+    VOLATILE_RECHARGING,
+    VOLATILE_GRAVITY,
+    VOLATILE_BOUNCE,
+    VOLATILE_SKYDROP,
+    VOLATILE_MIRACLE_EYE,
+    VOLATILE_MAGNET_RISE,
+    VOLATILE_THOUSAND_ARROWS,
+    VOLATILE_SMACK_DOWN,
+    VOLATILE_TELEKINESIS,
+    VOLATILE_HEAL_BLOCK,
+    VOLATILE_ODOR_SLEUTH,
+    VOLATILE_FORESIGHT,
+    VOLATILE_ENCORE,
+};
 
 
 struct local_battler_data {
@@ -125,6 +137,7 @@ struct local_battler_data {
     u8 skip_move_select : 1;
     u8 first_turn : 1;
     u8 move_failed : 1;
+    u8 last_move_failed : 1;
 
     u8 my_target;
     u8 pp_index;
@@ -152,7 +165,7 @@ struct local_battler_data {
     u16 substitute_health;
     u8 protect_used_turns;
     u32 v_status; // enum volatile status
-
+    u32 v_status2; // continue of above
     u8 disable_used_on_slot;
     u16 disabled_moves[4];
 

@@ -29,7 +29,8 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 build_execution_order(CB_ON_EFFECTIVENESS);
                 battle_master->executing = true;
                 while (battle_master->executing) {
-                    set_data_next_acb(move_effectiveness);
+                    u32 data = ((attacker << 16) | move_effectiveness);
+                    set_data_next_acb(data);
                     u16 effectiveness_temp = pop_callback(target_type, move_type);
                     if (effectiveness_temp != 1) {
                         move_effectiveness = effectiveness_temp;
@@ -113,12 +114,11 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
         p_bank[attacker]->b_data.attack = 0;
         p_bank[attacker]->b_data.sp_atk = 0;
     }
-
     if (B_MOVE_IGNORE_DEF(attacker)) {
-        def_mod[0] = p_bank[defender]->b_data.attack;
-        def_mod[1] = p_bank[defender]->b_data.sp_atk;
-        p_bank[defender]->b_data.attack = 0;
-        p_bank[defender]->b_data.sp_atk = 0;
+        def_mod[0] = p_bank[defender]->b_data.defense;
+        def_mod[1] = p_bank[defender]->b_data.sp_def;
+        p_bank[defender]->b_data.defense = 0;
+        p_bank[defender]->b_data.sp_def = 0;
     }
 
     // foul play sets this flag
@@ -136,8 +136,8 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     }
 
     if (B_MOVE_IGNORE_DEF(attacker)) {
-        p_bank[defender]->b_data.attack = def_mod[0];
-        p_bank[defender]->b_data.sp_atk = def_mod[1];
+        p_bank[defender]->b_data.defense = def_mod[0];
+        p_bank[defender]->b_data.sp_def = def_mod[1];
     }
 
     // Calc base damage - broken up for readability

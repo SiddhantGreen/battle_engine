@@ -35,6 +35,7 @@ u8 tailwind_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     return true;
 }
 
+
 /* Trick room */
 u8 trick_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -45,7 +46,6 @@ u8 trick_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
     }
     return true;
 }
-
 
 u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -68,7 +68,7 @@ u8 trick_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 
 /* Wonder room */
-u8 wonder_room_on_residual(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+u8 wonder_room_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((acb->duration == 0) && (acb->in_use)) {
         enqueue_message(NULL, user, STRING_TWISTED_DIM_NORM, NULL);
@@ -83,7 +83,7 @@ u8 wonder_room_on_residual(u8 user, u8 src, u16 stat_id, struct anonymous_callba
     return true;
 }
 
-u8 wonder_room_on_effect(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
     if (callback_exists((u32)wonder_room_on_residual)) {
@@ -134,8 +134,9 @@ u8 safe_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     return true;
 }
 
+
 /* Lucky Chant */
-u16 lucky_chant_on_residual(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
+u16 lucky_chant_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (SIDE_OF(user) != SIDE_OF(src)) return true;
     if (acb->duration == 0) {
@@ -160,6 +161,94 @@ u8 lucky_chant_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     add_callback(CB_ON_RESIDUAL, 0, 5, src, (u32)lucky_chant_on_residual);
     add_callback(CB_ON_MODIFY_MOVE, -100, 5, src, (u32)lucky_chant_on_modify_move);
     enqueue_message(MOVE_LUCKY_CHANT, user, STRING_SHIELDED_CRITS, NULL);
+    return true;
+}
+
+
+/* Gravity */
+bool gravity_on_disabled_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    return (!IS_GRAVITY(move));
+}
+
+u16 gravity_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
+{
+    if ((target_type == MTYPE_FLYING) && (move_type == MTYPE_GROUND)) {
+        return 100; // Flying type immunity to ground is removed
+    } else {
+        return (u16)acb->data_ptr;
+    }
+}
+
+u16 gravity_on_accuracy(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (stat_id != ACCURACY_MOD) return (u16)acb->data_ptr;
+    return NUM_MOD((u16)acb->data_ptr, 167);
+}
+
+u8 gravity_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (acb->in_use) {
+        acb->in_use = false;
+        enqueue_message(MOVE_GRAVITY, user, STRING_MOVE_ENDED, NULL);
+        for (u8 i = 0; i < BANK_MAX; i++) {
+            p_bank[i]->b_data.is_grounded = false;
+            CLEAR_VOLATILE(i, VOLATILE_GRAVITY);
+        }
+    }
+    return true;
+}
+
+u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)gravity_on_residual)) return false;
+
+    add_callback(CB_ON_EFFECTIVENESS, 0, 5, src, (u32)gravity_on_effectiveness);
+    add_callback(CB_ON_STAT_MOD, 0, 5, src, (u32)gravity_on_accuracy);
+    add_callback(CB_ON_DISABLE_MOVE, 0, 5, src, (u32)gravity_on_disabled_move);
+    u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)gravity_on_residual);
+    CB_MASTER[id].delay_before_effect = 5;
+    enqueue_message(NULL, NULL, STRING_GRAVITY_INTENSE, NULL);
+
+    // apply gravity to everyone on field
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        p_bank[i]->b_data.is_grounded = true;
+        ADD_VOLATILE(i, VOLATILE_GRAVITY);
+        // Cancel moves Fly and Bounce and Sky attacks in effect manually
+        if (HAS_VOLATILE(i, VOLATILE_FLYING)) {
+            CLEAR_VOLATILE(i, VOLATILE_FLYING);
+            CLEAR_VOLATILE(i, VOLATILE_SEMI_INVULNERABLE);
+            CLEAR_VOLATILE(i, VOLATILE_CHARGING);
+            enqueue_message(MOVE_FLY, i, STRING_FAILED_EXECUTION, MOVE_GRAVITY);
+        } else if (HAS_VOLATILE(i, VOLATILE_BOUNCE)) {
+            CLEAR_VOLATILE(i, VOLATILE_BOUNCE);
+            CLEAR_VOLATILE(i, VOLATILE_SEMI_INVULNERABLE);
+            CLEAR_VOLATILE(i, VOLATILE_CHARGING);
+            enqueue_message(MOVE_BOUNCE, i, STRING_FAILED_EXECUTION, MOVE_GRAVITY);
+        } else if (HAS_VOLATILE(user, VOLATILE_SKYDROP)) {
+            CLEAR_VOLATILE(i, VOLATILE_SKYDROP);
+            CLEAR_VOLATILE(i, VOLATILE_SEMI_INVULNERABLE);
+            CLEAR_VOLATILE(i, VOLATILE_CHARGING);
+            enqueue_message(MOVE_SKY_DROP, i, STRING_FAILED_EXECUTION, MOVE_GRAVITY);
+        }
+
+        // remove effects of Telekinesis and Magnet rise
+        if (HAS_VOLATILE(i, VOLATILE_MAGNET_RISE)) {
+            extern u8 magnet_rise_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+            extern u8 magnet_rise_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
+            delete_callback((u32)magnet_rise_on_residual);
+            delete_callback((u32)magnet_rise_on_effectiveness);
+            CLEAR_VOLATILE(i, VOLATILE_MAGNET_RISE);
+        }
+        if (HAS_VOLATILE(i, VOLATILE_TELEKINESIS)) {
+            extern u8 telekinesis_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+            extern u8 telekinesis_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
+            delete_callback((u32)telekinesis_on_effectiveness);
+            delete_callback((u32)telekinesis_on_residual);
+            CLEAR_VOLATILE(i, VOLATILE_TELEKINESIS);
+        }
+    }
     return true;
 }
 
@@ -189,3 +278,41 @@ u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(MOVE_MIST, user, STRING_PROTECTED_TEAM, NULL);
     return true;
 }
+
+
+/* Mud sport */
+void mud_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (B_MOVE_HAS_TYPE(user, MTYPE_ELECTRIC)) {
+        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+    }
+}
+
+u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)mud_sport_on_base_power)) return false;
+    add_callback(CB_ON_BASE_POWER_MOVE, 1, 5, src, (u32)mud_sport_on_base_power);
+    enqueue_message(MTYPE_ELECTRIC, user, STRING_TYPE_WEAKEN, MTYPE_ELECTRIC);
+    return true;
+}
+
+
+/* Water sport */
+void water_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
+        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+    }
+}
+
+u8 water_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (callback_exists((u32)water_sport_on_base_power)) return false;
+    add_callback(CB_ON_BASE_POWER_MOVE, 1, 5, src, (u32)water_sport_on_base_power);
+    enqueue_message(MTYPE_ELECTRIC, user, STRING_TYPE_WEAKEN, MTYPE_ELECTRIC);
+    return true;
+}
+
+/* Perish Song */

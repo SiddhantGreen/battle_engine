@@ -7,6 +7,10 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
+extern bool has_volatile(u8 bank, enum Volatiles v);
+extern void clear_volatile(u8 bank, enum Volatiles v);
+extern void add_volatile(u8 bank, enum Volatiles v);
+
 /*
  * Names of stats as IDs in stage_modify_stat
  */
@@ -48,23 +52,21 @@
 /*
  * Umodified battle sats
  */
-#define B_ATTACK_STAT_UMOD(bank) p_bank[bank]->b_data.attack_raw
-#define B_DEFENSE_STAT_UMOD(bank) p_bank[bank]->b_data.defense_raw
-#define B_SPEED_STAT_UMOD(bank) p_bank[bank]->b_data.speed_raw
-#define B_SPATTACK_STAT_UMOD(bank) p_bank[bank]->b_data.sp_atk_raw
-#define B_SPDEFENSE_STAT_UMOD(bank) p_bank[bank]->b_data.sp_def_raw
+#define B_ATTACK_STAT_UMOD(bank) (p_bank[bank]->b_data.attack_raw)
+#define B_DEFENSE_STAT_UMOD(bank) (p_bank[bank]->b_data.defense_raw)
+#define B_SPEED_STAT_UMOD(bank) (p_bank[bank]->b_data.speed_raw)
+#define B_SPATTACK_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_atk_raw)
+#define B_SPDEFENSE_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_def_raw)
 
 #define NUM_MOD(number, percent) ((number * percent) / 100)
 
 /*
  * P_bank b_data volatile macros
  */
-#define ADD_VOLATILE(bank, v) p_bank[bank]->b_data.v_status |= v
-// xor to flip bits
-#define REMOVE_VOLATILE(bank, v) p_bank[bank]->b_data.v_status ^= v
+#define ADD_VOLATILE(bank, v) (add_volatile(bank, v))
 // clear the bit, even when not set.
-#define CLEAR_VOLATILE(bank, v) p_bank[bank]->b_data.v_status &= ~(v)
-#define HAS_VOLATILE(bank, v) p_bank[bank]->b_data.v_status & v
+#define CLEAR_VOLATILE(bank, v) (clear_volatile(bank, v))
+#define HAS_VOLATILE(bank, v) (has_volatile(bank, v))
 
 /*
  * P_bank b_data set and fetch macros
@@ -114,6 +116,7 @@
 #define B_HEAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].heal)
 #define B_GET_ITEM(bank) (p_bank[bank]->b_data.item)
 #define B_MOVE_FAILED(bank) (p_bank[bank]->b_data.move_failed)
+#define B_LAST_MOVE_FAILED(bank) (p_bank[bank]->b_data.last_move_failed)
 
 #define B_GET_MOVE(bank, id) (p_bank[bank]->b_data.moves[id])
 #define B_GET_MOVE_PP(bank, id) (p_bank[bank]->b_data.move_pp[id])
