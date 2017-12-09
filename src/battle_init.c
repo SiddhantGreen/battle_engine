@@ -93,6 +93,7 @@ void init_battle()
             update_pbank(PLAYER_SINGLES_BANK, flags);
             update_pbank(OPPONENT_SINGLES_BANK, flags);
             free(flags);
+            free(bs_env_windows);
             super.multi_purpose_state_tracker++;
         }
         case 4:
