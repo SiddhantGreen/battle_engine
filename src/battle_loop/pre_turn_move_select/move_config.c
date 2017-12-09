@@ -35,15 +35,15 @@ u16 pick_opponent_attack()
     if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select)
         return LAST_MOVE(OPPONENT_SINGLES_BANK);
     u8 move_total = count_total_moves(OPPONENT_SINGLES_BANK);
-    if (count_usable_moves(OPPONENT_SINGLES_BANK) < 1) {
-        return MOVE_STRUGGLE;
-    }
     build_execution_order(CB_ON_DISABLE_MOVE);
     battle_master->executing = true;
     while (battle_master->executing) {
         if (!pop_callback(OPPONENT_SINGLES_BANK, CURRENT_MOVE(OPPONENT_SINGLES_BANK))) {
             return CURRENT_MOVE(OPPONENT_SINGLES_BANK);
         }
+    }
+    if (count_usable_moves(OPPONENT_SINGLES_BANK) < 1) {
+        return MOVE_STRUGGLE;
     }
     while (true) {
         u8 rand_index = rand_range(0, move_total);

@@ -155,6 +155,9 @@ enum battle_string_ids {
     STRING_GUARD_S,
     STRING_POWER_S,
     STRING_SPE_SWAP,
+    STRING_RECIEVED_ENCORE,
+    STRING_SUBJECTED_TORM,
+    STRING_FELL_FOR_TAUNT,
     STRINGS_TABLE_MAX,
 };
 
@@ -322,6 +325,9 @@ static const pchar str_heal_b[] = _("{FOE}{ATTACKING_MON} was prevented\nfrom he
 static const pchar str_guard_s[] = _("{FOE}{ATTACKING_MON} shared its\nguard with the target!");
 static const pchar str_power_s[] = _("{FOE}{ATTACKING_MON} shared its\npower with the target!");
 static const pchar str_swap_spe[] = _("{FOE}{ATTACKING_MON} swapped its\nspeed stat with the target!");
+static const pchar str_enc_rec[] = _("{FOE}{ATTACKING_MON} recieved\nan encore!");
+static const pchar str_sub_torment[] = _("{FOE}{ATTACKING_MON} was subjected\nto torment!");
+static const pchar str_fell_taunt[] = _("{FOE}{ATTACKING_MON} fell\nfor the taunt!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -504,6 +510,9 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_guard_s, // 152
    (pchar*)&str_power_s, // 153
    (pchar*)&str_swap_spe, // 154
+   (pchar*)&str_enc_rec, // 155
+   (pchar*)&str_sub_torment, // 156
+   (pchar*)&str_fell_taunt, // 157
 
 
 };

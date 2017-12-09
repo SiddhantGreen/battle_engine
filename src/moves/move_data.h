@@ -147,6 +147,8 @@ extern void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struc
 extern u8 laser_focus_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 encore_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 encore_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 torment_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
