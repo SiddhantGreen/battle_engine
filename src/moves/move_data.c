@@ -4264,8 +4264,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = ingrain_on_effect,
     },
 
     {

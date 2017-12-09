@@ -151,6 +151,7 @@ extern u8 torment_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 taunt_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 disable_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 ingrain_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

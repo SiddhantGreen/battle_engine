@@ -9,6 +9,7 @@ extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 /* Largely TODO. Must revist as these effects are implemented. */
 bool is_grounded(u8 bank) {
     // gravity in effect, true
+    if (HAS_VOLATILE(bank, VOLATILE_GRAVITY)) return false;
     // ingrain in effect true
     // smackdown in effect on bank true
     // ironball active true
@@ -18,6 +19,7 @@ bool is_grounded(u8 bank) {
     // telekinesis here false
     // if air balloon true
     // false
-    if (b_pkmn_has_type(bank, MTYPE_FLYING)) return false;
+    if (b_pkmn_has_type(bank, MTYPE_FLYING) && (!p_bank[bank]->b_data.is_grounded))
+        return false;
     return true;
 }
