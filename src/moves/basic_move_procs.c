@@ -1089,8 +1089,8 @@ struct move_procs target_lower_def_20_procs = {
 // Ancient Power
 struct move_procs ancient_power_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
-    {10, 10, 10, 10, 10, 10, 0, 0},
-    {1, 1, 1, 1, 1, 1, 0, 0},
+    {10, 10, 10, 10, 10, 0, 0, 0},
+    {1, 1, 1, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
