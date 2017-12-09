@@ -48,6 +48,7 @@ void set_attack_battle_master(u8 bank, u8 index, s8 priority)
 {
     u16 move_id = p_bank[bank]->b_data.current_move;
     p_bank[bank]->b_data.last_damage = 0;
+    B_LAST_MOVE_FAILED(bank) = B_MOVE_FAILED(bank);
     B_MOVE_FAILED(bank) = false;
 
     battle_master->b_moves[index].user_bank = bank;

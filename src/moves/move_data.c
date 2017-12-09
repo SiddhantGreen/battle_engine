@@ -9282,6 +9282,7 @@ struct move_data moves[] = {
     .type = MTYPE_GROUND,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = stomping_tantrum_on_base_power_move,
     },
 
     {

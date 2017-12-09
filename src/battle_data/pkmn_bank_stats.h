@@ -116,6 +116,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_HEAL(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].heal)
 #define B_GET_ITEM(bank) (p_bank[bank]->b_data.item)
 #define B_MOVE_FAILED(bank) (p_bank[bank]->b_data.move_failed)
+#define B_LAST_MOVE_FAILED(bank) (p_bank[bank]->b_data.last_move_failed)
 
 #define B_GET_MOVE(bank, id) (p_bank[bank]->b_data.moves[id])
 #define B_GET_MOVE_PP(bank, id) (p_bank[bank]->b_data.move_pp[id])
