@@ -92,7 +92,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
     }
 
     if (!flags->pass_disables) {
-        
+
     }
 
     p_bank[bank]->b_data.illusion = 0;
@@ -106,4 +106,50 @@ void sync_battler_struct(u8 bank)
     u8 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+}
+
+
+bool update_bank_hit_list(u8 bank_index)
+{
+    u16 move = CURRENT_MOVE(bank_index);
+    u8 list[4] = {BANK_MAX, BANK_MAX, BANK_MAX, BANK_MAX};
+
+    if (moves[move].m_flags & FLAG_ONSELF) {
+        // Target is user
+        list[0] = bank_index;
+    } else if (moves[move].m_flags & FLAG_TARGET) {
+        // Target is selected Target
+        list[0] = FOE_BANK(bank_index);
+    } else if (moves[move].m_flags & FLAG_HITS_FOE_SIDE) {
+        // Target is the foe side
+        if (SIDE_OF(bank_index) == PLAYER_SIDE) {
+            list[0] = 2;
+            list[1] = 3;
+        } else {
+            list[0] = 0;
+            list[1] = 1;
+        }
+    } else if (moves[move].m_flags & FLAG_HITS_MY_SIDE) {
+        // Target is the user side
+        if (SIDE_OF(bank_index) == PLAYER_SIDE) {
+            list[0] = 0;
+            list[1] = 1;
+        } else {
+            list[0] = 2;
+            list[1] = 3;
+        }
+    } else if (moves[move].m_flags & FLAG_HITS_ALL) {
+        // Target is everything
+        for (u8 i = 0; i < 4; i++) {
+            list[i] = i;
+        }
+    } else {
+        // no target
+        return false;
+    }
+    for (u8 i = 0; i < 4; i++) {
+        battle_master->bank_hit_list[i] = list[i];
+    }
+
+    return true;
 }

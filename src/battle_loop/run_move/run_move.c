@@ -19,6 +19,8 @@ extern void dprintf(const char * str, ...);
 extern void c1_residual_status_effects(void);
 extern void hpbar_apply_dmg(u8 task_id);
 extern bool is_grounded(u8 bank);
+extern void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index);
+extern bool update_bank_hit_list(u8 bank_index);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -111,52 +113,15 @@ void run_move()
         }
         case S_CONFIG_MOVE_EXEC:
         {
-            // check target exists
-            /*
-            if (!target_exists(bank_index)) {
-                enqueue_message(0, bank_index, STRING_FAILED, 0);
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
-            } else {
-                super.multi_purpose_state_tracker++;
-            }*/
             /* Initialize target banks for moves */
-            for (u8 i = 0; i < 4; i++) {
-                battle_master->bank_hit_list[i] = BANK_MAX;
-            }
-            u16 move = CURRENT_MOVE(bank_index);
-            if (moves[move].m_flags & FLAG_ONSELF) {
-                battle_master->bank_hit_list[0] = bank_index;
-            } else if (moves[move].m_flags & FLAG_TARGET) {
-                // TODO: In doubles this will be the Cursor selected pkmn
-                battle_master->bank_hit_list[0] = FOE_BANK(bank_index);
-            } else if (moves[move].m_flags & FLAG_HITS_FOE_SIDE) {
-                dprintf("hitting foe side\n");
-                if (SIDE_OF(bank_index) == PLAYER_SIDE) {
-                    dprintf("opp foe side\n");
-                    battle_master->bank_hit_list[0] = 2;
-                    battle_master->bank_hit_list[1] = 3;
-                } else {
-                    dprintf("player's foe side\n");
-                    battle_master->bank_hit_list[0] = 0;
-                    battle_master->bank_hit_list[1] = 1;
-                }
-            } else if (moves[move].m_flags & FLAG_HITS_MY_SIDE) {
-                if (SIDE_OF(bank_index) == PLAYER_SIDE) {
-                    battle_master->bank_hit_list[0] = 0;
-                    battle_master->bank_hit_list[1] = 1;
-                } else {
-                    battle_master->bank_hit_list[0] = 2;
-                    battle_master->bank_hit_list[1] = 3;
-                }
-            } else if (moves[move].m_flags & FLAG_HITS_ALL) {
-                for (u8 i = 0; i < 4; i++) {
-                    battle_master->bank_hit_list[i] = i;
-                }
-            } else {
+            if (!update_bank_hit_list(bank_index)) {
+                // Move didn't specify a target
                 dprintf("Move didn't have a target to effect.\n");
                 enqueue_message(0, bank_index, STRING_FAILED, 0);
                 super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                return;
             }
+
             // reduce PP
             if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
@@ -172,9 +137,9 @@ void run_move()
         {
             bool will_move = false;
             for (u8 i = 0; i < sizeof(battle_master->bank_hit_list); i++) {
-                dprintf("hit list index %d is %d\n", i, battle_master->bank_hit_list[i]);
                 if (battle_master->bank_hit_list[i] < BANK_MAX) {
                     if (ACTIVE_BANK(battle_master->bank_hit_list[i])) {
+                        dprintf("bank %d set it's target to bank %d\n", bank_index, battle_master->bank_hit_list[i]);
                         TARGET_OF(bank_index) = battle_master->bank_hit_list[i];
                         battle_master->bank_hit_list[i] = BANK_MAX;
                         will_move = true;
@@ -185,17 +150,18 @@ void run_move()
                 }
             }
             if (will_move) {
-                /*
-                if (!target_exists(bank_index)) {
-                    super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
-                    return;
-                }*/
-                dprintf("trying to run move against %d as %d\n", TARGET_OF(bank_index), bank_index);
                 // reset battle master move structure for this move
-                extern void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index);
                 set_attack_bm_inplace(CURRENT_MOVE(bank_index), bank_index, B_MOVE_BANK(bank_index));
                 B_MOVE_DMG(bank_index) = 0;
                 B_MOVE_EFFECTIVENESS(bank_index) = 0;
+                if (!on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
+                    B_MOVE_FAILED(bank_index) = true;
+                    enqueue_message(0, bank_index, STRING_FAILED, 0);
+                    battle_master->move_completed = true;
+                    super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                    set_callback1(move_hit);
+                    return;
+                }
                 set_callback1(move_hit); // move hit will advance the state when complete
                 super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
             } else {
