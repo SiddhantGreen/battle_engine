@@ -9255,8 +9255,9 @@ struct move_data moves[] = {
     .priority = -3,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = shell_trap_before_turn,
     },
 
     {

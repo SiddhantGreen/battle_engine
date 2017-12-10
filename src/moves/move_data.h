@@ -157,6 +157,7 @@ extern u8 smackdown_on_invul_tryhit(u8 user, u8 src, u16 move, struct anonymous_
 extern u8 roost_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rototiller_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 thousand_arrow_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void shell_trap_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

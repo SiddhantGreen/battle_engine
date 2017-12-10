@@ -121,10 +121,10 @@ u8 thousand_arrows_on_effectiveness(u8 user, u8 src, u16 move, struct anonymous_
     return effectiveness;
 }
 
-void thousand_arrow_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 thousand_arrow_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != src) return;
-    if (is_grounded(TARGET_OF(user))) return;
+    if (user != src) return true;
+    if (is_grounded(TARGET_OF(user))) return true;
     // not grounded, apply grounding and effectiveness Callback.
     u8 target = TARGET_OF(user);
     bool has_smackdown = HAS_VOLATILE(target, VOLATILE_SMACK_DOWN);
