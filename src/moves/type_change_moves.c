@@ -217,6 +217,7 @@ u8 burn_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     return true;
 }
 
+
 /* Revelation Dance */
 u8 revelation_dance_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -224,6 +225,7 @@ u8 revelation_dance_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_c
     B_MOVE_TYPE(user, 0) = B_PKMN_TYPE(user, 0);
     return true;
 }
+
 
 /* Hidden Power*/
 u8 hidden_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -237,5 +239,39 @@ u8 hidden_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callb
     correlated_sum  += p_bank[user]->b_data.sp_atk_iv << 4;
     correlated_sum  += p_bank[user]->b_data.sp_def_iv << 5;
     B_MOVE_TYPE(user, 0) = (correlated_sum *15)/63;
+    return true;
+}
+
+
+/* Rooost */
+extern bool b_pkmn_is_untyped(u8 bank);
+extern void b_pkmn_replace_type(u8 bank, enum PokemonType type, enum PokemonType type_replace);
+
+u8 roost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (acb->in_use) {
+        if (acb->data_ptr) {
+            b_pkmn_add_type(src, MTYPE_FLYING);
+        } else {
+            b_pkmn_replace_type(src, MTYPE_NORMAL, MTYPE_FLYING);
+        }
+        acb->in_use = false;
+    }
+    return true;
+}
+
+u8 roost_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (b_pkmn_has_type(user, MTYPE_FLYING)) {
+        b_pkmn_replace_type(user, MTYPE_FLYING, MTYPE_EGG);
+        bool add = true;
+        if (b_pkmn_is_untyped(user)) {
+            b_pkmn_add_type(user, MTYPE_NORMAL);
+            add = false;
+        }
+        u8 id = add_callback(CB_ON_RESIDUAL, -10, 0, user, (u32)roost_on_residual);
+        CB_MASTER[id].data_ptr = add;
+    }
     return true;
 }

@@ -160,6 +160,7 @@ enum battle_string_ids {
     STRING_FELL_FOR_TAUNT,
     STRING_CANT_REASON,
     STRING_ROOTS_PLANTED,
+    STRING_FELL_DOWN,
     STRINGS_TABLE_MAX,
 };
 
@@ -332,6 +333,7 @@ static const pchar str_sub_torment[] = _("{FOE}{ATTACKING_MON} was subjected\nto
 static const pchar str_fell_taunt[] = _("{FOE}{ATTACKING_MON} fell\nfor the taunt!");
 static const pchar string_reason_cant[] = _("Can’t use {ATTACK_NAME}\nwhile {EFFECT_NAME} is active!");
 static const pchar string_roots_plant[] = _("{FOE}{ATTACKING_MON} planted\nits roots!");
+static const pchar str_fell_down[] = _("{FOE}{ATTACKING_MON}\nfell right down!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -519,6 +521,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_fell_taunt, // 157
    (pchar*)&string_reason_cant, // 158
    (pchar*)&string_roots_plant, // 159
+   (pchar*)&str_fell_down, // 159
 
 
 };

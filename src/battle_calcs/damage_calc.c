@@ -8,6 +8,7 @@
 extern u16 rand_range(u16, u16);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 extern void dprintf(const char * str, ...);
+extern bool is_grounded(u8 bank);
 
 u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 {
@@ -22,6 +23,9 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
 				if (move_type == MTYPE_NONE)
 					return percent;
                 u16 move_effectiveness = MOVE_EFFECTIVENESS(target_type, move_type);
+                if (is_grounded(defender) && (move_type == MTYPE_GROUND) && (target_type == MTYPE_FLYING)) {
+                    move_effectiveness = 100;
+                }
                 // back up cbs
                 u8 old_index = CB_EXEC_INDEX;
                 u32* old_execution_array = push_callbacks();

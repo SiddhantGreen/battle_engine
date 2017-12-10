@@ -18,6 +18,7 @@ extern void do_residual_status_effects(u8 order);
 extern void dprintf(const char * str, ...);
 extern void c1_residual_status_effects(void);
 extern void hpbar_apply_dmg(u8 task_id);
+extern bool is_grounded(u8 bank);
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -156,6 +157,9 @@ void run_move()
         case S_WAIT_HPUPDATE_RUN_MOVE:
         {
           /* Passive residual effects from engine structs */
+          if (is_grounded(bank_index)) {
+              B_IS_GROUNDED(bank_index) = true;
+          }
           LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
           // update moves used history
           for (u8 i = 0; i < 4; i++) {

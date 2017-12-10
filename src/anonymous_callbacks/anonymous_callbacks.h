@@ -61,6 +61,7 @@ extern u8 id_by_acb(struct anonymous_callback* acb);
 extern u8 callback_exists_side(u32 func, u8 bank);
 extern void delete_callback_src(u32 func, u8 src);
 extern bool has_callback_src(u32 func, u8 src);
+extern void delete_callback_side(u32 func, u8 side);
 
 // callback stack restoration related
 extern void restore_callbacks(u32* data_ptr);

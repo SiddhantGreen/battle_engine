@@ -159,6 +159,16 @@ void delete_callback_src(u32 func, u8 src)
     }
 }
 
+void delete_callback_side(u32 func, u8 side)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (SIDE_OF(CB_MASTER[i].source_bank) == side)) {
+            CB_MASTER[i].in_use = false;
+        }
+    }
+}
+
 bool has_callback_src(u32 func, u8 src)
 {
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
@@ -184,14 +194,15 @@ bool callback_exists(u32 func)
 }
 
 
-u8 callback_exists_side(u32 func, u8 bank)
+u8 callback_exists_side(u32 func, u8 side)
 {
-    u8 id = id_by_func(func);
-    if (id < 255) {
-        if (SIDE_OF(bank) == SIDE_OF(CB_MASTER[id].source_bank))
-            return id;
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (SIDE_OF(CB_MASTER[i].source_bank) == side)) {
+            return true;
+        }
     }
-    return ANON_CB_MAX;
+    return false;
 }
 
 u32* push_callbacks()

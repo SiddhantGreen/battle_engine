@@ -5307,10 +5307,12 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Roost_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FLYING,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
     .procs = &basic_proc,
+    .heal = 50,
+    .on_effect_cb = roost_on_effect,
     },
 
     {
@@ -6919,8 +6921,10 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ROCK,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = smackdown_on_effect,
+    .on_inv_tryhit_move = smackdown_on_invul_tryhit,
     },
 
     {
@@ -8016,10 +8020,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Rototiller_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_ONSELF | FLAG_HITS_ALL,
     .procs = &basic_proc,
+    .on_effect_cb = rototiller_on_effect,
     },
 
     {

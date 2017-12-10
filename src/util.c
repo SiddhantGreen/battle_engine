@@ -99,6 +99,26 @@ bool b_pkmn_set_type(u8 bank, enum PokemonType type)
     return true;
 }
 
+void b_pkmn_replace_type(u8 bank, enum PokemonType type, enum PokemonType type_replace)
+{
+    for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
+        if (p_bank[bank]->b_data.type[i] == type) {
+            p_bank[bank]->b_data.type[i] = type_replace;
+        }
+    }
+}
+
+bool b_pkmn_is_untyped(u8 bank)
+{
+    for (u8 i = 0; i < sizeof(p_bank[bank]->b_data.type); i++) {
+        if (p_bank[bank]->b_data.type[i] != MTYPE_EGG) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 
 bool on_ground(u8 bank)
 {

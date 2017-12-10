@@ -291,12 +291,13 @@ u16 delta_stream_on_effect(u8 target_type, u8 src, u16 move_type, struct anonymo
 
 u16 delta_stream_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
 {
-    if ((target_type == MTYPE_FLYING) && ((u32)acb->data_ptr > 100)) {
+    u16 effectiveness = ((acb->data_ptr << 16) >> 16);
+    if ((target_type == MTYPE_FLYING) && (effectiveness > 100)) {
         if (!callback_exists((u32)delta_stream_on_effect))
             add_callback(CB_ON_EFFECT, 101, 0, NULL, (u32)delta_stream_on_effect);
         return 100;
     } else {
-        return (u16)acb->data_ptr;
+        return effectiveness;
     }
 }
 
