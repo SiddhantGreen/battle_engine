@@ -8,7 +8,8 @@
 extern u8 magnet_rise_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 telekinesis_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
-/* Largely TODO. Must revist as these effects are implemented. */
+
+/* Must revist as these effects are implemented. */
 bool is_grounded(u8 bank) {
     // gravity in effect, true
     if (HAS_VOLATILE(bank, VOLATILE_GRAVITY)) return true;
@@ -16,6 +17,8 @@ bool is_grounded(u8 bank) {
     if (HAS_VOLATILE(bank, VOLATILE_INGRAIN)) return true;
     // smackdown in effect on bank true
     if (HAS_VOLATILE(bank, VOLATILE_SMACK_DOWN)) return true;
+    // Thousand arrows in effect on bank, true
+    if (HAS_VOLATILE(bank, VOLATILE_THOUSAND_ARROWS)) return true;
     // ironball active true
     // levitate active here false
     // Magnet rise here false

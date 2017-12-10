@@ -111,3 +111,29 @@ u8 rototiller_on_effect(u8 user, u8 src, u16 status_id, struct anonymous_callbac
 
 
 /* Thousand Arrows */
+u8 thousand_arrows_on_effectiveness(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    u8 attacker = acb->data_ptr >> 16;
+    u16 effectiveness = ((acb->data_ptr << 16) >> 16);
+    if (attacker != src) return effectiveness;
+    if (b_pkmn_has_type(TARGET_OF(attacker), MTYPE_FLYING))
+        return 100;
+    return effectiveness;
+}
+
+void thousand_arrow_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (is_grounded(TARGET_OF(user))) return;
+    // not grounded, apply grounding and effectiveness Callback.
+    u8 target = TARGET_OF(user);
+    bool has_smackdown = HAS_VOLATILE(target, VOLATILE_SMACK_DOWN);
+    smackdown_on_effect(user, src, move, acb);
+    if (!has_smackdown) {
+        CLEAR_VOLATILE(target, VOLATILE_SMACK_DOWN);
+    }
+    ADD_VOLATILE(target, VOLATILE_THOUSAND_ARROWS);
+    B_IS_GROUNDED(target) = true;
+    add_callback(CB_ON_EFFECTIVENESS, 0, 0, user, (u32)thousand_arrows_on_effectiveness);
+    return true;
+}
