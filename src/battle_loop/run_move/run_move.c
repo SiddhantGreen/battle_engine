@@ -156,24 +156,30 @@ void run_move()
         }
         case S_WAIT_HPUPDATE_RUN_MOVE:
         {
-          /* Passive residual effects from engine structs */
-          if (is_grounded(bank_index)) {
-              B_IS_GROUNDED(bank_index) = true;
-          }
-          LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
-          // update moves used history
-          for (u8 i = 0; i < 4; i++) {
-          	if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
-          		break;
-          	if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
-          		p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
-          		break;
-          	}
-          }
-
-          super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
-          set_callback1(run_decision);
-          break;
+            /* Passive residual effects from engine structs */
+            if (is_grounded(bank_index)) {
+                B_IS_GROUNDED(bank_index) = true;
+            }
+            LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
+            // update moves used history
+            for (u8 i = 0; i < 4; i++) {
+                if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
+                    break;
+                if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
+                    p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
+                    break;
+                }
+            }
+            if (battle_master->repeat_move) {
+                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
+                battle_master->repeat_move = false;
+                set_callback1(run_move);
+                return;
+            } else {
+                super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
+                set_callback1(run_decision);
+            }
+            break;
         }
     };
 }

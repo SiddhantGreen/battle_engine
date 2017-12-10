@@ -113,8 +113,7 @@ void pick_wild_singles_ai_attack()
 
     // if AI is charging or recharging, don't use a move
     if (HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_CHARGING) || HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_RECHARGING)) {
-        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_NONE;
-        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        // use move was using last time.
         return;
     }
 
@@ -228,4 +227,51 @@ bool target_exists(u8 bank)
     if (B_CURRENT_HP(TARGET_OF(bank)))
         return true;
     return false;
+}
+
+
+void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index)
+{
+    battle_master->b_moves[index].user_bank = new_bank;
+    battle_master->b_moves[index].move_id = move_id;
+    battle_master->b_moves[index].priority = 0;
+    battle_master->b_moves[index].stab = 150; // move stab bonus
+    battle_master->b_moves[index].power = MOVE_POWER(move_id);
+    battle_master->b_moves[index].category = MOVE_CATEGORY(move_id);
+    battle_master->b_moves[index].type[0] = MOVE_TYPE(move_id);
+    battle_master->b_moves[index].type[1] = MTYPE_EGG;
+    battle_master->b_moves[index].flinch = 0;
+    battle_master->b_moves[index].accuracy = MOVE_ACCURACY(move_id);
+    battle_master->b_moves[index].remove_contact = false;
+    battle_master->b_moves[index].copied = false;
+    battle_master->b_moves[index].ignore_abilities = false;
+    battle_master->b_moves[index].prankstered = false;
+    battle_master->b_moves[index].heal = moves[move_id].heal;
+    battle_master->b_moves[index].infiltrates = false;
+    if (moves[move_id].multi_hit[0]) {
+        u8 hit_times = 0;
+        if ((moves[move_id].multi_hit[0] == 2) && (moves[move_id].multi_hit[1] == 5)) {
+            switch(rand_range(0, 3)) {
+                case 0:
+                    hit_times = 2;
+                    break;
+                case 1:
+                    hit_times = 3;
+                    break;
+                case 2:
+                    hit_times = rand_range(4, 6);
+                    break;
+            };
+        } else {
+            if (moves[move_id].multi_hit[0] == moves[move_id].multi_hit[1]) {
+                hit_times = moves[move_id].multi_hit[1];
+            } else {
+                hit_times = rand_range(moves[move_id].multi_hit[0], moves[move_id].multi_hit[1]);
+                hit_times |= 1;
+            }
+        }
+        battle_master->b_moves[index].hit_times = hit_times - 1;
+        battle_master->b_moves[index].hit_counter = 1;
+    }
+    battle_master->b_moves[index].b_procs = *(moves[move_id].procs);
 }

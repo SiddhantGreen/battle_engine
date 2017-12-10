@@ -9175,6 +9175,8 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = instruct_on_tryhit,
+    .on_after_move = instruct_on_after_move,
     },
 
     {
