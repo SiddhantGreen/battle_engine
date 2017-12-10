@@ -270,8 +270,10 @@ void move_hit()
                     battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
                     enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
                 }
-                super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
+                set_callback1(run_move);
             }
+
             break;
         case S_AFTER_MOVE:
             {
@@ -290,7 +292,7 @@ void move_hit()
                 if (IS_RECHARGE(move)) {
                     ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
                 }
-                super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
+                super.multi_purpose_state_tracker = S_RUN_FAINT;
                 set_callback1(run_move);
             }
             break;

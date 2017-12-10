@@ -200,7 +200,8 @@ void run_move()
                 super.multi_purpose_state_tracker = S_MOVE_TRYHIT;
             } else {
                 battle_master->move_completed = true;
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                set_callback1(move_hit);
             }
             break;
         }
@@ -209,8 +210,12 @@ void run_move()
             if (B_MOVE_FAILED(bank_index)) {
                 run_move_failed_cbs(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index));
             }
-            battle_master->field_state.last_used_move = CURRENT_MOVE(bank_index);
-            super.multi_purpose_state_tracker = S_RUN_FAINT;
+            if (battle_master->move_completed) {
+                battle_master->field_state.last_used_move = CURRENT_MOVE(bank_index);
+                super.multi_purpose_state_tracker = S_RUN_FAINT;
+            } else {
+                super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
+            }
             break;
         }
         case S_RUN_FAINT:
