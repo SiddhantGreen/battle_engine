@@ -160,6 +160,8 @@ extern u8 thousand_arrow_before_move(u8 user, u8 src, u16 move, struct anonymous
 extern void shell_trap_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 throat_chop_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 throat_chop_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
