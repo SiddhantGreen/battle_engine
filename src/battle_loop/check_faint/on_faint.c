@@ -54,18 +54,38 @@ void faint(u8 bank)
 }
 
 
+bool on_faint_callbacks(u8 bank)
+{
+    // back up cbs
+    u8 old_index = CB_EXEC_INDEX;
+    u32* old_execution_array = push_callbacks();
+    // callbacks for effectiveness of moves
+    build_execution_order(CB_ON_FAINT_CHECK);
+    battle_master->executing = true;
+    while (battle_master->executing) {
+        if (!pop_callback(bank, CURRENT_MOVE(bank))) {
+            return false;
+        }
+    }
+    // restore callbacks
+    restore_callbacks(old_execution_array);
+    CB_EXEC_INDEX = old_index;
+    return true;
+}
+
+
 void on_faint()
 {
     while (peek_message())
         return;
     switch (super.multi_purpose_state_tracker) {
         case S_CHECK_BANK1_FAINT:
-            if (!B_CURRENT_HP(battle_master->first_bank))
+            if (!on_faint_callbacks(battle_master->first_bank) || (!B_CURRENT_HP(battle_master->first_bank)))
                 faint(battle_master->first_bank);
             super.multi_purpose_state_tracker = S_CHECK_BANK2_FAINT;
             break;
         case S_CHECK_BANK2_FAINT:
-            if (!B_CURRENT_HP(battle_master->second_bank))
+            if (!B_CURRENT_HP(battle_master->second_bank) || (!on_faint_callbacks(battle_master->second_bank)))
                 faint(battle_master->second_bank);
             super.multi_purpose_state_tracker = S_RESOLVE_FAINTS;
             break;

@@ -162,6 +162,8 @@ enum battle_string_ids {
     STRING_ROOTS_PLANTED,
     STRING_FELL_DOWN,
     STRING_SETUP_SHELL_TRP,
+    STRING_PERISH_START,
+    STRING_COUNT_FELL,
     STRINGS_TABLE_MAX,
 };
 
@@ -336,6 +338,8 @@ static const pchar string_reason_cant[] = _("Can’t use {ATTACK_NAME}\nwhile {E
 static const pchar string_roots_plant[] = _("{FOE}{ATTACKING_MON} planted\nits roots!");
 static const pchar str_fell_down[] = _("{FOE}{ATTACKING_MON}\nfell right down!");
 static const pchar str_shell_trap_set[] = _("{FOE}{ATTACKING_MON} set\na shell trap!");
+static const pchar str_perish_start[] = _("All Pokémon hearing the song\nwill faint in three turns!");
+static const pchar str_count_fell[] = _("{ATTACKING_MON}’s perish count fell to {STR_VAR_1}!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -525,6 +529,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&string_roots_plant, // 159
    (pchar*)&str_fell_down, // 159
    (pchar*)&str_shell_trap_set, // 160
+   (pchar*)&str_perish_start, // 160
+   (pchar*)&str_count_fell, // 160
 
 
 };

@@ -162,6 +162,8 @@ extern void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_c
 extern u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 throat_chop_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 throat_chop_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 perish_song_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 perish_song_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

@@ -3230,6 +3230,8 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_HITS_ALL,
     .procs = &basic_proc,
+    .before_move = perish_song_before_move,
+    .on_effect_cb = perish_song_on_effect,
     },
 
     {

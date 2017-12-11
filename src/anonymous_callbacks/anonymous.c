@@ -185,6 +185,16 @@ bool has_callback_src(u32 func, u8 src)
     return false;
 }
 
+u8 get_callback_src(u32 func, u8 src)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (CB_MASTER[i].source_bank == src)) {
+            return i;
+        }
+    }
+    return ANON_CB_MAX;
+}
 
 void set_data_next_acb(u32 data) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];

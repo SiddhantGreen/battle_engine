@@ -84,6 +84,7 @@ enum Volatiles {
     VOLATILE_ODOR_SLEUTH,
     VOLATILE_FORESIGHT,
     VOLATILE_ENCORE,
+    VOLATILE_PERISH_SONG,
 };
 
 
@@ -168,6 +169,7 @@ struct local_battler_data {
     u32 v_status2; // continue of above
     // counters
     u8 flee_count;
+    u8 perish_song_counter;
 };
 
 struct update_flags {
