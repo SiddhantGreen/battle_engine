@@ -349,7 +349,7 @@ void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback
 {
 	if (user != src) return;
 	u8 target = TARGET_OF(user);
-	if (LAST_MOVE(user) == MOVE_NONE) return;
+	if (LAST_MOVE(target) == MOVE_NONE) return;
 	ADD_VOLATILE(target, VOLATILE_INSTRUCT);
 	if (!B_MOVE_BANK(user)) {
 		battle_master->first_bank = target;

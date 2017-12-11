@@ -12,6 +12,8 @@ extern void run_decision(void);
 extern void run_move(void);
 extern void dprintf(const char * str, ...);
 extern void give_exp(u8 fainted, u8 reciever);
+extern void hpbar_apply_dmg(u8 task_id);
+
 
 void obj_battler_fall_through(struct Object* obj)
 {
@@ -86,6 +88,8 @@ bool on_faint_callbacks(u8 bank)
 void on_faint()
 {
     while (peek_message())
+        return;
+    if (task_is_running(hpbar_apply_dmg))
         return;
     switch (super.multi_purpose_state_tracker) {
         case S_CHECK_BANK1_FAINT:

@@ -5,6 +5,7 @@
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
+extern void do_damage(u8 bank_index, u16 dmg);
 
 /* Perish song */
 u8 perish_song_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -15,8 +16,8 @@ u8 perish_song_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback*
             enqueue_message(0, i, STRING_COUNT_FELL, 3 - p_bank[i]->b_data.perish_song_counter);
             p_bank[i]->b_data.perish_song_counter += 1;
             if (p_bank[i]->b_data.perish_song_counter > 3) {
-                B_CURRENT_HP(i) = 0;
                 B_IS_FAINTED(i) = true;
+                do_damage(i, B_CURRENT_HP(i));
             }
         }
     }
@@ -57,3 +58,40 @@ void perish_song_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callb
 
 
 /* Destiny Bond */
+void destiny_bond_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    do_damage(acb->data_ptr, B_CURRENT_HP(acb->data_ptr));
+    enqueue_message(0, src, STRING_TOOK_WITH_HIM, 0);
+}
+
+void destiny_bond_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return;
+    if (HAS_VOLATILE(src, VOLATILE_DESTINY_BOND)) {
+        u16 dmg = B_MOVE_DMG(user);
+        if (dmg > B_CURRENT_HP(src)) {
+            u8 id = add_callback(CB_ON_FAINT_CHECK, 0, 0, src, (u32)destiny_bond_on_faint);
+            CB_MASTER[id].data_ptr = user;
+            B_IS_FAINTED(user) = true;
+        }
+    }
+}
+
+u8 destiny_bond_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    CLEAR_VOLATILE(user, VOLATILE_DESTINY_BOND);
+    return true;
+}
+
+u8 destiny_bond_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (has_callback_src((u32)destiny_bond_before_move, user)) return false;
+    ADD_VOLATILE(user, VOLATILE_DESTINY_BOND);
+    enqueue_message(0, user, STRING_TRYING_TO_TAKE, 0);
+    add_callback(CB_ON_DAMAGE_MOVE, 0, 1, user, (u32)destiny_bond_on_damage);
+    add_callback(CB_ON_BEFORE_MOVE, 0, 1, user, (u32)destiny_bond_before_move);
+    return true;
+}
