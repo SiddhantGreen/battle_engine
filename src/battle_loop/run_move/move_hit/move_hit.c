@@ -100,6 +100,8 @@ void move_hit()
             // flinch means no moving
             if (rand_range(0, 100) < battle_master->b_moves[B_MOVE_BANK(bank_index)].flinch) {
                 enqueue_message(0, bank_index, STRING_FLINCHED, 0);
+                battle_master->c1_after_faint_check = run_move;
+                battle_master->c1_prestate = S_RESIDUAL_MOVES;
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
                 set_callback1(run_decision);
                 return;
@@ -293,6 +295,8 @@ void move_hit()
                     ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
                 }
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
+                battle_master->c1_after_faint_check = run_move;
+                battle_master->c1_prestate = S_RESIDUAL_MOVES;
                 set_callback1(run_move);
             }
             break;

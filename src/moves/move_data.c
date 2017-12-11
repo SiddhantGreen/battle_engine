@@ -3232,6 +3232,7 @@ struct move_data moves[] = {
     .procs = &basic_proc,
     .before_move = perish_song_before_move,
     .on_effect_cb = perish_song_on_effect,
+    .on_after_move = perish_song_on_after_move,
     },
 
     {
