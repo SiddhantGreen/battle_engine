@@ -171,15 +171,6 @@ bool gravity_on_disabled_move(u8 user, u8 src, u16 move, struct anonymous_callba
     return (!IS_GRAVITY(move));
 }
 
-u16 gravity_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb)
-{
-    if ((target_type == MTYPE_FLYING) && (move_type == MTYPE_GROUND)) {
-        return 100; // Flying type immunity to ground is removed
-    } else {
-        return (u16)acb->data_ptr;
-    }
-}
-
 u16 gravity_on_accuracy(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (stat_id != ACCURACY_MOD) return (u16)acb->data_ptr;
@@ -204,7 +195,6 @@ u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (user != src) return true;
     if (callback_exists((u32)gravity_on_residual)) return false;
 
-    add_callback(CB_ON_EFFECTIVENESS, 0, 5, src, (u32)gravity_on_effectiveness);
     add_callback(CB_ON_STAT_MOD, 0, 5, src, (u32)gravity_on_accuracy);
     add_callback(CB_ON_DISABLE_MOVE, 0, 5, src, (u32)gravity_on_disabled_move);
     u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)gravity_on_residual);
@@ -237,15 +227,15 @@ u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
         if (HAS_VOLATILE(i, VOLATILE_MAGNET_RISE)) {
             extern u8 magnet_rise_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
             extern u8 magnet_rise_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
-            delete_callback((u32)magnet_rise_on_residual);
-            delete_callback((u32)magnet_rise_on_effectiveness);
+            delete_callback_src((u32)magnet_rise_on_residual, i);
+            delete_callback_src((u32)magnet_rise_on_effectiveness, i);
             CLEAR_VOLATILE(i, VOLATILE_MAGNET_RISE);
         }
         if (HAS_VOLATILE(i, VOLATILE_TELEKINESIS)) {
             extern u8 telekinesis_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
             extern u8 telekinesis_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
-            delete_callback((u32)telekinesis_on_effectiveness);
-            delete_callback((u32)telekinesis_on_residual);
+            delete_callback_src((u32)telekinesis_on_effectiveness, i);
+            delete_callback_src((u32)telekinesis_on_residual, i);
             CLEAR_VOLATILE(i, VOLATILE_TELEKINESIS);
         }
     }

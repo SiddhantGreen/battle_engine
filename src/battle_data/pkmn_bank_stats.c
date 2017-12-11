@@ -9,14 +9,6 @@
 extern void dprintf(const char * str, ...);
 typedef u16 (*StatCallback)(u8, u16);
 
-void update_move_pbank_flags(u8 bank, u16 move_id)
-{
-    if (move_id) {
-        p_bank[bank]->b_data.current_move = move_id;
-    } else {
-		p_bank[bank]->b_data.current_move = MOVE_STRUGGLE;
-	}
-}
 
 /*
  * Returns the stat after stage modifications have been done. Id represents which stat has been modified

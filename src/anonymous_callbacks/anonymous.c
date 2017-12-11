@@ -5,10 +5,15 @@
 
 extern void dprintf(const char * str, ...);
 extern void sort_priority_cbs(void);
+extern bool has_callback_src(u32 func, u8 src);
 
 // insert a new anonymous callback
 u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
 {
+    if (has_callback_src(func, src)) {
+        dprintf("WARNING: DUPLICATE FUNCTION %x WAS NOT ADDED\n", func);
+        return ANON_CB_MAX;
+    }
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
         if (!(CB_MASTER[i].in_use)) {
             // initialize new callback here
@@ -159,6 +164,16 @@ void delete_callback_src(u32 func, u8 src)
     }
 }
 
+void delete_callback_side(u32 func, u8 side)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (SIDE_OF(CB_MASTER[i].source_bank) == side)) {
+            CB_MASTER[i].in_use = false;
+        }
+    }
+}
+
 bool has_callback_src(u32 func, u8 src)
 {
     for (u8 i = 0; i < ANON_CB_MAX; i++) {
@@ -170,6 +185,16 @@ bool has_callback_src(u32 func, u8 src)
     return false;
 }
 
+u8 get_callback_src(u32 func, u8 src)
+{
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (CB_MASTER[i].source_bank == src)) {
+            return i;
+        }
+    }
+    return ANON_CB_MAX;
+}
 
 void set_data_next_acb(u32 data) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
@@ -184,14 +209,15 @@ bool callback_exists(u32 func)
 }
 
 
-u8 callback_exists_side(u32 func, u8 bank)
+u8 callback_exists_side(u32 func, u8 side)
 {
-    u8 id = id_by_func(func);
-    if (id < 255) {
-        if (SIDE_OF(bank) == SIDE_OF(CB_MASTER[id].source_bank))
-            return id;
+    for (u8 i = 0; i < ANON_CB_MAX; i++) {
+        if ((CB_MASTER[i].func == func) && (CB_MASTER[i].in_use == true) &&
+         (SIDE_OF(CB_MASTER[i].source_bank) == side)) {
+            return true;
+        }
     }
-    return ANON_CB_MAX;
+    return false;
 }
 
 u32* push_callbacks()

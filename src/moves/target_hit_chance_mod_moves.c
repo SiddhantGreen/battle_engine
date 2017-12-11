@@ -43,7 +43,7 @@ u8 magnet_rise_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if (unliftable(user)) return false;
     ADD_VOLATILE(user, VOLATILE_MAGNET_RISE);
     add_callback(CB_ON_EFFECTIVENESS, 0, 5, user, (u32)magnet_rise_on_effectiveness);
-    u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, src, (u32)magnet_rise_on_residual);
+    u8 id = add_callback(CB_ON_RESIDUAL, 0, 0, user, (u32)magnet_rise_on_residual);
     CB_MASTER[id].delay_before_effect = 5;
     enqueue_message(NULL, user, STRING_MAGNETISM_LEV, NULL);
     return true;

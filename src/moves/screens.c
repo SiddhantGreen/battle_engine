@@ -83,18 +83,20 @@ u8 aurora_veil_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // brickbreak
 u8 brickbreak_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+    if (user != src) return true;
     bool broke = false;
-    if (callback_exists((u32)aurora_veil_on_damage_move)) {
+    u8 target = TARGET_OF(user);
+    if (callback_exists_side((u32)aurora_veil_on_damage_move, target)) {
         broke = true;
-        delete_callback((u32)aurora_veil_on_damage_move);
+        delete_callback_side((u32)aurora_veil_on_damage_move, target);
     }
-    if (callback_exists((u32)light_screen_on_damage_move)) {
+    if (callback_exists_side((u32)light_screen_on_damage_move, target)) {
         broke = true;
-        delete_callback((u32)light_screen_on_damage_move);
+        delete_callback_side((u32)light_screen_on_damage_move, target);
     }
-    if (callback_exists((u32)reflect_on_damage_move)) {
+    if (callback_exists_side((u32)reflect_on_damage_move, target)) {
         broke = true;
-        delete_callback((u32)reflect_on_damage_move);
+        delete_callback_side((u32)reflect_on_damage_move, target);
     }
     if (broke)
         enqueue_message(0, user, STRING_SHATTER_BARRIER, 0);

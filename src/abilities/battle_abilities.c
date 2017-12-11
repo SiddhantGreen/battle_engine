@@ -237,14 +237,7 @@ struct b_ability b_water_absorb = {
 /* Attract and taunt immunity updated in the move's tryhits */
 void oblivious_on_update(u8 bank)
 {
-    if (p_bank[bank]->b_data.is_taunted) {
-        p_bank[bank]->b_data.is_taunted = false;
-         enqueue_message(MOVE_TAUNT, bank, STRING_EFFECT_ENDED, 0);
-    }
-    if (p_bank[bank]->b_data.is_charmed) {
-        p_bank[bank]->b_data.is_charmed = false;
-         enqueue_message(MOVE_CHARM, bank, STRING_EFFECT_ENDED, 0);
-    }
+    
 }
 
 struct b_ability b_oblivious = {

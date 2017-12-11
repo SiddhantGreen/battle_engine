@@ -127,19 +127,9 @@ void move_hit()
                     break;
             };
             // move landing is success
-            super.multi_purpose_state_tracker = S_ABILITY_TRYHIT;
-            break;
-        case S_ABILITY_TRYHIT:
-            // run ability tryhits
-            if (HAS_VOLATILE(bank_index, VOLATILE_MOLDBREAKER)) {
-                // moldbreaker means we skip ability tryhits
-                super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
-                break;
-            }
             super.multi_purpose_state_tracker = S_GENERAL_TRYHIT;
             break;
         case S_GENERAL_TRYHIT:
-
             if (!try_hit(bank_index)) {
                 // move has missed
                 B_MOVE_FAILED(bank_index) = 1;
@@ -147,10 +137,6 @@ void move_hit()
                 set_callback1(run_move);
                 return;
             }
-            super.multi_purpose_state_tracker = S_IMMUNITY_CHECK;
-            break;
-        case S_IMMUNITY_CHECK:
-            // check immunity
             super.multi_purpose_state_tracker = S_DAMAGE_CALC_AND_APPLY;
             break;
         case S_DAMAGE_CALC_AND_APPLY:
@@ -247,13 +233,14 @@ void move_hit()
             super.multi_purpose_state_tracker = S_SECONDARY_ROLL_CHANCE;
             break;
         }
-        case S_SECONDARY_ROLL_CHANCE: /* TODO perhaps bundle secondary effects into own file. It will be rather large */
+        case S_SECONDARY_ROLL_CHANCE:
         // Roll secondary boosts self
         {
 			move_procs_perform(bank_index, move);
             break;
         }
 		case S_SECONDARY_ROLL_AILMENTS:
+        // roll status ailments
 		{
 			status_procs_perform(bank_index);
 			break;
@@ -283,8 +270,10 @@ void move_hit()
                     battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter = temp;
                     enqueue_message(0, 0, STRING_MULTI_HIT, battle_master->b_moves[B_MOVE_BANK(bank_index)].hit_counter);
                 }
-                super.multi_purpose_state_tracker = S_AFTER_MOVE;
+                super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
+                set_callback1(run_move);
             }
+
             break;
         case S_AFTER_MOVE:
             {
@@ -303,7 +292,7 @@ void move_hit()
                 if (IS_RECHARGE(move)) {
                     ADD_VOLATILE(bank_index, VOLATILE_RECHARGING);
                 }
-                super.multi_purpose_state_tracker = S_MOVE_FAILED;
+                super.multi_purpose_state_tracker = S_RUN_FAINT;
                 set_callback1(run_move);
             }
             break;

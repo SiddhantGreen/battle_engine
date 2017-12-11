@@ -149,6 +149,21 @@ extern u8 encore_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback*
 extern u8 encore_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 torment_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 taunt_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 disable_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 ingrain_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 smackdown_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 smackdown_on_invul_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 roost_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rototiller_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 thousand_arrow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void shell_trap_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 throat_chop_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 throat_chop_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 perish_song_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 perish_song_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

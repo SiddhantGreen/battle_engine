@@ -116,6 +116,8 @@ struct move_procs {
 #define FLAG_ONSELF (1 << 17)
 #define FLAG_TARGET (1 << 18)
 #define FLAG_HITS_ALL (1 << 19)
+#define FLAG_HITS_MY_SIDE (1 << 28)
+#define FLAG_HITS_FOE_SIDE (1 << 29)
 #define FLAG_TRIAGE (1 << 20)
 #define FLAG_DANCE (1 << 21)
 #define FLAG_PULSE (1 << 22)
@@ -124,8 +126,7 @@ struct move_procs {
 #define FLAG_CATEGORY_OVERRIDE (1 << 25)
 #define FLAG_STEAL_OFFENSIVE (1 << 26)
 #define FLAG_STEAL_BOOSTS (1 << 27)
-#define FLAG_HITS_SIDE (1 << 28)
-#define FLAGS_UNUSED (1 << 29)
+#define FLAGS_UNUSED (1 << 30)
 
 
 enum MoveTypes {

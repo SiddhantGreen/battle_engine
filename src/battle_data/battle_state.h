@@ -147,7 +147,10 @@ struct battle_main {
     u8 first_bank;
     u8 second_bank;
     u8 execution_index;
+    u8 bank_hit_list[4];
     struct move_used b_moves[2];
+    u8 repeat_move : 1;
+    u8 move_completed : 1;
 
     struct switch_menu switch_main;
 

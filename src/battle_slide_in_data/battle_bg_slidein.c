@@ -231,7 +231,6 @@ void battle_slidein(void)
             // spawn HP boxes
             spawn_hpboxes_wild();
             super.multi_purpose_state_tracker = 0;
-            free(bs_env_windows);
             set_callback1((SuperCallback)init_battle);
         }
         case 10:

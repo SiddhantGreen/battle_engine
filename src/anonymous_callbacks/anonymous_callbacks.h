@@ -31,7 +31,7 @@
 #define CB_ON_STATUS 17
 #define CB_ON_BEFORE_STAT_MOD 18
 #define CB_ON_DISABLE_MOVE 19 // run before  before turn. Resets banks and prompts move selection on fail
-
+#define CB_ON_FAINT_CHECK 20
 
 
 
@@ -61,6 +61,7 @@ extern u8 id_by_acb(struct anonymous_callback* acb);
 extern u8 callback_exists_side(u32 func, u8 bank);
 extern void delete_callback_src(u32 func, u8 src);
 extern bool has_callback_src(u32 func, u8 src);
+extern void delete_callback_side(u32 func, u8 side);
 
 // callback stack restoration related
 extern void restore_callbacks(u32* data_ptr);
