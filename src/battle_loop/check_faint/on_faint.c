@@ -91,13 +91,13 @@ void on_faint()
         return;
     switch (super.multi_purpose_state_tracker) {
         case S_CHECK_BANK1_FAINT:
-            if (!on_faint_callbacks(battle_master->first_bank) || (!B_CURRENT_HP(battle_master->first_bank))) {
+            if (!B_CURRENT_HP(battle_master->first_bank) || B_IS_FAINTED(battle_master->first_bank)) {
                 faint(battle_master->first_bank);
             }
             super.multi_purpose_state_tracker = S_CHECK_BANK2_FAINT;
             break;
         case S_CHECK_BANK2_FAINT:
-            if (!on_faint_callbacks(battle_master->second_bank) || (!B_CURRENT_HP(battle_master->second_bank))) {
+            if (B_IS_FAINTED(battle_master->second_bank) || (!B_CURRENT_HP(battle_master->second_bank))) {
                 faint(battle_master->second_bank);
             }
             super.multi_purpose_state_tracker = S_RESOLVE_FAINTS;
