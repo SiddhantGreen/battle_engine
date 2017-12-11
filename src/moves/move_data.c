@@ -5039,7 +5039,7 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_STATUS,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_def_2,
     },
 
@@ -5257,9 +5257,9 @@ struct move_data moves[] = {
     .base_power = 60,
     .description = (pchar*)Shock_Wave_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
