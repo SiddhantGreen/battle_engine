@@ -166,6 +166,8 @@ enum battle_string_ids {
     STRING_COUNT_FELL,
     STRING_TOOK_WITH_HIM,
     STRING_TRYING_TO_TAKE,
+    STRING_GRUDGE_START,
+    STRING_GRUDGE_END,
     STRINGS_TABLE_MAX,
 };
 
@@ -344,6 +346,8 @@ static const pchar str_perish_start[] = _("All Pokémon hearing the song\nwill f
 static const pchar str_count_fell[] = _("{ATTACKING_MON}’s perish count fell to {STR_VAR_1}!");
 static const pchar str_destiny_bond_end[] = _("{FOE}{ATTACKING_MON} took\nits foe with it!");
 static const pchar str_destiny_bond_start[] = _("{FOE}{ATTACKING_MON} is trying to\ntake its foe down with it!");
+static const pchar str_grudge[] = _("{FOE}{ATTACKING_MON} wants its\ntarget to hold a grudge!");
+static const pchar str_grudge_end[] = _("{FOE}{ATTACKING_MON}’s {ATTACK_NAME}\nlost all its PP from the Grudge!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -537,6 +541,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_count_fell, // 162
    (pchar*)&str_destiny_bond_end, // 163
    (pchar*)&str_destiny_bond_start, // 164
+   (pchar*)&str_grudge, // 165
+   (pchar*)&str_grudge_end, // 166
 
 
 };

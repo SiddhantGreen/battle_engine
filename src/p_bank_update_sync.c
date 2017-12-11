@@ -106,6 +106,10 @@ void sync_battler_struct(u8 bank)
     u8 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+    for (u8 i = 0; i < 4; i++) {
+        u8 pp = B_GET_MOVE_PP(bank, i);
+        pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + i, &pp);
+    }
 }
 
 
