@@ -190,6 +190,12 @@ void run_move()
             break;
         case S_RESIDUAL_MOVES:
         {
+            if (battle_master->repeat_move) {
+                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
+                battle_master->repeat_move = false;
+                set_callback1(run_move);
+                return;
+            }
             if (bank_index != battle_master->first_bank) {
                 extern void c1_residual_callbacks(void);
                 set_callback1(c1_residual_callbacks);
@@ -215,15 +221,8 @@ void run_move()
                     break;
                 }
             }
-            if (battle_master->repeat_move) {
-                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
-                battle_master->repeat_move = false;
-                set_callback1(run_move);
-                return;
-            } else {
-                super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
-                set_callback1(run_decision);
-            }
+            super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
+            set_callback1(run_decision);
             break;
         }
     };
