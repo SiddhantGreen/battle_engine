@@ -200,6 +200,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_TRYING_TO_TAKE:
             case STRING_GRUDGE_START:
             case STRING_GRUDGE_END:
+            case STRING_SKY_DROP_AIR:
+            case STRING_SKY_DROP_FREE:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:
@@ -207,6 +209,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_MOVE_IMMUNE:
             case STRING_BOUNCED_BACK:
             case STRING_ELECTRIFIED:
+            case STRING_SKY_DROP_START:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
             default:

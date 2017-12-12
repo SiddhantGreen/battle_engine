@@ -7290,6 +7290,8 @@ struct move_data moves[] = {
     .type = MTYPE_FLYING,
     .m_flags = FLAG_GRAVITY | FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = skydrop_before_move,
+    .on_damage_move = skydrop_on_damage,
     },
 
     {

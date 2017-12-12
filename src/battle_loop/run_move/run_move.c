@@ -26,6 +26,7 @@ enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
     USE_MOVE_NORMAL,
     TARGET_MOVE_IMMUNITY,
+    SILENT_FAIL,
 };
 
 
@@ -86,6 +87,8 @@ void run_move()
                 case CANT_USE_MOVE:
                 case TARGET_MOVE_IMMUNITY:
                     enqueue_message(0, bank_index, STRING_FAILED, 0);
+                case SILENT_FAIL:
+                    battle_master->move_completed = true;
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     return;
             };
