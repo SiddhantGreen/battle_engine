@@ -6073,7 +6073,7 @@ struct move_data moves[] = {
     .category = MOVE_SPECIAL,
     .type = MTYPE_GROUND,
     .m_flags = FLAG_PROTECT | FLAG_TARGET,
-    .procs = &lower_spDef_1_10,
+    .procs = &target_lower_spDef_1_10,
     },
 
     {
