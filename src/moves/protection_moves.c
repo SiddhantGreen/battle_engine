@@ -154,8 +154,8 @@ u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 /* Wide guard */
 u8 wide_guard_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return true;
-    if (IS_PROTECTABLE(move) && M_HITS_SIDE(move) && M_HITS_TARGET(move)) {
+    if (SIDE_OF(TARGET_OF(user)) != SIDE_OF(source)) return true;
+    if (IS_PROTECTABLE(move) && M_HITS_FOE_SIDE(move)) {
         enqueue_message(MOVE_WIDE_GUARD, TARGET_OF(user), STRING_PROTECTED_MON, 0);
         return 3; // fail the move silently
     }
