@@ -9,8 +9,7 @@
 
 #define BANK_MAX 4
 #define MTYPES_MAX 19
-#define SPECIES_ARCEUS 1000
-#define SPECIES_SILVALLY 1001
+
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*DamageCallback)(u8, u8);

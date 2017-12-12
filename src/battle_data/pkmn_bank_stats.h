@@ -11,6 +11,16 @@ extern bool has_volatile(u8 bank, enum Volatiles v);
 extern void clear_volatile(u8 bank, enum Volatiles v);
 extern void add_volatile(u8 bank, enum Volatiles v);
 
+/* To be removed when species expansion hits */
+#define SPECIES_ASH_GRENINJA 0
+#define SPECIES_ALOLAN_DIGLETT 0x999
+#define SPECIES_ALOLAN_DUGTRIO 0x999
+#define SPECIES_SANDYGAST 0x999
+#define SPECIES_PALOSSAND 0x999
+#define SPECIES_MEGA_GENGAR 0x999
+#define SPECIES_ARCEUS 1000
+#define SPECIES_SILVALLY 1001
+
 /*
  * Names of stats as IDs in stage_modify_stat
  */
@@ -72,6 +82,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
  * P_bank b_data set and fetch macros
  *
  */
+#define B_SPECIES(bank) (p_bank[bank]->b_data.species)
 #define CURRENT_MOVE(bank) (p_bank[bank]->b_data.current_move)
 #define LAST_MOVE(bank) (p_bank[bank]->b_data.last_move)
 #define BANK_ABILITY(bank) (p_bank[bank]->b_data.ability)

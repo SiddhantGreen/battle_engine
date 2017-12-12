@@ -778,6 +778,19 @@ struct move_procs burn_10_procs = {
     10,
 };
 
+// 30% Burn on target.
+struct move_procs burn_30_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_BURN,
+    0,
+    30,
+};
+
 // 10% Freeze: Ice Beam
 struct move_procs freeze_10_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
@@ -1301,6 +1314,32 @@ struct move_procs target_raise_Atk_spAtk_1 = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {100, 0, 0, 100, 0, 0, 0, 0},
     {1, 0, 0, 1, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Geomancy +2 SPA, SPD, SPE to user
+struct move_procs geomancy_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 100, 100, 100, 0, 0, 0},
+    {0, 0, 2, 2, 2, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Venom drench -1 SPA, ATK, SPE target
+struct move_procs venom_drench = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {100, 0, 100, 100, 0, 0, 0, 0},
+    {1, 0, 1, 1, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,

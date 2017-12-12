@@ -107,3 +107,11 @@ void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struct anony
         B_MOVE_POWER(user) *= 2;
     }
 }
+
+
+void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_SPECIES(user) != SPECIES_ASH_GRENINJA) return;
+    B_MOVE_POWER(user) = moves[move].base_power + 5;
+}

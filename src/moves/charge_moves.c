@@ -55,6 +55,15 @@ u8 sky_attack_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
     return before_move_charge_frame(user, STRING_CHARGE_SKY_ATTACK);
 }
 
+u8 geomancy_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (src != user) return true;
+    if (!HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        enqueue_message(MOVE_GEOMANCY, user, STRING_ATTACK_USED, NULL);
+    }
+    return before_move_charge_frame(user, STRING_GOEMANCY);
+}
+
 /* Moves with some effect during the charging turn */
 
 u8 fly_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
