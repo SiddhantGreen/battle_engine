@@ -5034,7 +5034,7 @@ struct move_data moves[] = {
     .procs = &basic_proc,
     },
 
-    {
+   {
     /*Iron Defense*/
     .name = _("Iron Defense"),
     .accuracy = 101,
@@ -5833,7 +5833,7 @@ struct move_data moves[] = {
     .base_power = 80,
     .description = (pchar*)Aura_Sphere_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_PULSE | FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
@@ -6070,10 +6070,10 @@ struct move_data moves[] = {
     .base_power = 90,
     .description = (pchar*)Earth_Power_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
+    .procs = &target_lower_spDef_1_10,
     },
 
     {
@@ -6109,7 +6109,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_DARK,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_spAtk_2,
     },
 
@@ -6123,7 +6123,7 @@ struct move_data moves[] = {
     .priority = 1,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -6150,9 +6150,9 @@ struct move_data moves[] = {
     .description = (pchar*)Ice_Shard_desc,
     .pp = 30,
     .priority = 1,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_ICE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
@@ -6166,7 +6166,7 @@ struct move_data moves[] = {
     .crit_ratio = 1,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GHOST,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     },
 
