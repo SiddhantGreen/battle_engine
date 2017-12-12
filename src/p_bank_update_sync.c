@@ -126,10 +126,17 @@ bool update_bank_hit_list(u8 bank_index)
         // Target is selected Target
         list[0] = FOE_BANK(bank_index);
     } else if (M_HITS_ALLY(move)) {
+        // hits ally
         if (SIDE_OF(bank_index) == PLAYER_SIDE) {
             list[0] = bank_index ? 0 : 1;
         } else {
             list[0] = (bank_index < 2) ? 2 : 1;
+        }
+        // in singles hitting your ally does nothing.
+        return false;
+    } else if (M_HITS_ADJ(move)) {
+        for (u8 i = 0; i < 4; i++) {
+            list[i] = (i != bank_index) ? i : BANK_MAX;
         }
     } else if (M_HITS_FOE_SIDE(move)) {
         // Target is the foe side
