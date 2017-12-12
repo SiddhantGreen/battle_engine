@@ -5107,7 +5107,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_SNATCH,
-    .procs = &bulk_up_test,
+    .procs = &bulk_up_procs,
     },
 
     {
@@ -5185,7 +5185,7 @@ struct move_data moves[] = {
     .base_power = 60,
     .description = (pchar*)Magical_Leaf_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_GRASS,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
@@ -5213,7 +5213,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .procs = &user_raise_spAtk_spDef_1,
     },
 
     {
@@ -5239,7 +5239,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_DRAGON,
     .m_flags = FLAG_ONSELF | FLAG_SNATCH,
-	.procs = &dragon_dance_test,
+	.procs = &dragon_dance_procs,
 	},
 
     {
@@ -5276,10 +5276,10 @@ struct move_data moves[] = {
     .base_power = 60,
     .description = (pchar*)Water_Pulse_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_WATER,
     .m_flags = FLAG_PULSE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &confuse_20_procs,
     },
 
     {
