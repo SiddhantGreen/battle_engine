@@ -26,8 +26,20 @@ u8 venom_drench_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callb
     return (B_STATUS(TARGET_OF(user)) == AILMENT_POISON);
 }
 
-u8 flower_sheild_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 flower_shield_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    return (b_pkmn_has_type(TARGET_OF(user), MTYPE_GRASS));
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (b_pkmn_has_type(TARGET_OF(user), MTYPE_GRASS))
+            return true;
+    }
+    enqueue_message(move, user, STRING_ATTACK_USED, 0);
+    return false;
+}
+
+u8 flower_shield_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // non grass types fail silently
+    return (b_pkmn_has_type(TARGET_OF(user), MTYPE_GRASS)) ? 1 : 3;
 }

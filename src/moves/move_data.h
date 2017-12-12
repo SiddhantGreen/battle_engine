@@ -185,8 +185,9 @@ extern void false_swipe_on_damage(u8 user, u8 src, u16 move, struct anonymous_ca
 extern u8 geomancy_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 powder_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 venom_drench_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 flower_sheild_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 flower_shield_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 flower_shield_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

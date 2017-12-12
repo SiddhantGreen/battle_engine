@@ -8240,7 +8240,8 @@ struct move_data moves[] = {
     .type = MTYPE_FAIRY,
     .m_flags = FLAG_HITS_ALL,
     .procs = &target_raise_def_1,
-    .on_tryhit_move = flower_sheild_on_tryhit_move,
+    .before_move = flower_shield_before_move,
+    .on_tryhit_move = flower_shield_on_tryhit,
     },
 
     {
