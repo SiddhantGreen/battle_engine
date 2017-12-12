@@ -5106,7 +5106,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .procs = &bulk_up_test,
     },
 
     {
@@ -5173,7 +5173,8 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &paralyze_10_procs,
+	.recoil = 33,
     },
 
     {

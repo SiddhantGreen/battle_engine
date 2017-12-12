@@ -1142,7 +1142,20 @@ struct move_procs dec_user_atk_def_procs = {
 struct move_procs dragon_dance_test = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {100, 0, 100, 0, 0, 0, 0, 0},
-    {0, 1, 0, 0, 1, 0, 0, 0},
+    {1, 0, 1, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
+// Raises User's Attack and Defense by 1 Stage - Bulk Up
+struct move_procs bulk_up_test = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {100, 100, 0, 0, 0, 0, 0, 0},
+    {1, 1, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
