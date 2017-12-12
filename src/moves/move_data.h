@@ -167,6 +167,8 @@ extern u8 perish_song_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern void perish_song_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 destiny_bond_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 grudge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 skydrop_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void skydrop_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

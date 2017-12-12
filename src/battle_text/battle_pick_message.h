@@ -168,6 +168,9 @@ enum battle_string_ids {
     STRING_TRYING_TO_TAKE,
     STRING_GRUDGE_START,
     STRING_GRUDGE_END,
+    STRING_SKY_DROP_START,
+    STRING_SKY_DROP_AIR = 170,
+    STRING_SKY_DROP_FREE,
     STRINGS_TABLE_MAX,
 };
 
@@ -348,6 +351,10 @@ static const pchar str_destiny_bond_end[] = _("{FOE}{ATTACKING_MON} took\nits fo
 static const pchar str_destiny_bond_start[] = _("{FOE}{ATTACKING_MON} is trying to\ntake its foe down with it!");
 static const pchar str_grudge[] = _("{FOE}{ATTACKING_MON} wants its\ntarget to hold a grudge!");
 static const pchar str_grudge_end[] = _("{FOE}{ATTACKING_MON}’s {ATTACK_NAME}\nlost all its PP from the Grudge!");
+static const pchar str_skydrop_start_p[] = _("{FOE}{ATTACKING_MON} took\n{FOE}{DEFENDING_MON} to the sky!");
+static const pchar str_skydrop_start_o[] = _("{FOE}{ATTACKING_MON} took\n{DEFENDING_MON} to the sky!");
+static const pchar str_skydrop_air[] = _("{FOE}{ATTACKING_MON} is\nimmobolized mid-air!");
+static const pchar str_skydrop_free[] = _("{FOE}{ATTACKING_MON} was freed\nfrom the {ATTACK_NAME}!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -535,14 +542,17 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_fell_taunt, // 157
    (pchar*)&string_reason_cant, // 158
    (pchar*)&string_roots_plant, // 159
-   (pchar*)&str_fell_down, // 159
-   (pchar*)&str_shell_trap_set, // 160
-   (pchar*)&str_perish_start, // 161
-   (pchar*)&str_count_fell, // 162
-   (pchar*)&str_destiny_bond_end, // 163
-   (pchar*)&str_destiny_bond_start, // 164
-   (pchar*)&str_grudge, // 165
-   (pchar*)&str_grudge_end, // 166
+   (pchar*)&str_fell_down, // 160
+   (pchar*)&str_shell_trap_set, // 161
+   (pchar*)&str_perish_start, // 162
+   (pchar*)&str_count_fell, // 163
+   (pchar*)&str_destiny_bond_end, // 164
+   (pchar*)&str_destiny_bond_start, // 165
+   (pchar*)&str_grudge, // 166
+   (pchar*)&str_grudge_end, // 167
+   (pchar*)&str_skydrop_start_p, (pchar*)&str_skydrop_start_o,// 168, 169
+   (pchar*)&str_skydrop_air, // 170
+   (pchar*)&str_skydrop_free, // 171
 
 
 };
