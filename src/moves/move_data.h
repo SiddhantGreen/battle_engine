@@ -273,5 +273,5 @@ extern struct move_procs flatter_procs;
 extern struct move_procs bad_poison_50_procs;
 extern struct move_procs raise_user_atk_20;
 extern struct move_procs low_tar_Acc;
-extern struct target_lower_spDef_1_10;
+extern struct move_target_lower_spDef_1_10;
 #endif /* MOVE_DATA_H_ */
