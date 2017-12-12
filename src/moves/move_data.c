@@ -5234,6 +5234,7 @@ struct move_data moves[] = {
     .type = MTYPE_DRAGON,
     .m_flags = FLAG_ONSELF | FLAG_SNATCH,
 	.procs = &dragon_dance_test,
+	},
 
     {
     /*Rock Blast*/
