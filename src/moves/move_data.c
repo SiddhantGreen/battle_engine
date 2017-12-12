@@ -3216,8 +3216,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_GHOST,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = destiny_bond_on_effect,
     },
 
     {
@@ -3232,6 +3233,7 @@ struct move_data moves[] = {
     .procs = &basic_proc,
     .before_move = perish_song_before_move,
     .on_effect_cb = perish_song_on_effect,
+    .on_after_move = perish_song_on_after_move,
     },
 
     {
@@ -4436,8 +4438,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_GHOST,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = grudge_on_effect,
     },
 
     {

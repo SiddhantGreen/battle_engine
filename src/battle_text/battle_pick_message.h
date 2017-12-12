@@ -164,6 +164,10 @@ enum battle_string_ids {
     STRING_SETUP_SHELL_TRP,
     STRING_PERISH_START,
     STRING_COUNT_FELL,
+    STRING_TOOK_WITH_HIM,
+    STRING_TRYING_TO_TAKE,
+    STRING_GRUDGE_START,
+    STRING_GRUDGE_END,
     STRINGS_TABLE_MAX,
 };
 
@@ -340,6 +344,10 @@ static const pchar str_fell_down[] = _("{FOE}{ATTACKING_MON}\nfell right down!")
 static const pchar str_shell_trap_set[] = _("{FOE}{ATTACKING_MON} set\na shell trap!");
 static const pchar str_perish_start[] = _("All Pokémon hearing the song\nwill faint in three turns!");
 static const pchar str_count_fell[] = _("{ATTACKING_MON}’s perish count fell to {STR_VAR_1}!");
+static const pchar str_destiny_bond_end[] = _("{FOE}{ATTACKING_MON} took\nits foe with it!");
+static const pchar str_destiny_bond_start[] = _("{FOE}{ATTACKING_MON} is trying to\ntake its foe down with it!");
+static const pchar str_grudge[] = _("{FOE}{ATTACKING_MON} wants its\ntarget to hold a grudge!");
+static const pchar str_grudge_end[] = _("{FOE}{ATTACKING_MON}’s {ATTACK_NAME}\nlost all its PP from the Grudge!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -529,8 +537,12 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&string_roots_plant, // 159
    (pchar*)&str_fell_down, // 159
    (pchar*)&str_shell_trap_set, // 160
-   (pchar*)&str_perish_start, // 160
-   (pchar*)&str_count_fell, // 160
+   (pchar*)&str_perish_start, // 161
+   (pchar*)&str_count_fell, // 162
+   (pchar*)&str_destiny_bond_end, // 163
+   (pchar*)&str_destiny_bond_start, // 164
+   (pchar*)&str_grudge, // 165
+   (pchar*)&str_grudge_end, // 166
 
 
 };

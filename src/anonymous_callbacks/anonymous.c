@@ -11,7 +11,7 @@ extern bool has_callback_src(u32 func, u8 src);
 u8 add_callback(u8 CB_id, s8 priority, u8 dur, u8 src, u32 func)
 {
     if (has_callback_src(func, src)) {
-        dprintf("WARNING: DUPLICATE FUNCTION %x WAS NOT ADDED\n", func);
+        dprintf("WARNING: DUPLICATE FUNCTION %x WAS NOT ADDED TO BANK %d\n", func, src);
         return ANON_CB_MAX;
     }
     for (u8 i = 0; i < ANON_CB_MAX; i++) {

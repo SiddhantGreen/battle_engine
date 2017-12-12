@@ -196,6 +196,10 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_FELL_DOWN:
             case STRING_SETUP_SHELL_TRP:
             case STRING_PERISH_START:
+            case STRING_TOOK_WITH_HIM:
+            case STRING_TRYING_TO_TAKE:
+            case STRING_GRUDGE_START:
+            case STRING_GRUDGE_END:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:
