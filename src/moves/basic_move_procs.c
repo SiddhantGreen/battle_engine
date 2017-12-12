@@ -1139,7 +1139,7 @@ struct move_procs dec_user_atk_def_procs = {
 };
 
 // Raises User's Attack and Speed by 1 Stage - Dragon Dance
-struct move_procs dragon_dance_test = {
+struct move_procs dragon_dance_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {100, 0, 100, 0, 0, 0, 0, 0},
     {1, 0, 1, 0, 0, 0, 0, 0},
@@ -1152,7 +1152,7 @@ struct move_procs dragon_dance_test = {
 };
 
 // Raises User's Attack and Defense by 1 Stage - Bulk Up
-struct move_procs bulk_up_test = {
+struct move_procs bulk_up_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {100, 100, 0, 0, 0, 0, 0, 0},
     {1, 1, 0, 0, 0, 0, 0, 0},
@@ -1275,6 +1275,19 @@ struct move_procs target_lower_spDef_1_10 = {
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 10, 0, 0, 0},
     {0, 0, 0, 0, -1, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Raises user's sp. attack and Sp. defense 1 stage
+struct move_procs user_raise_spAtk_spDef_1 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 100, 100, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,
