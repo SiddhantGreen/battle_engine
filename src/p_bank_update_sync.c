@@ -119,13 +119,19 @@ bool update_bank_hit_list(u8 bank_index)
     u16 move = CURRENT_MOVE(bank_index);
     u8 list[4] = {BANK_MAX, BANK_MAX, BANK_MAX, BANK_MAX};
 
-    if (moves[move].m_flags & FLAG_ONSELF) {
+    if (M_HITS_SELF(move)) {
         // Target is user
         list[0] = bank_index;
-    } else if (moves[move].m_flags & FLAG_TARGET) {
+    } else if (M_HITS_TARGET(move)) {
         // Target is selected Target
         list[0] = FOE_BANK(bank_index);
-    } else if (moves[move].m_flags & FLAG_HITS_FOE_SIDE) {
+    } else if (M_HITS_ALLY(move)) {
+        if (SIDE_OF(bank_index) == PLAYER_SIDE) {
+            list[0] = bank_index ? 0 : 1;
+        } else {
+            list[0] = (bank_index < 2) ? 2 : 1;
+        }
+    } else if (M_HITS_FOE_SIDE(move)) {
         // Target is the foe side
         if (SIDE_OF(bank_index) == PLAYER_SIDE) {
             list[0] = 2;
@@ -134,7 +140,7 @@ bool update_bank_hit_list(u8 bank_index)
             list[0] = 0;
             list[1] = 1;
         }
-    } else if (moves[move].m_flags & FLAG_HITS_MY_SIDE) {
+    } else if (M_HITS_MY_SIDE(move)) {
         // Target is the user side
         if (SIDE_OF(bank_index) == PLAYER_SIDE) {
             list[0] = 0;
@@ -143,7 +149,7 @@ bool update_bank_hit_list(u8 bank_index)
             list[0] = 2;
             list[1] = 3;
         }
-    } else if (moves[move].m_flags & FLAG_HITS_ALL) {
+    } else if (M_HITS_ALL(move)) {
         // Target is everything
         for (u8 i = 0; i < 4; i++) {
             list[i] = i;
