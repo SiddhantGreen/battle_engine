@@ -177,6 +177,11 @@ extern u8 natures_madness_on_modify_move(u8 user, u8 src, u16 move, struct anony
 extern u8 purify_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 gear_up_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 strength_sap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sparkling_aria_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 fakeout_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 shore_up_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 infestation_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void false_swipe_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

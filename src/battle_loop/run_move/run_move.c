@@ -204,6 +204,9 @@ void run_move()
                 return;
             }
             if (bank_index != battle_master->first_bank) {
+                for (u8 i = 0; i < 2; i++) {
+                    battle_master->b_moves[i].flinch = 0;
+                }
                 extern void c1_residual_callbacks(void);
                 set_callback1(c1_residual_callbacks);
                 super.multi_purpose_state_tracker = 0;

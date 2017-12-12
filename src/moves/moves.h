@@ -76,7 +76,7 @@ struct move_procs {
 #define FLAG_HITS_MY_SIDE (1 << 20)
 #define FLAG_HITS_FOE_SIDE (1 << 21)
 #define FLAG_HITS_ALLY (1 << 22)
-#define FLAG_HITS_ALLY (1 << 23)
+#define FLAG_HITS_ADJACENT (1 << 23)
 #define FLAG_TRIAGE (1 << 24)
 #define FLAG_DANCE (1 << 25)
 #define FLAG_PULSE (1 << 26)
@@ -127,6 +127,7 @@ struct move_procs {
 #define M_HITS_SELF(move) ((moves[move].m_flags) & FLAG_ONSELF)
 #define M_HITS_ALLY(move) ((moves[move].m_flags) & FLAG_HITS_ALLY)
 #define M_HITS_ALL(move) ((moves[move].m_flags) & FLAG_HITS_ALL)
+#define M_HITS_ADJ(move) ((moves[move].m_flags) & FLAG_HITS_ADJACENT)
 
 #define MAKES_CONTACT(move, bank) (IS_CONTACT(move) & (!battle_master->b_moves[(bank == battle_master->first_bank) ? 0 : 1].remove_contact))
 #define DEF_CATEGORY(move) ((CAT_OVERRIDE(move)) ? ((IS_MOVE_PHYSICAL(move) ? MOVE_SPECIAL : MOVE_PHYSICAL)) : MOVE_CATEGORY(move))

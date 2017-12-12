@@ -44,3 +44,25 @@ u8 strength_sap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
     CB_MASTER[id].data_ptr = B_ATTACK_STAT(TARGET_OF(user));
     return true;
 }
+
+
+/* Sparkling Aria */
+u8 sparkling_aria_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    u8 target = TARGET_OF(user);
+    if (B_STATUS(target) == AILMENT_BURN) {
+        set_status(target, EFFECT_CURE);
+    }
+    return true;
+}
+
+
+/* Shore up */
+u8 shore_up_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (battle_master->field_state.is_sandstorm)
+        B_HEAL(user) = 67;
+    return true;
+}

@@ -205,6 +205,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_ATTRACT:
             case STRING_UNLEASHED_ENERGY:
             case STRING_READY_TO_HELP:
+            case STRING_INFESTATION:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:

@@ -98,7 +98,8 @@ void move_hit()
     switch (super.multi_purpose_state_tracker) {
         case S_MOVE_TRYHIT:
             // flinch means no moving
-            if (rand_range(0, 100) < battle_master->b_moves[B_MOVE_BANK(bank_index)].flinch) {
+            if (rand_range(0, 100) <= battle_master->b_moves[B_MOVE_BANK(bank_index)].flinch) {
+                battle_master->b_moves[B_MOVE_BANK(bank_index)].flinch = 0;
                 enqueue_message(0, bank_index, STRING_FLINCHED, 0);
                 battle_master->c1_after_faint_check = run_move;
                 battle_master->c1_prestate = S_RESIDUAL_MOVES;

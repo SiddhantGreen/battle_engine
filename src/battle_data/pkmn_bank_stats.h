@@ -102,7 +102,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define PROTECTION_TURNS(bank) (p_bank[bank]->b_data.protect_used_turns)
 #define B_GENDER(bank) (p_bank[bank]->b_data.gender)
 #define B_REDUCE_PP(bank) (p_bank[bank]->b_data.reduce_pp)
-
+#define B_IS_TRAPPED(bank) (p_bank[bank]->b_data.is_trapped)
 #define B_PKMN_TYPE(bank, index) (p_bank[bank]->b_data.type[index])
 #define B_CURRENT_HP(bank) (p_bank[bank]->b_data.current_hp)
 #define B_LEVEL(bank) (p_bank[bank]->b_data.level)
