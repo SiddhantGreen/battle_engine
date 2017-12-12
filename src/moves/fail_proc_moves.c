@@ -43,3 +43,9 @@ u8 flower_shield_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback*
     // non grass types fail silently
     return (b_pkmn_has_type(TARGET_OF(user), MTYPE_GRASS)) ? 1 : 3;
 }
+
+u8 cotton_spore_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    return (!(b_pkmn_has_type(TARGET_OF(src), MTYPE_GRASS)));
+}

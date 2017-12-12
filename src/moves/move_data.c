@@ -1147,7 +1147,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &paralyze_30_procs,
-    .on_modify_move = bodyslam_on_modify_move,
+    .on_modify_move = stomp_on_modify_move,
     },
 
     {
@@ -7692,6 +7692,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .flinch_chance = 30,
+    .on_modify_move = stomp_on_modify_move,
     },
 
     {
@@ -7966,10 +7967,11 @@ struct move_data moves[] = {
     .base_power = 100,
     .description = (pchar*)Fusion_Flare_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
     .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = fusion_flare_on_base_power,
     },
 
     {
@@ -7981,8 +7983,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = fusion_bolt_on_base_power,
     },
 
     {
@@ -8063,6 +8066,7 @@ struct move_data moves[] = {
     .type = MTYPE_BUG,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_after_move = fell_stinger_after_move,
     },
 
     {
@@ -8192,6 +8196,7 @@ struct move_data moves[] = {
     },
 
     {
+    /* Topsy-Turvy*/
     .name = _("Topsy-Turvy"),
     .accuracy = 101,
     .description = (pchar*)Topsy_Turvy_desc,
