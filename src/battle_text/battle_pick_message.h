@@ -171,6 +171,7 @@ enum battle_string_ids {
     STRING_SKY_DROP_START,
     STRING_SKY_DROP_AIR = 170,
     STRING_SKY_DROP_FREE,
+    STRING_ATTRACT,
     STRINGS_TABLE_MAX,
 };
 
@@ -355,6 +356,7 @@ static const pchar str_skydrop_start_p[] = _("{FOE}{ATTACKING_MON} took\n{FOE}{D
 static const pchar str_skydrop_start_o[] = _("{FOE}{ATTACKING_MON} took\n{DEFENDING_MON} to the sky!");
 static const pchar str_skydrop_air[] = _("{FOE}{ATTACKING_MON} is\nimmobolized mid-air!");
 static const pchar str_skydrop_free[] = _("{FOE}{ATTACKING_MON} was freed\nfrom the {ATTACK_NAME}!");
+static const pchar str_attract[] = _("{FOE}{ATTACKING_MON} fell in love!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -374,6 +376,7 @@ static const pchar str_status_sleep[] = _("put to sleep");
 static const pchar str_status_frozen[] = _("frozen");
 static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
+static const pchar str_status_infactuation[] = _("infactuated");
 
 // weather names
 static const pchar str_hail_w[] = _("hail");
@@ -553,6 +556,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_skydrop_start_p, (pchar*)&str_skydrop_start_o,// 168, 169
    (pchar*)&str_skydrop_air, // 170
    (pchar*)&str_skydrop_free, // 171
+   (pchar*)&str_attract, // 172
 
 
 };

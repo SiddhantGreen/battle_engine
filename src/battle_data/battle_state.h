@@ -19,6 +19,7 @@ enum Effect {
     EFFECT_BAD_POISON,
     EFFECT_CONFUSION,
     EFFECT_CURE,
+    EFFECT_INFACTUATION,
 };
 
 enum WeatherTypes {

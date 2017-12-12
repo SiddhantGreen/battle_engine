@@ -11,6 +11,7 @@
 #define CB_MASTER battle_master->anon_cb_master
 #define CB_EXEC_ORDER battle_master->cb_execution_order
 #define CB_EXEC_INDEX battle_master->current_cb_index
+#define CB_PERMA 126
 
 #define CB_ON_BEFORE_TURN 1
 #define CB_ON_BEFORE_SWITCH 2
