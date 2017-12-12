@@ -1138,6 +1138,19 @@ struct move_procs dec_user_atk_def_procs = {
     0,	
 };
 
+// Raises User's Attack and Speed by 1 Stage - Dragon Dance
+struct move_procs dragon_dance_test = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {100, 0, 100, 0, 0, 0, 0, 0},
+    {0, 1, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,	
+};
+
 // Increases User's SpA by 3 stages 
 struct move_procs inc_user_spa_3_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
