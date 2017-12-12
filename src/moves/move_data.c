@@ -6109,7 +6109,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_DARK,
-    .m_flags = FLAG_SNATCH | FLAG_ONSELF |,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &user_raise_spAtk_2,
     },
 
