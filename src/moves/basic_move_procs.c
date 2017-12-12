@@ -1242,7 +1242,7 @@ struct move_procs low_tar_Acc = {
     0,	
 };
 
-	//Lowers target's sp. defense 1 stage
+//Lowers target's sp. defense 1 stage
 struct move_procs target_lower_spDef_1_10 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
