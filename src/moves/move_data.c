@@ -8200,6 +8200,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = topsy_turvy_on_effect,
     },
 
     {

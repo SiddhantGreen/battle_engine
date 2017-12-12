@@ -188,6 +188,7 @@ extern u8 venom_drench_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymou
 extern void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 flower_shield_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 flower_shield_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 topsy_turvy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
