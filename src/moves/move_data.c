@@ -2219,8 +2219,9 @@ struct move_data moves[] = {
     .priority = 1,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_CONTACT | FLAG_PROTECT | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = bide_on_effect,
     },
 
     {

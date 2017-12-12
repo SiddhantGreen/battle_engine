@@ -172,6 +172,7 @@ enum battle_string_ids {
     STRING_SKY_DROP_AIR = 170,
     STRING_SKY_DROP_FREE,
     STRING_ATTRACT,
+    STRING_UNLEASHED_ENERGY,
     STRINGS_TABLE_MAX,
 };
 
@@ -187,7 +188,7 @@ static const pchar str_stat_mod_cant_go_higher_o[] = _("{FOE}{ATTACKING_MON}’s
 
 static const pchar str_atk_used_o[] = _("{FOE}{ATTACKING_MON} used\n{ATTACK_NAME}!");
 static const pchar str_infatuated_o[] = _("{FOE}{ATTACKING_MON} is in love\nwith {DEFENDING_MON}\p{FOE}{ATTACKING_MON}\nis immobolized by love!");
-static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is charging up\n{ATTACK_NAME}!");
+static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is\nstoring energy!");
 static const pchar str_focus_lost_o[] = _("{FOE}{ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
 static const pchar str_disabled_o[] = _("{FOE}{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
@@ -357,6 +358,7 @@ static const pchar str_skydrop_start_o[] = _("{FOE}{ATTACKING_MON} took\n{DEFEND
 static const pchar str_skydrop_air[] = _("{FOE}{ATTACKING_MON} is\nimmobolized mid-air!");
 static const pchar str_skydrop_free[] = _("{FOE}{ATTACKING_MON} was freed\nfrom the {ATTACK_NAME}!");
 static const pchar str_attract[] = _("{FOE}{ATTACKING_MON} fell in love!");
+static const pchar str_unleashed_p[] = _("{FOE}{ATTACKING_MON} unleashed\nenergy!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -557,6 +559,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_skydrop_air, // 170
    (pchar*)&str_skydrop_free, // 171
    (pchar*)&str_attract, // 172
+   (pchar*)&str_unleashed_p, // 173
 
 
 };

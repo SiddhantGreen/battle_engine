@@ -90,6 +90,7 @@ enum Volatiles {
     VOLATILE_INSTRUCT,
     VOLATILE_GRUDGE,
     VOLATILE_INFACTUATION,
+    VOLATILE_BIDE,
 };
 
 
@@ -125,6 +126,7 @@ struct local_battler_data {
     u8 speed_iv : 5;
     u8 sp_atk_iv : 5;
     u8 sp_def_iv : 5;
+    u8 reduce_pp : 1;
 
     // Delta applied to base stat. ex: -1 atk
     s8 attack;

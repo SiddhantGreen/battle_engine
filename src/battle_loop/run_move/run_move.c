@@ -27,6 +27,7 @@ enum BeforeMoveStatus {
     USE_MOVE_NORMAL,
     TARGET_MOVE_IMMUNITY,
     SILENT_FAIL,
+    SILENT_CONTINUE,
 };
 
 
@@ -91,6 +92,8 @@ void run_move()
                     battle_master->move_completed = true;
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     return;
+                case SILENT_CONTINUE:
+                    break;
             };
 
 			/* Before Move effects which cause turn ending */
@@ -109,7 +112,8 @@ void run_move()
             } else {
 				// display "Pokemon used move!"
                 B_MOVE_FAILED(bank_index) = false;
-				enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+                if (result != SILENT_CONTINUE)
+		            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
 				super.multi_purpose_state_tracker = S_CONFIG_MOVE_EXEC;
 			}
             break;
@@ -124,7 +128,7 @@ void run_move()
                 return;
             }
             // reduce PP
-            if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
+            if ((!HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN)) && (!B_REDUCE_PP(bank_index))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
                 if (pp_index < 4) {
                     p_bank[bank_index]->b_data.move_pp[pp_index]--;
