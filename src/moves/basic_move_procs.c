@@ -1109,10 +1109,10 @@ struct move_procs burn_100_procs = {
     AILMENT_NONE,
     AILMENT_BURN,
     0,
-   100,	
+   100,
 };
 
-// Flatter
+// Flatter; SPA -1 and confuse
 struct move_procs flatter_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1122,7 +1122,7 @@ struct move_procs flatter_procs = {
     AILMENT_NONE,
     AILMENT_CONFUSION,
     0,
-   100,	
+   100,
 };
 
 // Decreases User's Attack and Defense
@@ -1135,7 +1135,7 @@ struct move_procs dec_user_atk_def_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Raises User's Attack and Speed by 1 Stage - Dragon Dance
@@ -1148,7 +1148,7 @@ struct move_procs dragon_dance_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Raises User's Attack and Defense by 1 Stage - Bulk Up
@@ -1161,10 +1161,10 @@ struct move_procs bulk_up_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
-// Increases User's SpA by 3 stages 
+// Increases User's SpA by 3 stages
 struct move_procs inc_user_spa_3_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 100, 0, 0, 0, 0},
@@ -1174,10 +1174,10 @@ struct move_procs inc_user_spa_3_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
-// Decreases  50% SpD 
+// Decreases  50% SpD
 struct move_procs dec_SpD_50_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1187,10 +1187,10 @@ struct move_procs dec_SpD_50_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
-// Decreases  50% SpA 
+// Decreases  50% SpA
 struct move_procs dec_SpA_50_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1200,7 +1200,7 @@ struct move_procs dec_SpA_50_procs = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Bad Poison 50%
@@ -1213,7 +1213,7 @@ struct move_procs bad_poison_50_procs = {
     AILMENT_NONE,
     AILMENT_BAD_POISON,
     0,
-    50,	
+    50,
 };
 
 // Raises User's Attack by 20% in 1 Stage
@@ -1226,7 +1226,7 @@ struct move_procs raise_user_atk_20 = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Lowers Target's Attack and Defense by 1 Stage
@@ -1239,7 +1239,7 @@ struct move_procs low_targ_atk_def = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Raises User's Special Defense and Defense by 1 Stage
@@ -1252,7 +1252,7 @@ struct move_procs raise_user_Def_SpD = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 // Lowers Target's Accuracy by 1 Stage
@@ -1265,7 +1265,7 @@ struct move_procs low_tar_Acc = {
     AILMENT_NONE,
     AILMENT_NONE,
     0,
-    0,	
+    0,
 };
 
 //Lowers target's sp. defense 1 stage
@@ -1288,6 +1288,19 @@ struct move_procs user_raise_spAtk_spDef_1 = {
     {0, 0, 0, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Raises target's sp. attack and attack 1 stage
+struct move_procs target_raise_Atk_spAtk_1 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {100, 0, 0, 100, 0, 0, 0, 0},
+    {1, 0, 0, 1, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,

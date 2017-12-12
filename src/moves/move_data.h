@@ -172,6 +172,11 @@ extern void skydrop_on_damage(u8 user, u8 src, u16 move, struct anonymous_callba
 extern u8 attract_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 bide_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void bide_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 helping_hand_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 natures_madness_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 purify_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gear_up_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 strength_sap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -236,6 +241,7 @@ extern struct move_procs target_raise_spAtk_2;
 extern struct move_procs target_raise_spDef_2;
 extern struct move_procs target_raise_spd_2;
 extern struct move_procs target_raise_acc_2;
+extern struct move_procs target_raise_Atk_spAtk_1;
 
 /* Move Specific procs */
 extern struct move_procs poison_20_procs;

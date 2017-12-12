@@ -4208,7 +4208,7 @@ struct move_data moves[] = {
     .priority = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_HITS_ALLY,
     .procs = &basic_proc,
     },
 
@@ -8906,10 +8906,11 @@ struct move_data moves[] = {
     .accuracy = 100,
     .description = (pchar*)Strength_Sap_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
     .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_REFLECTABLE,
-    .procs = &basic_proc,
+    .procs = &target_lower_atk_1,
+    .on_effect_cb = strength_sap_on_effect,
     },
 
     {
@@ -8985,8 +8986,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_HITS_MY_SIDE,
+    .procs = &target_raise_Atk_spAtk_1,
+    .on_modify_move = gear_up_on_modify_move,
     },
 
     {
@@ -9131,10 +9133,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Purify_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_POISON,
-    .m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_HEAL | FLAG_REFLECTABLE | FLAG_PROTECT | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = purify_on_effect,
     },
 
     {
@@ -9434,14 +9437,15 @@ struct move_data moves[] = {
 
     /* Nature's Madness */
     {
-    .name = _("Nature‘s Madness"),
+    .name = _("Nature’s Madness"),
     .accuracy = 90,
     .description = (pchar*)Natures_Madness_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = natures_madness_on_modify_move,
     },
 
     /* Multi-Attack */
