@@ -12,6 +12,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
 {
     // base stats
     u16 species = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPECIES, NULL);
+    p_bank[bank]->b_data.weight = pokemon_get_weight(species_to_pokedex_index(species), 1) / 10;
     p_bank[bank]->b_data.species = species;
     p_bank[bank]->b_data.gender = pokemon_get_gender(p_bank[bank]->this_pkmn);
     p_bank[bank]->b_data.current_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, NULL);;
@@ -106,6 +107,10 @@ void sync_battler_struct(u8 bank)
     u8 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+    for (u8 i = 0; i < 4; i++) {
+        u8 pp = B_GET_MOVE_PP(bank, i);
+        pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + i, &pp);
+    }
 }
 
 

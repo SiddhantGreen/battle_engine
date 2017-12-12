@@ -26,6 +26,8 @@ enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
     USE_MOVE_NORMAL,
     TARGET_MOVE_IMMUNITY,
+    SILENT_FAIL,
+    SILENT_CONTINUE,
 };
 
 
@@ -86,8 +88,12 @@ void run_move()
                 case CANT_USE_MOVE:
                 case TARGET_MOVE_IMMUNITY:
                     enqueue_message(0, bank_index, STRING_FAILED, 0);
+                case SILENT_FAIL:
+                    battle_master->move_completed = true;
                     super.multi_purpose_state_tracker = S_MOVE_FAILED;
                     return;
+                case SILENT_CONTINUE:
+                    break;
             };
 
 			/* Before Move effects which cause turn ending */
@@ -106,7 +112,8 @@ void run_move()
             } else {
 				// display "Pokemon used move!"
                 B_MOVE_FAILED(bank_index) = false;
-				enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
+                if (result != SILENT_CONTINUE)
+		            enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_ATTACK_USED, 0);
 				super.multi_purpose_state_tracker = S_CONFIG_MOVE_EXEC;
 			}
             break;
@@ -116,14 +123,12 @@ void run_move()
             /* Initialize target banks for moves */
             if (!update_bank_hit_list(bank_index)) {
                 // Move didn't specify a target
-                dprintf("Move didn't have a target to effect.\n");
                 enqueue_message(0, bank_index, STRING_FAILED, 0);
                 super.multi_purpose_state_tracker = S_MOVE_FAILED;
                 return;
             }
-
             // reduce PP
-            if (!(HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN))) {
+            if ((!HAS_VOLATILE(bank_index, VOLATILE_MULTI_TURN)) && (!B_REDUCE_PP(bank_index))) {
                 u8 pp_index = p_bank[bank_index]->b_data.pp_index;
                 if (pp_index < 4) {
                     p_bank[bank_index]->b_data.move_pp[pp_index]--;
@@ -139,7 +144,6 @@ void run_move()
             for (u8 i = 0; i < sizeof(battle_master->bank_hit_list); i++) {
                 if (battle_master->bank_hit_list[i] < BANK_MAX) {
                     if (ACTIVE_BANK(battle_master->bank_hit_list[i])) {
-                        dprintf("bank %d set it's target to bank %d\n", bank_index, battle_master->bank_hit_list[i]);
                         TARGET_OF(bank_index) = battle_master->bank_hit_list[i];
                         battle_master->bank_hit_list[i] = BANK_MAX;
                         will_move = true;
@@ -179,6 +183,8 @@ void run_move()
             if (battle_master->move_completed) {
                 battle_master->field_state.last_used_move = CURRENT_MOVE(bank_index);
                 super.multi_purpose_state_tracker = S_RUN_FAINT;
+                battle_master->c1_after_faint_check = run_move;
+                battle_master->c1_prestate = S_RESIDUAL_MOVES;
             } else {
                 super.multi_purpose_state_tracker = S_RUN_MOVE_HIT;
             }
@@ -191,6 +197,12 @@ void run_move()
             break;
         case S_RESIDUAL_MOVES:
         {
+            if (battle_master->repeat_move) {
+                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
+                battle_master->repeat_move = false;
+                set_callback1(run_move);
+                return;
+            }
             if (bank_index != battle_master->first_bank) {
                 extern void c1_residual_callbacks(void);
                 set_callback1(c1_residual_callbacks);
@@ -216,15 +228,8 @@ void run_move()
                     break;
                 }
             }
-            if (battle_master->repeat_move) {
-                super.multi_purpose_state_tracker = S_BEFORE_MOVE;
-                battle_master->repeat_move = false;
-                set_callback1(run_move);
-                return;
-            } else {
-                super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
-                set_callback1(run_decision);
-            }
+            super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
+            set_callback1(run_decision);
             break;
         }
     };
@@ -250,29 +255,39 @@ void c1_residual_callbacks()
         }
         case 1:
         {
-            if (battle_master->executing) {
-                battle_master->bank_state  = FOE_BANK(battle_master->bank_state);
-                run_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state ));
-                super.multi_purpose_state_tracker++;
-            } else {
-                super.multi_purpose_state_tracker = 3;
-            }
+            super.multi_purpose_state_tracker = S_RUN_FAINT;
+            battle_master->c1_after_faint_check = c1_residual_callbacks;
+            battle_master->c1_prestate = 2;
+            set_callback1(run_move);
             break;
         }
         case 2:
         {
             if (battle_master->executing) {
                 battle_master->bank_state  = FOE_BANK(battle_master->bank_state);
-                pop_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state ));
-                super.multi_purpose_state_tracker = 1;
-            } else {
+                run_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state));
                 super.multi_purpose_state_tracker = 3;
+            } else {
+                super.multi_purpose_state_tracker = 4;
             }
             break;
         }
         case 3:
+        {
+            if (battle_master->executing) {
+                battle_master->bank_state  = FOE_BANK(battle_master->bank_state);
+                pop_callback(battle_master->bank_state , CURRENT_MOVE(battle_master->bank_state ));
+                super.multi_purpose_state_tracker = 1;
+            } else {
+                super.multi_purpose_state_tracker = 4;
+            }
+            break;
+        }
+        default:
+            super.multi_purpose_state_tracker = S_RUN_FAINT;
+            battle_master->c1_after_faint_check = run_move;
+            battle_master->c1_prestate = S_WAIT_HPUPDATE_RUN_MOVE;
             set_callback1(run_move);
-            super.multi_purpose_state_tracker = S_WAIT_HPUPDATE_RUN_MOVE;
             break;
         };
 }

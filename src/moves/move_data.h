@@ -164,6 +164,14 @@ extern u8 throat_chop_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_c
 extern u8 throat_chop_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 perish_song_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 perish_song_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void perish_song_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 destiny_bond_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 grudge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 skydrop_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void skydrop_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 attract_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 bide_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void bide_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -268,4 +276,7 @@ extern struct move_procs flatter_procs;
 extern struct move_procs bad_poison_50_procs;
 extern struct move_procs raise_user_atk_20;
 extern struct move_procs low_tar_Acc;
+extern struct move_procs target_lower_spDef_1_10;
+extern struct move_procs dragon_dance_test;
+
 #endif /* MOVE_DATA_H_ */

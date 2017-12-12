@@ -202,6 +202,10 @@ void set_status(u8 bank, enum Effect status)
             // cure status
 			status_applied = true;
             break;
+        case EFFECT_INFACTUATION:
+        if (p_bank[bank]->b_data.pseudo_ailment != AILMENT_INFACTUATE)
+            status_applied = true;
+            break;
         default:
             return;
     };

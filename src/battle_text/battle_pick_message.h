@@ -164,6 +164,15 @@ enum battle_string_ids {
     STRING_SETUP_SHELL_TRP,
     STRING_PERISH_START,
     STRING_COUNT_FELL,
+    STRING_TOOK_WITH_HIM,
+    STRING_TRYING_TO_TAKE,
+    STRING_GRUDGE_START,
+    STRING_GRUDGE_END,
+    STRING_SKY_DROP_START,
+    STRING_SKY_DROP_AIR = 170,
+    STRING_SKY_DROP_FREE,
+    STRING_ATTRACT,
+    STRING_UNLEASHED_ENERGY,
     STRINGS_TABLE_MAX,
 };
 
@@ -179,7 +188,7 @@ static const pchar str_stat_mod_cant_go_higher_o[] = _("{FOE}{ATTACKING_MON}’s
 
 static const pchar str_atk_used_o[] = _("{FOE}{ATTACKING_MON} used\n{ATTACK_NAME}!");
 static const pchar str_infatuated_o[] = _("{FOE}{ATTACKING_MON} is in love\nwith {DEFENDING_MON}\p{FOE}{ATTACKING_MON}\nis immobolized by love!");
-static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is charging up\n{ATTACK_NAME}!");
+static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is\nstoring energy!");
 static const pchar str_focus_lost_o[] = _("{FOE}{ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
 static const pchar str_disabled_o[] = _("{FOE}{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
@@ -340,6 +349,16 @@ static const pchar str_fell_down[] = _("{FOE}{ATTACKING_MON}\nfell right down!")
 static const pchar str_shell_trap_set[] = _("{FOE}{ATTACKING_MON} set\na shell trap!");
 static const pchar str_perish_start[] = _("All Pokémon hearing the song\nwill faint in three turns!");
 static const pchar str_count_fell[] = _("{ATTACKING_MON}’s perish count fell to {STR_VAR_1}!");
+static const pchar str_destiny_bond_end[] = _("{FOE}{ATTACKING_MON} took\nits foe with it!");
+static const pchar str_destiny_bond_start[] = _("{FOE}{ATTACKING_MON} is trying to\ntake its foe down with it!");
+static const pchar str_grudge[] = _("{FOE}{ATTACKING_MON} wants its\ntarget to hold a grudge!");
+static const pchar str_grudge_end[] = _("{FOE}{ATTACKING_MON}’s {ATTACK_NAME}\nlost all its PP from the Grudge!");
+static const pchar str_skydrop_start_p[] = _("{FOE}{ATTACKING_MON} took\n{FOE}{DEFENDING_MON} to the sky!");
+static const pchar str_skydrop_start_o[] = _("{FOE}{ATTACKING_MON} took\n{DEFENDING_MON} to the sky!");
+static const pchar str_skydrop_air[] = _("{FOE}{ATTACKING_MON} is\nimmobolized mid-air!");
+static const pchar str_skydrop_free[] = _("{FOE}{ATTACKING_MON} was freed\nfrom the {ATTACK_NAME}!");
+static const pchar str_attract[] = _("{FOE}{ATTACKING_MON} fell in love!");
+static const pchar str_unleashed_p[] = _("{FOE}{ATTACKING_MON} unleashed\nenergy!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -359,6 +378,7 @@ static const pchar str_status_sleep[] = _("put to sleep");
 static const pchar str_status_frozen[] = _("frozen");
 static const pchar str_status_bpoison[] = _("badly poisoned");
 static const pchar str_status_confuse[] = _("confused");
+static const pchar str_status_infactuation[] = _("infactuated");
 
 // weather names
 static const pchar str_hail_w[] = _("hail");
@@ -527,10 +547,19 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_fell_taunt, // 157
    (pchar*)&string_reason_cant, // 158
    (pchar*)&string_roots_plant, // 159
-   (pchar*)&str_fell_down, // 159
-   (pchar*)&str_shell_trap_set, // 160
-   (pchar*)&str_perish_start, // 160
-   (pchar*)&str_count_fell, // 160
+   (pchar*)&str_fell_down, // 160
+   (pchar*)&str_shell_trap_set, // 161
+   (pchar*)&str_perish_start, // 162
+   (pchar*)&str_count_fell, // 163
+   (pchar*)&str_destiny_bond_end, // 164
+   (pchar*)&str_destiny_bond_start, // 165
+   (pchar*)&str_grudge, // 166
+   (pchar*)&str_grudge_end, // 167
+   (pchar*)&str_skydrop_start_p, (pchar*)&str_skydrop_start_o,// 168, 169
+   (pchar*)&str_skydrop_air, // 170
+   (pchar*)&str_skydrop_free, // 171
+   (pchar*)&str_attract, // 172
+   (pchar*)&str_unleashed_p, // 173
 
 
 };

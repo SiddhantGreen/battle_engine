@@ -100,7 +100,8 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_MOVE_IGNORE_EVASION(bank) (battle_master->b_moves[B_MOVE_BANK(bank)].ignore_target_evasion)
 #define B_MOVE_MULTI(bank) ((battle_master->b_moves[B_MOVE_BANK(bank)].hit_times > 1) || (battle_master->b_moves[B_MOVE_BANK(bank)].hit_counter > 1))
 #define PROTECTION_TURNS(bank) (p_bank[bank]->b_data.protect_used_turns)
-
+#define B_GENDER(bank) (p_bank[bank]->b_data.gender)
+#define B_REDUCE_PP(bank) (p_bank[bank]->b_data.reduce_pp)
 
 #define B_PKMN_TYPE(bank, index) (p_bank[bank]->b_data.type[index])
 #define B_CURRENT_HP(bank) (p_bank[bank]->b_data.current_hp)
@@ -117,7 +118,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_GET_ITEM(bank) (p_bank[bank]->b_data.item)
 #define B_MOVE_FAILED(bank) (p_bank[bank]->b_data.move_failed)
 #define B_LAST_MOVE_FAILED(bank) (p_bank[bank]->b_data.last_move_failed)
-
+#define B_IS_FAINTED(bank) (p_bank[bank]->b_data.fainted)
 #define B_GET_MOVE(bank, id) (p_bank[bank]->b_data.moves[id])
 #define B_GET_MOVE_PP(bank, id) (p_bank[bank]->b_data.move_pp[id])
 

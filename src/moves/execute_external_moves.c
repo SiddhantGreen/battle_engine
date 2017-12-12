@@ -335,6 +335,36 @@ const static u16 instruct_disallow[] = {
 	MOVE_TRANSFORM, MOVE_NONE,
 };
 
+u8 instruct_revert_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (HAS_VOLATILE(user, VOLATILE_INSTRUCT)) {
+		CLEAR_VOLATILE(user, VOLATILE_INSTRUCT);
+		CURRENT_MOVE(user) = (u16)acb->data_ptr;
+		acb->data_ptr = false;
+	}
+	return true;
+}
+
+void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return;
+	u8 target = TARGET_OF(user);
+	if (LAST_MOVE(target) == MOVE_NONE) return;
+	ADD_VOLATILE(target, VOLATILE_INSTRUCT);
+	if (!B_MOVE_BANK(user)) {
+		battle_master->first_bank = target;
+		set_attack_bm_inplace(LAST_MOVE(target), target, 0);
+	} else {
+		battle_master->second_bank = target;
+		set_attack_bm_inplace(LAST_MOVE(target), target, 1);
+	}
+	battle_master->repeat_move = true;
+	acb->in_use = false;
+	u8 id = add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)instruct_revert_on_after_move);
+	CB_MASTER[id].data_ptr = CURRENT_MOVE(target);
+	CURRENT_MOVE(target) = LAST_MOVE(target);
+}
+
 u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (user != src) return true;
@@ -347,19 +377,4 @@ u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 			return false;
 	}
 	return true;
-}
-
-void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
-{
-	if (user != src) return;
-	u8 target = TARGET_OF(user);
-	if (!B_MOVE_BANK(user)) {
-		battle_master->first_bank = target;
-		set_attack_bm_inplace(LAST_MOVE(target), target, 0);
-	} else {
-		battle_master->second_bank = target;
-		set_attack_bm_inplace(LAST_MOVE(target), target, 1);
-	}
-	battle_master->repeat_move = true;
-	acb->in_use = false;
 }
