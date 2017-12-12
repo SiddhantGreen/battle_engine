@@ -273,4 +273,5 @@ extern struct move_procs flatter_procs;
 extern struct move_procs bad_poison_50_procs;
 extern struct move_procs raise_user_atk_20;
 extern struct move_procs low_tar_Acc;
+extern struct move_procs dragon_dance_test;
 #endif /* MOVE_DATA_H_ */
