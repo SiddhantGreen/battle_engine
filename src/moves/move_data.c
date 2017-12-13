@@ -5535,6 +5535,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = payback_on_base_power,
     },
 
     {
@@ -5548,6 +5549,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = assurance_on_base_power,
     },
 
     {
@@ -5577,13 +5579,14 @@ struct move_data moves[] = {
     {
     /*Psycho Shift*/
     .name = _("Psycho Shift"),
-    .accuracy = 100,
+    .accuracy = 101,
     .description = (pchar*)Psycho_Shift_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = psycho_shift_effect,
     },
 
     {

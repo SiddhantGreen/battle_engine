@@ -46,6 +46,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.speed_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPD_IV, NULL);
     p_bank[bank]->b_data.sp_atk_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPATK_IV, NULL);
     p_bank[bank]->b_data.sp_def_iv = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_SPDEF_IV, NULL);
+    p_bank[bank]->b_data.will_move = true;
 
     // status ailment
     ailment_decode(bank, pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL));

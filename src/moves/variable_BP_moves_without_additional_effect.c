@@ -28,7 +28,22 @@ void avalanche_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
     if (user != src) return;
     if (p_bank[user]->b_data.last_attacked_by == TARGET_OF(user)) {
         B_MOVE_POWER(user) *= 2;
-        dprintf("power doubled.\n");
+    }
+}
+
+void assurance_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (p_bank[TARGET_OF(user)]->b_data.last_damage != 0) {
+        B_MOVE_POWER(user) *= 2;
+    }
+}
+
+void payback_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (p_bank[TARGET_OF(user)]->b_data.will_move == false) {
+        B_MOVE_POWER(user) *= 2;
     }
 }
 
