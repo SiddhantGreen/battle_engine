@@ -38,12 +38,12 @@ u8 stockpile_drop_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonym
 {
     if (user != src) return true;
     p_bank[user]->b_data.stockpile_uses = 0;
-    if(p_bank[user]->b_data.stockpile_def_boost) {
+    if (p_bank[user]->b_data.stockpile_def_boost) {
         B_USER_STAT_MOD_CHANCE(user, STAT_DEFENSE - 1) = 100;
         B_USER_STAT_MOD_AMOUNT(user, STAT_DEFENSE - 1) = -p_bank[user]->b_data.stockpile_def_boost;
         p_bank[user]->b_data.stockpile_def_boost = 0;
     }
-    if(p_bank[user]->b_data.stockpile_spdef_boost) {
+    if (p_bank[user]->b_data.stockpile_spdef_boost) {
         B_USER_STAT_MOD_CHANCE(user, STAT_SPECIAL_DEFENSE - 1) = 100;
         B_USER_STAT_MOD_AMOUNT(user, STAT_SPECIAL_DEFENSE - 1) = -p_bank[user]->b_data.stockpile_spdef_boost;
         p_bank[user]->b_data.stockpile_spdef_boost = 0;
@@ -59,8 +59,8 @@ void spit_up_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_call
 
 u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if(user != src) return true;
-    if(p_bank[user]->b_data.stockpile_uses == 0)
+    if (user != src) return true;
+    if (p_bank[user]->b_data.stockpile_uses == 0)
         return false;
     add_callback(CB_ON_BEFORE_STAT_MOD, -1, 0, user, (u32)stockpile_drop_on_before_stat_mod);
     return true;
@@ -68,8 +68,8 @@ u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 u8 swallow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if(user != src) return true;
-    if(p_bank[user]->b_data.stockpile_uses == 0)
+    if (user != src) return true;
+    if (p_bank[user]->b_data.stockpile_uses == 0 || (B_CURRENT_HP(user) == TOTAL_HP(user)))
         return false;
     switch (p_bank[user]->b_data.stockpile_uses) {
         case 1:
