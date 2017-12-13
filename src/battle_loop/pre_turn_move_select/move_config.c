@@ -233,7 +233,7 @@ void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index)
 {
     battle_master->b_moves[index].user_bank = new_bank;
     battle_master->b_moves[index].move_id = move_id;
-    battle_master->b_moves[index].priority = 0;
+    battle_master->b_moves[index].priority = B_MOVE_PRIORITY(new_bank);
     battle_master->b_moves[index].stab = 150; // move stab bonus
     battle_master->b_moves[index].power = MOVE_POWER(move_id);
     battle_master->b_moves[index].category = MOVE_CATEGORY(move_id);

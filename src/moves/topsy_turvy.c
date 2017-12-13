@@ -17,4 +17,5 @@ u8 topsy_turvy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     B_ACCURACY_BUFF(TARGET_OF(user))  = -(B_ACCURACY_BUFF(TARGET_OF(user)));
     B_EVASION_BUFF(TARGET_OF(user)) = -(B_EVASION_BUFF(TARGET_OF(user)));
     enqueue_message(NULL, TARGET_OF(user), STRING_TOPSY_TURVY, NULL);
+    return true;
 }

@@ -176,6 +176,7 @@ struct local_battler_data {
     // counters
     u8 flee_count;
     u8 perish_song_counter;
+    u8 fury_cutter_counter;
 };
 
 struct update_flags {

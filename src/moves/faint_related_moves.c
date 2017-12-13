@@ -140,11 +140,10 @@ u8 grudge_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 
 /* Final Gambit */
-void final_gambit_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+void final_gambit_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
     do_damage(user, B_CURRENT_HP(user));
-    enqueue_message(0, src, STRING_SILENCE, 0);
 }
 
 void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -152,5 +151,5 @@ void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback
     if (user != src) return;
     B_MOVE_DMG(user) = B_CURRENT_HP(user);
     B_IS_FAINTED(user) = true;
-    add_callback(CB_ON_FAINT_CHECK, 0, 0, user, (u32)final_gambit_on_faint);
+    //add_callback(CB_ON_FAINT_CHECK, 0, 0, user, (u32)final_gambit_on_faint);
 }

@@ -7165,6 +7165,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = echoed_voice_on_base_power_move,
     },
 
     {
@@ -7216,10 +7217,11 @@ struct move_data moves[] = {
     .description = (pchar*)Quick_Guard_desc,
     .pp = 15,
     .priority = 3,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FIGHTING,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = quick_guard_on_effect,
     },
 
     {
@@ -7404,6 +7406,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_damage_move = final_gambit_on_damage,
+    .on_after_move = final_gambit_on_after_move,
     },
 
     {

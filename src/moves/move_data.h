@@ -194,6 +194,9 @@ extern void fusion_flare_on_base_power(u8 user, u8 src, u16 move, struct anonymo
 extern void fusion_bolt_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 heat_crash_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void final_gambit_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 quick_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
