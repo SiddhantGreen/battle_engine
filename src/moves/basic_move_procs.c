@@ -1373,12 +1373,25 @@ struct move_procs low_tar_acc_30= {
 };
 
 //Lowers target's evasion by 1 Stage
-struct move_procs low_tar_evn_1= {
+struct move_procs low_tar_evn_1 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 100, 0, 0},
     {0, 0, 0, 0, 0, -1, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+// 10% chance to lower Target's Sp. Def by 1 Stage - Bug Buzz
+struct move_procs bug_buzz_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 10, 0, 0},
+    {0, 0, 0, 0, -1, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,

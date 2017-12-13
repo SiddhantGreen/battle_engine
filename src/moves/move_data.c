@@ -5978,10 +5978,10 @@ struct move_data moves[] = {
     .base_power = 90,
     .description = (pchar*)Bug_Buzz_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_BUG,
     .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &bug_buzz_procs,
     },
 
     {
@@ -6368,10 +6368,10 @@ struct move_data moves[] = {
     .base_power = 130,
     .description = (pchar*)Draco_Meteor_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_DRAGON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &user_lower_spAtk_2,
     },
 
     {
@@ -6381,10 +6381,10 @@ struct move_data moves[] = {
     .base_power = 80,
     .description = (pchar*)Discharge_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &paralyze_30_procs,
     },
 
     {
@@ -6394,10 +6394,10 @@ struct move_data moves[] = {
     .base_power = 80,
     .description = (pchar*)Lava_Plume_desc,
     .pp = 15,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &burn_30_procs,
     },
 
     {
@@ -6407,10 +6407,10 @@ struct move_data moves[] = {
     .base_power = 130,
     .description = (pchar*)Leaf_Storm_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_GRASS,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .procs = &user_lower_spAtk_2,
     },
 
     {
@@ -6450,7 +6450,7 @@ struct move_data moves[] = {
     .category = MOVE_PHYSICAL,
     .type = MTYPE_POISON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &poison_10_procs,
     },
 
     {
