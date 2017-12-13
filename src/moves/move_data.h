@@ -232,6 +232,12 @@ extern u8 endeavor_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callbac
 extern void endeavor_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void smelling_salts_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 smelling_salts_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 psych_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 dream_eater_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 dig_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void magnitude_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void earthquake_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 magnitude_on_tryhit_invul(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

@@ -7,6 +7,7 @@ extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
 extern u8 get_move_index(u16 move_id, u8 bank);
 void set_status(u8 bank, enum Effect status);
+extern u16 rand_range(u16 min, u16 max);
 
 
 void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -308,5 +309,60 @@ void whirlpool_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
 {
     if (user != src) return;
     if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIVE))
+        B_MOVE_POWER(user) *= 2;
+}
+
+
+/* Magnitude & Earthquake */
+u8 magnitude_on_tryhit_invul(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIG)) {
+        B_MOVE_ACCURACY(user) = 101;
+        return false;
+    }
+    return true;
+}
+
+void magnitude_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+
+    u8 i = rand_range(0, 101);
+    u8 magnitude = 0;
+    u8 power = 0;
+	if (i < 5) {
+		magnitude = 4;
+		power = 10;
+	} else if (i < 15) {
+		magnitude = 5;
+		power = 30;
+	} else if (i < 35) {
+		magnitude = 6;
+		power = 50;
+	} else if (i < 65) {
+		magnitude = 7;
+		power = 70;
+	} else if (i < 85) {
+		magnitude = 8;
+		power = 90;
+	} else if (i < 95) {
+		magnitude = 9;
+		power = 110;
+	} else {
+		magnitude = 10;
+		power = 150;
+	}
+    B_MOVE_POWER(user) = power;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIG))
+        B_MOVE_POWER(user) *= 2;
+    enqueue_message(NULL, NULL, STRING_MAGNITUDE_AMOUNT, magnitude);
+}
+
+
+void earthquake_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIG))
         B_MOVE_POWER(user) *= 2;
 }

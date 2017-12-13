@@ -120,3 +120,19 @@ u8 dive_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
     return true;
 }
+
+
+// dig additionally cannot be hit by residual damage from sandstorm and hail. This check is pushed into those moves.
+u8 dig_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (src != user) return true;
+    before_move_charge_frame(user, STRING_CHARGE_DIG);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        ADD_VOLATILE(user, VOLATILE_DIG);
+        ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        return true;
+    }
+    CLEAR_VOLATILE(user, VOLATILE_DIG);
+    CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    return true;
+}

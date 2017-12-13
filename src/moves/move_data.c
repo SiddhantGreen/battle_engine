@@ -1872,8 +1872,10 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ADJACENT,
     .procs = &basic_proc,
+    .on_base_power_move = earthquake_on_base_power,
+    .on_inv_tryhit_move = magnitude_on_tryhit_invul,
     },
 
     {
@@ -1900,6 +1902,8 @@ struct move_data moves[] = {
     .type = MTYPE_GROUND,
     .m_flags = FLAG_CONTACT | FLAG_CHARGE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = dig_before_move,
+    .on_inv_tryhit_move = magnitude_on_tryhit_invul,
     },
 
     {
@@ -2500,6 +2504,8 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_HEAL | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .drain = 50,
+    .on_tryhit_move = dream_eater_on_tryhit,
     },
 
     {
@@ -3590,8 +3596,9 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_ADJACENT,
     .procs = &basic_proc,
+    .on_base_power_move = magnitude_on_base_power,
     },
 
     {
@@ -3877,8 +3884,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = psych_up_on_effect,
     },
 
     {

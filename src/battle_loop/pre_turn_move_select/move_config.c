@@ -207,28 +207,6 @@ void reset_turn_bits(u8 bank)
 
 }
 
-u8 set_target_bank(u8 user_bank, u16 move_id)
-{
-    // check who the move targets
-    if (moves[move_id].m_flags & FLAG_ONSELF) {
-        p_bank[user_bank]->b_data.my_target = user_bank;
-        return user_bank;
-    } else {
-        p_bank[user_bank]->b_data.my_target = FOE_BANK(user_bank);
-        return FOE_BANK(user_bank);
-    }
-}
-
-bool target_exists(u8 bank)
-{
-    /* TODO this should be more thorough */
-    // target has hp remaining
-    if (B_CURRENT_HP(TARGET_OF(bank)))
-        return true;
-    return false;
-}
-
-
 void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index)
 {
     battle_master->b_moves[index].user_bank = new_bank;

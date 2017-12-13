@@ -21,3 +21,19 @@ u8 clear_smog_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(move, user, STRING_CLEAR_SMOG, 0);
     return true;
 }
+
+u8 psych_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    u8 target = TARGET_OF(user);
+    B_ATTACK_BUFF(user) = B_ATTACK_BUFF(target);
+    B_DEFENSE_BUFF(user) = B_DEFENSE_BUFF(target);
+    B_SPEED_BUFF(user) = B_SPEED_BUFF(target);
+    B_SPATTACK_BUFF(user) = B_SPATTACK_BUFF(target);
+    B_SPDEFENSE_BUFF(user) = B_SPDEFENSE_BUFF(target);
+    B_ACCURACY_BUFF(user) = B_ACCURACY_BUFF(target);
+    B_EVASION_BUFF(user) = B_EVASION_BUFF(target);
+    B_CRIT_BUFF(user) = B_CRIT_BUFF(target);
+    enqueue_message(move, user, STRING_COPIED_STATS, 0);
+    return true;
+}

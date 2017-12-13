@@ -179,6 +179,7 @@ enum battle_string_ids {
     STRING_CENTER_ATTENTION,
     STRING_SETUP_STOCKPILE,
     STRING_SOOTHING_AROMA,
+    STRING_COPIED_STATS,
     STRINGS_TABLE_MAX,
 };
 
@@ -200,7 +201,7 @@ static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NA
 static const pchar str_disabled_o[] = _("{FOE}{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
 static const pchar str_failed_o[] = _("But it failed!");
 static const pchar str_curse_dmg_o[] = _("{FOE}{ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
-static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {EFFECT_NAME}!");
+static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {STR_VAR_1}!");
 static const pchar str_no_target_o[] = _("But there was no target!");
 static const pchar str_failed_alone[] = _("But it failed!");
 static const pchar str_immunity_p[] = _("{FOE}{DEFENDING_MON}’s {ABILITY_DEFENDER}\nmade it immune!");
@@ -252,7 +253,7 @@ static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 static const pchar str_OHKO[] = _("It’s a one-hit KO!");
 static const pchar str_charge_solarbeam_o[] = _("{FOE}{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_sky_attack_o[] = _("{FOE}{ATTACKING_MON} became\ncloaked in a harsh light!");
-static const pchar str_charge_dig_o[] = _("{FOE}{ATTACKING_MON} became\ncloaked in a harsh light!");
+static const pchar str_charge_dig_o[] = _("{FOE}{ATTACKING_MON} burrowed\nits way underground");
 static const pchar str_charge_dive_o[] = _("{FOE}{ATTACKING_MON} hid underwater!");
 static const pchar str_fly_o[] = _("{FOE}{ATTACKING_MON} flew up high!");
 static const pchar str_phantom_force_o[] = _("{FOE}{ATTACKING_MON} vanished instantly!");
@@ -371,6 +372,7 @@ static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes
 static const pchar str_center_attention[] = _("{FOE}{ATTACKING_MON} became\nthe center of attention!");
 static const pchar str_stockpile_set[] = _("{FOE}{ATTACKING_MON} stockpiled {STR_VAR_1}!");
 static const pchar str_aromatherapy[] = _("A soothing aroma wafted\nthrough the air!");
+static const pchar str_copied_stats[] = _("{FOE}{ATTACKING_MON} copied\n{DEFENDING_MON}’s stat changes");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -578,6 +580,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_center_attention, // 177
    (pchar*)&str_stockpile_set, // 178
    (pchar*)&str_aromatherapy, // 179
+   (pchar*)&str_copied_stats, // 180
 
 };
 
