@@ -4039,8 +4039,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_tryhit_move = swallow_on_tryhit_move,
     },
 
     {

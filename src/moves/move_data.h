@@ -216,6 +216,7 @@ extern void stockpile_on_after_move(u8 user, u8 src, u16 move, struct anonymous_
 extern u8 stockpile_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void spit_up_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 swallow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

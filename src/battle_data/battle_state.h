@@ -81,7 +81,7 @@ struct move_used {
     u16 move_id;
     s8 priority;
     u8 stab;
-    u8 power;
+    u16 power; //prevent clamp up for moves over effectively 255 bp
     u8 category;
     u8 type[2];
     u8 flinch;
