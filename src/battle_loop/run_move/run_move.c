@@ -225,7 +225,7 @@ void run_move()
             }
             LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
             // update moves used history
-            p_bank[bank]->b_data.will_move = false;
+            p_bank[bank_index]->b_data.will_move = false;
             u16 last_move = LAST_MOVE(bank_index);
             u8 slot = get_move_index(last_move, bank_index);
             p_bank[bank_index]->b_data.moves_used[slot] = last_move;

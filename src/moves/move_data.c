@@ -5479,9 +5479,9 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Acupressure_desc,
     .pp = 30,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_HITS_ALLY_OR_SELF,
     .procs = &basic_proc,
     },
 

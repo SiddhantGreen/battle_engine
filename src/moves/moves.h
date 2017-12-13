@@ -77,14 +77,15 @@ struct move_procs {
 #define FLAG_HITS_FOE_SIDE (1 << 21)
 #define FLAG_HITS_ALLY (1 << 22)
 #define FLAG_HITS_ADJACENT (1 << 23)
-#define FLAG_TRIAGE (1 << 24)
-#define FLAG_DANCE (1 << 25)
-#define FLAG_PULSE (1 << 26)
-#define FLAG_OHKO (1 << 27)
-#define FLAG_CATEGORY_OVERRIDE (1 << 28)
-#define FLAG_STEAL_OFFENSIVE (1 << 29)
-#define FLAG_STEAL_BOOSTS (1 << 30)
-#define FLAGS_UNUSED (1 << 31)
+#define FLAG_HITS_ALLY_OR_SELF (1 << 24)
+#define FLAG_TRIAGE (1 << 25)
+#define FLAG_DANCE (1 << 26)
+#define FLAG_PULSE (1 << 27)
+#define FLAG_OHKO (1 << 28)
+#define FLAG_CATEGORY_OVERRIDE (1 << 29)
+#define FLAG_STEAL_OFFENSIVE (1 << 30)
+#define FLAG_STEAL_BOOSTS (1 << 31)
+#define FLAGS_UNUSED (1 << 32)
 
 /*
  * Field data fetch macros
