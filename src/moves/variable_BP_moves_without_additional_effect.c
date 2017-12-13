@@ -276,6 +276,23 @@ void wake_up_slap_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 }
 
 
+/* Smelling Salts */
+u8 smelling_salts_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if ((B_STATUS(TARGET_OF(user)) == AILMENT_PARALYZE))
+        set_status(TARGET_OF(user), EFFECT_CURE);
+    return true;
+}
+
+void smelling_salts_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if ((B_STATUS(TARGET_OF(user)) == AILMENT_PARALYZE))
+            B_MOVE_POWER(user) *= 2;
+}
+
+
 /* Whirl pool and surf */
 u8 whirlpool_on_tryhit_invul(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
