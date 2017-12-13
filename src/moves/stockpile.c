@@ -1,0 +1,82 @@
+#include <pokeagb/pokeagb.h>
+#include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
+#include "../battle_data/battle_state.h"
+
+extern void dprintf(const char * str, ...);
+extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
+
+u8 stockpile_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if(user != src) return true;
+    if(p_bank[user]->b_data.stockpile_uses == 3)
+        return false;
+    p_bank[user]->b_data.stockpile_uses++;
+    enqueue_message(NULL, user, STRING_SETUP_STOCKPILE, p_bank[user]->b_data.stockpile_uses);
+    return true;
+}
+
+u8 stockpile_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    acb->data_ptr = ((B_DEFENSE_BUFF(user) << 16) | B_SPDEFENSE_BUFF(user));
+    return true;
+}
+
+void stockpile_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    u8 id = get_callback_src((u32)stockpile_before_move, user);
+    u32 logged_data = CB_MASTER[id].data_ptr;
+    u8 amount_def = B_DEFENSE_BUFF(user) - (logged_data >> 16);
+    u8 amount_spdef = B_SPDEFENSE_BUFF(user) - (logged_data & 0xF);
+    p_bank[user]->b_data.stockpile_def_boost += amount_def;
+    p_bank[user]->b_data.stockpile_spdef_boost += amount_spdef;
+}
+
+u8 stockpile_drop_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if(p_bank[user]->b_data.stockpile_def_boost) {
+        B_USER_STAT_MOD_CHANCE(user, STAT_DEFENSE - 1) = 100;
+        B_USER_STAT_MOD_AMOUNT(user, STAT_DEFENSE - 1) = -p_bank[user]->b_data.stockpile_def_boost;
+        p_bank[user]->b_data.stockpile_def_boost = 0;
+    }
+    if(p_bank[user]->b_data.stockpile_spdef_boost) {
+        B_USER_STAT_MOD_CHANCE(user, STAT_SPECIAL_DEFENSE - 1) = 100;
+        B_USER_STAT_MOD_AMOUNT(user, STAT_SPECIAL_DEFENSE - 1) = -p_bank[user]->b_data.stockpile_spdef_boost;
+        p_bank[user]->b_data.stockpile_spdef_boost = 0;
+    }
+
+    return true;
+}
+
+void spit_up_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if(user != src) return true;
+    B_MOVE_POWER(user) = p_bank[user]->b_data.stockpile_uses*100;
+    p_bank[user]->b_data.stockpile_uses = 0;
+}
+
+u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if(user != src) return true;
+    if(p_bank[user]->b_data.stockpile_uses == 0)
+        return false;
+    add_callback(CB_ON_BEFORE_STAT_MOD, -1, 0, user, (u32)stockpile_drop_on_before_stat_mod);
+    return true;
+}
+
+u8 swallow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if(user != src) return true;
+    if(p_bank[user]->b_data.stockpile_uses == 0)
+        return false;
+    return true;
+}
+
+
+
+
+
+

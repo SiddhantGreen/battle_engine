@@ -177,6 +177,7 @@ enum battle_string_ids {
     STRING_INFESTATION,
     STRING_TOPSY_TURVY,
     STRING_CENTER_ATTENTION,
+    STRING_SETUP_STOCKPILE,
     STRINGS_TABLE_MAX,
 };
 
@@ -367,6 +368,7 @@ static const pchar str_rdy_to_help[] = _("{FOE}{ATTACKING_MON} is ready\nto help
 static const pchar str_infestation[] = _("{FOE}{ATTACKING_MON} has been\nafflicted with an infestation!");
 static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes\nwere inverted!");
 static const pchar str_center_attention[] = _("{FOE}{ATTACKING_MON} became\nthe center of attention!");
+static const pchar str_stockpile_set[] = _("{FOE}{ATTACKING_MON} stockpiled {STR_VAR_1}!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -572,7 +574,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_infestation, // 175
    (pchar*)&str_topsy_turvy, // 176
    (pchar*)&str_center_attention, // 177
-
+   (pchar*)&str_stockpile_set, // 178
 
 };
 

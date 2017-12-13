@@ -166,6 +166,11 @@ struct local_battler_data {
     u8 is_trapped : 1;
     u8 is_grounded : 1;
 
+	// stockpile
+    u8 stockpile_uses : 2;
+    u8 stockpile_def_boost : 3;
+    u8 stockpile_spdef_boost : 3;
+
     enum StatusAilments status;
     u8 pseudo_ailment;
     u8 confusion_turns;
