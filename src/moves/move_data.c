@@ -5490,6 +5490,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_HITS_ALLY_OR_SELF,
     .procs = &basic_proc,
+    .on_effect_cb = accupressure_on_effect,
     },
 
     {

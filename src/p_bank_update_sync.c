@@ -126,6 +126,9 @@ bool update_bank_hit_list(u8 bank_index)
     if (M_HITS_SELF(move)) {
         // Target is user
         list[0] = bank_index;
+    } else if (M_HITS_ALLY_OR_SELF(move)) {
+        // todo. The choice between ally and self.
+        list[0] = bank_index;
     } else if (M_HITS_TARGET(move)) {
         // Target is selected Target
         list[0] = FOE_BANK(bank_index);

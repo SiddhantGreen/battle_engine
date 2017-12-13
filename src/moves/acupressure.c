@@ -38,5 +38,5 @@ u8 accupressure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
         return false;
     }
     stat_boost(TARGET_OF(user), stats[rand_range(0, index)], 2);
-
+    return true;
 }
