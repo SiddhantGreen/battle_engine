@@ -3447,6 +3447,7 @@ struct move_data moves[] = {
     .type = MTYPE_BUG,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = fury_cutter_on_base_power_move,
     },
 
     {
@@ -3509,8 +3510,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_SOUND,
+    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_SOUND | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = heal_bell_on_effect,
     },
 
     {

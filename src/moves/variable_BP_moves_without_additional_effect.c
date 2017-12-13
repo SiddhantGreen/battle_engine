@@ -193,6 +193,34 @@ void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous
     B_MOVE_POWER(user) = 40 * counter;
 }
 
+/* Fury Cutter */
+void fury_cutter_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // don't make a duplicate for echoed voice's counter
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (CURRENT_MOVE(i) == MOVE_FURY_CUTTER) {
+            acb->duration += 1;
+            acb->data_ptr += 1;
+            acb->data_ptr = MIN(acb->data_ptr, 5); // clamp at 5
+            return true;
+        }
+    }
+    return true;
+}
+
+
+void fury_cutter_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (!callback_exists((u32)fury_cutter_after_move)) {
+        u8 id = add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)fury_cutter_after_move);
+        CB_MASTER[id].data_ptr = 1;
+    }
+    u8 counter = CB_MASTER[id_by_func((u32)fury_cutter_after_move)].data_ptr;
+    B_MOVE_POWER(user) = 40 * counter;
+}
+
 
 /* Electro Ball */
 void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
