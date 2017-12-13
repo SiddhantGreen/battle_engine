@@ -1320,6 +1320,19 @@ struct move_procs target_raise_Atk_spAtk_1 = {
     0,
 };
 
+//Lowers user's defense and special defense 1 stage
+struct move_procs user_lower_def_spDef_1 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 100, 0, 0, 100, 0, 0, 0},
+    {0, -1, 0, 0, -1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
 //Geomancy +2 SPA, SPD, SPE to user
 struct move_procs geomancy_procs = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
@@ -1345,3 +1358,4 @@ struct move_procs venom_drench = {
     0,
     0,
 };
+
