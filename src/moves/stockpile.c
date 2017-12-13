@@ -69,7 +69,7 @@ u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 swallow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if(user != src) return true;
-    if(p_bank[user]->b_data.stockpile_uses == 0)
+    if(p_bank[user]->b_data.stockpile_uses == 0 || (B_CURRENT_HP(user)==TOTAL_HP(user)))
         return false;
     switch (p_bank[user]->b_data.stockpile_uses) {
         case 1:
