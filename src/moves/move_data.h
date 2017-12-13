@@ -204,6 +204,9 @@ extern u8 rage_powder_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern void venoshock_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 captivate_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void avalanche_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 aqua_ring_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void trump_card_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

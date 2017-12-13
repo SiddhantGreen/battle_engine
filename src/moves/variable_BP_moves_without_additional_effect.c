@@ -4,6 +4,8 @@
 #include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
+extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
+extern u8 get_move_index(u16 move_id, u8 bank);
 
 
 void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -17,10 +19,17 @@ void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
 {
     if (user != src) return;
     u8 power = ((B_CURRENT_HP(user) * 100) / TOTAL_HP(user));
-    dprintf("percentage is %d", power);
     power = NUM_MOD(120, power);
     B_MOVE_POWER(user) = MAX(1, power);
-    dprintf("calc'd power is %d\n", power);
+}
+
+void avalanche_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (p_bank[user]->b_data.last_attacked_by == TARGET_OF(user)) {
+        B_MOVE_POWER(user) *= 2;
+        dprintf("power doubled.\n");
+    }
 }
 
 void hex_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -178,4 +187,29 @@ void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
         power = 150;
     }
     B_MOVE_POWER(user) = MAX(power, 40);
+}
+
+void trump_card_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u8 slot = get_move_index(CURRENT_MOVE(user), user);
+    u8 power;
+    switch (B_GET_MOVE_PP(user, slot)) {
+		case 0:
+			power = 200;
+			break;
+		case 1:
+			power = 80;
+			break;
+		case 2:
+			power = 60;
+			break;
+		case 3:
+			power = 50;
+			break;
+		default:
+			power = 40;
+			break;
+		};
+    B_MOVE_POWER(user) = power;
 }

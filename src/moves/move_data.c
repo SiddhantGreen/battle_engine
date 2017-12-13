@@ -5592,10 +5592,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Trump_Card_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = trump_card_on_base_power,
     },
 
     {
@@ -5617,10 +5618,11 @@ struct move_data moves[] = {
     .accuracy = 100,
     .description = (pchar*)Wring_Out_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = crush_grip_on_base_power_move,
     },
 
     {
@@ -5734,6 +5736,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = last_resort_tryhit,
     },
 
     {
@@ -5792,10 +5795,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Aqua_Ring_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = aqua_ring_effect_cb,
     },
 
     {
@@ -5994,6 +5998,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .flinch_chance = 20,
+    .on_modify_move = stomp_on_modify_move,
     },
 
     {
@@ -6145,13 +6150,13 @@ struct move_data moves[] = {
     .accuracy = 100,
     .base_power = 60,
     .description = (pchar*)Avalanche_desc,
-    10,
-    -4,
-    1,
+    .pp = 10,
+    .priority = -4,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ICE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = avalanche_on_base_power,
     },
 
     {
@@ -6499,7 +6504,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_FOE_SIDE,
-    .procs = &user_lower_spAtk_2,
+    .procs = &target_lower_spAtk_2,
     .on_tryhit_move = captivate_on_tryhit,
     },
 
