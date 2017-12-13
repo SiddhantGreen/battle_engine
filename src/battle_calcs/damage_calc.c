@@ -96,7 +96,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
-    u8 base_power = B_MOVE_POWER(attacker);
+    u16 base_power = B_MOVE_POWER(attacker);
 
     // get defending and attacking stats
     enum MoveCategory atk_category = B_MOVE_CATEGORY(attacker);

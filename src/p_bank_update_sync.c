@@ -98,6 +98,10 @@ void update_pbank(u8 bank, struct update_flags* flags)
 
     p_bank[bank]->b_data.illusion = 0;
     p_bank[bank]->b_data.fainted = 0;
+
+    p_bank[bank]->b_data.stockpile_uses = 0;
+    p_bank[bank]->b_data.stockpile_def_boost = 0;
+    p_bank[bank]->b_data.stockpile_spdef_boost = 0;
 }
 
 

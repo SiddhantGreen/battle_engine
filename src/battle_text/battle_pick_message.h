@@ -177,6 +177,7 @@ enum battle_string_ids {
     STRING_INFESTATION,
     STRING_TOPSY_TURVY,
     STRING_CENTER_ATTENTION,
+    STRING_SETUP_STOCKPILE,
     STRINGS_TABLE_MAX,
 };
 
@@ -196,7 +197,7 @@ static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is\nstoring energy!");
 static const pchar str_focus_lost_o[] = _("{FOE}{ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
 static const pchar str_disabled_o[] = _("{FOE}{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
-static const pchar str_failed_o[] = _("But it failed");
+static const pchar str_failed_o[] = _("But it failed!");
 static const pchar str_curse_dmg_o[] = _("{FOE}{ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
 static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {EFFECT_NAME}!");
 static const pchar str_no_target_o[] = _("But there was no target!");
@@ -220,7 +221,7 @@ static const pchar str_confusion_end_o[] = _("{FOE}{ATTACKING_MON} is\nno longer
 static const pchar str_dragout_failed_o[] = _("{FOE}{ATTACKING_MON} couldn’t be\ndragged out of battle!");
 static const pchar str_stat_mod_harsh_drop_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\ndropped harshly!");
 static const pchar str_stat_mod_drop_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\ndropped!");
-static const pchar str_stat_mod_harsh_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nharshly rose!");
+static const pchar str_stat_mod_harsh_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nsharply rose!");
 static const pchar str_stat_mod_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nrose!");
 static const pchar str_ailment_applied_o[] = _("{FOE}{ATTACKING_MON} was {STATUS_NAME}!");
 static const pchar str_ailment_immune_o[] = _("{FOE}{ATTACKING_MON} was immune\nto being {STATUS_NAME}!");
@@ -367,6 +368,7 @@ static const pchar str_rdy_to_help[] = _("{FOE}{ATTACKING_MON} is ready\nto help
 static const pchar str_infestation[] = _("{FOE}{ATTACKING_MON} has been\nafflicted with an infestation!");
 static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes\nwere inverted!");
 static const pchar str_center_attention[] = _("{FOE}{ATTACKING_MON} became\nthe center of attention!");
+static const pchar str_stockpile_set[] = _("{FOE}{ATTACKING_MON} stockpiled {STR_VAR_1}!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -572,7 +574,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_infestation, // 175
    (pchar*)&str_topsy_turvy, // 176
    (pchar*)&str_center_attention, // 177
-
+   (pchar*)&str_stockpile_set, // 178
 
 };
 

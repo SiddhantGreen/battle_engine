@@ -84,7 +84,7 @@ void reversal_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_cal
     else if((current_hp * 48) >= (total_hp * 5))
         B_MOVE_POWER(user) = 100;
     else if((current_hp * 48) >= (total_hp * 2))
-        B_MOVE_POWER(user) = 250;
+        B_MOVE_POWER(user) = 150;
     else
         B_MOVE_POWER(user) = 200;
 }
@@ -227,4 +227,10 @@ void trump_card_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 			break;
 		};
     B_MOVE_POWER(user) = power;
+}
+
+void water_spout_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    B_MOVE_POWER(user) = (B_CURRENT_HP(user) * 150) / TOTAL_HP(user);
 }

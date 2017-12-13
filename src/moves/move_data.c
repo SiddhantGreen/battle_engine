@@ -4011,8 +4011,11 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &raise_user_Def_SpD,
+    .on_tryhit_move = stockpile_on_tryhit_move,
+    .before_move = stockpile_before_move,
+    .on_after_move = stockpile_on_after_move,
     },
 
     {
@@ -4021,10 +4024,12 @@ struct move_data moves[] = {
     .accuracy = 100,
     .description = (pchar*)Spit_Up_desc,
     .pp = 10,
-    .category = MOVE_STATUS,
+    .category = MOVE_PHYSICAL,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = spit_up_on_tryhit_move,
+    .on_base_power_move = spit_up_on_base_power_move,
     },
 
     {
@@ -4035,8 +4040,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_tryhit_move = swallow_on_tryhit_move,
     },
 
     {
