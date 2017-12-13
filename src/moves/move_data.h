@@ -21,7 +21,7 @@ extern u8 gust_on_invul_hit(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 whirlwind_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 whirlwind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 bind_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 partially_trapped_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 minimize_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 stomp_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 jump_kick_on_move_fail(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -201,6 +201,7 @@ extern void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymo
 extern u8 synchonoise_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 storm_throw_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rage_powder_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void venoshock_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

@@ -115,6 +115,16 @@ void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymo
 }
 
 
+void venoshock_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u8 status = B_STATUS(TARGET_OF(user));
+    if ((status == AILMENT_BAD_POISON) || (status == AILMENT_POISON)) {
+        B_MOVE_POWER(user) *= 2;
+    }
+}
+
+
 /* Echoed voice */
 void echoed_voice_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {

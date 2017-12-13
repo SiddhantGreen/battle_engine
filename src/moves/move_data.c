@@ -958,7 +958,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_effect_cb = bind_on_effect_cb,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -1161,7 +1161,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_effect_cb = bind_on_effect_cb,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -1792,6 +1792,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -2367,6 +2368,7 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -3953,8 +3955,9 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_SPECIAL,
     .type = MTYPE_WATER,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -4969,8 +4972,9 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -6725,10 +6729,11 @@ struct move_data moves[] = {
     .base_power = 100,
     .description = (pchar*)Magma_Storm_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
@@ -6869,10 +6874,11 @@ struct move_data moves[] = {
     .base_power = 65,
     .description = (pchar*)Venoshock_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = venoshock_on_base_power_move,
     },
 
     {
@@ -8662,7 +8668,7 @@ struct move_data moves[] = {
     .type = MTYPE_BUG,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_effect_cb = infestation_on_effect,
+    .on_effect_cb = partially_trapped_effect_cb,
     },
 
     {
