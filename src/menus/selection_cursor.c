@@ -52,7 +52,6 @@ void update_cursor_action_select(u8 t_id)
             break;
         case KEY_A:
             // pick selected move
-            dprintf("run here\n");
             task_del(t_id);
             battle_master->selected_option = battle_master->battle_cursor.cursor_pos;
             obj_free(&objects[battle_master->battle_cursor.objid]);

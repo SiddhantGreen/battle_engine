@@ -1454,6 +1454,8 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_FOE_SIDE,
     .procs = &basic_proc,
+    .on_base_power_move = whirlpool_on_base_power,
+    .on_inv_tryhit_move = whirlpool_on_tryhit_invul,
     },
 
     {
@@ -3959,6 +3961,8 @@ struct move_data moves[] = {
     .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = partially_trapped_effect_cb,
+    .on_base_power_move = whirlpool_on_base_power,
+    .on_inv_tryhit_move = whirlpool_on_tryhit_invul,
     },
 
     {
@@ -4430,8 +4434,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH |  FLAG_AUTHENTIC,
+    .m_flags = FLAG_SNATCH |  FLAG_AUTHENTIC | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = imprison_on_effect,
     },
 
     {
@@ -4442,8 +4447,9 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = refresh_on_effect,
     },
 
     {
@@ -4498,6 +4504,7 @@ struct move_data moves[] = {
     .type = MTYPE_WATER,
     .m_flags = FLAG_CHARGE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_move = dive_before_move,
     },
 
     {

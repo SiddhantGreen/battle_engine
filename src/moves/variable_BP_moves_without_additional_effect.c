@@ -274,3 +274,22 @@ void wake_up_slap_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
     if ((B_STATUS(TARGET_OF(user)) == AILMENT_SLEEP) || (BANK_ABILITY(TARGET_OF(user)) == ABILITY_COMATOSE))
         B_MOVE_POWER(user) *= 2;
 }
+
+
+/* Whirl pool and surf */
+u8 whirlpool_on_tryhit_invul(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIVE)) {
+        B_MOVE_ACCURACY(user) = 101;
+        return false;
+    }
+    return true;
+}
+
+void whirlpool_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIVE))
+        B_MOVE_POWER(user) *= 2;
+}

@@ -90,6 +90,7 @@ enum Volatiles {
     VOLATILE_GRUDGE,
     VOLATILE_INFACTUATION,
     VOLATILE_BIDE,
+    VOLATILE_DIVE,
 };
 
 

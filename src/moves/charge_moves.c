@@ -105,3 +105,18 @@ u8 bounce_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
     return true;
 }
+
+// dive additionally cannot be hit by residual damage from sandstorm and hail. This check is pushed into those moves.
+u8 dive_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (src != user) return true;
+    before_move_charge_frame(user, STRING_CHARGE_DIVE);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        ADD_VOLATILE(user, VOLATILE_DIVE);
+        ADD_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+        return true;
+    }
+    CLEAR_VOLATILE(user, VOLATILE_DIVE);
+    CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    return true;
+}

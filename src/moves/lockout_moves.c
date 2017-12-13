@@ -7,7 +7,7 @@ extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u8 move_pp_count(u16 move_id, u8 bank);
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
-
+extern bool knows_move(u16 move_id, u8 bank);
 
 const static u16 encore_disallow[] = {
     MOVE_ASSIST, MOVE_COPYCAT, MOVE_ENCORE, MOVE_ME_FIRST,
@@ -199,5 +199,26 @@ u8 throat_chop_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback
     // don't reapply effect if effect is active
     if (has_callback_src((u32)throat_chop_disable_move, target)) return true;
     add_callback(CB_ON_DISABLE_MOVE, 0, 2, target, (u32)throat_chop_disable_move);
+	return true;
+}
+
+/* Imprison */
+bool imprison_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user == src) return true;
+    if (knows_move(move, src)){
+        if (!SIDE_OF(user))
+            enqueue_message(move, user, STRING_CANT_REASON, MOVE_IMPRISON);
+        return false;
+    }
+    return true;
+}
+
+u8 imprison_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+    // don't reapply effect if effect is active, fail move
+    if (has_callback_src((u32)imprison_disable_move, user)) return false;
+    add_callback(CB_ON_DISABLE_MOVE, 0, CB_PERMA, user, (u32)imprison_disable_move);
 	return true;
 }

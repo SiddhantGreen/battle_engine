@@ -9,7 +9,7 @@ extern void do_heal(u8 bank_index, u8 heal);
 void set_status(u8 bank, enum Effect status);
 extern void flat_heal(u8 bank, u16 heal);
 extern u8 get_ability(struct Pokemon* p);
-
+extern void silent_cure_major(u8 bank);
 
 /* Purify */
 void purify_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -77,10 +77,8 @@ u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
     if (user != src) return true;
     u8 partner_bank;
     if (SIDE_OF(user)) {
-        // opp
         partner_bank = (user > 2) ? 2 : 3;
     } else {
-        // player
         partner_bank = (user > 0) ? 0 : 1;
     }
     bool success = false;
@@ -94,7 +92,6 @@ u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
         user_p = p_bank[user]->this_pkmn;
         partner = p_bank[((user > 2) ? 3 : 2)]->this_pkmn;
     } else {
-        dprintf("executing for player side. %d is partner\n", partner_bank);
         p =  &party_player[0];
         user_p = p_bank[user]->this_pkmn;
         partner = p_bank[((user > 0) ? 0 : 1)]->this_pkmn;
@@ -117,13 +114,11 @@ u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
     }
 
     // heal field members
-    dprintf("checking user for ailment\n");
     if (B_STATUS(user) != AILMENT_NONE) {
         clear_ailments_silent(user);
         success = true;
     }
-    
-    dprintf("checking user for ailment, user was %d\n", success);
+
     if (B_STATUS(partner_bank) != AILMENT_NONE) {
         clear_ailments_silent(partner_bank);
     }
@@ -131,4 +126,17 @@ u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
         enqueue_message(NULL, user, STRING_SOOTHING_AROMA, 0);
     }
     return success;
+}
+
+
+/* refresh */
+u8 refresh_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_STATUS(user)) {
+        silent_cure_major(user);
+        enqueue_message(0, user, STRING_AILMENT_CURED, 0);
+        return true;
+    }
+    return false;
 }

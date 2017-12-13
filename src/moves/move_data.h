@@ -223,6 +223,11 @@ extern void wake_up_slap_on_base_power(u8 user, u8 src, u16 move, struct anonymo
 extern u8 wake_up_slap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 sky_uppercut_on_invulnerable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 dive_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void whirlpool_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 whirlpool_on_tryhit_invul(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 refresh_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 imprison_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
