@@ -9,8 +9,7 @@
 
 #define BANK_MAX 4
 #define MTYPES_MAX 19
-#define SPECIES_ARCEUS 1000
-#define SPECIES_SILVALLY 1001
+
 // executed right before using a move. bm_cb(user_bank)
 typedef void (*BeforeMoveCallback)(u8);
 typedef void (*DamageCallback)(u8, u8);
@@ -120,13 +119,14 @@ struct local_battler_data {
     u16 sp_def_raw;
 
     // IVs
-    u8 hp_iv : 5;
-    u8 attack_iv : 5;
-    u8 defense_iv : 5;
-    u8 speed_iv : 5;
-    u8 sp_atk_iv : 5;
-    u8 sp_def_iv : 5;
-    u8 reduce_pp : 1;
+    u32 hp_iv : 5;
+    u32 attack_iv : 5;
+    u32 defense_iv : 5;
+    u32 speed_iv : 5;
+    u32 sp_atk_iv : 5;
+    u32 sp_def_iv : 5;
+    u32 reduce_pp : 1;
+    u32 will_move : 1;
 
     // Delta applied to base stat. ex: -1 atk
     s8 attack;
@@ -177,6 +177,7 @@ struct local_battler_data {
     // counters
     u8 flee_count;
     u8 perish_song_counter;
+    u8 fury_cutter_counter;
 };
 
 struct update_flags {

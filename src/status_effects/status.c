@@ -108,6 +108,7 @@ void burn_on_inflict(u8 bank)
 }
 
 
+
 /* Freeze Related */
 u8 freeze_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {

@@ -31,6 +31,7 @@ u8 ingrain_on_effect(u8 user, u8 src, u16 status_id, struct anonymous_callback* 
     if (user != src) return true;
     if (has_callback_src((u32)ingrain_on_residual, user)) return false;
     ADD_VOLATILE(user, VOLATILE_INGRAIN);
+    ADD_VOLATILE(user, VOLATILE_TRAPPED);
     p_bank[user]->b_data.is_grounded = true;
     add_callback(CB_ON_RESIDUAL, 0, 0xFF, user, (u32)ingrain_on_residual);
     enqueue_message(NULL, user, STRING_ROOTS_PLANTED, 0);

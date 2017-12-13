@@ -21,6 +21,8 @@ extern void hpbar_apply_dmg(u8 task_id);
 extern bool is_grounded(u8 bank);
 extern void set_attack_bm_inplace(u16 move_id, u8 new_bank, u8 index);
 extern bool update_bank_hit_list(u8 bank_index);
+extern u8 get_move_index(u16 move_id, u8 bank);
+
 
 enum BeforeMoveStatus {
     CANT_USE_MOVE = 0,
@@ -204,6 +206,9 @@ void run_move()
                 return;
             }
             if (bank_index != battle_master->first_bank) {
+                for (u8 i = 0; i < 2; i++) {
+                    battle_master->b_moves[i].flinch = 0;
+                }
                 extern void c1_residual_callbacks(void);
                 set_callback1(c1_residual_callbacks);
                 super.multi_purpose_state_tracker = 0;
@@ -220,14 +225,10 @@ void run_move()
             }
             LAST_MOVE(bank_index) = CURRENT_MOVE(bank_index);
             // update moves used history
-            for (u8 i = 0; i < 4; i++) {
-                if (p_bank[bank_index]->b_data.moves_used[i] == LAST_MOVE(bank_index))
-                    break;
-                if (p_bank[bank_index]->b_data.moves_used[i] == MOVE_NONE) {
-                    p_bank[bank_index]->b_data.moves_used[i] = LAST_MOVE(bank_index);
-                    break;
-                }
-            }
+            p_bank[bank_index]->b_data.will_move = false;
+            u16 last_move = LAST_MOVE(bank_index);
+            u8 slot = get_move_index(last_move, bank_index);
+            p_bank[bank_index]->b_data.moves_used[slot] = last_move;
             super.multi_purpose_state_tracker = S_RUN_MOVE_ALTERNATE_BANK;
             set_callback1(run_decision);
             break;

@@ -18,3 +18,13 @@ u8 attract_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     set_status(TARGET_OF(user), AILMENT_INFACTUATE);
     return true;
 }
+
+u8 captivate_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    u8 target_gender = B_GENDER(TARGET_OF(user));
+    u8 user_gender = B_GENDER(user);
+    if ((user_gender == target_gender) || (user_gender > 0xFE) || (target_gender > 0xFE))
+        return false;
+    return true;
+}
+

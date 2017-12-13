@@ -154,6 +154,16 @@ void do_heal(u8 bank_index, u8 percent_heal)
     }
 }
 
+void flat_heal(u8 bank, u16 heal)
+{
+    extern void hp_anim_change(u8 bank, s16 delta);
+    u16 max_heal = TOTAL_HP(bank) - B_CURRENT_HP(bank);
+    if (heal > 0) {
+        hp_anim_change(bank, B_CURRENT_HP(bank) + MIN(heal, max_heal));
+    }
+}
+
+
 //TODO: IMPLEMENT
 void set_ability(u8 bank, u8 source, u8 new_ability)
 {
