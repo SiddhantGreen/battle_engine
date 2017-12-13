@@ -1147,7 +1147,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &paralyze_30_procs,
-    .on_modify_move = bodyslam_on_modify_move,
+    .on_modify_move = stomp_on_modify_move,
     },
 
     {
@@ -2096,7 +2096,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SNATCH | FLAG_ONSELF,
-    .procs = &user_raise_def_1,
+    .procs = &user_raise_evn_1,
     .on_effect_cb = minimize_on_effect_cb,
     },
 
@@ -2848,6 +2848,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .recoil = 25,
     .recoil_struggle = true,
     },
 
@@ -7164,6 +7165,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = echoed_voice_on_base_power_move,
     },
 
     {
@@ -7215,10 +7217,11 @@ struct move_data moves[] = {
     .description = (pchar*)Quick_Guard_desc,
     .pp = 15,
     .priority = 3,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FIGHTING,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = quick_guard_on_effect,
     },
 
     {
@@ -7402,6 +7405,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_damage_move = final_gambit_on_damage,
+    .on_after_move = final_gambit_on_after_move,
     },
 
     {
@@ -7664,7 +7669,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_base_power_move = heavy_slam_on_base_power_move,
+    .on_modify_move = heat_crash_on_modify_move,
     },
 
     {
@@ -7692,6 +7697,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .flinch_chance = 30,
+    .on_modify_move = stomp_on_modify_move,
     },
 
     {
@@ -7966,10 +7972,11 @@ struct move_data moves[] = {
     .base_power = 100,
     .description = (pchar*)Fusion_Flare_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
     .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = fusion_flare_on_base_power,
     },
 
     {
@@ -7981,8 +7988,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = fusion_bolt_on_base_power,
     },
 
     {
@@ -8063,6 +8071,7 @@ struct move_data moves[] = {
     .type = MTYPE_BUG,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_after_move = fell_stinger_after_move,
     },
 
     {
@@ -8192,6 +8201,7 @@ struct move_data moves[] = {
     },
 
     {
+    /* Topsy-Turvy*/
     .name = _("Topsy-Turvy"),
     .accuracy = 101,
     .description = (pchar*)Topsy_Turvy_desc,
@@ -8200,6 +8210,7 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = topsy_turvy_on_effect,
     },
 
     {
@@ -8236,10 +8247,12 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Flower_Shield_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .m_flags = FLAG_HITS_ALL,
+    .procs = &target_raise_def_1,
+    .before_move = flower_shield_before_move,
+    .on_tryhit_move = flower_shield_on_tryhit,
     },
 
     {
@@ -8404,10 +8417,10 @@ struct move_data moves[] = {
     .base_power = 110,
     .description = (pchar*)Steam_Eruption_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_WATER,
     .m_flags = FLAG_DEFROST | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &burn_30_procs,
     },
 
     {
@@ -8432,11 +8445,12 @@ struct move_data moves[] = {
     .description = (pchar*)Water_Shuriken_desc,
     .pp = 20,
     .priority = 1,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_SPECIAL,
     .type = MTYPE_WATER,
     .multi_hit = {2, 5},
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = water_shuriken_on_base_power_move,
     },
 
     {
@@ -8475,8 +8489,8 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_AUTHENTIC,
-    .procs = &basic_proc,
+    .m_flags = FLAG_AUTHENTIC | FLAG_HITS_ALLY,
+    .procs = &target_raise_spDef_1,
     },
 
     {
@@ -8500,7 +8514,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_POISON,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
-    .procs = &basic_proc,
+    .procs = &venom_drench,
     },
 
     {
@@ -8510,10 +8524,11 @@ struct move_data moves[] = {
     .description = (pchar*)Powder_desc,
     .pp = 20,
     .priority = 1,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_BUG,
     .m_flags = FLAG_POWDER | FLAG_REFLECTABLE | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = powder_on_tryhit_move,
     },
 
     {
@@ -8524,8 +8539,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_CHARGE,
-    .procs = &basic_proc,
+    .m_flags = FLAG_CHARGE | FLAG_ONSELF,
+    .procs = &geomancy_procs,
+    .before_move = geomancy_before_move,
     },
 
     {
@@ -8534,10 +8550,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Magnetic_Flux_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_ELECTRIC,
-    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_AUTHENTIC | FLAG_HITS_MY_SIDE,
+    .procs = &raise_user_Def_SpD,
+    .on_modify_move = gear_up_on_modify_move,
     },
 
     {
@@ -8993,7 +9010,7 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Gear_Up_desc,
     .pp = 20,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_STEEL,
     .m_flags = FLAG_SNATCH | FLAG_HITS_MY_SIDE,
     .procs = &target_raise_Atk_spAtk_1,

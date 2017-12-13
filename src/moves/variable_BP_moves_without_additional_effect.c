@@ -64,9 +64,8 @@ void reversal_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_cal
 void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    u8 defender = TARGET_OF(user);
     u16 user_weight = B_WEIGHT(user);
-    u16 defender_weight = B_WEIGHT(defender);
+    u16 defender_weight = B_WEIGHT(TARGET_OF(user));
     if((defender_weight * 2) >= user_weight)
         B_MOVE_POWER(user) = 40;
     else if((defender_weight * 3) >= user_weight)
@@ -83,8 +82,7 @@ void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
 void low_kick_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if(user != src) return;
-    u8 defender = TARGET_OF(user);
-    u16 defender_weight = B_WEIGHT(defender);
+    u16 defender_weight = B_WEIGHT(TARGET_OF(user));
     if(defender_weight >= 200)
         B_MOVE_POWER(user) = 120;
     else if(defender_weight >= 100)
@@ -106,4 +104,41 @@ void stomping_tantrum_on_base_power_move(u8 user, u8 src, u16 move, struct anony
     if (B_LAST_MOVE_FAILED(user)) {
         B_MOVE_POWER(user) *= 2;
     }
+}
+
+
+void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_SPECIES(user) != SPECIES_ASH_GRENINJA) return;
+    B_MOVE_POWER(user) = moves[move].base_power + 5;
+}
+
+
+/* Echoed voice */
+void echoed_voice_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // don't make a duplicate for echoed voice's counter
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (CURRENT_MOVE(i) == MOVE_ECHOED_VOICE) {
+            acb->duration += 1;
+            acb->data_ptr += 1;
+            acb->data_ptr = MIN(acb->data_ptr, 5); // clamp at 5
+            return true;
+        }
+    }
+    return true;
+}
+
+void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (!callback_exists((u32)echoed_voice_after_move)) {
+        u8 id = add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)echoed_voice_after_move);
+        CB_MASTER[id].data_ptr = 1;
+    }
+    u8 counter = CB_MASTER[id_by_func((u32)echoed_voice_after_move)].data_ptr;
+    B_MOVE_POWER(user) = 40 * counter;
+    dprintf("power is: %d\n", B_MOVE_POWER(user));
 }

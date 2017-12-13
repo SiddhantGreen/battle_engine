@@ -16,10 +16,8 @@ s8 get_move_priority(u8 bank)
 {
     u16 move = CURRENT_MOVE(bank);
 
-    /* check if ability boosts priority of move, and update */
-    s8 priority = ability_priority_mod(bank, move);
-
     /* update selected move's innate priority */
+    s8 priority = 0;
     priority += MOVE_PRIORITY(move);
 
     /* on flee the actor has a priority high enough to outspeed everything except pursuit */
@@ -62,6 +60,12 @@ void battle_set_order()
     if (moves[m2].before_turn) {
         add_callback(CB_ON_BEFORE_TURN, 0, 0, battle_master->second_bank, (u32)moves[m2].before_turn);
     }
+    
+    s8 player_priority = get_move_priority(PLAYER_SINGLES_BANK);
+    s8 opp_priority = get_move_priority(OPPONENT_SINGLES_BANK);
+    B_MOVE_PRIORITY(PLAYER_SINGLES_BANK) = player_priority;
+    B_MOVE_PRIORITY(OPPONENT_SINGLES_BANK) = opp_priority;
+    
     // run base power callbacks
     build_execution_order(CB_ON_BEFORE_TURN);
     battle_master->executing = true;
@@ -70,8 +74,9 @@ void battle_set_order()
         u16 move = CURRENT_MOVE(CB_MASTER[CB_EXEC_ORDER[CB_EXEC_INDEX]].source_bank);
         pop_callback(attacker, move);
     }
-    s8 player_priority = get_move_priority(PLAYER_SINGLES_BANK);
-    s8 opp_priority = get_move_priority(OPPONENT_SINGLES_BANK);
+    // before turn could've changed the priorities
+    player_priority = B_MOVE_PRIORITY(PLAYER_SINGLES_BANK);
+    opp_priority = B_MOVE_PRIORITY(OPPONENT_SINGLES_BANK);
 
     /* Turn order, higher priority will go first */
     if (player_priority > opp_priority) {

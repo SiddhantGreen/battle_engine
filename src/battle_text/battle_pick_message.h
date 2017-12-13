@@ -175,9 +175,12 @@ enum battle_string_ids {
     STRING_UNLEASHED_ENERGY,
     STRING_READY_TO_HELP,
     STRING_INFESTATION,
+    STRING_TOPSY_TURVY,
+    STRING_SILENCE,
     STRINGS_TABLE_MAX,
 };
 
+static const pchar str_silence[] = _("");
 static const pchar str_stat_mod_severely_fell_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
 static const pchar str_stat_mod_severely_fell_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
 static const pchar str_stat_mod_rose_drastically_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nrose drastically!");
@@ -363,6 +366,7 @@ static const pchar str_attract[] = _("{FOE}{ATTACKING_MON} fell in love!");
 static const pchar str_unleashed_p[] = _("{FOE}{ATTACKING_MON} unleashed\nenergy!");
 static const pchar str_rdy_to_help[] = _("{FOE}{ATTACKING_MON} is ready\nto help {DEFENDING_MON}!");
 static const pchar str_infestation[] = _("{FOE}{ATTACKING_MON} has been\nafflicted with an infestation!");
+static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes\nwere inverted!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -565,7 +569,9 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_attract, // 172
    (pchar*)&str_unleashed_p, // 173
    (pchar*)&str_rdy_to_help, // 174
-   (pchar*)&str_infestation, // 174
+   (pchar*)&str_infestation, // 175
+   (pchar*)&str_topsy_turvy, // 176
+   (pchar*)&str_silence, // 177
 
 
 };

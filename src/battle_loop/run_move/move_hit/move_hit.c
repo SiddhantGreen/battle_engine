@@ -208,20 +208,20 @@ void move_hit()
         }
         case S_RECOIL_APPLY:
             // check for recoil
-            if (battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0) {
+            if (moves[CURRENT_MOVE(bank_index)].recoil_struggle) {
+                // struggle recoil is based off max health
+                u16 recoil = NUM_MOD(TOTAL_HP(bank_index), moves[CURRENT_MOVE(bank_index)].recoil);
+                s16 delta = B_CURRENT_HP(bank_index) - recoil;
+                delta = MAX(delta, 0);
+                hp_anim_change(bank_index, delta);
+                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
+            } else if (battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg != 0 && moves[CURRENT_MOVE(bank_index)].recoil > 0) {
                 u16 recoil = NUM_MOD(battle_master->b_moves[B_MOVE_BANK(bank_index)].dmg, moves[CURRENT_MOVE(bank_index)].recoil);
                 s16 delta = B_CURRENT_HP(bank_index) - recoil;
                 delta = MAX(delta, 0);
                 hp_anim_change(bank_index, delta);
                 enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
-            } else if (moves[CURRENT_MOVE(bank_index)].recoil_struggle) {
-                // struggle recoil is based off max health
-                u16 recoil = NUM_MOD(TOTAL_HP(bank_index), 25);
-                s16 delta = B_CURRENT_HP(bank_index) - recoil;
-                delta = MAX(delta, 0);
-                hp_anim_change(bank_index, delta);
-                enqueue_message(CURRENT_MOVE(bank_index), bank_index, STRING_RECOIL, 0);
-            }
+            } 
             super.multi_purpose_state_tracker = S_DRAIN_APPLY;
             break;
         case S_DRAIN_APPLY:

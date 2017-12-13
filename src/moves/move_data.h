@@ -182,6 +182,21 @@ extern u8 fakeout_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 shore_up_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 infestation_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void false_swipe_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 geomancy_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 powder_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 venom_drench_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void water_shuriken_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 flower_shield_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 flower_shield_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 topsy_turvy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void fell_stinger_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void fusion_flare_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void fusion_bolt_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 heat_crash_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void final_gambit_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 quick_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -283,6 +298,7 @@ extern struct move_procs poison_10_procs;
 extern struct move_procs target_lower_def_20_procs;
 extern struct move_procs ancient_power_procs;
 extern struct move_procs burn_100_procs;
+extern struct move_procs burn_30_procs;
 extern struct move_procs flatter_procs;
 extern struct move_procs bad_poison_50_procs;
 extern struct move_procs raise_user_atk_20;
@@ -292,5 +308,7 @@ extern struct move_procs dragon_dance_procs;
 extern struct move_procs bulk_up_procs;
 extern struct move_procs user_raise_spAtk_spDef_1;
 extern struct move_procs user_lower_def_spDef_1;
+extern struct move_procs geomancy_procs;
+extern struct move_procs venom_drench;
 
 #endif /* MOVE_DATA_H_ */

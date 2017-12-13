@@ -6,6 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
+extern u16 rand_range(u16 min, u16 max);
 
 u8 infestation_on_residual(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
 {
