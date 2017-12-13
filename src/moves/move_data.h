@@ -202,6 +202,8 @@ extern u8 synchonoise_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_call
 extern u8 storm_throw_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 rage_powder_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void venoshock_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 captivate_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

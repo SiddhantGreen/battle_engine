@@ -5,18 +5,22 @@
 
 extern void dprintf(const char * str, ...);
 
-struct basepower_threshold_table
-{
-    u8 value;
-    u8 numerator;
-    u8 denominator;
-};
 
 void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
     if (B_GET_ITEM(user) == 0)
         B_MOVE_POWER(user) *= 2;
+}
+
+void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u8 power = ((B_CURRENT_HP(user) * 100) / TOTAL_HP(user));
+    dprintf("percentage is %d", power);
+    power = NUM_MOD(120, power);
+    B_MOVE_POWER(user) = MAX(1, power);
+    dprintf("calc'd power is %d\n", power);
 }
 
 void hex_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
