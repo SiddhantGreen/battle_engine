@@ -142,3 +142,26 @@ void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous
     B_MOVE_POWER(user) = 40 * counter;
     dprintf("power is: %d\n", B_MOVE_POWER(user));
 }
+
+
+/* Electro Ball */
+void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u16 user_spe = B_SPEED_STAT(user);
+    u16 target_spe = B_SPEED_STAT(TARGET_OF(user));
+    u8 power = 40;
+    if (user_spe >= target_spe) {
+        power = 60;
+    }
+    if (user_spe >= (2 * target_spe)) {
+        power = 80;
+    }
+    if (user_spe >= (3 * target_spe)) {
+        power = 120;
+    }
+    if (user_spe >= (4 * target_spe)) {
+        power = 150;
+    }
+    B_MOVE_POWER(user) = MAX(power, 40);
+}

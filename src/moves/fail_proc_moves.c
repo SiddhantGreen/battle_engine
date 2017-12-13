@@ -49,3 +49,17 @@ u8 cotton_spore_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callb
     if (user != src) return true;
     return (!(b_pkmn_has_type(TARGET_OF(src), MTYPE_GRASS)));
 }
+
+u8 synchonoise_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    for (u8 i = 0; i < sizeof(p_bank[user]->b_data.type); i++) {
+        if (p_bank[user]->b_data.type[i] == MTYPE_EGG)
+            continue;
+        if (b_pkmn_has_type(TARGET_OF(user), p_bank[user]->b_data.type[i])) {
+            dprintf("type is shared\n");
+            return true;
+        }
+    }
+    return false;
+}
