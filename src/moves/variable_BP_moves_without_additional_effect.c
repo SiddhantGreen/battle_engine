@@ -64,9 +64,8 @@ void reversal_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_cal
 void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    u8 defender = TARGET_OF(user);
     u16 user_weight = B_WEIGHT(user);
-    u16 defender_weight = B_WEIGHT(defender);
+    u16 defender_weight = B_WEIGHT(TARGET_OF(user));
     if((defender_weight * 2) >= user_weight)
         B_MOVE_POWER(user) = 40;
     else if((defender_weight * 3) >= user_weight)
@@ -83,8 +82,7 @@ void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
 void low_kick_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if(user != src) return;
-    u8 defender = TARGET_OF(user);
-    u16 defender_weight = B_WEIGHT(defender);
+    u16 defender_weight = B_WEIGHT(TARGET_OF(user));
     if(defender_weight >= 200)
         B_MOVE_POWER(user) = 120;
     else if(defender_weight >= 100)

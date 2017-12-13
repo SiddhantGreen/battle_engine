@@ -176,9 +176,11 @@ enum battle_string_ids {
     STRING_READY_TO_HELP,
     STRING_INFESTATION,
     STRING_TOPSY_TURVY,
+    STRING_SILENCE,
     STRINGS_TABLE_MAX,
 };
 
+static const pchar str_silence[] = _("");
 static const pchar str_stat_mod_severely_fell_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
 static const pchar str_stat_mod_severely_fell_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
 static const pchar str_stat_mod_rose_drastically_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nrose drastically!");
@@ -569,6 +571,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_rdy_to_help, // 174
    (pchar*)&str_infestation, // 175
    (pchar*)&str_topsy_turvy, // 176
+   (pchar*)&str_silence, // 177
 
 
 };

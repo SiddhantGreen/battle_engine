@@ -192,6 +192,8 @@ extern u8 topsy_turvy_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern void fell_stinger_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void fusion_flare_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void fusion_bolt_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 heat_crash_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

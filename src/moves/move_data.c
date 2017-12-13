@@ -2096,7 +2096,7 @@ struct move_data moves[] = {
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SNATCH | FLAG_ONSELF,
-    .procs = &user_raise_def_1,
+    .procs = &user_raise_evn_1,
     .on_effect_cb = minimize_on_effect_cb,
     },
 
@@ -2848,6 +2848,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .recoil = 25,
     .recoil_struggle = true,
     },
 
@@ -7402,6 +7403,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_damage_move = final_gambit_on_damage,
     },
 
     {
@@ -7664,7 +7666,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIRE,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_base_power_move = heavy_slam_on_base_power_move,
+    .on_modify_move = heat_crash_on_modify_move,
     },
 
     {
