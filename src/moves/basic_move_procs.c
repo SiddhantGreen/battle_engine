@@ -1397,3 +1397,16 @@ struct move_procs bug_buzz_procs = {
     0,
     0,
 };
+
+//70% chance to raise user's Sp. Atk by 1 stage - Charge Beam
+struct move_procs charge_beam_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 70, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
