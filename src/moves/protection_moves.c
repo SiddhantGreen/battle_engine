@@ -176,7 +176,7 @@ u8 wide_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 u8 quick_guard_on_tryhit_anon(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (SIDE_OF(user) == SIDE_OF(src)) return true;
-    if (B_MOVE_PRIORITY(user) > 0) {
+    if ((B_MOVE_PRIORITY(user) > 0) && (SIDE_OF(TARGET_OF(user)) == SIDE_OF(src))) {
         enqueue_message(MOVE_QUICK_GUARD, TARGET_OF(user), STRING_PROTECTED_MON, 0);
         return 3; // fail the move silently
     }

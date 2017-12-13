@@ -199,6 +199,8 @@ extern u8 quick_guard_on_effect(u8 user, u8 src, u16 move, struct anonymous_call
 extern void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 synchonoise_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 storm_throw_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rage_powder_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

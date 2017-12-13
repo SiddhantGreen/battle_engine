@@ -6896,8 +6896,9 @@ struct move_data moves[] = {
     .priority = 2,
     .category = MOVE_STATUS,
     .type = MTYPE_BUG,
-    .m_flags = FLAG_POWDER,
+    .m_flags = FLAG_POWDER | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = rage_powder_on_effect,
     },
 
     {
@@ -6951,6 +6952,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_modify_move = storm_throw_on_modify_move,
     },
 
     {
