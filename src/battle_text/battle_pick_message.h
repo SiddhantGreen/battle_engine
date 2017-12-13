@@ -180,6 +180,7 @@ enum battle_string_ids {
     STRING_SETUP_STOCKPILE,
     STRING_SOOTHING_AROMA,
     STRING_COPIED_STATS,
+    STRING_PAIN_SPLIT,
     STRINGS_TABLE_MAX,
 };
 
@@ -372,7 +373,8 @@ static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes
 static const pchar str_center_attention[] = _("{FOE}{ATTACKING_MON} became\nthe center of attention!");
 static const pchar str_stockpile_set[] = _("{FOE}{ATTACKING_MON} stockpiled {STR_VAR_1}!");
 static const pchar str_aromatherapy[] = _("A soothing aroma wafted\nthrough the air!");
-static const pchar str_copied_stats[] = _("{FOE}{ATTACKING_MON} copied\n{DEFENDING_MON}’s stat changes");
+static const pchar str_copied_stats[] = _("{FOE}{ATTACKING_MON} copied\n{DEFENDING_MON}’s stat changes!");
+static const pchar str_pain_split[] = _("The battlers shared\ntheir pain!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -581,6 +583,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_stockpile_set, // 178
    (pchar*)&str_aromatherapy, // 179
    (pchar*)&str_copied_stats, // 180
+   (pchar*)&str_pain_split, // 181
 
 };
 
