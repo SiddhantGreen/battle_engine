@@ -6,6 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
 extern u8 get_move_index(u16 move_id, u8 bank);
+void set_status(u8 bank, enum Effect status);
 
 
 void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -15,6 +16,7 @@ void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
         B_MOVE_POWER(user) *= 2;
 }
 
+
 void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -22,6 +24,7 @@ void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
     power = NUM_MOD(120, power);
     B_MOVE_POWER(user) = MAX(1, power);
 }
+
 
 void avalanche_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -31,6 +34,7 @@ void avalanche_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
     }
 }
 
+
 void assurance_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -38,6 +42,7 @@ void assurance_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
         B_MOVE_POWER(user) *= 2;
     }
 }
+
 
 void payback_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -47,6 +52,7 @@ void payback_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback*
     }
 }
 
+
 void hex_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -55,12 +61,14 @@ void hex_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback
         B_MOVE_POWER(user) *= 2;
 }
 
+
 void facade_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
     if (B_STATUS(user))
         B_MOVE_POWER(user) *= 2;
 }
+
 
 void brine_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -69,6 +77,7 @@ void brine_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callba
     if ((B_CURRENT_HP(defender) * 2) <= TOTAL_HP(defender))
         B_MOVE_POWER(user) *= 2;
 }
+
 
 void reversal_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -89,6 +98,7 @@ void reversal_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_cal
         B_MOVE_POWER(user) = 200;
 }
 
+
 void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -106,6 +116,7 @@ void heavy_slam_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
         B_MOVE_POWER(user) = 120;
 
 }
+
 
 void low_kick_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -169,6 +180,7 @@ void echoed_voice_after_move(u8 user, u8 src, u16 move, struct anonymous_callbac
     return true;
 }
 
+
 void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -178,7 +190,6 @@ void echoed_voice_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous
     }
     u8 counter = CB_MASTER[id_by_func((u32)echoed_voice_after_move)].data_ptr;
     B_MOVE_POWER(user) = 40 * counter;
-    dprintf("power is: %d\n", B_MOVE_POWER(user));
 }
 
 
@@ -203,6 +214,7 @@ void electro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
     }
     B_MOVE_POWER(user) = MAX(power, 40);
 }
+
 
 void trump_card_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -229,8 +241,36 @@ void trump_card_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
     B_MOVE_POWER(user) = power;
 }
 
+
 void water_spout_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
     B_MOVE_POWER(user) = (B_CURRENT_HP(user) * 150) / TOTAL_HP(user);
+}
+
+
+void gyro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u16 user_spe = B_SPEED_STAT(user);
+    u16 target_spe = B_SPEED_STAT(TARGET_OF(user));
+    u16 power = MAX(25, ((25 * target_spe) / user_spe));
+    B_MOVE_POWER(user) = MIN(150, power); // clamp 150 power
+}
+
+
+/* Wake up slap*/
+u8 wake_up_slap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if ((B_STATUS(TARGET_OF(user)) == AILMENT_SLEEP))
+        set_status(TARGET_OF(user), EFFECT_CURE);
+    return true;
+}
+
+void wake_up_slap_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if ((B_STATUS(TARGET_OF(user)) == AILMENT_SLEEP) || (BANK_ABILITY(TARGET_OF(user)) == ABILITY_COMATOSE))
+        B_MOVE_POWER(user) *= 2;
 }

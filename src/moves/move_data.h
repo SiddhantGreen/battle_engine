@@ -218,6 +218,11 @@ extern void spit_up_on_base_power_move(u8 user, u8 src, u16 move, struct anonymo
 extern u8 spit_up_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 swallow_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 accupressure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void gyro_ball_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void wake_up_slap_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 wake_up_slap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 sky_uppercut_on_invulnerable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 aromatherapy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

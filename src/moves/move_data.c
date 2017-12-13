@@ -4771,10 +4771,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Aromatherapy_desc,
     .pp = 5,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_GRASS,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = aromatherapy_on_effect
     },
 
     {
@@ -4968,6 +4969,7 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_inv_tryhit_move = sky_uppercut_on_invulnerable_move,
     },
 
     {
@@ -5374,6 +5376,8 @@ struct move_data moves[] = {
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = wake_up_slap_on_effect,
+    .on_base_power_move = wake_up_slap_on_base_power,
     },
 
     {
@@ -5397,8 +5401,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_STEEL,
-    .m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_BULLET | FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = gyro_ball_on_base_power,
     },
 
     {

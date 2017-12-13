@@ -286,6 +286,7 @@ void clear_ailments_silent(u8 bank) {
 	delete_callback_src((u32)poison_on_residual, bank);
 	delete_callback_src((u32)sleep_on_before_move, bank);
 	delete_callback_src((u32)sleep_on_residual, bank);
+    status_graphical_update(bank, AILMENT_NONE);
 }
 
 void effect_cure_on_inflict(u8 bank)
