@@ -331,5 +331,6 @@ extern struct move_procs user_raise_spAtk_spDef_1;
 extern struct move_procs user_lower_def_spDef_1;
 extern struct move_procs geomancy_procs;
 extern struct move_procs venom_drench;
+extern struct move_procs bug_buzz_procs;
 
 #endif /* MOVE_DATA_H_ */
