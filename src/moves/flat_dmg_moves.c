@@ -9,11 +9,22 @@ extern void flat_heal(u8 bank, u16 heal);
 extern u16 rand_range(u16 min, u16 max);
 extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
 
+void seismic_toss_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    B_MOVE_DMG(user) = B_LEVEL(user);
+}
 
 void sonic_boom_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (user != src) return true;
 	B_MOVE_DMG(user) = 20;
+}
+
+void dragon_rage_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	B_MOVE_DMG(user) = 40;
 }
 
 u8 natures_madness_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

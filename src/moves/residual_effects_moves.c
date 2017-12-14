@@ -15,6 +15,7 @@ u8 partial_dmg_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback*
     if (user == src) return true;
     if (acb->duration == 0) {
         CLEAR_VOLATILE(user, VOLATILE_BIND);
+        CLEAR_VOLATILE(user, VOLATILE_TRAPPED);
         return true;
     }
     enqueue_message(acb->data_ptr, user, STRING_RESIDUAL_DMG, 0);
@@ -27,9 +28,10 @@ u8 partially_trapped_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callb
     if (user != src) return true;
     u8 defender = TARGET_OF(user);
     // the bind effect timer does not reset upon using bind again
-    ADD_VOLATILE(defender, VOLATILE_BIND);
     if (has_callback_src((u32)partial_dmg_on_residual, defender))
         return true;
+    ADD_VOLATILE(defender, VOLATILE_BIND);
+    ADD_VOLATILE(defender, VOLATILE_TRAPPED);
     u8 id = add_callback(CB_ON_RESIDUAL, 0, rand_range(4, 6), src, (u32)partial_dmg_on_residual);
     CB_MASTER[id].data_ptr = move;
     return true;
@@ -52,5 +54,14 @@ u8 aqua_ring_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb
         return true;
     u8 id = add_callback(CB_ON_RESIDUAL, 6, CB_PERMA, user, (u32)aqua_ring_on_residual);
     CB_MASTER[id].data_ptr = move;
+    return true;
+}
+
+
+/* Mean look steal strapping effect */
+u8 mean_look_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    ADD_VOLATILE(TARGET_OF(user), VOLATILE_TRAPPED);
     return true;
 }

@@ -37,3 +37,20 @@ u8 psych_up_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     enqueue_message(move, user, STRING_COPIED_STATS, 0);
     return true;
 }
+
+u8 haze_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        p_bank[i]->b_data.attack = 0;
+        p_bank[i]->b_data.defense = 0;
+        p_bank[i]->b_data.speed = 0;
+        p_bank[i]->b_data.sp_atk = 0;
+        p_bank[i]->b_data.sp_def = 0;
+        p_bank[i]->b_data.accuracy = 0;
+        p_bank[i]->b_data.evasion = 0;
+        p_bank[i]->b_data.crit_mod = 0;
+    }
+    enqueue_message(move, user, STRING_STAT_ELIMINATED, 0);
+    return true;
+}

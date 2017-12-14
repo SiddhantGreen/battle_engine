@@ -95,7 +95,7 @@ extern u8 mirror_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_call
 extern void mirror_coat_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 metal_burst_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void metal_burst_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 hurricane_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 hurricane_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 hurricane_on_tryhit_inv(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 weather_ball_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 electric_terrain_on_effect(u8 bank, u8 src, u16 stat_id, struct anonymous_callback* acb);
@@ -247,6 +247,15 @@ extern u8 belly_drum_effect(u8 user, u8 src, u16 move, struct anonymous_callback
 extern u8 spite_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void flail_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 curse_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 snore_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 nightmare_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 tri_attack_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 skull_bash_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 haze_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 mean_look_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void dragon_rage_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
@@ -313,6 +322,7 @@ extern struct move_procs target_raise_spDef_2;
 extern struct move_procs target_raise_spd_2;
 extern struct move_procs target_raise_acc_2;
 extern struct move_procs target_raise_Atk_spAtk_1;
+extern struct move_procs target_lower_spe_1_10;
 
 /* Move Specific procs */
 extern struct move_procs poison_20_procs;

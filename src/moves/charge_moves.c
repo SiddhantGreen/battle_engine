@@ -5,6 +5,8 @@
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+
 
 u8 before_move_charge_frame(u8 user, u8 string_id)
 {
@@ -134,5 +136,18 @@ u8 dig_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     }
     CLEAR_VOLATILE(user, VOLATILE_DIG);
     CLEAR_VOLATILE(user, VOLATILE_SEMI_INVULNERABLE);
+    return true;
+}
+
+// skull bash
+u8 skull_bash_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (src != user) return true;
+    before_move_charge_frame(user, STRING_SKULL_BASH);
+    if (HAS_VOLATILE(user, VOLATILE_CHARGING)) {
+        stat_boost(user, DEFENSE_MOD, 1);
+        return true;
+    }
+
     return true;
 }
