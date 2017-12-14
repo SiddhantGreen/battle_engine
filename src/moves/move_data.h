@@ -255,6 +255,7 @@ extern u8 haze_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 extern u8 mean_look_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void dragon_rage_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

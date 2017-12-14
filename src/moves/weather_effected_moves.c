@@ -41,6 +41,27 @@ u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
     return true;
 }
 
+// Morning Sun
+// Synthesis
+u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    switch(get_weather()) {
+        case WEATHER_RAIN:
+        case WEATHER_SANDSTORM:
+        case WEATHER_HAIL:
+        case WEATHER_HARSH_RAIN:
+            B_HEAL(user) = 33;
+            break;
+        case WEATHER_SUN:
+        case WEATHER_HARSH_SUN:
+            B_HEAL(user) = 67;
+            break;
+        default:
+            B_HEAL(user) = 50;
+    };
+    return true;
+}
 
 
 // Weather ball
