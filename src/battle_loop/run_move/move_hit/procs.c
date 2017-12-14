@@ -106,6 +106,8 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount)
                 enqueue_message(0, bank, STRING_STAT_MOD_SEVERELY_FELL, stat_id + REQUEST_ATK);
             }
             break;
+        default:
+            break;
     };
 }
 

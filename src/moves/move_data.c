@@ -1757,6 +1757,9 @@ struct move_data moves[] = {
     .type = MTYPE_GRASS,
     .m_flags = FLAG_DANCE | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = thrash_on_tryhit_move,
+    .on_move_fail = thrash_on_move_fail,
+    .on_after_move = thrash_on_after_move,
     },
 
     {
@@ -3049,8 +3052,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_GHOST,
-    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_AUTHENTIC | FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = spite_on_effect,
     },
 
     {
@@ -3140,8 +3144,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = belly_drum_effect,
     },
 
     {
@@ -3291,14 +3296,16 @@ struct move_data moves[] = {
     },
 
     {
+    /* Lock-on */
     .name = _("Lock-On"),
     .accuracy = 101,
     .description = (pchar*)Lock_On_desc,
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = mind_reader_on_effect,
     },
 
     {
@@ -3312,6 +3319,9 @@ struct move_data moves[] = {
     .type = MTYPE_DRAGON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = thrash_on_tryhit_move,
+    .on_move_fail = thrash_on_move_fail,
+    .on_after_move = thrash_on_after_move,
     },
 
     {
