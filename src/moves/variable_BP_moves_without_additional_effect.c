@@ -394,3 +394,25 @@ void earthquake_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
     if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_DIG))
         B_MOVE_POWER(user) *= 2;
 }
+
+
+void flail_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u16 ratio = ((48 * B_CURRENT_HP(user)) / TOTAL_HP(user));
+    u8 power;
+    if (ratio < 2) {
+        power = 200;
+    } else if (ratio < 5) {
+        power = 150;
+    } else if (ratio < 10) {
+        power = 100;
+    } else if (ratio < 17) {
+        power = 80;
+    } else if (ratio < 33) {
+        power = 40;
+    } else {
+        power = 20;
+    }
+    B_MOVE_POWER(user) = power;
+}

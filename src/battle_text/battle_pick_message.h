@@ -183,6 +183,7 @@ enum battle_string_ids {
     STRING_PAIN_SPLIT,
     STRING_BELL_CHIMED,
     STRING_BELLY_DRUM,
+    STRING_CURSE,
     STRINGS_TABLE_MAX,
 };
 
@@ -379,6 +380,7 @@ static const pchar str_copied_stats[] = _("{FOE}{ATTACKING_MON} copied\n{DEFENDI
 static const pchar str_pain_split[] = _("The battlers shared\ntheir pain!");
 static const pchar str_heal_bell[] = _("A bell chimed!");
 static const pchar str_belly_drum[] = _("{FOE}{ATTACKING_MON} maximized\nits Attack!");
+static const pchar str_curse[] = _("{ATTACKING_MON} cut its HP own HP\nand laid a curse on the foe!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -590,6 +592,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_pain_split, // 181
    (pchar*)&str_heal_bell, // 182
    (pchar*)&str_belly_drum, // 183
+   (pchar*)&str_curse, // 184
 
 };
 

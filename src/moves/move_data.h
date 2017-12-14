@@ -245,6 +245,8 @@ extern u8 pain_split_on_effect(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 heal_bell_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 belly_drum_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 spite_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void flail_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 curse_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
