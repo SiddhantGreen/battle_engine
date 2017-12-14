@@ -1669,6 +1669,7 @@ struct move_data moves[] = {
     .type = MTYPE_GRASS,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_tryhit_move = leech_seed_on_tryhit,
     },
 
     {
@@ -2223,8 +2224,9 @@ struct move_data moves[] = {
     .pp = 30,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH,
-    .procs = &basic_proc,
+    .m_flags = FLAG_SNATCH | FLAG_ONSELF,
+    .procs = &focus_energy_proc,
+    .on_tryhit_move = focus_energy_on_tryhit,
     },
 
     {
@@ -2900,6 +2902,7 @@ struct move_data moves[] = {
     .multi_hit = {3, 3},
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_base_power_move = triple_kick_on_base_power,
     },
 
     {
@@ -4193,8 +4196,9 @@ struct move_data moves[] = {
     .priority = -3,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIGHTING,
-    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_PUNCH | FLAG_CONTACT | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = focus_punch_before_turn,
     },
 
     {
@@ -9320,13 +9324,13 @@ struct move_data moves[] = {
     .accuracy = 100,
     .base_power = 100,
     .description = (pchar*)Beak_Blast_desc,
-    15,
-    -3,
-    1,
+    .pp = 15,
+    .priority = -3,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FLYING,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_BULLET | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = beak_blast_before_turn,
     },
 
     {

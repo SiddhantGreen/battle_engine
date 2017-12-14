@@ -1424,3 +1424,16 @@ struct move_procs charge_beam_procs = {
     0,
     0,
 };
+
+//+2 user crit chance - focus energy
+struct move_procs focus_energy_proc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 100},
+    {0, 0, 0, 0, 0, 0, 0, 2},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};

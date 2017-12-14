@@ -185,6 +185,10 @@ enum battle_string_ids {
     STRING_BELLY_DRUM,
     STRING_CURSE,
     STRING_STAT_ELIMINATED,
+    STRING_SEEDED,
+    STRING_SAPPED,
+    STRING_TIGHTEN_FOCUS,
+    STRING_BEAK_BLAST,
     STRINGS_TABLE_MAX,
 };
 
@@ -383,6 +387,10 @@ static const pchar str_heal_bell[] = _("A bell chimed!");
 static const pchar str_belly_drum[] = _("{FOE}{ATTACKING_MON} maximized\nits Attack!");
 static const pchar str_curse[] = _("{ATTACKING_MON} cut its HP own HP\nand laid a curse on the foe!");
 static const pchar str_stat_changes_clear[] = _("All stat changes\nwere eliminated!");
+static const pchar str_seeded[] = _("{FOE}{ATTACKING_MON} was seeded.");
+static const pchar str_sapped[] = _("{FOE}{ATTACKING_MON}’s health was\nsapped by Leech seed.");
+static const pchar str_focus_tight[] = _("{FOE}{ATTACKING_MON} is tightening\nits focus!");
+static const pchar str_beak_blast[] = _("{FOE}{ATTACKING_MON} started heating\nup its beak!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -596,6 +604,10 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_belly_drum, // 183
    (pchar*)&str_curse, // 184
    (pchar*)&str_stat_changes_clear, // 185
+   (pchar*)&str_seeded, // 186
+   (pchar*)&str_sapped, // 187
+   (pchar*)&str_focus_tight, // 188
+   (pchar*)&str_beak_blast, // 188
 
 };
 

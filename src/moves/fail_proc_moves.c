@@ -63,3 +63,13 @@ u8 synchonoise_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* a
     }
     return false;
 }
+
+
+u8 focus_energy_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (HAS_VOLATILE(user, VOLATILE_FOCUS_ENERGY))
+        return false;
+    ADD_VOLATILE(user, VOLATILE_FOCUS_ENERGY);
+    return true;
+}

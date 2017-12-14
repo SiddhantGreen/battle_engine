@@ -92,6 +92,7 @@ enum Volatiles {
     VOLATILE_BIDE,
     VOLATILE_DIVE,
     VOLATILE_DIG,
+    VOLATILE_FOCUS_ENERGY,
 };
 
 
