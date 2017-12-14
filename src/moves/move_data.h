@@ -258,7 +258,7 @@ extern u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_ca
 extern u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 growth_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 ancient_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 twister_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void twister_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
