@@ -151,5 +151,4 @@ void final_gambit_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback
     if (user != src) return;
     B_MOVE_DMG(user) = B_CURRENT_HP(user);
     B_IS_FAINTED(user) = true;
-    //add_callback(CB_ON_FAINT_CHECK, 0, 0, user, (u32)final_gambit_on_faint);
 }

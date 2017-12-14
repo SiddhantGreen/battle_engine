@@ -271,6 +271,20 @@ void confusion_on_inflict(u8 bank)
 
 
 /* Misc Ailment related effects */
+void silent_cure_major(u8 bank) {
+	p_bank[bank]->b_data.status = AILMENT_NONE;
+	p_bank[bank]->b_data.status_turns = 0;
+	delete_callback_src((u32)toxic_on_residual, bank);
+	delete_callback_src((u32)paralyze_on_before_move, bank);
+	delete_callback_src((u32)paralyze_on_mod_stat, bank);
+	delete_callback_src((u32)freeze_on_before_move, bank);
+	delete_callback_src((u32)burn_on_residual, bank);
+	delete_callback_src((u32)poison_on_residual, bank);
+	delete_callback_src((u32)sleep_on_before_move, bank);
+	delete_callback_src((u32)sleep_on_residual, bank);
+	status_graphical_update(bank, AILMENT_NONE);
+}
+
 void clear_ailments_silent(u8 bank) {
 	p_bank[bank]->b_data.status = AILMENT_NONE;
 	p_bank[bank]->b_data.pseudo_ailment = AILMENT_NONE;
@@ -286,6 +300,7 @@ void clear_ailments_silent(u8 bank) {
 	delete_callback_src((u32)poison_on_residual, bank);
 	delete_callback_src((u32)sleep_on_before_move, bank);
 	delete_callback_src((u32)sleep_on_residual, bank);
+    status_graphical_update(bank, AILMENT_NONE);
 }
 
 void effect_cure_on_inflict(u8 bank)

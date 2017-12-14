@@ -90,6 +90,9 @@ enum Volatiles {
     VOLATILE_GRUDGE,
     VOLATILE_INFACTUATION,
     VOLATILE_BIDE,
+    VOLATILE_DIVE,
+    VOLATILE_DIG,
+    VOLATILE_FOCUS_ENERGY,
 };
 
 
@@ -165,6 +168,11 @@ struct local_battler_data {
     u8 ate_berry : 1;
     u8 is_trapped : 1;
     u8 is_grounded : 1;
+
+	// stockpile
+    u8 stockpile_uses : 2;
+    u8 stockpile_def_boost : 3;
+    u8 stockpile_spdef_boost : 3;
 
     enum StatusAilments status;
     u8 pseudo_ailment;

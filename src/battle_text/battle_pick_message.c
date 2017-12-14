@@ -45,6 +45,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_EXP_GAIN:
             case STRING_MULTI_HIT:
             case STRING_COUNT_FELL:
+            case STRING_SETUP_STOCKPILE:
+            case STRING_MAGNITUDE_AMOUNT:
                 fmt_int_10(fcode_buffer2, move_effect_id, 0, 8);
                 fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;
@@ -55,7 +57,6 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_DISABLED:
             case STRING_FAILED:
             case STRING_CURSE_RESIDUAL:
-            case STRING_MAGNITUDE_AMOUNT:
             case STRING_NO_TARGET:
             case STRING_RAZORWIND:
             case STRING_SOLARBEAM:
@@ -208,6 +209,19 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type,
             case STRING_INFESTATION:
             case STRING_TOPSY_TURVY:
             case STRING_CENTER_ATTENTION:
+            case STRING_SOOTHING_AROMA:
+            case STRING_CHARGE_DIVE:
+            case STRING_CHARGE_DIG:
+            case STRING_COPIED_STATS:
+            case STRING_PAIN_SPLIT:
+            case STRING_BELL_CHIMED:
+            case STRING_BELLY_DRUM:
+            case STRING_CURSE:
+            case STRING_STAT_ELIMINATED:
+            case STRING_SEEDED:
+            case STRING_SAPPED:
+            case STRING_TIGHTEN_FOCUS:
+            case STRING_BEAK_BLAST:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:

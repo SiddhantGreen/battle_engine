@@ -89,8 +89,8 @@ void battle_set_order()
 
     set_attack_battle_master(battle_master->first_bank, 0, battle_master->first_bank == PLAYER_SINGLES_BANK ? player_priority : opp_priority);
     set_attack_battle_master(battle_master->second_bank, 1, battle_master->second_bank == OPPONENT_SINGLES_BANK ? opp_priority : player_priority);
-    set_target_bank(battle_master->first_bank, p_bank[battle_master->first_bank]->b_data.current_move);
-    set_target_bank(battle_master->second_bank, p_bank[battle_master->second_bank]->b_data.current_move);
+    battle_master->b_moves[battle_master->first_bank].flinch = 0;
+    battle_master->b_moves[battle_master->second_bank].flinch = 0;
     super.multi_purpose_state_tracker = 0;
     battle_master->execution_index = 0;
 }

@@ -177,6 +177,18 @@ enum battle_string_ids {
     STRING_INFESTATION,
     STRING_TOPSY_TURVY,
     STRING_CENTER_ATTENTION,
+    STRING_SETUP_STOCKPILE,
+    STRING_SOOTHING_AROMA,
+    STRING_COPIED_STATS,
+    STRING_PAIN_SPLIT,
+    STRING_BELL_CHIMED,
+    STRING_BELLY_DRUM,
+    STRING_CURSE,
+    STRING_STAT_ELIMINATED,
+    STRING_SEEDED,
+    STRING_SAPPED,
+    STRING_TIGHTEN_FOCUS,
+    STRING_BEAK_BLAST,
     STRINGS_TABLE_MAX,
 };
 
@@ -196,9 +208,9 @@ static const pchar str_bide_o[] = _("{FOE}{ATTACKING_MON} is\nstoring energy!");
 static const pchar str_focus_lost_o[] = _("{FOE}{ATTACKING_MON} lost its\nfocus and couldn’t move!");
 static const pchar str_cant_use_o[] = _("{ATTACKING_MON} can’t use\n{ATTACK_NAME} because of {EFFECT_NAME}!");
 static const pchar str_disabled_o[] = _("{FOE}{DEFENDING_MON}’s {ATTACK_NAME}\nwas disabled!");
-static const pchar str_failed_o[] = _("But it failed");
+static const pchar str_failed_o[] = _("But it failed!");
 static const pchar str_curse_dmg_o[] = _("{FOE}{ATTACKING_MON} is afflicted\nby {ATTACK_NAME}");
-static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {EFFECT_NAME}!");
+static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {STR_VAR_1}!");
 static const pchar str_no_target_o[] = _("But there was no target!");
 static const pchar str_failed_alone[] = _("But it failed!");
 static const pchar str_immunity_p[] = _("{FOE}{DEFENDING_MON}’s {ABILITY_DEFENDER}\nmade it immune!");
@@ -220,7 +232,7 @@ static const pchar str_confusion_end_o[] = _("{FOE}{ATTACKING_MON} is\nno longer
 static const pchar str_dragout_failed_o[] = _("{FOE}{ATTACKING_MON} couldn’t be\ndragged out of battle!");
 static const pchar str_stat_mod_harsh_drop_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\ndropped harshly!");
 static const pchar str_stat_mod_drop_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\ndropped!");
-static const pchar str_stat_mod_harsh_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nharshly rose!");
+static const pchar str_stat_mod_harsh_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nsharply rose!");
 static const pchar str_stat_mod_rise_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nrose!");
 static const pchar str_ailment_applied_o[] = _("{FOE}{ATTACKING_MON} was {STATUS_NAME}!");
 static const pchar str_ailment_immune_o[] = _("{FOE}{ATTACKING_MON} was immune\nto being {STATUS_NAME}!");
@@ -250,8 +262,8 @@ static const pchar str_multi_hit[] = _("Hit {STR_VAR_1} time(s)!");
 static const pchar str_OHKO[] = _("It’s a one-hit KO!");
 static const pchar str_charge_solarbeam_o[] = _("{FOE}{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_charge_sky_attack_o[] = _("{FOE}{ATTACKING_MON} became\ncloaked in a harsh light!");
-static const pchar str_charge_dig_o[] = _("{FOE}{ATTACKING_MON} became\ncloaked in a harsh light!");
-static const pchar str_charge_dive_o[] = _("{FOE}{ATTACKING_MON} became\ncloaked in a harsh light!");
+static const pchar str_charge_dig_o[] = _("{FOE}{ATTACKING_MON} burrowed\nits way underground");
+static const pchar str_charge_dive_o[] = _("{FOE}{ATTACKING_MON} hid underwater!");
 static const pchar str_fly_o[] = _("{FOE}{ATTACKING_MON} flew up high!");
 static const pchar str_phantom_force_o[] = _("{FOE}{ATTACKING_MON} vanished instantly!");
 static const pchar str_shadow_force_o[] = _("{FOE}{ATTACKING_MON} vanished instantly!");
@@ -367,6 +379,18 @@ static const pchar str_rdy_to_help[] = _("{FOE}{ATTACKING_MON} is ready\nto help
 static const pchar str_infestation[] = _("{FOE}{ATTACKING_MON} has been\nafflicted with an infestation!");
 static const pchar str_topsy_turvy[] = _("{FOE}{ATTACKING_MON}’s stats changes\nwere inverted!");
 static const pchar str_center_attention[] = _("{FOE}{ATTACKING_MON} became\nthe center of attention!");
+static const pchar str_stockpile_set[] = _("{FOE}{ATTACKING_MON} stockpiled {STR_VAR_1}!");
+static const pchar str_aromatherapy[] = _("A soothing aroma wafted\nthrough the air!");
+static const pchar str_copied_stats[] = _("{FOE}{ATTACKING_MON} copied\n{DEFENDING_MON}’s stat changes!");
+static const pchar str_pain_split[] = _("The battlers shared\ntheir pain!");
+static const pchar str_heal_bell[] = _("A bell chimed!");
+static const pchar str_belly_drum[] = _("{FOE}{ATTACKING_MON} maximized\nits Attack!");
+static const pchar str_curse[] = _("{ATTACKING_MON} cut its HP own HP\nand laid a curse on the foe!");
+static const pchar str_stat_changes_clear[] = _("All stat changes\nwere eliminated!");
+static const pchar str_seeded[] = _("{FOE}{ATTACKING_MON} was seeded.");
+static const pchar str_sapped[] = _("{FOE}{ATTACKING_MON}’s health was\nsapped by Leech seed.");
+static const pchar str_focus_tight[] = _("{FOE}{ATTACKING_MON} is tightening\nits focus!");
+static const pchar str_beak_blast[] = _("{FOE}{ATTACKING_MON} started heating\nup its beak!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -572,7 +596,18 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_infestation, // 175
    (pchar*)&str_topsy_turvy, // 176
    (pchar*)&str_center_attention, // 177
-
+   (pchar*)&str_stockpile_set, // 178
+   (pchar*)&str_aromatherapy, // 179
+   (pchar*)&str_copied_stats, // 180
+   (pchar*)&str_pain_split, // 181
+   (pchar*)&str_heal_bell, // 182
+   (pchar*)&str_belly_drum, // 183
+   (pchar*)&str_curse, // 184
+   (pchar*)&str_stat_changes_clear, // 185
+   (pchar*)&str_seeded, // 186
+   (pchar*)&str_sapped, // 187
+   (pchar*)&str_focus_tight, // 188
+   (pchar*)&str_beak_blast, // 188
 
 };
 

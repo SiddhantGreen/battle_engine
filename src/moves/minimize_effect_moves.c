@@ -33,7 +33,6 @@ u8 heat_crash_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
     u16 user_weight = B_WEIGHT(user);
     u16 target_weight = B_WEIGHT(TARGET_OF(user));
     u8 power = 0;
-    dprintf("calcing, user %d, target %d\n", user_weight, target_weight);
     for (u8 i = 0; i < 6; i++) {
         if (user_weight > (target_weight * i))
             power += 20;
@@ -44,6 +43,5 @@ u8 heat_crash_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
         B_MOVE_ACCURACY(user) = 101;
         B_MOVE_POWER(user) *= 2;
     }
-    dprintf("power: %d\n", B_MOVE_POWER(user));
     return true;
 }

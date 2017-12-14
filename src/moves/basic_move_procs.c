@@ -1373,12 +1373,65 @@ struct move_procs low_tar_acc_30= {
 };
 
 //Lowers target's evasion by 1 Stage
-struct move_procs low_tar_evn_1= {
+struct move_procs low_tar_evn_1 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 100, 0, 0},
     {0, 0, 0, 0, 0, -1, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+// 10% chance to lower Target's Sp. Def by 1 Stage - Bug Buzz
+struct move_procs bug_buzz_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 10, 0, 0, 0},
+    {0, 0, 0, 0, -1, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+
+// 10% chance to lower Target's Speed by 1 Stage - constrict
+struct move_procs target_lower_spe_1_10 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 10, 0, 0, 0, 0, 0},
+    {0, 0, -1, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//70% chance to raise user's Sp. Atk by 1 stage - Charge Beam
+struct move_procs charge_beam_procs = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 70, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//+2 user crit chance - focus energy
+struct move_procs focus_energy_proc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 100},
+    {0, 0, 0, 0, 0, 0, 0, 2},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,

@@ -263,7 +263,7 @@ const static u16 me_first_disallow[] = {
 
 u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	u8 base_power = B_MOVE_POWER(attacker);
+	u16 base_power = B_MOVE_POWER(attacker);
 	if (attacker == src) {
 		acb->in_use = false;
 		B_MOVE_POWER(attacker) = NUM_MOD(base_power, 150);

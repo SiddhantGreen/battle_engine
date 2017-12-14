@@ -56,6 +56,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_SPDEFENSE_BUFF(bank) (p_bank[bank]->b_data.sp_def)
 #define B_ACCURACY_BUFF(bank)  (p_bank[bank]->b_data.accuracy)
 #define B_EVASION_BUFF(bank) (p_bank[bank]->b_data.evasion)
+#define B_CRIT_BUFF(bank) (p_bank[bank]->b_data.crit_mod)
 
 #define B_WEIGHT(bank) (p_bank[bank]->b_data.weight)
 
