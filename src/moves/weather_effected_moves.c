@@ -8,7 +8,8 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern enum WeatherTypes get_weather(void);
 
 // hurricane
-u8 hurricane_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+// Thunder
+u8 hurricane_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
     if ((battle_master->field_state.is_raining) || (battle_master->field_state.is_primordial_sea)) {
@@ -30,8 +31,16 @@ u8 hurricane_on_tryhit_inv(u8 user, u8 src, u16 move, struct anonymous_callback*
      return false;
 }
 
-// Thunder
-/* Literal clone of hurricane callbacks. Those are copied over in move_data.c */
+
+// blizzard
+u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (battle_master->field_state.is_hail)
+        B_MOVE_ACCURACY(user) = 101;
+    return true;
+}
+
 
 
 // Weather ball
