@@ -416,3 +416,14 @@ void flail_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* a
     }
     B_MOVE_POWER(user) = power;
 }
+
+
+// twister damage. Invulnerbility hitting is shared with skyuppercut
+void twister_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_SKYDROP) || HAS_VOLATILE(TARGET_OF(user), VOLATILE_FLYING) ||
+        HAS_VOLATILE(TARGET_OF(user), VOLATILE_BOUNCE)) {
+            B_MOVE_DMG(user) *= 2;
+    }
+}

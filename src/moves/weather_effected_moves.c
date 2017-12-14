@@ -43,6 +43,7 @@ u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // Morning Sun
 // Synthesis
+// Moonlight
 u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -60,6 +61,25 @@ u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
         default:
             B_HEAL(user) = 50;
     };
+    return true;
+}
+
+
+// Growth
+u8 growth_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if ((battle_master->field_state.is_sunny) || (battle_master->field_state.is_desolate_land)) {
+        B_USER_STAT_MOD_CHANCE(user, ATTACK_MOD) = 100;
+        B_USER_STAT_MOD_CHANCE(user, SPATTACK_MOD) = 100;
+        B_USER_STAT_MOD_AMOUNT(user, ATTACK_MOD) = 2;
+        B_USER_STAT_MOD_AMOUNT(user, SPATTACK_MOD) = 2;
+    } else {
+        B_USER_STAT_MOD_CHANCE(user, ATTACK_MOD) = 100;
+        B_USER_STAT_MOD_CHANCE(user, SPATTACK_MOD) = 100;
+        B_USER_STAT_MOD_AMOUNT(user, ATTACK_MOD) = 1;
+        B_USER_STAT_MOD_AMOUNT(user, SPATTACK_MOD) = 1;
+    }
     return true;
 }
 
