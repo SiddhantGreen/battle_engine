@@ -296,6 +296,11 @@ extern struct move_procs user_raise_spDef_2;
 extern struct move_procs user_raise_spd_2;
 extern struct move_procs user_raise_acc_2;
 extern struct move_procs raise_user_Def_SpD;
+extern struct move_procs raise_user_Atk_Acc;
+extern struct move_procs raise_user_Atk_Def_Acc;
+extern struct move_procs raise_user_SpD_SpA_Spd;
+
+
 /* Target stats */
 extern struct move_procs target_lower_atk_1;
 extern struct move_procs target_lower_def_1;
@@ -316,6 +321,7 @@ extern struct move_procs dec_SpA_50_procs;
 extern struct move_procs low_targ_atk_def;
 extern struct move_procs low_tar_acc_30;
 extern struct move_procs low_tar_evn_1;
+extern struct move_procs low_tar_SpD_30_2;
 
 extern struct move_procs target_raise_atk_1;
 extern struct move_procs target_raise_def_1;
