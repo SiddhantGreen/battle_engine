@@ -389,7 +389,7 @@ struct move_procs target_raise_atk_2 = {
     0,
 };
 
-//Raises target's defense 1 stage
+//Raises target's Defense 1 stage
 struct move_procs target_raise_def_1 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
@@ -1443,6 +1443,58 @@ struct move_procs focus_energy_proc = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 100},
     {0, 0, 0, 0, 0, 0, 0, 2},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Lowers Target's SpD 30% by 2 Stages
+struct move_procs low_tar_SpD_30_2 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 30, 0, 0, 0},
+    {0, 0, 0, 0, -2, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Raises User's Attack and Accuracy
+struct move_procs raise_user_Atk_Acc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {100, 0, 0, 0, 0, 0, 100, 0},
+    {1, 0, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Raises User's Attack, Defense and Accuracy
+struct move_procs raise_user_Atk_Def_Acc = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {100, 100, 0, 0, 0, 0, 100, 0},
+    {1, 1, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//Raises User's SpD, SpA and Speed
+struct move_procs raise_user_SpD_SpA_Spd = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 100, 100, 100, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     AILMENT_NONE,
