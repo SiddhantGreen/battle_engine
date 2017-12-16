@@ -189,8 +189,10 @@ enum battle_string_ids {
     STRING_SAPPED,
     STRING_TIGHTEN_FOCUS,
     STRING_BEAK_BLAST,
+    STRING_ENCOUNTER_WILD,
     STRINGS_TABLE_MAX,
 };
+const static pchar encounter_wild_text[] = _("A wild {DEFENDING_MON} appeared!\pGo! {ATTACKING_MON}!");
 
 static const pchar str_stat_mod_severely_fell_p[] = _("{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
 static const pchar str_stat_mod_severely_fell_o[] = _("{FOE}{ATTACKING_MON}’s {STAT_NAME}\nseverely fell!");
@@ -607,7 +609,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_seeded, // 186
    (pchar*)&str_sapped, // 187
    (pchar*)&str_focus_tight, // 188
-   (pchar*)&str_beak_blast, // 188
+   (pchar*)&str_beak_blast, // 189
+   (pchar*)&encounter_wild_text, // 190
 
 };
 

@@ -30,7 +30,6 @@
 #define SWB_PP 10
 #define SWB_NAME 11
 
-extern void option_selection(void);
 extern u8 get_ability(struct Pokemon *p);
 extern u8 load_dmg_type_icon(u8 type, s16 x, s16 y, u8 tag);
 extern u8 load_dmg_category_icon(u8 category, s16 x, s16 y, u8 tag);

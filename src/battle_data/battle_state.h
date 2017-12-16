@@ -7,7 +7,15 @@
 #include <pokeagb/pokeagb.h>
 
 #define GAME_STATE super.multi_purpose_state_tracker
-typedef void (*ResidualEffectCallback)(u8);
+
+enum BattleTypes {
+    BATTLE_MODE_WILD,
+    BATTLE_MODE_WILD_DOUBLE,
+    BATTLE_MODE_TRAINER,
+    BATTLE_MODE_TRAINER_DOUBLE,
+    BATTLE_MODE_PARTNER,
+};
+extern enum BattleTypes battle_type_flag;
 
 enum Effect {
     EFFECT_NONE,
@@ -128,7 +136,7 @@ struct battle_main {
     u8 executing : 1;
     u8 bank_state;
 
-    /* Object ids and positions */
+    /* Object ids and positions for fight menu */
     struct battle_selection_cursor battle_cursor;
     u8 selected_option;
     u8 type_objid[4];
@@ -136,6 +144,7 @@ struct battle_main {
     u8 move_pss_objid[4];
     u8 move_pp_objid[4];
     u8 fight_menu_content_spawned;
+    u8 option_selecting_bank;
 
     /* Message system variables */
     struct global_message b_message[7]; // message queue depth is 5
@@ -156,9 +165,6 @@ struct battle_main {
     u8 c1_prestate;
     struct switch_menu switch_main;
 
-    /* Battle details */
-    enum Effect effect[2];
-    u8 status_state;
 };
 
 enum fight_menu { OPTION_FIGHT, OPTION_POKEMON, OPTION_BAG, OPTION_RUN };
@@ -166,5 +172,7 @@ enum fight_menu { OPTION_FIGHT, OPTION_POKEMON, OPTION_BAG, OPTION_RUN };
 extern struct battle_main* battle_master;
 extern u8 bs_anim_status;
 extern void play_bmessage(void);
+extern void dprintf(const char* str, ...);
+extern bool peek_message(void);
 
 #endif /* BATTLE_STATE_H_ */

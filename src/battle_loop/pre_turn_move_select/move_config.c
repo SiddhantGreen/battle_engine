@@ -15,20 +15,20 @@ extern u8 move_pp_count(u16 move_id, u8 bank);
 extern u8 get_move_index(u16 move_id, u8 bank);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
-u16 pick_player_attack()
+u16 bank_interpret_selected_move(u8 bank)
 {
-    if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running)
-        return 0;
-    if (p_bank[PLAYER_SINGLES_BANK]->b_data.skip_move_select)
-        return LAST_MOVE(PLAYER_SINGLES_BANK);
-    u16 player_moveid = battle_master->battle_cursor.cursor_pos;
-    if (player_moveid == 1) {
-        player_moveid += 1;
-    } else if (player_moveid == 2) {
-        player_moveid -= 1;
+    if (p_bank[bank]->b_data.is_running)
+        return MOVE_NONE;
+    if (p_bank[bank]->b_data.skip_move_select)
+        return LAST_MOVE(bank);
+    u16 move_slot = battle_master->battle_cursor.cursor_pos;
+    if (move_slot == 1) {
+        move_slot += 1;
+    } else if (move_slot == 2) {
+        move_slot -= 1;
     }
-    p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = player_moveid;
-    return (B_GET_MOVE(PLAYER_SINGLES_BANK, player_moveid));
+    p_bank[bank]->b_data.pp_index = move_slot;
+    return (B_GET_MOVE(bank, move_slot));
 }
 
 bool external_move_disable_callbacks(u8 bank, u16 move)
@@ -49,16 +49,15 @@ bool external_move_disable_callbacks(u8 bank, u16 move)
 }
 
 // Return True = Continue; False = Reset
-bool player_move_selection_singles()
+bool validate_move_player(u8 bank)
 {
     // get and set currently selected move
-    u16 move_player = pick_player_attack();
-    CURRENT_MOVE(PLAYER_SINGLES_BANK) = move_player;
+    u16 move_player = CURRENT_MOVE(bank);
 
     // if player is fleeing, don't use a move
-    if (p_bank[PLAYER_SINGLES_BANK]->b_data.is_running) {
-        CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_NONE;
-        p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;
+    if (p_bank[bank]->b_data.is_running) {
+        CURRENT_MOVE(bank) = MOVE_NONE;
+        p_bank[bank]->b_data.pp_index = 0xFF;
         return true;
     }
 
@@ -69,9 +68,9 @@ bool player_move_selection_singles()
     u8 q_size = battle_master->queue_size;
     for (u8 i = 0; i < 4; i++) {
         // if move is usable insert to array
-        u16 selected_move = B_GET_MOVE(PLAYER_SINGLES_BANK, i);
-        if (move_is_usable(PLAYER_SINGLES_BANK, selected_move)) {
-            if (external_move_disable_callbacks(PLAYER_SINGLES_BANK, selected_move)) {
+        u16 selected_move = B_GET_MOVE(bank, i);
+        if (move_is_usable(bank, selected_move)) {
+            if (external_move_disable_callbacks(bank, selected_move)) {
                 index++;
             }
         }
@@ -81,38 +80,38 @@ bool player_move_selection_singles()
     battle_master->queue_size = q_size;
     if (index < 1) {
         // all moves disabled or unpickable
-        CURRENT_MOVE(PLAYER_SINGLES_BANK) = MOVE_STRUGGLE;
-        B_MOVE_CAN_CRIT(PLAYER_SINGLES_BANK) = false;
-        p_bank[PLAYER_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        CURRENT_MOVE(bank) = MOVE_STRUGGLE;
+        B_MOVE_CAN_CRIT(bank) = false;
+        p_bank[bank]->b_data.pp_index = 0xFF;
         return true;
     }
 
     // ensure player has PP for move being used
-    if (move_pp_count(move_player, PLAYER_SINGLES_BANK) < 1) {
+    if (move_pp_count(move_player, bank) < 1) {
         enqueue_message(0, 0, STRING_NO_PP, 0);
         return false;
     }
-    B_MOVE_CAN_CRIT(PLAYER_SINGLES_BANK) = true;
-    return external_move_disable_callbacks(PLAYER_SINGLES_BANK, move_player);
+    B_MOVE_CAN_CRIT(bank) = true;
+    return external_move_disable_callbacks(bank, move_player);
 }
 
-void pick_wild_singles_ai_attack()
+void wild_ai_pick_attack(u8 bank)
 {
     // If bank is attempting to flee, don't queue a move
-    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.is_running) {
-        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_NONE;
-        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+    if (p_bank[bank]->b_data.is_running) {
+        CURRENT_MOVE(bank) = MOVE_NONE;
+        p_bank[bank]->b_data.pp_index = 0xFF;
         return;
     }
 
     // if AI is locked into current move, use that move instead
-    if (p_bank[OPPONENT_SINGLES_BANK]->b_data.skip_move_select) {
-        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = LAST_MOVE(OPPONENT_SINGLES_BANK);
+    if (p_bank[bank]->b_data.skip_move_select) {
+        CURRENT_MOVE(bank) = LAST_MOVE(bank);
         return;
     }
 
     // if AI is charging or recharging, don't use a move
-    if (HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_CHARGING) || HAS_VOLATILE(OPPONENT_SINGLES_BANK, VOLATILE_RECHARGING)) {
+    if (HAS_VOLATILE(bank, VOLATILE_CHARGING) || HAS_VOLATILE(bank, VOLATILE_RECHARGING)) {
         // use move was using last time.
         return;
     }
@@ -122,9 +121,9 @@ void pick_wild_singles_ai_attack()
     u8 index = 0;
     for (u8 i = 0; i < 4; i++) {
         // if move is usable insert to array
-        u16 selected_move = B_GET_MOVE(OPPONENT_SINGLES_BANK, i);
-        if (move_is_usable(OPPONENT_SINGLES_BANK, selected_move)) {
-            if (external_move_disable_callbacks(OPPONENT_SINGLES_BANK, selected_move)) {
+        u16 selected_move = B_GET_MOVE(bank, i);
+        if (move_is_usable(bank, selected_move)) {
+            if (external_move_disable_callbacks(bank, selected_move)) {
                 to_pick[index] = selected_move;
                 index++;
             }
@@ -132,17 +131,17 @@ void pick_wild_singles_ai_attack()
     }
     if (index < 1) {
         // all moves disabled or unpickable
-        CURRENT_MOVE(OPPONENT_SINGLES_BANK) = MOVE_STRUGGLE;
-        B_MOVE_CAN_CRIT(OPPONENT_SINGLES_BANK) = false;
-        p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = 0xFF;
+        CURRENT_MOVE(bank) = MOVE_STRUGGLE;
+        B_MOVE_CAN_CRIT(bank) = false;
+        p_bank[bank]->b_data.pp_index = 0xFF;
         return;
     }
 
     u16 rand_index = rand_range(0, index);
-    CURRENT_MOVE(OPPONENT_SINGLES_BANK) = to_pick[rand_index];
-    p_bank[OPPONENT_SINGLES_BANK]->b_data.pp_index = get_move_index(to_pick[rand_index], OPPONENT_SINGLES_BANK);
-    B_MOVE_CAN_CRIT(OPPONENT_SINGLES_BANK) = true;
-    return true;
+    CURRENT_MOVE(bank) = to_pick[rand_index];
+    p_bank[bank]->b_data.pp_index = get_move_index(to_pick[rand_index], bank);
+    B_MOVE_CAN_CRIT(bank) = true;
+    return;
 }
 
 

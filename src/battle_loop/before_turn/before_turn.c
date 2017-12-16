@@ -26,6 +26,18 @@ s8 get_move_priority(u8 bank)
     return priority;
 }
 
+/*
+void battle_order()
+{
+    s16 speeds[4] = {0};
+    for (u8 i = 0; i < 4; i++) {
+        if (IS_ACTIVE)
+        order[i] = B_SPEED_STAT(i);
+    }
+
+}
+*/
+
 void battle_set_order()
 {
     u16 player_speed = B_SPEED_STAT(PLAYER_SINGLES_BANK);
@@ -60,12 +72,12 @@ void battle_set_order()
     if (moves[m2].before_turn) {
         add_callback(CB_ON_BEFORE_TURN, 0, 0, battle_master->second_bank, (u32)moves[m2].before_turn);
     }
-    
+
     s8 player_priority = get_move_priority(PLAYER_SINGLES_BANK);
     s8 opp_priority = get_move_priority(OPPONENT_SINGLES_BANK);
     B_MOVE_PRIORITY(PLAYER_SINGLES_BANK) = player_priority;
     B_MOVE_PRIORITY(OPPONENT_SINGLES_BANK) = opp_priority;
-    
+
     // run base power callbacks
     build_execution_order(CB_ON_BEFORE_TURN);
     battle_master->executing = true;

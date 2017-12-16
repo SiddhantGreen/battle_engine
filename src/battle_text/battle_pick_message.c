@@ -8,10 +8,10 @@ extern void dprintf(const char * str, ...);
 extern void buffer_write_pkmn_nick(pchar* buff, u8 bank);
 extern void buffer_write_move_name(pchar* buff, u16 move_id);
 
-void pick_encounter_message(enum BattleFlag battle_type_flags)
+void pick_encounter_message(enum BattleTypes battle_type_flag)
 {
-    switch (battle_type_flags) {
-        case BATTLE_FLAG_WILD:
+    switch (battle_type_flag) {
+        case BATTLE_MODE_WILD:
         {
             pchar text[] = _("A wild {STR_VAR_1} appeared!\pGo! {STR_VAR_2}!");
             buffer_write_pkmn_nick(fcode_buffer3, PLAYER_SINGLES_BANK);
@@ -19,16 +19,11 @@ void pick_encounter_message(enum BattleFlag battle_type_flags)
             fdecoder(string_buffer, text);
             break;
         }
-        case BATTLE_FLAG_DOUBLE:
-        case BATTLE_FLAG_LINK:
-        case BATTLE_FLAG_TRAINER:
-        case BATTLE_FLAG_OAK_TUTORIAL:
-        case BATTLE_FLAG_PARTNER:
-        case BATTLE_FLAG_SAFARI:
-        case BATTLE_FLAG_OLD_MAN:
-        case BATTLE_FLAG_ROAMING:
-        case BATTLE_FLAG_GHOST:
-        case BATTLE_FLAG_POKE_DUDE:
+        case BATTLE_MODE_WILD_DOUBLE:
+        case BATTLE_MODE_TRAINER:
+        case BATTLE_MODE_TRAINER_DOUBLE:
+        case BATTLE_MODE_PARTNER:
+        default:
             break;
     };
 
@@ -36,11 +31,11 @@ void pick_encounter_message(enum BattleFlag battle_type_flags)
 
 
 extern void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id);
-void pick_battle_message(u16 move_id, u8 user_bank, enum BattleFlag battle_type, enum battle_string_ids id, u16 move_effect_id)
+void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type, enum battle_string_ids id, u16 move_effect_id)
 {
     u8 side = SIDE_OF(user_bank);
     remo_reset_acknowledgement_flags();
-    if (battle_type_flags == BATTLE_FLAG_WILD) {
+    if (battle_type_flag == BATTLE_MODE_WILD) {
         switch (id) {
             case STRING_EXP_GAIN:
             case STRING_MULTI_HIT:
