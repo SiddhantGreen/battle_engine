@@ -18,3 +18,4 @@ bs_env_windows = 0x03004F94;
 bs_anim_status = 0x03004FA3;
 
 
+battle_type_flag = 0x02022B4C;
