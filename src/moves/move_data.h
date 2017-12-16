@@ -389,5 +389,7 @@ extern struct move_procs venom_drench;
 extern struct move_procs bug_buzz_procs;
 extern struct move_procs charge_beam_procs;
 extern struct move_procs focus_energy_proc;
+extern struct move_procs focus_energy_proc;
+extern struct move_procs low_tar_spAtk_30;
 
 #endif /* MOVE_DATA_H_ */

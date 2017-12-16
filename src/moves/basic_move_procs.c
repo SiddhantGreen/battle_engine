@@ -1360,12 +1360,25 @@ struct move_procs venom_drench = {
 };
 
 //Lowers target's accuracy 30% by 1 Stage
-struct move_procs low_tar_acc_30= {
+struct move_procs low_tar_acc_30 = {
     // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 30, 0},
     {0, 0, 0, 0, 0, 0, -1, 0},
+    AILMENT_NONE,
+    AILMENT_NONE,
+    0,
+    0,
+};
+
+//30% chance to lower target's spAtk by 1 stage
+struct move_procs low_tar_spAtk_30 = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 30, 0, 0, 0, 0},
+    {0, 0, 0, -1, 0, 0, 0, 0},
     AILMENT_NONE,
     AILMENT_NONE,
     0,
