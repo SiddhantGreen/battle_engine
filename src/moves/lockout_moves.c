@@ -130,13 +130,6 @@ u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 
 /* Disable */
-u8 disable_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
-{
-    if (user != TARGET_OF(src)) return true;
-    enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
-    return false;
-}
-
 bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -145,6 +138,16 @@ bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callbac
         // Obviously not display the message to the AI.
         if (!SIDE_OF(user))
             enqueue_message(move, user, STRING_CANT_REASON, MOVE_DISABLE);
+        return false;
+    }
+    return true;
+}
+
+u8 disable_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != TARGET_OF(src)) return true;
+    if (has_callback_src((u32)disable_on_disable_move, user)) {
+        enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return false;
     }
     return true;
