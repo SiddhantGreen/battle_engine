@@ -4,6 +4,7 @@
 #include "battle_slide_in_data/battle_obj_sliding.h"
 #include "battle_data/battle_state.h"
 #include "battle_text/battle_textbox_gfx.h"
+#include "game_actions/actions.h"
 
 extern void setup(void);
 extern void test_battle_data(void);
@@ -60,5 +61,8 @@ void allocate_battle_structs()
     bs_env_windows = (struct bs_elements_positions*)malloc_and_clear(sizeof(struct bs_elements_positions));
     // Battle state master initialize
     battle_master = (struct battle_main*)malloc_and_clear(sizeof(struct battle_main));
+
+    // actions linked list head nullify
+    battle_master->action_head = NULL;
     nullify_object_trackers();
 }

@@ -11,20 +11,8 @@ extern u16 pick_opponent_attack(void);
 extern u16 rand_range(u16 min, u16 max);
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
 extern u8 set_target_bank(u8 user_bank, u16 move_id);
+extern s8 get_move_priority(u8 bank);
 
-s8 get_move_priority(u8 bank)
-{
-    u16 move = CURRENT_MOVE(bank);
-
-    /* update selected move's innate priority */
-    s8 priority = 0;
-    priority += MOVE_PRIORITY(move);
-
-    /* on flee the actor has a priority high enough to outspeed everything except pursuit */
-    if (p_bank[bank]->b_data.is_running)
-        priority = 6;
-    return priority;
-}
 
 /*
 void battle_order()

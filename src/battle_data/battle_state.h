@@ -4,6 +4,7 @@
 #include "pkmn_bank.h"
 #include "../moves/moves.h"
 #include "../anonymous_callbacks/anonymous_callbacks.h"
+#include "../game_actions/actions.h"
 #include <pokeagb/pokeagb.h>
 
 #define GAME_STATE super.multi_purpose_state_tracker
@@ -128,6 +129,9 @@ struct switch_menu {
 
 struct battle_main {
     struct battle_field_state field_state;
+
+    /* Battle actions */
+    struct action* action_head;
 
     /* Main Battle callbacks */
     struct anonymous_callback anon_cb_master[ANON_CB_MAX];
