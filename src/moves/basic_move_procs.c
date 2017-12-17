@@ -1580,3 +1580,16 @@ struct move_procs low_target_atk_10 = {
     0,
     0,
 };
+
+// Toxic Thread
+struct move_procs toxic_thread = {
+    // Atk, Def, Spd, SpA, SpD, Evn, Acc, Crt
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0,100,0, 0, 0, 0, 0},
+    {0, 0,-1, 0, 0, 0, 0, 0},
+    AILMENT_NONE,
+    AILMENT_BAD_POISON,
+    0,
+    100,
+};

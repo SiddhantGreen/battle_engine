@@ -398,5 +398,6 @@ extern struct move_procs focus_energy_proc;
 extern struct move_procs focus_energy_proc;
 extern struct move_procs low_tar_spAtk_30;
 extern struct move_procs v_create;
+extern struct move_procs toxic_thread;
 
 #endif /* MOVE_DATA_H_ */
