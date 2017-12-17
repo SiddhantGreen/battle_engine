@@ -9,6 +9,21 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void dprintf(const char * str, ...);
 
 
+s8 get_move_priority(u8 bank)
+{
+    u16 move = CURRENT_MOVE(bank);
+
+    /* update selected move's innate priority */
+    s8 priority = 0;
+    priority += MOVE_PRIORITY(move);
+//    exec_callbacks(CB_ON_PRIORITY);
+
+    /* on flee the actor has a priority high enough to outspeed everything except pursuit */
+    if (p_bank[bank]->b_data.is_running)
+        priority = 6;
+    return priority;
+}
+
 u16 rand_range(u16 min, u16 max)
 {
     if (min == max) return min;

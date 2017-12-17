@@ -158,8 +158,10 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
 
     // Targets mod
     u8 targets_mod;
-    switch (battle_type_flags) {
-        case BATTLE_FLAG_PARTNER:
+    switch (battle_type_flag) {
+        case BATTLE_MODE_WILD_DOUBLE:
+        case BATTLE_MODE_TRAINER_DOUBLE:
+        case BATTLE_MODE_PARTNER:
             /* TODO : Check if other targets are alive & move is spread */
             targets_mod = 75;
             break;

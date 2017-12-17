@@ -6,12 +6,11 @@
 #include "battle_text/battle_pick_message.h"
 #include "move_chain_states.h"
 
-extern bool peek_message(void);
 extern void run_move(void);
 extern void dprintf(const char * str, ...);
 extern void reset_turn_bits(u8 bank);
 extern void run_after_switch(void);
-extern void option_selection(void);
+extern void option_selection(u8 bank);
 extern void on_faint(void);
 extern void run_switch(void);
 extern void sync_battler_struct(u8 bank);
@@ -75,10 +74,9 @@ void run_decision(void)
             p_bank[OPPONENT_SINGLES_BANK]->b_data.first_turn = false;
             reset_turn_bits(battle_master->first_bank);
             reset_turn_bits(battle_master->second_bank);
-            set_callback1(option_selection);
+            option_selection(0);
             super.multi_purpose_state_tracker = 0;
             battle_master->execution_index = 0;
-            battle_master->fight_menu_content_spawned  = 0;
             break;
         }
         case S_END_BATTLE:
@@ -92,19 +90,30 @@ void run_decision(void)
     };
 }
 
-extern void pick_wild_singles_ai_attack(void);
-extern bool player_move_selection_singles(void);
-void battle_loop()
+extern void wild_ai_pick_attack(u8 bank);
+extern bool validate_move_player(u8 bank);
+
+void validate_player_selected_move()
 {
     extern void battle_set_order(void);
-    if (!player_move_selection_singles()) {
-        super.multi_purpose_state_tracker = S_SOFT_RESET_BANK;
-        set_callback1(run_decision);
+    extern u16 bank_interpret_selected_move(u16);
+    // get and set currently selected move
+    u16 move_player = bank_interpret_selected_move(PLAYER_SINGLES_BANK);
+    CURRENT_MOVE(PLAYER_SINGLES_BANK) = move_player;
+    if (!validate_move_player(PLAYER_SINGLES_BANK)) {
+        option_selection(PLAYER_SINGLES_BANK);
         return;
     }
-    pick_wild_singles_ai_attack();
-	// A usable move was picked
+    wild_ai_pick_attack(OPPONENT_SINGLES_BANK);
+
+    // A usable move was picked
 	battle_set_order();
     battle_master->execution_index = 0;
 	set_callback1(run_decision);
+}
+
+
+void validate_selected_move()
+{
+
 }

@@ -11,20 +11,20 @@ extern u16 pick_opponent_attack(void);
 extern u16 rand_range(u16 min, u16 max);
 extern void set_attack_battle_master(u8 bank, u8 index, s8 priority);
 extern u8 set_target_bank(u8 user_bank, u16 move_id);
+extern s8 get_move_priority(u8 bank);
 
-s8 get_move_priority(u8 bank)
+
+/*
+void battle_order()
 {
-    u16 move = CURRENT_MOVE(bank);
+    s16 speeds[4] = {0};
+    for (u8 i = 0; i < 4; i++) {
+        if (IS_ACTIVE)
+        order[i] = B_SPEED_STAT(i);
+    }
 
-    /* update selected move's innate priority */
-    s8 priority = 0;
-    priority += MOVE_PRIORITY(move);
-
-    /* on flee the actor has a priority high enough to outspeed everything except pursuit */
-    if (p_bank[bank]->b_data.is_running)
-        priority = 6;
-    return priority;
 }
+*/
 
 void battle_set_order()
 {
@@ -60,12 +60,12 @@ void battle_set_order()
     if (moves[m2].before_turn) {
         add_callback(CB_ON_BEFORE_TURN, 0, 0, battle_master->second_bank, (u32)moves[m2].before_turn);
     }
-    
+
     s8 player_priority = get_move_priority(PLAYER_SINGLES_BANK);
     s8 opp_priority = get_move_priority(OPPONENT_SINGLES_BANK);
     B_MOVE_PRIORITY(PLAYER_SINGLES_BANK) = player_priority;
     B_MOVE_PRIORITY(OPPONENT_SINGLES_BANK) = opp_priority;
-    
+
     // run base power callbacks
     build_execution_order(CB_ON_BEFORE_TURN);
     battle_master->executing = true;

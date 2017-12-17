@@ -14,6 +14,7 @@ extern void run_switch(void);
 extern bool bank_trapped(u8 bank);
 extern u16 rand_range(u16, u16);
 void move_on_switch_cb(void);
+extern void option_selection(u8 bank);
 
 bool can_flee_by_random(u8 bank)
 {
@@ -32,7 +33,7 @@ void run_flee()
 {
     while (peek_message())
         return;
-    
+
     u8 bank_index = (battle_master->execution_index) ? battle_master->second_bank : battle_master->first_bank;
     switch (super.multi_purpose_state_tracker) {
         case S_CHECK_FLEEING:
@@ -52,8 +53,7 @@ void run_flee()
             ability_on_before_switch(bank_index);
             if (!bank_trapped(bank_index)) {
                 enqueue_message(MOVE_NONE, bank_index, STRING_FLEE_FAILED, 0);
-                extern void option_selection(void);
-                set_callback1(option_selection);
+                option_selection(bank_index);
                 super.multi_purpose_state_tracker = 0;
             } else {
                 if (!can_flee_by_random(bank_index)) {
