@@ -4719,7 +4719,7 @@ struct move_data moves[] = {
     .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
 	.heal = 50,
     .procs = &basic_proc,
-	
+
     },
 
     {
@@ -5864,8 +5864,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_AUTHENTIC | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = heart_swap_on_effect,
     },
 
     {
@@ -9153,8 +9154,10 @@ struct move_data moves[] = {
     .pp = 15,
     .category = MOVE_SPECIAL,
     .type = MTYPE_BUG,
-    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_BULLET | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET | FLAG_HEAL,
     .procs = &basic_proc,
+    .heal = 50,
+    .on_tryhit_move = pollen_puff_on_tryhit_move,
     },
 
     {
