@@ -10,15 +10,12 @@ u8 pollen_puff_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callba
 {
     if (user != src) return true;
     u8 target_bank = TARGET_OF(user);
-    if(SIDE_OF(user) == SIDE_OF(target_bank)) {
+    if (SIDE_OF(user) == SIDE_OF(target_bank)) {
         B_MOVE_POWER(user) = 0;
-        if(TOTAL_HP(target_bank) == B_CURRENT_HP(target_bank))
-        {
+        if (TOTAL_HP(target_bank) == B_CURRENT_HP(target_bank)) {
             return false;
         }
-    }
-    else
-    {
+    } else {
         B_HEAL(user) = 0;
     }
     return true;
