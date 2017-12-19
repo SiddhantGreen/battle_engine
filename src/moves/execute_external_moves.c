@@ -377,3 +377,23 @@ u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 	}
 	return true;
 }
+
+
+// After you
+u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// fail if target has moved already
+	if (!p_bank[TARGET_OF(user)]->b_data.will_move) return false;
+	// fail if target moves next anyways
+	if (CURRENT_ACTION->next_action->action_bank == TARGET_OF(user)) return false;
+	struct action* a = find_action(TARGET_OF(user), ActionMove);
+	if (a == NULL) return false;
+	u8 target_backup = a->target;
+	u16 move_backup = a->move;
+	u8 event_state_backup = a->event_state;
+	end_action(a);
+	a = next_action(TARGET_OF(user), target_backup, ActionMove, event_state_backup);
+	a->move = move_backup;
+	return true;
+}
