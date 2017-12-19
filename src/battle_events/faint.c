@@ -4,8 +4,9 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events/battle_events.h"
 
-extern void battle_loop_2(void);
+extern void battle_loop(void);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
 extern void give_exp(u8 fainted, u8 reciever);
@@ -91,7 +92,7 @@ void do_faint()
         case 3:
             prepend_action(bank, NULL, ActionHighPriority, EventInactive);
             end_action(CURRENT_ACTION);
-            set_callback1(battle_loop_2);
+            set_callback1(battle_loop);
             super.multi_purpose_state_tracker = 0;
             break;
     };

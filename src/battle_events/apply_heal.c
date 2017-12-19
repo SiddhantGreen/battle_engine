@@ -4,10 +4,11 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events/battle_events.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void hp_anim_change(u8 bank, s16 delta);
-extern void battle_loop_2(void);
+extern void battle_loop(void);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void hp_anim_change(u8 bank, s16 delta);
 
@@ -45,7 +46,7 @@ void apply_heal()
             break;
         default:
             end_action(CURRENT_ACTION);
-            set_callback1(battle_loop_2);
+            set_callback1(battle_loop);
             break;
         };
 }

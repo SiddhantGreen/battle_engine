@@ -2,6 +2,7 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
+#include "../battle_events/battle_events.h"
 
 extern void dprintf(const char * str, ...);
 

@@ -4,9 +4,7 @@
 #include "battle_data/battle_state.h"
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
-
-
-
+#include "battle_events/battle_events.h"
 
 extern void dprintf(const char * str, ...);
 extern void reset_turn_bits(u8 bank);
@@ -18,35 +16,6 @@ extern bool validate_move_player(u8 bank);
 extern void add_bank_move_actions(void);
 extern void battle_set_order(void);
 extern u16 bank_interpret_selected_move(u16);
-
-extern void event_run_flee(struct action* a);
-extern void event_switch(struct action* a);
-extern void event_before_move(struct action* a);
-extern void event_pre_move_hit(struct action* a);
-extern void event_config_move_hitlist(struct action* a);
-extern void event_pre_move_hit(struct action* current_action);
-extern void event_move_tryhit_external(struct action* current_action);
-extern void event_move_damage(struct action* current_action);
-extern void event_move_heal(struct action* current_action);
-extern void event_move_effect(struct action* current_action);
-extern void event_move_recoil(struct action* current_action);
-extern void event_move_drain(struct action* current_action);
-extern void event_move_boosts(struct action* current_action);
-extern void event_move_ailments(struct action* current_action);
-extern void event_multi_hit(struct action* current_action);
-extern void event_after_move(struct action* current_action);
-extern void event_fainted(struct action* current_action);
-
-extern void event_move_failed(struct action* current_action);
-extern void event_peek_message(struct action* current_action);
-extern void init_damage(struct action* current_action);
-extern void init_heal(struct action* current_action);
-extern void event_faint(struct action* current_action);
-extern void event_set_inactive(struct action* current_action);
-extern void event_residual_effects(struct action* current_action);
-extern void wild_battle_status_update(struct action* current_action);
-extern void end_battle(struct action* a);
-
 
 
 EventCallback wild_battle_events[] = {
@@ -85,7 +54,7 @@ EventCallback wild_battle_events[] = {
 };
 
 
-void battle_loop_2()
+void battle_loop()
 {
 
     CURRENT_ACTION = ACTION_HEAD;
@@ -125,7 +94,7 @@ void validate_player_selected_move()
     }
     wild_ai_pick_attack(OPPONENT_SINGLES_BANK);
     add_bank_move_actions();
-    set_callback1(battle_loop_2);
+    set_callback1(battle_loop);
 }
 
 void end_battle(struct action* a)

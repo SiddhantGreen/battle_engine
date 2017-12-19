@@ -2,9 +2,10 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/battle_state.h"
 #include "battle_pick_message.h"
+#include "../battle_events/battle_events.h"
 
 extern void dprintf(const char * str, ...);
-extern void battle_loop_2(void);
+extern void battle_loop(void);
 extern void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type, enum battle_string_ids id, u16 move_effect_id);
 
 

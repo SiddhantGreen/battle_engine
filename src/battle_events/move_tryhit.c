@@ -4,6 +4,7 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events/battle_events.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u16 rand_range(u16 min, u16 max);

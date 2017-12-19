@@ -4,13 +4,14 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events/battle_events.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern bool damage_result_msg(u8 bank_index);
 extern void hpbar_apply_dmg(u8 task_id);
 extern void hp_anim_change(u8 bank, s16 delta);
-extern void battle_loop_2(void);
+extern void battle_loop(void);
 
 void apply_damage()
 {
@@ -34,7 +35,7 @@ void apply_damage()
                 B_FAINTED(CURRENT_ACTION->priv[0]) = true;
             }
             end_action(CURRENT_ACTION);
-            set_callback1(battle_loop_2);
+            set_callback1(battle_loop);
             break;
         };
 }

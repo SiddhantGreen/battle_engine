@@ -4,6 +4,7 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events/battle_events.h"
 
 extern void set_attack_bm_inplace(u16 move_id, u8 bank);
 extern bool update_bank_hit_list(u8 bank_index);

@@ -37,35 +37,6 @@ typedef void (*EventCallback)(struct action* a);
 #define EVENT_STATE ACTION_HEAD->event_state
 #define CURRENT_ACTION battle_master->this_action
 
-enum EventStatesWildBattle {
-    EventFlee = 0, // 0
-    EventSwitch, // 1
-    EventBeforeMove, // 2
-    EventMoveTargetConfig, // 3
-    EventPreMoveHit, // 4
-    EventMoveTryHit, // 5
-    EventMoveDamage, // 6
-    EventMoveHeal, // 7
-    EventMoveEffect, // 8
-    EventMoveRecoil, // 9
-    EventMoveDrain, // 10
-    EventMoveBoosts, // 11
-    EventMoveAilments, // 12
-    EventMoveMultiHitResolve, // 13
-    EventMoveAfterMove, // 14
-    EventDoFaints, // 15
-    EventMoveFailed, // 16
-    EventPeekMessage, // 17
-    EventDamageAnim, // 18
-    EventHealAnim, // 19
-    EventFaint, // 20
-    EventEndAction, // 21
-    EventInactive, // 22
-    EventResidualEffects, // 23
-    EventWildBattleOver, // 24
-    EventEndBattle, // 25
-};
-
 
 extern struct action* add_action(u8 bank, u8 target, u8 type, u8 event_state);
 extern void end_action(struct action* a);
