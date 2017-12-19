@@ -4,6 +4,7 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
+#include "battle_events.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
@@ -28,8 +29,10 @@ void event_residual_effects(struct action* current_action)
             battle_master->bank_state = 0;
             break;
         case 1:
+			{
+			u8 bank = battle_master->bank_order[battle_master->bank_state];
+			prepend_action(bank, NULL, ActionHighPriority, EventDoFaints);
             if (battle_master->executing) {
-                u8 bank = battle_master->bank_order[battle_master->bank_state];
                 if (battle_master->bank_state == battle_master->c1_prestate) {
                     if (B_FAINTED(bank) == false) {
                         pop_callback(bank , CURRENT_MOVE(bank));
@@ -50,5 +53,6 @@ void event_residual_effects(struct action* current_action)
                 return;
             }
             break;
+			}
         };
 }

@@ -76,6 +76,10 @@ void do_heal(u8 bank_index, u16 heal)
 
 void event_move_heal(struct action* current_action) {
     u8 bank = current_action->action_bank;
+    if (B_FAINTED(bank)) {
+        CURRENT_ACTION->event_state++;
+        return;
+    }
     if (B_HEAL(bank)) {
         do_heal(TARGET_OF(bank), B_HEAL(bank));
         enqueue_message(CURRENT_MOVE(bank), TARGET_OF(bank), STRING_HEAL, 0);

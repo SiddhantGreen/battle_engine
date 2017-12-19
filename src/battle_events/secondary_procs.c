@@ -14,6 +14,10 @@ extern u16 rand_range(u16 min, u16 max);
 void event_move_boosts(struct action* current_action)
 {
     u8 bank = current_action->action_bank;
+    if (B_FAINTED(bank)) {
+        CURRENT_ACTION->event_state++;
+        return;
+    }
     // back up cbs
     u32* old_execution_array = push_callbacks();
     u8 old_index = CB_EXEC_INDEX;
@@ -51,6 +55,10 @@ void event_move_boosts(struct action* current_action)
 void event_move_ailments(struct action* current_action)
 {
     u8 bank = current_action->action_bank;
+    if (B_FAINTED(bank)) {
+        CURRENT_ACTION->event_state++;
+        return;
+    }
 	if (B_AILMENT_PROCS_CHANCE_USER(bank) >= rand_range(1, 100)) {
 		// apply status user
 		B_AILMENT_PROCS_CHANCE_USER(bank) = 0;
