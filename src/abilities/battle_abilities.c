@@ -237,7 +237,7 @@ struct b_ability b_water_absorb = {
 /* Attract and taunt immunity updated in the move's tryhits */
 void oblivious_on_update(u8 bank)
 {
-    
+
 }
 
 struct b_ability b_oblivious = {
@@ -1029,7 +1029,7 @@ s8 prankster_on_priority_mod(u8 bank, u16 move)
 void prankster_on_modify_move(u8 bank, u8 tbank, u16 move)
 {
     if (B_MOVE_IS_STATUS(bank))
-        B_IS_PRANKSTER(bank) = 1;
+        ACTION_PRANKSTER = 1;
 }
 
 struct b_ability b_prankster = {

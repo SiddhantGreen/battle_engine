@@ -30,15 +30,16 @@ void event_residual_effects(struct action* current_action)
         case 1:
             if (battle_master->executing) {
                 u8 bank = battle_master->bank_order[battle_master->bank_state];
-                dprintf("executing callback for bank %d. %d and %d\n", bank, battle_master->bank_state, battle_master->c1_prestate);
                 if (battle_master->bank_state == battle_master->c1_prestate) {
                     if (B_FAINTED(bank) == false) {
                         pop_callback(bank , CURRENT_MOVE(bank));
+                        battle_master->bank_state = 0;
                     } else {
-                        dprintf("trying to push index forward.\n");
                         CB_EXEC_INDEX++;
+                        if (CB_EXEC_ORDER[CB_EXEC_INDEX] == ANON_CB_MAX)
+                            end_action(CURRENT_ACTION);
+                        battle_master->bank_state = 0;
                     }
-                    battle_master->bank_state = 0;
                 } else {
                     if (B_FAINTED(bank) == false)
                         run_callback(bank, CURRENT_MOVE(bank));

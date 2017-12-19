@@ -4,7 +4,7 @@
 #include "pkmn_bank.h"
 #include "../moves/moves.h"
 #include "../anonymous_callbacks/anonymous_callbacks.h"
-#include "../game_actions/actions.h"
+#include "../battle_actions/actions.h"
 #include <pokeagb/pokeagb.h>
 
 #define MESSAGE_COUNT 7
@@ -98,16 +98,13 @@ struct move_used {
     u8 accuracy; // over 100 = never miss
 
     u16 remove_contact : 1;
-    u16 copied : 1;
     u16 ignore_abilities : 1;
-    u16 prankstered : 1;
     u16 infiltrates : 1;
     u16 will_crit : 1;
     u16 can_crit : 1;
     u16 ignore_target_atk : 1;
     u16 ignore_target_def : 1;
     u16 ignore_target_evasion : 1;
-    u16 has_bounced : 1;
 
     struct move_procs b_procs;
 

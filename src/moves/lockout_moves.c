@@ -103,7 +103,7 @@ u8 taunt_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 {
     if (user != TARGET_OF(src)) return true;
     enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
-    return (!B_MOVE_IS_STATUS(move));
+    return (!B_MOVE_IS_STATUS(user));
 }
 
 u8 taunt_on_disable(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

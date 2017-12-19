@@ -199,3 +199,20 @@ u8 count_total_moves(u8 bank)
     }
     return move_total;
 }
+
+
+bool moves_last(u8 bank)
+{
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (battle_master->bank_order[i] == bank) {
+            if ((i == (BANK_MAX - 1))) {
+                return true;
+            }
+            if (i < (BANK_MAX - 1)) {
+                return (battle_master->bank_order[i + 1] == 0x3F);
+            }
+            return false;
+        }
+    }
+    return false;
+}

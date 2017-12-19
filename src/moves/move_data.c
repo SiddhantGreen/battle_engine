@@ -874,7 +874,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_SNATCH | FLAG_DANCE,
+    .m_flags = FLAG_SNATCH | FLAG_DANCE | FLAG_ONSELF,
     .procs = &user_raise_atk_2,
     },
 
@@ -1682,7 +1682,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_SNATCH | FLAG_ONSELF,
     .procs = &basic_proc,
-    .on_modify_move = growth_on_modify_move,
+    .on_effect_cb = growth_on_effect,
     },
 
     {
@@ -4529,7 +4529,7 @@ struct move_data moves[] = {
     .priority = 4,
     .category = MOVE_STATUS,
     .type = MTYPE_DARK,
-    .m_flags = FLAG_AUTHENTIC,
+    .m_flags = FLAG_AUTHENTIC | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = snatch_on_effect,
     },
