@@ -270,6 +270,7 @@ extern u8 autotomize_on_effect(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 heal_pulse_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 self_destruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

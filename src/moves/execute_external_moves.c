@@ -397,3 +397,31 @@ u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 	a->move = move_backup;
 	return true;
 }
+
+
+// Quash
+u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// fail if target has moved already
+	if (!p_bank[TARGET_OF(user)]->b_data.will_move) return false;
+
+	// find and terminate target's turn
+	struct action* a = find_action(TARGET_OF(user), ActionMove);
+	if (a == NULL) return false;
+	u8 target_backup = a->target;
+	u16 move_backup = a->move;
+	u8 event_state_backup = a->event_state;
+	end_action(a);
+
+	// find last action before turns end, and put opponent action before it
+	a = find_action(0xFF, ActionHighPriority); // residual effects
+	struct action* backup_current = CURRENT_ACTION;
+	CURRENT_ACTION = a;
+	a = prepend_action(TARGET_OF(user), NULL, ActionMove, event_state_backup);
+	CURRENT_ACTION = backup_current;
+	a->move = move_backup;
+	a->target = target_backup;
+	a->event_state = event_state_backup;
+	return true;
+}
