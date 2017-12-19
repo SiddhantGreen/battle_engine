@@ -9089,7 +9089,7 @@ struct move_data moves[] = {
     .priority = 3,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_ONSELF,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .on_effect_cb = rage_powder_on_effect,
     },
