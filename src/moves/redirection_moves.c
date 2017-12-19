@@ -18,7 +18,7 @@ u8 rage_powder_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if (user != src) return true;
     bool applied = false;
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if (SIDE_OF(i) == SIDE_OF(TARGET_OF(user))
+        if (SIDE_OF(i) == SIDE_OF(TARGET_OF(user)))
             continue;
         if (M_HITS_TARGET(CURRENT_MOVE(i))) {
             u8 id = add_callback(CB_ON_MODIFY_MOVE, 0, 0, i, (u32)rage_powder_on_modify_move);
