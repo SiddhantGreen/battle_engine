@@ -7,6 +7,7 @@
 extern void dprintf(const char * str, ...);
 extern void buffer_write_pkmn_nick(pchar* buff, u8 bank);
 extern void buffer_write_move_name(pchar* buff, u16 move_id);
+extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 
 void pick_encounter_message(enum BattleTypes battle_type_flag)
 {
@@ -231,4 +232,40 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type
                 break;
         };
     }
+}
+
+/* Pick and queue effectiveness string. 0 = fail should fail/immune. */
+bool damage_result_msg(u8 bank_index)
+{
+    // effectiveness msgs
+    bool effective = true;
+    switch (B_MOVE_EFFECTIVENESS(bank_index)) {
+        case TE_IMMUNE:
+            if (!B_MOVE_MULTI(bank_index))
+                enqueue_message(0, bank_index, STRING_MOVE_IMMUNE, 0);
+            effective = false;
+            break;
+        case TE_NOT_VERY_EFFECTIVE:
+            if (!B_MOVE_MULTI(bank_index))
+                enqueue_message(0, 0, STRING_MOVE_NVE, 0);
+            break;
+        case TE_SUPER_EFFECTIVE:
+            if (!B_MOVE_MULTI(bank_index))
+                enqueue_message(0, 0, STRING_MOVE_SE, 0);
+            break;
+        case TE_OHKO:
+            if (!B_MOVE_MULTI(bank_index))
+                enqueue_message(0, 0, STRING_OHKO, 0);
+            break;
+        default:
+            break;
+    };
+
+    if (effective) {
+        // crit msg if crit
+        if (B_MOVE_WILL_CRIT(bank_index)) {
+            enqueue_message(0, bank_index, STRING_MOVE_CRIT, 0);
+        }
+    }
+    return effective;
 }
