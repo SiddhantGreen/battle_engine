@@ -443,7 +443,7 @@ void switch_load_pokemon_data(struct Pokemon *pokemon) {
     }
 
     for (u32 i = 0; i < 4; ++i) {
-        u8 move = pokemon_getattr(pokemon, REQUEST_MOVE1 + i, NULL);
+        u16 move = pokemon_getattr(pokemon, REQUEST_MOVE1 + i, NULL);
         if (move == 0) {
             if (battle_master->switch_main.type_objid[i + 2] != 0x3F) {
                 OBJID_HIDE(battle_master->switch_main.type_objid[i + 2]);

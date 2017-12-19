@@ -143,7 +143,7 @@ u8 mat_block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     // queue an anon func to read and interrupt
     if (user != src) return true;
     // fail if user is last to move
-    if (src == battle_master->second_bank) return false;
+   // if (src == battle_master->second_bank) return false;
     if (protection_effect_exists_side(src, (u32)mat_block_on_tryhit_anon)) return false;
     enqueue_message(MOVE_MAT_BLOCK, src, STRING_PROTECTED_TEAM, 0);
     add_callback(CB_ON_TRYHIT_MOVE, 3, 0, user, (u32)mat_block_on_tryhit_anon);
@@ -208,7 +208,7 @@ u8 crafty_shield_on_tryhit(u8 user, u8 source, u16 move, struct anonymous_callba
 {
     if (user != source) return true;
     if (protection_effect_exists_side(source, (u32)crafty_shield_on_tryhit_anon)) return false;
-    if (source != battle_master->second_bank)
+   // if (source != battle_master->second_bank)
         return true;
     return false;
 }

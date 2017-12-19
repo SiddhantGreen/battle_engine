@@ -7,7 +7,7 @@
 #include "../game_actions/actions.h"
 #include <pokeagb/pokeagb.h>
 
-#define GAME_STATE super.multi_purpose_state_tracker
+#define MESSAGE_COUNT 7
 
 enum BattleTypes {
     BATTLE_MODE_WILD,
@@ -61,7 +61,8 @@ struct battle_selection_cursor {
 
 struct global_message {
     u16 move_id;
-    u8 bank;
+    u8 bank : 7;
+    u8 in_use : 1;
     u8 string_id;
     u16 effect;
 };
@@ -132,6 +133,7 @@ struct battle_main {
 
     /* Battle actions */
     struct action* action_head;
+    struct action* this_action;
 
     /* Main Battle callbacks */
     struct anonymous_callback anon_cb_master[ANON_CB_MAX];
@@ -150,22 +152,11 @@ struct battle_main {
     u8 fight_menu_content_spawned;
     u8 option_selecting_bank;
 
-    /* Message system variables */
-    struct global_message b_message[7]; // message queue depth is 5
-    u8 queue_size;
-    u8 queue_front_index;
-    u8 state;
-    SuperCallback c1;
-
     /* Battle turn order variables */
-    u8 first_bank;
-    u8 second_bank;
     u8 execution_index;
-    u8 bank_hit_list[4];
-    struct move_used b_moves[2];
-    u8 repeat_move : 1;
-    u8 move_completed : 1;
-    SuperCallback c1_after_faint_check;
+    u8 bank_hit_list[BANK_MAX];
+    u8 bank_order[BANK_MAX];
+    struct move_used b_moves[BANK_MAX];
     u8 c1_prestate;
     struct switch_menu switch_main;
 
