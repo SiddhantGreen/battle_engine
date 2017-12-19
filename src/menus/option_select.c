@@ -7,6 +7,7 @@
 extern void validate_player_selected_move(void);
 extern void vblank_cb_no_merge(void);
 extern void vblank_cb_merge_move_select(void);
+extern void vblank_cb_merge_tbox(void);
 extern void load_icons_moves(u8 bank);
 extern void update_cursor_move_select(u8 task_id);
 extern void show_move_data(void);
@@ -15,6 +16,7 @@ extern void dprintf(const char * str, ...);
 extern void option_selection2(void);
 extern void switch_scene_main(void);
 extern void free_unused_objs(void);
+void event_peek_message(struct action* current_action);
 
 /* Fight menu and move menu selection. Preperation to go into battle loop*/
 
@@ -51,8 +53,12 @@ void option_selection(u8 bank)
 
 void option_selection2()
 {
-    while (peek_message())
+    // the new peek message
+    if (ACTION_HEAD != NULL) {
+        CURRENT_ACTION = ACTION_HEAD;
+        event_peek_message(ACTION_HEAD);
         return;
+    }
     switch (super.multi_purpose_state_tracker) {
         case BaseMenuInitialize:
         {
@@ -144,6 +150,7 @@ void option_selection2()
             battle_master->fight_menu_content_spawned  = 0;
             set_callback1(validate_player_selected_move);
             super.multi_purpose_state_tracker = 0;
+            vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
             break;
         }
         case 9:

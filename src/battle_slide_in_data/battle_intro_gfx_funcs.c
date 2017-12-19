@@ -93,7 +93,7 @@ struct Pokemon* pick_first_usable_pokemon(struct Pokemon* p, u8 party_size)
             return (&p[i]);
         }
     }
-    return 0; // failed to find an active battler. Maybe the battle should whiteout here.
+    return NULL; // failed to find an active battler. Maybe the battle should whiteout here.
 }
 
 /* Spawn battler objects. Set active banks based on battle type */

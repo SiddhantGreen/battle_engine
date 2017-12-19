@@ -16,10 +16,11 @@ s8 get_move_priority(u8 bank)
     /* update selected move's innate priority */
     s8 priority = 0;
     priority += MOVE_PRIORITY(move);
+    B_MOVE_PRIORITY(bank) = priority;
 //    exec_callbacks(CB_ON_PRIORITY);
 
-    /* on flee the actor has a priority high enough to outspeed everything except pursuit */
-    if (p_bank[bank]->b_data.is_running)
+    /* on flee & switch the actor has a priority high enough to outspeed everything except pursuit */
+    if ((p_bank[bank]->b_data.is_running) || (p_bank[bank]->b_data.is_switching))
         priority = 6;
     return priority;
 }
@@ -146,37 +147,6 @@ bool on_ground(u8 bank)
     return true;
 }
 
-
-void do_damage(u8 bank_index, u16 dmg)
-{
-    // HP bar damage animation
-    extern void hp_anim_change(u8 bank, s16 delta);
-    s16 delta = B_CURRENT_HP(bank_index) - dmg;
-    delta = MAX(delta, 0);
-    hp_anim_change(bank_index, delta);
-}
-
-void do_heal(u8 bank_index, u8 percent_heal)
-{
-    // HP bar damage animation
-    extern void hp_anim_change(u8 bank, s16 delta);
-    u16 heal = NUM_MOD(TOTAL_HP(bank_index), percent_heal);
-    if (TOTAL_HP(bank_index) < (heal + B_CURRENT_HP(bank_index))) {
-        heal = TOTAL_HP(bank_index) - B_CURRENT_HP(bank_index);
-    }
-    if (heal > 0) {
-        hp_anim_change(bank_index, heal + B_CURRENT_HP(bank_index));
-    }
-}
-
-void flat_heal(u8 bank, u16 heal)
-{
-    extern void hp_anim_change(u8 bank, s16 delta);
-    u16 max_heal = TOTAL_HP(bank) - B_CURRENT_HP(bank);
-    if (heal > 0) {
-        hp_anim_change(bank, B_CURRENT_HP(bank) + MIN(heal, max_heal));
-    }
-}
 
 
 //TODO: IMPLEMENT

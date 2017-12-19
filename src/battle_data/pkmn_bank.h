@@ -151,6 +151,7 @@ struct local_battler_data {
     u8 last_move_failed : 1;
     u8 is_active_bank : 1;
 
+    u8 flinch;
     u8 my_target;
     u8 pp_index;
     u16 last_move;

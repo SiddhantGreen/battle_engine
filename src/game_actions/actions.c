@@ -21,6 +21,10 @@ void clear_actions()
 void debug_print_action_banks()
 {
     struct action* a = ACTION_HEAD;
+    if (a == NULL) {
+        dprintf("Action Head - NULL!\n");
+        return;
+    }
     dprintf("head: %d\n", a->action_bank);
     while(a != NULL) {
         dprintf("action bank is %d\n", a->action_bank);
@@ -28,53 +32,69 @@ void debug_print_action_banks()
     }
 }
 
-struct action* add_action(u8 bank, u8 target, u8 type, u8 action_state)
+struct action* add_action(u8 bank, u8 target, u8 type, u8 event_state)
 {
     /* initialize action to insert */
-    struct action* current_action = (struct action*)malloc_and_clear(sizeof(struct action));
-    current_action->action_bank = bank;
-    current_action->target = target;
-    current_action->type = type;
-    current_action->action_state = action_state;
-    current_action->next_action = NULL;
+    struct action* new_action = (struct action*)malloc_and_clear(sizeof(struct action));
+    new_action->action_bank = bank;
+    new_action->target = target;
+    new_action->type = type;
+    new_action->event_state = event_state;
+    new_action->next_action = NULL;
+    new_action->prev_action = NULL;
     /* insert into next available location on linked list */
     struct action** this_action = &(ACTION_HEAD);
-    while (true) {
-        if ((*this_action) == NULL) {
-            *this_action = current_action;
-            break;
-        } else if ((*this_action)->next_action == NULL) {
-            (*this_action)->next_action = current_action;
-            break;
-        } else {
-            this_action = &(*this_action)->next_action;
+    if (*(this_action) == NULL) {
+        (*this_action) = new_action;
+    } else {
+        while (true) {
+            if ((*this_action)->next_action == NULL) {
+                (*this_action)->next_action = new_action;
+                new_action->prev_action = (*this_action);
+                break;
+            } else {
+                this_action = &(*this_action)->next_action;
+            }
         }
     }
-    return current_action; // given the parameters, this isn't needed most likely
+    return new_action;
 }
 
-void delete_action(u8 type, u8 bank)
+/* Prepend is done at the current event's current action */
+struct action* prepend_action(u8 bank, u8 target, u8 type, u8 event_state)
 {
-    struct action** this_action = &(ACTION_HEAD);
-    /* First element in linked list is what we're looking for, adjust head and free. */
-    if ((*this_action) == NULL) return;
-    if (((*this_action)->type == type) && ((*this_action)->action_bank == bank)) {
-        struct action* to_free = *(this_action);
-        ACTION_HEAD = (*this_action)->next_action;
-        free(to_free);
+    /* initialize action to insert */
+    struct action* new_action = (struct action*)malloc_and_clear(sizeof(struct action));
+    new_action->action_bank = bank;
+    new_action->target = target;
+    new_action->type = type;
+    new_action->event_state = event_state;
+    /* insert into slot before head */
+    new_action->next_action = CURRENT_ACTION;
+    new_action->prev_action = CURRENT_ACTION->prev_action;
+    CURRENT_ACTION->prev_action = new_action;
+    new_action->prev_action->next_action = new_action;
+    if (CURRENT_ACTION == ACTION_HEAD)
+        ACTION_HEAD = new_action;
+    return new_action;
+}
+
+
+void end_action(struct action* to_delete)
+{
+    if (to_delete == NULL)
         return;
+    struct action* prev = to_delete->prev_action;
+    struct action* next = to_delete->next_action;
+    if (prev != NULL) {
+        prev->next_action = next;
     }
-    while (true) {
-        struct action** next = &((*this_action)->next_action);
-        /* if next is what we're looking for, previous should point to next's next */
-        if ((*next) == NULL) return;
-        if (((*next)->type == type) && ((*next)->action_bank == bank))  {
-            struct action* to_free = *(next);
-            (*this_action)->next_action = (*next)->next_action;
-            free(to_free);
-            return;
-        } else {
-            this_action = next;
-        }
+
+    if (next != NULL) {
+        next->prev_action = prev;
     }
+
+    if (to_delete == ACTION_HEAD)
+        ACTION_HEAD = next;
+    free(to_delete);
 }
