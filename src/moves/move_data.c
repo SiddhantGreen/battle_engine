@@ -6983,6 +6983,7 @@ struct move_data moves[] = {
     .type = MTYPE_STEEL,
     .m_flags = FLAG_SNATCH,
     .procs = &user_raise_spd_2,
+    .on_effect_cb = autotomize_on_effect,
     },
 
     {
@@ -9090,6 +9091,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = rage_powder_on_effect,
     },
 
     {
