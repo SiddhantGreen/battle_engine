@@ -264,6 +264,8 @@ extern u8 leech_seed_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 focus_energy_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void focus_punch_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void beak_blast_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+u8 heart_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+u8 pollen_puff_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */
@@ -398,5 +400,6 @@ extern struct move_procs focus_energy_proc;
 extern struct move_procs focus_energy_proc;
 extern struct move_procs low_tar_spAtk_30;
 extern struct move_procs v_create;
+extern struct move_procs toxic_thread;
 
 #endif /* MOVE_DATA_H_ */
