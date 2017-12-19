@@ -5,9 +5,6 @@
 #include "moves/moves.h"
 #include "battle_text/battle_pick_message.h"
 
-
-
-
 extern void dprintf(const char * str, ...);
 extern void reset_turn_bits(u8 bank);
 extern void option_selection(u8 bank);
@@ -36,7 +33,6 @@ extern void event_move_ailments(struct action* current_action);
 extern void event_multi_hit(struct action* current_action);
 extern void event_after_move(struct action* current_action);
 extern void event_fainted(struct action* current_action);
-
 extern void event_move_failed(struct action* current_action);
 extern void event_peek_message(struct action* current_action);
 extern void init_damage(struct action* current_action);
