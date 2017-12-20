@@ -12,22 +12,22 @@ extern void pick_and_load_battle_bgs_no_entry(const void* txtbox);
 extern void CpuFastSet(void*, void*, u32);
 extern void create_sprites_battle_mons_wild(void);
 extern void option_selection(u8 bank);
+extern void handlers_clear(void);
+extern void reset_bg_settings(void);
 
 void return_to_battle()
 {
     switch(super.multi_purpose_state_tracker) {
         case 0:
             if (!pal_fade_control.active) {
-                // init textbox
-                rbox_init_from_templates((struct TextboxTemplate*)0x8248330);
-                // set callbacks and vblank interrupt
-                vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
-                set_callback2((SuperCallback)c2_battle);
+                gpu_tile_bg_drop_all_sets(0);
                 u32 set = 0;
                 CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
-                // put everything in the window
+                vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
+                set_callback2((SuperCallback)c2_battle);
                 bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
-                if(battle_master->switch_main.reason == ViewPokemon)
+                rbox_init_from_templates((struct TextboxTemplate*)0x8248330);
+                if (battle_master->switch_main.reason == ViewPokemon)
                     pick_and_load_battle_bgs_no_entry(battle_textboxMap);
                 else
                     pick_and_load_battle_bgs_no_entry(battle_textbox_action_selectMap);

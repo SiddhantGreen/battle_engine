@@ -7,6 +7,7 @@
 
 // no item string
 const pchar str_no_item[] = _("None");
+const pchar str_invalid_num[] = _("---");
 
 // color for text
 u16 switch_text_pal[] = {rgb5(255, 0, 255),   rgb5(248, 248, 248), rgb5(112, 112, 112), rgb5(96, 96, 96),

@@ -38,6 +38,23 @@ const struct OamData icon_oam = {
     .affine_param = 0,
 };
 
+// the difference is that the slider doesn't have affine mode turned on
+const struct OamData slider_oam = {
+    .y = 0,
+    .affine_mode = 0,
+    .obj_mode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0,
+    .matrix_num = 0,
+    .size = 2, // 32x32 square
+    .tile_num = 0,
+    .priority = 0, /*above the rest*/
+    .palette_num = 0,
+    .affine_param = 0,
+};
+
 static const struct RotscaleFrame switch_scale_down[] = {
     {-0xA0, 0xA0, 0, 0, 0},
     {0x7FFE, 0, 0, 0, 0},
@@ -228,9 +245,9 @@ void switch_load_scroll_box()
     struct SpriteTiles mid_gfx = {(void *)slider_midTiles, 512, SLIDER_GFX_TAG + 1};
     struct SpriteTiles bot_gfx = {(void *)slider_botTiles, 512, SLIDER_GFX_TAG + 2};
 
-    struct Template top_template = {SLIDER_GFX_TAG, SLIDER_PAL_TAG, &icon_oam, nullframe, &top_gfx, nullrsf, oac_nullsub};
-    struct Template mid_template = {SLIDER_GFX_TAG + 1, SLIDER_PAL_TAG, &icon_oam, nullframe, &mid_gfx, nullrsf, oac_nullsub};
-    struct Template bot_template = {SLIDER_GFX_TAG + 2, SLIDER_PAL_TAG, &icon_oam, nullframe, &bot_gfx, nullrsf, oac_nullsub};
+    struct Template top_template = {SLIDER_GFX_TAG, SLIDER_PAL_TAG, &slider_oam, nullframe, &top_gfx, nullrsf, oac_nullsub};
+    struct Template mid_template = {SLIDER_GFX_TAG + 1, SLIDER_PAL_TAG, &slider_oam, nullframe, &mid_gfx, nullrsf, oac_nullsub};
+    struct Template bot_template = {SLIDER_GFX_TAG + 2, SLIDER_PAL_TAG, &slider_oam, nullframe, &bot_gfx, nullrsf, oac_nullsub};
     gpu_pal_decompress_alloc_tag_and_upload(&scroll_pal);
     gpu_tile_obj_decompress_alloc_tag_and_upload(&top_gfx);
     gpu_tile_obj_decompress_alloc_tag_and_upload(&mid_gfx);
@@ -245,6 +262,28 @@ void switch_load_scroll_box()
     OBJID_HIDE(battle_master->switch_main.slider_objid[2]);
 }
 
+void str_int_padding(u8 number, u8 digits)
+{
+    /* 3 digit max support */
+    u8 space = digits;
+    u8 prefix[4] = {0xFF, 0xFF, 0xFF, 0xFF};
+    fmt_int_10(string_buffer, number, 0, 4);
+
+    // faster than div or log...
+    if (number < 10) {
+        space -= 1;
+    } else if (number < 100) {
+        space -= 2;
+    } else if (number >= 100) {
+        space -= 3;
+    }
+    for (u32 i = 0; i < space; i++) {
+        prefix[i] = 0;
+    }
+    pstrcat((pchar*)prefix, string_buffer);
+    pstrcpy(string_buffer, prefix);
+}
+
 void switch_load_pokemon_data(u8 index)
 {
     for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
@@ -254,19 +293,19 @@ void switch_load_pokemon_data(u8 index)
     rboxid_print(SWB_NAME, 0, 0, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].nickname[0]);
 
     /* print the stats */
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[0], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[0], 3);
     rboxid_print(SWB_ATK, 0, 1, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[0], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[1], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[1], 3);
     rboxid_print(SWB_DEF, 0, 2, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[1], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[2], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[2], 3);
     rboxid_print(SWB_SPA, 0, 3, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[2], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[3], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[3], 3);
     rboxid_print(SWB_SPD, 0, 4, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[3], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[4], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[4], 3);
     rboxid_print(SWB_SPE, 0, 5, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[4], 0, &string_buffer[0]);
 
     /* print the ability */
@@ -295,15 +334,21 @@ void switch_load_pokemon_data(u8 index)
         }
         rboxid_print(SWB_MOVES, 0, 0, (4 + 14 * i), &switch_color, 0, &moves[move].name[0]);
 
-        fmt_int_10(string_buffer, moves[move].base_power, 0, 4);
+        if (moves[move].base_power)
+            str_int_padding(moves[move].base_power, 3);
+        else
+            memcpy(string_buffer, str_invalid_num, 4);
         rboxid_print(SWB_POW, 0, 1, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
 
-        fmt_int_10(string_buffer, moves[move].accuracy, 0, 4);
+        if (moves[move].accuracy > 100)
+            memcpy(string_buffer, str_invalid_num, 4);
+        else
+            str_int_padding(moves[move].accuracy, 3);
         rboxid_print(SWB_ACC, 0, 5, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
 
-        u8 pp = SWM_LOG->s_pkmn_data[index].pp[i];
-        fmt_int_10(string_buffer, pp, 0, 4);
+        str_int_padding(SWM_LOG->s_pkmn_data[index].pp[i], 2);
         rboxid_print(SWB_PP, 0, 2, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
+
 
         /*the move type icon*/
         switch_type_icon_load(moves[move].type, 49, 84 + (14 * i), i + 2);

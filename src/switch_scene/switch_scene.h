@@ -39,6 +39,7 @@ extern bool nature_stat_boosted(u8 stat, struct Pokemon *pokemon);
 
 // text related declarations, see switch_text.c
 extern const pchar str_no_item[];
+extern const pchar str_invalid_num[];
 extern u16 switch_text_pal[];
 extern struct TextColor switch_color;
 extern struct TextColor switch_color_bg;

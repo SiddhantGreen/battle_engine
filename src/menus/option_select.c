@@ -132,8 +132,8 @@ void option_selection2()
         case SwitchOptionSelected:
             // POKEMON selection from fight menu
             fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
-            battle_master->switch_main.position = 0;
             free_unused_objs();
+            battle_master->switch_main.position = 0;
             battle_master->fight_menu_content_spawned  = 0;
             super.multi_purpose_state_tracker = 0;
             set_callback1(switch_scene_main);
@@ -153,10 +153,10 @@ void option_selection2()
         case MoveSelectedExit:
         {
             free_unused_objs();
-            battle_master->fight_menu_content_spawned  = 0;
             set_callback1(validate_player_selected_move);
-            super.multi_purpose_state_tracker = 0;
             vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
+            battle_master->fight_menu_content_spawned  = 0;
+            super.multi_purpose_state_tracker = 0;
             break;
         }
         case 9:
