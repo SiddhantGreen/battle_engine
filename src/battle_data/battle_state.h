@@ -116,6 +116,12 @@ struct move_used {
 
 typedef u16 (*StatModifierCallback)(u16 stat, u8 id, u8 bank);
 
+enum switch_reason {
+    PokemonFainted,
+    ViewPokemon,
+    ForcedSwitch,
+};
+
 struct switch_pokemon_data {
     u32 PID;
     u16 species;
@@ -140,6 +146,8 @@ struct switch_menu {
     u8 slider_objid[3];
     u8 icon_objid[6];
     u8 position;
+    enum switch_reason reason;
+    u8 unswitchable_bank; // used if a pkmn is forced out via whirlwind for example
     void* back_buffer;
     struct switch_data* sd;
 };
