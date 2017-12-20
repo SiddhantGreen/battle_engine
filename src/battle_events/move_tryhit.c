@@ -8,6 +8,8 @@
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u16 rand_range(u16 min, u16 max);
+extern void set_attack_bm_inplace(u16 move_id, u8 bank);
+extern void reset_turn_bits(u8 bank);
 
 enum TryHitMoveStatus {
     CANT_USE_MOVE = 0,
@@ -115,11 +117,17 @@ bool try_hit(u8 attacker)
     return false;
 }
 
-
 void event_move_tryhit_external(struct action* current_action)
 {
     u8 bank_index = current_action->action_bank;
-    u16 move = CURRENT_MOVE(bank_index);
+    u16 move = current_action->move;
+    CURRENT_MOVE(bank_index) = move;
+    TARGET_OF(bank_index) = current_action->target;
+    if (current_action->reset_move_config) {
+        reset_turn_bits(bank_index);
+        set_attack_bm_inplace(move, bank_index);
+        current_action->reset_move_config = false;
+    }
     /* Flinch interrupts move */
     if (rand_range(0, 100) < B_FLINCH(bank_index)) {
         enqueue_message(0, bank_index, STRING_FLINCHED, 0);

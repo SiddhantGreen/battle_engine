@@ -256,7 +256,7 @@ extern u8 mean_look_on_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 extern void dragon_rage_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 blizzard_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 synthesis_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 growth_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 growth_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 ancient_power_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void twister_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void triple_kick_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -264,8 +264,13 @@ extern u8 leech_seed_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 focus_energy_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void focus_punch_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void beak_blast_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-u8 heart_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-u8 pollen_puff_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 heart_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 pollen_puff_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 autotomize_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 heal_pulse_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 self_destruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 
 /* User stats */

@@ -104,9 +104,10 @@ void add_bank_move_actions()
             add_action(active_banks[i], active_banks[i], ActionSwitch, EventSwitch);
         } else {
             // action's target is developed later
-            add_action(active_banks[i], NULL, ActionMove, EventBeforeMove);
+            struct action *a = add_action(active_banks[i], NULL, ActionMove, EventBeforeMove);
+            a->move = CURRENT_MOVE(active_banks[i]);
         }
-
+        p_bank[active_banks[i]]->b_data.will_move = true;
         B_FLINCH(active_banks[i]) = 0;
     }
     /* Add turn end effects as actions */
@@ -269,9 +270,7 @@ void set_attack_bm_inplace(u16 move_id, u8 bank)
     battle_master->b_moves[bank].flinch = M_FLINCH(move_id);
     battle_master->b_moves[bank].accuracy = MOVE_ACCURACY(move_id);
     battle_master->b_moves[bank].remove_contact = false;
-    battle_master->b_moves[bank].copied = false;
     battle_master->b_moves[bank].ignore_abilities = false;
-    battle_master->b_moves[bank].prankstered = false;
     battle_master->b_moves[bank].heal = moves[move_id].heal;
     battle_master->b_moves[bank].infiltrates = false;
     if (moves[move_id].multi_hit[0]) {
@@ -301,5 +300,7 @@ void set_attack_bm_inplace(u16 move_id, u8 bank)
     }
     B_MOVE_CAN_CRIT(bank) = true;
     B_MOVE_WILL_CRIT(bank) = false;
+    B_MOVE_DMG(bank) = 0;
+    B_MOVE_EFFECTIVENESS(bank) = 0;
     battle_master->b_moves[bank].b_procs = *(moves[move_id].procs);
 }

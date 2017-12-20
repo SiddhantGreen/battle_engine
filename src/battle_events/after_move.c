@@ -38,6 +38,6 @@ void event_after_move(struct action* current_move)
     p_bank[bank]->b_data.will_move = false;
     u8 slot = get_move_index(move, bank);
     p_bank[bank]->b_data.moves_used[slot] = move;
-
+    battle_master->field_state.last_used_move = move;
     CURRENT_ACTION->event_state++;
 }

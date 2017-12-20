@@ -178,7 +178,7 @@ u8 electrify_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 {
     if (user != src) return true;
     return true;
-    //return (user == battle_master->first_bank);
+    return (p_bank[TARGET_OF(user)]->b_data.will_move);
 }
 
 u8 electrify_on_modify_move_anon(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

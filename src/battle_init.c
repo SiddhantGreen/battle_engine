@@ -4,7 +4,7 @@
 #include "battle_slide_in_data/battle_obj_sliding.h"
 #include "battle_data/battle_state.h"
 #include "battle_text/battle_textbox_gfx.h"
-#include "game_actions/actions.h"
+#include "battle_actions/actions.h"
 
 extern void setup(void);
 extern void test_battle_data(void);

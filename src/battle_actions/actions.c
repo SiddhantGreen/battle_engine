@@ -79,6 +79,26 @@ struct action* prepend_action(u8 bank, u8 target, u8 type, u8 event_state)
     return new_action;
 }
 
+struct action* next_action(u8 bank, u8 target, u8 type, u8 event_state)
+{
+    /* initialize action to insert */
+    struct action* new_action = (struct action*)malloc_and_clear(sizeof(struct action));
+    new_action->action_bank = bank;
+    new_action->target = target;
+    new_action->type = type;
+    new_action->event_state = event_state;
+    /* insert into slot after current action */
+    if (CURRENT_ACTION == NULL) {
+        ACTION_HEAD = new_action;
+    } else {
+        new_action->next_action = CURRENT_ACTION->next_action;
+        new_action->prev_action = CURRENT_ACTION;
+        CURRENT_ACTION->next_action = new_action;
+        new_action->next_action->prev_action = new_action;
+    }
+    return new_action;
+}
+
 
 void end_action(struct action* to_delete)
 {
@@ -97,4 +117,21 @@ void end_action(struct action* to_delete)
     if (to_delete == ACTION_HEAD)
         ACTION_HEAD = next;
     free(to_delete);
+}
+
+
+struct action* find_action(u8 bank, enum ActionTiming type)
+{
+    struct action* a = ACTION_HEAD;
+    if (a == NULL) {
+        dprintf("Action Head - NULL!\n");
+        return NULL;
+    }
+    while(a != NULL) {
+        if ((a->action_bank == bank) && (a->type == type)) {
+            return a;
+        }
+        a = a->next_action;
+    }
+    return NULL;
 }

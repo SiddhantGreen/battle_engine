@@ -43,7 +43,7 @@ void event_before_move(struct action* current_action)
         enqueue_message(0, ACTION_BANK, STRING_MUST_RECHARGE, 0);
         return;
     }
-
+    CURRENT_MOVE(ACTION_BANK) = CURRENT_ACTION->move;
     /* Resolve before move callbacks */
     u8 result = before_move_cb(ACTION_BANK);
     switch (result) {

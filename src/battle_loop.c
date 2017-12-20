@@ -59,6 +59,7 @@ void battle_loop()
 
     CURRENT_ACTION = ACTION_HEAD;
     if (ACTION_HEAD != NULL) {
+        dprintf("action: %x\n", ACTION_HEAD);
         // Don't run actions for fainted banks
         if (!ACTIVE_BANK(ACTION_HEAD->action_bank)) {
             end_action(ACTION_HEAD);
@@ -69,7 +70,6 @@ void battle_loop()
     } else {
         // all actions complete...
         dprintf("completed actions\n");
-        /* Todo: Residual actions iteratively */
         for (u8 i = 0; i < BANK_MAX; i++) {
             if (!ACTIVE_BANK(i)) continue;
             p_bank[i]->b_data.first_turn = false;

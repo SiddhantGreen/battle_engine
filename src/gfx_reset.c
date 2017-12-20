@@ -1,6 +1,8 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_text/battle_textbox_gfx.h"
+#include "battle_data/pkmn_bank_stats.h"
 #include "battle_slide_in_data/battle_obj_sliding.h"
+extern void CpuFastSet(void*, void*, u32);
 
 /* This vblank overlaps the tilemap from show_message with the battle box */
 void vblank_cb_merge_tbox()
@@ -70,12 +72,21 @@ void vblank_cb_no_merge()
 
 void c2_battle()
 {
-    //tilemaps_sync();
     obj_sync_superstate();
     objc_exec();
     process_palfade();
     task_exec();
-    //tilemaps_sync();
+    // merge textbox and text tile maps
+    remoboxes_upload_tilesets();
+}
+
+void c2_switch_menu()
+{
+    obj_sync_superstate();
+    objc_exec();
+    process_palfade();
+    task_exec();
+    tilemaps_sync();
     // merge textbox and text tile maps
     remoboxes_upload_tilesets();
 }
@@ -136,7 +147,8 @@ void setup()
     obj_and_aux_reset_all();
     gpu_tile_obj_tags_reset();
     // VRAM clear
-    memset((void *)(ADDR_VRAM), 0x0, 0x10000);
+    u32 set = 0;
+    CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
     // tasks
     malloc_init((void*)0x2000000, 0x1C000);
     tasks_init();

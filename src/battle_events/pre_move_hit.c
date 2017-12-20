@@ -55,6 +55,7 @@ void event_pre_move_hit(struct action* current_action)
         if (battle_master->bank_hit_list[i] < BANK_MAX) {
             if (ACTIVE_BANK(battle_master->bank_hit_list[i])) {
                 TARGET_OF(bank_index) = battle_master->bank_hit_list[i];
+                CURRENT_ACTION->target = battle_master->bank_hit_list[i];
                 battle_master->bank_hit_list[i] = BANK_MAX;
                 will_move = true;
                 break;
@@ -73,9 +74,12 @@ void event_pre_move_hit(struct action* current_action)
     // if there was a bank to hit, prepare data structures
     if (will_move) {
         // reset battle master move structure for this move
+        CURRENT_MOVE(ACTION_BANK) = CURRENT_ACTION->move;
+        if (current_action->reset_move_config) {
+            reset_turn_bits(bank_index);
+            current_action->reset_move_config = false;
+        }
         set_attack_bm_inplace(CURRENT_MOVE(bank_index), bank_index);
-        B_MOVE_DMG(bank_index) = 0;
-        B_MOVE_EFFECTIVENESS(bank_index) = 0;
         if (!on_modify_move(bank_index, TARGET_OF(bank_index), CURRENT_MOVE(bank_index))) {
             B_MOVE_FAILED(bank_index) = true;
             enqueue_message(0, bank_index, STRING_FAILED, 0);

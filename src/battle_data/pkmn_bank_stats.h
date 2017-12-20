@@ -5,11 +5,17 @@
 #include "battle_data/pkmn_bank.h"
 #include "battle_state.h"
 #include "moves/moves.h"
+#include "battle_actions/actions.h"
 #include "battle_text/battle_pick_message.h"
 
 extern bool has_volatile(u8 bank, enum Volatiles v);
 extern void clear_volatile(u8 bank, enum Volatiles v);
 extern void add_volatile(u8 bank, enum Volatiles v);
+
+// this one is unrelated but I want to have it here
+#define CPUFSCPY 0
+#define CPUFSSET 1
+#define CPUModeFS(size, mode) ((size >> 2) | (mode << 24))
 
 /* To be removed when species expansion hits */
 #define SPECIES_ASH_GRENINJA 0
@@ -104,7 +110,6 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_MOVE_CATEGORY(bank) (battle_master->b_moves[bank].category)
 #define B_MOVE_WILL_CRIT(bank) (battle_master->b_moves[bank].will_crit)
 #define B_MOVE_CAN_CRIT(bank) (battle_master->b_moves[bank].can_crit)
-#define B_MOVE_HAS_BOUNCED(bank) (battle_master->b_moves[bank].has_bounced)
 #define B_MOVE_DMG(bank) (battle_master->b_moves[bank].dmg)
 #define B_MOVE_EFFECTIVENESS(bank) (battle_master->b_moves[bank].effectiveness)
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[bank].ignore_target_atk)
@@ -124,7 +129,6 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define TARGET_OF(bank) (p_bank[bank]->b_data.my_target)
 #define SET_CONFUSION_TURNS(bank, v) (p_bank[bank]->b_data.confusion_turns = v)
 #define B_IS_GROUNDED(bank) (p_bank[bank]->b_data.is_grounded)
-#define B_IS_PRANKSTER(bank) (battle_master->b_moves[bank].prankstered)
 #define B_INFILTRATES(bank) (battle_master->b_moves[bank].infiltrates)
 #define B_HEAL(bank) (battle_master->b_moves[bank].heal)
 #define B_GET_ITEM(bank) (p_bank[bank]->b_data.item)
@@ -160,6 +164,8 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define SIDE_OF(bank) ((bank > 1) ? 1 : 0)
 #define ACTIVE_BANK(bank) (p_bank[bank]->b_data.is_active_bank)
 
+#define ACTION_PRANKSTER (CURRENT_ACTION->prankstered)
+#define ACTION_BOUNCED (CURRENT_ACTION->has_bounced)
 
 #define MOVE_EFFECTIVENESS(target_type, dmg_type) (effectiveness_chart[((target_type * 19) + (dmg_type))])
 

@@ -2,6 +2,7 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
+#include "../battle_events/battle_events.h"
 
 
 extern u16 rand_range(u16 min, u16 max);
@@ -111,7 +112,7 @@ u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
 	if (user != src) return true;
     if ((B_STATUS(user) == AILMENT_SLEEP) || (BANK_ABILITY(user) == ABILITY_COMATOSE)) {
         // fail if no moves learnt
-        u8 move_set[4] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+        u16 move_set[4] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
         u8 array_slot = 0;
         for (u8 i = 0; i < 4; i++) {
             u16 this_move = B_GET_MOVE(user, i);
@@ -120,19 +121,17 @@ u8 sleep_talk_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
                 array_slot++;
             }
         }
-
         if (array_slot) {
             CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
             set_attack_bm_inplace(CURRENT_MOVE(user), user);
+			CURRENT_ACTION->move = CURRENT_MOVE(user);
 			LAST_MOVE(user) = MOVE_SLEEP_TALK;
             enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
             return true;
         } else {
-			dprintf("can't find a usable move for sleep talk\n");
             return false;
         }
     } else {
-		dprintf("user not asleep.\n");
         return false;
     }
 }
@@ -187,6 +186,7 @@ u8 assist_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
     if (array_slot) {
         CURRENT_MOVE(user) = move_set[rand_range(0, array_slot)];
+		CURRENT_ACTION->move = CURRENT_MOVE(user);
         set_attack_bm_inplace(CURRENT_MOVE(user), user);
         enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
 		LAST_MOVE(user) = MOVE_ASSIST;
@@ -237,12 +237,17 @@ u8 copycat_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
 /* Magic coat */
 u16 magic_coat_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-	if ((user == source) || B_MOVE_HAS_BOUNCED(user) || (!IS_REFLECTABLE(move)))
+	if ((user == source) || ACTION_BOUNCED || (!IS_REFLECTABLE(move)))
 		return true;
-	TARGET_OF(user) = user;
+	struct action* a = next_action(user, user, ActionMove, EventMoveTryHit);
+	a->move = CURRENT_MOVE(user);
+	a->target = user;
+	a->has_bounced = true;
+	a->reset_move_config = true;
 	enqueue_message(CURRENT_MOVE(user), source, STRING_BOUNCED_BACK, 0);
+	B_MOVE_FAILED(user) = true;
 	acb->in_use = false;
-	return true;
+	return 3; // fail silently
 }
 
 u8 magic_coat_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -302,16 +307,14 @@ u16 statch_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_callback* 
 	if ((user == source) || (!IS_SNATCHABLE(move))) {
 		return true;
 	}
-	if (battle_master->execution_index) {
-	//	1 = source;
-	} else {
-	//	0 = source;
-	}
-	CURRENT_MOVE(source) = move;
-	set_attack_bm_inplace(CURRENT_MOVE(source), source);
+	struct action* a = next_action(source, source, ActionMove, EventMoveTryHit);
+	a->target = source,
+	a->has_bounced = true;
+	a->reset_move_config = true;
+	a->move = CURRENT_MOVE(user);
 	enqueue_message(0, source, STRING_SNATCHED_MOVE, 0);
 	acb->in_use = false;
-	return true;
+	return 3;
 }
 
 u8 snatch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -349,14 +352,12 @@ void instruct_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback
 	u8 target = TARGET_OF(user);
 	if (LAST_MOVE(target) == MOVE_NONE) return;
 	ADD_VOLATILE(target, VOLATILE_INSTRUCT);
-	if (!(user)) {
-		//0 = target;
-		set_attack_bm_inplace(LAST_MOVE(target), target);
-	} else {
-	//	1 = target;
-		set_attack_bm_inplace(LAST_MOVE(target), target);
-	}
-	//battle_master->repeat_move = true;
+
+	struct action* a = next_action(target, TARGET_OF(target), ActionMove, EventBeforeMove);
+	a->target = TARGET_OF(target),
+	a->reset_move_config = true;
+	a->move = LAST_MOVE(target);
+
 	acb->in_use = false;
 	u8 id = add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)instruct_revert_on_after_move);
 	CB_MASTER[id].data_ptr = CURRENT_MOVE(target);
@@ -374,5 +375,53 @@ u8 instruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 		if (last_atk == instruct_disallow[i])
 			return false;
 	}
+	return true;
+}
+
+
+// After you
+u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// fail if target has moved already
+	if (!p_bank[TARGET_OF(user)]->b_data.will_move) return false;
+	// fail if target moves next anyways
+	if (CURRENT_ACTION->next_action->action_bank == TARGET_OF(user)) return false;
+	struct action* a = find_action(TARGET_OF(user), ActionMove);
+	if (a == NULL) return false;
+	u8 target_backup = a->target;
+	u16 move_backup = a->move;
+	u8 event_state_backup = a->event_state;
+	end_action(a);
+	a = next_action(TARGET_OF(user), target_backup, ActionMove, event_state_backup);
+	a->move = move_backup;
+	return true;
+}
+
+
+// Quash
+u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	// fail if target has moved already
+	if (!p_bank[TARGET_OF(user)]->b_data.will_move) return false;
+
+	// find and terminate target's turn
+	struct action* a = find_action(TARGET_OF(user), ActionMove);
+	if (a == NULL) return false;
+	u8 target_backup = a->target;
+	u16 move_backup = a->move;
+	u8 event_state_backup = a->event_state;
+	end_action(a);
+
+	// find last action before turns end, and put opponent action before it
+	a = find_action(0xFF, ActionHighPriority); // residual effects
+	struct action* backup_current = CURRENT_ACTION;
+	CURRENT_ACTION = a;
+	a = prepend_action(TARGET_OF(user), NULL, ActionMove, event_state_backup);
+	CURRENT_ACTION = backup_current;
+	a->move = move_backup;
+	a->target = target_backup;
+	a->event_state = event_state_backup;
 	return true;
 }

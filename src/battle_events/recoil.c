@@ -11,6 +11,10 @@ extern void do_damage(u8 bank_index, u16 dmg);
 void event_move_recoil(struct action* current_action) {
     u8 bank = current_action->action_bank;
     u16 move = CURRENT_MOVE(bank);
+    if (B_FAINTED(bank)) {
+        CURRENT_ACTION->event_state++;
+        return;
+    }
     // check for recoil
     if (moves[move].recoil_struggle) {
         // struggle recoil is based off max health

@@ -22,6 +22,10 @@ struct action {
     enum ActionTiming type;
     u8 event_state; // which game loop function is under execution right now
     u16 move;
+    u8 copied : 1;
+    u8 prankstered : 1;
+    u8 has_bounced : 1;
+    u8 reset_move_config : 1;
     s16 priv[5];
     struct action* prev_action;
     struct action* next_action;
@@ -41,6 +45,8 @@ typedef void (*EventCallback)(struct action* a);
 extern struct action* add_action(u8 bank, u8 target, u8 type, u8 event_state);
 extern void end_action(struct action* a);
 extern struct action* prepend_action(u8 bank, u8 target, u8 type, u8 event_state);
+extern struct action* next_action(u8 bank, u8 target, u8 type, u8 event_state);
 extern void clear_actions(void);
+extern struct action* find_action(u8 bank, u8 type);
 
 #endif /* GAME_ACTIONS_H_ */

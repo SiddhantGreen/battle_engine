@@ -15,6 +15,11 @@ void event_move_effect(struct action* current_action)
     u8 attacker = current_action->action_bank;
     u16 move = CURRENT_MOVE(attacker);
 
+    if (B_FAINTED(attacker)) {
+        CURRENT_ACTION->event_state++;
+        return;
+    }
+
     // add callbacks specific to field
     if (moves[move].on_effect_cb) {
         add_callback(CB_ON_EFFECT, 0, 0, attacker, (u32)moves[move].on_effect_cb);
