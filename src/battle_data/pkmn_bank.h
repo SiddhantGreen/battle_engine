@@ -10,10 +10,6 @@
 #define BANK_MAX 4
 #define MTYPES_MAX 19
 
-// executed right before using a move. bm_cb(user_bank)
-typedef void (*BeforeMoveCallback)(u8);
-typedef void (*DamageCallback)(u8, u8);
-
 
 enum StatusAilments {
     AILMENT_NONE,

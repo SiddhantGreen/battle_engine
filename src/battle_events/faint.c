@@ -12,7 +12,7 @@ extern void dprintf(const char * str, ...);
 extern void give_exp(u8 fainted, u8 reciever);
 extern void set_active_movement(u8 tid);
 extern void do_damage(u8 bank_index, u16 dmg);
-
+extern void CpuFastSet(void* src, void* dst, u32 mode);
 
 bool on_faint_callbacks(u8 bank)
 {
@@ -44,7 +44,8 @@ void obj_battler_fall_through(struct Object* obj)
             // remove a tile layer from the bottom
             void* dst = (void*)((obj->final_oam.tile_num * 32) + 0x6010000);
             dst += 32 * 8 * (8 - obj->priv[1]);
-            memset(dst, 0, 32 * 8 * obj->priv[1]);
+            u32 set = 0;
+            CpuFastSet((void*)&set, (void*)dst, CPUModeFS(32 * 8 * obj->priv[1], CPUFSSET));
         }
     } else {
         // free the hp bars too

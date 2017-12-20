@@ -12,6 +12,11 @@ extern bool has_volatile(u8 bank, enum Volatiles v);
 extern void clear_volatile(u8 bank, enum Volatiles v);
 extern void add_volatile(u8 bank, enum Volatiles v);
 
+// this one is unrelated but I want to have it here
+#define CPUFSCPY 0
+#define CPUFSSET 1
+#define CPUModeFS(size, mode) ((size >> 2) | (mode << 24))
+
 /* To be removed when species expansion hits */
 #define SPECIES_ASH_GRENINJA 0
 #define SPECIES_ALOLAN_DIGLETT 0x999

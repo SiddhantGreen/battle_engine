@@ -8,6 +8,24 @@
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
 
+void CpuFastSet(void* src, void* dst, u32 mode)
+{
+    __asm__("swi 0xC");
+}
+
+bool nature_stat_boosted(u8 stat, struct Pokemon *pokemon) {
+    u8 nature = get_nature(pokemon_getattr(pokemon, REQUEST_PID, NULL));
+    if ((nature / 5) == (nature % 5))
+        return false;
+    return stat == (nature / 5);
+}
+
+bool nature_stat_nerved(u8 stat, struct Pokemon *pokemon) {
+    u8 nature = get_nature(pokemon_getattr(pokemon, REQUEST_PID, NULL));
+    if ((nature / 5) == (nature % 5))
+        return false;
+    return stat == (nature % 5);
+}
 
 s8 get_move_priority(u8 bank)
 {

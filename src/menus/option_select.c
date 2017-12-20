@@ -17,6 +17,7 @@ extern void option_selection2(void);
 extern void switch_scene_main(void);
 extern void free_unused_objs(void);
 void event_peek_message(struct action* current_action);
+void CpuFastSet(void* src, void* dst, u32 mode);
 
 /* Fight menu and move menu selection. Preperation to go into battle loop*/
 
@@ -65,7 +66,8 @@ void option_selection2()
             // initialize fight menu selection
             vblank_handler_set(vblank_cb_no_merge);
             void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textbox_action_selectMap, sizeof(battle_textbox_action_selectMap));
+            //memcpy(map_base, battle_textbox_action_selectMap, sizeof(battle_textbox_action_selectMap));
+            CpuFastSet((void*)&battle_textbox_action_selectMap, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
             init_selection_cursor(1, 0);
 
             // next state
@@ -104,8 +106,8 @@ void option_selection2()
             // update tilemap
             vblank_handler_set(vblank_cb_merge_move_select);
             void* map_base = (void *)0x600F800;
-            memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
-
+            //memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_move_selectMap));
+            CpuFastSet((void*)&battle_textbox_move_selectMap, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
             // init cursor
             init_selection_cursor(0, 0);
 
@@ -119,7 +121,8 @@ void option_selection2()
             {
                 vblank_handler_set(vblank_cb_merge_move_select);
                 void* map_base = (void *)0x600F800;
-                memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
+                //memcpy(map_base, battle_textbox_move_selectMap, sizeof(battle_textbox_action_selectMap));
+                CpuFastSet((void*)&battle_textbox_move_selectMap, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
                 show_move_data();
                 tasks[task_add(update_cursor_move_select, 1)].priv[0] = 0;
                 bs_anim_status = 1;
