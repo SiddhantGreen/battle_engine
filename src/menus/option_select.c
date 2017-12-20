@@ -132,6 +132,9 @@ void option_selection2()
         case SwitchOptionSelected:
             // POKEMON selection from fight menu
             fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+            battle_master->switch_main.position = 0;
+            free_unused_objs();
+            battle_master->fight_menu_content_spawned  = 0;
             super.multi_purpose_state_tracker = 0;
             set_callback1(switch_scene_main);
             break;

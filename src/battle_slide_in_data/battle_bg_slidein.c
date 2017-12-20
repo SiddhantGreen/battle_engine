@@ -49,7 +49,7 @@ void hblank_battle_bgslide(void)
 }
 
 
-void intro_wild_battle(void)
+void intro_wild_battle()
 {
     switch (super.multi_purpose_state_tracker) {
         case 0:

@@ -147,7 +147,7 @@ struct switch_menu {
     u8 icon_objid[6];
     u8 position;
     enum switch_reason reason;
-    u8 unswitchable_bank; // used if a pkmn is forced out via whirlwind for example
+    u8 unswitchable_bank; // used if a pkmn is forced out
     void* back_buffer;
     struct switch_data* sd;
 };

@@ -1,12 +1,14 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_obj_sliding.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../../generated/images/battle_terrains/grass/grass_entry.h"
 #include "../battle_text/battle_textbox_gfx.h"
 #include "../libgba_assets/gba_dma.h"
 
+extern void CpuFastSet(void*, void*, u32);
 /* Standard BG configuration for battle start */
 const struct BgConfig bg_config_data[4] = {
     {
@@ -77,6 +79,26 @@ void pick_and_load_battle_bgs()
     // write palettes
     gpu_pal_apply_compressed((void *)grass_bgPal, 0, 64);
     gpu_pal_apply((void*)grass_entryPal, 16 * 4, 32);
+    gpu_pal_apply((void*)bboxPal, 16 * 5, 32);
+}
+
+void pick_and_load_battle_bgs_no_entry(const void* textbox_map)
+{
+    /* TODO Make this change based on where you are. */
+    // copy image BG background
+    void* char_base = (void *)0x6000000;
+    void* map_base = (void *)0x600E000;
+    lz77UnCompVram((void *)grass_bgTiles, char_base);
+    lz77UnCompVram((void *)grass_bgMap, map_base);
+
+    // copy textbox image
+    char_base = (void *)0x600C000;
+    map_base = (void *)0x600F800;
+    lz77UnCompVram((void *)bboxTiles, char_base);
+
+    CpuFastSet((void*)textbox_map, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
+    // write palettes
+    gpu_pal_apply_compressed((void *)grass_bgPal, 0, 64);
     gpu_pal_apply((void*)bboxPal, 16 * 5, 32);
 }
 

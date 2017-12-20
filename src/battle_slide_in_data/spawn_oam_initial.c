@@ -171,6 +171,7 @@ u8 spawn_backsprite_npc(u8 sprite_id, u16 tag)
     return objid;
 }
 
+// this creates the opponent battler & player backsprite
 void create_sprites_wild_battlers()
 {
     // wild mon first
@@ -183,5 +184,16 @@ void create_sprites_wild_battlers()
         } else {
             objid = spawn_backsprite_npc(1, PLAYER_BTAG);
         }
-    bs_env_windows->player_trainer_objid = objid;
+    if (bs_env_windows != NULL)
+        bs_env_windows->player_trainer_objid = objid;
+}
+
+
+void create_sprites_battle_mons_wild()
+{
+    // wild mon first
+    u8 objid = spawn_pkmn_obj_slot(OPPONENT_SINGLES_BANK, OPP1_BTAG);
+    p_bank[OPPONENT_SINGLES_BANK]->objid = objid;
+
+    p_bank[PLAYER_SINGLES_BANK]->objid = spawn_pkmn_backsprite_obj_slot(PLAYER_SINGLES_BANK, PLAYER_BTAG);
 }

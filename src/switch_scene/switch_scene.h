@@ -35,9 +35,6 @@ extern bool nature_stat_boosted(u8 stat, struct Pokemon *pokemon);
 #define SWB_NAME 11
 
 #define SWM_LOG (battle_master->switch_main.sd)
-#define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
-#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 0
-
 
 
 // text related declarations, see switch_text.c
