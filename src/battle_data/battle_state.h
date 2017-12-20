@@ -7,8 +7,6 @@
 #include "../battle_actions/actions.h"
 #include <pokeagb/pokeagb.h>
 
-#define MESSAGE_COUNT 7
-
 enum BattleTypes {
     BATTLE_MODE_WILD,
     BATTLE_MODE_WILD_DOUBLE,
@@ -118,11 +116,32 @@ struct move_used {
 
 typedef u16 (*StatModifierCallback)(u16 stat, u8 id, u8 bank);
 
+struct switch_pokemon_data {
+    u32 PID;
+    u16 species;
+    u16 current_hp;
+    u16 total_hp;
+    u8 ability;
+    u16 item;
+    u16 stats[5];
+    struct TextColor* nature_boosted[5];
+    u16 move[4];
+    u16 pp[4];
+    pchar nickname[20];
+};
+
+struct switch_data {
+    u8 list_count;
+    struct switch_pokemon_data s_pkmn_data[6];
+};
+
 struct switch_menu {
     u8 type_objid[10];
     u8 slider_objid[3];
     u8 icon_objid[6];
     u8 position;
+    void* back_buffer;
+    struct switch_data* sd;
 };
 
 struct battle_main {
