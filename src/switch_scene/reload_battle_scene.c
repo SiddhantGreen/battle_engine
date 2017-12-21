@@ -14,6 +14,7 @@ extern void create_sprites_battle_mons_wild(void);
 extern void option_selection(u8 bank);
 extern void handlers_clear(void);
 extern void reset_bg_settings(void);
+extern void validate_player_selected_move(void);
 
 void return_to_battle()
 {
@@ -55,7 +56,17 @@ void return_to_battle()
             super.multi_purpose_state_tracker++;
             break;
         case 2:
-            option_selection(0);
+            if (pal_fade_control.active) return;
+            super.multi_purpose_state_tracker++;
+        case 3:
+            if (battle_master->switch_main.reason != ViewPokemon) {
+                p_bank[PLAYER_SINGLES_BANK]->b_data.is_switching = true;
+                p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
+                set_callback1(validate_player_selected_move);
+            } else {
+                option_selection(0);
+            }
+            super.multi_purpose_state_tracker = 0;
             break;
     };
 

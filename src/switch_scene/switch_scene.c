@@ -385,6 +385,8 @@ void switch_load_scroll_box()
 
 void switch_load_pokemon_data(u8 index)
 {
+    REG_DISPCNT = 0x7260;
+    OBJID_HIDE(SWM_LOG->hpbar_id);
     for (u32 i = SWB_ABILITY; i <= SWB_MAX; ++i) {
         rboxid_clear_pixels(i, 0);
     }
@@ -465,6 +467,7 @@ void switch_load_pokemon_data(u8 index)
     rboxid_tilemap_update(SWB_ABILITY);
     rboxid_update(SWB_ITEM, 3);
     rboxid_tilemap_update(SWB_ITEM);
+    REG_DISPCNT = 0x7360;
 
     /* load the type icons */
     u16 species = SWM_LOG->s_pkmn_data[index].species;
@@ -479,8 +482,10 @@ void switch_load_pokemon_data(u8 index)
     }
 
     /* reload HP bar */
+    OBJID_SHOW(SWM_LOG->hpbar_id);
     status_switch_menu(SWM_LOG->hpbar_id, SWM_LOG->s_pkmn_data[index].ailment_effect);
     refresh_hp(&party_player[index], SWM_LOG->hpbar_id, 0, 0, (u8*)hpbar_pieces_switchTiles);
+
 }
 
 void switch_obj_hide_all()
@@ -592,8 +597,11 @@ void switch_scene_main()
             case KEY_A:
                 /* Choose
                  * You only ever get to the switch menu and press A when you need to select a Pokemon.
-                 * Need to display the confirmation text.
+                 * Need to display the confirmation text. Skipped for now TODO
                  */
+                 fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+                 battle_master->switch_main.reason = NormalSwitch;
+                 super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_B:
                 /* Exit the switch menu, unless you are forced to make a switch option */

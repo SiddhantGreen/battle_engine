@@ -120,6 +120,7 @@ enum switch_reason {
     PokemonFainted,
     ViewPokemon,
     ForcedSwitch,
+    NormalSwitch,
 };
 
 struct switch_pokemon_data {

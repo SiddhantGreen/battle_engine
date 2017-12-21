@@ -6,6 +6,7 @@
 #include "../battle_text/battle_pick_message.h"
 #include "battle_events/battle_events.h"
 
+extern void reset_turn_bits(u8 bank);
 extern void set_attack_bm_inplace(u16 move_id, u8 bank);
 extern bool update_bank_hit_list(u8 bank_index);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);

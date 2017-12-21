@@ -10,7 +10,8 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void run_flee(void);
 extern bool b_pkmn_has_type(u8 bank, u8 type);
 extern u16 rand_range(u16 min, u16 max);
-
+extern void update_pbank(u8 bank, struct update_flags* flags);
+extern void pkmn_recall_animation(void);
 
 bool bank_trapped(u8 bank)
 {
@@ -26,8 +27,7 @@ bool bank_trapped(u8 bank)
 /* Event switch related */
 void switch_battler(u8 switching_bank)
 {
-    /* TODO actual switching */
-    return;
+
 }
 
 void move_on_switch_cb(u8 attacker)
@@ -59,14 +59,37 @@ void run_after_switch(u8 attacker)
     }
 }
 
+void pre_switch_battler(u8 switching_bank)
+{
+    // switch message
+    move_on_switch_cb(ACTION_BANK);
+    enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
+    return;
+}
+
 void event_switch(struct action* current_action)
 {
-    move_on_switch_cb(ACTION_BANK);
-    switch_battler(ACTION_BANK);
-    run_after_switch(ACTION_BANK);
-    end_action(current_action);
+    super.multi_purpose_state_tracker = 0;
+    set_callback1(pkmn_recall_animation);
+    //switch_battler(ACTION_BANK);
+    //run_after_switch(ACTION_BANK);
+    //end_action(current_action);
     dprintf("tried to switch\n");
 }
+
+
+void event_pre_switch(struct action* current_action)
+{
+    move_on_switch_cb(ACTION_BANK);
+    pre_switch_battler(ACTION_BANK);
+    CURRENT_ACTION->event_state++;// = EventRecallAnimation;
+}
+
+void event_switch_animation(struct action* current_action)
+{
+
+}
+
 
 
 /* Event flee related */

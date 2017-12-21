@@ -191,6 +191,8 @@ enum battle_string_ids {
     STRING_BEAK_BLAST,
     STRING_ENCOUNTER_WILD,
     STRING_HEART_SWAP,
+    STRING_RETREAT_MON,
+    STRING_SEND_OUT,
     STRINGS_TABLE_MAX,
 };
 const static pchar encounter_wild_text[] = _("A wild {DEFENDING_MON} appeared!\pGo! {ATTACKING_MON}!");
@@ -395,6 +397,8 @@ static const pchar str_sapped[] = _("{FOE}{ATTACKING_MON}’s health was\nsapped
 static const pchar str_focus_tight[] = _("{FOE}{ATTACKING_MON} is tightening\nits focus!");
 static const pchar str_beak_blast[] = _("{FOE}{ATTACKING_MON} started heating\nup its beak!");
 static const pchar str_heart_swap[] = _("{FOE}{ATTACKING_MON} switched stat\nchanges with the target!");
+static const pchar str_come_back[] = _("{ATTACKING_MON}, come back!");
+static const pchar str_send_out[] = _("Go! {ATTACKING_MON}!");
 
 // stat names
 static const pchar str_stat_atk[] = _("attack");
@@ -614,6 +618,8 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_beak_blast, // 189
    (pchar*)&encounter_wild_text, // 190
    (pchar*)&str_heart_swap, // 191
+   (pchar*)&str_come_back, // 192
+   (pchar*)&str_send_out, // 193
 
 };
 

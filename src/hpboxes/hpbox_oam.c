@@ -348,7 +348,7 @@ u8 spawn_hpbox_opponent(u16 tag, s16 x, s16 y)
     return 0;
 }
 
-u8 spawn_hpbox_player(u16 tag, s16 x, s16 y)
+u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank)
 {
     /* Create HP Box object for player */
     struct SpritePalette hpbox_sprite_pal = {(void*)hpbox_player_singlesPal, tag};
@@ -361,14 +361,14 @@ u8 spawn_hpbox_player(u16 tag, s16 x, s16 y)
     u8 objid_main = template_instanciate_forward_search(&hpbox_temp, x, y, 0);
     u8 objid = template_instanciate_forward_search(&hpbox_temp, x + 64, y, 0);
     objects[objid].final_oam.tile_num += 64;
-    p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[0] = objid_main;
-    p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[1] = objid;
+    p_bank[bank]->objid_hpbox[0] = objid_main;
+    p_bank[bank]->objid_hpbox[1] = objid;
 
     /* draw elements onto HP bar */
-    draw_name(&party_player[0], NAME_PS_OFFSET1, NAME_PS_OFFSET2, objid_main, HPFONT_PLAYER_SINGLE);
-    draw_level(&party_player[0], LVL_PS_OFFSET, objid_main);
-    draw_hp(&party_player[0], HPNUM_PS_OFFSET, objid_main, 0, 0);
-    p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2] = hpbar_build_full(&party_player[0], HPBAR_PS_X, HPBAR_PS_Y, HPBAR_PS_TAG);
+    draw_name(p_bank[bank]->this_pkmn, NAME_PS_OFFSET1, NAME_PS_OFFSET2, objid_main, HPFONT_PLAYER_SINGLE);
+    draw_level(p_bank[bank]->this_pkmn, LVL_PS_OFFSET, objid_main);
+    draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, objid_main, 0, 0);
+    p_bank[bank]->objid_hpbox[2] = hpbar_build_full(p_bank[bank]->this_pkmn, HPBAR_PS_X, HPBAR_PS_Y, HPBAR_PS_TAG);
     return 0;
 }
 
@@ -405,7 +405,7 @@ void spawn_hpboxes_wild(void)
     objects[p_bank[OPPONENT_SINGLES_BANK]->objid_hpbox[1]].pos1.x -= 128;
     objects[p_bank[OPPONENT_SINGLES_BANK]->objid_hpbox[2]].pos1.x -= 128;
     task_add(opp_hpbar_slidin_slow, 1);
-    spawn_hpbox_player(HPBOX_TAG_PLAYER_SINGLE, HPBOX_PLAYER_SINGLE_X, HPBOX_PLAYER_SINGLE_Y);
+    spawn_hpbox_player(HPBOX_TAG_PLAYER_SINGLE, HPBOX_PLAYER_SINGLE_X, HPBOX_PLAYER_SINGLE_Y, PLAYER_SINGLES_BANK);
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[0]].pos1.x += 128;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[1]].pos1.x += 128;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x += 128;
