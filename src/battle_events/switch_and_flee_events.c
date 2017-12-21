@@ -10,7 +10,6 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void run_flee(void);
 extern bool b_pkmn_has_type(u8 bank, u8 type);
 extern u16 rand_range(u16 min, u16 max);
-extern void update_pbank(u8 bank, struct update_flags* flags);
 extern void pkmn_recall_animation(void);
 
 bool bank_trapped(u8 bank)
@@ -70,11 +69,8 @@ void pre_switch_battler(u8 switching_bank)
 void event_switch(struct action* current_action)
 {
     super.multi_purpose_state_tracker = 0;
+    // the recall animation is in the switch scene folder; onlyplayer supported as of now
     set_callback1(pkmn_recall_animation);
-    //switch_battler(ACTION_BANK);
-    //run_after_switch(ACTION_BANK);
-    //end_action(current_action);
-    dprintf("tried to switch\n");
 }
 
 
