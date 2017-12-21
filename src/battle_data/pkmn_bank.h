@@ -94,6 +94,7 @@ enum Volatiles {
 
 struct local_battler_data {
     // Base stats in battle
+    pchar name[12];
     u16 species;
     u16 current_hp;
     u16 total_hp;

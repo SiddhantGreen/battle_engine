@@ -21,6 +21,7 @@ extern u16 bank_interpret_selected_move(u16);
 EventCallback wild_battle_events[] = {
     /* Pre-move */
     event_run_flee,
+    event_pre_switch,
     event_switch,
 
     /* Run Move */
@@ -56,7 +57,6 @@ EventCallback wild_battle_events[] = {
 
 void battle_loop()
 {
-
     CURRENT_ACTION = ACTION_HEAD;
     if (ACTION_HEAD != NULL) {
         dprintf("action: %x\n", ACTION_HEAD);

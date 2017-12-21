@@ -33,15 +33,15 @@ extern bool nature_stat_boosted(u8 stat, struct Pokemon *pokemon);
 #define SWB_ACC 9
 #define SWB_PP 10
 #define SWB_NAME 11
-
+#define SWB_LVL 12
+#define SWB_HP 13
+#define SWB_MAX 13
 #define SWM_LOG (battle_master->switch_main.sd)
-#define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
-#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 0
-
 
 
 // text related declarations, see switch_text.c
 extern const pchar str_no_item[];
+extern const pchar str_invalid_num[];
 extern u16 switch_text_pal[];
 extern struct TextColor switch_color;
 extern struct TextColor switch_color_bg;
@@ -51,7 +51,7 @@ extern struct TextboxTemplate switch_boxes[];
 
 
 extern u8 load_dmg_type_icon(u8 type, s16 x, s16 y, u8 tag);
-extern u8 load_dmg_category_icon(u8 category, s16 x, s16 y, u8 tag);
+extern u8 load_small_dmg_category_icon(u8 category, s16 x, s16 y, u8 tag);
 extern void vblank_cb_no_merge(void);
 extern void c2_switch_menu(void);
 extern void oac_nullsub(struct Object* obj);

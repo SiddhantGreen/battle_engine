@@ -16,6 +16,9 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define CPUFSCPY 0
 #define CPUFSSET 1
 #define CPUModeFS(size, mode) ((size >> 2) | (mode << 24))
+#define OBJID_HIDE(objid) objects[objid].final_oam.affine_mode = 2
+#define OBJID_SHOW(objid) objects[objid].final_oam.affine_mode = 0
+#define OBJID_SHOW_AFFINE(objid) objects[objid].final_oam.affine_mode = 1
 
 /* To be removed when species expansion hits */
 #define SPECIES_ASH_GRENINJA 0

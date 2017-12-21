@@ -219,6 +219,8 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type
             case STRING_TIGHTEN_FOCUS:
             case STRING_BEAK_BLAST:
             case STRING_HEART_SWAP:
+            case STRING_RETREAT_MON:
+            case STRING_SEND_OUT:
                 fdecoder_battle(battle_strings[id], user_bank, move_id, move_effect_id);
                 break;
             case STRING_IMMUNE_ABILITY:

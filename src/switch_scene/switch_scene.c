@@ -9,21 +9,43 @@
 #include "../generated/images/switch/slider_bot.h"
 #include "../generated/images/switch/slider_mid.h"
 #include "../generated/images/switch/slider_top.h"
-#include "../generated/images/PSS_icons.h"
+#include "../generated/images/PSS_icons1.h"
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../generated/images/switch/switch_bg.h"
 #include "../generated/images/type_icons.h"
+#include "../generated/images/hpbox/hpbar_pieces_switch.h"
 
 extern u8 get_ability(struct Pokemon *p);
 extern const struct BgConfig bg_config_data[4];
 extern void CpuFastSet(void* src, void* dst, u32 mode);
-
+extern void return_to_battle(void);
+extern void reset_boxes(void);
+extern void refresh_hp(struct Pokemon* pkmn, u8 objid, u8 mode, u8 bank, u8* tiles);
+extern u8 hpbar_build_transparent(struct Pokemon* pkmn, s16 x, s16 y, u16 tag);
+extern void status_switch_menu(u8 objid, u8 ailment);
 
 const struct Frame (**nullframe)[] = (const struct Frame (**)[])0x8231CF0;
 const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (**)[])0x8231CFC;
 const struct OamData icon_oam = {
     .y = 0,
     .affine_mode = 1,
+    .obj_mode = 0,
+    .mosaic = 0,
+    .bpp = 0,
+    .shape = 0,
+    .x = 0,
+    .matrix_num = 0,
+    .size = 2, // 32x32 square
+    .tile_num = 0,
+    .priority = 0, /*above the rest*/
+    .palette_num = 0,
+    .affine_param = 0,
+};
+
+// the difference is that the slider doesn't have affine mode turned on
+const struct OamData slider_oam = {
+    .y = 0,
+    .affine_mode = 0,
     .obj_mode = 0,
     .mosaic = 0,
     .bpp = 0,
@@ -56,6 +78,70 @@ static const struct RotscaleFrame *switch_scale_table_full[] = {
     switch_scale_full,
 };
 
+const struct BgConfig bg_config_switch_data[4] = {
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 0,
+        .palette = 0,
+        .size = 0,
+        .map_base = 29,
+        .character_base = 1,
+        .bgid = 0,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 1,
+        .palette = 0,
+        .size = 0,
+        .map_base = 28,
+        .character_base = 0,
+        .bgid = 1,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 2,
+        .palette = 0,
+        .size = 0,
+        .map_base = 30,
+        .character_base = 2,
+        .bgid = 2,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 3,
+        .palette = 0,
+        .size = 1,
+        .map_base = 31,
+        .character_base = 3,
+        .bgid = 3,
+    },
+};
+
+void str_int_padding(u8 number, u8 digits)
+{
+    /* 3 digit max support */
+    u8 space = digits;
+    u8 prefix[4] = {0xFF, 0xFF, 0xFF, 0xFF};
+    fmt_int_10(string_buffer, number, 0, 4);
+
+    // faster than div or log...
+    if (number < 10) {
+        space -= 1;
+    } else if (number < 100) {
+        space -= 2;
+    } else if (number >= 100) {
+        space -= 3;
+    }
+    for (u32 i = 0; i < space; i++) {
+        prefix[i] = 0;
+    }
+    pstrcat((pchar*)prefix, string_buffer);
+    pstrcpy(string_buffer, prefix);
+}
 
 void switch_fetch_all_data()
 {
@@ -63,15 +149,67 @@ void switch_fetch_all_data()
     struct switch_data* sd = (struct switch_data*)malloc_and_clear(sizeof(struct switch_data));
     SWM_LOG = sd;
     sd->list_count = count_pokemon();
+    u8 id = hpbar_build_transparent(&party_player[0], 184, 32, 0x58A8);
+    OBJID_HIDE(id);
+    SWM_LOG->hpbar_id = id;
+
     for (u32 i = 0; i < sd->list_count; i++) {
         // log current HP and misc data
-        sd->s_pkmn_data[i].current_hp = pokemon_getattr(&party_player[i], REQUEST_CURRENT_HP, NULL);
-        sd->s_pkmn_data[i].total_hp = pokemon_getattr(&party_player[i], REQUEST_TOTAL_HP, NULL);
         sd->s_pkmn_data[i].ability = get_ability(&party_player[i]);
         sd->s_pkmn_data[i].item = pokemon_getattr(&party_player[i], REQUEST_HELD_ITEM, NULL);
         sd->s_pkmn_data[i].species = pokemon_getattr(&party_player[i], REQUEST_SPECIES, NULL);
         sd->s_pkmn_data[i].PID = pokemon_getattr(&party_player[i], REQUEST_PID, NULL);
+
+        /* Get effect from raw status ailment */
+        u32 status = pokemon_getattr(&party_player[i], REQUEST_STATUS_AILMENT, NULL);
+        u8 ailment = 0;
+        if ((status & 7) > 0) {
+            ailment = EFFECT_SLEEP;
+        } else if (status & (1 << 3))
+            ailment = EFFECT_POISON;
+        else if (status & (1 << 4))
+            ailment = EFFECT_BURN;
+        else if (status & (1 << 5))
+            ailment = EFFECT_FREEZE;
+        else if (status & (1 << 6))
+            ailment = EFFECT_PARALYZE;
+        else if (status & (1 << 7))
+            ailment = EFFECT_BAD_POISON;
+        else
+            ailment = EFFECT_NONE;
+        sd->s_pkmn_data[i].ailment_effect = ailment;
         pokemon_getattr(&party_player[i], REQUEST_NICK, (pchar*)&sd->s_pkmn_data[i].nickname[0]);
+        pchar gender_m[] = _("{COLOR 15}{SHADOW 2}♂");
+        pchar gender_f[] = _("{COLOR 14}{SHADOW 2}♀");
+        pchar level[] = _("{LV}");
+        pchar slash[] = _("/");
+        /* Append gender symbol to string */
+        switch (pokemon_get_gender(&party_player[i])) {
+            case 0:
+                // male
+                pstrcat((pchar*)&sd->s_pkmn_data[i].nickname[0], gender_m);
+                break;
+            case 0xFE:
+                // female
+                pstrcat((pchar*)&sd->s_pkmn_data[i].nickname[0], gender_f);
+                break;
+            case 0xFF:
+                // none
+                break;
+        };
+        str_int_padding(pokemon_getattr(&party_player[i], REQUEST_CURRENT_HP, NULL), 3);
+        pstrcat(string_buffer, slash);
+        pstrcpy((pchar*)&sd->s_pkmn_data[i].health[0], string_buffer);
+
+
+        str_int_padding(pokemon_getattr(&party_player[i], REQUEST_TOTAL_HP, NULL), 3);
+        pstrcat((pchar*)&sd->s_pkmn_data[i].health[0], string_buffer);
+
+        fmt_int_10((pchar*)&sd->s_pkmn_data[i].level[0], pokemon_getattr(&party_player[i], REQUEST_LEVEL, NULL), 0, 4);
+        pstrcpy(string_buffer, level);
+        pstrcat(string_buffer, (pchar*)&sd->s_pkmn_data[i].level[0]);
+        pstrcpy((pchar*)&sd->s_pkmn_data[i].level[0], string_buffer);
+
         for (u32 j = 0; j < 5; j++) {
             // in get_attr, speed comes after Def. Here we want it as the last member
             if (j == 2) {
@@ -104,15 +242,15 @@ void switch_setup()
     bgid_mod_x_offset(1, 0, 0);
     bgid_mod_y_offset(1, 0, 0);
     gpu_tile_bg_drop_all_sets(0);
-    bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
+    bg_vram_setup(0, (struct BgConfig *)&bg_config_switch_data, 4);
     u32 set = 0;
     CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
 
     /* Hide all the objects on screen */
     for (u8 i = 0; i < BANK_MAX; i++) {
-        // hide pokemon OAMs
+        //  pokemon OAMs
         if (p_bank[i]->objid < 0x3F)
-            OBJID_HIDE(p_bank[i]->objid);
+            OBJID_HIDE(p_bank[0]->objid);
         // hide HP box OAMs
         for (u8 j = 0; j < 4; j++) {
             if (p_bank[i]->objid_hpbox[j] < 0x3F)
@@ -131,7 +269,7 @@ void switch_load_background()
     gpu_pal_apply_compressed((void *)switch_bgPal, 0, 32);
     gpu_pal_apply((void *)(&switch_text_pal), 15 * 16, 32);
     LZ77UnCompWram((void *)switch_bgMap, (void *)sw_bgbackbuffer);
-    lz77UnCompVram((void *)switch_bgTiles, (void *)0x06008000);
+    lz77UnCompVram((void *)switch_bgTiles, (void *)0x06000000);
     bgid_set_tilemap(1, sw_bgbackbuffer);
     bgid_mark_for_sync(1);
     bgid_mark_for_sync(0);
@@ -146,7 +284,7 @@ void switch_type_update_icon(u8 objid, enum MoveTypes type)
 void switch_category_update_icon(u8 objid, u8 category)
 {
     void *vram = (void *)((0x06010000) + objects[objid].final_oam.tile_num * 32);
-    CpuFastSet((void*)((category * 128) + PSS_iconsTiles), vram, CPUModeFS(128, CPUFSCPY));
+    CpuFastSet((void*)((category * 128) + PSS_icons1Tiles), vram, CPUModeFS(128, CPUFSCPY));
 }
 
 void switch_type_icon_load(u8 type, s16 x, s16 y, u8 id)
@@ -165,7 +303,7 @@ void switch_cat_icon_load(u8 category, s16 x, s16 y, u8 id)
     if (battle_master->switch_main.type_objid[array_idx] != 0x3F) {
         switch_category_update_icon(battle_master->switch_main.type_objid[array_idx], category);
     } else {
-        battle_master->switch_main.type_objid[array_idx] = load_dmg_category_icon(category, x, y, id + 4);
+        battle_master->switch_main.type_objid[array_idx] = load_small_dmg_category_icon(category, x, y, id + 4);
     }
     OBJID_SHOW(battle_master->switch_main.type_objid[array_idx]);
 }
@@ -215,7 +353,6 @@ void switch_load_pokemon_icons() {
             } else {
                 battle_master->switch_main.icon_objid[i] = template_instanciate_forward_search(&icon_template, 16, 10 + 24 * i, 0);
             }
-            OBJID_HIDE(battle_master->switch_main.icon_objid[i]);
         }
     }
 }
@@ -228,9 +365,9 @@ void switch_load_scroll_box()
     struct SpriteTiles mid_gfx = {(void *)slider_midTiles, 512, SLIDER_GFX_TAG + 1};
     struct SpriteTiles bot_gfx = {(void *)slider_botTiles, 512, SLIDER_GFX_TAG + 2};
 
-    struct Template top_template = {SLIDER_GFX_TAG, SLIDER_PAL_TAG, &icon_oam, nullframe, &top_gfx, nullrsf, oac_nullsub};
-    struct Template mid_template = {SLIDER_GFX_TAG + 1, SLIDER_PAL_TAG, &icon_oam, nullframe, &mid_gfx, nullrsf, oac_nullsub};
-    struct Template bot_template = {SLIDER_GFX_TAG + 2, SLIDER_PAL_TAG, &icon_oam, nullframe, &bot_gfx, nullrsf, oac_nullsub};
+    struct Template top_template = {SLIDER_GFX_TAG, SLIDER_PAL_TAG, &slider_oam, nullframe, &top_gfx, nullrsf, oac_nullsub};
+    struct Template mid_template = {SLIDER_GFX_TAG + 1, SLIDER_PAL_TAG, &slider_oam, nullframe, &mid_gfx, nullrsf, oac_nullsub};
+    struct Template bot_template = {SLIDER_GFX_TAG + 2, SLIDER_PAL_TAG, &slider_oam, nullframe, &bot_gfx, nullrsf, oac_nullsub};
     gpu_pal_decompress_alloc_tag_and_upload(&scroll_pal);
     gpu_tile_obj_decompress_alloc_tag_and_upload(&top_gfx);
     gpu_tile_obj_decompress_alloc_tag_and_upload(&mid_gfx);
@@ -238,34 +375,40 @@ void switch_load_scroll_box()
     battle_master->switch_main.slider_objid[0] = template_instanciate_forward_search(&top_template, 17, 17, 1);
     battle_master->switch_main.slider_objid[1] = template_instanciate_forward_search(&mid_template, 17, 40, 1);
     battle_master->switch_main.slider_objid[2] = template_instanciate_forward_search(&bot_template, 17, 128, 1);
-
-    OBJID_HIDE(battle_master->switch_main.slider_objid[0]);
+    objects[battle_master->switch_main.slider_objid[0]].final_oam.affine_mode = 0;
+    objects[battle_master->switch_main.slider_objid[1]].final_oam.affine_mode = 0;
+    objects[battle_master->switch_main.slider_objid[2]].final_oam.affine_mode = 0;
     OBJID_HIDE(battle_master->switch_main.slider_objid[1]);
     OBJID_HIDE(battle_master->switch_main.slider_objid[2]);
 }
 
+
 void switch_load_pokemon_data(u8 index)
 {
-    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+    REG_DISPCNT = 0x7260;
+    OBJID_HIDE(SWM_LOG->hpbar_id);
+    for (u32 i = SWB_ABILITY; i <= SWB_MAX; ++i) {
         rboxid_clear_pixels(i, 0);
     }
 
     rboxid_print(SWB_NAME, 0, 0, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].nickname[0]);
+    rboxid_print(SWB_LVL, 0, 1, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].level[0]);
+    rboxid_print(SWB_HP, 0, 1, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].health[0]);
 
     /* print the stats */
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[0], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[0], 3);
     rboxid_print(SWB_ATK, 0, 1, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[0], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[1], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[1], 3);
     rboxid_print(SWB_DEF, 0, 2, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[1], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[2], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[2], 3);
     rboxid_print(SWB_SPA, 0, 3, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[2], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[3], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[3], 3);
     rboxid_print(SWB_SPD, 0, 4, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[3], 0, &string_buffer[0]);
 
-    fmt_int_10(string_buffer, SWM_LOG->s_pkmn_data[index].stats[4], 0, 4);
+    str_int_padding(SWM_LOG->s_pkmn_data[index].stats[4], 3);
     rboxid_print(SWB_SPE, 0, 5, 7, SWM_LOG->s_pkmn_data[index].nature_boosted[4], 0, &string_buffer[0]);
 
     /* print the ability */
@@ -294,22 +437,28 @@ void switch_load_pokemon_data(u8 index)
         }
         rboxid_print(SWB_MOVES, 0, 0, (4 + 14 * i), &switch_color, 0, &moves[move].name[0]);
 
-        fmt_int_10(string_buffer, moves[move].base_power, 0, 4);
+        if (moves[move].base_power)
+            str_int_padding(moves[move].base_power, 3);
+        else
+            memcpy(string_buffer, str_invalid_num, 4);
         rboxid_print(SWB_POW, 0, 1, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
 
-        fmt_int_10(string_buffer, moves[move].accuracy, 0, 4);
+        if (moves[move].accuracy > 100)
+            memcpy(string_buffer, str_invalid_num, 4);
+        else
+            str_int_padding(moves[move].accuracy, 3);
         rboxid_print(SWB_ACC, 0, 5, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
 
-        u8 pp = SWM_LOG->s_pkmn_data[index].pp[i];
-        fmt_int_10(string_buffer, pp, 0, 4);
+        str_int_padding(SWM_LOG->s_pkmn_data[index].pp[i], 2);
         rboxid_print(SWB_PP, 0, 2, (4 + 14 * i), &switch_color, 0, &string_buffer[0]);
+
 
         /*the move type icon*/
         switch_type_icon_load(moves[move].type, 49, 84 + (14 * i), i + 2);
         switch_cat_icon_load(moves[move].category, 226, 84 + (14 * i), i);
     }
 
-    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+    for (u32 i = SWB_ATK; i <= SWB_MAX; ++i) {
         rboxid_update(i, 3);
         rboxid_tilemap_update(i);
     }
@@ -318,6 +467,7 @@ void switch_load_pokemon_data(u8 index)
     rboxid_tilemap_update(SWB_ABILITY);
     rboxid_update(SWB_ITEM, 3);
     rboxid_tilemap_update(SWB_ITEM);
+    REG_DISPCNT = 0x7360;
 
     /* load the type icons */
     u16 species = SWM_LOG->s_pkmn_data[index].species;
@@ -330,6 +480,12 @@ void switch_load_pokemon_data(u8 index)
     } else if (battle_master->switch_main.type_objid[1] != 0x3F) {
         OBJID_HIDE(battle_master->switch_main.type_objid[1]);
     }
+
+    /* reload HP bar */
+    OBJID_SHOW(SWM_LOG->hpbar_id);
+    status_switch_menu(SWM_LOG->hpbar_id, SWM_LOG->s_pkmn_data[index].ailment_effect);
+    refresh_hp(&party_player[index], SWM_LOG->hpbar_id, 0, 0, (u8*)hpbar_pieces_switchTiles);
+
 }
 
 void switch_obj_hide_all()
@@ -337,6 +493,10 @@ void switch_obj_hide_all()
     for (u8 i = 0; i < 10; ++i) {
         if (battle_master->switch_main.type_objid[i] != 0x3F)
             OBJID_HIDE(battle_master->switch_main.type_objid[i]);
+        if (i < SWM_LOG->list_count)
+            OBJID_HIDE(battle_master->switch_main.icon_objid[i]);
+        if (i < 3)
+            OBJID_HIDE(battle_master->switch_main.slider_objid[0]);
     }
 }
 
@@ -345,7 +505,14 @@ void switch_obj_show_all()
     for (u8 i = 0; i < 10; ++i) {
         if (battle_master->switch_main.type_objid[i] != 0x3F)
             OBJID_SHOW(battle_master->switch_main.type_objid[i]);
+        if (i < SWM_LOG->list_count) {
+            OBJID_SHOW(battle_master->switch_main.icon_objid[i]);
+            objects[battle_master->switch_main.icon_objid[i]].final_oam.affine_mode = 1;
+        }
+        if (i < 3)
+            OBJID_SHOW(battle_master->switch_main.slider_objid[0]);
     }
+    OBJID_SHOW(SWM_LOG->hpbar_id);
 }
 
 
@@ -418,18 +585,29 @@ void switch_scene_main()
         super.multi_purpose_state_tracker++;
         break;
     case 2:
+        fade_screen(0xFFFFFFFF, 0, 16, 0, 0x0000);
         gpu_sync_bg_show(1);
         gpu_sync_bg_show(0);
         switch_obj_show_all();
-        fade_screen(0xFFFFFFFF, 0, 16, 0, 0x0000);
         super.multi_purpose_state_tracker++;
         break;
     case 3:
         if (!pal_fade_control.active) {
             switch (super.buttons_new_remapped & (KEY_A | KEY_B | KEY_DOWN | KEY_UP)) {
             case KEY_A:
+                /* Choose
+                 * You only ever get to the switch menu and press A when you need to select a Pokemon.
+                 * Need to display the confirmation text. Skipped for now TODO
+                 */
+                 fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+                 battle_master->switch_main.reason = NormalSwitch;
+                 super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_B:
+                /* Exit the switch menu, unless you are forced to make a switch option */
+                fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+                battle_master->switch_main.reason = ViewPokemon;
+                super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_DOWN:
                 if (battle_master->switch_main.position < (SWM_LOG->list_count-1)) {
@@ -460,6 +638,37 @@ void switch_scene_main()
         }
         break;
     case 5:
+        if (!pal_fade_control.active) {
+            fade_screen(0xFFFFFFFF, 0, 16, 0, 0x0000);
+        }
+        super.multi_purpose_state_tracker++;
         break;
-    }
+    case 6:
+        // free everything
+        reset_boxes();
+        free(battle_master->switch_main.sd);
+        free(battle_master->switch_main.back_buffer);
+        for (u8 i = 0; i < 10; ++i) {
+            if (battle_master->switch_main.type_objid[i] != 0x3F) {
+                obj_free(&objects[(battle_master->switch_main.type_objid[i])]);
+                battle_master->switch_main.type_objid[i] = 0x3F;
+            }
+            if ((i < SWM_LOG->list_count) && (battle_master->switch_main.icon_objid[i] < 0x3F)) {
+                obj_free(&objects[(battle_master->switch_main.icon_objid[i])]);
+                battle_master->switch_main.icon_objid[i] = 0x3F;
+            }
+            if ((i < 3) && (battle_master->switch_main.slider_objid[i] < 0x3F)) {
+                obj_free(&objects[(battle_master->switch_main.slider_objid[i])]);
+                battle_master->switch_main.slider_objid[i] = 0x3F;
+            }
+        }
+        obj_free(&objects[SWM_LOG->hpbar_id]);
+        super.multi_purpose_state_tracker++;
+        break;
+    case 7:
+        // return to battle
+        set_callback1(return_to_battle);
+        super.multi_purpose_state_tracker = 0;
+        return;
+    };
 }

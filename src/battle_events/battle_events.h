@@ -3,6 +3,7 @@
 
 enum EventStatesWildBattle {
     EventFlee = 0, // 0
+    EventPreSwitch, // 1
     EventSwitch, // 1
     EventBeforeMove, // 2
     EventMoveTargetConfig, // 3
@@ -23,6 +24,7 @@ enum EventStatesWildBattle {
     EventDamageAnim, // 18
     EventHealAnim, // 19
     EventFaint, // 20
+    EventRecallAnimation,
     EventEndAction, // 21
     EventInactive, // 22
     EventResidualEffects, // 23
@@ -31,6 +33,7 @@ enum EventStatesWildBattle {
 };
 
 extern void event_run_flee(struct action* a);
+extern void event_pre_switch(struct action* a);
 extern void event_switch(struct action* a);
 extern void event_before_move(struct action* a);
 extern void event_pre_move_hit(struct action* a);

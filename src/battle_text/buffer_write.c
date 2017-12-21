@@ -8,9 +8,7 @@ extern void dprintf(const char * str, ...);
 
 void buffer_write_pkmn_nick(pchar* buffer, u8 bank)
 {
-    memcpy(buffer, p_bank[bank]->this_pkmn->base.nick, sizeof(p_bank[bank]->this_pkmn->base.nick));
-    buffer[sizeof(p_bank[bank]->this_pkmn->base.nick)] = 0xFF;
-
+    memcpy(buffer, p_bank[bank]->b_data.name, sizeof(p_bank[bank]->b_data.name));
 }
 
 void buffer_pkmn_nick_arbitrary(pchar* buffer, u8 bank, u8 slot)

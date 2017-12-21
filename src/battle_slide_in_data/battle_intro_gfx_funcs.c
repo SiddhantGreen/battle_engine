@@ -1,12 +1,14 @@
 #include <pokeagb/pokeagb.h>
 #include "battle_obj_sliding.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../../generated/images/battle_terrains/grass/grass_entry.h"
 #include "../battle_text/battle_textbox_gfx.h"
 #include "../libgba_assets/gba_dma.h"
 
+extern void CpuFastSet(void*, void*, u32);
 /* Standard BG configuration for battle start */
 const struct BgConfig bg_config_data[4] = {
     {
@@ -80,6 +82,26 @@ void pick_and_load_battle_bgs()
     gpu_pal_apply((void*)bboxPal, 16 * 5, 32);
 }
 
+void pick_and_load_battle_bgs_no_entry(const void* textbox_map)
+{
+    /* TODO Make this change based on where you are. */
+    // copy image BG background
+    void* char_base = (void *)0x6000000;
+    void* map_base = (void *)0x600E000;
+    lz77UnCompVram((void *)grass_bgTiles, char_base);
+    lz77UnCompVram((void *)grass_bgMap, map_base);
+
+    // copy textbox image
+    char_base = (void *)0x600C000;
+    map_base = (void *)0x600F800;
+    lz77UnCompVram((void *)bboxTiles, char_base);
+
+    CpuFastSet((void*)textbox_map, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
+    // write palettes
+    gpu_pal_apply_compressed((void *)grass_bgPal, 0, 64);
+    gpu_pal_apply((void*)bboxPal, 16 * 5, 32);
+}
+
 struct Pokemon* pick_first_usable_pokemon(struct Pokemon* p, u8 party_size)
 {
     for (u8 i = 0; i < party_size; i++) {
@@ -104,9 +126,16 @@ void battle_scene_intialize_sprites()
     bs_env_windows->partner_trainer_objid = 0x3F;
     switch (battle_type_flag) {
         case BATTLE_MODE_WILD:
+            // initialize p_bank pkmn name and pointer for player
             p_bank[PLAYER_SINGLES_BANK]->this_pkmn = pick_first_usable_pokemon(&party_player[0], 6);
-            p_bank[OPPONENT_SINGLES_BANK]->this_pkmn = pick_first_usable_pokemon(&party_opponent[0], 6);
+            memcpy(p_bank[PLAYER_SINGLES_BANK]->b_data.name, p_bank[PLAYER_SINGLES_BANK]->this_pkmn->base.nick, sizeof(party_player[0].base.nick));
+            p_bank[PLAYER_SINGLES_BANK]->b_data.name[11] = 0xFF;
             p_bank[PLAYER_SINGLES_BANK]->b_data.is_active_bank = true;
+
+            // same for opponent
+            p_bank[OPPONENT_SINGLES_BANK]->this_pkmn = pick_first_usable_pokemon(&party_opponent[0], 6);
+            memcpy(p_bank[OPPONENT_SINGLES_BANK]->b_data.name, p_bank[OPPONENT_SINGLES_BANK]->this_pkmn->base.nick, sizeof(party_player[0].base.nick));
+            p_bank[OPPONENT_SINGLES_BANK]->b_data.name[11] = 0xFF;
             p_bank[OPPONENT_SINGLES_BANK]->b_data.is_active_bank = true;
             create_sprites_wild_battlers();
             break;
