@@ -125,8 +125,7 @@ enum switch_reason {
 struct switch_pokemon_data {
     u32 PID;
     u16 species;
-    u16 current_hp;
-    u16 total_hp;
+    pchar health[9];
     u8 ability;
     u16 item;
     u16 stats[5];
@@ -134,11 +133,14 @@ struct switch_pokemon_data {
     u16 move[4];
     u16 pp[4];
     pchar nickname[20];
+    pchar level[6];
+    u8 ailment_effect;
 };
 
 struct switch_data {
     u8 list_count;
     struct switch_pokemon_data s_pkmn_data[6];
+    u8 hpbar_id;
 };
 
 struct switch_menu {

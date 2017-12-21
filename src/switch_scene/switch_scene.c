@@ -9,16 +9,20 @@
 #include "../generated/images/switch/slider_bot.h"
 #include "../generated/images/switch/slider_mid.h"
 #include "../generated/images/switch/slider_top.h"
-#include "../generated/images/PSS_icons.h"
+#include "../generated/images/PSS_icons1.h"
 #include "../generated/images/battle_terrains/grass/grass_bg.h"
 #include "../generated/images/switch/switch_bg.h"
 #include "../generated/images/type_icons.h"
+#include "../generated/images/hpbox/hpbar_pieces_switch.h"
 
 extern u8 get_ability(struct Pokemon *p);
 extern const struct BgConfig bg_config_data[4];
 extern void CpuFastSet(void* src, void* dst, u32 mode);
 extern void return_to_battle(void);
 extern void reset_boxes(void);
+extern void refresh_hp(struct Pokemon* pkmn, u8 objid, u8 mode, u8 bank, u8* tiles);
+extern u8 hpbar_build_transparent(struct Pokemon* pkmn, s16 x, s16 y, u16 tag);
+extern void status_switch_menu(u8 objid, u8 ailment);
 
 const struct Frame (**nullframe)[] = (const struct Frame (**)[])0x8231CF0;
 const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (**)[])0x8231CFC;
@@ -74,6 +78,70 @@ static const struct RotscaleFrame *switch_scale_table_full[] = {
     switch_scale_full,
 };
 
+const struct BgConfig bg_config_switch_data[4] = {
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 0,
+        .palette = 0,
+        .size = 0,
+        .map_base = 29,
+        .character_base = 1,
+        .bgid = 0,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 1,
+        .palette = 0,
+        .size = 0,
+        .map_base = 28,
+        .character_base = 0,
+        .bgid = 1,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 2,
+        .palette = 0,
+        .size = 0,
+        .map_base = 30,
+        .character_base = 2,
+        .bgid = 2,
+    },
+    {
+        .padding = 0,
+        .b_padding = 0,
+        .priority = 3,
+        .palette = 0,
+        .size = 1,
+        .map_base = 31,
+        .character_base = 3,
+        .bgid = 3,
+    },
+};
+
+void str_int_padding(u8 number, u8 digits)
+{
+    /* 3 digit max support */
+    u8 space = digits;
+    u8 prefix[4] = {0xFF, 0xFF, 0xFF, 0xFF};
+    fmt_int_10(string_buffer, number, 0, 4);
+
+    // faster than div or log...
+    if (number < 10) {
+        space -= 1;
+    } else if (number < 100) {
+        space -= 2;
+    } else if (number >= 100) {
+        space -= 3;
+    }
+    for (u32 i = 0; i < space; i++) {
+        prefix[i] = 0;
+    }
+    pstrcat((pchar*)prefix, string_buffer);
+    pstrcpy(string_buffer, prefix);
+}
 
 void switch_fetch_all_data()
 {
@@ -81,15 +149,67 @@ void switch_fetch_all_data()
     struct switch_data* sd = (struct switch_data*)malloc_and_clear(sizeof(struct switch_data));
     SWM_LOG = sd;
     sd->list_count = count_pokemon();
+    u8 id = hpbar_build_transparent(&party_player[0], 184, 32, 0x58A8);
+    OBJID_HIDE(id);
+    SWM_LOG->hpbar_id = id;
+
     for (u32 i = 0; i < sd->list_count; i++) {
         // log current HP and misc data
-        sd->s_pkmn_data[i].current_hp = pokemon_getattr(&party_player[i], REQUEST_CURRENT_HP, NULL);
-        sd->s_pkmn_data[i].total_hp = pokemon_getattr(&party_player[i], REQUEST_TOTAL_HP, NULL);
         sd->s_pkmn_data[i].ability = get_ability(&party_player[i]);
         sd->s_pkmn_data[i].item = pokemon_getattr(&party_player[i], REQUEST_HELD_ITEM, NULL);
         sd->s_pkmn_data[i].species = pokemon_getattr(&party_player[i], REQUEST_SPECIES, NULL);
         sd->s_pkmn_data[i].PID = pokemon_getattr(&party_player[i], REQUEST_PID, NULL);
+
+        /* Get effect from raw status ailment */
+        u32 status = pokemon_getattr(&party_player[i], REQUEST_STATUS_AILMENT, NULL);
+        u8 ailment = 0;
+        if ((status & 7) > 0) {
+            ailment = EFFECT_SLEEP;
+        } else if (status & (1 << 3))
+            ailment = EFFECT_POISON;
+        else if (status & (1 << 4))
+            ailment = EFFECT_BURN;
+        else if (status & (1 << 5))
+            ailment = EFFECT_FREEZE;
+        else if (status & (1 << 6))
+            ailment = EFFECT_PARALYZE;
+        else if (status & (1 << 7))
+            ailment = EFFECT_BAD_POISON;
+        else
+            ailment = EFFECT_NONE;
+        sd->s_pkmn_data[i].ailment_effect = ailment;
         pokemon_getattr(&party_player[i], REQUEST_NICK, (pchar*)&sd->s_pkmn_data[i].nickname[0]);
+        pchar gender_m[] = _("{COLOR 15}{SHADOW 2}♂");
+        pchar gender_f[] = _("{COLOR 14}{SHADOW 2}♀");
+        pchar level[] = _("{LV}");
+        pchar slash[] = _("/");
+        /* Append gender symbol to string */
+        switch (pokemon_get_gender(&party_player[i])) {
+            case 0:
+                // male
+                pstrcat((pchar*)&sd->s_pkmn_data[i].nickname[0], gender_m);
+                break;
+            case 0xFE:
+                // female
+                pstrcat((pchar*)&sd->s_pkmn_data[i].nickname[0], gender_f);
+                break;
+            case 0xFF:
+                // none
+                break;
+        };
+        str_int_padding(pokemon_getattr(&party_player[i], REQUEST_CURRENT_HP, NULL), 3);
+        pstrcat(string_buffer, slash);
+        pstrcpy((pchar*)&sd->s_pkmn_data[i].health[0], string_buffer);
+
+
+        str_int_padding(pokemon_getattr(&party_player[i], REQUEST_TOTAL_HP, NULL), 3);
+        pstrcat((pchar*)&sd->s_pkmn_data[i].health[0], string_buffer);
+
+        fmt_int_10((pchar*)&sd->s_pkmn_data[i].level[0], pokemon_getattr(&party_player[i], REQUEST_LEVEL, NULL), 0, 4);
+        pstrcpy(string_buffer, level);
+        pstrcat(string_buffer, (pchar*)&sd->s_pkmn_data[i].level[0]);
+        pstrcpy((pchar*)&sd->s_pkmn_data[i].level[0], string_buffer);
+
         for (u32 j = 0; j < 5; j++) {
             // in get_attr, speed comes after Def. Here we want it as the last member
             if (j == 2) {
@@ -122,7 +242,7 @@ void switch_setup()
     bgid_mod_x_offset(1, 0, 0);
     bgid_mod_y_offset(1, 0, 0);
     gpu_tile_bg_drop_all_sets(0);
-    bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
+    bg_vram_setup(0, (struct BgConfig *)&bg_config_switch_data, 4);
     u32 set = 0;
     CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
 
@@ -149,7 +269,7 @@ void switch_load_background()
     gpu_pal_apply_compressed((void *)switch_bgPal, 0, 32);
     gpu_pal_apply((void *)(&switch_text_pal), 15 * 16, 32);
     LZ77UnCompWram((void *)switch_bgMap, (void *)sw_bgbackbuffer);
-    lz77UnCompVram((void *)switch_bgTiles, (void *)0x06008000);
+    lz77UnCompVram((void *)switch_bgTiles, (void *)0x06000000);
     bgid_set_tilemap(1, sw_bgbackbuffer);
     bgid_mark_for_sync(1);
     bgid_mark_for_sync(0);
@@ -164,7 +284,7 @@ void switch_type_update_icon(u8 objid, enum MoveTypes type)
 void switch_category_update_icon(u8 objid, u8 category)
 {
     void *vram = (void *)((0x06010000) + objects[objid].final_oam.tile_num * 32);
-    CpuFastSet((void*)((category * 128) + PSS_iconsTiles), vram, CPUModeFS(128, CPUFSCPY));
+    CpuFastSet((void*)((category * 128) + PSS_icons1Tiles), vram, CPUModeFS(128, CPUFSCPY));
 }
 
 void switch_type_icon_load(u8 type, s16 x, s16 y, u8 id)
@@ -183,7 +303,7 @@ void switch_cat_icon_load(u8 category, s16 x, s16 y, u8 id)
     if (battle_master->switch_main.type_objid[array_idx] != 0x3F) {
         switch_category_update_icon(battle_master->switch_main.type_objid[array_idx], category);
     } else {
-        battle_master->switch_main.type_objid[array_idx] = load_dmg_category_icon(category, x, y, id + 4);
+        battle_master->switch_main.type_objid[array_idx] = load_small_dmg_category_icon(category, x, y, id + 4);
     }
     OBJID_SHOW(battle_master->switch_main.type_objid[array_idx]);
 }
@@ -262,35 +382,16 @@ void switch_load_scroll_box()
     OBJID_HIDE(battle_master->switch_main.slider_objid[2]);
 }
 
-void str_int_padding(u8 number, u8 digits)
-{
-    /* 3 digit max support */
-    u8 space = digits;
-    u8 prefix[4] = {0xFF, 0xFF, 0xFF, 0xFF};
-    fmt_int_10(string_buffer, number, 0, 4);
-
-    // faster than div or log...
-    if (number < 10) {
-        space -= 1;
-    } else if (number < 100) {
-        space -= 2;
-    } else if (number >= 100) {
-        space -= 3;
-    }
-    for (u32 i = 0; i < space; i++) {
-        prefix[i] = 0;
-    }
-    pstrcat((pchar*)prefix, string_buffer);
-    pstrcpy(string_buffer, prefix);
-}
 
 void switch_load_pokemon_data(u8 index)
 {
-    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+    for (u32 i = SWB_ABILITY; i <= SWB_MAX; ++i) {
         rboxid_clear_pixels(i, 0);
     }
 
     rboxid_print(SWB_NAME, 0, 0, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].nickname[0]);
+    rboxid_print(SWB_LVL, 0, 1, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].level[0]);
+    rboxid_print(SWB_HP, 0, 1, 4, &switch_color_bg, 0, &SWM_LOG->s_pkmn_data[index].health[0]);
 
     /* print the stats */
     str_int_padding(SWM_LOG->s_pkmn_data[index].stats[0], 3);
@@ -355,7 +456,7 @@ void switch_load_pokemon_data(u8 index)
         switch_cat_icon_load(moves[move].category, 226, 84 + (14 * i), i);
     }
 
-    for (u32 i = SWB_ABILITY; i <= SWB_NAME; ++i) {
+    for (u32 i = SWB_ATK; i <= SWB_MAX; ++i) {
         rboxid_update(i, 3);
         rboxid_tilemap_update(i);
     }
@@ -376,6 +477,10 @@ void switch_load_pokemon_data(u8 index)
     } else if (battle_master->switch_main.type_objid[1] != 0x3F) {
         OBJID_HIDE(battle_master->switch_main.type_objid[1]);
     }
+
+    /* reload HP bar */
+    status_switch_menu(SWM_LOG->hpbar_id, SWM_LOG->s_pkmn_data[index].ailment_effect);
+    refresh_hp(&party_player[index], SWM_LOG->hpbar_id, 0, 0, (u8*)hpbar_pieces_switchTiles);
 }
 
 void switch_obj_hide_all()
@@ -402,6 +507,7 @@ void switch_obj_show_all()
         if (i < 3)
             OBJID_SHOW(battle_master->switch_main.slider_objid[0]);
     }
+    OBJID_SHOW(SWM_LOG->hpbar_id);
 }
 
 
@@ -548,6 +654,7 @@ void switch_scene_main()
                 battle_master->switch_main.slider_objid[i] = 0x3F;
             }
         }
+        obj_free(&objects[SWM_LOG->hpbar_id]);
         super.multi_purpose_state_tracker++;
         break;
     case 7:

@@ -108,7 +108,7 @@ void update_pbank(u8 bank, struct update_flags* flags)
 void sync_battler_struct(u8 bank)
 {
     u16 c_hp = p_bank[bank]->b_data.current_hp;
-    u8 ailment = ailment_encode(bank);
+    u32 ailment = ailment_encode(bank);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
     pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     for (u8 i = 0; i < 4; i++) {

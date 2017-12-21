@@ -18,6 +18,7 @@ extern void switch_scene_main(void);
 extern void free_unused_objs(void);
 void event_peek_message(struct action* current_action);
 void CpuFastSet(void* src, void* dst, u32 mode);
+extern void sync_battler_struct(u8 bank);
 
 /* Fight menu and move menu selection. Preperation to go into battle loop*/
 
@@ -136,6 +137,7 @@ void option_selection2()
             battle_master->switch_main.position = 0;
             battle_master->fight_menu_content_spawned  = 0;
             super.multi_purpose_state_tracker = 0;
+            sync_battler_struct(battle_master->option_selecting_bank);
             set_callback1(switch_scene_main);
             break;
         case BagOptionSelected:
