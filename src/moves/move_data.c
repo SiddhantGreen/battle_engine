@@ -2318,7 +2318,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &poison_40_procs,
     },
 
@@ -2331,7 +2331,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_SPECIAL,
     .type = MTYPE_POISON,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &poison_30_procs,
     },
 
@@ -2344,7 +2344,7 @@ struct move_data moves[] = {
     .pp = 20,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
     .flinch_chance = 10,
     },
@@ -2358,7 +2358,7 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_SPECIAL,
     .type = MTYPE_FIRE,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &burn_10_procs,
     },
 
