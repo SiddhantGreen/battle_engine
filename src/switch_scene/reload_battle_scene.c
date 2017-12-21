@@ -22,8 +22,8 @@ void return_to_battle()
         case 0:
             if (!pal_fade_control.active) {
                 gpu_tile_bg_drop_all_sets(0);
-                u32 set = 0;
-                CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
+                // u32 set = 0;
+                // CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
                 vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
                 set_callback2((SuperCallback)c2_battle);
                 bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
@@ -40,19 +40,20 @@ void return_to_battle()
             // show bgs for background and entry image
             gpu_sync_bg_show(3);
             gpu_sync_bg_show(0);
-
             // show oams
             for (u8 i = 0; i < BANK_MAX; i++) {
                 // hide pokemon OAMs
-                if (p_bank[i]->objid < 0x3F)
+                if (p_bank[i]->objid < 0x3F) {
                     OBJID_SHOW(p_bank[i]->objid);
+                    objects[p_bank[i]->objid].final_oam.h_flip = false;
+                    objects[p_bank[i]->objid].final_oam.v_flip = false;
+                }
                 // hide HP box OAMs
                 for (u8 j = 0; j < 4; j++) {
                     if (p_bank[i]->objid_hpbox[j] < 0x3F)
                         OBJID_SHOW(p_bank[i]->objid_hpbox[j]);
                 }
             }
-            OBJID_SHOW(p_bank[OPPONENT_SINGLES_BANK]->objid);
             super.multi_purpose_state_tracker++;
             break;
         case 2:
