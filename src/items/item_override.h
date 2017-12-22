@@ -1,6 +1,6 @@
 
 #ifndef ITEM_OVERRIDE_H_
-#define ITEM_ITEM_OVERRIDE_H_
+#define ITEM_OVERRIDE_H_
 
 //None
 #define ITEM_NONE 0
