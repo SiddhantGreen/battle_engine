@@ -11,6 +11,7 @@ extern void run_flee(void);
 extern bool b_pkmn_has_type(u8 bank, u8 type);
 extern u16 rand_range(u16 min, u16 max);
 extern void pkmn_recall_animation(void);
+extern void sync_battler_struct(u8 bank);
 
 bool bank_trapped(u8 bank)
 {
@@ -24,11 +25,6 @@ bool bank_trapped(u8 bank)
 
 
 /* Event switch related */
-void switch_battler(u8 switching_bank)
-{
-
-}
-
 void move_on_switch_cb(u8 attacker)
 {
     u16 move = CURRENT_MOVE(attacker);
@@ -58,16 +54,13 @@ void run_after_switch(u8 attacker)
     }
 }
 
-void pre_switch_battler(u8 switching_bank)
-{
-    // switch message
-    move_on_switch_cb(ACTION_BANK);
-    enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
-    return;
-}
 
 void event_switch(struct action* current_action)
 {
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if ((SIDE_OF(i) == SIDE_OF(CURRENT_ACTION->action_bank)) && (ACTIVE_BANK(i)))
+            sync_battler_struct(p_bank[i]->b_data.slot);
+    }
     super.multi_purpose_state_tracker = 0;
     // the recall animation is in the switch scene folder; onlyplayer supported as of now
     set_callback1(pkmn_recall_animation);
@@ -77,7 +70,7 @@ void event_switch(struct action* current_action)
 void event_pre_switch(struct action* current_action)
 {
     move_on_switch_cb(ACTION_BANK);
-    pre_switch_battler(ACTION_BANK);
+    enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
     CURRENT_ACTION->event_state++;// = EventRecallAnimation;
 }
 

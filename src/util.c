@@ -32,6 +32,8 @@ s8 get_move_priority(u8 bank)
     u16 move = CURRENT_MOVE(bank);
 
     /* update selected move's innate priority */
+    if (B_MOVE_PRIORITY(bank))
+        return B_MOVE_PRIORITY(bank);
     s8 priority = 0;
     priority += MOVE_PRIORITY(move);
     B_MOVE_PRIORITY(bank) = priority;

@@ -106,18 +106,21 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.stockpile_uses = 0;
     p_bank[bank]->b_data.stockpile_def_boost = 0;
     p_bank[bank]->b_data.stockpile_spdef_boost = 0;
+
+    p_bank[bank]->b_data.slot = GET_SLOT_FROM_PTR((SIDE_OF(bank) ? (u32)&party_opponent[0] : (u32)&party_player[0]), (u32)p_bank[bank]->this_pkmn, sizeof(struct Pokemon));
 }
 
 
 void sync_battler_struct(u8 bank)
 {
+    struct Pokemon* p = SIDE_OF(bank) ? &party_opponent[p_bank[bank]->b_data.slot] : &party_player[p_bank[bank]->b_data.slot];
     u16 c_hp = p_bank[bank]->b_data.current_hp;
     u32 ailment = ailment_encode(bank);
-    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, &c_hp);
-    pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
+    pokemon_setattr(p, REQUEST_CURRENT_HP, &c_hp);
+    pokemon_setattr(p, REQUEST_STATUS_AILMENT, &ailment);
     for (u8 i = 0; i < 4; i++) {
         u8 pp = B_GET_MOVE_PP(bank, i);
-        pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_PP1 + i, &pp);
+        pokemon_setattr(p, REQUEST_PP1 + i, &pp);
     }
 }
 

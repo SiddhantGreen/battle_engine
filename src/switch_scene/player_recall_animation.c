@@ -156,7 +156,7 @@ void pkmn_recall_animation()
 {
     switch (battle_master->switch_main.reason) {
         case ViewPokemon:
-            dprintf("Reason ViewPokemon given for switch into battle.");
+            dprintf("Reason ViewPokemon given for switch into battle. Executing normal switch.");
         case NormalSwitch:
             super.multi_purpose_state_tracker = 0;
             set_callback1(pkmn_player_normal_switch);
