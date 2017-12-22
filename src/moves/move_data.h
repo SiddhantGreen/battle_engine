@@ -271,7 +271,8 @@ extern u8 heal_pulse_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_
 extern u8 self_destruct_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern void pursuit_on_basepower(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void pursuit_on_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;

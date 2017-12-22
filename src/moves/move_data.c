@@ -3712,6 +3712,8 @@ struct move_data moves[] = {
     .type = MTYPE_DARK,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .before_turn = pursuit_on_before_turn,
+    .on_base_power_move = pursuit_on_basepower,
     },
 
     {
