@@ -52,6 +52,17 @@ void option_selection(u8 bank)
     super.multi_purpose_state_tracker = BaseMenuInitialize;
 }
 
+void jump_switch_menu(enum switch_reason reason)
+{
+    fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+    free_unused_objs();
+    battle_master->switch_main.position = 0;
+    battle_master->fight_menu_content_spawned  = 0;
+    battle_master->switch_main.reason = reason;
+    super.multi_purpose_state_tracker = 0;
+    sync_battler_struct(battle_master->option_selecting_bank);
+    set_callback1(switch_scene_main);
+}
 
 void option_selection2()
 {
@@ -132,13 +143,7 @@ void option_selection2()
             }
         case SwitchOptionSelected:
             // POKEMON selection from fight menu
-            fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
-            free_unused_objs();
-            battle_master->switch_main.position = 0;
-            battle_master->fight_menu_content_spawned  = 0;
-            super.multi_purpose_state_tracker = 0;
-            sync_battler_struct(battle_master->option_selecting_bank);
-            set_callback1(switch_scene_main);
+            jump_switch_menu(ViewPokemon);
             break;
         case BagOptionSelected:
             // BAG selected from fight menu

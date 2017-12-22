@@ -39,7 +39,7 @@ void event_residual_effects(struct action* current_action)
                         battle_master->bank_state = 0;
                     } else {
                         CB_EXEC_INDEX++;
-                        if (CB_EXEC_ORDER[CB_EXEC_INDEX] == ANON_CB_MAX)
+                        if ((CB_EXEC_ORDER[CB_EXEC_INDEX] == ANON_CB_MAX) || (CB_EXEC_ORDER[CB_EXEC_INDEX - 1] == ANON_CB_MAX))
                             end_action(CURRENT_ACTION);
                         battle_master->bank_state = 0;
                     }

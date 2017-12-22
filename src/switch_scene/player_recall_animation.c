@@ -55,7 +55,14 @@ void pkmn_recall_cb(struct Object* obj)
     obj->priv[0]++;
 }
 
-void pkmn_recall_animation()
+
+void pkmn_player_sendout_only()
+{
+
+}
+
+
+void pkmn_player_normal_switch()
 {
     switch (super.multi_purpose_state_tracker) {
         case 0:
@@ -141,5 +148,25 @@ void pkmn_recall_animation()
                 set_callback1(battle_loop);
             }
             break;
+    };
+}
+
+
+void pkmn_recall_animation()
+{
+    switch (battle_master->switch_main.reason) {
+        case ViewPokemon:
+            dprintf("Reason ViewPokemon given for switch into battle.");
+        case NormalSwitch:
+            super.multi_purpose_state_tracker = 0;
+            set_callback1(pkmn_player_normal_switch);
+            return;
+        case ForcedSwitch:
+            /* TODO */
+            break;
+        case PokemonFainted:
+            super.multi_purpose_state_tracker = 2;
+            set_callback1(pkmn_player_normal_switch);
+            return;
     };
 }

@@ -601,7 +601,8 @@ void switch_scene_main()
                  * Need to display the confirmation text. Skipped for now TODO
                  */
                  fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
-                 battle_master->switch_main.reason = NormalSwitch;
+                 if (battle_master->switch_main.reason == ViewPokemon)
+                    battle_master->switch_main.reason = NormalSwitch;
                  super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_B:

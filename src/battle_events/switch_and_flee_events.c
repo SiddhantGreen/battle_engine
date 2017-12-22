@@ -81,12 +81,6 @@ void event_pre_switch(struct action* current_action)
     CURRENT_ACTION->event_state++;// = EventRecallAnimation;
 }
 
-void event_switch_animation(struct action* current_action)
-{
-
-}
-
-
 
 /* Event flee related */
 bool can_flee_by_random(u8 bank)

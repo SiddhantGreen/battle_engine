@@ -5,6 +5,7 @@
 #include "../battle_data/battle_state.h"
 #include "../battle_text/battle_textbox_gfx.h"
 
+extern void battle_loop(void);
 extern void c2_battle(void);
 extern void vblank_cb_merge_tbox(void);
 extern const struct BgConfig bg_config_data[4];
@@ -29,9 +30,9 @@ void return_to_battle()
                 bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
                 rbox_init_from_templates((struct TextboxTemplate*)0x8248330);
                 if (battle_master->switch_main.reason == ViewPokemon)
-                    pick_and_load_battle_bgs_no_entry(battle_textboxMap);
-                else
                     pick_and_load_battle_bgs_no_entry(battle_textbox_action_selectMap);
+                else
+                    pick_and_load_battle_bgs_no_entry(battle_textboxMap);
                 super.multi_purpose_state_tracker++;
             }
             break;
@@ -60,14 +61,30 @@ void return_to_battle()
             if (pal_fade_control.active) return;
             super.multi_purpose_state_tracker++;
         case 3:
-            if (battle_master->switch_main.reason != ViewPokemon) {
-                p_bank[PLAYER_SINGLES_BANK]->b_data.is_switching = true;
-                p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
-                set_callback1(validate_player_selected_move);
-            } else {
-                option_selection(0);
-            }
-            super.multi_purpose_state_tracker = 0;
+            switch (battle_master->switch_main.reason) {
+                case ViewPokemon:
+                    option_selection(0);
+                    return;
+                case NormalSwitch:
+                    p_bank[PLAYER_SINGLES_BANK]->b_data.is_switching = true;
+                    p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
+                    super.multi_purpose_state_tracker = 0;
+                    set_callback1(validate_player_selected_move);
+                    return;
+                case ForcedSwitch:
+                    /* TODO */
+                    break;
+                case PokemonFainted:
+                    p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
+                    super.multi_purpose_state_tracker = 0;
+                    CURRENT_ACTION->event_state++;
+                    set_callback1(battle_loop);
+                    return;
+            };
+            dprintf("INVALID SWITCH REASON WAS GIVEN\n");
+            super.multi_purpose_state_tracker++;
+            break;
+        case 4:
             break;
     };
 
