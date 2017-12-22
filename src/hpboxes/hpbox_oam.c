@@ -220,7 +220,6 @@ void draw_level(struct Pokemon* pkmn, u8 tile_id, u8 objid)
 
 void status_graphical_update(u8 bank, enum Effect status)
 {
-    bool create = false;
     u16 tag = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_TAG_OPP_SINGLE : HPBOX_STATUS_TAG_PLAYER_SINGLE);
     u16 x = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_OPP_SINGLE_X : HPBOX_STATUS_PLAYER_SINGLE_X);
     u16 y = ((SIDE_OF(bank) > 0) ? HPBOX_STATUS_OPP_SINGLE_Y : HPBOX_STATUS_PLAYER_SINGLE_Y);
@@ -229,47 +228,37 @@ void status_graphical_update(u8 bank, enum Effect status)
     {
         case EFFECT_NONE:
         case EFFECT_CURE:
-            if(p_bank[bank]->objid_hpbox[3] < 0x3F) {
-                obj_delete_and_free(&objects[p_bank[bank]->objid_hpbox[3]]);
-                p_bank[bank]->objid_hpbox[3] = 0x3F;
-            }
+            image += 1088 + 6 * 96;
             return;
         case EFFECT_PARALYZE:
-            create = true;
             image += 1088 + 1 * 96;
         break;
         case EFFECT_BURN:
-            create = true;
             image += 1088 + 4 * 96;
         break;
         case EFFECT_POISON:
-            create = true;
             image += 1088 + 0 * 96;
             break;
         case EFFECT_BAD_POISON:
-            create = true;
             image += 1088 + 5 * 96;
             break;
         case EFFECT_SLEEP:
-            create = true;
             image += 1088 + 2 * 96;
         break;
         case EFFECT_FREEZE:
-			create = true;
             image += 1088 + 3 * 96;
             break;
         default:
             break;
 
     }
-    if (create) {
-        if (p_bank[bank]->objid_hpbox[3] >= 0x3F) {
-            /* the object does not exist, create it */
-            struct SpriteTiles status_tiles = {(void*)empty_barTiles, 128, tag};
-            gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);
-            struct Template status_temp = {tag, HPBAR_OS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
-            p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, x, y, 0);
-        }
+    if (p_bank[bank]->objid_hpbox[3] >= 0x3F) {
+        /* the object does not exist, create it */
+        struct SpriteTiles status_tiles = {(void*)empty_barTiles, 128, tag};
+        gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);
+        struct Template status_temp = {tag, HPBAR_OS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
+        p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, x, y, 0);
+    } else {
         void* vram_address = (void*)((objects[p_bank[bank]->objid_hpbox[3]].final_oam.tile_num * 32) + 0x06010000);
         memcpy(vram_address, image, 32 * 3);
     }
@@ -369,6 +358,23 @@ u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank)
     draw_level(p_bank[bank]->this_pkmn, LVL_PS_OFFSET, objid_main);
     draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, objid_main, 0, 0);
     p_bank[bank]->objid_hpbox[2] = hpbar_build_full(p_bank[bank]->this_pkmn, HPBAR_PS_X, HPBAR_PS_Y, HPBAR_PS_TAG);
+    u32 ailment = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL);
+    u8 status = 0;
+    if ((ailment & 7) > 0) {
+        status = EFFECT_SLEEP;
+    } else if (ailment & (1 << 3))
+        status = EFFECT_POISON;
+    else if (ailment & (1 << 4))
+        status = EFFECT_BURN;
+    else if (ailment & (1 << 5))
+        status = EFFECT_FREEZE;
+    else if (ailment & (1 << 6))
+        status = EFFECT_PARALYZE;
+    else if (ailment & (1 << 7))
+        status = EFFECT_BAD_POISON;
+    else
+        status = EFFECT_NONE;
+    status_graphical_update(bank, status);
     return 0;
 }
 
@@ -396,6 +402,7 @@ void player_hpbar_slidin_slow(u8 t_id)
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[0]].pos1.x -= 4;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[1]].pos1.x -= 4;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x -= 4;
+    objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[3]].pos1.x -= 4;
 }
 
 void spawn_hpboxes_wild(void)
@@ -409,6 +416,7 @@ void spawn_hpboxes_wild(void)
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[0]].pos1.x += 128;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[1]].pos1.x += 128;
     objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[2]].pos1.x += 128;
+    objects[p_bank[PLAYER_SINGLES_BANK]->objid_hpbox[3]].pos1.x += 128;
 }
 
 
@@ -482,11 +490,8 @@ void status_switch_menu(u8 objid, u8 ailment)
             break;
     };
     void* vram_address = (void*)((objects[objid].final_oam.tile_num * 32) + 0x06010000 + (32 * 8));
-    if (setflag) {
-        //u8 zero = 0;
-        //CpuFastSet(&zero, vram_address, CPUModeFS(96, CPUFSSET));
+    if (setflag)
         memset(vram_address, 0, 96);
-    } else {
+    else
         memcpy(vram_address, image, 32 * 3);
-    }
 }

@@ -250,7 +250,7 @@ void switch_setup()
     for (u8 i = 0; i < BANK_MAX; i++) {
         //  pokemon OAMs
         if (p_bank[i]->objid < 0x3F)
-            OBJID_HIDE(p_bank[0]->objid);
+            OBJID_HIDE(p_bank[i]->objid);
         // hide HP box OAMs
         for (u8 j = 0; j < 4; j++) {
             if (p_bank[i]->objid_hpbox[j] < 0x3F)
@@ -386,7 +386,6 @@ void switch_load_scroll_box()
 void switch_load_pokemon_data(u8 index)
 {
     REG_DISPCNT = 0x7260;
-    OBJID_HIDE(SWM_LOG->hpbar_id);
     for (u32 i = SWB_ABILITY; i <= SWB_MAX; ++i) {
         rboxid_clear_pixels(i, 0);
     }
@@ -482,7 +481,6 @@ void switch_load_pokemon_data(u8 index)
     }
 
     /* reload HP bar */
-    OBJID_SHOW(SWM_LOG->hpbar_id);
     status_switch_menu(SWM_LOG->hpbar_id, SWM_LOG->s_pkmn_data[index].ailment_effect);
     refresh_hp(&party_player[index], SWM_LOG->hpbar_id, 0, 0, (u8*)hpbar_pieces_switchTiles);
 
@@ -523,9 +521,11 @@ void switch_update_graphical(u8 cursor_position)
         if (i != cursor_position) {
             objects[battle_master->switch_main.icon_objid[i]].rotscale_table = switch_scale_table;
             objects[battle_master->switch_main.icon_objid[i]].callback = oac_nullsub;
+            obj_rotscale_play(&objects[battle_master->switch_main.icon_objid[i]], 0);
         } else {
             objects[battle_master->switch_main.icon_objid[i]].rotscale_table = switch_scale_table_full;
             objects[battle_master->switch_main.icon_objid[i]].callback = icon_frame_change;
+            obj_rotscale_play(&objects[battle_master->switch_main.icon_objid[i]], 0);
         }
     }
 
@@ -572,6 +572,7 @@ void switch_scene_main()
             rboxes_free();
             switch_setup();
             switch_fetch_all_data();
+            rotscale_reset();
             super.multi_purpose_state_tracker++;
         }
         break;
@@ -600,7 +601,8 @@ void switch_scene_main()
                  * Need to display the confirmation text. Skipped for now TODO
                  */
                  fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
-                 battle_master->switch_main.reason = NormalSwitch;
+                 if (battle_master->switch_main.reason == ViewPokemon)
+                    battle_master->switch_main.reason = NormalSwitch;
                  super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_B:

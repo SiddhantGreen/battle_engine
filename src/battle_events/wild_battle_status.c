@@ -10,6 +10,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void dprintf(const char * str, ...);
 extern void give_exp(u8 fainted, u8 reciever);
+extern void jump_switch_menu(enum switch_reason reason);
 
 
 void wild_battle_status_update(struct action* current_action)
@@ -25,8 +26,10 @@ void wild_battle_status_update(struct action* current_action)
             if ((species < SPECIES_MAX) && (species > SPECIES_MISSINGNO) &&
              (!is_egg) && (current_hp > 0)) {
                 // TODO: force pick of a switch-in
-                CURRENT_ACTION->event_state = EventEndBattle;
-                dprintf("should force a switch\n");
+                CURRENT_ACTION->event_state = EventPreSwitch;
+                CURRENT_ACTION->active_override = true;
+                CURRENT_ACTION->action_bank = PLAYER_SINGLES_BANK;
+                jump_switch_menu(PokemonFainted);
                 //end_action(CURRENT_ACTION);
                 return;
             }

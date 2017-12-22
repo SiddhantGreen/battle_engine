@@ -24,7 +24,6 @@ enum EventStatesWildBattle {
     EventDamageAnim, // 18
     EventHealAnim, // 19
     EventFaint, // 20
-    EventRecallAnimation,
     EventEndAction, // 21
     EventInactive, // 22
     EventResidualEffects, // 23
