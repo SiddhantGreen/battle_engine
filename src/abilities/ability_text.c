@@ -2,7 +2,7 @@
 
 // ABILITIES NAMES
 
-pchar all_abilities_names[][13] = {
+pchar ability_names[][13] = {
     _("-------"),
     _("Stench"),
     _("Drizzle"),
@@ -473,7 +473,7 @@ pchar des_neuroforce[] = _("Supereffective moves power increased");
 
 
 // THE DESCRIPTION POINTER TABLE
-void* Description_table_new[] =
+void* ability_descriptions[] =
 {
     &des_no_ability,
     &des_Stench,
