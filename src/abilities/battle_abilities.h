@@ -34,7 +34,7 @@ struct ability_data {
 };
 
 extern struct ability_data abilities[];
-
+extern const pchar ability_names[][17];
 /* Callback externs */
 extern u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
