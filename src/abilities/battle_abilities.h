@@ -5,6 +5,7 @@
 #include "battle_data/pkmn_bank.h"
 #include "battle_data/battle_state.h"
 #include "moves/moves.h"
+#include "ability_override.h"
 
 typedef u8 (*AbilityBeforeTurn)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityBeforeSwitchOutCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);

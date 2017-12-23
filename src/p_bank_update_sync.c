@@ -6,7 +6,8 @@ extern void ailment_decode(u8 bank, u8 ailment);
 extern u8 ailment_encode(u8 bank);
 extern u8 get_ability(struct Pokemon* p);
 extern void status_graphical_update(u8 bank, enum Effect status);
-
+extern const u8 player_ability;
+extern const u8 opponent_ability;
 
 void update_pbank(u8 bank, struct update_flags* flags)
 {
@@ -21,7 +22,13 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.gender = pokemon_get_gender(p_bank[bank]->this_pkmn);
     p_bank[bank]->b_data.current_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, NULL);;
     p_bank[bank]->b_data.total_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_TOTAL_HP, NULL);;
-    p_bank[bank]->b_data.ability = get_ability(p_bank[bank]->this_pkmn);
+
+    if (SIDE_OF(bank))
+        p_bank[bank]->b_data.ability = opponent_ability;
+    else
+        p_bank[bank]->b_data.ability = player_ability;
+    //get_ability(p_bank[bank]->this_pkmn);
+
     p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
     p_bank[bank]->b_data.level = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_LEVEL, NULL);
     p_bank[bank]->b_data.poke_ball = 0;
