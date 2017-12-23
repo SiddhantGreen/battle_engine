@@ -273,6 +273,10 @@ extern u8 after_you_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback*
 extern u8 quash_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void pursuit_on_basepower(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void pursuit_on_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 role_play_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 skill_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gastro_acid_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 worry_seed_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
