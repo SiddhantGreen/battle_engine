@@ -37,7 +37,8 @@ struct ability_data abilities[] = {
 		// DAMP
 	},
 	{
-		// LIMBER
+		// Limber
+		.on_status = ability_limber_on_status,
 	},
 	{
 		// SANDVEIL
@@ -61,13 +62,15 @@ struct ability_data abilities[] = {
 		// COMPOUNDEYES
 	},
 	{
-		// INSOMNIA
+		// Insomnia
+		.on_status = ability_insomnia_on_status,
 	},
 	{
 		// COLORCHANGE
 	},
 	{
-		// IMMUNITY
+		// Immunity
+		.on_status = ability_immunity_on_status,
 	},
 	{
 		// FLASHFIRE
@@ -137,9 +140,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MAGMAARMOR
+		.on_status = ability_magmaarmor_on_status,
 	},
 	{
 		// WATERVEIL
+		.on_status = ability_waterveil_on_status,
 	},
 	{
 		// MAGNETPULL
@@ -232,7 +237,8 @@ struct ability_data abilities[] = {
 		// ARENATRAP
 	},
 	{
-		// VITALSPIRIT
+		// Vital Spirit
+		.on_status = ability_vitalspirit_on_status,
 	},
 	{
 		// WHITESMOKE
