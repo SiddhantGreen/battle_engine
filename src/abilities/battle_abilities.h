@@ -32,4 +32,8 @@ struct ability_data {
 
 extern struct ability_data abilities[];
 
+/* Callback externs */
+extern u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+
+
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
