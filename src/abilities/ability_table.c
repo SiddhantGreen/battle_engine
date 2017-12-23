@@ -18,7 +18,7 @@ struct ability_data abilities[] = {
         .on_modify_move = NULL,
         .on_tryhit = NULL,
         .on_base_power = NULL,
-        .on_damage = NULL.
+        .on_damage = NULL,
         .on_effect = ability_none_on_effect,
         .on_after_move = NULL,
 	},
