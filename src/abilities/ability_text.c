@@ -1,8 +1,8 @@
 #include <pokeagb/pokeagb.h>
 
-// ABILITIES NAMES
+//Abilities Name
 
-pchar ability_names[][13] = {
+pchar ability_names[][16] = {
     _("-------"),
     _("Stench"),
     _("Drizzle"),
@@ -17,7 +17,7 @@ pchar ability_names[][13] = {
     _("Water Absorb"),
     _("Oblivious"),
     _("Cloud Nine"),
-    _("Compoundeyes"),
+    _("Compound Eyes"),
     _("Insomnia"),
     _("Color Change"),
     _("Immunity"),
@@ -34,7 +34,7 @@ pchar ability_names[][13] = {
     _("Synchronize"),
     _("Clear Body"),
     _("Natural Cure"),
-    _("Lightningrod"),
+    _("Lightning Rod"),
     _("Serene Grace"),
     _("Swift Swim"),
     _("Chlorophyll"),
@@ -197,7 +197,7 @@ pchar ability_names[][13] = {
     _("Delta Stream"),
     _("Stamina"),
     _("Wimp Out"),
-    _("Emergncy Ext"),
+    _("Emergency Exit"),
     _("WtrCompacton"),
     _("Merciless"),
     _("Shields Down"),
@@ -214,10 +214,10 @@ pchar ability_names[][13] = {
     _("Schooling"),
     _("Disguise"),
     _("Battle Bond"),
-    _("PwrConstrct"),
+    _("Power Constrct"),
     _("Corrosion"),
     _("Comatose"),
-    _("QunlyMajesty"),
+    _("Queenly Majesty"),
     _("Innards Out"),
     _("Dancer"),
     _("Battery"),
@@ -226,15 +226,15 @@ pchar ability_names[][13] = {
     _("Soul-Heart"),
     _("Tanglng Hair"),
     _("Receiver"),
-    _("PwrofAlchemy"),
+    _("Power of Alchemy"),
     _("Beast Boost"),
     _("RKS System"),
-    _("ElectrcSurge"),
-    _("PsychicSurge"),
+    _("Electric Surge"),
+    _("Psychic Surge"),
     _("Misty Surge"),
     _("Grassy Surge"),
-    _("FulMetalBody"),
-    _("ShadowShield"),
+    _("Full Metal Body"),
+    _("Shadow Shield"),
     _("Prism Armor"),
     _("Neuroforce")
 };
