@@ -2,7 +2,7 @@
 
 //Abilities Name
 
-pchar ability_names[][16] = {
+pchar ability_names[][17] = {
     _("-------"),
     _("Stench"),
     _("Drizzle"),

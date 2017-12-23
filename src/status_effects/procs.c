@@ -169,6 +169,12 @@ void set_status(u8 bank, enum Effect status)
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
 
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u8 ability = p_bank[i]->b_data.ability;
+        if ((abilities[ability].on_status) && (ACTIVE_BANK(i)))
+            add_callback(CB_ON_STATUS, 0, 0, i, (u32)abilities[ability].on_status);
+    }
+
     // execute cbs
     build_execution_order(CB_ON_STATUS);
     battle_master->executing = true;

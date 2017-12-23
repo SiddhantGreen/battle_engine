@@ -17,6 +17,7 @@ typedef u8 (*AbilityOnBasePowerCallback)(u8 user, u8 source, u16 move, struct an
 typedef u8 (*AbilityOnDamageCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnEffectCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 struct ability_data {
     AbilityBeforeTurn before_turn;
@@ -29,6 +30,7 @@ struct ability_data {
     AbilityOnDamageCallback on_damage;
     AbilityOnEffectCallback on_effect;
     AbilityOnAfterMoveCallback on_after_move;
+    AbilityOnStatusCallback on_status;
 };
 
 extern struct ability_data abilities[];

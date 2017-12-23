@@ -6,16 +6,17 @@
 struct ability_data abilities[] = {
 	{
 		// None - Example
-        .before_turn = NULL,
-        .before_switch = NULL,
-        .before_move = NULL,
-        .on_fail = NULL,
-        .on_modify_move = NULL,
-        .on_tryhit = NULL,
-        .on_base_power = NULL,
-        .on_damage = NULL,
-        .on_effect = ability_none_on_effect,
-        .on_after_move = NULL,
+		.before_turn = NULL,
+		.before_switch = NULL,
+		.before_move = NULL,
+		.on_fail = NULL,
+		.on_modify_move = NULL,
+		.on_tryhit = NULL,
+		.on_base_power = NULL,
+		.on_damage = NULL,
+		.on_effect = ability_none_on_effect,
+		.on_after_move = NULL,
+		.on_status = NULL,
 	},
 	{
 		// STENCH
