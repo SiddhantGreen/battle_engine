@@ -3,6 +3,7 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../moves/moves.h"
 #include "battle_pick_message.h"
+#include "../abilities/battle_abilities.h"
 
 extern void dprintf(const char * str, ...);
 
@@ -34,7 +35,7 @@ void buffer_write_move_name(pchar* buffer, u16 move_id)
 
 void buffer_write_ability_name(pchar* buffer, u8 ability)
 {
-    pstrcpy(buffer, pokemon_ability_names[ability]);
+    pstrcpy(buffer, ability_names[ability]);
 }
 
 void buffer_write_move_type(pchar* buffer, u16 move)
