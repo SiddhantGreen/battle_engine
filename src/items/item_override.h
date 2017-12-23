@@ -1,5 +1,5 @@
-#ifndef ITEM_OVERRIDEH
-#define ITEM_OVERRIDEH
+#ifndef ITEM_OVERRIDE_H_
+#define ITEM_OVERRIDE_H_
 
 #define ITEM_NONE 0
 #define ITEM_POKEDOLL 63
@@ -248,4 +248,4 @@
 #define ITEM_DARKMEMORY 919
 #define ITEM_FAIRYMEMORY 920
 
-#endif /* ITEM_OVERRIDEH */
+#endif /* ITEM_OVERRIDE_H_ */
