@@ -2,7 +2,7 @@
 
 //Abilities Name
 
-pchar ability_names[][17] = {
+const pchar ability_names[][17] = {
     _("-------"),
     _("Stench"),
     _("Drizzle"),
