@@ -89,6 +89,7 @@ enum Volatiles {
     VOLATILE_DIVE,
     VOLATILE_DIG,
     VOLATILE_FOCUS_ENERGY,
+    VOLATILE_GASTRO_ACID,
 };
 
 

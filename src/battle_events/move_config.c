@@ -5,6 +5,7 @@
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
 #include "battle_events/battle_events.h"
+#include "../abilities/battle_abilities.h"
 
 extern u16 rand_range(u16 min, u16 max);
 extern void dprintf(const char * str, ...);
@@ -79,10 +80,15 @@ void add_bank_move_actions()
         }
     }
     sort_active_banks(&active_banks[0], index);
-    /* Before move callbacks */
+    /* Before turn callbacks */
     for (u8 i = 0; i < 4; i++) {
         battle_master->bank_order[i] = active_banks[i];
         if (active_banks[i] == 0x3F) continue;
+        // add ability specific cbs
+        u8 ability = p_bank[i]->b_data.ability;
+        if (abilities[ability].before_turn)
+            add_callback(CB_ON_BEFORE_TURN, 0, 0, active_banks[i], (u32)abilities[ability].before_turn);
+
         u16 move = CURRENT_MOVE(active_banks[i]);
         if (moves[move].before_turn)
             add_callback(CB_ON_BEFORE_TURN, 0, 0, active_banks[i], (u32)moves[move].before_turn);

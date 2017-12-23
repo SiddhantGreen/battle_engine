@@ -3,6 +3,7 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
+#include "../abilities/battle_abilities.h"
 #include "../battle_text/battle_pick_message.h"
 #include "battle_events/battle_events.h"
 
@@ -13,6 +14,12 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 
 bool on_modify_move(u8 attacker, u8 defender, u16 move)
 {
+    // add ability specific cbs
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u8 ability = p_bank[i]->b_data.ability;
+        if ((abilities[ability].on_modify_move) && (ACTIVE_BANK(i)))
+            add_callback(CB_ON_MODIFY_MOVE, 0, 0, i, (u32)abilities[ability].on_modify_move);
+    }
     // add callbacks specific to field
     if (moves[move].on_modify_move) {
         add_callback(CB_ON_MODIFY_MOVE, 0, 0, attacker, (u32)moves[move].on_modify_move);
