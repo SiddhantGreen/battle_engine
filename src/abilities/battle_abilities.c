@@ -30,7 +30,7 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_PARALYZE) {
+    if (ailment == AILMENT_PARALYZE) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
    	return false;
@@ -56,7 +56,7 @@ u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_c
 u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_SLEEP) {
+    if (ailment == AILMENT_SLEEP) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
 	return false;
@@ -70,7 +70,7 @@ u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous
 u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_POISON) {
+    if (ailment == AILMENT_POISON) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
 	return false;
@@ -126,7 +126,7 @@ u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous
 u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_FREEZE) {
+    if (ailment == AILMENT_FREEZE) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
 	return false;
@@ -138,7 +138,7 @@ u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymo
 u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_BURN) {
+    if (ailment == AILMENT_BURN) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
 	return false;
@@ -210,7 +210,7 @@ u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymou
 u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
-    if (ailment  == AILMENT_SLEEP) {
+    if (ailment == AILMENT_SLEEP) {
 	ailment  = AILMENT_NONE;
 	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
 	return false;
