@@ -10,7 +10,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 // None
 u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {	
-    // just an example
+    // This is just an example
     return true;
 }
 
