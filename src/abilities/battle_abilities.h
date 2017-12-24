@@ -38,11 +38,11 @@ extern const pchar ability_names[][17];
 
 /* Callback externs */
 extern u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
-extern u8 ability_limber_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
-extern u8 ability_insomnia_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
-extern u8 ability_immunity_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
-extern u8 ability_waterveil_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
-extern u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
-extern u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb);
+extern u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
