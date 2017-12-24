@@ -16,6 +16,7 @@ extern void option_selection(u8 bank);
 extern void handlers_clear(void);
 extern void reset_bg_settings(void);
 extern void validate_player_selected_move(void);
+extern void set_active_movement(u8 tid);
 
 void return_to_battle()
 {
@@ -43,13 +44,13 @@ void return_to_battle()
             gpu_sync_bg_show(0);
             // show oams
             for (u8 i = 0; i < BANK_MAX; i++) {
-                // hide pokemon OAMs
+                // show pokemon OAMs
                 if (p_bank[i]->objid < 0x3F) {
                     OBJID_SHOW(p_bank[i]->objid);
                     objects[p_bank[i]->objid].final_oam.h_flip = false;
                     objects[p_bank[i]->objid].final_oam.v_flip = false;
                 }
-                // hide HP box OAMs
+                // show HP box OAMs
                 for (u8 j = 0; j < 4; j++) {
                     if (p_bank[i]->objid_hpbox[j] < 0x3F)
                         OBJID_SHOW(p_bank[i]->objid_hpbox[j]);
@@ -63,13 +64,17 @@ void return_to_battle()
         case 3:
             switch (battle_master->switch_main.reason) {
                 case ViewPokemon:
+                    tasks[task_add(set_active_movement, 1)].priv[0] = battle_master->option_selecting_bank;
                     option_selection(0);
                     return;
                 case NormalSwitch:
+                    tasks[task_add(set_active_movement, 1)].priv[0] = battle_master->option_selecting_bank;
                     p_bank[PLAYER_SINGLES_BANK]->b_data.is_switching = true;
                     p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
                     super.multi_purpose_state_tracker = 0;
-                    set_callback1(validate_player_selected_move);
+                    validate_player_selected_move();
+                    end_action(CURRENT_ACTION);
+                    set_callback1(battle_loop);
                     return;
                 case ForcedSwitch:
                     /* TODO */

@@ -65,8 +65,10 @@ void run_after_switch(u8 attacker)
 void event_switch(struct action* current_action)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if ((SIDE_OF(i) == SIDE_OF(CURRENT_ACTION->action_bank)) && (ACTIVE_BANK(i)))
-            sync_battler_struct(p_bank[i]->b_data.slot);
+        if (ACTIVE_BANK(i)) {
+            dprintf("sync %d\n", i);
+            sync_battler_struct(i);
+        }
     }
     super.multi_purpose_state_tracker = 0;
     // the recall animation is in the switch scene folder; onlyplayer supported as of now
@@ -78,7 +80,7 @@ void event_pre_switch(struct action* current_action)
 {
     move_on_switch_cb(ACTION_BANK);
     enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
-    CURRENT_ACTION->event_state++;// = EventRecallAnimation;
+    CURRENT_ACTION->event_state++;
 }
 
 

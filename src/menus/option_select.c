@@ -16,9 +16,10 @@ extern void dprintf(const char * str, ...);
 extern void option_selection2(void);
 extern void switch_scene_main(void);
 extern void free_unused_objs(void);
-void event_peek_message(struct action* current_action);
-void CpuFastSet(void* src, void* dst, u32 mode);
+extern void event_peek_message(struct action* current_action);
+extern void CpuFastSet(void* src, void* dst, u32 mode);
 extern void sync_battler_struct(u8 bank);
+extern void set_active_movement(u8 task_id);
 
 /* Fight menu and move menu selection. Preperation to go into battle loop*/
 
@@ -55,6 +56,7 @@ void option_selection(u8 bank)
 void jump_switch_menu(enum switch_reason reason)
 {
     fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+    task_del(task_find_id_by_functpr(set_active_movement));
     free_unused_objs();
     battle_master->switch_main.position = 0;
     battle_master->fight_menu_content_spawned  = 0;

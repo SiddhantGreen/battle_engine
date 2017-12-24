@@ -35,7 +35,7 @@ void buffer_write_move_name(pchar* buffer, u16 move_id)
 
 void buffer_write_ability_name(pchar* buffer, u8 ability)
 {
-    pstrcpy(buffer, ability_names[ability]);
+    pstrcpy(buffer, &ability_names[ability][0]);
 }
 
 void buffer_write_move_type(pchar* buffer, u16 move)
@@ -104,7 +104,7 @@ void buffer_write_status_name(pchar* buffer, u8 status_id)
 }
 
 
-void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
+void fdecoder_battle(pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
 {
     u16 len = pstrlen(buffer);
     pchar* result = (pchar*)malloc((len < 50) ? 100 : len * 2);

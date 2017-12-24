@@ -3,13 +3,16 @@
 #include "battle_data/pkmn_bank_stats.h"
 #include "battle_data/battle_state.h"
 
+// Switch
+const static bool USE_TESTS = true; // Change to false to not execute the test environment
+
 /* Player data */
-const static u16 player_species = SPECIES_SCEPTILE;
+const static u16 player_species = SPECIES_GASTLY;
 const static u16 player_move_1 = MOVE_QUASH;
 const static u16 player_move_2 = MOVE_RECOVER;
 const static u16 player_move_3 = MOVE_ACID;
 const static u16 player_move_4 = MOVE_DRILL_PECK;
-const static u8 player_level = 65;
+const static u8 player_level = 15;
 const u8 player_ability = ABILITY_COMATOSE;
 
 /* Opponent data */
@@ -51,6 +54,8 @@ void set_side_battle_components(u8 side)
 
 void test_battle_data()
 {
-	set_side_battle_components(0);
-	set_side_battle_components(1);
+	if (USE_TESTS) {
+		set_side_battle_components(0);
+		set_side_battle_components(1);
+	}
 }
