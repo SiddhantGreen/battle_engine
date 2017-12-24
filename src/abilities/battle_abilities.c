@@ -27,7 +27,7 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 // DAMP
 	
 // Limber
-u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_PARALYZE) {
@@ -53,7 +53,7 @@ u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_c
 // COMPOUNDEYES
 	
 // Insomnia
-u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_SLEEP) {
@@ -67,7 +67,7 @@ u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous
 // COLORCHANGE
 	
 // Immunity
-u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_POISON) {
@@ -123,7 +123,7 @@ u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous
 // INNERFOCUS
 	
 // Magma Armor
-u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_FREEZE) {
@@ -135,7 +135,7 @@ u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymo
 }
 	
 // Water Veil
-u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_BURN) {
@@ -207,7 +207,7 @@ u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymou
 // ARENATRAP
 		
 // Vital Spirit
-u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
     if (user != source) return true;
     if (ailment == AILMENT_SLEEP) {
