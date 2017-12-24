@@ -29,6 +29,7 @@ void wild_battle_status_update(struct action* current_action)
                 CURRENT_ACTION->event_state = EventPreSwitch;
                 CURRENT_ACTION->active_override = true;
                 CURRENT_ACTION->action_bank = PLAYER_SINGLES_BANK;
+                battle_master->option_selecting_bank = PLAYER_SINGLES_BANK;
                 jump_switch_menu(PokemonFainted);
                 //end_action(CURRENT_ACTION);
                 return;

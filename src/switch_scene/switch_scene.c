@@ -488,7 +488,7 @@ void switch_load_pokemon_data(u8 index)
 
 void switch_obj_hide_all()
 {
-    for (u8 i = 0; i < 10; ++i) {
+    for (u8 i = 0; i < 10; i++) {
         if (battle_master->switch_main.type_objid[i] != 0x3F)
             OBJID_HIDE(battle_master->switch_main.type_objid[i]);
         if (i < SWM_LOG->list_count)
@@ -496,11 +496,12 @@ void switch_obj_hide_all()
         if (i < 3)
             OBJID_HIDE(battle_master->switch_main.slider_objid[0]);
     }
+    OBJID_HIDE(SWM_LOG->hpbar_id);
 }
 
 void switch_obj_show_all()
 {
-    for (u8 i = 0; i < 10; ++i) {
+    for (u8 i = 0; i < 10; i++) {
         if (battle_master->switch_main.type_objid[i] != 0x3F)
             OBJID_SHOW(battle_master->switch_main.type_objid[i]);
         if (i < SWM_LOG->list_count) {
@@ -565,6 +566,7 @@ void switch_update_graphical(u8 cursor_position)
 
 void switch_scene_main()
 {
+    u8 prev;
     switch (super.multi_purpose_state_tracker) {
     case 0:
         if (!pal_fade_control.active) {
@@ -593,6 +595,7 @@ void switch_scene_main()
         super.multi_purpose_state_tracker++;
         break;
     case 3:
+        prev = battle_master->switch_main.position;
         if (!pal_fade_control.active) {
             switch (super.buttons_new_remapped & (KEY_A | KEY_B | KEY_DOWN | KEY_UP)) {
             case KEY_A:
@@ -612,22 +615,20 @@ void switch_scene_main()
                 super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_DOWN:
-                if (battle_master->switch_main.position < (SWM_LOG->list_count-1)) {
+                if (battle_master->switch_main.position < (SWM_LOG->list_count-1))
                     battle_master->switch_main.position++;
-                    switch_update_graphical(battle_master->switch_main.position);
-                } else {
+                else
                     battle_master->switch_main.position = 0;
-                    switch_update_graphical(0);
-                }
+                if (prev == battle_master->switch_main.position) return;
+                switch_update_graphical(battle_master->switch_main.position);
                 break;
             case KEY_UP:
-                if (battle_master->switch_main.position > 0) {
+                if (battle_master->switch_main.position > 0)
                     battle_master->switch_main.position--;
-                    switch_update_graphical(battle_master->switch_main.position);
-                } else {
+                else
                     battle_master->switch_main.position = SWM_LOG->list_count - 1;
-                    switch_update_graphical(battle_master->switch_main.position);
-                }
+                if (prev == battle_master->switch_main.position) return;
+                switch_update_graphical(battle_master->switch_main.position);
                 break;
             default:
                 break;
@@ -635,9 +636,7 @@ void switch_scene_main()
         }
         break;
     case 4:
-        if (!pal_fade_control.active) {
-            fade_screen(0xFFFFFFFF, 0, 16, 0, 0x0000);
-        }
+        // unused...
         break;
     case 5:
         if (!pal_fade_control.active) {

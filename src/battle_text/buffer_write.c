@@ -104,7 +104,7 @@ void buffer_write_status_name(pchar* buffer, u8 status_id)
 }
 
 
-void fdecoder_battle(const pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
+void fdecoder_battle(pchar* buffer, u8 bank, u16 move_id, u16 move_effect_id)
 {
     u16 len = pstrlen(buffer);
     pchar* result = (pchar*)malloc((len < 50) ? 100 : len * 2);
