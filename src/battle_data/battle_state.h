@@ -148,6 +148,8 @@ struct switch_menu {
     u8 type_objid[10];
     u8 slider_objid[3];
     u8 icon_objid[6];
+    u8 switch_confirm_box_id;
+    u8 switch_confirm_cursor_id;
     u8 position;
     enum switch_reason reason;
     u8 unswitchable_bank; // used if a pkmn is forced out

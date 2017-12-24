@@ -14,6 +14,8 @@
 #include "../generated/images/switch/switch_bg.h"
 #include "../generated/images/type_icons.h"
 #include "../generated/images/hpbox/hpbar_pieces_switch.h"
+#include "../generated/images/switch/shift_menu.h"
+#include "../generated/images/switch/shift_cursor.h"
 
 extern u8 get_ability(struct Pokemon *p);
 extern const struct BgConfig bg_config_data[4];
@@ -26,63 +28,13 @@ extern void status_switch_menu(u8 objid, u8 ailment);
 
 const struct Frame (**nullframe)[] = (const struct Frame (**)[])0x8231CF0;
 const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (**)[])0x8231CFC;
-const struct OamData icon_oam = {
-    .y = 0,
-    .affine_mode = 1,
-    .obj_mode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = 0,
-    .x = 0,
-    .matrix_num = 0,
-    .size = 2, // 32x32 square
-    .tile_num = 0,
-    .priority = 0, /*above the rest*/
-    .palette_num = 0,
-    .affine_param = 0,
-};
 
-// the difference is that the slider doesn't have affine mode turned on
-const struct OamData slider_oam = {
-    .y = 0,
-    .affine_mode = 0,
-    .obj_mode = 0,
-    .mosaic = 0,
-    .bpp = 0,
-    .shape = 0,
-    .x = 0,
-    .matrix_num = 0,
-    .size = 2, // 32x32 square
-    .tile_num = 0,
-    .priority = 0, /*above the rest*/
-    .palette_num = 0,
-    .affine_param = 0,
-};
-
-static const struct RotscaleFrame switch_scale_down[] = {
-    {-0xA0, 0xA0, 0, 0, 0},
-    {0x7FFE, 0, 0, 0, 0},
-};
-
-static const struct RotscaleFrame switch_scale_full[] = {
-    {-0x100, 0x100, 0, 0, 0},
-    {0x7FFE, 0, 0, 0, 0},
-};
-
-
-static const struct RotscaleFrame *switch_scale_table[] = {
-    switch_scale_down,
-};
-
-static const struct RotscaleFrame *switch_scale_table_full[] = {
-    switch_scale_full,
-};
 
 const struct BgConfig bg_config_switch_data[4] = {
     {
         .padding = 0,
         .b_padding = 0,
-        .priority = 0,
+        .priority = 2,
         .palette = 0,
         .size = 0,
         .map_base = 29,
@@ -92,7 +44,7 @@ const struct BgConfig bg_config_switch_data[4] = {
     {
         .padding = 0,
         .b_padding = 0,
-        .priority = 1,
+        .priority = 3,
         .palette = 0,
         .size = 0,
         .map_base = 28,
@@ -102,7 +54,7 @@ const struct BgConfig bg_config_switch_data[4] = {
     {
         .padding = 0,
         .b_padding = 0,
-        .priority = 2,
+        .priority = 3,
         .palette = 0,
         .size = 0,
         .map_base = 30,
@@ -304,6 +256,7 @@ void switch_cat_icon_load(u8 category, s16 x, s16 y, u8 id)
         switch_category_update_icon(battle_master->switch_main.type_objid[array_idx], category);
     } else {
         battle_master->switch_main.type_objid[array_idx] = load_small_dmg_category_icon(category, x, y, id + 4);
+        objects[battle_master->switch_main.type_objid[array_idx]].final_oam.priority = 2;
     }
     OBJID_SHOW(battle_master->switch_main.type_objid[array_idx]);
 }
@@ -566,6 +519,8 @@ void switch_update_graphical(u8 cursor_position)
 
 void switch_scene_main()
 {
+    void spawn_confirm_box(void);
+    void confirm_box(void);
     u8 prev;
     switch (super.multi_purpose_state_tracker) {
     case 0:
@@ -603,10 +558,13 @@ void switch_scene_main()
                  * You only ever get to the switch menu and press A when you need to select a Pokemon.
                  * Need to display the confirmation text. Skipped for now TODO
                  */
-                 fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
-                 if (battle_master->switch_main.reason == ViewPokemon)
-                    battle_master->switch_main.reason = NormalSwitch;
-                 super.multi_purpose_state_tracker = 5;
+
+                 spawn_confirm_box();
+                 set_callback1(confirm_box);
+                 // fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+                 // if (battle_master->switch_main.reason == ViewPokemon)
+                 //    battle_master->switch_main.reason = NormalSwitch;
+                 // super.multi_purpose_state_tracker = 5;
                 break;
             case KEY_B:
                 /* Exit the switch menu, unless you are forced to make a switch option */
@@ -671,5 +629,88 @@ void switch_scene_main()
         set_callback1(return_to_battle);
         super.multi_purpose_state_tracker = 0;
         return;
+    };
+}
+
+
+void spawn_confirm_box()
+{
+    /* Box Object */
+    u16 gfx_tag = CONFIRM_BOX_TAG;
+    u16 pal_tag = CONFIRM_BOX_TAG;
+    struct SpriteTiles menu_tiles = {shift_menuTiles, 8 * 8 * 32, gfx_tag};
+    struct SpritePalette menu_pal = {(void *)shift_menuPal, pal_tag};
+    gpu_tile_obj_decompress_alloc_tag_and_upload(&menu_tiles);
+    gpu_pal_decompress_alloc_tag_and_upload(&menu_pal);
+    struct Template confirm_template = {
+                                    .tiles_tag = gfx_tag,
+                                    .pal_tag = pal_tag,
+                                    .oam = &confirm_box_oam,
+                                    .animation = nullframe,
+                                    .graphics = &menu_tiles,
+                                    .rotscale = nullrsf,
+                                    .callback = oac_nullsub,
+                                    };
+    battle_master->switch_main.switch_confirm_box_id = template_instanciate_forward_search(&confirm_template, 208, 120, 0);
+
+    /* Box cursor */
+    gfx_tag = CONFIRM_BOX_TAG + 1;
+    struct SpriteTiles cursor_tiles = {shift_cursorTiles, 2 * 2 * 32, gfx_tag};
+    gpu_tile_obj_alloc_tag_and_upload(&cursor_tiles);
+    struct Template cursor_template = {
+                                    .tiles_tag = gfx_tag,
+                                    .pal_tag = pal_tag,
+                                    .oam = &cursor_confirm_oam,
+                                    .animation = nullframe,
+                                    .graphics = &cursor_tiles,
+                                    .rotscale = nullrsf,
+                                    .callback = oac_nullsub,
+                                    };
+    battle_master->switch_main.switch_confirm_cursor_id = template_instanciate_forward_search(&cursor_template, 188, CURSOR_SHIFT_POS , 0);
+}
+
+
+void free_confirmation_box()
+{
+    obj_free(&objects[battle_master->switch_main.switch_confirm_cursor_id]);
+    obj_free(&objects[battle_master->switch_main.switch_confirm_box_id]);
+}
+
+
+void confirm_box()
+{
+    u8 objid;
+    switch (super.buttons_new_remapped & (KEY_A | KEY_B | KEY_DOWN | KEY_UP)) {
+        case KEY_A:
+            // if cursor on cancel button, free confirm box and go back to main switch
+            objid = battle_master->switch_main.switch_confirm_cursor_id;
+            if (objects[objid].pos1.y == CURSOR_CANCEL_POS) {
+                super.multi_purpose_state_tracker = 3;
+                set_callback1(switch_scene_main);
+                free_confirmation_box();
+                return;
+            }
+            // validate chosen pokemon validitity TODO
+            // exit to battle
+            fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+            if (battle_master->switch_main.reason == ViewPokemon)
+               battle_master->switch_main.reason = NormalSwitch;
+            super.multi_purpose_state_tracker = 5;
+            set_callback1(switch_scene_main);
+            free_confirmation_box();
+            break;
+        case KEY_B:
+            free_confirmation_box();
+            super.multi_purpose_state_tracker = 3;
+            set_callback1(switch_scene_main);
+            break;
+        case KEY_UP:
+        case KEY_DOWN:
+            objid = battle_master->switch_main.switch_confirm_cursor_id;
+            if (objects[objid].pos1.y == CURSOR_SHIFT_POS)
+                objects[objid].pos1.y = CURSOR_CANCEL_POS;
+            else
+                objects[objid].pos1.y = CURSOR_SHIFT_POS;
+            break;
     };
 }
