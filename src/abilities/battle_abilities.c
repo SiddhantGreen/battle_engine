@@ -31,9 +31,8 @@ u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback*
 {
     if (user != source) return true;
     if (ailment == AILMENT_PARALYZE) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-   	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+       	return false;
     }
     return true;
 }
@@ -57,9 +56,8 @@ u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 {
     if (user != source) return true;
     if (ailment == AILMENT_SLEEP) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+    	return false;
     }
     return true;
 }
@@ -71,9 +69,8 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 {
     if (user != source) return true;
     if (ailment == AILMENT_POISON) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+    	return false;
     }
     return true;
 }
@@ -127,9 +124,8 @@ u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callb
 {
     if (user != source) return true;
     if (ailment == AILMENT_FREEZE) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+    	return false;
     }
     return true;
 }
@@ -139,9 +135,8 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 {
     if (user != source) return true;
     if (ailment == AILMENT_BURN) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+    	return false;
     }
     return true;
 }
@@ -211,9 +206,8 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 {
     if (user != source) return true;
     if (ailment == AILMENT_SLEEP) {
-	ailment = AILMENT_NONE;
-	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-	return false;
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+    	return false;
     }
     return true;
 }
