@@ -56,12 +56,6 @@ void pkmn_recall_cb(struct Object* obj)
 }
 
 
-void pkmn_player_sendout_only()
-{
-
-}
-
-
 void pkmn_player_normal_switch()
 {
     switch (super.multi_purpose_state_tracker) {
@@ -129,7 +123,7 @@ void pkmn_player_normal_switch()
         case 5:
             if (bs_anim_status) return;
             struct update_flags* flags = (struct update_flags*)malloc_and_clear(sizeof(struct update_flags));
-            flags->pass_status = true;
+            flags->pass_status = false;
             flags->pass_stats = false;
             flags->pass_atk_history = false;
             flags->pass_disables = false;

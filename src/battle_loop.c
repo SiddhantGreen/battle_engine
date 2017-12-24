@@ -100,7 +100,8 @@ void validate_player_selected_move()
 void end_battle(struct action* a)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        sync_battler_struct(i);
+        if (ACTIVE_BANK(i))
+            sync_battler_struct(i);
     }
     clear_actions();
     free(battle_master);
