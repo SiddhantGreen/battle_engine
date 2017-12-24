@@ -18,6 +18,7 @@ typedef void (*AbilityOnDamageCallback)(u8 user, u8 source, u16 move, struct ano
 typedef u8 (*AbilityOnEffectCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 
 struct ability_data {
     AbilityBeforeTurn before_turn;
@@ -31,6 +32,7 @@ struct ability_data {
     AbilityOnEffectCallback on_effect;
     AbilityOnAfterMoveCallback on_after_move;
     AbilityOnStatusCallback on_status;
+    AbilityOnStatBoostModCallback on_stat_boost_mod;
 };
 
 extern struct ability_data abilities[];
@@ -44,5 +46,7 @@ extern u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_
 extern u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
+extern u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

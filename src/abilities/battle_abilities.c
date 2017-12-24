@@ -239,6 +239,12 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 // HEATPROOF
 
 // SIMPLE
+u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != source) return 0;
+    acb->in_use = false;
+    return (acb->data_ptr + ((acb->data_ptr) & 0x7));
+}
 
 // DRYSKIN
 
@@ -319,6 +325,12 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 // SHEERFORCE
 
 // CONTRARY
+u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != source) return 0;
+    acb->in_use = false;
+    return ((acb->data_ptr) ^ 16);
+}
 
 // UNNERVE
 
