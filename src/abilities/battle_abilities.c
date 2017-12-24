@@ -27,14 +27,14 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 // DAMP
 	
 // Limber
-u8 ability_limber_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_PARALYZE) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_PARALYZE) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+   	return false;
+    }
     return true;
 }
 	
@@ -53,28 +53,28 @@ u8 ability_limber_on_status(u8 user, u8 source, u16 alinment, struct anonymous_c
 // COMPOUNDEYES
 	
 // Insomnia
-u8 ability_insomnia_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_SLEEP) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_SLEEP) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+	return false;
+    }
     return true;
 }
 	
 // COLORCHANGE
 	
 // Immunity
-u8 ability_immunity_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_POISON) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_POISON) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+	return false;
+    }
     return true;
 }
 	
@@ -123,26 +123,26 @@ u8 ability_immunity_on_status(u8 user, u8 source, u16 alinment, struct anonymous
 // INNERFOCUS
 	
 // Magma Armor
-u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_FREEZE) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_FREEZE) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+	return false;
+    }
     return true;
 }
 	
 // Water Veil
-u8 ability_waterveil_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_BURN) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_BURN) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+	return false;
+    }
     return true;
 }
 	
@@ -207,14 +207,14 @@ u8 ability_waterveil_on_status(u8 user, u8 source, u16 alinment, struct anonymou
 // ARENATRAP
 		
 // Vital Spirit
-u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 alinment, struct anonymous_callback* acb)
+u8 ability_vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
 {	
-	if (user != source) return true;
-	if (alinment == AILMENT_SLEEP) {
-		alinment = AILMENT_NONE;
-		enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
-		return false;
-	}
+    if (user != source) return true;
+    if (ailment  == AILMENT_SLEEP) {
+	ailment  = AILMENT_NONE;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+	return false;
+    }
     return true;
 }
 		
