@@ -25,10 +25,12 @@ void update_pbank(u8 bank, struct update_flags* flags)
     p_bank[bank]->b_data.current_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_CURRENT_HP, NULL);;
     p_bank[bank]->b_data.total_hp = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_TOTAL_HP, NULL);;
 
-    if (SIDE_OF(bank))
+    if (SIDE_OF(bank)) {
         p_bank[bank]->b_data.ability = opponent_ability;
-    else
+        dprintf("ability_opp = %d\n", opponent_ability);
+    } else {
         p_bank[bank]->b_data.ability = player_ability;
+    }
     //get_ability(p_bank[bank]->this_pkmn);
 
     p_bank[bank]->b_data.item = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_HELD_ITEM, NULL);
