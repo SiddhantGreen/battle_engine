@@ -19,7 +19,8 @@ struct ability_data abilities[] = {
 		.on_status = NULL,
 	},
 	{
-		// STENCH
+		// Stench
+		.on_damage = stench_on_damage,
 	},
 	{
 		// DRIZZLE
@@ -66,7 +67,8 @@ struct ability_data abilities[] = {
 		.on_status = insomnia_on_status,
 	},
 	{
-		// COLORCHANGE
+		// Color Change
+		.on_after_move = colorchange_on_after_move,
 	},
 	{
 		// Immunity
@@ -280,7 +282,7 @@ struct ability_data abilities[] = {
 		// HEATPROOF
 	},
 	{
-		// SIMPLE
+		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
 	{
@@ -326,7 +328,8 @@ struct ability_data abilities[] = {
 		// STALL
 	},
 	{
-		// TECHNICIAN
+		// Technician
+		.on_base_power = technician_on_base_power,
 	},
 	{
 		// LEAFGUARD
@@ -401,7 +404,7 @@ struct ability_data abilities[] = {
 		// SHEERFORCE
 	},
 	{
-		// CONTRARY
+		// Contary
 		.on_stat_boost_mod = contrary_on_stat_boost_mod,
 	},
 	{
@@ -624,7 +627,8 @@ struct ability_data abilities[] = {
 		// WATERBUBBLE
 	},
 	{
-		// STEELWORKER
+		// Steel Worker
+		.on_base_power = steelworker_on_base_power,
 	},
 	{
 		// BERSERK
