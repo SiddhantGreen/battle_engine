@@ -51,5 +51,6 @@ extern void technician_on_base_power(u8 user, u8 source, struct anonymous_callba
 extern u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 extern u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 extern void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
