@@ -281,7 +281,7 @@ struct ability_data abilities[] = {
 		// HEATPROOF
 	},
 	{
-		// SIMPLE
+		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
 	{
@@ -327,7 +327,8 @@ struct ability_data abilities[] = {
 		// STALL
 	},
 	{
-		// TECHNICIAN
+		// Technician
+		.on_base_power = technician_on_base_power,
 	},
 	{
 		// LEAFGUARD
@@ -402,7 +403,7 @@ struct ability_data abilities[] = {
 		// SHEERFORCE
 	},
 	{
-		// CONTRARY
+		// Contary
 		.on_stat_boost_mod = contrary_on_stat_boost_mod,
 	},
 	{
