@@ -73,7 +73,7 @@ u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 // Color Change
 void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (user == source) return;
+    if (user != source) return;
     if( B_MOVE_DMG(user) > 0 && !B_MOVE_HAS_TYPE(user, MTYPE_NONE)) {
 	u8 type = B_MOVE_TYPE(TARGET_OF(user),0);
 	b_pkmn_set_type(TARGET_OF(user), type);
