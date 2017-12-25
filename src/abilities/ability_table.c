@@ -281,6 +281,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SIMPLE
+		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
 	{
 		// DRYSKIN
@@ -401,6 +402,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// CONTRARY
+		.on_stat_boost_mod = contrary_on_stat_boost_mod,
 	},
 	{
 		// UNNERVE
