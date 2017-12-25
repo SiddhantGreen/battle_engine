@@ -67,7 +67,8 @@ struct ability_data abilities[] = {
 		.on_status = insomnia_on_status,
 	},
 	{
-		// COLORCHANGE
+		// Color Change
+		.on_after_move = colorchange_on_after_move,
 	},
 	{
 		// Immunity
