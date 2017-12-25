@@ -14,9 +14,17 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
     return true;
 }
 
-// STENCH
+// Stench
+void stench_on_damage(u8 user, u8 source,  struct anonymous_callback* acb)
+{
+    if (user != source) return;
+    if(B_MOVE_DMG(user) > 0){
+		B_MOVE_FLINCH(user) = 100;
+	}
+    return;
+}
 
-// Drizzle [We might need .on_switch for this]
+// Drizzle [We need .on_start for this]
 
 // SPEED BOOST
 
