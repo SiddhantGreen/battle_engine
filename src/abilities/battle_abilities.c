@@ -18,7 +18,7 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 void stench_on_damage(u8 user, u8 source,  struct anonymous_callback* acb)
 {
     if (user != source) return;
-    if(B_MOVE_DMG(user) > 0){
+    if(B_MOVE_DMG(user) > 0) {
        B_MOVE_FLINCH(user) = 10;
     }
     return;
@@ -75,7 +75,7 @@ void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
     if( B_MOVE_DMG(user) > 0 && !B_MOVE_HAS_TYPE(user, MTYPE_NONE)) {
-	u8 type = B_MOVE_TYPE(TARGET_OF(user),0);
+	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
 	b_pkmn_set_type(TARGET_OF(user), type);
 	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
     }	
@@ -297,7 +297,7 @@ void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb
 {
     if (user != source) return;
 	if(B_MOVE_POWER(user) <= 60) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user),150);
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
@@ -509,7 +509,7 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
 	if(B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user),150);
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
