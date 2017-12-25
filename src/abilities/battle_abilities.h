@@ -40,6 +40,7 @@ extern const pchar ability_names[][17];
 
 /* Callback externs */
 extern u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void stench_on_damage(u8 user, u8 source, struct anonymous_callback* acb);
 extern u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
