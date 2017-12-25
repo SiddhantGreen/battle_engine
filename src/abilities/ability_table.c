@@ -626,7 +626,8 @@ struct ability_data abilities[] = {
 		// WATERBUBBLE
 	},
 	{
-		// STEELWORKER
+		// Steel Worker
+		.on_base_power = steelworker_on_base_power,
 	},
 	{
 		// BERSERK
