@@ -19,7 +19,8 @@ struct ability_data abilities[] = {
 		.on_status = NULL,
 	},
 	{
-		// STENCH
+		// Stench
+		.on_damage = stench_on_damage,
 	},
 	{
 		// DRIZZLE
