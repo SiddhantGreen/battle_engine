@@ -19,7 +19,7 @@ void stench_on_damage(u8 user, u8 source,  struct anonymous_callback* acb)
 {
     if (user != source) return;
     if(B_MOVE_DMG(user) > 0){
-       B_MOVE_FLINCH(user) = 100;
+       B_MOVE_FLINCH(user) = 10;
     }
     return;
 }
@@ -286,7 +286,7 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(B_MOVE_POWER(user) < 60) {
+	if(B_MOVE_POWER(user) <= 60) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user),150);
 	}
 	return;
