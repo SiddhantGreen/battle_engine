@@ -285,12 +285,11 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 // Technician
 void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != source) return;
 	if(B_MOVE_POWER(user) < 60) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user),150);
-	   return false;
 	}
-	return true;
+	return;
 }
 
 // LEAFGUARD
