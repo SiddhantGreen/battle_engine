@@ -19,8 +19,8 @@ void stench_on_damage(u8 user, u8 source,  struct anonymous_callback* acb)
 {
     if (user != source) return;
     if(B_MOVE_DMG(user) > 0){
-		B_MOVE_FLINCH(user) = 100;
-	}
+       B_MOVE_FLINCH(user) = 100;
+       }
     return;
 }
 
