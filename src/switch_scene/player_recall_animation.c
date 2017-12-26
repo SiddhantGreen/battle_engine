@@ -15,6 +15,7 @@ extern void player_hpbar_slidin_slow(u8 t_id);
 extern u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank);
 extern void battle_loop(void);
 extern void run_after_switch(u8 bank);
+extern void jump_switch_menu(enum switch_reason reason);
 
 static const struct RotscaleFrame shrink[] = {
     {-10, -10, 0, 10, 0},
@@ -145,6 +146,36 @@ void pkmn_player_normal_switch()
     };
 }
 
+void fly_out_player_mon(struct Object* obj)
+{
+    obj->pos1.x -= 8;
+    if (obj->pos1.x < -64) {
+        obj->callback = NULL;
+        // Free HP box and bars
+        u8 bank = obj->priv[0];
+        for (u8 j = 0; j < 4; j++) {
+            if (p_bank[bank]->objid_hpbox[j] < 0x3F)
+                obj_free(&objects[p_bank[bank]->objid_hpbox[j]]);
+            p_bank[bank]->objid_hpbox[j] = 0x3F;
+        }
+
+        // Free player pkmn
+        p_bank[bank]->objid = 0x3F;
+        obj_free(obj);
+        jump_switch_menu(ForcedSwitch);
+    }
+}
+
+void forced_switch(u8 bank)
+{
+    battle_master->switch_main.reason = ForcedSwitch;
+    task_del(task_find_id_by_functpr(set_active_movement));
+    objects[p_bank[bank]->objid].callback = fly_out_player_mon;
+    objects[p_bank[bank]->objid].priv[0] = bank;
+    prepend_action(bank, bank, ActionHighPriority, EventSwitch);
+    end_action(CURRENT_ACTION);
+    set_callback1(NULL);
+}
 
 void pkmn_recall_animation()
 {
@@ -156,7 +187,8 @@ void pkmn_recall_animation()
             set_callback1(pkmn_player_normal_switch);
             return;
         case ForcedSwitch:
-            /* TODO */
+            super.multi_purpose_state_tracker = 2;
+            set_callback1(pkmn_player_normal_switch);
             break;
         case PokemonFainted:
             super.multi_purpose_state_tracker = 2;
