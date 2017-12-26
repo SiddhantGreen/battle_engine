@@ -40,13 +40,17 @@ extern const pchar ability_names[][17];
 
 /* Callback externs */
 extern u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void stench_on_damage(u8 user, u8 source, struct anonymous_callback* acb);
 extern u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
 extern u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb);
+extern void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb);
 extern u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 extern u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
+extern void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
