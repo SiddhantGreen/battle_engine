@@ -181,6 +181,6 @@ u8 fairy_lock_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     if (user != src) return true;
     ADD_VOLATILE(TARGET_OF(user), VOLATILE_FAIRY_BLOCK);
     ADD_VOLATILE(TARGET_OF(user), VOLATILE_TRAPPED);
-    add_callback(CB_ON_RESIDUAL, 0, 0, user, (u32)fairy_block_on_residual);
+    add_callback(CB_ON_RESIDUAL, 0, 0, user, (u32)fairy_lock_on_residual);
     return true;
 }
