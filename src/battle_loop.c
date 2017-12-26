@@ -51,6 +51,7 @@ EventCallback wild_battle_events[] = {
     event_set_inactive,
     event_residual_effects,
     wild_battle_status_update,
+    event_forced_switch,
     end_battle,
 };
 
