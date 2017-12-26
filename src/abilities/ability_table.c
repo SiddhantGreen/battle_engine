@@ -280,8 +280,10 @@ struct ability_data abilities[] = {
 	},
 	{
 		// HEATPROOF
+	
+      .on_base_power = heatproof_on_base_power,
 	},
-	{
+    {
 		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
