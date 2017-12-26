@@ -2,7 +2,8 @@
 #define BATTLE_EVENTS_H_
 
 enum EventStatesWildBattle {
-    EventFlee = 0, // 0
+    EventOnStart = 0,
+    EventFlee, // 0
     EventPreSwitch, // 1
     EventSwitch, // 1
     EventBeforeMove, // 2
@@ -35,6 +36,7 @@ enum EventStatesWildBattle {
 extern void event_run_flee(struct action* a);
 extern void event_pre_switch(struct action* a);
 extern void event_switch(struct action* a);
+extern void event_on_start(struct action* a);
 extern void event_before_move(struct action* a);
 extern void event_pre_move_hit(struct action* a);
 extern void event_config_move_hitlist(struct action* a);

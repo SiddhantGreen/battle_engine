@@ -102,7 +102,6 @@ void add_bank_move_actions()
     }
     // before turn could've changed the priorities
     sort_active_banks(&active_banks[0], index);
-
     for (u8 i = 0; i < index; i++) {
         if (p_bank[active_banks[i]]->b_data.is_running) {
             add_action(active_banks[i], active_banks[i], ActionRun, EventFlee);

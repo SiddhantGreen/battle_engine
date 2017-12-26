@@ -24,6 +24,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// DRIZZLE
+		.on_start = drizzle_on_start,
 	},
 	{
 		// SPEEDBOOST

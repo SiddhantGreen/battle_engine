@@ -19,6 +19,7 @@ extern u16 bank_interpret_selected_move(u16);
 
 
 EventCallback wild_battle_events[] = {
+    event_on_start, // pre turn effects
     /* Pre-move */
     event_run_flee,
     event_pre_switch,

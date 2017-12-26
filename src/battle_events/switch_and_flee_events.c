@@ -50,22 +50,42 @@ void move_on_switch_cb(u8 attacker)
 void run_after_switch(u8 attacker)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        u8 ability = p_bank[i]->b_data.ability;
-        if ((abilities[ability].on_start) && (ACTIVE_BANK(i)))
-            add_callback(CB_ON_START, 0, 0, i, (u32)abilities[ability].on_start);
-    }
-    u16 move = CURRENT_MOVE(attacker);
-    if (moves[move].on_start) {
-        add_callback(CB_ON_START, 0, 0, attacker, (u32)moves[move].on_start);
+        if (ACTIVE_BANK(i)) {
+            u8 ability = p_bank[i]->b_data.ability;
+            if (abilities[ability].on_start)
+                add_callback(CB_ON_START, 0, 0, i, (u32)abilities[ability].on_start);
+            u16 move = CURRENT_MOVE(i);
+            if (moves[move].on_start)
+                add_callback(CB_ON_START, 0, 0, i, (u32)moves[move].on_start);
+        }
     }
     // run on start callbacks
     build_execution_order(CB_ON_START);
     battle_master->executing = true;
-    while (battle_master->executing) {
-        pop_callback(attacker, move);
-    }
+    while (battle_master->executing)
+        pop_callback(0xFF, NULL);
 }
 
+
+void event_on_start(struct action* current_action)
+{
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (ACTIVE_BANK(i)) {
+            u8 ability = p_bank[i]->b_data.ability;
+            if (abilities[ability].on_start)
+                add_callback(CB_ON_START, 0, 0, i, (u32)abilities[ability].on_start);
+            u16 move = CURRENT_MOVE(i);
+            if (moves[move].on_start)
+                add_callback(CB_ON_START, 0, 0, i, (u32)moves[move].on_start);
+        }
+    }
+    // run on start callbacks
+    build_execution_order(CB_ON_START);
+    battle_master->executing = true;
+    while (battle_master->executing)
+        pop_callback(0xFF, NULL);
+    end_action(CURRENT_ACTION);
+}
 
 void event_switch(struct action* current_action)
 {
