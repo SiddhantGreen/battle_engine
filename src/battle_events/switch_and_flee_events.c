@@ -49,6 +49,11 @@ void move_on_switch_cb(u8 attacker)
 
 void run_after_switch(u8 attacker)
 {
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u8 ability = p_bank[i]->b_data.ability;
+        if ((abilities[ability].on_start) && (ACTIVE_BANK(i)))
+            add_callback(CB_ON_BEFORE_SWITCH, 0, 0, i, (u32)abilities[ability].on_start);
+    }
     u16 move = CURRENT_MOVE(attacker);
     if (moves[move].on_start) {
         add_callback(CB_ON_START, 0, 0, attacker, (u32)moves[move].on_start);

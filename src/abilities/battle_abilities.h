@@ -8,6 +8,7 @@
 #include "ability_override.h"
 
 typedef void (*AbilityBeforeTurn)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef void (*AbilityOnStart)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityBeforeSwitchOutCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityBeforeMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnFailCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
@@ -22,6 +23,7 @@ typedef u8 (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, str
 
 struct ability_data {
     AbilityBeforeTurn before_turn;
+    AbilityOnStart on_start;
     AbilityBeforeSwitchOutCallback before_switch;
     AbilityBeforeMoveCallback before_move;
     AbilityOnFailCallback on_fail;
