@@ -262,7 +262,7 @@ void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
         // move is fire type
        B_MOVE_POWER(user) = B_MOVE_POWER(user)/2;
 
-    }
+  }
 }
 // Simple
 u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
