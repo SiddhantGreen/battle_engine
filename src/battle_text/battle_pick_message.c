@@ -46,6 +46,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type
                 fmt_int_10(fcode_buffer2, move_effect_id, 0, 8);
                 fdecoder_battle(battle_strings[id], user_bank, 0, 0);
                 break;
+            case STRING_TRAPPED:
             case STRING_INFATUATED:
             case STRING_BIDE_CHARGE:
             case STRING_LOST_FOCUS:

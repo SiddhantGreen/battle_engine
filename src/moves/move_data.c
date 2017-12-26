@@ -5140,8 +5140,9 @@ struct move_data moves[] = {
     .pp = 5,
     .category = MOVE_STATUS,
     .type = MTYPE_NORMAL,
-    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR,
+    .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = block_on_effect,
     },
 
     {
@@ -8482,8 +8483,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_STATUS,
     .type = MTYPE_FAIRY,
-    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR,
+    .m_flags = FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_HITS_ALL,
     .procs = &basic_proc,
+    .on_effect_cb = fairy_lock_on_effect,
     },
 
     {
@@ -8836,7 +8838,7 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GROUND,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_HITS_FOE_SIDE,
     .procs = &basic_proc,
     },
 
@@ -8983,8 +8985,9 @@ struct move_data moves[] = {
     .pp = 10,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_GHOST,
-    .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
+    .m_flags = FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = block_on_effect,
     },
 
     {
@@ -9187,6 +9190,7 @@ struct move_data moves[] = {
     .type = MTYPE_STEEL,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = block_on_effect,
     },
 
     {

@@ -18,7 +18,7 @@ bool bank_trapped(u8 bank)
 {
     if (b_pkmn_has_type(bank, TYPE_GHOST))
         return false;
-    if (HAS_VOLATILE(bank, VOLATILE_TRAPPED)) {
+    if (HAS_VOLATILE(bank, VOLATILE_TRAPPED) || HAS_VOLATILE(bank, VOLATILE_INGRAIN)) {
         return true;
     }
     return false;
@@ -78,9 +78,15 @@ void event_switch(struct action* current_action)
 
 void event_pre_switch(struct action* current_action)
 {
-    move_on_switch_cb(ACTION_BANK);
-    enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
-    CURRENT_ACTION->event_state++;
+    if (bank_trapped(ACTION_BANK)) {
+        enqueue_message(MOVE_NONE, ACTION_BANK, STRING_TRAPPED, 0);
+        end_action(CURRENT_ACTION);
+        return;
+    } else {
+        move_on_switch_cb(ACTION_BANK);
+        enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
+        CURRENT_ACTION->event_state++;
+    }
 }
 
 

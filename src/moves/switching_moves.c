@@ -158,3 +158,29 @@ u8 lunar_dance_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)lunar_dance_on_after_move);
     return true;
 }
+
+// Thousand waves, Spirit Shackle, Anchor Shot, Block
+u8 block_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    ADD_VOLATILE(TARGET_OF(user), VOLATILE_TRAPPED);
+    return true;
+}
+
+
+// Fairy lock
+u8 fairy_lock_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    CLEAR_VOLATILE(TARGET_OF(user), VOLATILE_FAIRY_BLOCK);
+    CLEAR_VOLATILE(user, VOLATILE_TRAPPED);
+    return true;
+}
+
+u8 fairy_lock_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    ADD_VOLATILE(TARGET_OF(user), VOLATILE_FAIRY_BLOCK);
+    ADD_VOLATILE(TARGET_OF(user), VOLATILE_TRAPPED);
+    add_callback(CB_ON_RESIDUAL, 0, 0, user, (u32)fairy_block_on_residual);
+    return true;
+}

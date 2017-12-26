@@ -78,7 +78,7 @@ void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_ca
 	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
 	b_pkmn_set_type(TARGET_OF(user), type);
 	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
-    }	
+    }
     return;
 }
 
@@ -296,7 +296,7 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(B_MOVE_POWER(user) <= 60) {
+	if (B_MOVE_POWER(user) <= 60) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
