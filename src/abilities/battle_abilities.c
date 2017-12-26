@@ -257,13 +257,12 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 // HEATPROOF
 void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
- if (TARGET_OF(user) != source) return;
+    if (TARGET_OF(user) != source) return;
     if (B_MOVE_HAS_TYPE (user, MTYPE_FIRE)) {
-        // move is fire type
-       B_MOVE_POWER(user) = B_MOVE_POWER(user)/2;
-
-  }
+        B_MOVE_POWER(user) = B_MOVE_POWER(user) >> 1;
+    }
 }
+
 // Simple
 u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
