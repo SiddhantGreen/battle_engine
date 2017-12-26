@@ -929,8 +929,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_MIRROR | FLAG_REFLECTABLE | FLAG_TARGET | FLAG_AUTHENTIC,
     .procs = &basic_proc,
-    .on_tryhit_move = whirlwind_on_tryhit_move,
-    .on_effect_cb = whirlwind_on_effect_cb,
+    .on_effect_cb = dragon_tail_on_effect,
     },
 
     {
@@ -1310,8 +1309,7 @@ struct move_data moves[] = {
     .type = MTYPE_NORMAL,
     .m_flags = FLAG_REFLECTABLE | FLAG_SOUND | FLAG_AUTHENTIC | FLAG_MIRROR | FLAG_TARGET,
     .procs = &basic_proc,
-    .on_tryhit_move = whirlwind_on_tryhit_move,
-    .on_effect_cb = whirlwind_on_effect_cb,
+    .on_effect_cb = dragon_tail_on_effect,
     },
 
     {
@@ -2025,8 +2023,7 @@ struct move_data moves[] = {
     .type = MTYPE_PSYCHIC,
     .m_flags = FLAG_ONSELF,
     .procs = &basic_proc,
-    .on_tryhit_move = whirlwind_on_tryhit_move,
-    .on_effect_cb = whirlwind_on_effect_cb,
+    .on_effect_cb = dragon_tail_on_effect,
     },
 
     {
@@ -7436,13 +7433,13 @@ struct move_data moves[] = {
     .accuracy = 90,
     .base_power = 60,
     .description = (pchar*)Circle_Throw_desc,
-    10,
-    -6,
-    1,
+    .pp = 10,
+    .priority = -6,
     .category = MOVE_PHYSICAL,
     .type = MTYPE_FIGHTING,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .on_effect_cb = dragon_tail_on_effect,
     },
 
     {
@@ -7654,7 +7651,7 @@ struct move_data moves[] = {
     .type = MTYPE_DRAGON,
     .m_flags = FLAG_CONTACT | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
-	.priority = -1,
+	.on_effect_cb = dragon_tail_on_effect,
     },
 
     {
