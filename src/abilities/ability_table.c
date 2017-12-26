@@ -279,7 +279,7 @@ struct ability_data abilities[] = {
 		// UNBURDEN
 	},
 	{
-		// HEATPROOF
+		// Heatproof
 	
       .on_base_power = heatproof_on_base_power,
 	},
