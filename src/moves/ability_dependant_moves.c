@@ -87,7 +87,9 @@ u8 gastro_acid_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
         if (gastro_acid_banlist[i] == target_ability)
             return false;
     }
+    if (HAS_VOLATILE(TARGET_OF(user), VOLATILE_GASTRO_ACID)) return false;
     // Nullify ability
+    ADD_VOLATILE(TARGET_OF(user), VOLATILE_GASTRO_ACID);
     BANK_ABILITY(TARGET_OF(user)) = ABILITY_NONE;
     return true;
 }

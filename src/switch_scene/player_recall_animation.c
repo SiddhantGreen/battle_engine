@@ -15,6 +15,7 @@ extern void player_hpbar_slidin_slow(u8 t_id);
 extern u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank);
 extern void battle_loop(void);
 extern void run_after_switch(u8 bank);
+extern void jump_switch_menu(enum switch_reason reason);
 
 static const struct RotscaleFrame shrink[] = {
     {-10, -10, 0, 10, 0},
@@ -156,7 +157,8 @@ void pkmn_recall_animation()
             set_callback1(pkmn_player_normal_switch);
             return;
         case ForcedSwitch:
-            /* TODO */
+            super.multi_purpose_state_tracker = 2;
+            set_callback1(pkmn_player_normal_switch);
             break;
         case PokemonFainted:
             super.multi_purpose_state_tracker = 2;

@@ -28,6 +28,7 @@ enum EventStatesWildBattle {
     EventInactive, // 22
     EventResidualEffects, // 23
     EventWildBattleOver, // 24
+    EventForcedSwitch,
     EventEndBattle, // 25
 };
 
@@ -58,6 +59,7 @@ extern void event_faint(struct action* current_action);
 extern void event_set_inactive(struct action* current_action);
 extern void event_residual_effects(struct action* current_action);
 extern void wild_battle_status_update(struct action* current_action);
+extern void event_forced_switch(struct action* current_action);
 extern void end_battle(struct action* a);
 
 #endif /* BATTLE_EVENTS_H_ */

@@ -18,7 +18,7 @@ bool bank_trapped(u8 bank)
 {
     if (b_pkmn_has_type(bank, TYPE_GHOST))
         return false;
-    if (HAS_VOLATILE(bank, VOLATILE_TRAPPED)) {
+    if (HAS_VOLATILE(bank, VOLATILE_TRAPPED) || HAS_VOLATILE(bank, VOLATILE_INGRAIN)) {
         return true;
     }
     return false;
@@ -49,6 +49,11 @@ void move_on_switch_cb(u8 attacker)
 
 void run_after_switch(u8 attacker)
 {
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u8 ability = p_bank[i]->b_data.ability;
+        if ((abilities[ability].on_start) && (ACTIVE_BANK(i)))
+            add_callback(CB_ON_START, 0, 0, i, (u32)abilities[ability].on_start);
+    }
     u16 move = CURRENT_MOVE(attacker);
     if (moves[move].on_start) {
         add_callback(CB_ON_START, 0, 0, attacker, (u32)moves[move].on_start);
@@ -78,9 +83,15 @@ void event_switch(struct action* current_action)
 
 void event_pre_switch(struct action* current_action)
 {
-    move_on_switch_cb(ACTION_BANK);
-    enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
-    CURRENT_ACTION->event_state++;
+    if (bank_trapped(ACTION_BANK)) {
+        enqueue_message(MOVE_NONE, ACTION_BANK, STRING_TRAPPED, 0);
+        end_action(CURRENT_ACTION);
+        return;
+    } else {
+        move_on_switch_cb(ACTION_BANK);
+        enqueue_message(MOVE_NONE, ACTION_BANK, STRING_RETREAT_MON, 0);
+        CURRENT_ACTION->event_state++;
+    }
 }
 
 

@@ -446,7 +446,7 @@ void switch_obj_hide_all()
             OBJID_HIDE(battle_master->switch_main.type_objid[i]);
         if (i < SWM_LOG->list_count)
             OBJID_HIDE(battle_master->switch_main.icon_objid[i]);
-        if (i < 3)
+        if (i < 1)
             OBJID_HIDE(battle_master->switch_main.slider_objid[0]);
     }
     OBJID_HIDE(SWM_LOG->hpbar_id);
@@ -461,7 +461,7 @@ void switch_obj_show_all()
             OBJID_SHOW(battle_master->switch_main.icon_objid[i]);
             objects[battle_master->switch_main.icon_objid[i]].final_oam.affine_mode = 1;
         }
-        if (i < 3)
+        if (i < 1)
             OBJID_SHOW(battle_master->switch_main.slider_objid[0]);
     }
     OBJID_SHOW(SWM_LOG->hpbar_id);

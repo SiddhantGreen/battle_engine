@@ -77,8 +77,11 @@ void return_to_battle()
                     set_callback1(battle_loop);
                     return;
                 case ForcedSwitch:
-                    /* TODO */
-                    break;
+                    p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
+                    super.multi_purpose_state_tracker = 0;
+                    p_bank[PLAYER_SINGLES_BANK]->b_data.is_switching = false;
+                    set_callback1(battle_loop);
+                    return;
                 case PokemonFainted:
                     p_bank[PLAYER_SINGLES_BANK]->this_pkmn = &party_player[battle_master->switch_main.position];
                     super.multi_purpose_state_tracker = 0;

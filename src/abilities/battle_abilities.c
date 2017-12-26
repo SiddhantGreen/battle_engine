@@ -14,9 +14,17 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
     return true;
 }
 
-// STENCH
+// Stench
+void stench_on_damage(u8 user, u8 source,  struct anonymous_callback* acb)
+{
+    if (user != source) return;
+    if(B_MOVE_DMG(user) > 0) {
+       B_MOVE_FLINCH(user) = 10;
+    }
+    return;
+}
 
-// Drizzle [We might need .on_switch for this]
+// Drizzle [We need .on_start for this]
 
 // SPEED BOOST
 
@@ -62,7 +70,17 @@ u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
     return true;
 }
 
-// COLORCHANGE
+// Color Change
+void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+    if( B_MOVE_DMG(user) > 0 && !B_MOVE_HAS_TYPE(user, MTYPE_NONE)) {
+	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
+	b_pkmn_set_type(TARGET_OF(user), type);
+	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
+    }
+    return;
+}
 
 // Immunity
 u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
@@ -238,7 +256,7 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 
 // HEATPROOF
 
-// SIMPLE
+// Simple
 u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != source) return 0;
@@ -274,7 +292,15 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 
 // STALL
 
-// TECHNICIAN
+// Technician
+void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if (B_MOVE_POWER(user) <= 60) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	}
+	return;
+}
 
 // LEAFGUARD
 
@@ -324,7 +350,7 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 
 // SHEERFORCE
 
-// CONTRARY
+// Contary
 u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != source) return 0;
@@ -478,7 +504,15 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 
 // WATERBUBBLE
 
-// STEELWORKER
+// Steel Worker
+void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if(B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	}
+	return;
+}
 
 // BERSERK
 
