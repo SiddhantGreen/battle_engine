@@ -5479,10 +5479,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Healing_Wish_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = lunar_dance_on_effect,
     },
 
     {
@@ -6802,10 +6803,11 @@ struct move_data moves[] = {
     .accuracy = 101,
     .description = (pchar*)Lunar_Dance_desc,
     .pp = 10,
-    .category = MOVE_PHYSICAL,
+    .category = MOVE_STATUS,
     .type = MTYPE_PSYCHIC,
-    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_DANCE,
+    .m_flags = FLAG_SNATCH | FLAG_HEAL | FLAG_DANCE | FLAG_ONSELF,
     .procs = &basic_proc,
+    .on_effect_cb = lunar_dance_on_effect,
     },
 
     {

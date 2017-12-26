@@ -9,6 +9,9 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern u8 count_usable_pokemon(u8 side);
 extern void forced_switch(u8 bank, u8 switch_method);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void do_heal(u8 bank_index, u8 heal);
+extern void set_status(u8 bank, enum Effect status);
+extern void do_damage(u8 bank_index, u16 dmg);
 
 // Pursuit
 void pursuit_on_basepower(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -129,6 +132,29 @@ u8 memento_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
         stat_boost(i, ATTACK_MOD, -2);
         stat_boost(i, SPATTACK_MOD, -2);
     }
-    B_FAINTED(user) = true;
+    do_damage(user, B_CURRENT_HP(user));
+    struct action* a = prepend_action(user, user, ActionSwitch, EventForcedSwitch);
+    a->priv[0] = 1;
+    return true;
+}
+
+
+// Lunar Dance, Healing Wish
+void lunar_dance_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    do_heal(user, 100); // heal to 100%
+    if (B_STATUS(user) != AILMENT_NONE)
+        set_status(user, EFFECT_CURE);
+    return true;
+}
+
+u8 lunar_dance_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    do_damage(user, B_CURRENT_HP(user));
+    struct action* a = prepend_action(user, user, ActionSwitch, EventForcedSwitch);
+    a->priv[0] = 1;
+    add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)lunar_dance_on_after_move);
     return true;
 }
