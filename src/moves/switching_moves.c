@@ -7,7 +7,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u8 count_usable_pokemon(u8 side);
-extern void forced_switch(u8 bank);
+extern void forced_switch(u8 bank, u8 switch_method);
 
 // Pursuit
 void pursuit_on_basepower(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -50,7 +50,7 @@ bool forced_switch_effect_move(u8 target, u8 user)
                     prepend_action(target, target, ActionHighPriority, EventEndBattle);
                     end_action(CURRENT_ACTION);
                 } else {
-                    forced_switch(target);
+                    forced_switch(target, 0);
                 }
             } else {
                 // opponent wild, end battle
@@ -76,4 +76,22 @@ u8 dragon_tail_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if (user != src) return true;
     u8 target = TARGET_OF(user);
     return forced_switch_effect_move(target, user);
+}
+
+
+// volt switch
+u8 volt_switch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // player
+    if (user == PLAYER_SIDE) {
+        // no switch effect if cannot switch into something
+        if (count_usable_pokemon(PLAYER_SIDE) < 2) return true;
+        forced_switch(user, 1);
+    } else {
+        if (count_usable_pokemon(OPPONENT_SIDE) < 2) return true;
+        // TODO: Opponent switching(?)
+        // forced_switch(target, 1);
+    }
+    return true;
 }

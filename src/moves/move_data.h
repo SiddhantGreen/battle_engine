@@ -276,7 +276,7 @@ extern u8 skill_swap_on_effect(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 gastro_acid_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 worry_seed_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 dragon_tail_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern u8 volt_switch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 /* User stats */
 extern struct move_procs user_lower_atk_1;
