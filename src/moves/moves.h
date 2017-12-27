@@ -90,14 +90,14 @@ struct move_procs {
 /*
  * Field data fetch macros
  */
-#define MOVE_PRIORITY(move) moves[move].priority
-#define MOVE_POWER(move) moves[move].base_power
-#define MOVE_CATEGORY(move) moves[move].category
-#define MOVE_ACCURACY(move) moves[move].accuracy
-#define MOVE_CRIT(move) moves[move].crit_ratio
+#define MOVE_PRIORITY(move) (moves[move].priority)
+#define MOVE_POWER(move) (moves[move].base_power)
+#define MOVE_CATEGORY(move) (moves[move].category)
+#define MOVE_ACCURACY(move) (moves[move].accuracy)
+#define MOVE_CRIT(move) (moves[move].crit_ratio)
 #define MOVE_RECOIL(move) (moves[move].recoil)
-#define M_FLINCH(move) moves[move].flinch_chance
-#define MOVE_TYPE(move) moves[move].type
+#define M_FLINCH(move) (moves[move].flinch_chance)
+#define MOVE_TYPE(move) (moves[move].type)
 #define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
