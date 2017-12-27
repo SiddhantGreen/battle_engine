@@ -61,5 +61,10 @@ extern void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callbac
 extern void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void drought_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
