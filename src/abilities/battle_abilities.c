@@ -4,6 +4,8 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
 #include "../status_effects/stat_boost_info.h"
+#include "../battle_data/battle_state.h"
+
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -29,7 +31,7 @@ void stench_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* a
     return;
 }
 
-// Drizzle [We need .on_start for this]
+// Drizzle
 void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (HAS_VOLATILE(VOLATILE_DRIZZLE, src)) return;
@@ -38,7 +40,13 @@ void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     set_weather(WEATHER_RAIN);
 }
 
-// SPEED BOOST
+// Speed Boost
+u8 speedboost_on_residual(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if( user!= source) return true;
+	stat_boost(source, SPEED_MOD, 1);
+	return true;
+}
 
 // BATTLEARMOR
 
@@ -177,7 +185,14 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 
 // RAINDISH
 
-// SANDSTREAM
+// Sand Stream
+void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_SANDSTREAM, src)) return;
+    ADD_VOLATILE(VOLATILE_SANDSTREAM, src);
+    if (battle_master->field_state.is_sandstorm) return;
+    set_weather(WEATHER_SANDSTORM);
+}
 
 // PRESSURE
 
@@ -227,7 +242,14 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 
 // ROCKHEAD
 
-// DROUGHT
+// Drought
+void drought_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_DROUGHT, src)) return;
+    ADD_VOLATILE(VOLATILE_DROUGHT, src);
+    if (battle_master->field_state.is_sunny) return;
+    set_weather(WEATHER_SUN);
+}
 
 // ARENATRAP
 
@@ -288,7 +310,15 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 
 // DOWNLOAD
 
-// IRONFIST
+// Iron Fist
+void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_PUNCH(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+    }
+    return;
+}
 
 // POISONHEAL
 
@@ -352,13 +382,28 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 
 // SOLIDROCK
 
-// SNOWWARNING
+// Snow Warning
+void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_SNOWWARNING, src)) return;
+    ADD_VOLATILE(VOLATILE_SNOWWARNING, src);
+    if (battle_master->field_state.is_hail) return;
+    set_weather(WEATHER_HAIL);
+}
 
 // HONEYGATHER
 
 // FRISK
 
-// RECKLESS
+// Reckless
+void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_RECOIL(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+    }
+    return;
+}
 
 // MULTITYPE
 
@@ -487,7 +532,15 @@ void competitive_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct an
         stat_boost(user, STAT_SPECIAL_ATTACK - 1, 2, user);
 }
 
-// STRONGJAW
+// Strong Jaw
+void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_BITE(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+    }
+    return;
+}
 
 // REFRIGERATE
 

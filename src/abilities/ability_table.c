@@ -23,11 +23,12 @@ struct ability_data abilities[] = {
 		.on_damage = stench_on_damage,
 	},
 	{
-		// DRIZZLE
+		// Drizzle
 		.on_start = drizzle_on_start,
 	},
 	{
-		// SPEEDBOOST
+		// Speed Boost
+		.on_residual = speedboost_on_residual,
 	},
 	{
 		// BATTLEARMOR
@@ -142,7 +143,7 @@ struct ability_data abilities[] = {
 		// INNERFOCUS
 	},
 	{
-		// MAGMAARMOR
+		// Magma Armor
 		.on_status = magmaarmor_on_status,
 	},
 	{
@@ -159,7 +160,8 @@ struct ability_data abilities[] = {
 		// RAINDISH
 	},
 	{
-		// SANDSTREAM
+		// Sand Stream
+		.on_start = sandstream_on_start,
 	},
 	{
 		// PRESSURE
@@ -234,7 +236,8 @@ struct ability_data abilities[] = {
 		// ROCKHEAD
 	},
 	{
-		// DROUGHT
+		// Drought
+		.on_start = drought_on_start,
 	},
 	{
 		// ARENATRAP
@@ -294,7 +297,8 @@ struct ability_data abilities[] = {
 		// DOWNLOAD
 	},
 	{
-		// IRONFIST
+		// Iron Fist
+		.on_base_power = ironfist_on_base_power,
 	},
 	{
 		// POISONHEAL
@@ -379,7 +383,8 @@ struct ability_data abilities[] = {
 		// SOLIDROCK
 	},
 	{
-		// SNOWWARNING
+		// Snow Warning
+		.on_start = snowwarning_on_start,
 	},
 	{
 		// HONEYGATHER
@@ -388,7 +393,8 @@ struct ability_data abilities[] = {
 		// FRISK
 	},
 	{
-		// RECKLESS
+		// Reckless
+		.on_base_power = reckless_on_base_power,
 	},
 	{
 		// MULTITYPE
@@ -550,7 +556,8 @@ struct ability_data abilities[] = {
 		.after_stat_boost_mod = competitive_after_stat_boost_mod,
 	},
 	{
-		// STRONGJAW
+		// Strong Jaw
+		.on_base_power = strongjaw_on_base_power,
 	},
 	{
 		// REFRIGERATE

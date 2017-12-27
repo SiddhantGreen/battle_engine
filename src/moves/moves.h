@@ -90,18 +90,21 @@ struct move_procs {
 /*
  * Field data fetch macros
  */
-#define MOVE_PRIORITY(move) moves[move].priority
-#define MOVE_POWER(move) moves[move].base_power
-#define MOVE_CATEGORY(move) moves[move].category
-#define MOVE_ACCURACY(move) moves[move].accuracy
-#define MOVE_CRIT(move) moves[move].crit_ratio
-#define M_FLINCH(move) moves[move].flinch_chance
-#define MOVE_TYPE(move) moves[move].type
+#define MOVE_PRIORITY(move) (moves[move].priority)
+#define MOVE_POWER(move) (moves[move].base_power)
+#define MOVE_CATEGORY(move) (moves[move].category)
+#define MOVE_ACCURACY(move) (moves[move].accuracy)
+#define MOVE_CRIT(move) (moves[move].crit_ratio)
+#define MOVE_RECOIL(move) (moves[move].recoil)
+#define M_FLINCH(move) (moves[move].flinch_chance)
+#define MOVE_TYPE(move) (moves[move].type)
 #define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
 #define IS_MOVE_PHYSICAL(move) (moves[move].category == MOVE_PHYSICAL)
 #define IS_MOVE_SPECIAL(move) (moves[move].category == MOVE_SPECIAL)
 #define IS_CHARGE(move) ((moves[move].m_flags) & FLAG_CHARGE)
 #define IS_CONTACT(move) ((moves[move].m_flags) & FLAG_CONTACT)
+#define IS_PUNCH(move) ((moves[move].m_flags) & FLAG_PUNCH)
+#define IS_BITE(move) ((moves[move].m_flags) & FLAG_BITE)
 #define IS_RECHARGE(move) ((moves[move].m_flags) & FLAG_RECHARGE)
 #define IS_DEFROST(move) ((moves[move].m_flags) & FLAG_DEFROST)
 #define IS_GRAVITY(move) ((moves[move].m_flags) & FLAG_GRAVITY)
@@ -114,7 +117,6 @@ struct move_procs {
 #define IS_TRIAGE(move) ((moves[move].m_flags) & FLAG_TRIAGE)
 #define IS_SOUND_BASE(move) ((moves[move].m_flags) & FLAG_SOUND)
 #define IS_PULSE(move) ((moves[move].m_flags) & FLAG_PULSE)
-#define IS_STRONG_JAW(move) ((moves[move].m_flags) & FLAG_BITE)
 #define IS_BULLET(move) ((moves[move].m_flags) & FLAG_BULLET)
 #define IS_SEMI_INVUL(move) ((moves[move].m_flags) & FLAG_SEMI_INVUL)
 #define IS_OHKO(move) ((moves[move].m_flags) & FLAG_OHKO)
