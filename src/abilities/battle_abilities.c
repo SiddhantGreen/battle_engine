@@ -26,7 +26,7 @@ void stench_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* a
     return;
 }
 
-// Drizzle [We need .on_start for this]
+// Drizzle
 void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (HAS_VOLATILE(VOLATILE_DRIZZLE, src)) return;
