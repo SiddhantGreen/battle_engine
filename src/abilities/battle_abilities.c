@@ -36,7 +36,13 @@ void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     set_weather(WEATHER_RAIN);
 }
 
-// SPEED BOOST
+// Speed Boost
+u8 speedboost_on_residual(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if( user!= source) return true;
+	stat_boost(source, SPEED_MOD, 1);
+	return true;
+}
 
 // BATTLEARMOR
 
@@ -299,7 +305,15 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 
 // DOWNLOAD
 
-// IRONFIST
+// Iron Fist
+void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_PUNCH(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+    }
+    return;
+}
 
 // POISONHEAL
 
@@ -376,7 +390,15 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 // FRISK
 
-// RECKLESS
+// Reckless
+void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_RECOIL(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+    }
+    return;
+}
 
 // MULTITYPE
 
@@ -488,7 +510,15 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 
 // COMPETITIVE
 
-// STRONGJAW
+// Strong Jaw
+void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if(IS_BITE(move)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+    }
+    return;
+}
 
 // REFRIGERATE
 
