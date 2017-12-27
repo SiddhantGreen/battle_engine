@@ -23,7 +23,7 @@ struct ability_data abilities[] = {
 		.on_damage = stench_on_damage,
 	},
 	{
-		// DRIZZLE
+		// Drizzle
 		.on_start = drizzle_on_start,
 	},
 	{
@@ -142,7 +142,7 @@ struct ability_data abilities[] = {
 		// INNERFOCUS
 	},
 	{
-		// MAGMAARMOR
+		// Magma Armor
 		.on_status = magmaarmor_on_status,
 	},
 	{
@@ -159,7 +159,8 @@ struct ability_data abilities[] = {
 		// RAINDISH
 	},
 	{
-		// SANDSTREAM
+		// Sands Stream
+		.on_start = sandstream_on_start,
 	},
 	{
 		// PRESSURE
@@ -234,7 +235,8 @@ struct ability_data abilities[] = {
 		// ROCKHEAD
 	},
 	{
-		// DROUGHT
+		// Drought
+		.on_start = drought_on_start,
 	},
 	{
 		// ARENATRAP
@@ -281,8 +283,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Heatproof
-	
-      .on_base_power = heatproof_on_base_power,
+                .on_base_power = heatproof_on_base_power,
 	},
         {
 		// Simple
@@ -380,7 +381,8 @@ struct ability_data abilities[] = {
 		// SOLIDROCK
 	},
 	{
-		// SNOWWARNING
+		// Snow Warning
+		.on_start = snowwarning_on_start,
 	},
 	{
 		// HONEYGATHER
