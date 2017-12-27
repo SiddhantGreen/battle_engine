@@ -35,11 +35,11 @@ void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank)
         u8 result_set = pop_callback(bank, stat_id);
         if (battle_master->executing && result_set) {
             RETRIEVE_STAT_BOOST_MOD_RESULT(result_set);
-            if (is_negative) {
-                amount = -mod_amount;
+            if (macro_param_is_negative) {
+                amount = -macro_param_mod_amount;
             }
             else {
-                amount = mod_amount;
+                amount = macro_param_mod_amount;
             }
         }
     }
