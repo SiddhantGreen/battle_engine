@@ -3,6 +3,7 @@
 #include "battle_abilities.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../battle_data/battle_state.h"
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
