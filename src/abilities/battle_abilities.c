@@ -174,7 +174,7 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 
 // RAINDISH
 
-// Sands Stream
+// Sand Stream
 void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (HAS_VOLATILE(VOLATILE_SANDSTREAM, src)) return;
