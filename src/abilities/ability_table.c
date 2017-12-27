@@ -296,7 +296,8 @@ struct ability_data abilities[] = {
 		// DOWNLOAD
 	},
 	{
-		// IRONFIST
+		// Iron Fist
+		.on_base_power = ironfist_on_base_power,
 	},
 	{
 		// POISONHEAL
@@ -391,7 +392,8 @@ struct ability_data abilities[] = {
 		// FRISK
 	},
 	{
-		// RECKLESS
+		// Reckless
+		.on_base_power = reckless_on_base_power,
 	},
 	{
 		// MULTITYPE
@@ -551,7 +553,8 @@ struct ability_data abilities[] = {
 		// COMPETITIVE
 	},
 	{
-		// STRONGJAW
+		// Strong Jaw
+		.on_base_power = strongjaw_on_base_power,
 	},
 	{
 		// REFRIGERATE
