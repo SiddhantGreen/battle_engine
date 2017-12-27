@@ -262,7 +262,7 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 
 // UNBURDEN
 
-// HEATPROOF
+// HEATPROOF /* Not Completed Yet */
 void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
@@ -308,7 +308,7 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 // STALL
 
 // Technician
-void technician_on_base_power(u8 user, u8 source, struct anonymous_callback* acb)
+void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
 	if (B_MOVE_POWER(user) <= 60) {
