@@ -159,7 +159,7 @@ struct ability_data abilities[] = {
 		// RAINDISH
 	},
 	{
-		// Sands Stream
+		// Sand Stream
 		.on_start = sandstream_on_start,
 	},
 	{
