@@ -27,7 +27,8 @@ struct ability_data abilities[] = {
 		.on_start = drizzle_on_start,
 	},
 	{
-		// SPEEDBOOST
+		// Speed Boost
+		.on_residual = speedboost_on_residual,
 	},
 	{
 		// BATTLEARMOR
