@@ -174,7 +174,14 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 
 // RAINDISH
 
-// SANDSTREAM
+// Sands Stream
+void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_SANDSTREAM, src)) return;
+    ADD_VOLATILE(VOLATILE_SANDSTREAM, src);
+    if (battle_master->field_state.is_sandstorm) return;
+    set_weather(WEATHER_SANDSTORM);
+}
 
 // PRESSURE
 
@@ -224,7 +231,14 @@ u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callba
 
 // ROCKHEAD
 
-// DROUGHT
+// Drought
+void drought_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_DROUGHT, src)) return;
+    ADD_VOLATILE(VOLATILE_DROUGHT, src);
+    if (battle_master->field_state.is_sunny) return;
+    set_weather(WEATHER_SUN);
+}
 
 // ARENATRAP
 
@@ -348,7 +362,14 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 
 // SOLIDROCK
 
-// SNOWWARNING
+// Snow Warning
+void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (HAS_VOLATILE(VOLATILE_SNOWWARNING, src)) return;
+    ADD_VOLATILE(VOLATILE_SNOWWARNING, src);
+    if (battle_master->field_state.is_hail) return;
+    set_weather(WEATHER_HAIL);
+}
 
 // HONEYGATHER
 
