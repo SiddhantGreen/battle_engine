@@ -85,8 +85,10 @@ u8 spiky_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_ca
     if (TARGET_OF(user) != source) return true;
     if (IS_PROTECTABLE(move)) {
         enqueue_message(0, TARGET_OF(user), STRING_PROTECTED_SELF, 0);
-        enqueue_message(MOVE_SPIKY_SHIELD, user, STRING_RESIDUAL_DMG, MOVE_SPIKY_SHIELD);
-        do_damage(user, TOTAL_HP(TARGET_OF(user)) / 8);
+        if(IS_CONTACT(move)) {
+            enqueue_message(MOVE_SPIKY_SHIELD, user, STRING_RESIDUAL_DMG, MOVE_SPIKY_SHIELD);
+            do_damage(user, TOTAL_HP(TARGET_OF(user)) / 8);
+        }
         return 3; // fail the move silently
     }
     return true;
@@ -99,7 +101,8 @@ u8 baneful_bunker_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_
     if (TARGET_OF(user) != source) return true;
     if (IS_PROTECTABLE(move)) {
         enqueue_message(0, TARGET_OF(user), STRING_PROTECTED_SELF, 0);
-        set_status(user, AILMENT_POISON);
+        if(IS_CONTACT(move))
+            set_status(user, AILMENT_POISON);
         return 3; // fail the move silently
     }
     return true;
@@ -111,7 +114,8 @@ u8 kings_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_ca
     if (TARGET_OF(user) != source) return true;
     if (IS_PROTECTABLE(move)) {
         enqueue_message(0, TARGET_OF(user), STRING_PROTECTED_SELF, 0);
-        stat_boost(user, 0, -2, TARGET_OF(user));
+        if(IS_CONTACT(move))
+            stat_boost(user, 0, -2, TARGET_OF(user));
         return 3; // fail the move silently
     }
     return true;

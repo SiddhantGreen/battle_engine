@@ -376,7 +376,6 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
     acb->in_use = false;
     if (user != source) return 0;
     RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
-    dprintf("%d,%d\n", p_bank[user]->b_data.sp_atk, STORE_STAT_BOOST_MOD_RESULT((!is_negative), (amount)));
     return STORE_STAT_BOOST_MOD_RESULT((!is_negative), (amount));
 }
 
