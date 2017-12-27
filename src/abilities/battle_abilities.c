@@ -394,7 +394,7 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
-	if(IS_RECOIL(move)) {
+	if(MOVE_RECOIL(move)) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
     return;
