@@ -95,6 +95,7 @@ struct move_procs {
 #define MOVE_CATEGORY(move) moves[move].category
 #define MOVE_ACCURACY(move) moves[move].accuracy
 #define MOVE_CRIT(move) moves[move].crit_ratio
+#define MOVE_RECOIL(move) (moves[move].recoil)
 #define M_FLINCH(move) moves[move].flinch_chance
 #define MOVE_TYPE(move) moves[move].type
 #define IS_MOVE_STATUS(move) (moves[move].category == MOVE_STATUS)
@@ -118,7 +119,6 @@ struct move_procs {
 #define IS_PULSE(move) ((moves[move].m_flags) & FLAG_PULSE)
 #define IS_STRONG_JAW(move) ((moves[move].m_flags) & FLAG_BITE)
 #define IS_BULLET(move) ((moves[move].m_flags) & FLAG_BULLET)
-#define IS_RECOIL(move) moves[move].recoil
 #define IS_SEMI_INVUL(move) ((moves[move].m_flags) & FLAG_SEMI_INVUL)
 #define IS_OHKO(move) ((moves[move].m_flags) & FLAG_OHKO)
 #define CAT_OVERRIDE(move) ((moves[move].m_flags) & FLAG_CATEGORY_OVERRIDE)
