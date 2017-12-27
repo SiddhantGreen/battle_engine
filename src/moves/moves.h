@@ -118,7 +118,6 @@ struct move_procs {
 #define IS_PULSE(move) ((moves[move].m_flags) & FLAG_PULSE)
 #define IS_STRONG_JAW(move) ((moves[move].m_flags) & FLAG_BITE)
 #define IS_BULLET(move) ((moves[move].m_flags) & FLAG_BULLET)
-#define IS_PULSE(move) ((moves[move].m_flags) & FLAG_PULSE)
 #define IS_RECOIL(move) moves[move].recoil
 #define IS_SEMI_INVUL(move) ((moves[move].m_flags) & FLAG_SEMI_INVUL)
 #define IS_OHKO(move) ((moves[move].m_flags) & FLAG_OHKO)
