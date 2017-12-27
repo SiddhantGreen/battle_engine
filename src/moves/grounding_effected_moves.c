@@ -6,7 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_heal(u8 bank_index, u8 percent_heal);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern bool is_grounded(u8 bank);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 
@@ -102,8 +102,8 @@ u8 rototiller_on_effect(u8 user, u8 src, u16 status_id, struct anonymous_callbac
     for (u8 i = 0; i < BANK_MAX; i++) {
         if (b_pkmn_has_type(i, MTYPE_GRASS) && is_grounded(i)) {
             // boosts apply
-            stat_boost(i, ATTACK_MOD, 1);
-            stat_boost(i, SPATTACK_MOD, 1);
+            stat_boost(i, ATTACK_MOD, 1, user);
+            stat_boost(i, SPATTACK_MOD, 1, user);
             boosted = true;
         }
     }

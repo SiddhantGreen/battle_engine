@@ -7,7 +7,7 @@ extern u16 rand_range(u16, u16);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
 void set_status(u8 bank, enum Effect status);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern bool protection_effect_exists_side(u8 bank, u32 func);
 extern bool moves_last(u8 bank);
 
@@ -111,7 +111,7 @@ u8 kings_shield_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_ca
     if (TARGET_OF(user) != source) return true;
     if (IS_PROTECTABLE(move)) {
         enqueue_message(0, TARGET_OF(user), STRING_PROTECTED_SELF, 0);
-        stat_boost(user, 0, -2);
+        stat_boost(user, 0, -2, TARGET_OF(user));
         return 3; // fail the move silently
     }
     return true;

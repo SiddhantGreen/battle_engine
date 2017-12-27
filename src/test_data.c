@@ -9,20 +9,20 @@ const static bool USE_TESTS = true; // Change to false to not execute the test e
 /* Player data */
 const static u16 player_species = SPECIES_GASTLY;
 const static u16 player_move_1 = MOVE_QUASH;
-const static u16 player_move_2 = MOVE_RECOVER;
-const static u16 player_move_3 = MOVE_ACID;
-const static u16 player_move_4 = MOVE_DRILL_PECK;
-const static u8 player_level = 15;
-const u8 player_ability = ABILITY_COMATOSE;
+const static u16 player_move_2 = MOVE_OVERHEAT;
+const static u16 player_move_3 = MOVE_LEER;
+const static u16 player_move_4 = MOVE_KINGSSHIELD;
+const static u8 player_level = 55;
+const u8 player_ability = ABILITY_DEFIANT;
 
 /* Opponent data */
 const static u16 opponent_species = SPECIES_GOLEM;
-const static u16 opponent_move_1 = MOVE_PURSUIT;
-const static u16 opponent_move_2 = MOVE_PURSUIT;
-const static u16 opponent_move_3 = MOVE_PURSUIT;
-const static u16 opponent_move_4 = MOVE_PURSUIT;
+const static u16 opponent_move_1 = MOVE_LEER;
+const static u16 opponent_move_2 = MOVE_GROWL;
+const static u16 opponent_move_3 = MOVE_DEFENDORDER;
+const static u16 opponent_move_4 = MOVE_AQUAJET;
 const static u8 opponent_level = 55;
-const u8 opponent_ability = ABILITY_GUTS;
+const u8 opponent_ability = ABILITY_COMPETITIVE;
 
 
 

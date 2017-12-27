@@ -5,7 +5,7 @@
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16 min, u16 max);
 
 u8 accupressure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -38,6 +38,6 @@ u8 accupressure_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
         // nothing to boost
         return false;
     }
-    stat_boost(TARGET_OF(user), stats[rand_range(0, index)], 2);
+    stat_boost(TARGET_OF(user), stats[rand_range(0, index)], 2, user);
     return true;
 }

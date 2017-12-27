@@ -4,7 +4,6 @@
 #include <pokeagb/pokeagb.h>
 #include "../battle_data/pkmn_bank.h"
 
-
 typedef void (*StatusOnStart)(u8 bank);
 typedef void (*StatusOnBeforeMove)(u8 bank);
 typedef u16 (*StatusOnModSpeed)(u8 bank, u16 speed_stat);
