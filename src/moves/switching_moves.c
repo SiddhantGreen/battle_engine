@@ -8,7 +8,7 @@ extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern u8 count_usable_pokemon(u8 side);
 extern void forced_switch(u8 bank, u8 switch_method);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern void do_heal(u8 bank_index, u8 heal);
 extern void set_status(u8 bank, enum Effect status);
 extern void do_damage(u8 bank_index, u16 dmg);
@@ -107,8 +107,8 @@ u8 parting_shot_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
     if (user != src) return true;
     // stat drop on foe
-    stat_boost(TARGET_OF(user), ATTACK_MOD, -1);
-    stat_boost(TARGET_OF(user), SPATTACK_MOD, -1);
+    stat_boost(TARGET_OF(user), ATTACK_MOD, -1, user);
+    stat_boost(TARGET_OF(user), SPATTACK_MOD, -1, user);
     // player
     if (user == PLAYER_SIDE) {
         // no switch effect if cannot switch into something
@@ -129,8 +129,8 @@ u8 memento_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     // stat drop on foe
     for (u8 i = 0; i < BANK_MAX; i++) {
         if ((i == user) && (ACTIVE_BANK(i))) continue;
-        stat_boost(i, ATTACK_MOD, -2);
-        stat_boost(i, SPATTACK_MOD, -2);
+        stat_boost(i, ATTACK_MOD, -2, user);
+        stat_boost(i, SPATTACK_MOD, -2, user);
     }
     do_damage(user, B_CURRENT_HP(user));
     struct action* a = prepend_action(user, user, ActionSwitch, EventForcedSwitch);

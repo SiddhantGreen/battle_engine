@@ -6,7 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 
 u8 belly_drum_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {

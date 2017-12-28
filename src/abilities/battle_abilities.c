@@ -3,12 +3,16 @@
 #include "battle_abilities.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../status_effects/stat_boost_info.h"
 #include "../battle_data/battle_state.h"
+
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool set_weather(enum WeatherTypes weather);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
+
 
 // None
 u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
@@ -296,9 +300,10 @@ void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 // Simple
 u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
-    if (user != source) return 0;
     acb->in_use = false;
-    return (acb->data_ptr + ((acb->data_ptr) & 0x7));
+    if (user != source) return 0;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    return STORE_STAT_BOOST_MOD_RESULT((macro_param_is_negative), (macro_param_amount*2));
 }
 
 // DRYSKIN
@@ -413,14 +418,23 @@ void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 // Contary
 u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
-    if (user != source) return 0;
     acb->in_use = false;
-    return ((acb->data_ptr) ^ 16);
+    if (user != source) return 0;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    return STORE_STAT_BOOST_MOD_RESULT((!macro_param_is_negative), (macro_param_amount));
 }
 
 // UNNERVE
 
 // DEFIANT
+void defiant_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    acb->in_use = false;
+    if (user != source) return;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+        stat_boost(user, STAT_ATTACK - 1, 2, user);
+}
 
 // DEFEATIST
 
@@ -509,6 +523,14 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 // BULLETPROOF
 
 // COMPETITIVE
+void competitive_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    acb->in_use = false;
+    if (user != source) return;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+        stat_boost(user, STAT_SPECIAL_ATTACK - 1, 2, user);
+}
 
 // Strong Jaw
 void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)

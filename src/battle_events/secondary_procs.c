@@ -7,7 +7,7 @@
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void set_status(u8 bank, enum Effect status);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16 min, u16 max);
 
 /* Boost event */
@@ -33,7 +33,7 @@ void event_move_boosts(struct action* current_action)
 	/* first step is to apply user boosts */
 	for (u8 i = 0; i < 8; i++) {
 		if (B_USER_STAT_MOD_CHANCE(bank, i) >= rand_range(0, 100)) {
-			stat_boost(bank, i, B_USER_STAT_MOD_AMOUNT(bank, i));
+			stat_boost(bank, i, B_USER_STAT_MOD_AMOUNT(bank, i), bank);
 			B_USER_STAT_MOD_CHANCE(bank, i) = 0;
             return;
 		}
@@ -42,7 +42,7 @@ void event_move_boosts(struct action* current_action)
 	/* second step is to apply target boosts */
 	for (u8 i = 0; i < 8; i++) {
 		if (B_TARGET_STAT_MOD_CHANCE(bank, i) >= rand_range(0, 100)) {
-			stat_boost(TARGET_OF(bank), i, B_TARGET_STAT_MOD_AMOUNT(bank, i));
+			stat_boost(TARGET_OF(bank), i, B_TARGET_STAT_MOD_AMOUNT(bank, i), bank);
 			B_TARGET_STAT_MOD_CHANCE(bank, i) = 0;
             return;
 		}
