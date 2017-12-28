@@ -67,5 +67,6 @@ extern void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymou
 extern void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
