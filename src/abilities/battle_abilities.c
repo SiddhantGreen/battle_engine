@@ -39,8 +39,8 @@ void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 // Speed Boost
 u8 speedboost_on_residual(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-	if( user!= source) return true;
-	stat_boost(source, SPEED_MOD, 1);
+	if (user != source) return true;
+	stat_boost(user, SPEED_MOD, 1, user);
 	return true;
 }
 
@@ -90,10 +90,10 @@ u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-    if( B_MOVE_DMG(user) > 0 && !B_MOVE_HAS_TYPE(user, MTYPE_NONE)) {
-	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
-	b_pkmn_set_type(TARGET_OF(user), type);
-	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
+    if ((B_MOVE_DMG(user) > 0) && (!B_MOVE_HAS_TYPE(user, MTYPE_NONE))) {
+    	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
+    	b_pkmn_set_type(TARGET_OF(user), type);
+    	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
     }
     return;
 }
@@ -394,8 +394,8 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
-	if(IS_RECOIL(move)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+	if (MOVE_RECOIL(move)) {
+        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
     return;
 }
@@ -514,7 +514,7 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
-	if(IS_BITE(move)) {
+	if (IS_BITE(move)) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
     return;
@@ -576,7 +576,7 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
+	if (B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;

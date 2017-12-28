@@ -153,8 +153,10 @@ u8 lunar_dance_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 {
     if (user != src) return true;
     do_damage(user, B_CURRENT_HP(user));
-    struct action* a = prepend_action(user, user, ActionSwitch, EventForcedSwitch);
-    a->priv[0] = 1;
+    if (count_usable_pokemon(SIDE_OF(user)) > 2) {
+        struct action* a = prepend_action(user, user, ActionSwitch, EventForcedSwitch);
+        a->priv[0] = 1;
+    }
     add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)lunar_dance_on_after_move);
     return true;
 }

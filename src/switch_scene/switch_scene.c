@@ -25,6 +25,7 @@ extern void reset_boxes(void);
 extern void refresh_hp(struct Pokemon* pkmn, u8 objid, u8 mode, u8 bank, u8* tiles);
 extern u8 hpbar_build_transparent(struct Pokemon* pkmn, s16 x, s16 y, u16 tag);
 extern void status_switch_menu(u8 objid, u8 ailment);
+extern bool bank_trapped(u8 bank);
 
 const struct Frame (**nullframe)[] = (const struct Frame (**)[])0x8231CF0;
 const struct RotscaleFrame (**nullrsf)[] = (const struct RotscaleFrame (**)[])0x8231CFC;
@@ -676,15 +677,38 @@ void free_confirmation_box()
     obj_free(&objects[battle_master->switch_main.switch_confirm_box_id]);
 }
 
+bool slot_is_fainted(u8 slot)
+{
+    return (pokemon_getattr(&party_player[slot], REQUEST_CURRENT_HP, NULL) < 1);
+}
+
+bool slot_in_battle(u8 slot)
+{
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (p_bank[i]->b_data.slot == slot)
+            return true;
+    }
+    return false;
+}
+
+bool slot_is_trapped(u8 slot)
+{
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (p_bank[i]->b_data.slot == slot)
+            return bank_trapped(i);
+    }
+    return false;
+}
 
 void confirm_box()
 {
-    u8 objid;
+    u8 objid, slot;
     switch (super.buttons_new_remapped & (KEY_A | KEY_B | KEY_DOWN | KEY_UP)) {
         case KEY_A:
             // if cursor on cancel button, free confirm box and go back to main switch
+            slot = battle_master->switch_main.position;
             objid = battle_master->switch_main.switch_confirm_cursor_id;
-            if (objects[objid].pos1.y == CURSOR_CANCEL_POS) {
+            if ((objects[objid].pos1.y == CURSOR_CANCEL_POS) || (slot_is_fainted(slot)) || (slot_is_trapped(slot)) || (slot_in_battle(slot))) {
                 super.multi_purpose_state_tracker = 3;
                 set_callback1(switch_scene_main);
                 free_confirmation_box();
