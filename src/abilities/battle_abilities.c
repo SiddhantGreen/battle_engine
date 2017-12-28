@@ -372,7 +372,15 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 
 // UNAWARE
 
-// TINTEDLENS
+// Tinted Lens
+void tintedlens_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if(B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 200);
+    }
+    return;
+}
 
 // FILTER
 
