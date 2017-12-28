@@ -685,8 +685,10 @@ bool slot_is_fainted(u8 slot)
 bool slot_in_battle(u8 slot)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if (p_bank[i]->b_data.slot == slot)
+        if (SIDE_OF(i)) continue; // skip opponent banks
+        if ((p_bank[i]->b_data.slot == slot) && (ACTIVE_BANK(i))) {
             return true;
+        }
     }
     return false;
 }
@@ -694,7 +696,8 @@ bool slot_in_battle(u8 slot)
 bool slot_is_trapped(u8 slot)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if (p_bank[i]->b_data.slot == slot)
+        if (SIDE_OF(i)) continue; // skip opponent banks
+        if ((p_bank[i]->b_data.slot == slot) && ACTIVE_BANK(i))
             return bank_trapped(i);
     }
     return false;
