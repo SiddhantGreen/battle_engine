@@ -570,7 +570,8 @@ struct ability_data abilities[] = {
 		// GALEWINGS
 	},
 	{
-		// MEGALAUNCHER
+		// Mega Launcher
+		.on_base_power = megalauncher_on_base_power,
 	},
 	{
 		// GRASSPELT
