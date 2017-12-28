@@ -363,7 +363,8 @@ struct ability_data abilities[] = {
 		// UNAWARE
 	},
 	{
-		// TINTEDLENS
+		// Tinted Lens
+		.on_base_power = tintedlens_on_base_power,
 	},
 	{
 		// FILTER
