@@ -373,16 +373,24 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 // UNAWARE
 
 // Tinted Lens
-void tintedlens_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
 	if(B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 200);
+	   B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
     }
     return;
 }
 
-// FILTER
+// Filter
+void filter_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+    }
+    return;
+}
 
 // SLOWSTART
 
@@ -392,7 +400,15 @@ void tintedlens_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 
 // ICEBODY
 
-// SOLIDROCK
+// Solid Rock
+void solidrock_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+    }
+    return;
+}
 
 // Snow Warning
 void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -669,6 +685,14 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 
 // SHADOWSHIELD
 
-// PRISMARMOR
+// Prism Armor
+void prismarmor_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+    }
+    return;
+}
 
 // NEUROFORCE
