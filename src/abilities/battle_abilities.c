@@ -342,7 +342,7 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 {
     if (user != source) return;
 	if (B_MOVE_POWER(user) <= 60) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
@@ -515,7 +515,7 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 {
     if (TARGET_OF(user) != source) return;
 	if (IS_BITE(move)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
     return;
 }
@@ -528,7 +528,15 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 
 // GALEWINGS
 
-// MEGALAUNCHER
+// Mega Launcher
+void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+	if (IS_PULSE(move)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+    }
+    return;
+}
 
 // GRASSPELT
 
@@ -577,7 +585,7 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
 	if (B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
