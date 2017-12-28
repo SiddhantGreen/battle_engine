@@ -304,7 +304,8 @@ struct ability_data abilities[] = {
 		// POISONHEAL
 	},
 	{
-		// ADAPTABILITY
+		// Adaptability
+		.on_base_power = adaptability_on_base_power,
 	},
 	{
 		// SKILLLINK
