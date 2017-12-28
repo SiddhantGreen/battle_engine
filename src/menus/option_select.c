@@ -20,6 +20,10 @@ extern void event_peek_message(struct action* current_action);
 extern void CpuFastSet(void* src, void* dst, u32 mode);
 extern void sync_battler_struct(u8 bank);
 extern void set_active_movement(u8 task_id);
+extern void return_to_battle_bag(void);
+
+void (*sub_8107ECC)(u8, u8, SuperCallback) = 0x8107DB5;
+
 
 /* Fight menu and move menu selection. Preperation to go into battle loop*/
 
@@ -149,6 +153,13 @@ void option_selection2()
             break;
         case BagOptionSelected:
             // BAG selected from fight menu
+            fade_screen(0xFFFFFFFF, 0, 0, 16, 0x0000);
+            task_del(task_find_id_by_functpr(set_active_movement));
+            free_unused_objs();
+            battle_master->fight_menu_content_spawned  = 0;
+            super.multi_purpose_state_tracker = 0;
+            set_callback1(NULL);
+            sub_8107ECC(5, 3, return_to_battle_bag);
             break;
         case RunOptionSelected:
         {
