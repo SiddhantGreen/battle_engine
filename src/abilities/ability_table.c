@@ -364,10 +364,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Tinted Lens
-		.on_base_power = tintedlens_on_base_power,
+		.on_damage = tintedlens_on_damage,
 	},
 	{
-		// FILTER
+		// Filter
+		.on_damage = filter_on_damage,
 	},
 	{
 		// SLOWSTART
@@ -382,7 +383,8 @@ struct ability_data abilities[] = {
 		// ICEBODY
 	},
 	{
-		// SOLIDROCK
+		// Soild Rock
+		.on_damage = solidrock_on_damage,
 	},
 	{
 		// Snow Warning
@@ -736,7 +738,8 @@ struct ability_data abilities[] = {
 		// SHADOWSHIELD
 	},
 	{
-		// PRISMARMOR
+		// Prism Armor
+		.on_damage = prismarmor_on_damage,
 	},
 	{
 		// NEUROFORCE
