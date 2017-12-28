@@ -308,7 +308,7 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 // Iron Fist
 void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if(IS_PUNCH(move)) {
 	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
@@ -317,7 +317,16 @@ void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 
 // POISONHEAL
 
-// ADAPTABILITY
+// Adaptability
+void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if(B_MOVE_STAB(user)) {
+	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
+    }
+    return;
+}
+
 
 // SKILLLINK
 
@@ -393,7 +402,7 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // Reckless
 void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if (MOVE_RECOIL(move)) {
         B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
@@ -513,7 +522,7 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 // Strong Jaw
 void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if (IS_BITE(move)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
@@ -531,7 +540,7 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 // Mega Launcher
 void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if (IS_PULSE(move)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
