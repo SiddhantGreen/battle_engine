@@ -386,8 +386,8 @@ void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callbac
 void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
-    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
-       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+    if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
     }
     return;
 }
