@@ -382,8 +382,8 @@ void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callbac
     return;
 }
 
-// Filter
-void filter_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+// Filter, Solid Rock and Prism Armor
+void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != source) return;
     if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
@@ -399,16 +399,6 @@ void filter_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* a
 // STORMDRAIN
 
 // ICEBODY
-
-// Solid Rock
-void solidrock_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
-{
-    if (TARGET_OF(user) != source) return;
-    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
-       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
-    }
-    return;
-}
 
 // Snow Warning
 void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -684,15 +674,5 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 // FULLMETAL
 
 // SHADOWSHIELD
-
-// Prism Armor
-void prismarmor_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
-{
-    if (TARGET_OF(user) != source) return;
-    if(B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
-       B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
-    }
-    return;
-}
 
 // NEUROFORCE
