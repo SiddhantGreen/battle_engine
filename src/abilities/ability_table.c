@@ -368,7 +368,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Filter
-		.on_damage = filter_on_damage,
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// SLOWSTART
@@ -384,7 +384,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Soild Rock
-		.on_damage = solidrock_on_damage,
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// Snow Warning
@@ -739,7 +739,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Prism Armor
-		.on_damage = prismarmor_on_damage,
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// NEUROFORCE
