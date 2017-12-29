@@ -3,12 +3,16 @@
 #include "battle_abilities.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
+#include "../status_effects/stat_boost_info.h"
 #include "../battle_data/battle_state.h"
+
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool set_weather(enum WeatherTypes weather);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
+
 
 // None
 u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
@@ -21,8 +25,8 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 void stench_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-    if(B_MOVE_DMG(user) > 0) {
-       B_MOVE_FLINCH(user) = 10;
+    if (B_MOVE_DMG(user) > 0) {
+        B_MOVE_FLINCH(user) = 10;
     }
     return;
 }
@@ -91,9 +95,9 @@ void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
     if ((B_MOVE_DMG(user) > 0) && (!B_MOVE_HAS_TYPE(user, MTYPE_NONE))) {
-    	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
-    	b_pkmn_set_type(TARGET_OF(user), type);
-    	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
+    	 u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
+    	 b_pkmn_set_type(TARGET_OF(user), type);
+    	 enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
     }
     return;
 }
@@ -296,9 +300,10 @@ void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 // Simple
 u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
-    if (user != source) return 0;
     acb->in_use = false;
-    return (acb->data_ptr + ((acb->data_ptr) & 0x7));
+    if (user != source) return 0;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    return STORE_STAT_BOOST_MOD_RESULT((macro_param_is_negative), (macro_param_amount*2));
 }
 
 // DRYSKIN
@@ -308,16 +313,25 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 // Iron Fist
 void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
-	if(IS_PUNCH(move)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+    if (user != source) return;
+	if (IS_PUNCH(move)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
     return;
 }
 
 // POISONHEAL
 
-// ADAPTABILITY
+// Adaptability
+void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if (B_MOVE_STAB(user)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
+    }
+    return;
+}
+
 
 // SKILLLINK
 
@@ -342,7 +356,7 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 {
     if (user != source) return;
 	if (B_MOVE_POWER(user) <= 60) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
@@ -363,9 +377,25 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 
 // UNAWARE
 
-// TINTEDLENS
+// Tinted Lens
+void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if (B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
+	    B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
+    }
+    return;
+}
 
-// FILTER
+// Filter, Solid Rock and Prism Armor
+void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != source) return;
+    if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+    }
+    return;
+}
 
 // SLOWSTART
 
@@ -374,8 +404,6 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 // STORMDRAIN
 
 // ICEBODY
-
-// SOLIDROCK
 
 // Snow Warning
 void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -393,7 +421,7 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // Reckless
 void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if (MOVE_RECOIL(move)) {
         B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
@@ -413,14 +441,23 @@ void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 // Contary
 u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
-    if (user != source) return 0;
     acb->in_use = false;
-    return ((acb->data_ptr) ^ 16);
+    if (user != source) return 0;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    return STORE_STAT_BOOST_MOD_RESULT((!macro_param_is_negative), (macro_param_amount));
 }
 
 // UNNERVE
 
 // DEFIANT
+void defiant_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    acb->in_use = false;
+    if (user != source) return;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+        stat_boost(user, STAT_ATTACK - 1, 2, user);
+}
 
 // DEFEATIST
 
@@ -509,13 +546,21 @@ u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 // BULLETPROOF
 
 // COMPETITIVE
+void competitive_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+{
+    acb->in_use = false;
+    if (user != source) return;
+    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
+    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+        stat_boost(user, STAT_SPECIAL_ATTACK - 1, 2, user);
+}
 
 // Strong Jaw
 void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (user != source) return;
 	if (IS_BITE(move)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
     return;
 }
@@ -528,7 +573,15 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 
 // GALEWINGS
 
-// MEGALAUNCHER
+// Mega Launcher
+void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+    if (user != source) return;
+	if (IS_PULSE(move)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+    }
+    return;
+}
 
 // GRASSPELT
 
@@ -577,7 +630,7 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
 	if (B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
@@ -643,7 +696,5 @@ void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_ca
 // FULLMETAL
 
 // SHADOWSHIELD
-
-// PRISMARMOR
 
 // NEUROFORCE

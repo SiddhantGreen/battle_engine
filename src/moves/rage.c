@@ -4,7 +4,7 @@
 #include "../battle_data/battle_state.h"
 
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount);
+extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16 min, u16 max);
 
 void rage_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -12,7 +12,7 @@ void rage_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if (TARGET_OF(user) != src) return;
     if (B_MOVE_DMG(user) > 0) {
         // +1 atk if hit
-        stat_boost(src, 0, 1);
+        stat_boost(src, 0, 1, src);
     }
 }
 

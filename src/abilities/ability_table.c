@@ -284,9 +284,9 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Heatproof
-                .on_base_power = heatproof_on_base_power,
+        .on_base_power = heatproof_on_base_power,
 	},
-        {
+    {
 		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
@@ -304,7 +304,8 @@ struct ability_data abilities[] = {
 		// POISONHEAL
 	},
 	{
-		// ADAPTABILITY
+		// Adaptability
+		.on_base_power = adaptability_on_base_power,
 	},
 	{
 		// SKILLLINK
@@ -362,10 +363,12 @@ struct ability_data abilities[] = {
 		// UNAWARE
 	},
 	{
-		// TINTEDLENS
+		// Tinted Lens
+		.on_damage = tintedlens_on_damage,
 	},
 	{
-		// FILTER
+		// Filter
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// SLOWSTART
@@ -380,7 +383,8 @@ struct ability_data abilities[] = {
 		// ICEBODY
 	},
 	{
-		// SOLIDROCK
+		// Soild Rock
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// Snow Warning
@@ -420,6 +424,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// DEFIANT
+		.after_stat_boost_mod = defiant_after_stat_boost_mod,
 	},
 	{
 		// DEFEATIST
@@ -552,6 +557,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// COMPETITIVE
+		.after_stat_boost_mod = competitive_after_stat_boost_mod,
 	},
 	{
 		// Strong Jaw
@@ -570,7 +576,8 @@ struct ability_data abilities[] = {
 		// GALEWINGS
 	},
 	{
-		// MEGALAUNCHER
+		// Mega Launcher
+		.on_base_power = megalauncher_on_base_power,
 	},
 	{
 		// GRASSPELT
@@ -733,7 +740,8 @@ struct ability_data abilities[] = {
 		// SHADOWSHIELD
 	},
 	{
-		// PRISMARMOR
+		// Prism Armor
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// NEUROFORCE
