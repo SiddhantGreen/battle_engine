@@ -304,7 +304,8 @@ struct ability_data abilities[] = {
 		// POISONHEAL
 	},
 	{
-		// ADAPTABILITY
+		// Adaptability
+		.on_base_power = adaptability_on_base_power,
 	},
 	{
 		// SKILLLINK
@@ -362,10 +363,12 @@ struct ability_data abilities[] = {
 		// UNAWARE
 	},
 	{
-		// TINTEDLENS
+		// Tinted Lens
+		.on_damage = tintedlens_on_damage,
 	},
 	{
-		// FILTER
+		// Filter
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// SLOWSTART
@@ -380,7 +383,8 @@ struct ability_data abilities[] = {
 		// ICEBODY
 	},
 	{
-		// SOLIDROCK
+		// Soild Rock
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// Snow Warning
@@ -572,7 +576,8 @@ struct ability_data abilities[] = {
 		// GALEWINGS
 	},
 	{
-		// MEGALAUNCHER
+		// Mega Launcher
+		.on_base_power = megalauncher_on_base_power,
 	},
 	{
 		// GRASSPELT
@@ -735,7 +740,8 @@ struct ability_data abilities[] = {
 		// SHADOWSHIELD
 	},
 	{
-		// PRISMARMOR
+		// Prism Armor
+		.on_damage = filter_variations_on_damage,
 	},
 	{
 		// NEUROFORCE
