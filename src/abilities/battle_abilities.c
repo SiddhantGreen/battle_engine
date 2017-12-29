@@ -21,8 +21,8 @@ u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callbac
 void stench_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-    if(B_MOVE_DMG(user) > 0) {
-       B_MOVE_FLINCH(user) = 10;
+    if (B_MOVE_DMG(user) > 0) {
+        B_MOVE_FLINCH(user) = 10;
     }
     return;
 }
@@ -91,9 +91,9 @@ void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_ca
 {
     if (user != source) return;
     if ((B_MOVE_DMG(user) > 0) && (!B_MOVE_HAS_TYPE(user, MTYPE_NONE))) {
-    	u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
-    	b_pkmn_set_type(TARGET_OF(user), type);
-    	enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
+    	 u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
+    	 b_pkmn_set_type(TARGET_OF(user), type);
+    	 enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
     }
     return;
 }
@@ -309,8 +309,8 @@ u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_ca
 void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(IS_PUNCH(move)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+	if (IS_PUNCH(move)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
     return;
 }
@@ -321,8 +321,8 @@ void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(B_MOVE_STAB(user)) {
-	   B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
+	if (B_MOVE_STAB(user)) {
+	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
     }
     return;
 }
@@ -376,8 +376,8 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
     if (user != source) return;
-	if(B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
-	   B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
+	if (B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
+	    B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
     }
     return;
 }
