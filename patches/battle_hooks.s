@@ -1,10 +1,15 @@
-// actualy wild grass hook  
+// actualy wild grass hook
 .org 0x0807F76C
     ldr r1, = battle_hook|1
     bx r1
 .pool
-    
+
 // exit option hook
 .org 0x083A7378
     .word init_battle_elements|1
+.pool
+
+// bag inbattle to return hook
+.org 0x08030AF8
+    .word return_to_battle_bag|1
 .pool

@@ -94,8 +94,8 @@ void pick_and_load_battle_bgs_no_entry(const void* textbox_map)
     char_base = (void *)0x600C000;
     map_base = (void *)0x600F800;
     lz77UnCompVram((void *)bboxTiles, char_base);
-
     CpuFastSet((void*)textbox_map, (void*)map_base, CPUModeFS(0x800, CPUFSCPY));
+
     // write palettes
     gpu_pal_apply_compressed((void *)grass_bgPal, 0, 64);
     gpu_pal_apply((void*)bboxPal, 16 * 5, 32);

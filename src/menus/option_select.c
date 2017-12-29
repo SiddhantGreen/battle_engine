@@ -160,6 +160,7 @@ void option_selection2()
             super.multi_purpose_state_tracker = 0;
             set_callback1(NULL);
             sub_8107ECC(5, 3, return_to_battle_bag);
+            gpu_tile_bg_drop_all_sets(0);
             break;
         case RunOptionSelected:
         {

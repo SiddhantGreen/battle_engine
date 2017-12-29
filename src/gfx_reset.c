@@ -136,8 +136,8 @@ void reset_boxes()
 
 
 void setup()
+{
     // callbacks
-    {
     handlers_clear();
     // BGs
     reset_bg_settings();

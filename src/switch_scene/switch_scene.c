@@ -627,6 +627,7 @@ void switch_scene_main()
         break;
     case 7:
         // return to battle
+        gpu_tile_bg_drop_all_sets(0);
         set_callback1(return_to_battle);
         super.multi_purpose_state_tracker = 0;
         return;
