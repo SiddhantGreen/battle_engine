@@ -191,9 +191,6 @@ void create_sprites_wild_battlers()
 
 void create_sprites_battle_mons_wild()
 {
-    // wild mon first
-    u8 objid = spawn_pkmn_obj_slot(OPPONENT_SINGLES_BANK, OPP1_BTAG);
-    p_bank[OPPONENT_SINGLES_BANK]->objid = objid;
-
+    p_bank[OPPONENT_SINGLES_BANK]->objid = spawn_pkmn_obj_slot(OPPONENT_SINGLES_BANK, OPP1_BTAG);
     p_bank[PLAYER_SINGLES_BANK]->objid = spawn_pkmn_backsprite_obj_slot(PLAYER_SINGLES_BANK, PLAYER_BTAG);
 }

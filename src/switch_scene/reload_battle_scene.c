@@ -4,6 +4,7 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
 #include "../battle_text/battle_textbox_gfx.h"
+#include "../hpboxes/hpbox_positional_data.h"
 
 extern void battle_loop(void);
 extern void c2_battle(void);
@@ -23,9 +24,11 @@ void return_to_battle()
     switch(super.multi_purpose_state_tracker) {
         case 0:
             if (!pal_fade_control.active) {
-                gpu_tile_bg_drop_all_sets(0);
-                // u32 set = 0;
-                // CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
+                dprintf("do we ever return?\n");
+
+
+                u32 set = 0;
+                CpuFastSet((void*)&set, (void*)ADDR_VRAM, CPUModeFS(0x10000, CPUFSSET));
                 vblank_handler_set((SuperCallback)vblank_cb_merge_tbox);
                 set_callback2((SuperCallback)c2_battle);
                 bg_vram_setup(0, (struct BgConfig *)&bg_config_data, 4);
@@ -96,4 +99,65 @@ void return_to_battle()
             break;
     };
 
+}
+
+void (*dp12_8087EA4)(void) = 0x8087EA4|5;
+extern void reset_pal_settings(void);
+extern void create_sprites_battle_mons_wild(void);
+extern u8 spawn_hpbox_opponent(u16 tag, s16 x, s16 y, u8 bank);
+extern u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank);
+
+void return_to_battle_bag()
+{
+    u8* a = (u8*)0x2037AB8 + 8;
+    *a |= 0x80;
+    u8* bag_something = (u8*)0x2023FE5;
+    u8* bag_something2 = (u8*)0x2023FE6;
+    *bag_something = 0;
+    *bag_something2 = 0;
+    dp12_8087EA4();
+
+    // callbacks
+    handlers_clear();
+    // BGs
+    gpu_tile_bg_drop_all_sets(0);
+    bgid_mod_x_offset(0, 0, 0);
+    bgid_mod_y_offset(0, 0, 0);
+    bgid_mod_x_offset(1, 0, 0);
+    bgid_mod_y_offset(1, 0, 0);
+    bgid_mod_x_offset(2, 0, 0);
+    bgid_mod_y_offset(2, 0, 0);
+    bgid_mod_x_offset(3, 0, 0);
+    bgid_mod_y_offset(3, 0, 0);
+    gpu_sync_bg_hide(0);
+    gpu_sync_bg_hide(1);
+    gpu_sync_bg_hide(2);
+    gpu_sync_bg_hide(3);
+    // pals
+    reset_pal_settings();
+    // objs
+    obj_and_aux_reset_all();
+    gpu_tile_obj_tags_reset();
+
+    // display
+    lcd_io_set(0x4C, 0);
+    REG_WININ = WININ_BUILD(WIN_BG0 | WIN_BG1 | WIN_BG2 | WIN_BG3 | WIN_OBJ | WIN_BLD,
+    WIN_BG0 | WIN_BG1 | WIN_BG2 | WIN_BG3 | WIN_OBJ | WIN_BLD);
+    REG_DISPCNT = 0x7960;
+
+    // need to redraw objects
+    create_sprites_battle_mons_wild();
+    objects[p_bank[OPPONENT_SINGLES_BANK]->objid].pos1.x = 178;
+
+    // spawn the HP boxes
+    // spawn_hpbox_opponent(HPBOX_TAG_OPP_SW, HPBOX_OPP_SW_X, HPBOX_OPP_SW_Y, OPPONENT_SINGLES_BANK);
+     spawn_hpbox_player(HPBOX_TAG_PLAYER_SINGLE, HPBOX_PLAYER_SINGLE_X, HPBOX_PLAYER_SINGLE_Y, PLAYER_SINGLES_BANK);
+
+    // set active movements
+    tasks[task_add(set_active_movement, 1)].priv[0] = PLAYER_SINGLES_BANK;
+
+    // continue game callbacks
+    super.multi_purpose_state_tracker = 0;
+    set_callback1(return_to_battle);
+    set_callback2(NULL);
 }

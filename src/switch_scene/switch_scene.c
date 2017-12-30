@@ -627,6 +627,7 @@ void switch_scene_main()
         break;
     case 7:
         // return to battle
+        gpu_tile_bg_drop_all_sets(0);
         set_callback1(return_to_battle);
         super.multi_purpose_state_tracker = 0;
         return;
@@ -685,8 +686,10 @@ bool slot_is_fainted(u8 slot)
 bool slot_in_battle(u8 slot)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if (p_bank[i]->b_data.slot == slot)
+        if (SIDE_OF(i)) continue; // skip opponent banks
+        if ((p_bank[i]->b_data.slot == slot) && (ACTIVE_BANK(i))) {
             return true;
+        }
     }
     return false;
 }
@@ -694,7 +697,8 @@ bool slot_in_battle(u8 slot)
 bool slot_is_trapped(u8 slot)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
-        if (p_bank[i]->b_data.slot == slot)
+        if (SIDE_OF(i)) continue; // skip opponent banks
+        if ((p_bank[i]->b_data.slot == slot) && ACTIVE_BANK(i))
             return bank_trapped(i);
     }
     return false;
