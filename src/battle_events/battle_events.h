@@ -24,13 +24,14 @@ enum EventStatesWildBattle {
     EventPeekMessage, // 17
     EventDamageAnim, // 18
     EventHealAnim, // 19
-    EventFaint, // 20
-    EventEndAction, // 21
-    EventInactive, // 22
-    EventResidualEffects, // 23
-    EventWildBattleOver, // 24
-    EventForcedSwitch,
-    EventEndBattle, // 25
+    EventStatBoost, //20
+    EventFaint, // 21
+    EventEndAction, // 22
+    EventInactive, // 23
+    EventResidualEffects, // 24
+    EventWildBattleOver, // 25
+    EventForcedSwitch, //26
+    EventEndBattle, // 27
 };
 
 extern void event_run_flee(struct action* a);
@@ -57,6 +58,7 @@ extern void event_move_failed(struct action* current_action);
 extern void event_peek_message(struct action* current_action);
 extern void init_damage(struct action* current_action);
 extern void init_heal(struct action* current_action);
+extern void event_stat_boost(struct action* current_action);
 extern void event_faint(struct action* current_action);
 extern void event_set_inactive(struct action* current_action);
 extern void event_residual_effects(struct action* current_action);

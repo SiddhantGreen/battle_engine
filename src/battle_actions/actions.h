@@ -14,6 +14,7 @@ enum ActionTiming {
     ActionHeal, // Do heal
     ActionResidual,
     ActionHighPriority,
+    ActionStatBoost,
 };
 
 struct action {
