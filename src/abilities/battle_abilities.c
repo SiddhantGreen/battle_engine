@@ -75,7 +75,7 @@ u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb
 	if (IS_CONTACT(move)) {
 		if (rand_range(1,100) <= 30) {
 			B_STATUS(user) = AILMENT_PARALYZE;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_PARALYZE);
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
 		}
 	}
 	return true;
@@ -172,7 +172,7 @@ u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback
 	if (IS_CONTACT(move)) {
 		if (rand_range(1,100) <= 30) {
 			B_STATUS(user) = AILMENT_POISON;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_POISON);
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
 		}
 	}
 	return true;
@@ -230,7 +230,7 @@ u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* 
 	if (IS_CONTACT(move)) {
 		if (rand_range(1,100) <= 30) {
 			B_STATUS(user) = AILMENT_BURN;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_BURN);
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
 		}
 	}
 	return true;
