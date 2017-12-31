@@ -76,5 +76,8 @@ extern void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anon
 extern void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
