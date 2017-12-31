@@ -12,6 +12,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern bool set_weather(enum WeatherTypes weather);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
+extern u16 rand_range(u16, u16);
 
 
 // None
@@ -68,6 +69,17 @@ u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback*
 // SANDVEIL
 
 // STATIC
+u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != source) return true;
+	if (IS_CONTACT(move)) {
+		if (rand_range(1,100) <= 30) {
+			B_STATUS(user) = AILMENT_PARALYZE;
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_PARALYZE);
+		}
+	}
+	return true;
+}
 
 // VOLTABSORB
 
@@ -153,7 +165,18 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 
 // HUGEPOWER
 
-// POISONPOINT
+// Poison Point
+u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != source) return true;
+	if (IS_CONTACT(move)) {
+		if (rand_range(1,100) <= 30) {
+			B_STATUS(user) = AILMENT_POISON;
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_POISON);
+		}
+	}
+	return true;
+}
 
 // INNERFOCUS
 
@@ -200,7 +223,18 @@ void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
 // EARLYBIRD
 
-// FLAMEBODY
+// Flame Body
+u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != source) return true;
+	if (IS_CONTACT(move)) {
+		if (rand_range(1,100) <= 30) {
+			B_STATUS(user) = AILMENT_BURN;
+			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, AILMENT_BURN);
+		}
+	}
+	return true;
+}
 
 // RUNAWAY
 
