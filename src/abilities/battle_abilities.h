@@ -19,6 +19,7 @@ typedef void (*AbilityOnDamageCallback)(u8 user, u8 source, u16 move, struct ano
 typedef u8 (*AbilityOnEffectCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u16 (*AbilityOnStatCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef void (*AbilityAfterStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnResidualCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
@@ -36,6 +37,7 @@ struct ability_data {
     AbilityOnEffectCallback on_effect;
     AbilityOnAfterMoveCallback on_after_move;
     AbilityOnStatusCallback on_status;
+    AbilityOnStatCallback on_stat; // when a base stat is read
     AbilityOnStatBoostModCallback on_stat_boost_mod;
     AbilityAfterStatBoostModCallback after_stat_boost_mod;
     AbilityOnResidualCallback on_residual;
