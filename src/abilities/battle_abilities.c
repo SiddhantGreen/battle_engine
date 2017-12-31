@@ -14,6 +14,8 @@ extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16, u16);
 
+/* Note: Illuminate and Honey Gather has no In-Battle effect*/
+
 
 // None
 u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
@@ -158,8 +160,6 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 // SWIFTSWIM
 
 // CHLOROPHYLL
-
-// ILLUMINATE
 
 // TRACE
 
@@ -447,8 +447,6 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
     if (battle_master->field_state.is_hail) return;
     set_weather(WEATHER_HAIL);
 }
-
-// HONEYGATHER
 
 // FRISK
 
