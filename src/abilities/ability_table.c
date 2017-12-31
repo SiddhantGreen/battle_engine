@@ -129,7 +129,8 @@ struct ability_data abilities[] = {
 		// CHLOROPHYLL
 	},
 	{
-		// ILLUMINATE
+		// Illuminate
+		/* Note: This Ability has not in battle effect */
 	},
 	{
 		// TRACE
@@ -149,7 +150,7 @@ struct ability_data abilities[] = {
 		.on_status = magmaarmor_on_status,
 	},
 	{
-		// WATERVEIL
+		// Water Veil
 		.on_status = waterveil_on_status,
 	},
 	{
@@ -394,7 +395,8 @@ struct ability_data abilities[] = {
 		.on_start = snowwarning_on_start,
 	},
 	{
-		// HONEYGATHER
+		// Honey Gather
+		/* Note: This Ability has not in battle effect */
 	},
 	{
 		// FRISK
