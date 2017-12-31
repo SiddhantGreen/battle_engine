@@ -14,7 +14,7 @@ extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16, u16);
 
-/* Note: Illuminate and Honey Gather has no In-Battle effect*/
+/* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
 
 // None
