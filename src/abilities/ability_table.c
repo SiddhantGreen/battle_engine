@@ -47,7 +47,8 @@ struct ability_data abilities[] = {
 		// SANDVEIL
 	},
 	{
-		// STATIC
+		// Static
+		.on_effect = static_on_effect,
 	},
 	{
 		// VOLTABSORB
@@ -137,7 +138,8 @@ struct ability_data abilities[] = {
 		// HUGEPOWER
 	},
 	{
-		// POISONPOINT
+		// Poison Point
+		.on_effect = poisonpoint_on_effect,
 	},
 	{
 		// INNERFOCUS
@@ -173,7 +175,8 @@ struct ability_data abilities[] = {
 		// EARLYBIRD
 	},
 	{
-		// FLAMEBODY
+		// Flame Body
+		.on_effect = flamebody_on_effect,
 	},
 	{
 		// RUNAWAY
@@ -423,7 +426,7 @@ struct ability_data abilities[] = {
 		// UNNERVE
 	},
 	{
-		// DEFIANT
+		// Defiant
 		.after_stat_boost_mod = defiant_after_stat_boost_mod,
 	},
 	{
@@ -556,7 +559,7 @@ struct ability_data abilities[] = {
 		// BULLETPROOF
 	},
 	{
-		// COMPETITIVE
+		// Competitive
 		.after_stat_boost_mod = competitive_after_stat_boost_mod,
 	},
 	{
