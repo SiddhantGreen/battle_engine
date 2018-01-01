@@ -32,6 +32,16 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
         /* crit chance */
         stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
     }
+    
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (ACTIVE_BANK(i)) {
+            u8 ability = p_bank[i]->b_data.ability;
+            if (abilities[ability].on_stat) {
+                abilities[ability].on_stat(NULL, i, NULL, NULL);
+            }
+        }
+    }
+    
     // back up cbs
     u32* old_execution_array = push_callbacks();
     u8 old_index = CB_EXEC_INDEX;

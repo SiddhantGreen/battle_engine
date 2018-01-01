@@ -20,6 +20,7 @@ typedef u8 (*AbilityOnEffectCallback)(u8 user, u8 source, u16 move, struct anony
 typedef void (*AbilityOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef bool (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
+typedef u16 (*AbilityOnStatCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityAfterStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnResidualCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 
@@ -36,6 +37,7 @@ struct ability_data {
     AbilityOnEffectCallback on_effect;
     AbilityOnAfterMoveCallback on_after_move;
     AbilityOnStatusCallback on_status;
+    AbilityOnStatCallback on_stat; // when a base stat is read
     AbilityOnStatBoostModCallback on_stat_boost_mod;
     AbilityAfterStatBoostModCallback after_stat_boost_mod;
     AbilityOnResidualCallback on_residual;
@@ -74,5 +76,8 @@ extern void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anon
 extern void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

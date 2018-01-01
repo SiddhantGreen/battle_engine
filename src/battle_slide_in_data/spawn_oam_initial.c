@@ -194,3 +194,20 @@ void create_sprites_battle_mons_wild()
     p_bank[OPPONENT_SINGLES_BANK]->objid = spawn_pkmn_obj_slot(OPPONENT_SINGLES_BANK, OPP1_BTAG);
     p_bank[PLAYER_SINGLES_BANK]->objid = spawn_pkmn_backsprite_obj_slot(PLAYER_SINGLES_BANK, PLAYER_BTAG);
 }
+
+
+void free_battler_oams()
+{
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (p_bank[i]->objid < 0x3F) {
+            obj_free(&objects[p_bank[i]->objid]);
+            p_bank[i]->objid = 0x3F;
+        }
+        for (u8 j = 0; j < 4; j++) {
+            if (p_bank[i]->objid_hpbox[j] < 0x3F) {
+                obj_free(&objects[p_bank[i]->objid_hpbox[j]]);
+                p_bank[i]->objid_hpbox[j] = 0x3F;
+            }
+        }
+    }
+}

@@ -16,6 +16,7 @@ extern void dprintf(const char * str, ...);
 extern void option_selection2(void);
 extern void switch_scene_main(void);
 extern void free_unused_objs(void);
+extern void free_battler_oams(void);
 extern void event_peek_message(struct action* current_action);
 extern void CpuFastSet(void* src, void* dst, u32 mode);
 extern void sync_battler_struct(u8 bank);
@@ -68,6 +69,17 @@ void jump_switch_menu(enum switch_reason reason)
     super.multi_purpose_state_tracker = 0;
     sync_battler_struct(battle_master->option_selecting_bank);
     set_callback1(switch_scene_main);
+}
+
+void bag_prep()
+{
+    if (!pal_fade_control.active) {
+        set_callback1(NULL);
+        sub_8107ECC(5, 3, return_to_battle_bag);
+        gpu_tile_bg_drop_all_sets(0);
+        rboxes_free();
+        free_battler_oams();
+    }
 }
 
 void option_selection2()
@@ -158,9 +170,7 @@ void option_selection2()
             free_unused_objs();
             battle_master->fight_menu_content_spawned  = 0;
             super.multi_purpose_state_tracker = 0;
-            set_callback1(NULL);
-            sub_8107ECC(5, 3, return_to_battle_bag);
-            gpu_tile_bg_drop_all_sets(0);
+            set_callback1(bag_prep);
             break;
         case RunOptionSelected:
         {
