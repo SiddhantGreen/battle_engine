@@ -3,7 +3,6 @@
 #include "battle_abilities.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
-#include "../status_effects/stat_boost_info.h"
 #include "../battle_data/battle_state.h"
 
 
@@ -332,12 +331,12 @@ void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 }
 
 // Simple
-u8 simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+bool simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return 0;
-    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
-    return STORE_STAT_BOOST_MOD_RESULT((macro_param_is_negative), (macro_param_amount*2));
+    if (user != source) return true;
+    CURRENT_ACTION->priv[1] = ((CURRENT_ACTION->priv[1]) << 1);
+    return true;
 }
 
 // DRYSKIN
@@ -471,12 +470,12 @@ void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 // SHEERFORCE
 
 // Contary
-u8 contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+bool contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return 0;
-    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
-    return STORE_STAT_BOOST_MOD_RESULT((!macro_param_is_negative), (macro_param_amount));
+    if (user != source) return true;
+    CURRENT_ACTION->priv[1] = -CURRENT_ACTION->priv[1];
+    return true;
 }
 
 // UNNERVE
@@ -486,8 +485,7 @@ void defiant_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonym
 {
     acb->in_use = false;
     if (user != source) return;
-    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
-    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+    if (SIDE_OF((CURRENT_ACTION)->action_bank) != SIDE_OF(user) && ((CURRENT_ACTION)->priv[1] < 0))
         stat_boost(user, STAT_ATTACK - 1, 2, user);
 }
 
@@ -582,8 +580,7 @@ void competitive_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct an
 {
     acb->in_use = false;
     if (user != source) return;
-    RETRIEVE_ADDITIONAL_DATA_FOR_STAT_BOOST_MOD();
-    if (SIDE_OF(macro_param_inflicting_bank) != SIDE_OF(user) && macro_param_is_negative && (macro_param_amount > 0))
+    if (SIDE_OF((CURRENT_ACTION)->action_bank) != SIDE_OF(user) && ((CURRENT_ACTION)->priv[1] < 0))
         stat_boost(user, STAT_SPECIAL_ATTACK - 1, 2, user);
 }
 
