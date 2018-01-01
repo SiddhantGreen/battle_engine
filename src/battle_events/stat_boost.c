@@ -21,8 +21,10 @@ struct action *stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank)
 
 void event_stat_boost(struct action* current_action)
 {
-    if (current_action->priv[1] == 0)
+    if (current_action->type != ActionStatBoost || current_action->priv[1] == 0) {
+        end_action(CURRENT_ACTION);
         return;
+    }
 
     u8 bank = current_action->target;
     u8 stat_id = current_action->priv[0];
@@ -76,6 +78,7 @@ void event_stat_boost(struct action* current_action)
             stat_stored = &(p_bank[bank]->b_data.crit_mod);
             break;
         default:
+            end_action(CURRENT_ACTION);
             return;
     };
 
