@@ -23,6 +23,7 @@ typedef bool (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, s
 typedef u16 (*AbilityOnStatCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityAfterStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnResidualCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
+typedef void (*AbilityOnDrainCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 
 struct ability_data {
     AbilityBeforeTurn before_turn;
@@ -35,6 +36,7 @@ struct ability_data {
     AbilityOnBasePowerCallback on_base_power;
     AbilityOnDamageCallback on_damage;
     AbilityOnEffectCallback on_effect;
+    AbilityOnDrainCallback on_drain;
     AbilityOnAfterMoveCallback on_after_move;
     AbilityOnStatusCallback on_status;
     AbilityOnStatCallback on_stat; // when a base stat is read

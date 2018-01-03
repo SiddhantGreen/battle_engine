@@ -109,6 +109,7 @@ struct move_used {
     u8 hit_times;
     u8 hit_counter;
     u16 dmg;
+    s16 drain;
     enum TypeEffectiveness effectiveness;
     u16 heal;
     u16 after_dmg;

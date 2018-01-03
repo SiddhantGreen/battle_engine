@@ -114,6 +114,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_MOVE_WILL_CRIT(bank) (battle_master->b_moves[bank].will_crit)
 #define B_MOVE_CAN_CRIT(bank) (battle_master->b_moves[bank].can_crit)
 #define B_MOVE_DMG(bank) (battle_master->b_moves[bank].dmg)
+#define B_DRAIN(bank) (battle_master->b_moves[bank].drain)
 #define B_MOVE_EFFECTIVENESS(bank) (battle_master->b_moves[bank].effectiveness)
 #define B_MOVE_IGNORE_ATK(bank) (battle_master->b_moves[bank].ignore_target_atk)
 #define B_MOVE_IGNORE_DEF(bank) (battle_master->b_moves[bank].ignore_target_def)
