@@ -264,6 +264,13 @@ u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* 
 // MARVELSCALE
 
 // LIQUIDOOZE
+void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) !=  src) return;
+    if (B_DRAIN(user))
+        B_DRAIN(user) = -B_DRAIN(user);
+}
+
 
 // OVERGROW
 

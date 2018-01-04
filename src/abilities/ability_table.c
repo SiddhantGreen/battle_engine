@@ -223,6 +223,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// LIQUIDOOZE
+		.on_drain = liquid_ooze_on_drain,
 	},
 	{
 		// OVERGROW
