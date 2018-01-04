@@ -1667,6 +1667,7 @@ struct move_data moves[] = {
     .type = MTYPE_GRASS,
     .m_flags = FLAG_REFLECTABLE | FLAG_MIRROR | FLAG_PROTECT | FLAG_TARGET,
     .procs = &basic_proc,
+    .drain = 100, // leech seed should drain 100% of dmg dealt
     .on_tryhit_move = leech_seed_on_tryhit,
     },
 

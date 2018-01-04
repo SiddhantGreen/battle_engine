@@ -2,6 +2,8 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/battle_state.h"
+#include "../battle_actions/actions.h"
+#include "../battle_events/battle_events.h"
 
 extern void dprintf(const char * str, ...);
 extern u16 rand_range(u16 min, u16 max);
@@ -74,7 +76,10 @@ u8 leech_seed_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
     u8 dmg = MAX(1, (TOTAL_HP(user) / 8));
     do_damage(user, dmg);
     if (dmg) {
-        do_heal(acb->data_ptr, dmg);
+        CURRENT_MOVE(acb->data_ptr) = MOVE_LEECH_SEED;
+        B_MOVE_DMG(acb->data_ptr) = dmg;
+        TARGET_OF(acb->data_ptr) = user;
+        prepend_action(acb->data_ptr, user, ActionHeal, EventDrain);
         enqueue_message(NULL, user, STRING_SAPPED, 0);
     }
     return true;
