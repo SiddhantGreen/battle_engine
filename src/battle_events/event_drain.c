@@ -17,7 +17,7 @@ void event_drain(struct action* current_action)
     u16 move = CURRENT_MOVE(bank);
     B_DRAIN(bank) = 0;
     if (B_FAINTED(bank)) {
-        CURRENT_ACTION->event_state++;
+        end_action(CURRENT_ACTION);
         return;
     }
 
@@ -32,6 +32,7 @@ void event_drain(struct action* current_action)
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
+    bool execution_status = battle_master->executing;
 
     // run callbacks
     build_execution_order(CB_ON_DRAIN);
@@ -42,11 +43,13 @@ void event_drain(struct action* current_action)
     // restore callbacks
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
+    battle_master->executing = execution_status;
 
+    // do drain
     if (B_DRAIN(bank) > 0) {
         flat_heal(bank, B_DRAIN(bank));
     } else if (B_DRAIN(bank) < 0) {
-        do_damage(bank, B_DRAIN(bank));
+        do_damage(bank, -B_DRAIN(bank));
     }
     end_action(CURRENT_ACTION);
 }
