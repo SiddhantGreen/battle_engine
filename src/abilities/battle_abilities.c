@@ -15,6 +15,8 @@ extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_
 extern u8 move_pp_count(u16 move_id, u8 bank);
 extern void set_status(u8 bank, enum Effect status);
 extern void do_damage(u8 bank_index, u16 dmg);
+extern void flat_heal(u8 bank, u16 heal);
+
 /* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
 
@@ -153,6 +155,14 @@ u8 immunity_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* 
 // SHIELDDUST
 
 // OWNTEMPO
+u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (ailment == EFFECT_CONFUSION) {
+    	return false;
+    }
+    return true;
+}
 
 // SUCTIONCUPS
 
@@ -409,6 +419,32 @@ void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 }
 
 // POISONHEAL
+extern u8 toxic_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 poison_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
+u8 poison_heal_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    if (user != src) return true;
+    // the ability can change at some point. Since this is anonymous, the case must be handled
+    if (BANK_ABILITY(src) != ABILITY_POISON_HEAL) return true;
+    if ((B_STATUS(user) == AILMENT_POISON) || (B_STATUS(user) == AILMENT_BAD_POISON)) {
+        u8 id = get_callback_src((u32)toxic_on_residual, user);
+        CB_MASTER[id].delay_before_effect = 1;
+        id = get_callback_src((u32)poison_on_residual, user);
+        CB_MASTER[id].delay_before_effect = 1;
+        flat_heal(user, MAX(1, (TOTAL_HP(user) >> 3)));
+        p_bank[user]->b_data.status_turns++;
+    } else {
+        acb->in_use = false;
+    }
+    return true;
+}
+
+u8 poison_heal_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    add_callback(CB_ON_RESIDUAL, 2, 0, src, (u32)poison_heal_on_residual);
+    return true;
+}
 
 // Adaptability
 void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

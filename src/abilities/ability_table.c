@@ -87,6 +87,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// OWNTEMPO
+		.on_status = own_tempo_on_status,
 	},
 	{
 		// SUCTIONCUPS
@@ -312,6 +313,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// POISONHEAL
+		.on_effect = poison_heal_on_effect,
 	},
 	{
 		// Adaptability

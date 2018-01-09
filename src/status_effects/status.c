@@ -73,7 +73,7 @@ u8 poison_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 void poison_on_inflict(u8 bank)
 {
 	u8 ailment = AILMENTBITS_POISON;
-    p_bank[bank]->b_data.status = AILMENT_POISON;
+	B_STATUS(bank) = AILMENT_POISON;
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_POISON);
@@ -186,7 +186,7 @@ u8 toxic_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 void toxic_on_inflict(u8 bank)
 {
 	u8 ailment = AILMENTBITS_TOXIC;
-    p_bank[bank]->b_data.status = AILMENT_BAD_POISON;
+	B_STATUS(bank) = AILMENT_BAD_POISON;
     p_bank[bank]->b_data.status_turns = 0;
 	pokemon_setattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, &ailment);
     enqueue_message(0, bank, STRING_AILMENT_APPLIED, AILMENT_BAD_POISON);
