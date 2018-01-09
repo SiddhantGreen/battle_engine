@@ -221,6 +221,10 @@ void status_graphical_update(u8 bank, enum Effect status)
     bool setflag = false;
     switch(status)
     {
+        case EFFECT_CONFUSION:
+        case EFFECT_INFACTUATION:
+            // these two don't effect status graphically
+            return;
         case EFFECT_NONE:
         case EFFECT_CURE:
             setflag = true;
@@ -326,7 +330,7 @@ u8 spawn_hpbox_opponent(u16 tag, s16 x, s16 y, u8 bank)
     /* draw level onto the HP bar */
     draw_level(&party_opponent[0], LVL_OS_OFFSET, objid_main);
     p_bank[bank]->objid_hpbox[2] = hpbar_build_full(&party_opponent[0], HPBAR_OS_X, HPBAR_OS_Y, HPBAR_OS_TAG);
-    
+
     /* Draw status */
     u16 s_tag = HPBOX_STATUS_TAG_OPP_SINGLE;
     u16 s_x = HPBOX_STATUS_OPP_SINGLE_X;
@@ -335,8 +339,8 @@ u8 spawn_hpbox_opponent(u16 tag, s16 x, s16 y, u8 bank)
     gpu_tile_obj_decompress_alloc_tag_and_upload(&status_tiles);
     struct Template status_temp = {s_tag, HPBAR_OS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
     p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, s_x, s_y, 0);
-    
-    
+
+
     u32 ailment = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL);
     u8 status = 0;
     if ((ailment & 7) > 0) {
@@ -378,7 +382,7 @@ u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank)
     draw_level(p_bank[bank]->this_pkmn, LVL_PS_OFFSET, objid_main);
     draw_hp(p_bank[bank]->this_pkmn, HPNUM_PS_OFFSET, objid_main, 0, 0);
     p_bank[bank]->objid_hpbox[2] = hpbar_build_full(p_bank[bank]->this_pkmn, HPBAR_PS_X, HPBAR_PS_Y, HPBAR_PS_TAG);
-    
+
     /* Draw status */
     u16 s_tag = HPBOX_STATUS_TAG_PLAYER_SINGLE;
     u16 s_x = HPBOX_STATUS_PLAYER_SINGLE_X;
@@ -387,8 +391,8 @@ u8 spawn_hpbox_player(u16 tag, s16 x, s16 y, u8 bank)
     gpu_tile_obj_alloc_tag_and_upload(&status_tiles);
     struct Template status_temp = {s_tag, HPBAR_PS_TAG, &hpbar_status_oam, nullframe, &status_tiles, nullrsf, (ObjectCallback)oac_nullsub};
     p_bank[bank]->objid_hpbox[3] = template_instanciate_forward_search(&status_temp, s_x, s_y, 0);
-    
-    
+
+
     u32 ailment = pokemon_getattr(p_bank[bank]->this_pkmn, REQUEST_STATUS_AILMENT, NULL);
     u8 status = 0;
     if ((ailment & 7) > 0) {
