@@ -201,6 +201,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// CUTECHARM
+		.on_effect = cute_charm_on_effect,
 	},
 	{
 		// PLUS

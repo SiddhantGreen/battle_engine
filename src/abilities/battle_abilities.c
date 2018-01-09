@@ -5,7 +5,6 @@
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/battle_state.h"
 
-
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool set_weather(enum WeatherTypes weather);
@@ -15,20 +14,21 @@ extern u16 rand_range(u16, u16);
 extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 move_pp_count(u16 move_id, u8 bank);
 extern void set_status(u8 bank, enum Effect status);
+extern void do_damage(u8 bank_index, u16 dmg);
 /* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
 
 // None
-u8 ability_none_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 ability_none_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     // This is just an example
     return true;
 }
 
 // Stench
-void stench_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void stench_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
     if (B_MOVE_DMG(user) > 0) {
         B_MOVE_FLINCH(user) = 10;
     }
@@ -45,9 +45,9 @@ void drizzle_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 }
 
 // Speed Boost
-u8 speedboost_on_residual(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (user != source) return true;
+	if (user != src) return true;
 	stat_boost(user, SPEED_MOD, 1, user);
 	return true;
 }
@@ -59,9 +59,9 @@ u8 speedboost_on_residual(u8 user, u8 source, u16 move, struct anonymous_callbac
 // DAMP
 
 // Limber
-u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 limber_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_PARALYZE) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
        	return false;
@@ -72,9 +72,9 @@ u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback*
 // SANDVEIL
 
 // STATIC
-u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != source) return true;
+	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
 	if (rand_range(1, 100) <= 30) {
 		set_status(user, EFFECT_PARALYZE);
@@ -93,9 +93,9 @@ u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb
 // COMPOUNDEYES
 
 // Insomnia
-u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 insomnia_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_SLEEP) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
     	return false;
@@ -104,9 +104,9 @@ u8 insomnia_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 }
 
 // Color Change
-void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void colorchange_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
     if ((B_MOVE_DMG(user) > 0) && (!B_MOVE_HAS_TYPE(user, MTYPE_NONE))) {
     	 u8 type = B_MOVE_TYPE(TARGET_OF(user), 0);
     	 b_pkmn_set_type(TARGET_OF(user), type);
@@ -116,9 +116,9 @@ void colorchange_on_after_move(u8 user, u8 source, u16 move, struct anonymous_ca
 }
 
 // Immunity
-u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 immunity_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_POISON) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
     	return false;
@@ -139,9 +139,9 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 // SHADOWTAG
 
 // ROUGHSKIN
-u8 rough_skin_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != source) return true;
+	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
 	do_damage(user, TOTAL_HP(user) >> 3);
 	return true;
@@ -188,9 +188,9 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // HUGEPOWER
 
 // Poison Point
-u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != source) return true;
+	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     if (rand_range(0, 100) <= 30)
 	   set_status(user, EFFECT_POISON);
@@ -200,9 +200,9 @@ u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback
 // INNERFOCUS
 
 // Magma Armor
-u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 magmaarmor_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_FREEZE) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
     	return false;
@@ -211,9 +211,9 @@ u8 magmaarmor_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callb
 }
 
 // Water Veil
-u8 waterveil_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 waterveil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_BURN) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
     	return false;
@@ -243,15 +243,12 @@ void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // EARLYBIRD
 
 // Flame Body
-u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != source) return true;
-	if (IS_CONTACT(move)) {
-		if (rand_range(1,100) <= 30) {
-			B_STATUS(user) = AILMENT_BURN;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
-		}
-	}
+	if (TARGET_OF(user) != src) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (rand_range(0, 100) <= 30)
+	   set_status(user, EFFECT_BURN);
 	return true;
 }
 
@@ -268,6 +265,15 @@ u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* 
 // HUSTLE
 
 // CUTECHARM
+u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != src) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (B_GENDER(user) == B_GENDER(src)) return true;
+    if (rand_range(0, 100) <= 30)
+	   set_status(user, EFFECT_INFACTUATION);
+	return true;
+}
 
 // PLUS
 
@@ -314,9 +320,9 @@ void drought_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 // ARENATRAP
 
 // Vital Spirit
-u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback* acb)
+u8 vitalspirit_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
-    if (user != source) return true;
+    if (user != src) return true;
     if (ailment == AILMENT_SLEEP) {
     	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
     	return false;
@@ -349,19 +355,19 @@ u8 vitalspirit_on_status(u8 user, u8 source, u16 ailment , struct anonymous_call
 // UNBURDEN
 
 // HEATPROOF /* Not Completed Yet */
-void heatproof_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void heatproof_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (TARGET_OF(user) != src) return;
     if (B_MOVE_HAS_TYPE (user, MTYPE_FIRE)) {
         B_MOVE_POWER(user) = B_MOVE_POWER(user) >> 1;
     }
 }
 
 // Simple
-bool simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+bool simple_on_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return true;
+    if (user != src) return true;
     CURRENT_ACTION->priv[1] = ((CURRENT_ACTION->priv[1]) << 1);
     return true;
 }
@@ -371,9 +377,9 @@ bool simple_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_
 // DOWNLOAD
 
 // Iron Fist
-void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (IS_PUNCH(move)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
@@ -383,9 +389,9 @@ void ironfist_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 // POISONHEAL
 
 // Adaptability
-void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (B_MOVE_STAB(user)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
     }
@@ -412,9 +418,9 @@ void adaptability_on_base_power(u8 user, u8 source, u16 move, struct anonymous_c
 // STALL
 
 // Technician
-void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (B_MOVE_POWER(user) <= 60) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
@@ -438,9 +444,9 @@ void technician_on_base_power(u8 user, u8 source, u16 move, struct anonymous_cal
 // UNAWARE
 
 // Tinted Lens
-void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void tintedlens_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
 	    B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
     }
@@ -448,9 +454,9 @@ void tintedlens_on_damage(u8 user, u8 source, u16 move, struct anonymous_callbac
 }
 
 // Filter, Solid Rock and Prism Armor
-void filter_variations_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != source) return;
+    if (TARGET_OF(user) != src) return;
     if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
         B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
     }
@@ -477,9 +483,9 @@ void snowwarning_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // FRISK
 
 // Reckless
-void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (MOVE_RECOIL(move)) {
         B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
     }
@@ -497,10 +503,10 @@ void reckless_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callb
 // SHEERFORCE
 
 // Contary
-bool contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+bool contrary_on_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return true;
+    if (user != src) return true;
     CURRENT_ACTION->priv[1] = -CURRENT_ACTION->priv[1];
     return true;
 }
@@ -508,10 +514,10 @@ bool contrary_on_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymou
 // UNNERVE
 
 // DEFIANT
-void defiant_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+void defiant_after_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return;
+    if (user != src) return;
     if (SIDE_OF((CURRENT_ACTION)->action_bank) != SIDE_OF(user) && ((CURRENT_ACTION)->priv[1] < 0))
         stat_boost(user, STAT_ATTACK - 1, 2, user);
 }
@@ -637,18 +643,18 @@ u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // BULLETPROOF
 
 // COMPETITIVE
-void competitive_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb)
+void competitive_after_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
-    if (user != source) return;
+    if (user != src) return;
     if (SIDE_OF((CURRENT_ACTION)->action_bank) != SIDE_OF(user) && ((CURRENT_ACTION)->priv[1] < 0))
         stat_boost(user, STAT_SPECIAL_ATTACK - 1, 2, user);
 }
 
 // Strong Jaw
-void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (IS_BITE(move)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
@@ -664,9 +670,9 @@ void strongjaw_on_base_power(u8 user, u8 source, u16 move, struct anonymous_call
 // GALEWINGS
 
 // Mega Launcher
-void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (IS_PULSE(move)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
     }
@@ -730,9 +736,9 @@ u8 water_compaction_on_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 // WATERBUBBLE
 
 // Steel Worker
-void steelworker_on_base_power(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != source) return;
+    if (user != src) return;
 	if (B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
 	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
 	}
