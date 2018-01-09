@@ -360,6 +360,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// AFTERMATH
+		.on_effect = aftermath_on_effect,
 	},
 	{
 		// ANTICIPATION

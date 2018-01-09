@@ -91,5 +91,6 @@ extern u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 extern u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

@@ -436,6 +436,14 @@ void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 // SUPERLUCK
 
 // AFTERMATH
+u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != src) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (B_CURRENT_HP(src) < 1)
+	   do_damage(user, TOTAL_HP(user) >> 2);
+	return true;
+}
 
 // ANTICIPATION
 
