@@ -83,5 +83,8 @@ extern u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_c
 extern u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void stamina_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

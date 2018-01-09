@@ -447,6 +447,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// WEAKARMOR
+		.on_effect = weak_armor_on_effect,
 	},
 	{
 		// HEAVYMETAL
@@ -510,6 +511,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// JUSTIFIED
+		.on_effect = justified_on_effect,
 	},
 	{
 		// RATTLED
@@ -627,6 +629,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// STAMINA
+		.on_damage = stamina_on_damage,
 	},
 	{
 		// WIMPOUT

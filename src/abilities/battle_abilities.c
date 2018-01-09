@@ -12,7 +12,8 @@ extern bool set_weather(enum WeatherTypes weather);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16, u16);
-
+extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 move_pp_count(u16 move_id, u8 bank);
 /* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
 
@@ -505,9 +506,15 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
     if ((TARGET_OF(user) != src) || (user == src)) return true;
 
     // 30% chance to disable move, if it did dmg
-    if ((B_MOVE_DMG(user) != 0) && (rand_range(0, 100) <= 90)) {
-        extern u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-        disable_on_effect_cb(user, src, move, acb);
+    if ((B_MOVE_DMG(user) != 0) && (rand_range(0, 100) <= 100)) {
+        // fail if attacker's move has no PP left
+        if (move_pp_count(move, user) < 1) return true;
+        // fail if effect already active on target
+        if (HAS_VOLATILE(user, VOLATILE_DISABLE)) return true;
+        u8 id = add_callback(CB_ON_DISABLE_MOVE, 0, 4, user, (u32)disable_on_disable_move);
+        ADD_VOLATILE(user, VOLATILE_DISABLE);
+        CB_MASTER[id].data_ptr = move;
+        enqueue_message(move, user, STRING_DISABLED, 0);
     }
     return true;
 }
@@ -517,6 +524,15 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // FRIENDGUARD
 
 // WEAKARMOR
+u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    if (B_MOVE_IS_PHYSICAL(user)) {
+        stat_boost(src, DEFENSE_MOD, -1, user);
+        stat_boost(src, SPEED_MOD, 2, user);
+    }
+    return true;
+}
 
 // HEAVYMETAL
 
@@ -559,6 +575,13 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // MOXIE
 
 // JUSTIFIED
+u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    if (B_MOVE_HAS_TYPE(user, MTYPE_DARK))
+        stat_boost(src, ATTACK_MOD, 1, user);
+    return true;
+}
 
 // RATTLED
 
@@ -658,6 +681,12 @@ void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_c
 // DELTASTREAM
 
 // STAMINA
+void stamina_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return;
+    if (B_MOVE_DMG(user) > 0)
+        stat_boost(src, DEFENSE_MOD, 1, user);
+}
 
 // WIMPOUT
 

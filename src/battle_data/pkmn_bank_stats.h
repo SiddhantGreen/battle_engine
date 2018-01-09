@@ -142,6 +142,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_FAINTED(bank) (p_bank[bank]->b_data.fainted)
 #define B_GET_MOVE(bank, id) (p_bank[bank]->b_data.moves[id])
 #define B_GET_MOVE_PP(bank, id) (p_bank[bank]->b_data.move_pp[id])
+#define B_LAST_DMG(bank) (p_bank[bank]->b_data.last_damage)
 
 /*
  *
@@ -172,21 +173,6 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define ACTION_BOUNCED (CURRENT_ACTION->has_bounced)
 
 #define MOVE_EFFECTIVENESS(target_type, dmg_type) (effectiveness_chart[((target_type * 19) + (dmg_type))])
-
-extern s8 ability_priority_mod(u8 bank, u16 move_id);
-extern s8 ability_attack_mod(u8 bank, u16 stat_total);
-extern s8 ability_defense_mod(u8 bank, u16 stat_total);
-extern s8 ability_speed_mod(u8 bank, u16 stat_total);
-extern s8 ability_sp_defense_mod(u8 bank, u16 stat_total);
-extern s8 ability_sp_attack_mod(u8 bank, u16 stat_total);
-extern s8 ability_critchance_mod(u8 bank, u16 stat_total);
-extern s8 ability_accuracy_mod(u8 bank, u16 stat);
-extern s8 ability_evasion_mod(u8 bank, u16 stat);
-extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
-extern void ability_on_before_switch(u8 bank);
-extern void ability_on_switch(u8 bank);
-extern void ability_on_modify_move(u8 bank, u8 target, u16 move);
-extern u8 ability_on_tryhit(u8 attacker, u8 defender, u16 move);
 
 
 #endif /* PKMN_BANK_STAT_H_ */
