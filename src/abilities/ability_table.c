@@ -58,6 +58,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// OBLIVIOUS
+		.on_tryhit = oblivous_on_tryhit,
+		.on_status = oblivious_on_status,
 	},
 	{
 		// CLOUDNINE

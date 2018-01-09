@@ -87,6 +87,28 @@ u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 // WATERABSORB
 
 // OBLIVIOUS
+u16 oblivious_disallow[] = {
+    MOVE_TAUNT, MOVE_NONE, MOVE_MAX, MOVE_CAPTIVATE, MOVE_ATTRACT,
+};
+
+u8 oblivous_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((TARGET_OF(user) != src) || (user == src)) return true;
+    for (u8 i = 0; i < (sizeof(oblivious_disallow)/sizeof(u16)); i++) {
+        if (move == oblivious_disallow[i]) return false;
+    }
+    return true;
+}
+
+u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (ailment == EFFECT_INFACTUATION) {
+    	return false;
+    }
+    return true;
+}
+
 
 // CLOUDNINE
 
@@ -513,7 +535,7 @@ void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callba
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return;
     if ((user == src) || (TARGET_OF(user) == src)) {
         B_ITEM(src) = B_ITEM(TARGET_OF(src));
-        B_ITEM(TARGET_OF(src)) == ITEM_NONE;
+        B_ITEM(TARGET_OF(src)) = ITEM_NONE;
         // TODO: message
     }
 }

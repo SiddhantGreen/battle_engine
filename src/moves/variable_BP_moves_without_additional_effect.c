@@ -13,7 +13,7 @@ extern u16 rand_range(u16 min, u16 max);
 void acrobatics_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    if (B_GET_ITEM(user) == 0)
+    if (B_ITEM(user) == 0)
         B_MOVE_POWER(user) *= 2;
 }
 

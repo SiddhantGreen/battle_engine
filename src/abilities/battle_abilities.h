@@ -96,5 +96,7 @@ extern u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_cal
 extern u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 oblivous_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
