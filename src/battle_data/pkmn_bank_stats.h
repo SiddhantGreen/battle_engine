@@ -135,7 +135,7 @@ extern void add_volatile(u8 bank, enum Volatiles v);
 #define B_IS_GROUNDED(bank) (p_bank[bank]->b_data.is_grounded)
 #define B_INFILTRATES(bank) (battle_master->b_moves[bank].infiltrates)
 #define B_HEAL(bank) (battle_master->b_moves[bank].heal)
-#define B_GET_ITEM(bank) (p_bank[bank]->b_data.item)
+#define B_ITEM(bank) (p_bank[bank]->b_data.item)
 #define B_MOVE_FAILED(bank) (p_bank[bank]->b_data.move_failed)
 #define B_LAST_MOVE_FAILED(bank) (p_bank[bank]->b_data.last_move_failed)
 #define B_IS_FAINTED(bank) ((p_bank[bank]->b_data.fainted) || (B_CURRENT_HP(bank) < 1))

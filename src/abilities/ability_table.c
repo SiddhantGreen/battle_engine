@@ -421,6 +421,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// PICKPOCKET
+		.after_stat_boost_mod = pick_pocket_on_secondary,
 	},
 	{
 		// SHEERFORCE
@@ -536,6 +537,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// IRONBARBS
+		// rough skin clone
+		.on_effect = rough_skin_on_effect,
 	},
 	{
 		// ZENMODE
@@ -608,6 +611,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// GOOEY
+		.on_effect = gooey_on_effect,
 	},
 	{
 		// AERILATE
@@ -725,6 +729,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// TANGLINGHAIR
+		// gooey clone
+		.on_effect = gooey_on_effect,
 	},
 	{
 		// RECEIVER

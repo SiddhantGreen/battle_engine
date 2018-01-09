@@ -507,6 +507,16 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 // BADDREAMS
 
 // PICKPOCKET
+void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((B_ITEM(src) != ITEM_NONE) || (B_ITEM(user) == ITEM_NONE)) return;
+    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return;
+    if ((user == src) || (TARGET_OF(user) == src)) {
+        B_ITEM(src) = B_ITEM(TARGET_OF(src));
+        B_ITEM(TARGET_OF(src)) == ITEM_NONE;
+        // TODO: message
+    }
+}
 
 // SHEERFORCE
 
@@ -724,6 +734,13 @@ void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 // PIXILATE
 
 // GOOEY
+u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    stat_boost(user, SPEED_MOD, -1, user);
+    return true;
+}
 
 // AERILATE
 

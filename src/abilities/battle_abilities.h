@@ -94,5 +94,7 @@ extern u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callb
 extern u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
