@@ -82,5 +82,6 @@ extern u8 flamebody_on_effect(u8 user, u8 source, u16 move, struct anonymous_cal
 extern u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

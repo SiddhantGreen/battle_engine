@@ -146,7 +146,7 @@ bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callbac
 u8 disable_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != TARGET_OF(src)) return true;
-    if (has_callback_src((u32)disable_on_disable_move, user)) {
+    if (has_callback_src((u32)disable_on_disable_move, user) || HAS_VOLATILE(user, VOLATILE_DISABLE)) {
         enqueue_message(CURRENT_MOVE(user), user, STRING_ATTACK_USED, 0);
         return false;
     }
@@ -162,8 +162,9 @@ u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     // fail if target's move has no PP left
     if (move_pp_count(LAST_MOVE(target), target) < 1) return false;
     // fail if effect already active on target
-    if (has_callback_src((u32)disable_on_disable_move, target)) return false;
+    if (has_callback_src((u32)disable_on_disable_move, target) || HAS_VOLATILE(user, VOLATILE_DISABLE)) return false;
     u8 id = add_callback(CB_ON_DISABLE_MOVE, 0, 4, target, (u32)disable_on_disable_move);
+    ADD_VOLATILE(user, VOLATILE_DISABLE);
     CB_MASTER[id].data_ptr = LAST_MOVE(target);
     enqueue_message(LAST_MOVE(target), user, STRING_DISABLED, 0);
 	return true;

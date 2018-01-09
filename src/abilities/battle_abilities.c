@@ -499,6 +499,18 @@ void defiant_after_stat_boost_mod(u8 user, u8 source, u16 stat_id, struct anonym
 // DEFEATIST
 
 // CURSEDBODY
+u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    // no effect on self or if not targetted
+    if ((TARGET_OF(user) != src) || (user == src)) return true;
+
+    // 30% chance to disable move, if it did dmg
+    if ((B_MOVE_DMG(user) != 0) && (rand_range(0, 100) <= 90)) {
+        extern u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+        disable_on_effect_cb(user, src, move, acb);
+    }
+    return true;
+}
 
 // HEALER
 
