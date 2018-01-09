@@ -133,6 +133,8 @@ u8 taunt_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
+    if (acb->duration == 0)
+        CLEAR_VOLATILE(user, VOLATILE_DISABLE);
     if (move == acb->data_ptr) {
         // we want to display a message when player picks an invalid move.
         // Obviously not display the message to the AI.
@@ -164,9 +166,9 @@ u8 disable_on_effect_cb(u8 user, u8 src, u16 move, struct anonymous_callback* ac
     // fail if effect already active on target
     if (has_callback_src((u32)disable_on_disable_move, target) || HAS_VOLATILE(user, VOLATILE_DISABLE)) return false;
     u8 id = add_callback(CB_ON_DISABLE_MOVE, 0, 4, target, (u32)disable_on_disable_move);
-    ADD_VOLATILE(user, VOLATILE_DISABLE);
+    ADD_VOLATILE(target, VOLATILE_DISABLE);
     CB_MASTER[id].data_ptr = LAST_MOVE(target);
-    enqueue_message(LAST_MOVE(target), user, STRING_DISABLED, 0);
+    enqueue_message(LAST_MOVE(target), target, STRING_DISABLED, 0);
 	return true;
 }
 
