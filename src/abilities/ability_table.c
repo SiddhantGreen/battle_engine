@@ -590,6 +590,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SWEETVEIL
+		.on_status = sweet_veil_on_status,
 	},
 	{
 		// STANCECHANGE

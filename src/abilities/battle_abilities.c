@@ -768,6 +768,15 @@ void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
 // REFRIGERATE
 
 // SWEETVEIL
+u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (SIDE_OF(user) != SIDE_OF(src)) return true;
+    if (ailment == AILMENT_SLEEP) {
+    	enqueue_message(NULL, user, STRING_AILMENT_IMMUNE, AILMENT_SLEEP);
+    	return false;
+    }
+    return true;
+}
 
 // STANCECHANGE
 
