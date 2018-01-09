@@ -97,6 +97,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// ROUGHSKIN
+		.on_effect = rough_skin_on_effect,
 	},
 	{
 		// WONDERGUARD

@@ -139,6 +139,13 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 // SHADOWTAG
 
 // ROUGHSKIN
+u8 rough_skin_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
+{
+	if (TARGET_OF(user) != source) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	do_damage(user, TOTAL_HP(user) >> 3);
+	return true;
+}
 
 // WONDERGUARD
 
@@ -184,12 +191,9 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 u8 poisonpoint_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != source) return true;
-	if (IS_CONTACT(move)) {
-		if (rand_range(1,100) <= 30) {
-			B_STATUS(user) = AILMENT_POISON;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
-		}
-	}
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (rand_range(0, 100) <= 30)
+	   set_status(user, EFFECT_POISON);
 	return true;
 }
 
