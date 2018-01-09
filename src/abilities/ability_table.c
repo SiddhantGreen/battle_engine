@@ -106,6 +106,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// EFFECTSPORE
+		.on_effect = effect_spore_effect,
 	},
 	{
 		// SYNCHRONIZE
@@ -629,7 +630,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// STAMINA
-		.on_damage = stamina_on_damage,
+		.on_effect = stamina_on_effect,
 	},
 	{
 		// WIMPOUT
@@ -639,6 +640,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// WATERCOMPACTION
+		.on_effect = water_compaction_on_effect,
 	},
 	{
 		// MERCILESS

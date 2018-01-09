@@ -14,6 +14,7 @@ extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16, u16);
 extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 move_pp_count(u16 move_id, u8 bank);
+extern void set_status(u8 bank, enum Effect status);
 /* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
 
@@ -146,6 +147,21 @@ u8 immunity_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callbac
 // LEVITATE
 
 // EFFECTSPORE
+u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((TARGET_OF(user) != src) || (user == src)) return true;
+    // Immunity in the case of overcoat
+    if (BANK_ABILITY(user) == ABILITY_OVERCOAT) return true;
+    u16 rand_num = rand_range(0, 100);
+    if (rand_num < 10) {
+        set_status(user, EFFECT_SLEEP);
+    } else if (rand_num < 20) {
+        set_status(user, EFFECT_PARALYZE);
+    } else if (rand_num < 30) {
+        set_status(user, EFFECT_POISON);
+    }
+    return true;
+}
 
 // SYNCHRONIZE
 
@@ -681,11 +697,12 @@ void megalauncher_on_base_power(u8 user, u8 source, u16 move, struct anonymous_c
 // DELTASTREAM
 
 // STAMINA
-void stamina_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 stamina_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) != src) return;
+    if (TARGET_OF(user) != src) return true;
     if (B_MOVE_DMG(user) > 0)
         stat_boost(src, DEFENSE_MOD, 1, user);
+    return true;
 }
 
 // WIMPOUT
@@ -693,6 +710,13 @@ void stamina_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // EMERGENCYEXIT
 
 // WATERCOMPACTION
+u8 water_compaction_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    if (B_MOVE_HAS_TYPE(user, MTYPE_WATER))
+        stat_boost(src, DEFENSE_MOD, 2, user);
+    return true;
+}
 
 // MERCILESS
 

@@ -84,7 +84,7 @@ void set_status(u8 bank, enum Effect status)
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
-
+    bool executor = battle_master->executing;
     for (u8 i = 0; i < BANK_MAX; i++) {
         u8 ability = p_bank[i]->b_data.ability;
         if ((abilities[ability].on_status) && (ACTIVE_BANK(i)))
@@ -98,12 +98,14 @@ void set_status(u8 bank, enum Effect status)
         if (!pop_callback(bank, status)) {
             restore_callbacks(old_execution_array);
             CB_EXEC_INDEX = old_index;
+            battle_master->executing = executor;
             return;
         }
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
-
+    battle_master->executing = executor;
+    
     if (status_applied) {
         if (statuses[status].on_inflict) {
             statuses[status].on_inflict(bank);
