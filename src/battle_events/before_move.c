@@ -55,8 +55,8 @@ void event_before_move(struct action* current_action)
     switch (result) {
         case CANT_USE_MOVE:
         case TARGET_MOVE_IMMUNITY:
-        case SILENT_FAIL:
             enqueue_message(0, ACTION_BANK, STRING_FAILED, 0);
+        case SILENT_FAIL:
             end_action(current_action);
             return;
         case USE_MOVE_NORMAL:
