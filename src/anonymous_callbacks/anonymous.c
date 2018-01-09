@@ -54,6 +54,8 @@ u16 pop_callback(u8 attacker, u16 move) {
     if (i != ANON_CB_MAX) {
         i = CB_EXEC_ORDER[CB_EXEC_INDEX];
         CB_EXEC_INDEX++;
+        // catch case where other callback deleted/delayed this one
+        if ((CB_MASTER[i].in_use == false) || (CB_MASTER[i].delay_before_effect > 0)) return true;
         AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
         battle_master->executing = true;
         dprintf("executing a function at %x\n", CB_MASTER[i].func -1);
@@ -71,6 +73,8 @@ u16 run_callback(u8 attacker, u16 move) {
     u8 i = CB_EXEC_ORDER[CB_EXEC_INDEX];
     if (i != ANON_CB_MAX) {
         i = CB_EXEC_ORDER[CB_EXEC_INDEX];
+        // catch case where other callback deleted this one
+        if ((CB_MASTER[i].in_use == false) || (CB_MASTER[i].delay_before_effect > 0)) return true;
         AnonymousCallback func = (AnonymousCallback)CB_MASTER[i].func;
         battle_master->executing = true;
         dprintf("executing a function at %x\n", CB_MASTER[i].func -1);
