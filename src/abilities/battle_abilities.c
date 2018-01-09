@@ -75,11 +75,9 @@ u8 limber_on_status(u8 user, u8 source, u16 ailment , struct anonymous_callback*
 u8 static_on_effect(u8 user, u8 source, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != source) return true;
-	if (IS_CONTACT(move)) {
-		if (rand_range(1,100) <= 30) {
-			B_STATUS(user) = AILMENT_PARALYZE;
-			enqueue_message(NULL, user, STRING_AILMENT_APPLIED, B_STATUS(user));
-		}
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (rand_range(1, 100) <= 30) {
+		set_status(user, EFFECT_PARALYZE);
 	}
 	return true;
 }
@@ -152,6 +150,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if ((TARGET_OF(user) != src) || (user == src)) return true;
     // Immunity in the case of overcoat
     if (BANK_ABILITY(user) == ABILITY_OVERCOAT) return true;
+    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     u16 rand_num = rand_range(0, 100);
     if (rand_num < 10) {
         set_status(user, EFFECT_SLEEP);
