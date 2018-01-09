@@ -482,6 +482,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// POISONTOUCH
+		.on_effect = poison_touch_on_effect,
 	},
 	{
 		// REGENERATOR
@@ -509,6 +510,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MUMMY
+		.on_effect = mummy_on_effect,
 	},
 	{
 		// MOXIE

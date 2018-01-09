@@ -194,6 +194,7 @@ enum battle_string_ids {
     STRING_RETREAT_MON,
     STRING_SEND_OUT,
     STRING_TRAPPED,
+    STRING_ABILITY_CHANGED,
     STRINGS_TABLE_MAX,
 };
 const static pchar encounter_wild_text[] = _("A wild {DEFENDING_MON} appeared!\pGo! {ATTACKING_MON}!");
@@ -220,6 +221,7 @@ static const pchar str_magnitude_amount_o[] = _("MAGNITUDE {STR_VAR_1}!");
 static const pchar str_no_target_o[] = _("But there was no target!");
 static const pchar str_failed_alone[] = _("But it failed!");
 static const pchar str_immunity_p[] = _("{FOE}{ATTACKING_MON}’s {ABILITY}\nmade it immune!");
+static const pchar str_ability_changed[] = _("{FOE}{ATTACKING_MON}’s {ABILITY_ARBITRARY}\nturned into {ABILITY}!");
 static const pchar str_charging_up_razorwind_o[] = _("{FOE}{ATTACKING_MON} whipped\nup a whirlwind!");
 static const pchar str_solarbeam_o[] = _("{FOE}{ATTACKING_MON} absorbed\nlight!");
 static const pchar str_freeze_shock_o[] = _("{FOE}{ATTACKING_MON} became cloaked\nin a freezing light!");
@@ -623,6 +625,7 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_come_back, // 192
    (pchar*)&str_send_out, // 193
    (pchar*)&str_trapped, // 194
+   (pchar*)&str_ability_changed, // 195
 
 };
 

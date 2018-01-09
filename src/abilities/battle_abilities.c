@@ -586,6 +586,14 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // OVERCOAT
 
 // POISONTOUCH
+u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+	if (user != src) return true;
+	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (rand_range(0, 100) <= 30)
+	   set_status(TARGET_OF(user), EFFECT_POISON);
+	return true;
+}
 
 // REGENERATOR
 
@@ -604,6 +612,26 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // INFILTRATOR
 
 // MUMMY
+u16 mummy_immune_abilities[] = {
+    ABILITY_MUMMY, ABILITY_MULTITYPE, ABILITY_STANCE_CHANGE
+};
+
+u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    if (TARGET_OF(user) != src) return true;
+    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    for (u8 i = 0; i < (sizeof(mummy_immune_abilities) / sizeof(u16)); i++) {
+        if (mummy_immune_abilities[i] == BANK_ABILITY(user)) return true;
+    }
+
+    enqueue_message(move, user, STRING_ABILITY_CHANGED, BANK_ABILITY(user));
+    // remove user's old ability callbacks
+    delete_callback_src((u32)abilities[BANK_ABILITY(user)].on_effect, user);
+    BANK_ABILITY(user) = ABILITY_MUMMY;
+    if (abilities[BANK_ABILITY(user)].on_effect) {
+        add_callback(CB_ON_EFFECT, 0, 0, user, (u32)abilities[BANK_ABILITY(user)].on_effect);
+    }
+    return true;
+}
 
 // MOXIE
 
