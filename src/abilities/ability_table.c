@@ -117,6 +117,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// CLEARBODY
+		.on_stat_boost_mod = clear_body_on_stat_boost,
 	},
 	{
 		// NATURALCURE
@@ -189,9 +190,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// KEENEYE
+		.on_stat_boost_mod = keen_eye_on_stat_boost,
 	},
 	{
 		// HYPERCUTTER
+		.on_stat_boost_mod = hyper_cutter_on_stat_boost,
 	},
 	{
 		// PICKUP
@@ -259,6 +262,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// WHITESMOKE
+		.on_stat_boost_mod = white_smoke_on_stat_boost,
 	},
 	{
 		// PUREPOWER

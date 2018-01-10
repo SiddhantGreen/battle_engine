@@ -32,7 +32,7 @@ void event_stat_boost(struct action* current_action)
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
-
+    bool executor_backup = battle_master->executing;
     for(u8 i = 0; i < BANK_MAX; i++) {
         u8 ability = p_bank[i]->b_data.ability;
         if ((abilities[ability].on_stat_boost_mod) && (ACTIVE_BANK(i))) {
@@ -44,9 +44,17 @@ void event_stat_boost(struct action* current_action)
     build_execution_order(CB_ON_STAT_BOOST_MOD);
     battle_master->executing = true;
     while (battle_master->executing) {
-        pop_callback(bank, stat_id);
+        if (!pop_callback(bank, stat_id)) {
+            enqueue_message(CURRENT_MOVE(bank), bank, STRING_FAILED_ALONE, NULL);
+            battle_master->executing = executor_backup;
+            restore_callbacks(old_execution_array);
+            CB_EXEC_INDEX = old_index;
+            end_action(CURRENT_ACTION);
+            return;
+        };
     }
 
+    battle_master->executing = executor_backup;
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
 
@@ -130,7 +138,8 @@ void event_stat_boost(struct action* current_action)
 
     };
 
-    u32* old_execution_array_next = push_callbacks();
+
+    old_execution_array = push_callbacks();
     for(u8 i = 0; i < BANK_MAX; i++) {
         u8 ability = p_bank[i]->b_data.ability;
         if ((abilities[ability].after_stat_boost_mod) && (ACTIVE_BANK(i))) {
@@ -143,8 +152,8 @@ void event_stat_boost(struct action* current_action)
     while (battle_master->executing) {
         pop_callback(bank, stat_id);
     }
-    restore_callbacks(old_execution_array_next);
+    restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
-
+    battle_master->executing = executor_backup;
     end_action(CURRENT_ACTION);
 }

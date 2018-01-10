@@ -209,11 +209,7 @@ bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callba
 {
     if (user != src) return true;
     // boost on self which isn't by the user
-    if (CURRENT_ACTION->action_bank == user) return true;
-    // nullify stat drop action
-    if (CURRENT_ACTION->priv[1] < 0)
-        end_action(CURRENT_ACTION);
-    return false;
+    return ((CURRENT_ACTION->action_bank == user) || (CURRENT_ACTION->priv[1] > 0));
 }
 
 // NATURALCURE
@@ -786,6 +782,10 @@ void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // AROMAVEIL
 
 // FLOWERVEIL
+bool flower_veil_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    return true;
+}
 
 // CHEEKPOUCH
 
