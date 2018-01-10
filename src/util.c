@@ -37,7 +37,6 @@ s8 get_move_priority(u8 bank)
     s8 priority = 0;
     priority += MOVE_PRIORITY(move);
     B_MOVE_PRIORITY(bank) = priority;
-//    exec_callbacks(CB_ON_PRIORITY);
 
     /* on flee & switch the actor has a priority high enough to outspeed everything except pursuit */
     if ((p_bank[bank]->b_data.is_running) || (p_bank[bank]->b_data.is_switching))

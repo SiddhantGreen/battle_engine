@@ -85,7 +85,7 @@ void add_bank_move_actions()
         battle_master->bank_order[i] = active_banks[i];
         if (active_banks[i] == 0x3F) continue;
         // add ability specific cbs
-        u8 ability = p_bank[i]->b_data.ability;
+        u8 ability = p_bank[active_banks[i]]->b_data.ability;
         if (abilities[ability].before_turn)
             add_callback(CB_ON_BEFORE_TURN, 0, 0, active_banks[i], (u32)abilities[ability].before_turn);
 
@@ -259,6 +259,7 @@ void reset_turn_bits(u8 bank)
     p_bank[bank]->b_data.last_damage = 0;
     B_LAST_MOVE_FAILED(bank) = B_MOVE_FAILED(bank);
     B_MOVE_FAILED(bank) = false;
+	CLEAR_VOLATILE(bank, VOLATILE_PRANKSTERED);
 
 }
 
