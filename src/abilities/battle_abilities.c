@@ -9,7 +9,7 @@ extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern bool set_weather(enum WeatherTypes weather);
 extern bool b_pkmn_set_type(u8 bank, enum PokemonType type);
-extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
+extern struct action *stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16, u16);
 extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 move_pp_count(u16 move_id, u8 bank);
@@ -205,6 +205,16 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // SYNCHRONIZE
 
 // CLEARBODY
+bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // boost on self which isn't by the user
+    if (CURRENT_ACTION->action_bank == user) return true;
+    // nullify stat drop action
+    if (CURRENT_ACTION->priv[1] < 0)
+        end_action(CURRENT_ACTION);
+    return false;
+}
 
 // NATURALCURE
 
@@ -288,8 +298,20 @@ u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // RUNAWAY
 
 // KEENEYE
+bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (CURRENT_ACTION->action_bank == src) return true;
+    return (!(CURRENT_ACTION->priv[0] == ACCURACY_MOD));
+}
 
 // HYPERCUTTER
+bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (CURRENT_ACTION->action_bank == src) return true;
+    return (!CURRENT_ACTION->priv[0] == ATTACK_MOD);
+}
 
 // PICKUP
 
@@ -364,6 +386,12 @@ u8 vitalspirit_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callbac
 }
 
 // WHITESMOKE
+bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (CURRENT_ACTION->action_bank == src) return true;
+    return false;
+}
 
 // PUREPOWER
 
@@ -667,6 +695,12 @@ u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // REGENERATOR
 
 // BIGPECKS
+bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (CURRENT_ACTION->action_bank == src) return true;
+    return (!(CURRENT_ACTION->priv[0] == DEFENSE_MOD));
+}
 
 // SANDRUSH
 
@@ -804,6 +838,7 @@ void gale_wings_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback
     if (((B_CURRENT_HP(user) << 1) >= TOTAL_HP(user)) && (MOVE_TYPE(move) == MTYPE_FLYING))
         B_MOVE_PRIORITY(user) += 1;
 }
+
 // Mega Launcher
 void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -896,6 +931,12 @@ void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 // LIQUIDVOICE
 
 // TRIAGE
+void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (IS_HEAL(move))
+        B_MOVE_PRIORITY(user) += 1;
+}
 
 // GALVANIZE
 

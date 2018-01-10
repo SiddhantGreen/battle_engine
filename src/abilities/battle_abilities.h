@@ -103,5 +103,9 @@ extern u8 poison_heal_on_effect(u8 user, u8 src, u16 ailment , struct anonymous_
 extern u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern void prankser_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern void gale_wings_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
+extern bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
