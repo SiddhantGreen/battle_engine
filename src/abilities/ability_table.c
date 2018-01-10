@@ -535,6 +535,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// PRANKSTER
+		.before_turn = prankser_before_turn,
 	},
 	{
 		// SANDFORCE

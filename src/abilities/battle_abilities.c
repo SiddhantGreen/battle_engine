@@ -16,6 +16,7 @@ extern u8 move_pp_count(u16 move_id, u8 bank);
 extern void set_status(u8 bank, enum Effect status);
 extern void do_damage(u8 bank_index, u16 dmg);
 extern void flat_heal(u8 bank, u16 heal);
+extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
 
 /* Note: Illuminate and Honey Gather have no In-Battle effect so they are not present here*/
 
@@ -719,6 +720,22 @@ u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // SAPSIPPER
 
 // PRANKSTER
+u8 prankster_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((user != src) || (TARGET_OF(user) == src)) return true;
+    // priority boosted moves fail against those who are dark type
+    return !(b_pkmn_has_type(TARGET_OF(user), MTYPE_DARK) && HAS_VOLATILE(user, VOLATILE_PRANKSTERED));
+}
+
+void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (IS_MOVE_STATUS(move)) {
+        B_MOVE_PRIORITY(user) += 1;
+        ADD_VOLATILE(user, VOLATILE_PRANKSTERED);
+        add_callback(CB_ON_TRYHIT_MOVE, 1, 0, user, (u32)prankster_on_tryhit);
+    }
+}
 
 // SANDFORCE
 

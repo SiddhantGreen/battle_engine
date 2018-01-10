@@ -101,5 +101,6 @@ extern u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_ca
 extern u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 poison_heal_on_effect(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
+extern void prankser_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
