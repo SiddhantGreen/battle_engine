@@ -598,6 +598,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// GALEWINGS
+		.before_turn = gale_wings_before_turn,
 	},
 	{
 		// Mega Launcher

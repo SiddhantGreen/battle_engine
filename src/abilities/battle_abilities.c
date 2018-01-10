@@ -798,7 +798,12 @@ u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback
 // STANCECHANGE
 
 // GALEWINGS
-
+void gale_wings_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (((B_CURRENT_HP(user) << 1) >= TOTAL_HP(user)) && (MOVE_TYPE(move) == MTYPE_FLYING))
+        B_MOVE_PRIORITY(user) += 1;
+}
 // Mega Launcher
 void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
