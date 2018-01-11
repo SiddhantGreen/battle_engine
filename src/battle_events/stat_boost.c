@@ -21,14 +21,13 @@ struct action *stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank)
 
 void event_stat_boost(struct action* current_action)
 {
-    if (current_action->type != ActionStatBoost || current_action->priv[1] == 0) {
+    s8 new_amount = current_action->priv[1];
+    if  (new_amount == 0) {
         end_action(CURRENT_ACTION);
         return;
     }
-
-    u8 bank = current_action->target;
+    u8 bank = current_action->target; // bank to be boosted is the target
     u8 stat_id = current_action->priv[0];
-
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
@@ -58,9 +57,8 @@ void event_stat_boost(struct action* current_action)
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
 
-    s8 new_amount = current_action->priv[1];
     s8* stat_stored;
-    switch (stat_id + 1) {
+    switch (stat_id) {
         case STAT_ATTACK:
             stat_stored = &(p_bank[bank]->b_data.attack);
             break;

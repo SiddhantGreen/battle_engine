@@ -169,15 +169,14 @@ enum MoveCategory {
 };
 
 enum PokemonStat {
-    STAT_NONE,
-    STAT_ATTACK,
-    STAT_DEFENSE,
-    STAT_SPEED,
-    STAT_SPECIAL_ATTACK,
-    STAT_SPECIAL_DEFENSE,
-    STAT_ACCURACY,
-    STAT_EVASION,
-    STAT_CRIT,
+    STAT_ATTACK = 0,
+    STAT_DEFENSE = 1,
+    STAT_SPEED = 2,
+    STAT_SPECIAL_ATTACK = 3,
+    STAT_SPECIAL_DEFENSE = 4,
+    STAT_ACCURACY = 5,
+    STAT_EVASION = 6,
+    STAT_CRIT = 7,
 };
 
 /*

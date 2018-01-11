@@ -11,6 +11,7 @@
 extern bool has_volatile(u8 bank, enum Volatiles v);
 extern void clear_volatile(u8 bank, enum Volatiles v);
 extern void add_volatile(u8 bank, enum Volatiles v);
+extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 
 // this one is unrelated but I want to have it here
 #define CPUFSCPY 0
