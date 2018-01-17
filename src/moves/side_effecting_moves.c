@@ -106,6 +106,7 @@ u8 wonder_room_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 /* Safe guard */
 bool safe_guard_on_status(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
 {
+    if (B_INFILTRATES(user)) return true;
     if ((status_id != EFFECT_CURE) && (status_id != EFFECT_NONE)) {
         enqueue_message(MOVE_SAFEGUARD, user, STRING_AILMENT_IMMUNE, status_id);
         return false;
@@ -247,6 +248,7 @@ u8 gravity_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 u8 mist_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if ((SIDE_OF(TARGET_OF(user)) != SIDE_OF(src)) || (user == src)) return true;
+    if (B_INFILTRATES(user)) return true;
     bool dropped = false;
     for (u8 i = 0; i < 8; i++) {
         // drop boosts
@@ -255,9 +257,10 @@ u8 mist_on_before_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callba
             B_TARGET_STAT_MOD_CHANCE(user, i) = 0;
         }
 	}
-    if (dropped)
+    if (dropped) {
         enqueue_message(MOVE_MIST, TARGET_OF(user), STRING_PROTECTED_MON, NULL);
         enqueue_message(NULL, TARGET_OF(user), STRING_MOVE_IMMUNE, NULL);
+    }
     return true;
 }
 

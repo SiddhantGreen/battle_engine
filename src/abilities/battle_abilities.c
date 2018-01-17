@@ -731,6 +731,10 @@ bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callbac
 // IMPOSTER
 
 // INFILTRATOR
+u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    B_INFILTRATES(src) = true;
+    return true;
+}
 
 // MUMMY
 u16 mummy_immune_abilities[] = {

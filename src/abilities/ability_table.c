@@ -519,6 +519,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// INFILTRATOR
+		.on_modify_move = infiltrator_modify_move,
 	},
 	{
 		// MUMMY

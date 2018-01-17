@@ -114,5 +114,6 @@ extern bool flower_veil_on_stat_boost(u8 user, u8 src, u16 move, struct anonymou
 extern u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback* acb);
 extern u16 scrappy_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
+extern u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
