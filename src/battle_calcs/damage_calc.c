@@ -32,7 +32,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 for (u8 z = 0; z < BANK_MAX; z++) {
                     u8 ability = p_bank[z]->b_data.ability;
                     if ((abilities[ability].on_effectiveness) && (ACTIVE_BANK(z)))
-                        add_callback(CB_ON_EFFECTIVENESS, 0, 0, i, (u32)abilities[ability].on_effectiveness);
+                        add_callback(CB_ON_EFFECTIVENESS, 0, 0, z, (u32)abilities[ability].on_effectiveness);
                 }
 
                 // back up cbs
