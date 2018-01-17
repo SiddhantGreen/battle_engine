@@ -795,8 +795,23 @@ void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 // FLOWERVEIL
 bool flower_veil_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    return true;
+    u8 defender = CURRENT_ACTION->target;
+    return (!((SIDE_OF(defender) == SIDE_OF(src)) && (b_pkmn_has_type(defender, MTYPE_GRASS))));
 }
+
+u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback* acb)
+{
+    switch (ailment) {
+        case AILMENT_CURE:
+        case AILMENT_CONFUSION:
+        case AILMENT_NONE:
+        case AILMENT_INFACTUATE:
+            return true;
+        default:
+            return (!(SIDE_OF(user) == SIDE_OF(src)));
+    }
+}
+
 
 // CHEEKPOUCH
 
@@ -998,6 +1013,7 @@ void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // GRASSYSURGE
 
 // FULLMETAL
+// clearbody clone
 
 // SHADOWSHIELD
 

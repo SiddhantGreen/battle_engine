@@ -499,6 +499,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// BIGPECKS
+		.on_stat_boost_mod = big_pecks_on_stat_boost,
 	},
 	{
 		// SANDRUSH
@@ -567,6 +568,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// FLOWERVEIL
+		.on_stat_boost_mod = flower_veil_on_stat_boost,
+		.on_status = flower_veil_on_status,
 	},
 	{
 		// CHEEKPOUCH
@@ -769,7 +772,8 @@ struct ability_data abilities[] = {
 		// GRASSYSURGE
 	},
 	{
-		// FULLMETAL
+		// FULLMETALBODY
+		.on_stat_boost_mod = clear_body_on_stat_boost,
 	},
 	{
 		// SHADOWSHIELD

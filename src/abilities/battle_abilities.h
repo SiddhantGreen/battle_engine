@@ -18,7 +18,7 @@ typedef void (*AbilityOnBasePowerCallback)(u8 user, u8 source, u16 move, struct 
 typedef void (*AbilityOnDamageCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnEffectCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityOnAfterMoveCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
-typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+typedef u8 (*AbilityOnStatusCallback)(u8 user, u8 source, u16 ailment, struct anonymous_callback* acb);
 typedef bool (*AbilityOnStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef u16 (*AbilityOnStatCallback)(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 typedef void (*AbilityAfterStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
@@ -107,7 +107,10 @@ extern bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous
 extern bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern bool flower_veil_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback* acb);
 
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

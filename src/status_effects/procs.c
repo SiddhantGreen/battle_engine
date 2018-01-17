@@ -99,13 +99,14 @@ void set_status(u8 bank, enum Effect status)
             restore_callbacks(old_execution_array);
             CB_EXEC_INDEX = old_index;
             battle_master->executing = executor;
+            enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
             return;
         }
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
     battle_master->executing = executor;
-    
+
     if (status_applied) {
         if (statuses[status].on_inflict) {
             statuses[status].on_inflict(bank);
