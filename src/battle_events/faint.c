@@ -5,6 +5,7 @@
 #include "../moves/moves.h"
 #include "../battle_text/battle_pick_message.h"
 #include "battle_events/battle_events.h"
+#include "../abilities/battle_abilities.h"
 
 extern void battle_loop(void);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -16,6 +17,13 @@ extern void CpuFastSet(void* src, void* dst, u32 mode);
 
 bool on_faint_callbacks(u8 bank)
 {
+    // ability on faint callbacks
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        u8 ability = p_bank[i]->b_data.ability;
+        if ((abilities[ability].on_faint) && (ACTIVE_BANK(i)))
+            add_callback(CB_ON_FAINT_CHECK, 0, 0, i, (u32)abilities[ability].on_faint);
+    }
+
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();
