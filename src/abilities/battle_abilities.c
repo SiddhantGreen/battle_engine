@@ -296,9 +296,20 @@ u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // KEENEYE
 bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (user != src) return true;
-    if (CURRENT_ACTION->action_bank == src) return true;
+    u8 attacker = CURRENT_ACTION->action_bank; // inflictor
+    if (attacker == src) return true;
     return (!(CURRENT_ACTION->priv[0] == ACCURACY_MOD));
+}
+
+u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    // if pokemon getting stat accessed isn't the target of keeneye user or
+    // if keeneye user is not the one attacking or
+    // if keen eye bank is accessing it's evasion stat by itself
+    if ((TARGET_OF(src) != user) || (CURRENT_ACTION->action_bank != src) || (user == src)) return acb->data_ptr;
+    if (stat_id == EVASION_MOD)
+        return 100;
+    return acb->data_ptr;
 }
 
 // HYPERCUTTER
@@ -438,7 +449,7 @@ void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 {
     if (user != src) return;
 	if (IS_PUNCH(move)) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     }
     return;
 }
@@ -476,7 +487,7 @@ void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 {
     if (user != src) return;
 	if (B_MOVE_STAB(user)) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 133);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 133);
     }
     return;
 }
@@ -505,7 +516,7 @@ void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 {
     if (user != src) return;
 	if (B_MOVE_POWER(user) <= 60) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
 	}
 	return;
 }
@@ -539,7 +550,7 @@ void tintedlens_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
     if (user != src) return;
 	if (B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
-	    B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 200);
+	    B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 200);
     }
     return;
 }
@@ -549,7 +560,7 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
 {
     if (TARGET_OF(user) != src) return;
     if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
-        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 75);
+        B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 75);
     }
     return;
 }
@@ -578,7 +589,7 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 {
     if (user != src) return;
 	if (MOVE_RECOIL(move)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 120);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     }
     return;
 }
@@ -811,7 +822,7 @@ void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
 {
     if (user != src) return;
 	if (IS_BITE(move)) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
     return;
 }
@@ -844,7 +855,7 @@ void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 {
     if (user != src) return;
 	if (IS_PULSE(move)) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
     return;
 }
@@ -917,7 +928,7 @@ void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 {
     if (user != src) return;
 	if (B_MOVE_HAS_TYPE(user, MTYPE_STEEL)) {
-	    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
 	}
 	return;
 }

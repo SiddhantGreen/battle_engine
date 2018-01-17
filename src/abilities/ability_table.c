@@ -191,6 +191,7 @@ struct ability_data abilities[] = {
 	{
 		// KEENEYE
 		.on_stat_boost_mod = keen_eye_on_stat_boost,
+		.on_stat = keen_eye_on_stat,
 	},
 	{
 		// HYPERCUTTER

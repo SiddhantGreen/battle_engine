@@ -39,7 +39,7 @@ struct ability_data {
     AbilityOnDrainCallback on_drain;
     AbilityOnAfterMoveCallback on_after_move;
     AbilityOnStatusCallback on_status;
-    AbilityOnStatCallback on_stat; // when a base stat is read
+    AbilityOnStatCallback on_stat; // when a base stat is read. acb->data_ptr = stat total. move = stat_id
     AbilityOnStatBoostModCallback on_stat_boost_mod;
     AbilityAfterStatBoostModCallback after_stat_boost_mod;
     AbilityOnResidualCallback on_residual;
@@ -107,5 +107,7 @@ extern bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous
 extern bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
