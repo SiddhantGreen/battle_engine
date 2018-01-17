@@ -13,7 +13,7 @@ extern struct action *stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_b
 extern u16 rand_range(u16, u16);
 extern bool disable_on_disable_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 move_pp_count(u16 move_id, u8 bank);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern void do_damage(u8 bank_index, u16 dmg);
 extern void flat_heal(u8 bank, u16 heal);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
@@ -80,7 +80,7 @@ u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
 	if (rand_range(1, 100) <= 30) {
-		set_status(user, EFFECT_PARALYZE);
+		set_status(user, EFFECT_PARALYZE, src);
 	}
 	return true;
 }
@@ -193,11 +193,11 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     u16 rand_num = rand_range(0, 100);
     if (rand_num < 10) {
-        set_status(user, EFFECT_SLEEP);
+        set_status(user, EFFECT_SLEEP, src);
     } else if (rand_num < 20) {
-        set_status(user, EFFECT_PARALYZE);
+        set_status(user, EFFECT_PARALYZE, src);
     } else if (rand_num < 30) {
-        set_status(user, EFFECT_POISON);
+        set_status(user, EFFECT_POISON, src);
     }
     return true;
 }
@@ -232,7 +232,7 @@ u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_POISON);
+	   set_status(user, EFFECT_POISON, src);
 	return true;
 }
 
@@ -287,7 +287,7 @@ u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_BURN);
+	   set_status(user, EFFECT_BURN, src);
 	return true;
 }
 
@@ -333,7 +333,7 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     if (B_GENDER(user) == B_GENDER(src)) return true;
     if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_INFACTUATION);
+	   set_status(user, EFFECT_INFACTUATION, src);
 	return true;
 }
 
@@ -568,6 +568,17 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
 // SLOWSTART
 
 // SCRAPPY
+u16 scrappy_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb) {
+    // acb->data == ((attacker << 16) | move_effectiveness);
+    u16 attacker = acb->data_ptr >> 16;
+    dprintf("running scrappy\n");
+    dprintf("Attacker: %d, Src %d, Target_Type %d, move_type %d\n", attacker, src, target_type, move_type);
+    dprintf("Normal %d, Ghost %d\n", MTYPE_NORMAL, MTYPE_GHOST);
+    if ((attacker != src) || (target_type != MTYPE_GHOST)) return true; // use current effectiveness
+    if ((move_type == MTYPE_NORMAL) || (move_type == MTYPE_FIGHTING))
+        return 100; // normal attacks against ghost types have 100% effectiveness
+    return true;
+}
 
 // STORMDRAIN
 
@@ -695,7 +706,7 @@ u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	if (user != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     if (rand_range(0, 100) <= 30)
-	   set_status(TARGET_OF(user), EFFECT_POISON);
+	   set_status(TARGET_OF(user), EFFECT_POISON, src);
 	return true;
 }
 
@@ -978,6 +989,7 @@ void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // POWERCONSTRUCT
 
 // CORROSION
+/* Implemented directly in event_on_status */
 
 // COMATOSE
 

@@ -393,6 +393,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SCRAPPY
+		.on_effectiveness = scrappy_on_effectiveness,
 	},
 	{
 		// STORMDRAIN
@@ -717,6 +718,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// CORROSION
+		/* Implemented in on_status.c*/
 	},
 	{
 		// COMATOSE
