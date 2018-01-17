@@ -808,6 +808,7 @@ u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback
         case AILMENT_INFACTUATE:
             return true;
         default:
+            if (!b_pkmn_has_type(user, MTYPE_GRASS)) return true;
             return (!(SIDE_OF(user) == SIDE_OF(src)));
     }
 }
