@@ -760,6 +760,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// BEASTBOOST
+		.on_damage = beast_boost_on_damage,
 	},
 	{
 		// RKSSYSTEM

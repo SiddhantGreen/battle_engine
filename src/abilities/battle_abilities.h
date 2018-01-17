@@ -118,6 +118,7 @@ extern u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_c
 extern u16 scrappy_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb);
 extern u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void moxie_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
+extern void beast_boost_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void soul_heart_on_faint(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 
 

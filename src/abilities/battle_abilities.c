@@ -1036,6 +1036,41 @@ void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // POWEROFALCHEMY
 
 // BEASTBOOST
+void beast_boost_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (p_bank[user]->b_data.last_attacked_by != src) return;
+    u16 highest = 0;
+    u8 mod = ATTACK_MOD;
+    if (B_ATTACK_STAT_UMOD(src) > highest) {
+        highest = B_ATTACK_STAT_UMOD(src);
+        mod = ATTACK_MOD;
+    }
+    if (B_DEFENSE_STAT_UMOD(src) > highest) {
+        highest = B_DEFENSE_STAT_UMOD(src);
+        mod = DEFENSE_MOD;
+    }
+    if (B_SPEED_STAT_UMOD(src) > highest) {
+        highest = B_SPEED_STAT_UMOD(src);
+        mod = SPEED_MOD;
+    }
+    if (B_SPATTACK_STAT_UMOD(src) > highest) {
+        highest = B_SPATTACK_STAT_UMOD(src);
+        mod = SPATTACK_MOD;
+    }
+    if (B_SPDEFENSE_STAT_UMOD(src) > highest) {
+        highest = B_SPDEFENSE_STAT_UMOD(src);
+        mod = SPDEFENSE_MOD;
+    }
+    stat_boost(src, mod, 1, src);
+}
+
+void beast_boost_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u8 target = TARGET_OF(user);
+    if ((B_CURRENT_HP(target) > 0) && ((B_CURRENT_HP(target) - B_MOVE_DMG(user)) <= 0))
+        add_callback(CB_ON_FAINT_CHECK, 0, 0, src, (u32)beast_boost_on_faint);
+}
 
 // RKSSYSTEM
 
