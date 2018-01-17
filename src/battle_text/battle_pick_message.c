@@ -233,6 +233,7 @@ void pick_battle_message(u16 move_id, u8 user_bank, enum BattleTypes battle_type
             case STRING_SKY_DROP_START:
                 fdecoder_battle(battle_strings[id + side], user_bank, move_id, move_effect_id);
                 break;
+            case STRINGS_TABLE_MAX:
             default:
                 break;
         };

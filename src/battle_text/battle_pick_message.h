@@ -45,10 +45,10 @@ enum battle_string_ids {
     STRING_ATTACK_MISSED,
     STRING_ATTACK_AVOIDED,
     STRING_FLEE,
-    STRING_FLEE_FAILED = 42,
+    STRING_FLEE_FAILED = 43,
     STRING_MOVE_CRIT,
     STRING_MOVE_IMMUNE,
-    STRING_MOVE_NVE = 46,
+    STRING_MOVE_NVE = 47,
     STRING_MOVE_SE,
     STRING_RECOIL,
     STRING_DRAIN,
@@ -87,7 +87,7 @@ enum battle_string_ids {
     STRING_FULL_PARA,
     STRING_CLEAR_SMOG,
     STRING_BOUNCED_BACK,
-    STRING_SHROUDED_MAGICCOAT = 86,
+    STRING_SHROUDED_MAGICCOAT = 87,
     STRING_SNATCH_WAITING,
     STRING_SNATCHED_MOVE,
     STRING_MUST_RECHARGE,
@@ -96,7 +96,7 @@ enum battle_string_ids {
     STRING_TYPE_ADDED,
     STRING_ION_DELUGE,
     STRING_ELECTRIFIED,
-    STRING_BURNT_OUT = 96,
+    STRING_BURNT_OUT = 97,
     STRING_PROTECTED_SELF,
     STRING_ENDURED,
     STRING_BRACED_ITSELF,
@@ -169,7 +169,7 @@ enum battle_string_ids {
     STRING_GRUDGE_START,
     STRING_GRUDGE_END,
     STRING_SKY_DROP_START,
-    STRING_SKY_DROP_AIR = 170,
+    STRING_SKY_DROP_AIR = 171,
     STRING_SKY_DROP_FREE,
     STRING_ATTRACT,
     STRING_UNLEASHED_ENERGY,
@@ -195,7 +195,7 @@ enum battle_string_ids {
     STRING_SEND_OUT,
     STRING_TRAPPED,
     STRING_ABILITY_CHANGED,
-    STRINGS_TABLE_MAX,
+    STRINGS_TABLE_MAX = 700,
 };
 const static pchar encounter_wild_text[] = _("A wild {DEFENDING_MON} appeared!\pGo! {ATTACKING_MON}!");
 
@@ -470,162 +470,163 @@ static const pchar* battle_strings[STRINGS_TABLE_MAX] = {
    (pchar*)&str_ailment_applied_o, // 32
    (pchar*)&str_ailment_immune_o, // 33
    (pchar*)&str_ailment_cured_o, // 34
-   (pchar*)&str_desolate_land, // 35
-   (pchar*)&str_primordial_sea, // 36
-   (pchar*)&str_protean_o, // 37
-   (pchar*)&str_atk_missed, // 38
-   (pchar*)&str_atk_avoided, // 39
-   (pchar*)&str_fled_p, (pchar*)&str_fled_o, // 40, 41
-   (pchar*)&str_flee_failed, // 42
-   (pchar*)&str_move_crit, // 43
-   (pchar*)&str_move_immune_p, (pchar*)&str_move_immune_o, // 44, 45
-   (pchar*)&str_move_nve, // 46
-   (pchar*)&str_move_se, // 47
-   (pchar*)&str_recoil, // 48
-   (pchar*)&str_drain, // 49
-   (pchar*)&str_fainted_o, // 50
-   (pchar*)&str_give_exp, // 51
-   (pchar*)&str_level_up, // 52
-   (pchar*)&str_healed_o, // 53
-   (pchar*)&str_flinched_o, // 54
-   (pchar*)&str_multi_hit, // 55
-   (pchar*)&str_OHKO, // 56
-   (pchar*)&str_charge_sky_attack_o, // 57
-   (pchar*)&str_charge_dig_o, // 58
-   (pchar*)&str_charge_dive_o, // 59
-   (pchar*)&str_fly_o, // 60
-   (pchar*)&str_phantom_force_o, // 61
-   (pchar*)&str_shadow_force_o, // 62
-   (pchar*)&str_bounce_o, // 63
-   (pchar*)&str_sky_drop_o, // 64
-   (pchar*)&str_charge_solarblade_o, // 65
-   (pchar*)&str_invulnerable_o, // 66
-   (pchar*)&str_residual_dmg, // 67
-   (pchar*)&str_stat_mod_cant_go_lower_o, // 68
-   (pchar*)&str_stat_mod_cant_go_higher_o, // 69
-   (pchar*)&str_stat_mod_severely_fell_p, // 70
-   (pchar*)&str_stat_mod_rose_drastically_p, // 71
-   (pchar*)&str_residual_status_dmg, // 72
-   (pchar*)&str_fast_asleep_o, // 73
-   (pchar*)&str_awoke_o, // 74
-   (pchar*)&str_snapped_out_o, // 75
-   (pchar*)&str_hurt_itself_o, // 76
-   (pchar*)&str_is_confused_o, // 77
-   (pchar*)&str_no_pp, // 78
-   (pchar*)&str_disabled_pick, // 79
-   (pchar*)&str_frozen_solid_o, // 80
-   (pchar*)&str_thawed_out_o, // 81
-   (pchar*)&str_fully_paralyzed_o, // 82
-   (pchar*)&str_clear_smog_o, // 83
-   (pchar*)&str_bounced_back_p, (pchar*)&str_bounced_back_o, // 84, 85
-   (pchar*)&str_shrouded_magiccoat_o, // 86
-   (pchar*)&str_snatch_waiting_o, // 87
-   (pchar*)&str_snatched_o, // 88
-   (pchar*)&str_must_recharge_o, // 89
-   (pchar*)&str_conversion_gain_type_o, // 90
-   (pchar*)&str_reflect_type_match_o, // 91
-   (pchar*)&str_type_added_o, // 92
-   (pchar*)&str_ion_deluge_field, // 93
-   (pchar*)&str_electrified_p, (pchar*)&str_electrified_o, // 94, 95
-   (pchar*)&str_burnt_out_o, // 96
-   (pchar*)&str_protected_itself_o, // 97
-   (pchar*)&str_endured_hit_o, // 98
-   (pchar*)&str_braced_self_o, // 99
-   (pchar*)&str_kicked_mat, // 100
-   (pchar*)&str_protected_side, // 101
-   (pchar*)&str_protected_mon, // 102
-   (pchar*)&str_broke_protect, // 103
-   (pchar*)&str_rain_continue, // 104
-   (pchar*)&str_rain_stop, // 105
-   (pchar*)&str_heavy_rain_atk, // 106
-   (pchar*)&str_heavy_rain_lift, // 107
-   (pchar*)&str_sun_start, // 108
-   (pchar*)&str_sun_strong, // 109
-   (pchar*)&str_sun_finish, // 110
-   (pchar*)&str_harsh_sun_evaporates, // 111
-   (pchar*)&str_harsh_sun_over, // 112
-   (pchar*)&str_sandstorm_start, // 113
-   (pchar*)&str_sandstorm_continue, // 114
-   (pchar*)&str_sandstorm_o, // 115
-   (pchar*)&str_sandstorm_finish, // 116
-   (pchar*)&str_delta_stream_effectiveness, // 117
-   (pchar*)&str_delta_stream_fin, // 118
-   (pchar*)&str_delta_stream_imm, // 119
-   (pchar*)&str_harsh_sun_imm, // 120
-   (pchar*)&str_harsh_rain_imm, // 121
-   (pchar*)&str_a_veil_o, // 122
-   (pchar*)&str_reflect_o, // 123
-   (pchar*)&str_lightscreen_o, // 124
-   (pchar*)&str_shattered_barr, // 125
-   (pchar*)&str_foresaw_atk_o, // 126
-   (pchar*)&str_took_attack_o, // 127
-   (pchar*)&str_chose_doom_o, // 128
-   (pchar*)&str_wish_true_o, // 129
-   (pchar*)&str_grew_drowsy_o, // 130
-   (pchar*)&str_move_end, // 131
-   (pchar*)&str_elec_terrain, // 132
-   (pchar*)&str_psyc_terrain, // 133
-   (pchar*)&str_grass_terrain, // 134
-   (pchar*)&str_misty_terrain, // 135
-   (pchar*)&str_learnt_move, // 136
-   (pchar*)&str_whos_attack, // 137
-   (pchar*)&str_tailwind_behind, // 138
-   (pchar*)&str_tailwind_peter, // 139
-   (pchar*)&str_twisted_dim, // 140
-   (pchar*)&str_twisted_dim_n, // 141
-   (pchar*)&str_wonder_area, // 142
-   (pchar*)&str_safe_guard_v, // 143
-   (pchar*)&str_shield_team_crit, // 144
-   (pchar*)&str_grav_instense, // 145
-   (pchar*)&str_exec_failed, // 146
-   (pchar*)&str_was_identified, // 147
-   (pchar*)&str_weaken_type, // 148
-   (pchar*)&str_lev_mag, // 149
-   (pchar*)&str_teleken_hurled, // 150
-   (pchar*)&str_heal_b, // 151
-   (pchar*)&str_guard_s, // 152
-   (pchar*)&str_power_s, // 153
-   (pchar*)&str_swap_spe, // 154
-   (pchar*)&str_enc_rec, // 155
-   (pchar*)&str_sub_torment, // 156
-   (pchar*)&str_fell_taunt, // 157
-   (pchar*)&string_reason_cant, // 158
-   (pchar*)&string_roots_plant, // 159
-   (pchar*)&str_fell_down, // 160
-   (pchar*)&str_shell_trap_set, // 161
-   (pchar*)&str_perish_start, // 162
-   (pchar*)&str_count_fell, // 163
-   (pchar*)&str_destiny_bond_end, // 164
-   (pchar*)&str_destiny_bond_start, // 165
-   (pchar*)&str_grudge, // 166
-   (pchar*)&str_grudge_end, // 167
-   (pchar*)&str_skydrop_start_p, (pchar*)&str_skydrop_start_o,// 168, 169
-   (pchar*)&str_skydrop_air, // 170
-   (pchar*)&str_skydrop_free, // 171
-   (pchar*)&str_attract, // 172
-   (pchar*)&str_unleashed_p, // 173
-   (pchar*)&str_rdy_to_help, // 174
-   (pchar*)&str_infestation, // 175
-   (pchar*)&str_topsy_turvy, // 176
-   (pchar*)&str_center_attention, // 177
-   (pchar*)&str_stockpile_set, // 178
-   (pchar*)&str_aromatherapy, // 179
-   (pchar*)&str_copied_stats, // 180
-   (pchar*)&str_pain_split, // 181
-   (pchar*)&str_heal_bell, // 182
-   (pchar*)&str_belly_drum, // 183
-   (pchar*)&str_curse, // 184
-   (pchar*)&str_stat_changes_clear, // 185
-   (pchar*)&str_seeded, // 186
-   (pchar*)&str_sapped, // 187
-   (pchar*)&str_focus_tight, // 188
-   (pchar*)&str_beak_blast, // 189
-   (pchar*)&encounter_wild_text, // 190
-   (pchar*)&str_heart_swap, // 191
-   (pchar*)&str_come_back, // 192
-   (pchar*)&str_send_out, // 193
-   (pchar*)&str_trapped, // 194
-   (pchar*)&str_ability_changed, // 195
+   (pchar*)&str_delta_stream, // 35
+   (pchar*)&str_desolate_land, // 36
+   (pchar*)&str_primordial_sea, // 37
+   (pchar*)&str_protean_o, // 38
+   (pchar*)&str_atk_missed, // 39
+   (pchar*)&str_atk_avoided, // 40
+   (pchar*)&str_fled_p, (pchar*)&str_fled_o, // 41, 42
+   (pchar*)&str_flee_failed, // 43
+   (pchar*)&str_move_crit, // 44
+   (pchar*)&str_move_immune_p, (pchar*)&str_move_immune_o, // 45, 46
+   (pchar*)&str_move_nve, // 47
+   (pchar*)&str_move_se, // 48
+   (pchar*)&str_recoil, // 49
+   (pchar*)&str_drain, // 50
+   (pchar*)&str_fainted_o, // 51
+   (pchar*)&str_give_exp, // 52
+   (pchar*)&str_level_up, // 53
+   (pchar*)&str_healed_o, // 54
+   (pchar*)&str_flinched_o, // 55
+   (pchar*)&str_multi_hit, // 56
+   (pchar*)&str_OHKO, // 57
+   (pchar*)&str_charge_sky_attack_o, // 58
+   (pchar*)&str_charge_dig_o, // 59
+   (pchar*)&str_charge_dive_o, // 60
+   (pchar*)&str_fly_o, // 61
+   (pchar*)&str_phantom_force_o, // 62
+   (pchar*)&str_shadow_force_o, // 63
+   (pchar*)&str_bounce_o, // 64
+   (pchar*)&str_sky_drop_o, // 65
+   (pchar*)&str_charge_solarblade_o, // 66
+   (pchar*)&str_invulnerable_o, // 67
+   (pchar*)&str_residual_dmg, // 68
+   (pchar*)&str_stat_mod_cant_go_lower_o, // 69
+   (pchar*)&str_stat_mod_cant_go_higher_o, // 70
+   (pchar*)&str_stat_mod_severely_fell_p, // 71
+   (pchar*)&str_stat_mod_rose_drastically_p, // 72
+   (pchar*)&str_residual_status_dmg, // 73
+   (pchar*)&str_fast_asleep_o, // 74
+   (pchar*)&str_awoke_o, // 75
+   (pchar*)&str_snapped_out_o, // 76
+   (pchar*)&str_hurt_itself_o, // 77
+   (pchar*)&str_is_confused_o, // 78
+   (pchar*)&str_no_pp, // 79
+   (pchar*)&str_disabled_pick, // 80
+   (pchar*)&str_frozen_solid_o, // 81
+   (pchar*)&str_thawed_out_o, // 82
+   (pchar*)&str_fully_paralyzed_o, // 83
+   (pchar*)&str_clear_smog_o, // 84
+   (pchar*)&str_bounced_back_p, (pchar*)&str_bounced_back_o, // 85, 86
+   (pchar*)&str_shrouded_magiccoat_o, // 87
+   (pchar*)&str_snatch_waiting_o, // 88
+   (pchar*)&str_snatched_o, // 89
+   (pchar*)&str_must_recharge_o, // 90
+   (pchar*)&str_conversion_gain_type_o, // 91
+   (pchar*)&str_reflect_type_match_o, // 92
+   (pchar*)&str_type_added_o, // 93
+   (pchar*)&str_ion_deluge_field, // 94
+   (pchar*)&str_electrified_p, (pchar*)&str_electrified_o, // 95, 96
+   (pchar*)&str_burnt_out_o, // 97
+   (pchar*)&str_protected_itself_o, // 98
+   (pchar*)&str_endured_hit_o, // 99
+   (pchar*)&str_braced_self_o, // 100
+   (pchar*)&str_kicked_mat, // 101
+   (pchar*)&str_protected_side, // 102
+   (pchar*)&str_protected_mon, // 103
+   (pchar*)&str_broke_protect, // 104
+   (pchar*)&str_rain_continue, // 105
+   (pchar*)&str_rain_stop, // 106
+   (pchar*)&str_heavy_rain_atk, // 107
+   (pchar*)&str_heavy_rain_lift, // 108
+   (pchar*)&str_sun_start, // 109
+   (pchar*)&str_sun_strong, // 110
+   (pchar*)&str_sun_finish, // 111
+   (pchar*)&str_harsh_sun_evaporates, // 112
+   (pchar*)&str_harsh_sun_over, // 113
+   (pchar*)&str_sandstorm_start, // 114
+   (pchar*)&str_sandstorm_continue, // 115
+   (pchar*)&str_sandstorm_o, // 116
+   (pchar*)&str_sandstorm_finish, // 117
+   (pchar*)&str_delta_stream_effectiveness, // 118
+   (pchar*)&str_delta_stream_fin, // 119
+   (pchar*)&str_delta_stream_imm, // 120
+   (pchar*)&str_harsh_sun_imm, // 121
+   (pchar*)&str_harsh_rain_imm, // 122
+   (pchar*)&str_a_veil_o, // 123
+   (pchar*)&str_reflect_o, // 124
+   (pchar*)&str_lightscreen_o, // 125
+   (pchar*)&str_shattered_barr, // 126
+   (pchar*)&str_foresaw_atk_o, // 127
+   (pchar*)&str_took_attack_o, // 128
+   (pchar*)&str_chose_doom_o, // 129
+   (pchar*)&str_wish_true_o, // 130
+   (pchar*)&str_grew_drowsy_o, // 131
+   (pchar*)&str_move_end, // 132
+   (pchar*)&str_elec_terrain, // 133
+   (pchar*)&str_psyc_terrain, // 134
+   (pchar*)&str_grass_terrain, // 135
+   (pchar*)&str_misty_terrain, // 136
+   (pchar*)&str_learnt_move, // 137
+   (pchar*)&str_whos_attack, // 138
+   (pchar*)&str_tailwind_behind, // 139
+   (pchar*)&str_tailwind_peter, // 140
+   (pchar*)&str_twisted_dim, // 141
+   (pchar*)&str_twisted_dim_n, // 142
+   (pchar*)&str_wonder_area, // 143
+   (pchar*)&str_safe_guard_v, // 144
+   (pchar*)&str_shield_team_crit, // 145
+   (pchar*)&str_grav_instense, // 146
+   (pchar*)&str_exec_failed, // 147
+   (pchar*)&str_was_identified, // 148
+   (pchar*)&str_weaken_type, // 149
+   (pchar*)&str_lev_mag, // 150
+   (pchar*)&str_teleken_hurled, // 151
+   (pchar*)&str_heal_b, // 152
+   (pchar*)&str_guard_s, // 153
+   (pchar*)&str_power_s, // 154
+   (pchar*)&str_swap_spe, // 155
+   (pchar*)&str_enc_rec, // 156
+   (pchar*)&str_sub_torment, // 157
+   (pchar*)&str_fell_taunt, // 158
+   (pchar*)&string_reason_cant, // 159
+   (pchar*)&string_roots_plant, // 160
+   (pchar*)&str_fell_down, // 161
+   (pchar*)&str_shell_trap_set, // 162
+   (pchar*)&str_perish_start, // 163
+   (pchar*)&str_count_fell, // 164
+   (pchar*)&str_destiny_bond_end, // 165
+   (pchar*)&str_destiny_bond_start, // 166
+   (pchar*)&str_grudge, // 167
+   (pchar*)&str_grudge_end, // 168
+   (pchar*)&str_skydrop_start_p, (pchar*)&str_skydrop_start_o,// 169, 170
+   (pchar*)&str_skydrop_air, // 171
+   (pchar*)&str_skydrop_free, // 172
+   (pchar*)&str_attract, // 173
+   (pchar*)&str_unleashed_p, // 174
+   (pchar*)&str_rdy_to_help, // 175
+   (pchar*)&str_infestation, // 176
+   (pchar*)&str_topsy_turvy, // 177
+   (pchar*)&str_center_attention, // 178
+   (pchar*)&str_stockpile_set, // 179
+   (pchar*)&str_aromatherapy, // 180
+   (pchar*)&str_copied_stats, // 181
+   (pchar*)&str_pain_split, // 182
+   (pchar*)&str_heal_bell, // 183
+   (pchar*)&str_belly_drum, // 184
+   (pchar*)&str_curse, // 185
+   (pchar*)&str_stat_changes_clear, // 186
+   (pchar*)&str_seeded, // 187
+   (pchar*)&str_sapped, // 188
+   (pchar*)&str_focus_tight, // 189
+   (pchar*)&str_beak_blast, // 190
+   (pchar*)&encounter_wild_text, // 191
+   (pchar*)&str_heart_swap, // 192
+   (pchar*)&str_come_back, // 193
+   (pchar*)&str_send_out, // 194
+   (pchar*)&str_trapped, // 195
+   (pchar*)&str_ability_changed, // 196
 
 };
 
