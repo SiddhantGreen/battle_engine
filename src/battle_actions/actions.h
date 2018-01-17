@@ -12,6 +12,7 @@ enum ActionTiming {
     ActionText, // Display game text
     ActionDamage, // Do damage
     ActionHeal, // Do heal
+    ActionStatus,
     ActionResidual,
     ActionHighPriority,
     ActionStatBoost,

@@ -49,6 +49,7 @@ EventCallback wild_battle_events[] = {
     init_heal,
     event_stat_boost,
     event_drain,
+    event_set_status,
     event_faint,
     end_action,
     event_set_inactive,

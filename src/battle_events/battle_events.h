@@ -26,6 +26,7 @@ enum EventStatesWildBattle {
     EventHealAnim, // 19
     EventStatBoost, //20
     EventDrain,
+    EventSetStatus,
     EventFaint, // 21
     EventEndAction, // 22
     EventInactive, // 23
@@ -61,6 +62,7 @@ extern void init_damage(struct action* current_action);
 extern void init_heal(struct action* current_action);
 extern void event_stat_boost(struct action* current_action);
 extern void event_drain(struct action* current_action);
+extern void event_set_status(struct action* current_move);
 extern void event_faint(struct action* current_action);
 extern void event_set_inactive(struct action* current_action);
 extern void event_residual_effects(struct action* current_action);

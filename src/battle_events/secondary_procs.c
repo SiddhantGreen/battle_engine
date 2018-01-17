@@ -6,7 +6,7 @@
 #include "../battle_text/battle_pick_message.h"
 
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern u16 rand_range(u16 min, u16 max);
 
@@ -62,14 +62,14 @@ void event_move_ailments(struct action* current_action)
 	if (B_AILMENT_PROCS_CHANCE_USER(bank) >= rand_range(1, 100)) {
 		// apply status user
 		B_AILMENT_PROCS_CHANCE_USER(bank) = 0;
-		set_status(bank, B_AILMENT_PROCS_USER(bank));
+		set_status(bank, B_AILMENT_PROCS_USER(bank), bank);
 		return;
 	}
 
 	if (B_AILMENT_PROCS_CHANCE_TARGET(bank) >= rand_range(1, 100)) {
 		// apply status target
 		B_AILMENT_PROCS_CHANCE_TARGET(bank) = 0;
-		set_status(TARGET_OF(bank), B_AILMENT_PROCS_TARGET(bank));
+		set_status(TARGET_OF(bank), B_AILMENT_PROCS_TARGET(bank), bank);
 		return;
 	}
     CURRENT_ACTION->event_state++;

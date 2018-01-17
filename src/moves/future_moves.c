@@ -8,7 +8,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 extern void do_damage(u8 bank_index, u16 dmg);
 extern u16 get_damage(u8 attacker, u8 defender, u16 move);
 extern void do_heal(u8 bank_index, u8 percent_heal);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern bool is_grounded(u8 bank);
 
 //Future Sight
@@ -69,7 +69,7 @@ u16 yawn_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != acb->data_ptr) return true;
     if (acb->duration == 0) {
-        set_status(user, AILMENT_SLEEP);
+        set_status(user, AILMENT_SLEEP, src);
         acb->in_use = false;
     }
     return true;

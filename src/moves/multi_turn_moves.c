@@ -6,7 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern void run_decision(void);
 extern u16 rand_range(u16 min, u16 max);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 
 /* Thrash, Outrage, Petal Dance */
 u8 thrash_on_tryhit_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -39,7 +39,7 @@ void thrash_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callback* 
     if (user != src) return true;
     if (p_bank[user]->b_data.skip_move_select == false) {
         if (!(HAS_VOLATILE(user, VOLATILE_CONFUSION))) {
-            set_status(user, AILMENT_CONFUSION);
+            set_status(user, AILMENT_CONFUSION, user);
         }
     }
     return;

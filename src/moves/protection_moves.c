@@ -6,7 +6,7 @@
 extern u16 rand_range(u16, u16);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_damage(u8 bank_index, u16 dmg);
-void set_status(u8 bank, enum Effect status);
+void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern bool protection_effect_exists_side(u8 bank, u32 func);
 extern bool moves_last(u8 bank);
@@ -102,7 +102,7 @@ u8 baneful_bunker_on_tryhit_anon(u8 user, u8 source, u16 move, struct anonymous_
     if (IS_PROTECTABLE(move)) {
         enqueue_message(0, TARGET_OF(user), STRING_PROTECTED_SELF, 0);
         if(IS_CONTACT(move))
-            set_status(user, AILMENT_POISON);
+            set_status(user, AILMENT_POISON, source);
         return 3; // fail the move silently
     }
     return true;

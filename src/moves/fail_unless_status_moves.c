@@ -6,7 +6,6 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 user, enum battle_string_ids id, u16 effect);
 extern u8 get_move_index(u16 move_id, u8 bank);
-void set_status(u8 bank, enum Effect status);
 extern u16 rand_range(u16 min, u16 max);
 extern void do_damage(u8 bank_index, u16 dmg);
 

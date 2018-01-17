@@ -6,7 +6,7 @@
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
 extern void do_heal(u8 bank_index, u8 heal);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern void flat_heal(u8 bank, u16 heal);
 extern u8 get_ability(struct Pokemon* p);
 extern void silent_cure_major(u8 bank);
@@ -23,7 +23,7 @@ u8 purify_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
     if (B_STATUS(user) != AILMENT_NONE) {
-        set_status(user, EFFECT_CURE);
+        set_status(user, EFFECT_CURE, src);
         add_callback(CB_ON_AFTER_MOVE, 0, 0, user, (u32)purify_on_after_move);
         return true;
     } else {
@@ -54,7 +54,7 @@ u8 sparkling_aria_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback
     if (user != src) return true;
     u8 target = TARGET_OF(user);
     if (B_STATUS(target) == AILMENT_BURN) {
-        set_status(target, EFFECT_CURE);
+        set_status(target, EFFECT_CURE, src);
     }
     return true;
 }

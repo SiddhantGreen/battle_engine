@@ -10,7 +10,7 @@ extern u8 count_usable_pokemon(u8 side);
 extern void forced_switch(u8 bank, u8 switch_method);
 extern void stat_boost(u8 bank, u8 stat_id, s8 amount, u8 inflicting_bank);
 extern void do_heal(u8 bank_index, u8 heal);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 extern void do_damage(u8 bank_index, u16 dmg);
 
 // Pursuit
@@ -145,7 +145,7 @@ void lunar_dance_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callb
     if (user != src) return true;
     do_heal(user, 100); // heal to 100%
     if (B_STATUS(user) != AILMENT_NONE)
-        set_status(user, EFFECT_CURE);
+        set_status(user, EFFECT_CURE, user);
     return true;
 }
 

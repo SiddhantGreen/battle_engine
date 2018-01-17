@@ -5,7 +5,7 @@
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
-extern void set_status(u8 bank, enum Effect status);
+extern void set_status(u8 bank, enum Effect status, u8 inflictor);
 
 
 /* Shell trap */
@@ -37,7 +37,7 @@ void beak_blast_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
     if (TARGET_OF(user) != src) return;
     if (IS_CONTACT(move)) {
-        set_status(user, AILMENT_BURN);
+        set_status(user, AILMENT_BURN, src);
     }
 }
 

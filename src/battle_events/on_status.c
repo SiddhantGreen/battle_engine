@@ -4,7 +4,9 @@
 #include "../battle_data/battle_state.h"
 #include "../moves/moves.h"
 #include "../abilities/battle_abilities.h"
-#include "status.h"
+#include "../battle_actions/actions.h"
+#include "battle_events.h"
+#include "../status_effects/status.h"
 
 extern u16 rand_range(u16, u16);
 extern void dprintf(const char * str, ...);
@@ -13,15 +15,21 @@ extern struct move_procs basic_proc;
 
 extern void status_graphical_update(u8 bank, enum Effect status);
 extern bool b_pkmn_has_type(u8 bank, enum PokemonType type);
-void set_status(u8 bank, enum Effect status)
+
+void set_status(u8 bank, enum Effect status, u8 inflictor)
 {
+    struct action* a =  prepend_action(inflictor, bank, ActionStatus, EventSetStatus);
+    a->priv[0] = status;
+}
+
+void event_set_status(struct action* current_move)
+{
+    u8 bank = CURRENT_ACTION->target;
+    u8 attacker = CURRENT_ACTION->action_bank;
+    enum Effect status = CURRENT_ACTION->priv[0];
     bool status_applied = false;
     // lowest priority for override are types and current status
     switch (status) {
-        case EFFECT_NONE:
-            // no status to set
-            return;
-            break;
         case EFFECT_PARALYZE:
             // electric types are immune. Already status'd is immune
             if ((b_pkmn_has_type(bank, TYPE_ELECTRIC)) || (p_bank[bank]->b_data.status != AILMENT_NONE)) {
@@ -40,9 +48,17 @@ void set_status(u8 bank, enum Effect status)
             break;
         case EFFECT_POISON:
         case EFFECT_BAD_POISON:
+            if (p_bank[bank]->b_data.status != AILMENT_NONE) {
+                status_applied = false;
+                break;
+            }
+            // corrosion ability on attacker makes ability always succeed
+            if (BANK_ABILITY(attacker) == ABILITY_CORROSION) {
+                status_applied = true;
+                break;
+            }
             // poison and steel types are immune. Already status'd is immune
-            if ((b_pkmn_has_type(bank, TYPE_POISON)) || (b_pkmn_has_type(bank, TYPE_STEEL)) ||
-                (p_bank[bank]->b_data.status != AILMENT_NONE)) {
+            if ((b_pkmn_has_type(bank, TYPE_POISON)) || (b_pkmn_has_type(bank, TYPE_STEEL))) {
                 status_applied = false;
             } else {
                 status_applied = true;
@@ -74,10 +90,12 @@ void set_status(u8 bank, enum Effect status)
 			status_applied = true;
             break;
         case EFFECT_INFACTUATION:
-        if (p_bank[bank]->b_data.pseudo_ailment != AILMENT_INFACTUATE)
-            status_applied = true;
+            if (p_bank[bank]->b_data.pseudo_ailment != AILMENT_INFACTUATE)
+                status_applied = true;
             break;
+        case EFFECT_NONE:
         default:
+            end_action(CURRENT_ACTION);
             return;
     };
 
@@ -100,6 +118,7 @@ void set_status(u8 bank, enum Effect status)
             CB_EXEC_INDEX = old_index;
             battle_master->executing = executor;
             enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
+            end_action(CURRENT_ACTION);
             return;
         }
     }
@@ -115,6 +134,7 @@ void set_status(u8 bank, enum Effect status)
     } else {
         enqueue_message(0, bank, STRING_AILMENT_IMMUNE, status);
     }
+    end_action(CURRENT_ACTION);
 }
 
 u8 ailment_encode(u8 bank)
