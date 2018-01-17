@@ -24,6 +24,7 @@ typedef u16 (*AbilityOnStatCallback)(u8 user, u8 source, u16 move, struct anonym
 typedef void (*AbilityAfterStatBoostModCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef u8 (*AbilityOnResidualCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
 typedef void (*AbilityOnDrainCallback)(u8 user, u8 source, u16 stat_id, struct anonymous_callback* acb);
+typedef u16 (*AbilityOnEffectiveness)(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb); // acb->data == ((attacker << 16) | move_effectiveness);
 
 struct ability_data {
     AbilityBeforeTurn before_turn;
@@ -33,6 +34,7 @@ struct ability_data {
     AbilityOnFailCallback on_fail;
     AbilityOnModifyMoveCallback on_modify_move;
     AbilityOnTryhitCallback on_tryhit;
+    AbilityOnEffectiveness on_effectiveness;
     AbilityOnBasePowerCallback on_base_power;
     AbilityOnDamageCallback on_damage;
     AbilityOnEffectCallback on_effect;

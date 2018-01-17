@@ -27,6 +27,14 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 if (is_grounded(defender) && (move_type == MTYPE_GROUND) && (target_type == MTYPE_FLYING)) {
                     move_effectiveness = 100;
                 }
+
+                // add ability immunity callbacks
+                for (u8 z = 0; z < BANK_MAX; z++) {
+                    u8 ability = p_bank[z]->b_data.ability;
+                    if ((abilities[ability].on_effectiveness) && (ACTIVE_BANK(z)))
+                        add_callback(CB_ON_EFFECTIVENESS, 0, 0, i, (u32)abilities[ability].on_effectiveness);
+                }
+
                 // back up cbs
                 u8 old_index = CB_EXEC_INDEX;
                 u32* old_execution_array = push_callbacks();
