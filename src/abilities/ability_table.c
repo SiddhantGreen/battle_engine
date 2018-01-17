@@ -754,9 +754,12 @@ struct ability_data abilities[] = {
 	},
 	{
 		// RECEIVER
+		.on_faint = receiver_on_faint,
 	},
 	{
 		// POWEROFALCHEMY
+		// receiver clone
+		.on_faint = receiver_on_faint,
 	},
 	{
 		// BEASTBOOST

@@ -120,6 +120,6 @@ extern u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_ca
 extern void moxie_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void beast_boost_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void soul_heart_on_faint(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
-
+extern void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

@@ -208,7 +208,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    // boost on self which isn't by the user
+    // boost on self which isnt by the user
     return ((CURRENT_ACTION->action_bank == user) || (CURRENT_ACTION->priv[1] > 0));
 }
 
@@ -303,9 +303,9 @@ bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback
 
 u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
-    // if pokemon getting stat accessed isn't the target of keeneye user or
+    // if pokemon getting stat accessed isnt the target of keeneye user or
     // if keeneye user is not the one attacking or
-    // if keen eye bank is accessing it's evasion stat by itself
+    // if keen eye bank is accessing its evasion stat by itself
     if ((TARGET_OF(src) != user) || (CURRENT_ACTION->action_bank != src) || (user == src)) return acb->data_ptr;
     if (stat_id == EVASION_MOD)
         return 100;
@@ -655,7 +655,7 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
     // 30% chance to disable move, if it did dmg
     if ((B_MOVE_DMG(user) != 0) && (rand_range(0, 100) <= 100)) {
-        // fail if attacker's move has no PP left
+        // fail if attackers move has no PP left
         if (move_pp_count(move, user) < 1) return true;
         // fail if effect already active on target
         if (HAS_VOLATILE(user, VOLATILE_DISABLE)) return true;
@@ -749,7 +749,7 @@ u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
     }
 
     enqueue_message(move, user, STRING_ABILITY_CHANGED, BANK_ABILITY(user));
-    // remove user's old ability callbacks
+    // remove users old ability callbacks
     delete_callback_src((u32)abilities[BANK_ABILITY(user)].on_effect, user);
     BANK_ABILITY(user) = ABILITY_MUMMY;
     if (abilities[BANK_ABILITY(user)].on_effect) {
@@ -1032,6 +1032,26 @@ void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // TANGLINGHAIR
 
 // RECEIVER
+u16 receiver_banlist[] = {
+    ABILITY_BATTLEBOND, ABILITY_COMATOSE, ABILITY_DISGUISE,
+    ABILITY_FLOWERGIFT, ABILITY_FORECAST, ABILITY_ILLUSION,
+    ABILITY_IMPOSTER, ABILITY_MULTITYPE, ABILITY_POWERCONSTRUCT,
+    ABILITY_POWEROFALCHEMY, ABILITY_RECEIVER, ABILITY_RKSSYSTEM,
+    ABILITY_SCHOOLING, ABILITY_SHIELDSDOWN, ABILITY_STANCECHANGE,
+    ABILITY_TRACE, ABILITY_WONDERGUARD, ABILITY_ZENMODE,
+};
+
+void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (SIDE_OF(user) != SIDE_OF(src)) return;
+    u8 user_ability = BANK_ABILITY(user);
+    for (u8 i = 0; i < (sizeof(receiver_banlist)/sizeof(u16)); i++) {
+        if (user_ability == receiver_banlist[i])
+            return;
+    }
+    BANK_ABILITY(src) = BANK_ABILITY(user);
+}
+
 
 // POWEROFALCHEMY
 
