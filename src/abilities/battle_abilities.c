@@ -759,6 +759,20 @@ u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
 }
 
 // MOXIE
+void moxie_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (p_bank[user]->b_data.last_attacked_by == src)
+        stat_boost(src, ATTACK_MOD, 1, src);
+}
+
+void moxie_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    u8 target = TARGET_OF(user);
+    if ((B_CURRENT_HP(target) > 0) && ((B_CURRENT_HP(target) - B_MOVE_DMG(user)) <= 0))
+        add_callback(CB_ON_FAINT_CHECK, 0, 0, src, (u32)moxie_on_faint);
+}
+
 
 // JUSTIFIED
 u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -1009,7 +1023,11 @@ void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // DAZZLING
 
-// SOUL
+// SOULHEART
+void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    if (user != src)
+        stat_boost(src, SPATTACK_MOD, 1, src);
+}
 
 // TANGLINGHAIR
 

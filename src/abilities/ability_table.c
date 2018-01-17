@@ -527,6 +527,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MOXIE
+		.on_damage = moxie_on_damage,
 	},
 	{
 		// JUSTIFIED
@@ -743,7 +744,8 @@ struct ability_data abilities[] = {
 		// DAZZLING
 	},
 	{
-		// SOUL
+		// SOULHEART
+		.on_faint = soul_heart_on_faint,
 	},
 	{
 		// TANGLINGHAIR
