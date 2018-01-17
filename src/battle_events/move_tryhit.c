@@ -105,14 +105,13 @@ bool try_hit(u8 attacker)
         return true;
     // standard accuracy formula check
     u16 target_evasion;
-    if (B_MOVE_IGNORE_EVASION(attacker)) {
+    if (B_MOVE_IGNORE_EVASION(attacker))
         target_evasion = 100;
-    } else {
+    else
         target_evasion = B_EVASION_STAT(defender);
-    }
     u16 user_accuracy = B_ACCURACY_STAT(attacker);
 
-    u16 result = (user_accuracy / target_evasion) * move_accuracy;
+    u16 result = PERCENT(((user_accuracy * 100) / target_evasion),  move_accuracy);
     if (rand_range(0, 100) <= result)
         return true;
     if (target_evasion > 100) {
