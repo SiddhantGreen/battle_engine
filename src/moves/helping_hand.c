@@ -10,7 +10,7 @@ extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 ef
 void helping_hand_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), acb->data_ptr);
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), acb->data_ptr);
 }
 
 u8 helping_hand_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

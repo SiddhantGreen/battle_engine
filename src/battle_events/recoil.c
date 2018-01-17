@@ -18,11 +18,11 @@ void event_move_recoil(struct action* current_action) {
     // check for recoil
     if (moves[move].recoil_struggle) {
         // struggle recoil is based off max health
-        do_damage(bank, NUM_MOD(TOTAL_HP(bank), moves[move].recoil));
+        do_damage(bank, PERCENT(TOTAL_HP(bank), moves[move].recoil));
         enqueue_message(move, bank, STRING_RECOIL, 0);
     } else if (B_MOVE_DMG(bank) != 0 && moves[move].recoil > 0) {
         // normal recoil based on move damage
-        do_damage(bank, NUM_MOD(B_MOVE_DMG(bank), moves[move].recoil));
+        do_damage(bank, PERCENT(B_MOVE_DMG(bank), moves[move].recoil));
         enqueue_message(move, bank, STRING_RECOIL, 0);
     }
     CURRENT_ACTION->event_state++;

@@ -45,7 +45,7 @@ u16 type_effectiveness_mod(u8 attacker, u8 defender, u16 move)
                 restore_callbacks(old_execution_array);
                 CB_EXEC_INDEX = old_index;
                 if (move_effectiveness > 0) {
-                    percent = NUM_MOD(percent, move_effectiveness);
+                    percent = PERCENT(percent, move_effectiveness);
                 } else {
                     // target has an immunity, return 0
                     return 0;
@@ -73,7 +73,7 @@ u16 weather_dmg_mod(u16 damage, u8 attacker)
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
-    return NUM_MOD(damage, modifier);
+    return PERCENT(damage, modifier);
 }
 
 
@@ -152,7 +152,7 @@ u16 get_base_damage(u8 attacker, u8 defender, u16 move)
     // Calc base damage - broken up for readability
     u16 dmg = ((B_LEVEL(attacker) * 2) / 5) + 2;
     dmg *= base_power;
-    dmg = NUM_MOD(dmg, ((atk_stat * 100) / def_stat));
+    dmg = PERCENT(dmg, ((atk_stat * 100) / def_stat));
     dmg = (dmg/ 50) + 2;
     return dmg;
 }
@@ -173,31 +173,31 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
         default:
             targets_mod = 100;
     };
-    modded_base = NUM_MOD(modded_base, targets_mod);
+    modded_base = PERCENT(modded_base, targets_mod);
 
     // Weather Mod
     modded_base = weather_dmg_mod(modded_base, attacker);
 
     // critical Mod
     if (B_MOVE_WILL_CRIT(attacker)) {
-        modded_base = NUM_MOD(modded_base, 150);
+        modded_base = PERCENT(modded_base, 150);
     } else if (B_MOVE_CAN_CRIT(attacker)) {
         p_bank[attacker]->b_data.crit_mod += MOVE_CRIT(move);
         if ((rand_range(0, 100)) <= B_CRITCHANCE_STAT(attacker)) {
             B_MOVE_WILL_CRIT(attacker) = true;
-            modded_base = NUM_MOD(modded_base, 150);
+            modded_base = PERCENT(modded_base, 150);
         }
         p_bank[attacker]->b_data.crit_mod -= MOVE_CRIT(move);
     }
 
     // random factor
-    modded_base = NUM_MOD(modded_base, rand_range(85, 100));
+    modded_base = PERCENT(modded_base, rand_range(85, 100));
 
     // stab calc
     u8 i;
     for (i = 0; i < 2; i++) {
         if ((B_MOVE_TYPE(attacker, i) != MTYPE_EGG) && (b_pkmn_has_type(attacker, B_MOVE_TYPE(attacker, i)))) {
-            modded_base = NUM_MOD(modded_base, B_MOVE_STAB(attacker));
+            modded_base = PERCENT(modded_base, B_MOVE_STAB(attacker));
             break;
         }
     }
@@ -213,14 +213,14 @@ u16 modify_damage(u16 base_damage, u8 attacker, u8 defender, u16 move)
     } else {
         B_MOVE_EFFECTIVENESS(attacker) = TE_IMMUNE;
     }
-    modded_base = NUM_MOD(modded_base, type_effect_percent);
+    modded_base = PERCENT(modded_base, type_effect_percent);
 
     // burn ailment attack reduction
     if ((B_STATUS(attacker) == AILMENT_BURN) &&
         (B_MOVE_CATEGORY(attacker) == MOVE_PHYSICAL) &&
         (BANK_ABILITY(attacker) != ABILITY_GUTS) &&
         (move != MOVE_FACADE) && (!B_MOVE_WILL_CRIT(attacker))) {
-        modded_base = NUM_MOD(modded_base, 50);
+        modded_base = PERCENT(modded_base, 50);
     }
     return modded_base;
 }

@@ -20,7 +20,7 @@ void beatup_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* 
     struct Pokemon *p = SIDE_OF(user) ? (&party_opponent[0]) : (&party_player[0]);
     u8 slot = acb->data_ptr >> 24;
     if (slot < 6) {
-        B_MOVE_POWER(user) = (5 + NUM_MOD(pokemon_getattr(&p[slot], REQUEST_ATK, NULL), 10));
+        B_MOVE_POWER(user) = (5 + PERCENT(pokemon_getattr(&p[slot], REQUEST_ATK, NULL), 10));
         acb->data_ptr |= (6 << 24);
     } else {
         for (u8 i = 0; i < 6; i++) {
@@ -28,7 +28,7 @@ void beatup_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* 
                 // clear bit
                 acb->data_ptr &= ~((1) << i);
                 // apply damage from current index 'mon
-                B_MOVE_POWER(user) = (5 + NUM_MOD(pokemon_getattr(&p[i], REQUEST_ATK, NULL), 10));
+                B_MOVE_POWER(user) = (5 + PERCENT(pokemon_getattr(&p[i], REQUEST_ATK, NULL), 10));
                 slot = i;
                 break;
             }

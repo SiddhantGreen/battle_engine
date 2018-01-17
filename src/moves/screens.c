@@ -11,7 +11,7 @@ void reflect_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback
 {
     if (TARGET_OF(user) != src) return;
     if (B_MOVE_IS_PHYSICAL(CURRENT_MOVE(user)) && (!B_MOVE_WILL_CRIT(user))) {
-        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 50);
+        B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 50);
     }
     return;
 }
@@ -32,7 +32,7 @@ void light_screen_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_cal
 {
     if (TARGET_OF(user) != src) return;
     if (B_MOVE_IS_SPECIAL(CURRENT_MOVE(user)) && (!B_MOVE_WILL_CRIT(user))) {
-        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 50);
+        B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 50);
     }
     return;
 }
@@ -66,7 +66,7 @@ void aurora_veil_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_call
         return;
 
     if (!B_MOVE_WILL_CRIT(user))
-        B_MOVE_DMG(user) = NUM_MOD(B_MOVE_DMG(user), 50);
+        B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 50);
 }
 
 u8 aurora_veil_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

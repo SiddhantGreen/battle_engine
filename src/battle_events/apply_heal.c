@@ -19,7 +19,7 @@ void apply_heal()
         case 0:
         {
             u8 bank = CURRENT_ACTION->priv[0];
-            u16 heal = NUM_MOD(TOTAL_HP(bank), CURRENT_ACTION->priv[1]);
+            u16 heal = PERCENT(TOTAL_HP(bank), CURRENT_ACTION->priv[1]);
             if (TOTAL_HP(bank) < (heal + B_CURRENT_HP(bank))) {
                 heal = TOTAL_HP(bank) - B_CURRENT_HP(bank);
             }

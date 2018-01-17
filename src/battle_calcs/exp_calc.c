@@ -21,17 +21,17 @@ u32 calc_exp(u8 fainted, u8 reciever)
     traded = (traded == saveblock2->trainerid) ? 100 : 150;
     
     u32 exp_part1 = fainted_lvl * base_yield;
-    exp_part1 = NUM_MOD(exp_part1, trainer_mon);
+    exp_part1 = PERCENT(exp_part1, trainer_mon);
     exp_part1 = exp_part1 / 5;
     
     u32 exp_part2 = ((2 *fainted_lvl) + 10);
-    exp_part2 *= (exp_part2 * NUM_MOD(exp_part2, 50));
+    exp_part2 *= (exp_part2 * PERCENT(exp_part2, 50));
     u32 exp_part3 = (fainted_lvl + reciever_lvl + 10);
-    exp_part3 *= (exp_part3 * NUM_MOD(exp_part3, 50));
+    exp_part3 *= (exp_part3 * PERCENT(exp_part3, 50));
     exp_part2 /= exp_part3;
     exp_part2 = MAX(exp_part2, 1);
     exp_part1 = (exp_part1 * exp_part2) + 1;
-    return NUM_MOD(exp_part1, traded);   
+    return PERCENT(exp_part1, traded);   
 }
 
 /* TODO exp share item - probably as a callback here */

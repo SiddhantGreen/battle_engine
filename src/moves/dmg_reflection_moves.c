@@ -55,7 +55,7 @@ void metal_burst_damage(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 {
     if (user == src) return;
     if (TARGET_OF(user) == src)
-        B_MOVE_DMG(src) = NUM_MOD(B_MOVE_DMG(user), 150);
+        B_MOVE_DMG(src) = PERCENT(B_MOVE_DMG(user), 150);
 
 }
 

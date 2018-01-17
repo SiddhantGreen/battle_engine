@@ -190,7 +190,7 @@ u16 sandstorm_stat_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* 
 {
     if (stat_id != SPDEFENSE_MOD) return (u32)acb->data_ptr;
     if (b_pkmn_has_type(user, MTYPE_ROCK)) {
-        return NUM_MOD((u32)acb->data_ptr, 150);
+        return PERCENT((u32)acb->data_ptr, 150);
     } else {
         return (u32)acb->data_ptr;
     }

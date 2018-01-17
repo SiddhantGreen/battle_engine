@@ -22,7 +22,7 @@ void crush_grip_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_c
 {
     if (user != src) return;
     u8 power = ((B_CURRENT_HP(user) * 100) / TOTAL_HP(user));
-    power = NUM_MOD(120, power);
+    power = PERCENT(120, power);
     B_MOVE_POWER(user) = MAX(1, power);
 }
 

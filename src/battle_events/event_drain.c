@@ -28,7 +28,7 @@ void event_drain(struct action* current_action)
             add_callback(CB_ON_DRAIN, 0, 0, i, (u32)abilities[ability].on_drain);
     }
 
-    B_DRAIN(bank) = NUM_MOD(B_MOVE_DMG(bank), moves[move].drain);
+    B_DRAIN(bank) = PERCENT(B_MOVE_DMG(bank), moves[move].drain);
     // back up cbs
     u8 old_index = CB_EXEC_INDEX;
     u32* old_execution_array = push_callbacks();

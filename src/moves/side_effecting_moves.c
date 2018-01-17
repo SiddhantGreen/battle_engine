@@ -174,7 +174,7 @@ bool gravity_on_disabled_move(u8 user, u8 src, u16 move, struct anonymous_callba
 u16 gravity_on_accuracy(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (stat_id != ACCURACY_MOD) return (u16)acb->data_ptr;
-    return NUM_MOD((u16)acb->data_ptr, 167);
+    return PERCENT((u16)acb->data_ptr, 167);
 }
 
 u8 gravity_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -274,7 +274,7 @@ u8 mist_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 void mud_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (B_MOVE_HAS_TYPE(user, MTYPE_ELECTRIC)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 33);
     }
 }
 
@@ -292,7 +292,7 @@ u8 mud_sport_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 void water_sport_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 33);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 33);
     }
 }
 

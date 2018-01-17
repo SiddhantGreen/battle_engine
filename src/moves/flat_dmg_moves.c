@@ -53,7 +53,7 @@ void psywave_on_damage_move(u8 user, u8 src, u16 move, struct anonymous_callback
 {
 	if (user != src) return true;
 	u8 level = B_LEVEL(user);
-    u16 damage = NUM_MOD(level, rand_range(50, 151));
+    u16 damage = PERCENT(level, rand_range(50, 151));
     damage = MAX(1, damage);
     B_MOVE_DMG(user) = damage;
 }
@@ -83,7 +83,7 @@ void frustration_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback*
 {
 	if (user != src) return true;
 	u8 happiness = pokemon_getattr(p_bank[user]->this_pkmn, REQUEST_HAPPINESS, NULL);
-	u8 power = NUM_MOD((255 - happiness), 40);
+	u8 power = PERCENT((255 - happiness), 40);
 	B_MOVE_DMG(user) = MAX(1, power);
 
 }

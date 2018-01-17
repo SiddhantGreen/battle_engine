@@ -79,7 +79,7 @@ extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 #define B_SPATTACK_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_atk_raw)
 #define B_SPDEFENSE_STAT_UMOD(bank) (p_bank[bank]->b_data.sp_def_raw)
 
-#define NUM_MOD(number, percent) ((number * percent) / 100)
+#define PERCENT(number, percent) ((number * percent) / 100)
 
 /*
  * P_bank b_data volatile macros

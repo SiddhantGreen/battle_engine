@@ -13,7 +13,7 @@ extern void clear_terrain(void);
 void electric_terrain_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (is_grounded(user) && B_MOVE_HAS_TYPE(user, MTYPE_ELECTRIC))
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
 }
 
 bool electric_terrain_on_status(u8 user, u8 src, u16 status_id, struct anonymous_callback* acb)
@@ -60,12 +60,12 @@ void grassy_terrain_on_base_power(u8 user, u8 src, u16 move, struct anonymous_ca
 {
     for (u8 i = 0; i < (sizeof(grassy_terrain_weakened) / sizeof(u16)); i++) {
         if (move == grassy_terrain_weakened[i]) {
-            B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 50);
+            B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 50);
             return;
         }
     }
     if (is_grounded(user) && B_MOVE_HAS_TYPE(user, MTYPE_GRASS)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
 }
 
@@ -111,7 +111,7 @@ bool misty_terrain_on_status(u8 user, u8 src, u16 status_id, struct anonymous_ca
 void misty_terrain_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (is_grounded(user) && B_MOVE_HAS_TYPE(user, MTYPE_DRAGON)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 50);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 50);
     }
 }
 
@@ -152,7 +152,7 @@ u8 psychic_terrain_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* 
 void psychic_terrain_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (is_grounded(user) && B_MOVE_HAS_TYPE(user, MTYPE_PSYCHIC)) {
-        B_MOVE_POWER(user) = NUM_MOD(B_MOVE_POWER(user), 150);
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
 }
 

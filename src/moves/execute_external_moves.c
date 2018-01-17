@@ -271,7 +271,7 @@ u8 me_first_on_base_power_anon(u8 attacker, u8 src, u16 move, struct anonymous_c
 	u16 base_power = B_MOVE_POWER(attacker);
 	if (attacker == src) {
 		acb->in_use = false;
-		B_MOVE_POWER(attacker) = NUM_MOD(base_power, 150);
+		B_MOVE_POWER(attacker) = PERCENT(base_power, 150);
 	}
 	return true;
 }

@@ -24,7 +24,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
 
     /* atk, def, spd, spa, spdef */
     if (id < 5) {
-        stat_total = NUM_MOD(stat, stat_mod[mod + 6]);
+        stat_total = PERCENT(stat, stat_mod[mod + 6]);
     } else if (id < 7) {
         /* Accuracy and Evasion */
         stat_total = acc_mod[mod + 6];
