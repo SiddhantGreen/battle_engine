@@ -508,6 +508,31 @@ void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 // QUICKFEET
 
 // NORMALIZE
+u16 normalize_banlist[] = {
+    MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
+    MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
+    MOVE_TECHNOBLAST, MOVE_WEATHERBALL, MOVE_NONE
+};
+
+u8 normalize_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_MOVE_IS_STATUS(user)) return true;
+    for (u8 i = 0; i < (sizeof(normalize_banlist) / sizeof(u16)); i++) {
+        if (normalize_banlist[i] == move) return true;
+    }
+    B_MOVE_TYPE(user, 0) = MTYPE_NORMAL;
+    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
+    return true;
+}
+
+void normalize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_MODIFY_MOVE, 1, 0, user, (u32)normalize_on_modify_move);
+}
+
 
 // SNIPER
 
@@ -879,6 +904,31 @@ void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
 }
 
 // REFRIGERATE
+u16 refrigerate_banlist[] = {
+    MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
+    MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
+    MOVE_TECHNOBLAST, MOVE_WEATHERBALL, MOVE_NONE
+};
+
+u8 refrigerate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // status moves excempt
+    if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
+    for (u8 i = 0; i < (sizeof(refrigerate_banlist) / sizeof(u16)); i++) {
+        if (refrigerate_banlist[i] == move) return true;
+    }
+    B_MOVE_TYPE(user, 0) = MTYPE_ICE;
+    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
+    return true;
+}
+
+void refrigerate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)refrigerate_on_modify_move);
+}
 
 // SWEETVEIL
 u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
@@ -918,6 +968,31 @@ void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 // TOUGHCLAWS
 
 // PIXILATE
+u16 pixilate_banlist[] = {
+    MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
+    MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
+    MOVE_TECHNOBLAST, MOVE_WEATHERBALL, MOVE_NONE
+};
+
+u8 pixilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // status moves excempt
+    if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
+    for (u8 i = 0; i < (sizeof(pixilate_banlist) / sizeof(u16)); i++) {
+        if (pixilate_banlist[i] == move) return true;
+    }
+    B_MOVE_TYPE(user, 0) = MTYPE_FAIRY;
+    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
+    return true;
+}
+
+void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)pixilate_on_modify_move);
+}
 
 // GOOEY
 u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -929,6 +1004,31 @@ u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 }
 
 // AERILATE
+u16 aerilate_banlist[] = {
+    MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
+    MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
+    MOVE_TECHNOBLAST, MOVE_WEATHERBALL, MOVE_NONE
+};
+
+u8 aerilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // status moves excempt
+    if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
+    for (u8 i = 0; i < (sizeof(aerilate_banlist) / sizeof(u16)); i++) {
+        if (aerilate_banlist[i] == move) return true;
+    }
+    B_MOVE_TYPE(user, 0) = MTYPE_FLYING;
+    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
+    return true;
+}
+
+void aerilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)aerilate_on_modify_move);
+}
 
 // PARENTALBOND
 

@@ -122,5 +122,10 @@ extern void moxie_on_damage(u8 user, u8 source, u16 move, struct anonymous_callb
 extern void beast_boost_on_damage(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void soul_heart_on_faint(u8 user, u8 source, u16 move, struct anonymous_callback* acb);
 extern void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void normalize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void refrigerate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void aerilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

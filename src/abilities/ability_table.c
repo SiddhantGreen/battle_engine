@@ -339,6 +339,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// NORMALIZE
+		.before_turn = normalize_before_turn,
 	},
 	{
 		// SNIPER
@@ -600,6 +601,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// REFRIGERATE
+		.before_turn = refrigerate_before_turn,
 	},
 	{
 		// SWEETVEIL
@@ -627,6 +629,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// PIXILATE
+		.before_turn = pixilate_before_turn,
 	},
 	{
 		// GOOEY
@@ -634,6 +637,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// AERILATE
+		.before_turn = aerilate_before_turn,
 	},
 	{
 		// PARENTALBOND
