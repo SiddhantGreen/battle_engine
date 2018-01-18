@@ -32,6 +32,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// BATTLEARMOR
+		.on_modify_move = battle_armor_on_modify_move,
 	},
 	{
 		// STURDY

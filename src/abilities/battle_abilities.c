@@ -56,6 +56,12 @@ u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
 }
 
 // BATTLEARMOR
+u8 battle_armor_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    B_MOVE_WILL_CRIT(user) = false;
+    return true;
+}
 
 // STURDY
 
@@ -1043,7 +1049,7 @@ u16 receiver_banlist[] = {
 
 void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (SIDE_OF(user) != SIDE_OF(src)) return;
+    if ((SIDE_OF(user) != SIDE_OF(src)) || (user == src)) return;
     u8 user_ability = BANK_ABILITY(user);
     for (u8 i = 0; i < (sizeof(receiver_banlist)/sizeof(u16)); i++) {
         if (user_ability == receiver_banlist[i])
