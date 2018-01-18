@@ -223,6 +223,23 @@ bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callba
 // LIGHTNINGROD
 
 // SERENEGRACE
+u8 serenegrace_on_modify_move_opp(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    B_FLINCH(user) *= 2;
+    delete_callback_src((u32)serenegrace_on_modify_move_opp, src);
+}
+
+u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    for (u8 i = 0; i < 8; i++) {
+        B_USER_STAT_MOD_CHANCE(user, i) *= 2;
+        B_TARGET_STAT_MOD_CHANCE(user, i) *= 2;
+    }
+    add_callback(CB_ON_MODIFY_MOVE, 0, 0, TARGET_OF(user), (u32)serenegrace_on_modify_move_opp);
+    return true;
+}
 
 // SWIFTSWIM
 
