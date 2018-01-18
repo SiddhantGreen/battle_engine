@@ -228,6 +228,7 @@ u8 serenegrace_on_modify_move_opp(u8 user, u8 src, u16 move, struct anonymous_ca
     if (user != src) return true;
     B_FLINCH(user) *= 2;
     delete_callback_src((u32)serenegrace_on_modify_move_opp, src);
+    return true;
 }
 
 u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)

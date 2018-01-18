@@ -128,6 +128,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SERENEGRACE
+		.on_modify_move = serenegrace_on_modify_move,
 	},
 	{
 		// SWIFTSWIM
