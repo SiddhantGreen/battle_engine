@@ -701,12 +701,14 @@ struct ability_data abilities[] = {
 	},
 	{
 		// LIQUIDVOICE
+		.on_modify_move = liquid_voice_on_modify_move,
 	},
 	{
 		// TRIAGE
 	},
 	{
 		// GALVANIZE
+		.before_turn = galvanize_before_turn,
 	},
 	{
 		// SURGESURFER

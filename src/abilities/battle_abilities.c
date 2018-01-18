@@ -522,7 +522,7 @@ u8 normalize_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback
         if (normalize_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_NORMAL;
-    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_TYPE(user, 1) = MTYPE_NONE;
     B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     return true;
 }
@@ -919,7 +919,7 @@ u8 refrigerate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
         if (refrigerate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_ICE;
-    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_TYPE(user, 1) = MTYPE_NONE;
     B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     return true;
 }
@@ -983,7 +983,7 @@ u8 pixilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
         if (pixilate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_FAIRY;
-    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_TYPE(user, 1) = MTYPE_NONE;
     B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     return true;
 }
@@ -1019,7 +1019,7 @@ u8 aerilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
         if (aerilate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_FLYING;
-    B_MOVE_TYPE(user, 1) = MTYPE_EGG;
+    B_MOVE_TYPE(user, 1) = MTYPE_NONE;
     B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     return true;
 }
@@ -1091,6 +1091,15 @@ void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 // LONGREACH
 
 // LIQUIDVOICE
+u8 liquid_voice_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (IS_SOUND_BASE(move)) {
+        B_MOVE_TYPE(user, 0) = MTYPE_WATER;
+        B_MOVE_TYPE(user, 1) = MTYPE_NONE;
+    }
+    return true;
+}
 
 // TRIAGE
 void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -1101,6 +1110,31 @@ void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 }
 
 // GALVANIZE
+u16 galvanize_banlist[] = {
+    MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
+    MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
+    MOVE_TECHNOBLAST, MOVE_WEATHERBALL, MOVE_NONE
+};
+
+u8 galvanize_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // status moves excempt
+    if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
+    for (u8 i = 0; i < (sizeof(galvanize_banlist) / sizeof(u16)); i++) {
+        if (galvanize_banlist[i] == move) return true;
+    }
+    B_MOVE_TYPE(user, 0) = MTYPE_ELECTRIC;
+    B_MOVE_TYPE(user, 1) = MTYPE_NONE;
+    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
+    return true;
+}
+
+void galvanize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)galvanize_on_modify_move);
+}
 
 // SURGESURFER
 
