@@ -55,7 +55,7 @@ u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	return true;
 }
 
-// BATTLEARMOR
+// Battle Armor
 u8 battle_armor_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -80,7 +80,7 @@ u8 limber_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* ac
 
 // SANDVEIL
 
-// STATIC
+// Static
 u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -95,7 +95,7 @@ u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 // WATERABSORB
 
-// OBLIVIOUS
+// Oblivious
 u16 oblivious_disallow[] = {
     MOVE_TAUNT, MOVE_NONE, MOVE_MAX, MOVE_CAPTIVATE, MOVE_ATTRACT,
 };
@@ -161,7 +161,7 @@ u8 immunity_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* 
 
 // SHIELDDUST
 
-// OWNTEMPO
+// Own Tempo
 u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -177,7 +177,7 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 
 // SHADOWTAG
 
-// ROUGHSKIN
+// Rough Skin
 u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -190,7 +190,7 @@ u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // LEVITATE
 
-// EFFECTSPORE
+// Effect Spore
 u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((TARGET_OF(user) != src) || (user == src)) return true;
@@ -210,7 +210,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // SYNCHRONIZE
 
-// CLEARBODY
+// Clear Body
 bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -222,7 +222,7 @@ bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callba
 
 // LIGHTNINGROD
 
-// SERENEGRACE
+// Serene Grace
 u8 serenegrace_on_modify_move_opp(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -316,7 +316,7 @@ u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // RUNAWAY
 
-// KEENEYE
+// Keen Eye
 bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     u8 attacker = CURRENT_ACTION->action_bank; // inflictor
@@ -335,7 +335,7 @@ u16 keen_eye_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* ac
     return acb->data_ptr;
 }
 
-// HYPERCUTTER
+// Hyper Cutter
 bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -349,7 +349,7 @@ bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_call
 
 // HUSTLE
 
-// CUTECHARM
+// Cute Charm
 u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -374,7 +374,7 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // MARVELSCALE
 
-// LIQUIDOOZE
+// Liquid Ooze
 void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) !=  src) return;
@@ -415,7 +415,7 @@ u8 vitalspirit_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callbac
     return true;
 }
 
-// WHITESMOKE
+// White Smoke
 bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -477,7 +477,7 @@ void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
     return;
 }
 
-// POISONHEAL
+// Poison Heal
 extern u8 toxic_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 poison_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
@@ -524,7 +524,7 @@ void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 
 // QUICKFEET
 
-// NORMALIZE
+// Normalize
 u16 normalize_banlist[] = {
     MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
     MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
@@ -577,7 +577,7 @@ void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 
 // SUPERLUCK
 
-// AFTERMATH
+// Aftermath
 u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -615,7 +615,7 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
 
 // SLOWSTART
 
-// SCRAPPY
+// Scrappy
 u16 scrappy_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb) {
     // acb->data == ((attacker << 16) | move_effectiveness);
     u16 attacker = acb->data_ptr >> 16;
@@ -659,7 +659,7 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 
 // BADDREAMS
 
-// PICKPOCKET
+// Pick Pocket
 void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((B_ITEM(src) != ITEM_NONE) || (B_ITEM(user) == ITEM_NONE)) return;
@@ -684,7 +684,7 @@ bool contrary_on_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_c
 
 // UNNERVE
 
-// DEFIANT
+// Defiant
 void defiant_after_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
@@ -695,7 +695,7 @@ void defiant_after_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous
 
 // DEFEATIST
 
-// CURSEDBODY
+// Cursed Body
 u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     // no effect on self or if not targetted
@@ -719,7 +719,7 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
 // FRIENDGUARD
 
-// WEAKARMOR
+// Weak Armor
 u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -748,7 +748,7 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // OVERCOAT
 
-// POISONTOUCH
+// Poison Touch
 u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (user != src) return true;
@@ -760,7 +760,7 @@ u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 // REGENERATOR
 
-// BIGPECKS
+// Big Pecks
 bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -778,13 +778,13 @@ bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callbac
 
 // IMPOSTER
 
-// INFILTRATOR
+// Infiltrator
 u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
     B_INFILTRATES(src) = true;
     return true;
 }
 
-// MUMMY
+// Mummy
 u16 mummy_immune_abilities[] = {
     ABILITY_MUMMY, ABILITY_MULTITYPE, ABILITY_STANCE_CHANGE
 };
@@ -806,7 +806,7 @@ u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
     return true;
 }
 
-// MOXIE
+// Moxie
 void moxie_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (p_bank[user]->b_data.last_attacked_by == src)
@@ -822,7 +822,7 @@ void moxie_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 }
 
 
-// JUSTIFIED
+// Justified
 u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -837,7 +837,7 @@ u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // SAPSIPPER
 
-// PRANKSTER
+// Prankster
 u8 prankster_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((user != src) || (TARGET_OF(user) == src)) return true;
@@ -869,7 +869,7 @@ void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 // AROMAVEIL
 
-// FLOWERVEIL
+// Flower Veil
 bool flower_veil_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     u8 defender = CURRENT_ACTION->target;
@@ -901,7 +901,7 @@ u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback
 
 // BULLETPROOF
 
-// COMPETITIVE
+// Competitive
 void competitive_after_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     acb->in_use = false;
@@ -920,7 +920,7 @@ void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
     return;
 }
 
-// REFRIGERATE
+// Refrigerate
 u16 refrigerate_banlist[] = {
     MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
     MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
@@ -947,7 +947,7 @@ void refrigerate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callbac
     add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)refrigerate_on_modify_move);
 }
 
-// SWEETVEIL
+// Sweet Veil
 u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
     if (SIDE_OF(user) != SIDE_OF(src)) return true;
@@ -960,7 +960,7 @@ u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback
 
 // STANCECHANGE
 
-// GALEWINGS
+// Gale Wings
 void gale_wings_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -984,7 +984,7 @@ void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 
 // TOUGHCLAWS
 
-// PIXILATE
+// Pixilate
 u16 pixilate_banlist[] = {
     MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
     MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
@@ -1011,7 +1011,7 @@ void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
     add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)pixilate_on_modify_move);
 }
 
-// GOOEY
+// Gooey
 u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -1020,7 +1020,7 @@ u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     return true;
 }
 
-// AERILATE
+// Aerilate
 u16 aerilate_banlist[] = {
     MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
     MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
@@ -1061,7 +1061,7 @@ void aerilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 // DELTASTREAM
 
-// STAMINA
+// Stamin
 u8 stamina_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -1074,7 +1074,7 @@ u8 stamina_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 
 // EMERGENCYEXIT
 
-// WATERCOMPACTION
+// Water Compaction
 u8 water_compaction_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -1107,7 +1107,7 @@ void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 
 // LONGREACH
 
-// LIQUIDVOICE
+// Liquid Voice
 u8 liquid_voice_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -1126,7 +1126,7 @@ void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* ac
         B_MOVE_PRIORITY(user) += 1;
 }
 
-// GALVANIZE
+// Galvanize
 u16 galvanize_banlist[] = {
     MOVE_HIDDENPOWER, MOVE_JUDGMENT, MOVE_MULTIATTACK,
     MOVE_NATURALGIFT, MOVE_REVELATIONDANCE, MOVE_STRUGGLE,
@@ -1180,7 +1180,7 @@ void galvanize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // DAZZLING
 
-// SOULHEART
+// Soul Heart
 void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
     if (user != src)
         stat_boost(src, SPATTACK_MOD, 1, src);
@@ -1188,7 +1188,7 @@ void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
 // TANGLINGHAIR
 
-// RECEIVER
+// Receiver
 u16 receiver_banlist[] = {
     ABILITY_BATTLEBOND, ABILITY_COMATOSE, ABILITY_DISGUISE,
     ABILITY_FLOWERGIFT, ABILITY_FORECAST, ABILITY_ILLUSION,
@@ -1212,7 +1212,7 @@ void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // POWEROFALCHEMY
 
-// BEASTBOOST
+// Beast Boost
 void beast_boost_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (p_bank[user]->b_data.last_attacked_by != src) return;
