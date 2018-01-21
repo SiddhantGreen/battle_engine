@@ -1252,7 +1252,15 @@ void beast_boost_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // GRASSYSURGE
 
-// SHADOWSHIELD
+// Shadow Shield
+void shadow_shield_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return;
+	if (TOTAL_HP(user) == B_CURRENT_HP(user)) {
+	    B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 50);
+    }
+    return;
+}
 
 // Neuroforce
 void neuro_force_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
