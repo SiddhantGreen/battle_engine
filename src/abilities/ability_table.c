@@ -790,7 +790,8 @@ struct ability_data abilities[] = {
 		.on_stat_boost_mod = clear_body_variations_on_stat_boost,
 	},
 	{
-		// SHADOWSHIELD
+		// Shadow Shield
+		.on_damage = shadow_shield_on_damage,
 	},
 	{
 		// Prism Armor
