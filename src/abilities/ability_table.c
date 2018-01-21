@@ -270,7 +270,8 @@ struct ability_data abilities[] = {
 		// PUREPOWER
 	},
 	{
-		// SHELLARMOR
+		// Shell Armor
+		.on_modify_move = battle_armor_on_modify_move,
 	},
 	{
 		// AIRLOCK
