@@ -1013,7 +1013,7 @@ void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
     add_callback(CB_ON_MODIFY_MOVE, -1, 0, user, (u32)pixilate_on_modify_move);
 }
 
-// Gooey
+// Gooey and Tangling Hair
 u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -1120,7 +1120,7 @@ u8 liquid_voice_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callb
     return true;
 }
 
-// TRIAGE
+// Triage
 void triage_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
@@ -1165,7 +1165,7 @@ void galvanize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // POWERCONSTRUCT
 
-// CORROSION
+// Corrosion
 /* Implemented directly in event_on_status */
 
 // COMATOSE
@@ -1188,8 +1188,6 @@ void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* a
         stat_boost(src, SPATTACK_MOD, 1, src);
 }
 
-// TANGLINGHAIR
-
 // Receiver and Power of Alchemy
 u16 receiver_banlist[] = {
     ABILITY_BATTLEBOND, ABILITY_COMATOSE, ABILITY_DISGUISE,
@@ -1210,9 +1208,6 @@ void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     }
     BANK_ABILITY(src) = BANK_ABILITY(user);
 }
-
-
-// POWEROFALCHEMY
 
 // Beast Boost
 void beast_boost_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -1260,9 +1255,6 @@ void beast_boost_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback*
 // MISTYSURGE
 
 // GRASSYSURGE
-
-// FULLMETAL
-// clearbody clone
 
 // SHADOWSHIELD
 
