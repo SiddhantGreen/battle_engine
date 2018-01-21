@@ -1,5 +1,7 @@
 #include <pokeagb/pokeagb.h>
 
+/* Item Descriptions are yet to be added*/
+
 //Items Name
 const pchar item_names[][15] = {
     _("-------"),
