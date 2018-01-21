@@ -536,7 +536,7 @@ u8 normalize_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback
     if (user != src) return true;
     if (B_MOVE_IS_STATUS(user)) return true;
     for (u8 i = 0; i < (sizeof(normalize_banlist) / sizeof(u16)); i++) {
-        if (normalize_banlist[i] == move) return true;
+         if (normalize_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_NORMAL;
     B_MOVE_TYPE(user, 1) = MTYPE_NONE;
@@ -582,8 +582,8 @@ u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 {
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
-    if (B_CURRENT_HP(src) < 1)
-	   do_damage(user, TOTAL_HP(user) >> 2);
+        if (B_CURRENT_HP(src) < 1)
+	    do_damage(user, TOTAL_HP(user) >> 2);
 	return true;
 }
 
@@ -659,7 +659,7 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 
 // BADDREAMS
 
-// Pick Pocket
+// PICKPOCKET [Message is to be added]
 void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((B_ITEM(src) != ITEM_NONE) || (B_ITEM(user) == ITEM_NONE)) return;
@@ -753,8 +753,8 @@ u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* 
 {
 	if (user != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
-    if (rand_range(0, 100) <= 30)
-	   set_status(TARGET_OF(user), EFFECT_POISON, src);
+        if (rand_range(0, 100) <= 30)
+	    set_status(TARGET_OF(user), EFFECT_POISON, src);
 	return true;
 }
 
@@ -779,7 +779,8 @@ bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callbac
 // IMPOSTER
 
 // Infiltrator
-u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb) 
+{
     B_INFILTRATES(src) = true;
     return true;
 }
@@ -789,7 +790,8 @@ u16 mummy_immune_abilities[] = {
     ABILITY_MUMMY, ABILITY_MULTITYPE, ABILITY_STANCE_CHANGE
 };
 
-u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) 
+{
     if (TARGET_OF(user) != src) return true;
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     for (u8 i = 0; i < (sizeof(mummy_immune_abilities) / sizeof(u16)); i++) {
@@ -933,7 +935,7 @@ u8 refrigerate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
     // status moves excempt
     if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
     for (u8 i = 0; i < (sizeof(refrigerate_banlist) / sizeof(u16)); i++) {
-        if (refrigerate_banlist[i] == move) return true;
+         if (refrigerate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_ICE;
     B_MOVE_TYPE(user, 1) = MTYPE_NONE;
@@ -997,7 +999,7 @@ u8 pixilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
     // status moves excempt
     if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
     for (u8 i = 0; i < (sizeof(pixilate_banlist) / sizeof(u16)); i++) {
-        if (pixilate_banlist[i] == move) return true;
+         if (pixilate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_FAIRY;
     B_MOVE_TYPE(user, 1) = MTYPE_NONE;
@@ -1015,7 +1017,7 @@ void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     stat_boost(user, SPEED_MOD, -1, user);
     return true;
 }
@@ -1033,7 +1035,7 @@ u8 aerilate_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback*
     // status moves excempt
     if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
     for (u8 i = 0; i < (sizeof(aerilate_banlist) / sizeof(u16)); i++) {
-        if (aerilate_banlist[i] == move) return true;
+         if (aerilate_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_FLYING;
     B_MOVE_TYPE(user, 1) = MTYPE_NONE;
@@ -1139,7 +1141,7 @@ u8 galvanize_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback
     // status moves excempt
     if (B_MOVE_IS_STATUS(user) || (!B_MOVE_HAS_TYPE(user, MTYPE_NORMAL))) return true;
     for (u8 i = 0; i < (sizeof(galvanize_banlist) / sizeof(u16)); i++) {
-        if (galvanize_banlist[i] == move) return true;
+         if (galvanize_banlist[i] == move) return true;
     }
     B_MOVE_TYPE(user, 0) = MTYPE_ELECTRIC;
     B_MOVE_TYPE(user, 1) = MTYPE_NONE;
@@ -1188,7 +1190,7 @@ void soul_heart_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
 // TANGLINGHAIR
 
-// Receiver
+// Receiver and Power of Alchemy
 u16 receiver_banlist[] = {
     ABILITY_BATTLEBOND, ABILITY_COMATOSE, ABILITY_DISGUISE,
     ABILITY_FLOWERGIFT, ABILITY_FORECAST, ABILITY_ILLUSION,
@@ -1203,8 +1205,8 @@ void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if ((SIDE_OF(user) != SIDE_OF(src)) || (user == src)) return;
     u8 user_ability = BANK_ABILITY(user);
     for (u8 i = 0; i < (sizeof(receiver_banlist)/sizeof(u16)); i++) {
-        if (user_ability == receiver_banlist[i])
-            return;
+         if (user_ability == receiver_banlist[i]) 
+	     return;
     }
     BANK_ABILITY(src) = BANK_ABILITY(user);
 }
