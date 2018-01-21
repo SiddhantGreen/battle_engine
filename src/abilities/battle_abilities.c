@@ -56,7 +56,7 @@ u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
 }
 
 // Battle Armor and Shell Armor
-u8 battle_armor_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 battle_armor_variations_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
     B_MOVE_WILL_CRIT(user) = false;
@@ -178,7 +178,7 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 // SHADOWTAG
 
 // Rough Skin and Iron Barb
-u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 rough_skin_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
@@ -211,7 +211,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 // SYNCHRONIZE
 
 // Clear Body and Full Metal Body
-bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+bool clear_body_variations_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
     // boost on self which isnt by the user
@@ -1012,7 +1012,7 @@ void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 }
 
 // Gooey and Tangling Hair
-u8 gooey_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 gooey_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
@@ -1061,7 +1061,7 @@ void aerilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 
 // DELTASTREAM
 
-// Stamin
+// Stamina
 u8 stamina_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -1196,7 +1196,7 @@ u16 receiver_banlist[] = {
     ABILITY_TRACE, ABILITY_WONDERGUARD, ABILITY_ZENMODE,
 };
 
-void receiver_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+void receiver_variations_on_faint(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((SIDE_OF(user) != SIDE_OF(src)) || (user == src)) return;
     u8 user_ability = BANK_ABILITY(user);
@@ -1256,4 +1256,12 @@ void beast_boost_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // SHADOWSHIELD
 
-// NEUROFORCE
+// Neuroforce
+void neuro_force_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
+        B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 120);
+    }
+    return;
+}
