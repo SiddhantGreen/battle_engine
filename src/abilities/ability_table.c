@@ -32,7 +32,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Battle Armor
-		.on_modify_move = battle_armor_on_modify_move,
+		.on_modify_move = battle_armor_variations_on_modify_move,
 	},
 	{
 		// STURDY
@@ -101,7 +101,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Rough Skin
-		.on_effect = rough_skin_on_effect,
+		.on_effect = rough_skin_variations_on_effect,
 	},
 	{
 		// WONDERGUARD
@@ -118,7 +118,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Clear Body
-		.on_stat_boost_mod = clear_body_on_stat_boost,
+		.on_stat_boost_mod = clear_body_variations_on_stat_boost,
 	},
 	{
 		// NATURALCURE
@@ -271,7 +271,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Shell Armor
-		.on_modify_move = battle_armor_on_modify_move,
+		.on_modify_move = battle_armor_variations_on_modify_move,
 	},
 	{
 		// AIRLOCK
@@ -554,7 +554,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Iron Barbs
-		.on_effect = rough_skin_on_effect,
+		.on_effect = rough_skin_variations_on_effect,
 	},
 	{
 		// ZENMODE
@@ -633,7 +633,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Gooey
-		.on_effect = gooey_on_effect,
+		.on_effect = gooey_variations_on_effect,
 	},
 	{
 		// Aerilate
@@ -756,15 +756,15 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Tangling Hair
-		.on_effect = gooey_on_effect,
+		.on_effect = gooey_variations_on_effect,
 	},
 	{
 		// Receiver
-		.on_faint = receiver_on_faint,
+		.on_faint = receiver_variations_on_faint,
 	},
 	{
 		// Power of Alchemy
-		.on_faint = receiver_on_faint,
+		.on_faint = receiver_variations_on_faint,
 	},
 	{
 		// Beast Boost
@@ -787,7 +787,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Full Metal Body
-		.on_stat_boost_mod = clear_body_on_stat_boost,
+		.on_stat_boost_mod = clear_body_variations_on_stat_boost,
 	},
 	{
 		// SHADOWSHIELD
@@ -797,6 +797,7 @@ struct ability_data abilities[] = {
 		.on_damage = filter_variations_on_damage,
 	},
 	{
-		// NEUROFORCE
+		// Neuroforce
+		.on_damage = neuro_force_on_damage, 
 	},
 };
