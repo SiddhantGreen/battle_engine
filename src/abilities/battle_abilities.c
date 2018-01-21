@@ -86,7 +86,7 @@ u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
 	if (rand_range(1, 100) <= 30) {
-		set_status(user, EFFECT_PARALYZE, src);
+	    set_status(user, EFFECT_PARALYZE, src);
 	}
 	return true;
 }
@@ -104,7 +104,7 @@ u8 oblivous_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((TARGET_OF(user) != src) || (user == src)) return true;
     for (u8 i = 0; i < (sizeof(oblivious_disallow)/sizeof(u16)); i++) {
-        if (move == oblivious_disallow[i]) return false;
+         if (move == oblivious_disallow[i]) return false;
     }
     return true;
 }
@@ -177,7 +177,7 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 
 // SHADOWTAG
 
-// Rough Skin
+// Rough Skin and Iron Barb
 u8 rough_skin_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -210,7 +210,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // SYNCHRONIZE
 
-// Clear Body
+// Clear Body and Full Metal Body
 bool clear_body_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
@@ -234,8 +234,8 @@ u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
 {
     if (user != src) return true;
     for (u8 i = 0; i < 8; i++) {
-        B_USER_STAT_MOD_CHANCE(user, i) *= 2;
-        B_TARGET_STAT_MOD_CHANCE(user, i) *= 2;
+         B_USER_STAT_MOD_CHANCE(user, i) *= 2;
+         B_TARGET_STAT_MOD_CHANCE(user, i) *= 2;
     }
     add_callback(CB_ON_MODIFY_MOVE, 0, 0, TARGET_OF(user), (u32)serenegrace_on_modify_move_opp);
     return true;
@@ -254,8 +254,8 @@ u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 {
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
-    if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_POISON, src);
+        if (rand_range(0, 100) <= 30)
+	    set_status(user, EFFECT_POISON, src);
 	return true;
 }
 
@@ -309,8 +309,8 @@ u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 {
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
-    if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_BURN, src);
+        if (rand_range(0, 100) <= 30)
+	    set_status(user, EFFECT_BURN, src);
 	return true;
 }
 
@@ -354,9 +354,9 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 {
 	if (TARGET_OF(user) != src) return true;
 	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
-    if (B_GENDER(user) == B_GENDER(src)) return true;
-    if (rand_range(0, 100) <= 30)
-	   set_status(user, EFFECT_INFACTUATION, src);
+        if (B_GENDER(user) == B_GENDER(src)) return true;
+        if (rand_range(0, 100) <= 30)
+	    set_status(user, EFFECT_INFACTUATION, src);
 	return true;
 }
 
@@ -793,7 +793,7 @@ u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
     if (TARGET_OF(user) != src) return true;
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
     for (u8 i = 0; i < (sizeof(mummy_immune_abilities) / sizeof(u16)); i++) {
-        if (mummy_immune_abilities[i] == BANK_ABILITY(user)) return true;
+         if (mummy_immune_abilities[i] == BANK_ABILITY(user)) return true;
     }
 
     enqueue_message(move, user, STRING_ABILITY_CHANGED, BANK_ABILITY(user));
