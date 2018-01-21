@@ -81,7 +81,7 @@ const pchar item_names[][15] = {
     _("Quick Claw"),
     _("Mental Herb"),
     _("Choice Band"),
-    _("King's Tock"),
+    _("Kings Rock"),
     _("Silver Powder"),
     _("Amulet Coin"),
     _("Soul Dew"),
