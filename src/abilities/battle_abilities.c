@@ -177,7 +177,7 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 
 // SHADOWTAG
 
-// Rough Skin and Iron Barb
+// Rough Skin and Iron Barbs
 u8 rough_skin_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
@@ -856,8 +856,6 @@ void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 }
 
 // SANDFORCE
-
-// IRONBARBS
 
 // ZENMODE
 
