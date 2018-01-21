@@ -55,7 +55,7 @@ u8 speedboost_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	return true;
 }
 
-// Battle Armor
+// Battle Armor and Shell Armor
 u8 battle_armor_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
@@ -424,8 +424,6 @@ bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callb
 }
 
 // PUREPOWER
-
-// SHELLARMOR
 
 // AIRLOCK
 
