@@ -36,6 +36,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// STURDY
+		.on_damage = sturdy_on_dmg,
 	},
 	{
 		// DAMP

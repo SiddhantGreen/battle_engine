@@ -64,6 +64,14 @@ u8 battle_armor_variations_on_modify_move(u8 user, u8 src, u16 move, struct anon
 }
 
 // STURDY
+void sturdy_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) !+ src) return;
+    if (B_CURRENT_HP(src) == TOTAL_HP(src)) {
+        if (B_MOVE_DMG(user) >= B_CURRENT_HP(user))
+            B_MOVE_DMG(user) = B_CURRENT_HP(src) - 1;
+    }
+}
 
 // DAMP
 
