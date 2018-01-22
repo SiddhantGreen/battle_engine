@@ -31,8 +31,8 @@ struct ability_data abilities[] = {
 		.on_residual = speedboost_on_residual,
 	},
 	{
-		// BATTLEARMOR
-		.on_modify_move = battle_armor_on_modify_move,
+		// Battle Armor
+		.on_modify_move = battle_armor_variations_on_modify_move,
 	},
 	{
 		// STURDY
@@ -58,7 +58,7 @@ struct ability_data abilities[] = {
 		// WATERABSORB
 	},
 	{
-		// OBLIVIOUS
+		// Oblivios
 		.on_tryhit = oblivous_on_tryhit,
 		.on_status = oblivious_on_status,
 	},
@@ -87,7 +87,7 @@ struct ability_data abilities[] = {
 		// SHIELDDUST
 	},
 	{
-		// OWNTEMPO
+		// Own Tempo
 		.on_status = own_tempo_on_status,
 	},
 	{
@@ -100,8 +100,8 @@ struct ability_data abilities[] = {
 		// SHADOWTAG
 	},
 	{
-		// ROUGHSKIN
-		.on_effect = rough_skin_on_effect,
+		// Rough Skin
+		.on_effect = rough_skin_variations_on_effect,
 	},
 	{
 		// WONDERGUARD
@@ -110,15 +110,15 @@ struct ability_data abilities[] = {
 		// LEVITATE
 	},
 	{
-		// EFFECTSPORE
+		// Effect Spore
 		.on_effect = effect_spore_effect,
 	},
 	{
 		// SYNCHRONIZE
 	},
 	{
-		// CLEARBODY
-		.on_stat_boost_mod = clear_body_on_stat_boost,
+		// Clear Body
+		.on_stat_boost_mod = clear_body_variations_on_stat_boost,
 	},
 	{
 		// NATURALCURE
@@ -191,12 +191,12 @@ struct ability_data abilities[] = {
 		// RUNAWAY
 	},
 	{
-		// KEENEYE
+		// Keen Eye
 		.on_stat_boost_mod = keen_eye_on_stat_boost,
 		.on_stat = keen_eye_on_stat,
 	},
 	{
-		// HYPERCUTTER
+		// Hyper Cutter
 		.on_stat_boost_mod = hyper_cutter_on_stat_boost,
 	},
 	{
@@ -209,7 +209,7 @@ struct ability_data abilities[] = {
 		// HUSTLE
 	},
 	{
-		// CUTECHARM
+		// Cute Charm
 		.on_effect = cute_charm_on_effect,
 	},
 	{
@@ -234,7 +234,7 @@ struct ability_data abilities[] = {
 		// MARVELSCALE
 	},
 	{
-		// LIQUIDOOZE
+		// Liquidooze
 		.on_drain = liquid_ooze_on_drain,
 	},
 	{
@@ -264,14 +264,15 @@ struct ability_data abilities[] = {
 		.on_status = vitalspirit_on_status,
 	},
 	{
-		// WHITESMOKE
+		// White Smoke
 		.on_stat_boost_mod = white_smoke_on_stat_boost,
 	},
 	{
 		// PUREPOWER
 	},
 	{
-		// SHELLARMOR
+		// Shell Armor
+		.on_modify_move = battle_armor_variations_on_modify_move,
 	},
 	{
 		// AIRLOCK
@@ -319,7 +320,7 @@ struct ability_data abilities[] = {
 		.on_base_power = ironfist_on_base_power,
 	},
 	{
-		// POISONHEAL
+		// Poison Heal
 		.on_effect = poison_heal_on_effect,
 	},
 	{
@@ -339,7 +340,7 @@ struct ability_data abilities[] = {
 		// QUICKFEET
 	},
 	{
-		// NORMALIZE
+		// Normalize
 		.before_turn = normalize_before_turn,
 	},
 	{
@@ -371,7 +372,7 @@ struct ability_data abilities[] = {
 		// SUPERLUCK
 	},
 	{
-		// AFTERMATH
+		// Aftermath
 		.on_effect = aftermath_on_effect,
 	},
 	{
@@ -395,7 +396,7 @@ struct ability_data abilities[] = {
 		// SLOWSTART
 	},
 	{
-		// SCRAPPY
+		// Scrappy
 		.on_effectiveness = scrappy_on_effectiveness,
 	},
 	{
@@ -433,7 +434,7 @@ struct ability_data abilities[] = {
 		// BADDREAMS
 	},
 	{
-		// PICKPOCKET
+		// Pickpocket
 		.after_stat_boost_mod = pick_pocket_on_secondary,
 	},
 	{
@@ -454,7 +455,7 @@ struct ability_data abilities[] = {
 		// DEFEATIST
 	},
 	{
-		// CURSEDBODY
+		// Cursed Body
 		.on_effect = cursed_body_on_effect,
 	},
 	{
@@ -464,7 +465,7 @@ struct ability_data abilities[] = {
 		// FRIENDGUARD
 	},
 	{
-		// WEAKARMOR
+		// Weak Armor
 		.on_effect = weak_armor_on_effect,
 	},
 	{
@@ -495,14 +496,14 @@ struct ability_data abilities[] = {
 		// OVERCOAT
 	},
 	{
-		// POISONTOUCH
+		// Poison Touch
 		.on_effect = poison_touch_on_effect,
 	},
 	{
 		// REGENERATOR
 	},
 	{
-		// BIGPECKS
+		// Big Pecks
 		.on_stat_boost_mod = big_pecks_on_stat_boost,
 	},
 	{
@@ -521,19 +522,19 @@ struct ability_data abilities[] = {
 		// IMPOSTER
 	},
 	{
-		// INFILTRATOR
+		// Infiltraotr
 		.on_modify_move = infiltrator_modify_move,
 	},
 	{
-		// MUMMY
+		// Mummy
 		.on_effect = mummy_on_effect,
 	},
 	{
-		// MOXIE
+		// Moxie
 		.on_damage = moxie_on_damage,
 	},
 	{
-		// JUSTIFIED
+		// Justified
 		.on_effect = justified_on_effect,
 	},
 	{
@@ -546,16 +547,15 @@ struct ability_data abilities[] = {
 		// SAPSIPPER
 	},
 	{
-		// PRANKSTER
+		// Prankster
 		.before_turn = prankser_before_turn,
 	},
 	{
 		// SANDFORCE
 	},
 	{
-		// IRONBARBS
-		// rough skin clone
-		.on_effect = rough_skin_on_effect,
+		// Iron Barbs
+		.on_effect = rough_skin_variations_on_effect,
 	},
 	{
 		// ZENMODE
@@ -573,7 +573,7 @@ struct ability_data abilities[] = {
 		// AROMAVEIL
 	},
 	{
-		// FLOWERVEIL
+		// Flower Veil
 		.on_stat_boost_mod = flower_veil_on_stat_boost,
 		.on_status = flower_veil_on_status,
 	},
@@ -601,18 +601,18 @@ struct ability_data abilities[] = {
 		.on_base_power = strongjaw_on_base_power,
 	},
 	{
-		// REFRIGERATE
+		// Refrigerate
 		.before_turn = refrigerate_before_turn,
 	},
 	{
-		// SWEETVEIL
+		// Sweet Veil
 		.on_status = sweet_veil_on_status,
 	},
 	{
 		// STANCECHANGE
 	},
 	{
-		// GALEWINGS
+		// Gale Wings
 		.before_turn = gale_wings_before_turn,
 	},
 	{
@@ -629,15 +629,15 @@ struct ability_data abilities[] = {
 		// TOUGHCLAWS
 	},
 	{
-		// PIXILATE
+		// Pixilate
 		.before_turn = pixilate_before_turn,
 	},
 	{
-		// GOOEY
-		.on_effect = gooey_on_effect,
+		// Gooey
+		.on_effect = gooey_variations_on_effect,
 	},
 	{
-		// AERILATE
+		// Aerilate
 		.before_turn = aerilate_before_turn,
 	},
 	{
@@ -662,7 +662,7 @@ struct ability_data abilities[] = {
 		// DELTASTREAM
 	},
 	{
-		// STAMINA
+		// Stamina
 		.on_effect = stamina_on_effect,
 	},
 	{
@@ -672,7 +672,7 @@ struct ability_data abilities[] = {
 		// EMERGENCYEXIT
 	},
 	{
-		// WATERCOMPACTION
+		// Water Compaction
 		.on_effect = water_compaction_on_effect,
 	},
 	{
@@ -701,14 +701,14 @@ struct ability_data abilities[] = {
 		// LONGREACH
 	},
 	{
-		// LIQUIDVOICE
+		// Liquid Voice
 		.on_modify_move = liquid_voice_on_modify_move,
 	},
 	{
 		// TRIAGE
 	},
 	{
-		// GALVANIZE
+		// Galvanize
 		.before_turn = galvanize_before_turn,
 	},
 	{
@@ -727,7 +727,7 @@ struct ability_data abilities[] = {
 		// POWERCONSTRUCT
 	},
 	{
-		// CORROSION
+		// Corrosion
 		/* Implemented in on_status.c*/
 	},
 	{
@@ -752,25 +752,23 @@ struct ability_data abilities[] = {
 		// DAZZLING
 	},
 	{
-		// SOULHEART
+		// Soul Heart
 		.on_faint = soul_heart_on_faint,
 	},
 	{
-		// TANGLINGHAIR
-		// gooey clone
-		.on_effect = gooey_on_effect,
+		// Tangling Hair
+		.on_effect = gooey_variations_on_effect,
 	},
 	{
-		// RECEIVER
-		.on_faint = receiver_on_faint,
+		// Receiver
+		.on_faint = receiver_variations_on_faint,
 	},
 	{
-		// POWEROFALCHEMY
-		// receiver clone
-		.on_faint = receiver_on_faint,
+		// Power of Alchemy
+		.on_faint = receiver_variations_on_faint,
 	},
 	{
-		// BEASTBOOST
+		// Beast Boost
 		.on_damage = beast_boost_on_damage,
 	},
 	{
@@ -789,17 +787,19 @@ struct ability_data abilities[] = {
 		// GRASSYSURGE
 	},
 	{
-		// FULLMETALBODY
-		.on_stat_boost_mod = clear_body_on_stat_boost,
+		// Full Metal Body
+		.on_stat_boost_mod = clear_body_variations_on_stat_boost,
 	},
 	{
-		// SHADOWSHIELD
+		// Shadow Shield
+		.on_damage = shadow_shield_on_damage,
 	},
 	{
 		// Prism Armor
 		.on_damage = filter_variations_on_damage,
 	},
 	{
-		// NEUROFORCE
+		// Neuroforce
+		.on_damage = neuro_force_on_damage, 
 	},
 };
