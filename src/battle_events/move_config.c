@@ -275,7 +275,7 @@ void set_attack_bm_inplace(u16 move_id, u8 bank)
     battle_master->b_moves[bank].type[1] = MTYPE_EGG;
     battle_master->b_moves[bank].flinch = M_FLINCH(move_id);
     battle_master->b_moves[bank].accuracy = MOVE_ACCURACY(move_id);
-    battle_master->b_moves[bank].remove_contact = false;
+    battle_master->b_moves[bank].makes_contact = IS_CONTACT(move_id);
     battle_master->b_moves[bank].ignore_abilities = false;
     battle_master->b_moves[bank].heal = moves[move_id].heal;
     battle_master->b_moves[bank].infiltrates = false;

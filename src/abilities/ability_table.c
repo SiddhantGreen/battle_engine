@@ -679,6 +679,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MERCILESS
+		.on_modify_move = merciless_on_modify_move,
 	},
 	{
 		// SHIELDSDOWN
@@ -701,6 +702,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// LONGREACH
+		.on_modify_move = long_reach_on_modify_move,
 	},
 	{
 		// Liquid Voice

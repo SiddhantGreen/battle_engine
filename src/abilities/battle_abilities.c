@@ -84,7 +84,7 @@ u8 limber_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* ac
 u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
 	if (rand_range(1, 100) <= 30) {
 	    set_status(user, EFFECT_PARALYZE, src);
 	}
@@ -181,7 +181,7 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 u8 rough_skin_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
 	do_damage(user, TOTAL_HP(user) >> 3);
 	return true;
 }
@@ -196,7 +196,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     if ((TARGET_OF(user) != src) || (user == src)) return true;
     // Immunity in the case of overcoat
     if (BANK_ABILITY(user) == ABILITY_OVERCOAT) return true;
-    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
     u16 rand_num = rand_range(0, 100);
     if (rand_num < 10) {
         set_status(user, EFFECT_SLEEP, src);
@@ -254,7 +254,7 @@ u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
 u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
         if (rand_range(0, 100) <= 30)
 	    set_status(user, EFFECT_POISON, src);
 	return true;
@@ -309,7 +309,7 @@ void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* a
 u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
         if (rand_range(0, 100) <= 30)
 	    set_status(user, EFFECT_BURN, src);
 	return true;
@@ -354,7 +354,7 @@ bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_call
 u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
         if (B_GENDER(user) == B_GENDER(src)) return true;
         if (rand_range(0, 100) <= 30)
 	    set_status(user, EFFECT_INFACTUATION, src);
@@ -607,7 +607,7 @@ u16 super_luck_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* 
 u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (TARGET_OF(user) != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
         if (B_CURRENT_HP(src) < 1)
 	    do_damage(user, TOTAL_HP(user) >> 2);
 	return true;
@@ -689,7 +689,7 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((B_ITEM(src) != ITEM_NONE) || (B_ITEM(user) == ITEM_NONE)) return;
-    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return;
+    if (!B_MOVE_CONTACT(user)) return;
     if ((user == src) || (TARGET_OF(user) == src)) {
         B_ITEM(src) = B_ITEM(TARGET_OF(src));
         B_ITEM(TARGET_OF(src)) = ITEM_NONE;
@@ -778,7 +778,7 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (user != src) return true;
-	if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+	if (!B_MOVE_CONTACT(user)) return true;
         if (rand_range(0, 100) <= 30)
 	    set_status(TARGET_OF(user), EFFECT_POISON, src);
 	return true;
@@ -819,7 +819,7 @@ u16 mummy_immune_abilities[] = {
 u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
-    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
     for (u8 i = 0; i < (sizeof(mummy_immune_abilities) / sizeof(u16)); i++) {
          if (mummy_immune_abilities[i] == BANK_ABILITY(user)) return true;
     }
@@ -1041,7 +1041,7 @@ void pixilate_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* 
 u8 gooey_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
-    if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
     stat_boost(user, SPEED_MOD, -1, user);
     return true;
 }
@@ -1110,6 +1110,13 @@ u8 water_compaction_on_effect(u8 user, u8 src, u16 move, struct anonymous_callba
 }
 
 // MERCILESS
+u8 merciless_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_STATUS(TARGET_OF(user)) == AILMENT_POISON)
+        B_MOVE_WILL_CRIT(user) = true;
+    return true;
+}
 
 // SHIELDSDOWN
 
@@ -1132,6 +1139,12 @@ void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 // SLUSHRUSH
 
 // LONGREACH
+u8 long_reach_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    B_MOVE_CONTACT(user) = false;
+    return true;
+}
 
 // Liquid Voice
 u8 liquid_voice_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
