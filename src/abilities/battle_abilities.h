@@ -130,5 +130,7 @@ extern u8 liquid_voice_on_modify_move(u8 user, u8 src, u16 move, struct anonymou
 extern u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void neuro_force_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void shadow_shield_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 skill_link_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u16 super_luck_on_stat(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

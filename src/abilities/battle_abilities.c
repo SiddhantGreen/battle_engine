@@ -516,6 +516,18 @@ void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 
 
 // SKILLLINK
+u8 skill_link_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    // if move is a multi hit move, then hit 5 times
+    if (moves[move].multi_hit[0] > 0) {
+        if (battle_master->b_moves[user].hit_times != (moves[move].multi_hit[1] - 1)) {
+            battle_master->b_moves[user].hit_times = moves[move].multi_hit[1] - 1;
+            battle_master->b_moves[user].hit_counter = 1;
+        }
+    }
+    return true;
+}
 
 // HYDRATION
 
@@ -575,6 +587,21 @@ void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 // MOLDBREAKER
 
 // SUPERLUCK
+u16 super_luck_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    // if pokemon getting stat accessed isnt the target of keeneye user or
+    // if keeneye user is not the one attacking or
+    // if keen eye bank is accessing its evasion stat by itself
+    if ((user != src) || (stat_id != CRIT_CHANCE_MOD)) return true;
+    u8 crit_mod[4] = {6, 13, 50, 100};
+    if (acb->data_ptr == 100)
+        return 100;
+    for (u8 i = 0; i < 3; i++) {
+        if (crit_mod[i] > acb->data_ptr)
+            return crit_mod[i];
+    }
+    return acb->data_ptr;
+}
 
 // Aftermath
 u8 aftermath_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -778,7 +805,7 @@ bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callbac
 // IMPOSTER
 
 // Infiltrator
-u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb) 
+u8 infiltrator_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     B_INFILTRATES(src) = true;
     return true;
@@ -789,7 +816,7 @@ u16 mummy_immune_abilities[] = {
     ABILITY_MUMMY, ABILITY_MULTITYPE, ABILITY_STANCE_CHANGE
 };
 
-u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb) 
+u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return true;
     if (!IS_CONTACT(move) || B_MOVE_REMOVE_CONTACT(user)) return true;
@@ -1200,7 +1227,7 @@ void receiver_variations_on_faint(u8 user, u8 src, u16 move, struct anonymous_ca
     if ((SIDE_OF(user) != SIDE_OF(src)) || (user == src)) return;
     u8 user_ability = BANK_ABILITY(user);
     for (u8 i = 0; i < (sizeof(receiver_banlist)/sizeof(u16)); i++) {
-         if (user_ability == receiver_banlist[i]) 
+         if (user_ability == receiver_banlist[i])
 	     return;
     }
     BANK_ABILITY(src) = BANK_ABILITY(user);

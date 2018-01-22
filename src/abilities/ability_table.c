@@ -329,6 +329,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SKILLLINK
+		.on_modify_move = skill_link_on_modify_move,
 	},
 	{
 		// HYDRATION
@@ -370,6 +371,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SUPERLUCK
+		.on_stat = super_luck_on_stat,
 	},
 	{
 		// Aftermath
@@ -800,6 +802,6 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Neuroforce
-		.on_damage = neuro_force_on_damage, 
+		.on_damage = neuro_force_on_damage,
 	},
 };
