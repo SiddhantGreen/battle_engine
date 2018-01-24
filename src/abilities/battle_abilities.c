@@ -358,11 +358,11 @@ bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_call
 u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
-    if (HAS_VOLATILE(VOLATILE_TRUANT, user)) {
-        CLEAR_VOLATILE(VOLATILE_TRUANT, user);
+    if (HAS_VOLATILE(user, VOLATILE_TRUANT)) {
+        CLEAR_VOLATILE(user, VOLATILE_TRUANT);
         return false;
     } else {
-        ADD_VOLATILE(VOLATILE_TRUANT, user);
+        ADD_VOLATILE(user, VOLATILE_TRUANT);
         return true;
     }
 }
