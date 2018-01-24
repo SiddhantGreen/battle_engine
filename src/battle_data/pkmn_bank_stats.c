@@ -44,6 +44,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
     // back up cbs
     u32* old_execution_array = push_callbacks();
     u8 old_index = CB_EXEC_INDEX;
+    bool execution_status = battle_master->executing;
     // Stat modifying callbacks
     build_execution_order(CB_ON_STAT_MOD);
     battle_master->executing = true;
@@ -56,6 +57,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
+    battle_master->executing = execution_status;
     return stat_total;
 }
 

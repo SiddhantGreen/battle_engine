@@ -91,7 +91,6 @@ void event_switch(struct action* current_action)
 {
     for (u8 i = 0; i < BANK_MAX; i++) {
         if (ACTIVE_BANK(i)) {
-            dprintf("sync %d\n", i);
             sync_battler_struct(i);
         }
     }
