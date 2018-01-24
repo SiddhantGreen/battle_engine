@@ -398,6 +398,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SLOWSTART
+		.on_start = slow_start_on_start,
 	},
 	{
 		// Scrappy
