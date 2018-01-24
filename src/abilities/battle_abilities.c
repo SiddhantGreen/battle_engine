@@ -357,6 +357,7 @@ bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_call
 // TRUANT
 u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
+    /* Truant needs it's own string when it fails */
     if (user != src) return true;
     if (HAS_VOLATILE(user, VOLATILE_TRUANT)) {
         CLEAR_VOLATILE(user, VOLATILE_TRUANT);
@@ -659,6 +660,25 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
 }
 
 // SLOWSTART
+u8 slow_start_on_stat (u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if ((user != src) || (CURRENT_ACTION->action_bank != src)) return acb->data_ptr;
+    // if slow start was removed
+    if (BANK_ABILITY(src) != ABILITY_SLOWSTART) {
+        acb->in_use = false;
+        return acb->data_ptr;
+    }
+    // halve atk and spe stats
+    if ((stat_id == ATTACK_MOD) || (stat_id == SPEED_MOD))
+        return acb->data_ptr >> 1;
+    return acb->data_ptr;
+}
+
+void slow_start_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    add_callback(CB_ON_START, 5, 5, user, (u32)slow_start_on_stat);
+}
 
 // Scrappy
 u16 scrappy_on_effectiveness(u8 target_type, u8 src, u16 move_type, struct anonymous_callback* acb) {

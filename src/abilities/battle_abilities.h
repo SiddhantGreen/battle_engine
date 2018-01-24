@@ -137,5 +137,6 @@ extern u8 long_reach_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_
 extern void sturdy_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 moody_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void slow_start_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
