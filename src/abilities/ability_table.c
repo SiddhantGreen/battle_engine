@@ -205,6 +205,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// TRUANT
+		.before_move = truant_on_before_move,
 	},
 	{
 		// HUSTLE
@@ -494,6 +495,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MOODY
+		.on_residual = moody_on_residual,
 	},
 	{
 		// OVERCOAT

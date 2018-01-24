@@ -66,7 +66,7 @@ u8 battle_armor_variations_on_modify_move(u8 user, u8 src, u16 move, struct anon
 // STURDY
 void sturdy_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-    if (TARGET_OF(user) !+ src) return;
+    if (TARGET_OF(user) != src) return;
     if (B_CURRENT_HP(src) == TOTAL_HP(src)) {
         if (B_MOVE_DMG(user) >= B_CURRENT_HP(user))
             B_MOVE_DMG(user) = B_CURRENT_HP(src) - 1;
@@ -355,6 +355,17 @@ bool hyper_cutter_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_call
 // PICKUP
 
 // TRUANT
+u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (HAS_VOLATILE(VOLATILE_TRUANT, user)) {
+        CLEAR_VOLATILE(VOLATILE_TRUANT, user);
+        return false;
+    } else {
+        ADD_VOLATILE(VOLATILE_TRUANT, user);
+        return true;
+    }
+}
 
 // HUSTLE
 
@@ -779,6 +790,36 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // TELEPATHY
 
 // MOODY
+u8 moody_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    if (user != src) return true;
+    u8 up_stats[] = {0xFF, 0xFF,0xFF,0xFF,0xFF,0xFF};
+    u8 down_stats[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+    u8 up_index = 0;
+    u8 down_index = 0;
+
+    // populate boostable stats array
+    s8* stat = &(p_bank[user]->b_data.attack);
+    for (u8 i = 0; i < 6; i++) {
+        if (*stat < 6) {
+            up_stats[up_index] = i;
+            up_index++;
+        }
+        if (*stat > -6) {
+            down_stats[down_index] = i;
+            down_index++;
+        }
+    }
+
+    // pick stat to boost
+    if (up_index >  0) {
+        stat_boost(user, up_stats[rand_range(0, up_index)], 2, src);
+    }
+    // pick stat to drop
+    if (down_index > 0) {
+        stat_boost(user, down_stats[rand_range(0, down_index)], -1, src);
+    }
+    return true;
+}
 
 // OVERCOAT
 
