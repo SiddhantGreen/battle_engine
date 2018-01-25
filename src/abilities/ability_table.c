@@ -298,16 +298,17 @@ struct ability_data abilities[] = {
 		// GLUTTONY
 	},
 	{
-		// ANGERPOINT
+		// Anger Point
+		.on_effect = angerpoint_on_effect,
 	},
 	{
 		// UNBURDEN
 	},
 	{
 		// Heatproof
-        	.on_base_power = heatproof_on_base_power,
+        .on_base_power = heatproof_on_base_power,
 	},
-    	{
+    {
 		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
@@ -446,7 +447,7 @@ struct ability_data abilities[] = {
 		// SHEERFORCE
 	},
 	{
-		// Contary
+		// Contrary
 		.on_stat_boost_mod = contrary_on_stat_boost_mod,
 	},
 	{
@@ -528,7 +529,7 @@ struct ability_data abilities[] = {
 		// IMPOSTER
 	},
 	{
-		// Infiltraotr
+		// Infiltrator
 		.on_modify_move = infiltrator_modify_move,
 	},
 	{
@@ -544,7 +545,8 @@ struct ability_data abilities[] = {
 		.on_effect = justified_on_effect,
 	},
 	{
-		// RATTLED
+		// Rattled
+		.on_effect = rattled_on_effect,
 	},
 	{
 		// MAGICBOUNCE
@@ -554,7 +556,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Prankster
-		.before_turn = prankser_before_turn,
+		.before_turn = prankster_before_turn,
 	},
 	{
 		// SANDFORCE

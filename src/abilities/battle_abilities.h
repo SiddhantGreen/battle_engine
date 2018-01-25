@@ -88,6 +88,7 @@ extern void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_cal
 extern u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 rattled_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 stamina_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 water_compaction_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -104,7 +105,7 @@ extern u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_ca
 extern u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 poison_heal_on_effect(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 sweet_veil_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
-extern void prankser_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
+extern void prankster_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern void gale_wings_before_turn(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern bool clear_body_variations_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern bool keen_eye_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
@@ -138,5 +139,7 @@ extern void sturdy_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* 
 extern u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 moody_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void slow_start_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 angerpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

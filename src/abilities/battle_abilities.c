@@ -460,7 +460,15 @@ bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callb
 
 // GLUTTONY
 
-// ANGERPOINT
+// Anger Point
+u8 angerpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    if (B_MOVE_WILL_CRIT(user))
+        B_ATTACK_BUFF(src) = 6;
+        enqueue_message(NULL, src, STRING_ANGER_POINT, NULL);
+    return true;
+}
 
 // UNBURDEN
 
@@ -924,7 +932,14 @@ u8 justified_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     return true;
 }
 
-// RATTLED
+// Rattled
+u8 rattled_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (TARGET_OF(user) != src) return true;
+    if (B_MOVE_HAS_TYPE(user, MTYPE_DARK) || B_MOVE_HAS_TYPE(user, MTYPE_GHOST) || B_MOVE_HAS_TYPE(user, MTYPE_BUG))
+        stat_boost(src, ATTACK_MOD, 1, src);
+    return true;
+}
 
 // MAGICBOUNCE
 
@@ -938,7 +953,7 @@ u8 prankster_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     return !(b_pkmn_has_type(TARGET_OF(user), MTYPE_DARK) && HAS_VOLATILE(user, VOLATILE_PRANKSTERED));
 }
 
-void prankser_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+void prankster_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
     if (IS_MOVE_STATUS(move)) {
