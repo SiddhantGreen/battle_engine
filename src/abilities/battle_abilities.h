@@ -157,5 +157,9 @@ extern u8 water_bubble_on_status(u8 user, u8 src, u16 stat_id, struct anonymous_
 extern void friend_guard_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 shed_skin_on_residual(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u16 guts_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 marvel_scale_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 early_bird_on_residual(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 synchronize_on_status(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 tangled_feet_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

@@ -117,6 +117,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SYNCHRONIZE
+		.on_status = synchronize_on_status,
 	},
 	{
 		// Clear Body
@@ -186,6 +187,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// EARLYBIRD
+		.on_residual = early_bird_on_residual,
 	},
 	{
 		// Flame Body
@@ -240,6 +242,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MARVELSCALE
+		.on_stat = marvel_scale_on_stat,
 	},
 	{
 		// Liquidooze
@@ -288,6 +291,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// TANGLEDFEET
+		.on_stat = tangled_feet_on_stat,
 	},
 	{
 		// MOTORDRIVE

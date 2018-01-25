@@ -4,6 +4,8 @@
 #include "../battle_data/pkmn_bank_stats.h"
 #include "../battle_data/pkmn_bank.h"
 #include "../battle_data/battle_state.h"
+#include "../battle_actions/actions.h"
+#include "../battle_events/battle_events.h"
 
 extern void dprintf(const char * str, ...);
 extern bool enqueue_message(u16 move, u8 bank, enum battle_string_ids id, u16 effect);
@@ -224,6 +226,15 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
 
 // SYNCHRONIZE
 
+u8 synchronize_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (CURRENT_ACTION->action_bank != src) {
+        struct action* a =  add_action(src, CURRENT_ACTION->action_bank, ActionStatus, EventSetStatus);
+        a->priv[0] = ailment;
+    }
+    return true;
+}
+
 // Clear Body and Full Metal Body
 bool clear_body_variations_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
@@ -344,6 +355,21 @@ u8 thick_fat_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
 }
 
 // EARLYBIRD
+u8 early_bird_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_STATUS(user) != AILMENT_SLEEP) return true;
+    /*
+    Sleep on_residual will drop the sleep counter by 1. Early bird will drop it by another one
+    resulting in a half-time sleep.
+    */
+    if (BANK_ABILITY(user) == ABILITY_EARLYBIRD) {
+        if (p_bank[user]->b_data.status_turns > 1)
+            p_bank[user]->b_data.status_turns--;
+    }
+    return true;
+}
+
 
 // Flame Body
 u8 flamebody_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -458,6 +484,16 @@ u16 guts_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 
 
 // MARVELSCALE
+u16 marvel_scale_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    // double attack if status'd
+    if (B_STATUS(user) != AILMENT_NONE) {
+        if (stat_id == DEFENSE_MOD)
+            return PERCENT(acb->data_ptr, 150);
+    }
+    return acb->data_ptr;
+}
 
 // Liquid Ooze
 void liquid_ooze_on_drain(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -511,6 +547,16 @@ bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callb
 // AIRLOCK
 
 // TANGLEDFEET
+u16 tangled_feet_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if (B_PSTATUS(user) != AILMENT_CONFUSION) {
+        if ((stat_id == EVASION_MOD))
+            return (acb->data_ptr << 1);
+    }
+    return acb->data_ptr;
+}
+
 
 // MOTORDRIVE
 
