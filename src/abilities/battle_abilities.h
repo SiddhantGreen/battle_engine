@@ -152,5 +152,7 @@ extern u16 hustle_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callbac
 extern u16 fur_coat_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 thick_fat_before_move(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern void fluffy_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 water_bubble_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u8 water_bubble_on_status(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

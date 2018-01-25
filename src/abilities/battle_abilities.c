@@ -1281,6 +1281,38 @@ u8 merciless_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callback
 // STAKEOUT
 
 // WATERBUBBLE
+u16 water_bubble_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    // boost water attacks
+    if (user == src) {
+        if (CURRENT_ACTION->action_bank != user) return acb->data_ptr;
+        if (B_MOVE_HAS_TYPE(user, MTYPE_WATER)) {
+            // halve atk and spa stats
+            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD))
+                return acb->data_ptr << 1;
+        }
+    } else {
+    // deboost fire type attacks against src
+        if ((TARGET_OF(user) != src) || (CURRENT_ACTION->action_bank != user)) return acb->data_ptr;
+        if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
+            // halve atk and spa stats
+            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD))
+                return acb->data_ptr >> 1;
+        }
+    }
+    return acb->data_ptr;
+}
+
+u8 water_bubble_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (ailment == AILMENT_BURN) {
+    	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+       	return false;
+    }
+    return true;
+}
+
 
 // Steel Worker
 void steelworker_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -1386,11 +1418,11 @@ void fluffy_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if ((TARGET_OF(user) != src) || (B_MOVE_DMG(user) < 1)) return;
     if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE))
         B_MOVE_DMG(user) = B_MOVE_DMG(user) << 1;
-    if (B_MOVE_CONTACT(user))
+    if (B_MOVE_CONTACT(user)) {
         B_MOVE_DMG(user) = B_MOVE_DMG(user) >> 1;
+    }
     // atleast 1 dmg
     B_MOVE_DMG(user) = MAX(1, B_MOVE_DMG(user));
-    
 }
 // DAZZLING
 
