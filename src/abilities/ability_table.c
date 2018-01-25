@@ -707,6 +707,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// WATERBUBBLE
+		.on_stat = water_bubble_on_stat,
+		.on_status = water_bubble_on_status,
 	},
 	{
 		// Steel Worker

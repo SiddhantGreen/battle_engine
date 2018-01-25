@@ -1288,16 +1288,18 @@ u16 water_bubble_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback
         if (CURRENT_ACTION->action_bank != user) return acb->data_ptr;
         if (B_MOVE_HAS_TYPE(user, MTYPE_WATER)) {
             // halve atk and spa stats
-            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD))
+            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD)) {
                 return acb->data_ptr << 1;
+            }
         }
     } else {
     // deboost fire type attacks against src
         if ((TARGET_OF(user) != src) || (CURRENT_ACTION->action_bank != user)) return acb->data_ptr;
         if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE)) {
             // halve atk and spa stats
-            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD))
+            if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD)) {
                 return acb->data_ptr >> 1;
+            }
         }
     }
     return acb->data_ptr;
