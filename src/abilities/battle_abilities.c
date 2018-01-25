@@ -444,6 +444,18 @@ u8 shed_skin_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* a
 }
 
 // Guts
+/* Burn 1/2 damage effect handled in battle_calcs/damage_calc.c */
+u16 guts_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    // double attack if status'd
+    if (B_STATUS(user) != AILMENT_NONE) {
+        if (stat_id == ATTACK_MOD)
+            return acb->data_ptr << 1;
+    }
+    return acb->data_ptr;
+}
+
 
 // MARVELSCALE
 

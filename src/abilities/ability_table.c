@@ -236,6 +236,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// GUTS
+		.on_stat = guts_on_stat,
 	},
 	{
 		// MARVELSCALE
