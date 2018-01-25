@@ -669,6 +669,14 @@ u8 skill_link_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callbac
 // SOLARPOWER
 
 // QUICKFEET
+u16 quick_feet_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if ((B_STATUS(user) != AILMENT_NONE) && (stat_id == SPEED_MOD)) {
+        return (acb->data_ptr << 1);
+    }
+    return acb->data_ptr;
+}
 
 // Normalize
 u16 normalize_banlist[] = {
@@ -1471,6 +1479,12 @@ void galvanize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback*
 /* Implemented directly in event_on_status */
 
 // COMATOSE
+u8 comatose_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+	enqueue_message(NULL, user, STRING_IMMUNE_ABILITY, NULL);
+   	return false;
+}
 
 // QUEENLYMAJESTY
 

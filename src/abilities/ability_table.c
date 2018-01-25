@@ -353,6 +353,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// QUICKFEET
+		.on_stat = quick_feet_on_stat,
 	},
 	{
 		// Normalize
@@ -763,6 +764,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// COMATOSE
+		.on_status = comatose_on_status,
 	},
 	{
 		// QUEENLYMAJESTY
