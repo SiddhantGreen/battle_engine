@@ -100,7 +100,7 @@ extern u8 poison_touch_on_effect(u8 user, u8 src, u16 move, struct anonymous_cal
 extern u8 mummy_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 gooey_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void pick_pocket_on_secondary(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-extern u8 oblivous_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u8 oblivious_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
 extern u8 poison_heal_on_effect(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb);
@@ -144,5 +144,11 @@ extern void tough_claws_on_base_power(u8 user, u8 src, u16 move, struct anonymou
 extern void analytic_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void flare_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void toxic_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void battery_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern u16 victory_star_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 huge_power_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 compound_eyes_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 hustle_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern u16 fur_coat_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */

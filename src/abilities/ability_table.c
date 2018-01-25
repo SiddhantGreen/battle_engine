@@ -59,15 +59,16 @@ struct ability_data abilities[] = {
 		// WATERABSORB
 	},
 	{
-		// Oblivios
-		.on_tryhit = oblivous_on_tryhit,
+		// Oblivious
+		.on_tryhit = oblivious_on_tryhit,
 		.on_status = oblivious_on_status,
 	},
 	{
 		// CLOUDNINE
 	},
 	{
-		// COMPOUNDEYES
+		// Compound Eyes
+		.on_stat = compound_eyes_on_stat,
 	},
 	{
 		// Insomnia
@@ -145,7 +146,8 @@ struct ability_data abilities[] = {
 		// TRACE
 	},
 	{
-		// HUGEPOWER
+		// Huge Power
+		.on_stat = huge_power_on_stat,
 	},
 	{
 		// Poison Point
@@ -208,7 +210,8 @@ struct ability_data abilities[] = {
 		.before_move = truant_on_before_move,
 	},
 	{
-		// HUSTLE
+		// Hustle
+		.on_stat = hustle_on_stat,
 	},
 	{
 		// Cute Charm
@@ -270,7 +273,8 @@ struct ability_data abilities[] = {
 		.on_stat_boost_mod = white_smoke_on_stat_boost,
 	},
 	{
-		// PUREPOWER
+		// Pure Power
+		.on_stat = huge_power_on_stat,
 	},
 	{
 		// Shell Armor
@@ -481,7 +485,8 @@ struct ability_data abilities[] = {
 		// LIGHTMETAL
 	},
 	{
-		// MULTISCALE
+		// Multi-scale
+		.on_damage = shadow_shield_on_damage,
 	},
 	{
 		// Toxic Boost
@@ -572,7 +577,8 @@ struct ability_data abilities[] = {
 		// ZENMODE
 	},
 	{
-		// VICTORYSTAR
+		// Victory Star
+		.on_stat = victory_star_on_stat,
 	},
 	{
 		// TURBOBLAZE
@@ -595,7 +601,8 @@ struct ability_data abilities[] = {
 		// PROTEAN
 	},
 	{
-		// FURCOAT
+		// Fur Coat
+		.on_stat = fur_coat_on_stat,
 	},
 	{
 		// MAGICIAN
@@ -758,6 +765,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// BATTERY
+		.on_base_power = battery_on_base_power,
 	},
 	{
 		// FLUFFY

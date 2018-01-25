@@ -35,7 +35,6 @@ void stench_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
     if (B_MOVE_DMG(user) > 0) {
         B_MOVE_FLINCH(user) = 10;
     }
-    return;
 }
 
 // Drizzle
@@ -108,7 +107,7 @@ u16 oblivious_disallow[] = {
     MOVE_TAUNT, MOVE_NONE, MOVE_MAX, MOVE_CAPTIVATE, MOVE_ATTRACT,
 };
 
-u8 oblivous_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+u8 oblivious_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if ((TARGET_OF(user) != src) || (user == src)) return true;
     for (u8 i = 0; i < (sizeof(oblivious_disallow)/sizeof(u16)); i++) {
@@ -129,7 +128,15 @@ u8 oblivious_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 
 // CLOUDNINE
 
-// COMPOUNDEYES
+// Compound Eyes
+u16 compound_eyes_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if ((stat_id == ACCURACY_MOD)) {
+        return PERCENT(acb->data_ptr, 130);
+    }
+    return acb->data_ptr;
+}
 
 // Insomnia
 u8 insomnia_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
@@ -151,7 +158,6 @@ void colorchange_on_after_move(u8 user, u8 src, u16 move, struct anonymous_callb
     	 b_pkmn_set_type(TARGET_OF(user), type);
     	 enqueue_message(NULL, user, STRING_CONVERSION_TYPE, type);
     }
-    return;
 }
 
 // Immunity
@@ -256,7 +262,15 @@ u8 serenegrace_on_modify_move(u8 user, u8 src, u16 move, struct anonymous_callba
 
 // TRACE
 
-// HUGEPOWER
+// Huge Power, Pure Power
+u16 huge_power_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if (stat_id == ATTACK_MOD) {
+        return (acb->data_ptr << 1);
+    }
+    return acb->data_ptr;
+}
 
 // Poison Point
 u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -368,7 +382,18 @@ u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
     }
 }
 
-// HUSTLE
+// Hustle
+u16 hustle_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if ((stat_id == ATTACK_MOD)) {
+        return PERCENT(acb->data_ptr, 150);
+    }
+    if ((stat_id == ACCURACY_MOD) && B_MOVE_IS_PHYSICAL(user)) {
+        return PERCENT(acb->data_ptr, 80);
+    }
+    return acb->data_ptr;
+}
 
 // Cute Charm
 u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -391,7 +416,7 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // SHEDSKIN
 
-// GUTS
+// Guts
 
 // MARVELSCALE
 
@@ -443,8 +468,6 @@ bool white_smoke_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callb
     if (CURRENT_ACTION->action_bank == src) return true;
     return false;
 }
-
-// PUREPOWER
 
 // AIRLOCK
 
@@ -501,7 +524,6 @@ void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 	if (IS_PUNCH(move)) {
 	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     }
-    return;
 }
 
 // Poison Heal
@@ -539,7 +561,6 @@ void adaptability_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 	if (B_MOVE_STAB(user)) {
 	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 133);
     }
-    return;
 }
 
 
@@ -605,7 +626,6 @@ void technician_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callba
 	if (B_MOVE_POWER(user) <= 60) {
 	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
 	}
-	return;
 }
 
 // LEAFGUARD
@@ -654,7 +674,6 @@ void tintedlens_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* 
 	if (B_MOVE_EFFECTIVENESS(user) == TE_NOT_VERY_EFFECTIVE) {
 	    B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 200);
     }
-    return;
 }
 
 // Filter, Solid Rock and Prism Armor
@@ -664,7 +683,6 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
     if (B_MOVE_EFFECTIVENESS(user) == TE_SUPER_EFFECTIVE) {
         B_MOVE_DMG(user) = PERCENT(B_MOVE_DMG(user), 75);
     }
-    return;
 }
 
 // SLOWSTART
@@ -719,7 +737,6 @@ void reckless_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback
 	if (MOVE_RECOIL(move)) {
         B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 120);
     }
-    return;
 }
 
 // MULTITYPE
@@ -802,8 +819,6 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // HEAVYMETAL
 
 // LIGHTMETAL
-
-// MULTISCALE
 
 // Toxic Boost
 void toxic_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
@@ -990,7 +1005,15 @@ void prankster_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // ZENMODE
 
-// VICTORYSTAR
+// Victory Star
+u16 victory_star_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (SIDE_OF(user) != SIDE_OF(src)) return acb->data_ptr;
+    if ((stat_id == ACCURACY_MOD)) {
+        return PERCENT(acb->data_ptr, 110);
+    }
+    return acb->data_ptr;
+}
 
 // TURBOBLAZE
 
@@ -1024,7 +1047,15 @@ u8 flower_veil_on_status(u8 user, u8 src, u16 ailment, struct anonymous_callback
 
 // PROTEAN
 
-// FURCOAT
+// Fur Coat
+u16 fur_coat_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    if (stat_id == DEFENSE_MOD) {
+        return (acb->data_ptr << 1);
+    }
+    return acb->data_ptr;
+}
 
 // MAGICIAN
 
@@ -1046,7 +1077,6 @@ void strongjaw_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callbac
 	if (IS_BITE(move)) {
 	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
-    return;
 }
 
 // Refrigerate
@@ -1322,7 +1352,14 @@ void galvanize_before_turn(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // DANCER
 
-// BATTERY
+// Battery
+void battery_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb) {
+    if (user != ALLY_OF(src))
+        return;
+    if(IS_MOVE_SPECIAL(move)) {
+        B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 130);
+    }
+}
 
 // FLUFFY
 
@@ -1402,7 +1439,7 @@ void beast_boost_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback*
 
 // GRASSYSURGE
 
-// Shadow Shield
+// Multi-scale & Shadow Shield
 void shadow_shield_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return;
@@ -1412,7 +1449,7 @@ void shadow_shield_on_damage(u8 user, u8 src, u16 move, struct anonymous_callbac
     return;
 }
 
-// Neuroforce
+// Neuro-force
 void neuro_force_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return;
