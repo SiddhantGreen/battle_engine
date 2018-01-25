@@ -330,6 +330,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// DOWNLOAD
+		.on_start = download_on_start,
 	},
 	{
 		// Iron Fist

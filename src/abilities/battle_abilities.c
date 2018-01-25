@@ -624,6 +624,26 @@ bool simple_on_stat_boost_mod(u8 user, u8 src, u16 stat_id, struct anonymous_cal
 // DRYSKIN
 
 // DOWNLOAD
+void download_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    u32 def_total = 0;
+    u32 sdef_total = 0;
+
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (!ACTIVE_BANK(i) || SIDE_OF(i) == SIDE_OF(src)) {
+            continue;
+        } else {
+            def_total += B_DEFENSE_STAT_UMOD(i);
+            sdef_total += B_SPDEFENSE_STAT_UMOD(i);
+        }
+    }
+    if (def_total > sdef_total) {
+        stat_boost(user, STAT_SPECIAL_ATTACK, 1, user);
+    } else {
+        stat_boost(user, STAT_ATTACK, 1, user);
+    }
+}
+
 
 // Iron Fist
 void ironfist_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
