@@ -232,6 +232,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SHEDSKIN
+		.on_residual = shed_skin_on_residual,
 	},
 	{
 		// GUTS

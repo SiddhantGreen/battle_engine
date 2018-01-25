@@ -433,6 +433,15 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 // STICKYHOLD
 
 // SHEDSKIN
+u8 shed_skin_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return true;
+    if (B_STATUS(user) != AILMENT_NONE) {
+        if (rand_range(0, 100) <= 33)
+            set_status(user, EFFECT_CURE, user);
+    }
+    return true;
+}
 
 // Guts
 
