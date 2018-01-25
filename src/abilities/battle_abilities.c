@@ -324,6 +324,24 @@ void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // PRESSURE
 
 // THICKFAT
+u16 thick_fat_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if ((TARGET_OF(user) != src) || (CURRENT_ACTION->action_bank != user)) return acb->data_ptr;
+
+    // check current move is fire or ice
+    if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE) || B_MOVE_HAS_TYPE(user, MTYPE_ICE)) {
+        // halve atk and spa stats
+        if ((stat_id == ATTACK_MOD) || (stat_id == SPATTACK_MOD))
+            return acb->data_ptr >> 1;
+    }
+    return acb->data_ptr;
+}
+
+u8 thick_fat_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    add_callback(CB_ON_STAT_MOD, 5, 0, src, (u32)thick_fat_on_stat);
+    return true;
+}
 
 // EARLYBIRD
 
@@ -495,7 +513,8 @@ u8 angerpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // UNBURDEN
 
-// HEATPROOF /* Not Completed Yet */
+// HEATPROOF
+/* Burn damage being halved is done in status_effects/status.c */
 void heatproof_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return;
@@ -685,7 +704,7 @@ void filter_variations_on_damage(u8 user, u8 src, u16 move, struct anonymous_cal
     }
 }
 
-// SLOWSTART
+// Slow Start
 u16 slow_start_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != src) return acb->data_ptr;
@@ -1362,7 +1381,17 @@ void battery_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback*
 }
 
 // FLUFFY
-
+void fluffy_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if ((TARGET_OF(user) != src) || (B_MOVE_DMG(user) < 1)) return;
+    if (B_MOVE_HAS_TYPE(user, MTYPE_FIRE))
+        B_MOVE_DMG(user) = B_MOVE_DMG(user) << 1;
+    if (B_MOVE_CONTACT(user))
+        B_MOVE_DMG(user) = B_MOVE_DMG(user) >> 1;
+    // atleast 1 dmg
+    B_MOVE_DMG(user) = MAX(1, B_MOVE_DMG(user));
+    
+}
 // DAZZLING
 
 // Soul Heart

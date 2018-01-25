@@ -182,6 +182,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// THICKFAT
+		.before_move = thick_fat_before_move,
 	},
 	{
 		// EARLYBIRD
@@ -769,6 +770,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// FLUFFY
+		.on_damage = fluffy_on_damage,
 	},
 	{
 		// DAZZLING

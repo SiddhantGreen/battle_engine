@@ -86,8 +86,13 @@ u8 burn_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
 	if (user != src) return true;
 	// do dmg
-    u16 dmg = TOTAL_HP(user) / 8;
-    do_damage(user, MAX(1, dmg));
+	// heatproof:
+	u16 dmg;
+	if (BANK_ABILITY(user) == ABILITY_HEATPROOF)
+		dmg = MAX(1, TOTAL_HP(user) / 16);
+	else
+		dmg = MAX(1, TOTAL_HP(user) >> 3);
+    do_damage(user, dmg);
     enqueue_message(0, user, STRING_RESIDUAL_STATUS_DMG, AILMENT_BURN);
     p_bank[user]->b_data.status_turns++;
 	return true;
