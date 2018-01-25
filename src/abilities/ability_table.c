@@ -474,6 +474,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// FRIENDGUARD
+		.on_damage = friend_guard_on_damage,
 	},
 	{
 		// Weak Armor

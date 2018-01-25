@@ -823,6 +823,12 @@ u8 cursed_body_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* a
 // HEALER
 
 // FRIENDGUARD
+void friend_guard_on_damage(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    u8 target = TARGET_OF(user);
+    if ((SIDE_OF(target) != SIDE_OF(src)) || (target == src) || (B_MOVE_DMG(user) < 1)) return;
+    B_MOVE_DMG(user) = MAX(1, PERCENT(B_MOVE_DMG(user), 75));
+}
 
 // Weak Armor
 u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
