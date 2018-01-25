@@ -484,10 +484,12 @@ struct ability_data abilities[] = {
 		// MULTISCALE
 	},
 	{
-		// TOXICBOOST
+		// Toxic Boost
+		.on_base_power = toxic_boost_on_base_power,
 	},
 	{
-		// FLAREBOOST
+		// Flare Boost
+		.on_base_power = flare_boost_on_base_power,
 	},
 	{
 		// HARVEST
@@ -496,7 +498,7 @@ struct ability_data abilities[] = {
 		// TELEPATHY
 	},
 	{
-		// MOODY
+		// Moody
 		.on_residual = moody_on_residual,
 	},
 	{
@@ -520,7 +522,8 @@ struct ability_data abilities[] = {
 		// WONDERSKIN
 	},
 	{
-		// ANALYTIC
+		// Analytic
+		.on_base_power = analytic_on_base_power,
 	},
 	{
 		// ILLUSION
@@ -634,7 +637,8 @@ struct ability_data abilities[] = {
 		// SYMBIOSIS
 	},
 	{
-		// TOUGHCLAWS
+		// Tough Claws
+		.on_base_power = tough_claws_on_base_power,
 	},
 	{
 		// Pixilate

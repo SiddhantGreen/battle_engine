@@ -805,9 +805,23 @@ u8 weak_armor_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 
 // MULTISCALE
 
-// TOXICBOOST
+// Toxic Boost
+void toxic_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+	if (B_MOVE_IS_PHYSICAL(user) && ((B_STATUS(user) == AILMENT_POISON) || (B_STATUS(user) == AILMENT_BAD_POISON))) {
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
+	}
+}
 
-// FLAREBOOST
+// Flare Boost
+void flare_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+	if (B_MOVE_IS_SPECIAL(user) && B_STATUS(user) == AILMENT_BURN) {
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
+	}
+}
 
 // HARVEST
 
@@ -871,7 +885,16 @@ bool big_pecks_on_stat_boost(u8 user, u8 src, u16 move, struct anonymous_callbac
 
 // WONDERSKIN
 
-// ANALYTIC
+// Analytic
+extern u8 doom_desire_on_tryhit(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+
+void analytic_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+	if ((p_bank[TARGET_OF(user)]->b_data.will_move == false) && (moves[move].on_tryhit_move != doom_desire_on_tryhit)) {
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 130);
+	}
+}
 
 // ILLUSION
 
@@ -1081,14 +1104,20 @@ void megalauncher_on_base_power(u8 user, u8 src, u16 move, struct anonymous_call
 	if (IS_PULSE(move)) {
 	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 150);
     }
-    return;
 }
 
 // GRASSPELT
 
 // SYMBIOSIS
 
-// TOUGHCLAWS
+// Tough Claws
+void tough_claws_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+	if (B_MOVE_CONTACT(user)) {
+	    B_MOVE_POWER(user) = PERCENT(B_MOVE_POWER(user), 130);
+	}
+}
 
 // Pixilate
 u16 pixilate_banlist[] = {

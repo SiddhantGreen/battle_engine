@@ -140,6 +140,9 @@ extern u8 truant_on_before_move(u8 user, u8 src, u16 move, struct anonymous_call
 extern u8 moody_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern void slow_start_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 extern u8 angerpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
-
+extern void tough_claws_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void analytic_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void flare_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
+extern void toxic_boost_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
