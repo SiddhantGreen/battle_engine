@@ -451,8 +451,30 @@ u8 cute_charm_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* ac
 }
 
 // PLUS
+u16 plus_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (ACTIVE_BANK(i) && ((SIDE_OF(i) == SIDE_OF(user)) && (i != user))) {
+            if ((BANK_ABILITY(i) == ABILITY_MINUS) && (stat_id == SPATTACK_MOD))
+                return PERCENT(acb->data_ptr, 150);
+        }
+    }
+    return acb->data_ptr;
+}
 
 // MINUS
+u16 minus_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return acb->data_ptr;
+    for (u8 i = 0; i < BANK_MAX; i++) {
+        if (ACTIVE_BANK(i) && ((SIDE_OF(i) == SIDE_OF(user)) && (i != user))) {
+            if ((BANK_ABILITY(i) == ABILITY_PLUS) && (stat_id == SPATTACK_MOD))
+                return PERCENT(acb->data_ptr, 150);
+        }
+    }
+    return acb->data_ptr;
+}
 
 // FORECAST
 

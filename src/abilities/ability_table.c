@@ -222,9 +222,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// PLUS
+		.on_stat = plus_on_stat,
 	},
 	{
 		// MINUS
+		.on_stat = minus_on_stat,
 	},
 	{
 		// FORECAST
