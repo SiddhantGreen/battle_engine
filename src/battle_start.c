@@ -78,9 +78,10 @@ void start_wild_battle()
 
             for (u8 i = 0; i < index; i++) {
                 if (ACTIVE_BANK(active_banks[i])) {
-                    u8 ability = p_bank[active_banks[i]]->b_data.ability;
+                    u8 ability = p_bank[i]->b_data.ability;
                     if (abilities[ability].on_start) {
-                        abilities[ability].on_start(NULL, i, NULL, NULL);
+						dprintf("on start for %d\n", i);
+                        abilities[ability].on_start(i, i, NULL, NULL);
                     }
                 }
             }

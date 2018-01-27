@@ -95,7 +95,7 @@ struct move_used {
     u8 flinch;
     u8 accuracy; // over 100 = never miss
 
-    u16 remove_contact : 1;
+    u16 makes_contact : 1;
     u16 ignore_abilities : 1;
     u16 infiltrates : 1;
     u16 will_crit : 1;

@@ -36,6 +36,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// STURDY
+		.on_damage = sturdy_on_dmg,
 	},
 	{
 		// DAMP
@@ -58,15 +59,16 @@ struct ability_data abilities[] = {
 		// WATERABSORB
 	},
 	{
-		// Oblivios
-		.on_tryhit = oblivous_on_tryhit,
+		// Oblivious
+		.on_tryhit = oblivious_on_tryhit,
 		.on_status = oblivious_on_status,
 	},
 	{
 		// CLOUDNINE
 	},
 	{
-		// COMPOUNDEYES
+		// Compound Eyes
+		.on_stat = compound_eyes_on_stat,
 	},
 	{
 		// Insomnia
@@ -115,6 +117,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SYNCHRONIZE
+		.on_status = synchronize_on_status,
 	},
 	{
 		// Clear Body
@@ -128,6 +131,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SERENEGRACE
+		.on_modify_move = serenegrace_on_modify_move,
 	},
 	{
 		// SWIFTSWIM
@@ -143,7 +147,8 @@ struct ability_data abilities[] = {
 		// TRACE
 	},
 	{
-		// HUGEPOWER
+		// Huge Power
+		.on_stat = huge_power_on_stat,
 	},
 	{
 		// Poison Point
@@ -178,9 +183,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// THICKFAT
+		.before_move = thick_fat_before_move,
 	},
 	{
 		// EARLYBIRD
+		.on_residual = early_bird_on_residual,
 	},
 	{
 		// Flame Body
@@ -203,9 +210,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// TRUANT
+		.before_move = truant_on_before_move,
 	},
 	{
-		// HUSTLE
+		// Hustle
+		.on_stat = hustle_on_stat,
 	},
 	{
 		// Cute Charm
@@ -213,9 +222,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// PLUS
+		.on_stat = plus_on_stat,
 	},
 	{
 		// MINUS
+		.on_stat = minus_on_stat,
 	},
 	{
 		// FORECAST
@@ -225,12 +236,15 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SHEDSKIN
+		.on_residual = shed_skin_on_residual,
 	},
 	{
 		// GUTS
+		.on_stat = guts_on_stat,
 	},
 	{
 		// MARVELSCALE
+		.on_stat = marvel_scale_on_stat,
 	},
 	{
 		// Liquidooze
@@ -267,7 +281,8 @@ struct ability_data abilities[] = {
 		.on_stat_boost_mod = white_smoke_on_stat_boost,
 	},
 	{
-		// PUREPOWER
+		// Pure Power
+		.on_stat = huge_power_on_stat,
 	},
 	{
 		// Shell Armor
@@ -278,6 +293,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// TANGLEDFEET
+		.on_stat = tangled_feet_on_stat,
 	},
 	{
 		// MOTORDRIVE
@@ -295,16 +311,17 @@ struct ability_data abilities[] = {
 		// GLUTTONY
 	},
 	{
-		// ANGERPOINT
+		// Anger Point
+		.on_effect = angerpoint_on_effect,
 	},
 	{
 		// UNBURDEN
 	},
 	{
 		// Heatproof
-        	.on_base_power = heatproof_on_base_power,
+        .on_base_power = heatproof_on_base_power,
 	},
-    	{
+    {
 		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
@@ -313,6 +330,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// DOWNLOAD
+		.on_start = download_on_start,
 	},
 	{
 		// Iron Fist
@@ -328,6 +346,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SKILLLINK
+		.on_modify_move = skill_link_on_modify_move,
 	},
 	{
 		// HYDRATION
@@ -337,6 +356,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// QUICKFEET
+		.on_stat = quick_feet_on_stat,
 	},
 	{
 		// Normalize
@@ -369,6 +389,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SUPERLUCK
+		.on_stat = super_luck_on_stat,
 	},
 	{
 		// Aftermath
@@ -393,6 +414,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// SLOWSTART
+		.on_start = slow_start_on_start,
 	},
 	{
 		// Scrappy
@@ -440,7 +462,7 @@ struct ability_data abilities[] = {
 		// SHEERFORCE
 	},
 	{
-		// Contary
+		// Contrary
 		.on_stat_boost_mod = contrary_on_stat_boost_mod,
 	},
 	{
@@ -462,6 +484,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// FRIENDGUARD
+		.on_damage = friend_guard_on_damage,
 	},
 	{
 		// Weak Armor
@@ -474,13 +497,16 @@ struct ability_data abilities[] = {
 		// LIGHTMETAL
 	},
 	{
-		// MULTISCALE
+		// Multi-scale
+		.on_damage = shadow_shield_on_damage,
 	},
 	{
-		// TOXICBOOST
+		// Toxic Boost
+		.on_base_power = toxic_boost_on_base_power,
 	},
 	{
-		// FLAREBOOST
+		// Flare Boost
+		.on_base_power = flare_boost_on_base_power,
 	},
 	{
 		// HARVEST
@@ -489,7 +515,8 @@ struct ability_data abilities[] = {
 		// TELEPATHY
 	},
 	{
-		// MOODY
+		// Moody
+		.on_residual = moody_on_residual,
 	},
 	{
 		// OVERCOAT
@@ -512,7 +539,8 @@ struct ability_data abilities[] = {
 		// WONDERSKIN
 	},
 	{
-		// ANALYTIC
+		// Analytic
+		.on_base_power = analytic_on_base_power,
 	},
 	{
 		// ILLUSION
@@ -521,7 +549,7 @@ struct ability_data abilities[] = {
 		// IMPOSTER
 	},
 	{
-		// Infiltraotr
+		// Infiltrator
 		.on_modify_move = infiltrator_modify_move,
 	},
 	{
@@ -537,7 +565,8 @@ struct ability_data abilities[] = {
 		.on_effect = justified_on_effect,
 	},
 	{
-		// RATTLED
+		// Rattled
+		.on_effect = rattled_on_effect,
 	},
 	{
 		// MAGICBOUNCE
@@ -547,7 +576,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Prankster
-		.before_turn = prankser_before_turn,
+		.before_turn = prankster_before_turn,
 	},
 	{
 		// SANDFORCE
@@ -560,7 +589,8 @@ struct ability_data abilities[] = {
 		// ZENMODE
 	},
 	{
-		// VICTORYSTAR
+		// Victory Star
+		.on_stat = victory_star_on_stat,
 	},
 	{
 		// TURBOBLAZE
@@ -583,7 +613,8 @@ struct ability_data abilities[] = {
 		// PROTEAN
 	},
 	{
-		// FURCOAT
+		// Fur Coat
+		.on_stat = fur_coat_on_stat,
 	},
 	{
 		// MAGICIAN
@@ -625,7 +656,8 @@ struct ability_data abilities[] = {
 		// SYMBIOSIS
 	},
 	{
-		// TOUGHCLAWS
+		// Tough Claws
+		.on_base_power = tough_claws_on_base_power,
 	},
 	{
 		// Pixilate
@@ -676,6 +708,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// MERCILESS
+		.on_modify_move = merciless_on_modify_move,
 	},
 	{
 		// SHIELDSDOWN
@@ -685,6 +718,8 @@ struct ability_data abilities[] = {
 	},
 	{
 		// WATERBUBBLE
+		.on_stat = water_bubble_on_stat,
+		.on_status = water_bubble_on_status,
 	},
 	{
 		// Steel Worker
@@ -698,6 +733,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// LONGREACH
+		.on_modify_move = long_reach_on_modify_move,
 	},
 	{
 		// Liquid Voice
@@ -731,6 +767,7 @@ struct ability_data abilities[] = {
 	},
 	{
 		// COMATOSE
+		.on_status = comatose_on_status,
 	},
 	{
 		// QUEENLYMAJESTY
@@ -743,9 +780,11 @@ struct ability_data abilities[] = {
 	},
 	{
 		// BATTERY
+		.on_base_power = battery_on_base_power,
 	},
 	{
 		// FLUFFY
+		.on_damage = fluffy_on_damage,
 	},
 	{
 		// DAZZLING
@@ -799,6 +838,6 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Neuroforce
-		.on_damage = neuro_force_on_damage, 
+		.on_damage = neuro_force_on_damage,
 	},
 };

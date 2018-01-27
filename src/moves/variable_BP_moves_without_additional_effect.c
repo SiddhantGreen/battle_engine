@@ -434,5 +434,39 @@ void triple_kick_on_base_power(u8 user, u8 src, u16 move, struct anonymous_callb
 {
     if (user != src) return;
     B_MOVE_POWER(user) = (10 * battle_master->b_moves[(user)].hit_counter);
-    dprintf("current power is %d\n", B_MOVE_POWER(user));
+    //dprintf("current power is %d\n", B_MOVE_POWER(user));
+}
+
+
+void stored_power_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+
+    u8 boost_factor = 0;
+    boost_factor += MAX(B_ATTACK_BUFF(user), 0);
+    boost_factor += MAX(B_DEFENSE_BUFF(user), 0);
+    boost_factor += MAX(B_SPEED_BUFF(user), 0);
+    boost_factor += MAX(B_SPATTACK_BUFF(user), 0);
+    boost_factor += MAX(B_SPDEFENSE_BUFF(user), 0);
+    boost_factor += MAX(B_ACCURACY_BUFF(user), 0);
+    boost_factor += MAX(B_EVASION_BUFF(user), 0);
+
+    B_MOVE_POWER(user) = 20 + 20*(boost_factor);
+}
+
+void punishment_on_base_power_move(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+
+    u8 defender = TARGET_OF(user);
+    u8 boost_factor = 0;
+    boost_factor += MAX(B_ATTACK_BUFF(defender), 0);
+    boost_factor += MAX(B_DEFENSE_BUFF(defender), 0);
+    boost_factor += MAX(B_SPEED_BUFF(defender), 0);
+    boost_factor += MAX(B_SPATTACK_BUFF(defender), 0);
+    boost_factor += MAX(B_SPDEFENSE_BUFF(defender), 0);
+    boost_factor += MAX(B_ACCURACY_BUFF(defender), 0);
+    boost_factor += MAX(B_EVASION_BUFF(defender), 0);
+
+    B_MOVE_POWER(user) = 60 + 20*(boost_factor);
 }

@@ -16,7 +16,7 @@ typedef u16 (*StatCallback)(u8, u16);
  */
 const static u16 stat_mod[13] = {25, 29, 33, 40, 50, 67, 100, 150, 200, 250, 300, 350, 400};
 const static u16 acc_mod[13] = {33, 38, 43, 50, 60, 75, 100, 133, 167, 200, 233, 266, 300};
-const static u16 crit_mod[4] = {6, 13, 50, 100};
+const static u8 crit_mod[4] = {6, 13, 50, 100};
 
 u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
 {
@@ -30,7 +30,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
         stat_total = acc_mod[mod + 6];
     } else {
         /* crit chance */
-        stat_total = (mod > sizeof(crit_mod)) ? acc_mod[sizeof(crit_mod) - 1]: acc_mod[mod];
+        stat_total = (mod > sizeof(crit_mod)) ? crit_mod[sizeof(crit_mod) - 1]: crit_mod[mod];
     }
 
     for (u8 i = 0; i < BANK_MAX; i++) {
@@ -44,6 +44,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
     // back up cbs
     u32* old_execution_array = push_callbacks();
     u8 old_index = CB_EXEC_INDEX;
+    bool execution_status = battle_master->executing;
     // Stat modifying callbacks
     build_execution_order(CB_ON_STAT_MOD);
     battle_master->executing = true;
@@ -56,6 +57,7 @@ u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank)
     }
     restore_callbacks(old_execution_array);
     CB_EXEC_INDEX = old_index;
+    battle_master->executing = execution_status;
     return stat_total;
 }
 

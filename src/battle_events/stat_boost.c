@@ -105,6 +105,7 @@ void event_stat_boost(struct action* current_action)
             // stat changed by 1 stage
             *stat_stored += (new_amount > 0) ? delta : -delta;
             if (new_amount > 0) {
+                dprintf("\ntrying to queue the stat went up string...\n\n");
                 enqueue_message(0, bank, STRING_STAT_MOD_RISE, stat_id + REQUEST_ATK);
             } else {
                 enqueue_message(0, bank, STRING_STAT_MOD_DROP, stat_id + REQUEST_ATK);

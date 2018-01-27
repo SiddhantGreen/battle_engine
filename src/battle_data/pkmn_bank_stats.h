@@ -105,7 +105,7 @@ extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 #define B_MOVE_STAB(bank) (battle_master->b_moves[bank].stab)
 #define B_MOVE_ACCURACY(bank) (battle_master->b_moves[bank].accuracy)
 #define B_MOVE_PRIORITY(bank) (battle_master->b_moves[bank].priority)
-#define B_MOVE_REMOVE_CONTACT(bank) (battle_master->b_moves[bank].remove_contact)
+#define B_MOVE_CONTACT(bank) (battle_master->b_moves[bank].makes_contact)
 #define B_MOVE_IGNORING_ABILITIES(bank) (battle_master->b_moves[bank].ignore_abilities)
 #define B_MOVE_HAS_TYPE(bank, type) ((B_MOVE_TYPE(bank, 0) == type) || (B_MOVE_TYPE(bank, 1) == type))
 #define B_MOVE_IS_STATUS(bank) (battle_master->b_moves[bank].category == MOVE_STATUS)
@@ -144,6 +144,7 @@ extern u16 stage_modify_stat(u16 stat, s8 mod, u8 id, u8 bank);
 #define B_GET_MOVE(bank, id) (p_bank[bank]->b_data.moves[id])
 #define B_GET_MOVE_PP(bank, id) (p_bank[bank]->b_data.move_pp[id])
 #define B_LAST_DMG(bank) (p_bank[bank]->b_data.last_damage)
+#define ALLY_OF(bank) (bank ^ 1)
 
 /*
  *
