@@ -35,7 +35,7 @@ struct ability_data abilities[] = {
 		.on_modify_move = battle_armor_variations_on_modify_move,
 	},
 	{
-		// STURDY
+		// Sturdy
 		.on_damage = sturdy_on_dmg,
 	},
 	{
@@ -53,10 +53,12 @@ struct ability_data abilities[] = {
 		.on_effect = static_on_effect,
 	},
 	{
-		// VOLTABSORB
+		// Volt Absorb
+		.on_damage = volt_absorb_on_damage,
 	},
 	{
-		// WATERABSORB
+		// Water Absrob
+		.on_damage = volt_absorb_on_damage,
 	},
 	{
 		// Oblivious
@@ -116,7 +118,7 @@ struct ability_data abilities[] = {
 		.on_effect = effect_spore_effect,
 	},
 	{
-		// SYNCHRONIZE
+		// Synchronize
 		.on_status = synchronize_on_status,
 	},
 	{
@@ -130,7 +132,7 @@ struct ability_data abilities[] = {
 		// LIGHTNINGROD
 	},
 	{
-		// SERENEGRACE
+		// Serene Grace
 		.on_modify_move = serenegrace_on_modify_move,
 	},
 	{
@@ -182,11 +184,11 @@ struct ability_data abilities[] = {
 		// PRESSURE
 	},
 	{
-		// THICKFAT
+		// Thick Fat
 		.before_move = thick_fat_before_move,
 	},
 	{
-		// EARLYBIRD
+		// Early Bird
 		.on_residual = early_bird_on_residual,
 	},
 	{
@@ -209,7 +211,7 @@ struct ability_data abilities[] = {
 		// PICKUP
 	},
 	{
-		// TRUANT
+		// Truant
 		.before_move = truant_on_before_move,
 	},
 	{
@@ -221,11 +223,11 @@ struct ability_data abilities[] = {
 		.on_effect = cute_charm_on_effect,
 	},
 	{
-		// PLUS
+		// Plus
 		.on_stat = plus_on_stat,
 	},
 	{
-		// MINUS
+		// Minus
 		.on_stat = minus_on_stat,
 	},
 	{
@@ -235,15 +237,15 @@ struct ability_data abilities[] = {
 		// STICKYHOLD
 	},
 	{
-		// SHEDSKIN
+		// Shedskin
 		.on_residual = shed_skin_on_residual,
 	},
 	{
-		// GUTS
+		// Guts
 		.on_stat = guts_on_stat,
 	},
 	{
-		// MARVELSCALE
+		// Marvel Scale
 		.on_stat = marvel_scale_on_stat,
 	},
 	{
@@ -292,7 +294,7 @@ struct ability_data abilities[] = {
 		// AIRLOCK
 	},
 	{
-		// TANGLEDFEET
+		// Tangled Feet
 		.on_stat = tangled_feet_on_stat,
 	},
 	{
@@ -319,9 +321,9 @@ struct ability_data abilities[] = {
 	},
 	{
 		// Heatproof
-        .on_base_power = heatproof_on_base_power,
+        	.on_base_power = heatproof_on_base_power,
 	},
-    {
+    	{
 		// Simple
 		.on_stat_boost_mod = simple_on_stat_boost_mod,
 	},
@@ -329,7 +331,7 @@ struct ability_data abilities[] = {
 		// DRYSKIN
 	},
 	{
-		// DOWNLOAD
+		// Download
 		.on_start = download_on_start,
 	},
 	{
@@ -345,7 +347,7 @@ struct ability_data abilities[] = {
 		.on_base_power = adaptability_on_base_power,
 	},
 	{
-		// SKILLLINK
+		// Skill Link
 		.on_modify_move = skill_link_on_modify_move,
 	},
 	{
@@ -355,7 +357,7 @@ struct ability_data abilities[] = {
 		// SOLARPOWER
 	},
 	{
-		// QUICKFEET
+		// Quick Feet
 		.on_stat = quick_feet_on_stat,
 	},
 	{
@@ -388,7 +390,7 @@ struct ability_data abilities[] = {
 		// MOLDBREAKER
 	},
 	{
-		// SUPERLUCK
+		// Super Luck
 		.on_stat = super_luck_on_stat,
 	},
 	{
@@ -413,7 +415,7 @@ struct ability_data abilities[] = {
 		.on_damage = filter_variations_on_damage,
 	},
 	{
-		// SLOWSTART
+		// Slowstart
 		.on_start = slow_start_on_start,
 	},
 	{
@@ -483,7 +485,7 @@ struct ability_data abilities[] = {
 		// HEALER
 	},
 	{
-		// FRIENDGUARD
+		// Friend Guard
 		.on_damage = friend_guard_on_damage,
 	},
 	{
@@ -707,7 +709,7 @@ struct ability_data abilities[] = {
 		.on_effect = water_compaction_on_effect,
 	},
 	{
-		// MERCILESS
+		// Merciless
 		.on_modify_move = merciless_on_modify_move,
 	},
 	{
@@ -717,7 +719,7 @@ struct ability_data abilities[] = {
 		// STAKEOUT
 	},
 	{
-		// WATERBUBBLE
+		// Water Bubble
 		.on_stat = water_bubble_on_stat,
 		.on_status = water_bubble_on_status,
 	},
@@ -732,7 +734,7 @@ struct ability_data abilities[] = {
 		// SLUSHRUSH
 	},
 	{
-		// LONGREACH
+		// Long Reach
 		.on_modify_move = long_reach_on_modify_move,
 	},
 	{
@@ -766,7 +768,7 @@ struct ability_data abilities[] = {
 		/* Implemented in on_status.c*/
 	},
 	{
-		// COMATOSE
+		// Comatose
 		.on_status = comatose_on_status,
 	},
 	{
@@ -779,11 +781,11 @@ struct ability_data abilities[] = {
 		// DANCER
 	},
 	{
-		// BATTERY
+		// Battery
 		.on_base_power = battery_on_base_power,
 	},
 	{
-		// FLUFFY
+		// Fluffy
 		.on_damage = fluffy_on_damage,
 	},
 	{
