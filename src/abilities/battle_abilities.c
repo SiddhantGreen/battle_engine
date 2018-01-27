@@ -104,7 +104,7 @@ u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 void volt_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_ELECTRIC); {
+    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_ELECTRIC)); {
 	B_MOVE_DMG(user) = 0;
 	B_CURRENT_HP(user) = B_CURRENT_HP(user) + PERCENT(TOTAL_HP(user),25);
     }
@@ -115,7 +115,7 @@ void volt_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callba
 void water_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if (user != src) return;
-    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_WATER); {
+    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_WATER)); {
 	B_MOVE_DMG(user) = 0;
 	B_CURRENT_HP(user) = B_CURRENT_HP(user) + PERCENT(TOTAL_HP(user),25);
     }
