@@ -166,5 +166,7 @@ extern u16 plus_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback*
 extern u16 minus_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern u8 comatose_on_status(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 extern void download_on_start(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern void water_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
+extern void volt_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb);
 
 #endif /* BATTLE_ABILITIES_TABLE_H_ */
