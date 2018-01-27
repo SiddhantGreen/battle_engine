@@ -64,7 +64,7 @@ u8 battle_armor_variations_on_modify_move(u8 user, u8 src, u16 move, struct anon
     return true;
 }
 
-// STURDY
+// Sturdy
 void sturdy_on_dmg(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (TARGET_OF(user) != src) return;
@@ -92,18 +92,36 @@ u8 limber_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* ac
 // Static
 u8 static_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != src) return true;
-	if (!B_MOVE_CONTACT(user)) return true;
-	if (rand_range(1, 100) <= 30) {
-	    set_status(user, EFFECT_PARALYZE, src);
-	}
-	return true;
+    if (TARGET_OF(user) != src) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
+    if (rand_range(1, 100) <= 30) {
+	set_status(user, EFFECT_PARALYZE, src);
+    }
+    return true;
 }
 
-// VOLTABSORB
+// Volt Absorb
+void volt_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_ELECTRIC); {
+	B_MOVE_DMG(user) = 0;
+	B_CURRENT_HP(user) = B_CURRENT_HP(user) + PERCENT(TOTAL_HP(user),25);
+    }
+    return;
+}
 
-// WATERABSORB
-
+// Water Absorb
+void water_absorb_on_damage(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
+{
+    if (user != src) return;
+    if (B_MOVE_HAS_TYPE(TARGET_OF(user), MTYPE_WATER); {
+	B_MOVE_DMG(user) = 0;
+	B_CURRENT_HP(user) = B_CURRENT_HP(user) + PERCENT(TOTAL_HP(user),25);
+    }
+    return;
+}
+	    
 // Oblivious
 u16 oblivious_disallow[] = {
     MOVE_TAUNT, MOVE_NONE, MOVE_MAX, MOVE_CAPTIVATE, MOVE_ATTRACT,
@@ -196,10 +214,10 @@ u8 own_tempo_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback*
 // Rough Skin and Iron Barbs
 u8 rough_skin_variations_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != src) return true;
-	if (!B_MOVE_CONTACT(user)) return true;
-	do_damage(user, TOTAL_HP(user) >> 3);
-	return true;
+    if (TARGET_OF(user) != src) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
+    do_damage(user, TOTAL_HP(user) >> 3);
+    return true;
 }
 
 // WONDERGUARD
@@ -224,7 +242,7 @@ u8 effect_spore_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb
     return true;
 }
 
-// SYNCHRONIZE
+// Synchronize
 
 u8 synchronize_on_status(u8 user, u8 src, u16 ailment , struct anonymous_callback* acb)
 {
@@ -286,11 +304,11 @@ u16 huge_power_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* 
 // Poison Point
 u8 poisonpoint_on_effect(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
-	if (TARGET_OF(user) != src) return true;
-	if (!B_MOVE_CONTACT(user)) return true;
-        if (rand_range(0, 100) <= 30)
-	    set_status(user, EFFECT_POISON, src);
-	return true;
+    if (TARGET_OF(user) != src) return true;
+    if (!B_MOVE_CONTACT(user)) return true;
+    if (rand_range(0, 100) <= 30)
+	set_status(user, EFFECT_POISON, src);
+    return true;
 }
 
 // INNERFOCUS
@@ -334,7 +352,7 @@ void sandstream_on_start(u8 user, u8 src, u16 move, struct anonymous_callback* a
 
 // PRESSURE
 
-// THICKFAT
+// Thick Fat
 u16 thick_fat_on_stat(u8 user, u8 src, u16 stat_id, struct anonymous_callback* acb)
 {
     if ((TARGET_OF(user) != src) || (CURRENT_ACTION->action_bank != user)) return acb->data_ptr;
@@ -354,7 +372,7 @@ u8 thick_fat_before_move(u8 user, u8 src, u16 move, struct anonymous_callback* a
     return true;
 }
 
-// EARLYBIRD
+// Early Bird
 u8 early_bird_on_residual(u8 user, u8 src, u16 move, struct anonymous_callback* acb)
 {
     if (user != src) return true;
